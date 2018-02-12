@@ -10,7 +10,8 @@
     "dev": "preact watch --template src/template.html",
     "lint": "eslint src",
     "test": "NODE_ENV=test jest ./tests",
-    "test:watch": "yarn test -- --watchAll"
+    "test:ci": "CI=true yarn test --coverage --color",
+    "test:watch": "yarn test --watchAll"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor",
@@ -67,6 +68,7 @@
   },
   "babel": {
     "presets": [
+      ["preact-cli/babel", { "modules": "commonjs" }],
       [
         "env",
         {
