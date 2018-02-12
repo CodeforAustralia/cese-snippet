@@ -4,13 +4,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
+    "start": "if-env NODE_ENV=production && yarn -s serve || yarn -s dev",
+    "build": "preact build --template src/template.html",
+    "serve": "yarn build && preact serve",
+    "dev": "preact watch --template src/template.html",
     "lint": "eslint src",
-    "test": "jest ./tests",
-    "build:prod": ""
+    "test": "jest ./tests"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"
