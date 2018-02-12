@@ -9,10 +9,14 @@
     "serve": "yarn build && preact serve",
     "dev": "preact watch --template src/template.html",
     "lint": "eslint src",
-    "test": "jest ./tests"
+    "test": "NODE_ENV=test jest ./tests",
+    "test:watch": "yarn test -- --watchAll"
   },
   "eslintConfig": {
-    "extends": "eslint-config-synacor"
+    "extends": "eslint-config-synacor",
+    "rules": {
+      "indent": [2, 2]
+    }
   },
   "eslintIgnore": [
     "build/*"
@@ -60,5 +64,25 @@
       "^create-react-class$": "preact-compat/lib/create-react-class",
       "^react-addons-css-transition-group$": "preact-css-transition-group"
     }
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "transform-react-jsx",
+        {
+          "pragma": "h"
+        }
+      ]
+    ]
   }
 }

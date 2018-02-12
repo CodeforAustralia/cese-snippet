@@ -44,3 +44,8 @@ yarn test
 ```
 
 For detailed explanation on how things work, checkout the [Preact CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
+
+
+## Debugging
+
+State layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) 
