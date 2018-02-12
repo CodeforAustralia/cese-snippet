@@ -5,17 +5,21 @@ Snippet is an app that allows educators to view or publish insights about progra
 Built during the 2017-18 Fellowship for NSW Department of Education, Centre of Statistics and Evaluation.
 
 
-## Tech 
+## Tech  
 
 This app is built from preact-cli
 - [preact-cli](https://github.com/developit/preact-cli)
+
+Data management 
+- [unistore](https://github.com/developit/unistore)
+
+UI
+- [Reactstrap](https://reactstrap.github.io/)
 
 
 ## Requirements
 
 Node 8.9.4
-
-Npm 5.6.0
 
 Yarn 1.3.2
 
@@ -24,7 +28,7 @@ Yarn 1.3.2
 
 ``` bash
 # install dependencies
-yarn --production=false
+yarn
 
 # serve with hot reload at localhost:8080
 yarn dev

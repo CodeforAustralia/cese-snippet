@@ -24,17 +24,18 @@
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
     "preact-cli": "^2.1.2",
-    "preact-render-spy": "^1.2.1"
+    "preact-render-spy": "^1.2.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
-    "node-sass": "^4.7.2",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
     "preact-router": "^2.5.7",
     "react-transition-group": "^2.2.1",
     "reactstrap": "^4.8.0",
-    "sass-loader": "^6.0.6"
+    "unistore": "^3.0.4"
   },
   "jest": {
     "verbose": true,
