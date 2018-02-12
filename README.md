@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/CodeforAustralia/cese-snippet.svg?branch=master&)](https://travis-ci.org/CodeforAustralia/cese-snippet)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2092e91a51aa5a067495/test_coverage)](https://codeclimate.com/github/CodeforAustralia/cese-snippet/test_coverage)
+
 
 Snippet is an app that allows educators to view or publish insights about program applications in NSW schools.
 
