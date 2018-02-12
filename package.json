@@ -13,12 +13,6 @@
     "test:ci": "CI=true yarn test --coverage --color",
     "test:watch": "yarn test --watchAll"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor",
-    "rules": {
-      "indent": [2, 2]
-    }
-  },
   "eslintIgnore": [
     "build/*"
   ],
@@ -28,18 +22,19 @@
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
+    "node-sass": "^4.7.2",
     "preact-cli": "^2.1.2",
     "preact-render-spy": "^1.2.1",
-    "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "formik": "^0.11.10",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
     "preact-router": "^2.5.7",
     "react-transition-group": "^1.1.2",
-    "reactstrap": "^4.8.0",
+    "reactstrap": "5.0.0-beta",
     "unistore": "^3.0.4"
   },
   "jest": {
@@ -68,7 +63,12 @@
   },
   "babel": {
     "presets": [
-      ["preact-cli/babel", { "modules": "commonjs" }],
+      [
+        "preact-cli/babel",
+        {
+          "modules": "commonjs"
+        }
+      ],
       [
         "env",
         {
