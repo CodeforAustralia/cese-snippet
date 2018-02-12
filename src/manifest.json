@@ -1,6 +1,6 @@
 {
-  "name": "snippet",
-  "short_name": "snippet",
+  "name": "cese-snippet",
+  "short_name": "Snippet",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
