@@ -9,7 +9,7 @@ node_js:
   - '8.9.4'
 script:
   - yarn build
-#  - yarn test:ci
+  - yarn test:ci
 branches:
   only:
     - master
