@@ -14,26 +14,29 @@ This app is built from preact-cli
 ## Requirements
 
 Node 8.9.4
+
 Npm 5.6.0
+
+Yarn 1.3.2
 
 
 ## CLI Commands
 
 ``` bash
 # install dependencies
-npm install --production=false
+yarn --production=false
 
 # serve with hot reload at localhost:8080
-npm run dev
+yarn dev
 
 # build for production with minification
-npm run build
+yarn build
 
 # test the production build locally
-npm run serve
+yarn serve
 
 # run tests with jest and preact-render-spy 
-npm run test
+yarn test
 ```
 
 For detailed explanation on how things work, checkout the [Preact CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
