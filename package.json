@@ -13,15 +13,6 @@
     "test:ci": "CI=true yarn test --coverage --color",
     "test:watch": "yarn test --watchAll"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor",
-    "rules": {
-      "indent": [
-        2,
-        2
-      ]
-    }
-  },
   "eslintIgnore": [
     "build/*"
   ],
