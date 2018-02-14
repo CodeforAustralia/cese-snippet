@@ -23,7 +23,7 @@
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
     "node-sass": "^4.7.2",
-    "preact-cli": "^2.1.2",
+    "preact-cli": "^2.1.3",
     "preact-render-spy": "^1.2.1",
     "sass-loader": "^6.0.6"
   },
