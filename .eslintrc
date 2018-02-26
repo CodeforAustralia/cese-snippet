@@ -1,10 +1,9 @@
 {
-  "extends": "eslint-config-synacor",
+  "extends": [
+    "eslint-config-synacor",
+    "prettier"
+  ],
   "rules": {
-    "indent": [2, 2],
-    "arrow-body-style": ["error", "as-needed"],
-    "no-trailing-spaces": "off",
-    "react/jsx-indent-props": [2, 2],
-    "comma-dangle": [2]
+    "react/jsx-indent-props": "off"
   }
 }
