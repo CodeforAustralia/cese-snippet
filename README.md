@@ -22,6 +22,12 @@ UI
 - [Reactstrap](https://reactstrap.github.io)
 
 
+## Demo environment tech
+
+Database, hosting
+- [Firebase](https://firebase.com)
+
+
 ## Requirements
 
 Node 8.9.4
