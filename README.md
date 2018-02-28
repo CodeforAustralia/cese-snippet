@@ -16,10 +16,10 @@ This app is built from preact-cli
 - [preact-cli](https://github.com/developit/preact-cli)
 
 Data management 
-- [unistore](https://github.com/developit/unistore)
+- [Redux](https://redux.js.org)
 
 UI
-- [Reactstrap](https://reactstrap.github.io/)
+- [Reactstrap](https://reactstrap.github.io)
 
 
 ## Requirements
@@ -67,9 +67,11 @@ TBD
   
 3. Sync master before creating new branches: 
 
-  `git checkout master`
+```
+git checkout master
   
-  `git pull --rebase`
+git pull --rebase
+```
   
 4. Create new branches as normal, commit code and submit pull requests for review. Do not push to Master.
 
