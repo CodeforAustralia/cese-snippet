@@ -1,17 +1,12 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
-import { Provider } from 'unistore/preact';
 
-import store from 'store';
 import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
 // import Home from 'async!../routes/home';
 // import Profile from 'async!../routes/profile';
 
-if (module.hot) {
-  require('preact/debug');
-}
 
 export default class App extends Component {
 
@@ -25,16 +20,14 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <div id="app">
-          <Header />
-          <Router onChange={this.handleRoute}>
-            <Home path="/" />
-            <Profile path="/profile/" user="me" />
-            <Profile path="/profile/:user" />
-          </Router>
-        </div>
-      </Provider>
+      <div>
+        <Header />
+        <Router onChange={this.handleRoute}>
+          <Home path="/" />
+          <Profile path="/profile/" user="me" />
+          <Profile path="/profile/:user" />
+        </Router>
+      </div>
     );
   }
 }
