@@ -7,6 +7,21 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>manifest.json">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= htmlWebpackPlugin.files.publicPath %>/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= htmlWebpackPlugin.files.publicPath %>/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= htmlWebpackPlugin.files.publicPath %>/favicon-16x16.png">
+  <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.publicPath %>/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="canonical" href="https://nsweducation.cool" />
+
+  <meta name="description" content="Programs happening in schools now.
+For school staff to view or publish news about program applications in NSW schools." />
+  <meta name="robots" content="index, follow">
+  <meta name="revisit-after" content="1 days">
+
   <% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
     <meta name="theme-color" content="<%= htmlWebpackPlugin.options.manifest.theme_color %>">
   <% } %>
@@ -20,6 +35,7 @@
       <% } %>
     <% } %>
   <% } %>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114913513-1"></script>
   <script>
