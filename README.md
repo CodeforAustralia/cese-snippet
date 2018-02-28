@@ -13,7 +13,7 @@ Built during the 2017-18 Fellowship for NSW Department of Education, Centre of S
 ## Tech  
 
 This app is built from preact-cli
-- [preact-cli](https://github.com/developit/preact-cli)
+- [Preact-cli](https://github.com/developit/preact-cli)
 
 Data management 
 - [Redux](https://redux.js.org)
@@ -50,10 +50,10 @@ For detailed explanation on how things work, checkout the [Preact CLI Readme](ht
 
 ## Debugging
 
-You can debug the state layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) 
+You can debug the state layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd).
 
 
-You can enable logging from the console with [Bows](https://www.npmjs.com/package/bows)
+You can enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
 
 
 ## Deploy
@@ -76,7 +76,7 @@ All developers who wish to contribute through code or issues, take a look at the
 
 ## License
 
-MIT.
+[MIT](https://github.com/CodeforAustralia/cese-snippet/blob/master/LICENSE).
 
 
 <img src="https://codeforaustralia.org/wp-content/uploads/2017/11/Main-Logo-Black-1.png" width="200" />
