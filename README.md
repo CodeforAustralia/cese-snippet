@@ -43,9 +43,6 @@ yarn build
 
 # test the production build locally
 yarn serve
-
-# run tests with jest and preact-render-spy 
-yarn test
 ```
 
 For detailed explanation on how things work, checkout the [Preact CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
@@ -53,4 +50,28 @@ For detailed explanation on how things work, checkout the [Preact CLI Readme](ht
 
 ## Debugging
 
-State layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) 
+You can debug the state layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) 
+
+
+You can enable logging from the console with [Bows](https://www.npmjs.com/package/bows)
+
+
+# Deploy
+
+TBD
+
+
+# Contributing
+
+1. Clone this repo
+  
+3. Sync master before creating new branches: 
+
+  `git checkout master`
+  
+  `git pull --rebase`
+  
+4. Create new branches as normal, commit code and submit pull requests for review. Do not push to Master.
+
+5. Merge PRs from github.com
+
