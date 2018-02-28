@@ -58,8 +58,7 @@ You can enable logging from the console with [Bows](https://www.npmjs.com/packag
 
 ## Deploy
 
-TBD
-
+Deploy to the demo environment happens from CI off merges to master.
 
 
 ---
