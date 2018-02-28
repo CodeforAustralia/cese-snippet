@@ -31,13 +31,15 @@
   "dependencies": {
     "bootstrap": "^4.0.0",
     "formik": "^0.11.10",
+    "merge": "^1.2.0",
     "preact": "^8.2.6",
     "preact-compat": "^3.17.0",
     "preact-redux": "^2.0.3",
     "preact-router": "^2.5.7",
     "react-transition-group": "^1.1.2",
     "reactstrap": "^5.0.0-beta.2",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "jest": {
     "verbose": true,

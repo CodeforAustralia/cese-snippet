@@ -1,5 +1,5 @@
-const initialState = {
-  count: 0
-};
-
-export default initialState;
+export default {
+  app: {
+    name: 'Snippet',
+  }
+}
