@@ -56,24 +56,28 @@ You can debug the state layer with [Redux devtools extension](https://chrome.goo
 You can enable logging from the console with [Bows](https://www.npmjs.com/package/bows)
 
 
-# Deploy
+## Deploy
 
 TBD
 
 
-# Contributing
 
-1. Clone this repo
-  
-3. Sync master before creating new branches: 
+---
 
-```
-git checkout master
-  
-git pull --rebase
-```
-  
-4. Create new branches as normal, commit code and submit pull requests for review. Do not push to Master.
+## Contributing
 
-5. Merge PRs from github.com
+For help on setting up the repo locally, building, testing, and contributing
+please see [Contibuting](https://github.com/CodeforAustralia/standards/blob/master/templates/CONTRIBUTING.md).
+
+## Code of Conduct
+
+All developers who wish to contribute through code or issues, take a look at the
+[Code of Conduct](https://github.com/CodeforAustralia/standards/blob/master/templates/CODE_OF_CONDUCT.md).
+
+## License
+
+MIT.
+
+
+<img src="https://codeforaustralia.org/wp-content/uploads/2017/11/Main-Logo-Black-1.png" width="200" />
 
