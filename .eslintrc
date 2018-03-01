@@ -4,6 +4,7 @@
     "prettier"
   ],
   "rules": {
-    "react/jsx-indent-props": "off"
+    "react/jsx-indent-props": "off",
+    "react/jsx-no-bind": "off"
   }
 }

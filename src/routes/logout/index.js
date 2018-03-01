@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 
-import Layout from 'layouts/login';
+import Layout from 'layouts/account';
 
 
 export default class Logout extends Component {
