@@ -1,15 +1,15 @@
 import React from 'react';
-import { route, Link } from 'preact-router';
+import { Link, withRouter } from 'react-router-dom';
 
 import Layout from 'layouts/login';
 import style from './style.scss';
 import Logo from './logo.png';
 
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault();
-    route('/account/programs', true)
+    this.props.history.push('/account/programs')
   }
   render() {
     return (
@@ -17,7 +17,7 @@ export default class Login extends React.Component {
         <div>
           <img className={`mb-4 ${style.logo}`} src={Logo} alt="" width="100" height="100" />
           <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-          <p>If you're not sure what Snippet is, please read about it <Link href="/">here</Link>.</p>
+          <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
           <form className={style.formSignin} onSubmit={this.onSubmit.bind(this)}>
             <div className="form-group">
@@ -41,3 +41,5 @@ export default class Login extends React.Component {
     );
   }
 }
+
+export default withRouter(Login);

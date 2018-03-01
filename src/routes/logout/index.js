@@ -10,3 +10,5 @@ const Logout = () => (
     </div>
   </Layout>
 );
+
+export default Logout;

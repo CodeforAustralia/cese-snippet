@@ -10,3 +10,5 @@ const AccountPrograms = () => (
     </div>
   </Layout>
 );
+
+export default AccountPrograms;

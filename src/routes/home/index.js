@@ -11,7 +11,11 @@ const Home = () => (
       <h1>Snippet</h1>
       <h2>Programs happening in schools now</h2>
       <p>For school staff to view or publish news about program applications in NSW schools.</p>
-      <Link href="/login">Log in</Link>
+      <Link to="/login">Log in</Link>
     </div>
   </Layout>
 );
+
+
+
+export default Home;
