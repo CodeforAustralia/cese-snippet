@@ -193,7 +193,7 @@ module.exports = {
                     {
                       loader: require.resolve('postcss-loader'),
                       options: {
-                        sourceMap: 'inline',
+                        sourceMap: shouldUseSourceMap,
                         // Necessary for external CSS imports to work
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
