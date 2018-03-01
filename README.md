@@ -28,11 +28,6 @@ Database, hosting
 - [Firebase](https://firebase.com)
 
 
-#### To update firebase.json
-
-`yarn serve -- --server config`
-
-
 ## Requirements
 
 Node 8.9.4
