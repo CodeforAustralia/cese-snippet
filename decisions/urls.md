@@ -1,32 +1,42 @@
 # Phase 1
 
-## required
+// non-auth
 
 /
 /login
 /logout
 
-// user account
-/account/my-programs
-/account/my-programs/new
-/account/my-programs/:programId/edit
-/account/my-stamped
-/account/my-followed
+
+// auth
+
+/account/programs
+/account/programs?type=mine
+/account/programs?type=:schoolCode
+/account/programs/new
+/account/programs/:programId
+/account/programs/:programId/edit   // using same page component as /account/programs/:programId 
 
 
-/:schoolName/programs
+## Phase 2
 
 /programs?a=1&b=1
+/programs?school=schoolCode
 /programs/:programId
 /programs/:programId/edit
 
+// htaccess rewrite /programs?school=schoolCode to 
+/schools/:schoolName/programs
+
+
 /topic/emerging
 /topic/popular-stamped
-
 /search
 
+/account/stamped
+/account/followed
 
-## possible
+
+## TBD or future
 
 /register
 

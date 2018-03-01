@@ -22,12 +22,13 @@ UI
 - [Reactstrap](https://reactstrap.github.io)
 
 
-## Demo environment tech
+### Demo environment
 
 Database, hosting
 - [Firebase](https://firebase.com)
 
-# To update firebase.json
+
+#### To update firebase.json
 
 `yarn serve -- --server config`
 
