@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React from 'react';
 import { route, Link } from 'preact-router';
 
 import Layout from 'layouts/login';
@@ -6,7 +6,7 @@ import style from './style.scss';
 import Logo from './logo.png';
 
 
-export default class Login extends Component {
+export default class Login extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     route('/account/programs', true)

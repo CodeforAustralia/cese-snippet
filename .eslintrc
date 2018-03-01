@@ -1,6 +1,6 @@
 {
   "extends": [
-    "eslint-config-synacor",
+    "react-app",
     "prettier"
   ],
   "rules": {

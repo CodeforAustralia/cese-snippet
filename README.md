@@ -12,8 +12,8 @@ Built during the 2017-18 Fellowship for NSW Department of Education, Centre of S
 
 ## Tech  
 
-This app is built from preact-cli
-- [Preact-cli](https://github.com/developit/preact-cli)
+This app is built from create-react-app
+- [Create React App](https://github.com/facebook/create-react-app)
 
 Data management 
 - [Redux](https://redux.js.org)
@@ -47,13 +47,13 @@ Yarn 1.3.2
 yarn
 
 # serve with hot reload at localhost:8080
-yarn dev
+yarn start
 
 # build for production with minification
 yarn build
 
 # test the production build locally
-yarn serve
+yarn serve 
 ```
 
 For detailed explanation on how things work, checkout the [Preact CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).

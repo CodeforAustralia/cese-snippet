@@ -1,16 +1,12 @@
-import { h, Component } from 'preact';
+import React from 'react';
 
 import Layout from 'layouts/login';
 
 
-export default class Logout extends Component {
-	render() {
-		return (
-      <Layout>
-        <div>
-          <h1>Log out</h1>
-        </div>
-      </Layout>
-		);
-	}
-}
+const Logout = () => (
+  <Layout>
+    <div>
+      <h1>Log out</h1>
+    </div>
+  </Layout>
+);

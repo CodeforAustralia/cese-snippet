@@ -1,22 +1,23 @@
-import { h } from 'preact';
-import { Provider } from 'preact-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import registerServiceWorker from './registerServiceWorker';
 
 import 'style/index.scss';
 import App from 'components/app';
 import configureStore from 'store/configureStore';
 
-if (module.hot) {
-  require('preact/debug');
-}
+ReactDOM.render(<App />, document.getElementById('root'));
 
 const store = configureStore();
 
-const Root = () => (
+ReactDOM.render(
   <Provider store={store}>
     <div id="app">
       <App />
     </div>
-  </Provider>
+  </Provider>,
+  document.getElementById('root')
 );
 
-export default Root;
+registerServiceWorker();
