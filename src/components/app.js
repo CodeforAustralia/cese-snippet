@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { Router } from 'preact-router';
 
-import Home from 'routes/home';
+import Home from 'async!routes/home';
 import Login from 'async!routes/login';
 import Logout from 'async!routes/logout';
 import AccountPrograms from 'async!routes/accountPrograms'
