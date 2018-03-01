@@ -173,11 +173,12 @@ module.exports = {
                   fallback: {
                     loader: require.resolve('style-loader'),
                     options: {
+                      sourceMap: shouldUseSourceMap,
                       hmr: false,
                       importLoaders: 1,
                       minimize: true,
                       modules: true,
-                      localIdentName: '[local]'
+                      localIdentName: '[local]__[hash:base64:5]',
                     },
                   },
                   use: [
@@ -213,7 +214,7 @@ module.exports = {
                     {
                       loader: 'sass-loader',
                       options: {
-                        sourceMap: true
+                        sourceMap: shouldUseSourceMap
                       }
                     },
                   ],

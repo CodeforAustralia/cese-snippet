@@ -56,8 +56,6 @@ yarn build
 yarn serve 
 ```
 
-For detailed explanation on how things work, checkout the [Preact CLI Readme](https://github.com/developit/preact-cli/blob/master/README.md).
-
 
 ## Debugging
 

@@ -166,13 +166,13 @@ module.exports = {
                   sourceMap: true,
                   modules: true,
                   importLoaders: 1,
-                  localIdentName: '[local]'
+                  localIdentName: '[local]__[hash:base64:5]',
                 },
               },
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
-                  sourceMap: 'inline',
+                  sourceMap: true,
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
