@@ -1,35 +1,31 @@
-import { h } from 'preact';
-import { Router } from 'preact-router';
+import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Home from 'async!routes/home';
-import Login from 'async!routes/login';
-import Logout from 'async!routes/logout';
-import AccountPrograms from 'async!routes/accountPrograms'
-import AccountProgram from 'async!routes/accountProgram'
-import AccountProgramNew from 'async!routes/accountProgramNew'
-import AccountProgramEdit from 'async!routes/accountProgramEdit'
+import Home from 'routes/home';
+import Login from 'routes/login';
+import Logout from 'routes/logout';
+import AccountPrograms from 'routes/accountPrograms'
+import AccountProgram from 'routes/accountProgram'
+import AccountProgramNew from 'routes/accountProgramNew'
+import AccountProgramEdit from 'routes/accountProgramEdit'
 
-import Nav from 'components/nav';
 
 const App = () => (
-  <div>
-    <Router>
+  <Router>
+    <div>
+      <Route exact path="/" component={Home} />
 
-      <Home path="/" />
+      <Route path="/login" component={Login} />
 
-      <Login path="/login" />
+      <Route path="/logout" component={Logout} />
 
-      <Logout path="/logout" />
-
-      <AccountPrograms path="/account/programs" />
-      <AccountProgram path="/account/programs/:programId" />
-      <AccountProgramNew path="/account/programs/new" />
-      <AccountProgramEdit path="/account/programs/:programId/edit" />
-
-    </Router>
-
-    <Nav />
-  </div>
+      {/*/!* todo *!/*/}
+      <Route path="/account/programs" component={AccountPrograms} />
+      <Route path="/account/programs/:programId" component={AccountProgram} />
+      <Route path="/account/programs/new" component={AccountProgramNew} />
+      <Route path="/account/programs/:programId/edit" component={AccountProgramEdit} />
+    </div>
+  </Router>
 );
 
 export default App;

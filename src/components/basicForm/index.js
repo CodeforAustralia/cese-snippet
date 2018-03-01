@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React from 'react';
 import { withFormik } from 'formik';
 import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
