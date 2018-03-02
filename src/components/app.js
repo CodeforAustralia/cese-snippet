@@ -10,11 +10,8 @@ const App = () => (
   <Router>
     <div>
       <Route exact path="/" component={Home} />
-
       <Route path="/login" component={Login} />
-
       <Route path="/logout" component={Logout} />
-
       <Route path="/account" component={Account} />
     </div>
   </Router>
