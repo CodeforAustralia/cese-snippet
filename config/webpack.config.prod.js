@@ -165,67 +165,6 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
-          // {
-          //   test: /(\.css|\.scss)$/,
-          //   loader: ExtractTextPlugin.extract(
-          //     Object.assign(
-          //       {
-          //         fallback: {
-          //           loader: require.resolve('style-loader'),
-          //           options: {
-          //             sourceMap: shouldUseSourceMap,
-          //             hmr: false,
-          //             importLoaders: 1,
-          //             minimize: true,
-          //             modules: true,
-          //             localIdentName: '[local]__[hash:base64:5]',
-          //           },
-          //         },
-          //         use: [
-          //           {
-          //             loader: require.resolve('css-loader'),
-          //             options: {
-          //               importLoaders: 1,
-          //               minimize: true,
-          //               modules: true,
-          //               localIdentName: '[local]__[hash:base64:5]',
-          //               sourceMap: shouldUseSourceMap,
-          //             },
-          //           },
-          //           {
-          //             loader: require.resolve('postcss-loader'),
-          //             options: {
-          //               sourceMap: shouldUseSourceMap,
-          //               // Necessary for external CSS imports to work
-          //               // https://github.com/facebookincubator/create-react-app/issues/2677
-          //               ident: 'postcss',
-          //               plugins: () => [
-          //                 require('postcss-flexbugs-fixes'),
-          //                 autoprefixer({
-          //                   browsers: [
-          //                     '>1%',
-          //                     'last 4 versions',
-          //                     'Firefox ESR',
-          //                     'not ie < 9', // React doesn't support IE8 anyway
-          //                   ],
-          //                   flexbox: 'no-2009',
-          //                 }),
-          //               ],
-          //             },
-          //           },
-          //           {
-          //             loader: 'sass-loader',
-          //             options: {
-          //               sourceMap: shouldUseSourceMap
-          //             }
-          //           },
-          //         ],
-          //       },
-          //       extractTextPluginOptions
-          //     )
-          //   ),
-          //
-          // },
 
 
           //
