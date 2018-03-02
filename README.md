@@ -13,7 +13,7 @@ Built during the 2017-18 Fellowship for NSW Department of Education, Centre of S
 ## Tech  
 
 This app is built from create-react-app
-- [Create React App](https://github.com/facebook/create-react-app)
+- [create-react-app](https://github.com/facebook/create-react-app)
 
 Data management 
 - [Redux](https://redux.js.org)
