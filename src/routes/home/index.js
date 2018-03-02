@@ -4,7 +4,6 @@ import style from './style.scss';
 
 import Layout from 'layouts/home';
 
-
 const Home = () => (
   <Layout>
     <div className={style.home}>
@@ -15,7 +14,5 @@ const Home = () => (
     </div>
   </Layout>
 );
-
-
 
 export default Home;
