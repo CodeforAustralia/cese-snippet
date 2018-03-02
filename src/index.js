@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
+
+import "bootstrap/scss/bootstrap.scss";
 
 import 'style/index.scss';
 import App from 'components/app';
@@ -13,11 +15,15 @@ const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <div id="app">
-      <App />
-    </div>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
 
-registerServiceWorker();
+// todo
+// registerServiceWorker();
+
+// Dev-server HMR
+if (module.hot) {
+  module.hot.accept();
+}

@@ -165,37 +165,30 @@ module.exports = {
           // tags. If you use code splitting, however, any async bundles will still
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
+
+
+          //
+          // require dependency styles
+          //
           {
             test: /(\.css|\.scss)$/,
+            include: [/\.global\./, paths.appNodeModules],
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
-                  fallback: {
-                    loader: require.resolve('style-loader'),
-                    options: {
-                      sourceMap: shouldUseSourceMap,
-                      hmr: false,
-                      importLoaders: 1,
-                      minimize: true,
-                      modules: true,
-                      localIdentName: '[local]__[hash:base64:5]',
-                    },
-                  },
+                  fallback: 'style-loader',
                   use: [
                     {
                       loader: require.resolve('css-loader'),
                       options: {
+                        sourceMap: true,
                         importLoaders: 1,
-                        minimize: true,
-                        modules: true,
-                        localIdentName: '[local]__[hash:base64:5]',
-                        sourceMap: shouldUseSourceMap,
                       },
                     },
                     {
                       loader: require.resolve('postcss-loader'),
                       options: {
-                        sourceMap: shouldUseSourceMap,
+                        sourceMap: true,
                         // Necessary for external CSS imports to work
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
@@ -216,16 +209,73 @@ module.exports = {
                     {
                       loader: 'sass-loader',
                       options: {
-                        sourceMap: shouldUseSourceMap
+                        sourceMap: true,
                       }
                     },
-                  ],
+                  ]
                 },
                 extractTextPluginOptions
               )
-            ),
-            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+            )
           },
+
+          //
+          // require app styles
+          //
+          {
+            test: /(\.css|\.scss)$/,
+            include: [paths.appSrc],
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: 'style-loader',
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        sourceMap: true,
+                        importLoaders: 1,
+                        modules: true,
+                        localIdentName: '[local]__[hash:base64:5]',
+                      },
+                    },
+                    {
+                      loader: require.resolve('postcss-loader'),
+                      options: {
+                        sourceMap: true,
+                        // Necessary for external CSS imports to work
+                        // https://github.com/facebookincubator/create-react-app/issues/2677
+                        ident: 'postcss',
+                        plugins: () => [
+                          require('postcss-flexbugs-fixes'),
+                          autoprefixer({
+                            browsers: [
+                              '>1%',
+                              'last 4 versions',
+                              'Firefox ESR',
+                              'not ie < 9', // React doesn't support IE8 anyway
+                            ],
+                            flexbox: 'no-2009',
+                          }),
+                        ],
+                      },
+                    },
+                    {
+                      loader: 'sass-loader',
+                      options: {
+                        sourceMap: true,
+                        paths: [paths.appNodeModules],
+                      }
+                    },
+                  ]
+                },
+                extractTextPluginOptions
+              )
+            )
+          },
+
+          // Note: css won't work without `new ExtractTextPlugin()` in `plugins`.
+
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
@@ -300,6 +350,7 @@ module.exports = {
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,
+      allChunks: true
     }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
