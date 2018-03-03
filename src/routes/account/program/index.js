@@ -1,7 +1,10 @@
 import React from 'react';
 
-const AccountProgram = () => (
-    <h1>AccountProgram</h1>
-);
+const AccountProgram = ({match}) => {
+  const programId = match.params.programId;
+  return (
+    <h1>AccountProgram: {programId}</h1>
+  );
+};
 
 export default AccountProgram;

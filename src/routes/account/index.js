@@ -11,10 +11,10 @@ import ProgramEdit from './programEdit';
 const Account = ({children}) => (
   <Layout>
     <div>
-      <Route path="/account/programs" component={Programs} />
-      <Route path="/account/programs/:programId" component={Program} />
-      <Route path="/account/programs/new" component={ProgramNew} />
-      <Route path="/account/programs/:programId/edit" component={ProgramEdit} />
+      <Route exact path="/account/programs" component={Programs} />
+      <Route exact path="/account/programs/:programId" component={Program} />
+      <Route exact path="/account/programs/:programId/edit" component={ProgramEdit} />
+      <Route exact path="/account/new-program" component={ProgramNew} />
     </div>
   </Layout>
 );

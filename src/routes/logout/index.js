@@ -1,11 +1,21 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Layout from 'layouts/login';
 
-const Logout = () => (
-  <Layout>
-    <h1>Log out</h1>
-  </Layout>
-);
+class Logout extends React.Component {
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 1000);
+  }
+  render() {
+    return (
+      <Layout>
+        <h1>Logging out</h1>
+      </Layout>
+    );
+  }
+}
 
-export default Logout;
+export default withRouter(Logout);
