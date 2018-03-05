@@ -1,16 +1,23 @@
+/* global process */
 import { createStore, applyMiddleware, compose } from 'redux';
 import merge from 'merge';
-import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import rootReducer from 'store/rootReducer';
 import initialState from 'store/initialState';
+import api from './apiInterface';
 
 const win = typeof window !== 'undefined' ? window : global;
 
 
 const middlewares = [
-  thunkMiddleware,
+  thunk.withExtraArgument(api),
 ];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
 
 const composeEnhancers = typeof win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function' ?
   win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) :
@@ -27,7 +34,7 @@ const configureStore = (bootState = {}) => {
     )
   );
 
-  // Dev-server HMR
+  // make reducers HMRable
   if (module && module.hot) {
     module.hot.accept('./rootReducer', () => {
       const nextRootReducer = rootReducer;
