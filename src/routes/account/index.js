@@ -10,10 +10,10 @@ import ProgramEdit from './programEdit';
 
 class Account extends React.Component {
   componentDidMount() {
-    new Promise.all([
-      this.props.fetchAppliedPrograms(),
-      this.props.fetchSchools(),
-    ]);
+    // new Promise.all([
+    //   this.props.fetchAppliedPrograms(),
+    //   this.props.fetchSchools(),
+    // ]);
   }
   render() {
     return (
