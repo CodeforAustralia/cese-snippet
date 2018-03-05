@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 export const mapStateToProps = (state) => {
   return {
-    programs: state.programs,
+    appliedPrograms: state.appliedPrograms,
   }
 };
 

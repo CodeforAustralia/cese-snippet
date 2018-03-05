@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 // import registerServiceWorker from './registerServiceWorker';
-
 import "bootstrap/scss/bootstrap.scss";
 
-import 'style/index.scss';
 import App from 'components/app';
 import configureStore from 'store';
+import 'style/index.scss';
 
 
 const store = configureStore();

@@ -1,4 +1,7 @@
+import mockApi from 'mockApi';
 import initialState from 'store/initialState';
+
+const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
 const ACTION_TYPES = {
   update: 'PROGRAMS/UPDATE'
@@ -16,7 +19,8 @@ export const programsReducer = (state = initialState.programs, action) => {
 
 export const fetchPrograms = () => {
   return (dispatch, getState, api) => {
-    return api('/programs').then((programs) => {
+    const req = USE_MOCKS ? mockApi('/programs') : api('/programs');
+    return req.then((programs) => {
       return dispatch(updatePrograms(programs));
     });
   }
