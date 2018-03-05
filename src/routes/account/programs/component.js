@@ -1,10 +1,10 @@
 import React from 'react';
 
-const AccountPrograms = ({programs}) => {
+const AccountPrograms = ({appliedPrograms}) => {
   return (
     <div>
       <h1>AccountPrograms</h1>
-      <code>{JSON.stringify(programs)}</code>
+      <code>{JSON.stringify(appliedPrograms)}</code>
     </div>
   )
 };

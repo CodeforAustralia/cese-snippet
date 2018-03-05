@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { fetchSchools } from 'store/schools';
-import { fetchAppliedPrograms } from 'store/schools';
+import { fetchAppliedPrograms } from 'store/appliedPrograms';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: () => dispatch(fetchSchools()),
-    fetchAppliedPrograms: () => dispatch(fetchAppliedPrograms()),
+    fetchAppliedPrograms: () => dispatch(fetchAppliedPrograms())
   }
 };
 
