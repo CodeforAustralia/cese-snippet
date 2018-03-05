@@ -7,9 +7,8 @@ import "bootstrap/scss/bootstrap.scss";
 
 import 'style/index.scss';
 import App from 'components/app';
-import configureStore from 'store/configureStore';
+import configureStore from 'store';
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
 const store = configureStore();
 
