@@ -6,7 +6,8 @@ import {
   Switch,
 } from "react-router-dom";
 
-import Nav from 'components/nav';
+import AuthProvider from 'components/auth/authProvider';
+import PrivateRoute from 'components/auth/privateRoute';
 import Login from 'routes/login';
 import Account from 'routes/account';
 
@@ -17,16 +18,17 @@ class App extends React.Component {
   }
   render() {
     return (
-      <Router>
-        <div>
-          <Nav />
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/account" component={Account} />
-            <Redirect exact from="/" to="/login" />
-          </Switch>
-        </div>
-      </Router>
+      <AuthProvider session={this.props.session}>
+        <Router>
+          <div>
+            <Switch>
+              <Route path="/login" component={Login} />
+              <PrivateRoute path="/account" component={Account} />
+              <Redirect exact from="/" to="/login" />
+            </Switch>
+          </div>
+        </Router>
+      </AuthProvider>
     )
   }
 }

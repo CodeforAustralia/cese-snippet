@@ -21,9 +21,10 @@ const isFetching = (state = false, action) => {
 };
 
 const errorMessage = (state = null, action) => {
+  const { payload } = action;
   switch (action.type) {
     case ACTION_TYPES.fetchError:
-      return action.message;
+      return payload.message;
     case ACTION_TYPES.fetchSuccess:
     case ACTION_TYPES.fetchRequest:
       return null;

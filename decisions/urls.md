@@ -9,14 +9,8 @@
 
 // auth
 
-/account/programs
-/account/programs?type=mine
-/account/programs?type=:schoolCode
-/account/new-program
-/account/programs/:programId
-/account/programs/:programId/edit   // using same page component as /account/programs/:programId 
-
 /account/schools/:schoolCode/programs 
+/account/schools/:schoolCode/programs/:year 
 /account/programs/:programId 
 
 

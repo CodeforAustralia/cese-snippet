@@ -1,9 +1,25 @@
 import { connect } from 'react-redux';
 
-export const mapStateToProps = (state) => {
+import { fetchSchool } from "store/schools/actionCreators";
+import { selectSchool } from 'store/schools/selectors';
+import { fetchAppliedPrograms } from 'store/appliedPrograms/actionCreators';
+// import { selectAppliedPrograms } from 'store/appliedPrograms/selectors';
+
+
+export const mapStateToProps = (state, ownProps) => {
+  const code = ownProps.schoolCode;
   return {
-    appliedPrograms: state.appliedPrograms,
+    schoolCode: code,
+    school: selectSchool(state, code),
+    // appliedPrograms: selectAppliedPrograms(state, code), // todo - is an object, make this a list
   }
 };
 
-export default connect(mapStateToProps, null);
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSchool: (code) => dispatch(fetchSchool(code)),
+    fetchAppliedPrograms: (code) => dispatch(fetchAppliedPrograms(code))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps);

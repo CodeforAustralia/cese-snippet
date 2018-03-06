@@ -48,10 +48,13 @@ yarn serve
 
 ## Debugging
 
-You can debug the state layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd).
+Debug with React with [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) for Chrome.
 
 
-You can enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
+Debug the state layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd).
+
+
+Enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
 
 
 ## Deploy
