@@ -7,7 +7,7 @@ const fakeDatabase = {
       "id": "1",
       "programId": "1",
       "name": "Our Program 1",
-      "schoolId": "21312",
+      "schoolCode": "21312",
       "facilitators": ["T8756"],
       "yearGroups": ["7", "8"],
       "dateYear": "2018",
@@ -42,10 +42,15 @@ const fakeDatabase = {
 const delay = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
-const mockApi = (path) => {
+const mockApi = (path, payload) => {
   switch (path) {
+
     case '/schools':
+      const {schoolCode} = payload;
       return delay(500).then(() => {
+        if (schoolCode) {
+          return fakeDatabase.schools.find(school => school.code === schoolCode);
+        }
         return fakeDatabase.schools;
       });
 

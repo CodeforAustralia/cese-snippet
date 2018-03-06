@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { fetchSession } from 'store/session';
+import { fetchSession } from 'store/session/actionCreators';
 
 const mapStateToProps = (state) => {
   return {

@@ -1,20 +1,26 @@
 import { connect } from 'react-redux';
 
-import { fetchSchools } from 'store/schools';
-import { fetchAppliedPrograms } from 'store/appliedPrograms';
+import { fetchSchools } from 'store/schools/actionCreators';
+import { selectSchoolsByCode } from 'store/schools/selectors';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const session = state.session;
+  // const userSchoolCodes = session.schools;
   return {
-    schools: state.schools,
-    appliedPrograms: state.appliedPrograms,
+    session,
+    // schools: selectSchoolsByCode(state, userSchoolCodes),
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    fetchSchools: () => dispatch(fetchSchools()),
-    fetchAppliedPrograms: () => dispatch(fetchAppliedPrograms())
+    fetchSchools: (schoolCodes) => dispatch(fetchSchools(schoolCodes)),
   }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);
+
+
+
+
+

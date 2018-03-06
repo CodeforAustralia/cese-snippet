@@ -53,11 +53,6 @@ const LoginForm = ({
         />
         {touched.password && errors.password && <FormFeedback>{errors.email}</FormFeedback>}
       </FormGroup>
-      <div className="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
-      </div>
       <Button type="submit" className="btn btn-lg btn-primary btn-block" disabled={isSubmitting}>Submit</Button>
     </Form>
   )
