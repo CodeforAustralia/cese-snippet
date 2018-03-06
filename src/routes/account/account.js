@@ -1,29 +1,26 @@
 import React from 'react';
 import { Route } from "react-router-dom";
+import get from 'lodash/get';
 
 import Layout from 'layouts/account';
-import Programs from './programs';
-import Program from './program';
-import ProgramNew from './programNew';
-import ProgramEdit from './programEdit';
+import Schools from './schools';
+import SchoolPrograms from './schoolPrograms';
 
 
 class Account extends React.Component {
   componentDidMount() {
-    // todo - fetch which programs
     return Promise.all([
-      this.props.fetchAppliedPrograms(),
-      this.props.fetchSchools(),
+      this.props.fetchSchools(this.props.session.schools),
     ]);
   }
   render() {
     return (
       <Layout>
         <div>
-          <Route exact path="/account/programs" component={Programs} />
-          <Route exact path="/account/programs/:programId" component={Program} />
-          <Route exact path="/account/programs/:programId/edit" component={ProgramEdit} />
-          <Route exact path="/account/new-program" component={ProgramNew} />
+          <h1>Account</h1>
+
+          {/*<Route exact path="/account/schools" component={Schools} />*/}
+          {/*<Route exact path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />*/}
         </div>
       </Layout>
     );
@@ -31,3 +28,4 @@ class Account extends React.Component {
 }
 
 export default Account;
+

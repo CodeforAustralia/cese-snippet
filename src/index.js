@@ -5,9 +5,8 @@ import { Provider } from 'react-redux';
 import "bootstrap/scss/bootstrap.scss";
 
 import App from 'components/app';
-import configureStore from 'store';
+import configureStore from 'store/configureStore';
 import 'style/index.scss';
-
 
 const store = configureStore();
 
@@ -21,7 +20,7 @@ ReactDOM.render(
 // todo
 // registerServiceWorker();
 
-// Dev-server HMR
-if (module.hot) {
-  module.hot.accept();
-}
+// // Dev-server HMR
+// if (module.hot) {
+//   module.hot.accept();
+// }

@@ -18,7 +18,7 @@ const api = route => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
-    }
+    },
   })
     .then(checkStatus)
     .then(parseBody)

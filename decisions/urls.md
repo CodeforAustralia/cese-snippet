@@ -12,9 +12,12 @@
 /account/programs
 /account/programs?type=mine
 /account/programs?type=:schoolCode
-/account/programs/new
+/account/new-program
 /account/programs/:programId
 /account/programs/:programId/edit   // using same page component as /account/programs/:programId 
+
+/account/schools/:schoolCode/programs 
+/account/programs/:programId 
 
 
 ## Phase 2

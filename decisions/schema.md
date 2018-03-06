@@ -22,7 +22,7 @@ const appliedPrograms = [
     id: "1",
     programId: "1",
     name: "Our Program 1",
-    schoolId: "21312",
+    schoolCode: "21312",
     facilitators: ["T8756"],
     yearGroups: ["7", "8"],
     dateYear: "2018",
@@ -57,6 +57,15 @@ const schools = [
     name: "Mars High School",
     type: "Secondary",
     programs: ["1"]
+  }
+];
+```
+
+```js
+const tags = [
+  {
+    id: "1",
+    label: 'L3',
   }
 ];
 ```

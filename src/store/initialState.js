@@ -9,7 +9,7 @@ export default {
     },
   },
   session: {},
-  programs: {},
-  appliedPrograms: {},
   schools: {},
+  appliedPrograms: {},
+  programs: {},
 };
