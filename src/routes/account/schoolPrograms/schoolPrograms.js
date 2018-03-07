@@ -18,10 +18,6 @@ class SchoolPrograms extends React.Component {
       <div>
         <h1>SchoolPrograms</h1>
         <code>School: {JSON.stringify(this.props.school)}</code>
-        {/*{this.props.appliedPrograms.length ?*/}
-          // <code>Programs: {JSON.stringify(this.props.appliedPrograms)}</code> :
-          // <p>No programs</p>
-        // }
       </div>
     )
   }
