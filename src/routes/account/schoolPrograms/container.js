@@ -7,7 +7,7 @@ import { fetchAppliedPrograms } from 'store/appliedPrograms/actionCreators';
 
 
 export const mapStateToProps = (state, ownProps) => {
-  const code = ownProps.schoolCode;
+  const code = ownProps.match.params.schoolCode;
   return {
     schoolCode: code,
     school: selectSchool(state, code),
