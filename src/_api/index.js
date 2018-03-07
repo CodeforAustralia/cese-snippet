@@ -39,33 +39,38 @@ const fakeDatabase = {
   ]
 };
 
-const delay = (ms) =>
+const delay = (ms = 1000) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
 const mockApi = (path, payload) => {
   switch (path) {
 
-    case '/schools':
-      const {schoolCode} = payload;
-      return delay(500).then(() => {
-        if (schoolCode) {
-          return fakeDatabase.schools.find(school => school.code === schoolCode);
-        }
-        return fakeDatabase.schools;
+    case '/school':
+      const {code} = payload;
+      return delay().then(() => {
+        return fakeDatabase.schools.find(school => school.code === code);
+      });
+
+    case '/user/schools':
+      const {codes} = payload;
+      return delay().then(() => {
+        return codes.map((code) => {
+          return fakeDatabase.schools.find(school => school.code === code);
+        });
       });
 
     case '/appliedPrograms':
-      return delay(500).then(() => {
+      return delay().then(() => {
         return fakeDatabase.appliedPrograms;
       });
 
     case '/programs':
-      return delay(500).then(() => {
+      return delay().then(() => {
         return fakeDatabase.programs;
       });
 
     default:
-      throw new Error('That mockApi request is not handled.');
+      throw new Error(`Mock API request is not handled for path: ${path}`);
   }
 };
 

@@ -1,26 +1,34 @@
 import React from 'react';
-import { Route } from "react-router-dom";
-import get from 'lodash/get';
+import { Redirect } from 'react-router';
+import {
+  Route,
+  Switch,
+} from "react-router-dom";
+import isEmpty from 'lodash/isEmpty';
 
 import Layout from 'layouts/account';
-import Schools from './schools';
+import AuthButton from 'components/auth/authButton';
 import SchoolPrograms from './schoolPrograms';
 
 
 class Account extends React.Component {
   componentDidMount() {
-    return Promise.all([
-      this.props.fetchSchools(this.props.session.schools),
-    ]);
+    this.props.fetchSchools(this.props.userSchoolCodes);
   }
   render() {
+    if (isEmpty(this.props.session)) {
+      return <p>Loading...</p>
+    }
+
     return (
       <Layout>
+        <AuthButton />
         <div>
           <h1>Account</h1>
-
-          {/*<Route exact path="/account/schools" component={Schools} />*/}
-          {/*<Route exact path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />*/}
+          <Switch>
+            <Route path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />
+            <Redirect exact from="/account" to={`/account/schools/${this.props.userSchoolCodes[0]}/programs`} />
+          </Switch>
         </div>
       </Layout>
     );
@@ -28,4 +36,10 @@ class Account extends React.Component {
 }
 
 export default Account;
+
+
+// todo
+// /account/schools/:schoolCode/programs
+// /account/schools/:schoolCode/programs/:year
+// /account/programs/:programId
 

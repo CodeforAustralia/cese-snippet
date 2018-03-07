@@ -7,19 +7,25 @@ export const fetchSession = () => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    if (!win.__INITIAL_STATE__ || !win.__INITIAL_STATE__.session) {
-      dispatch({
-        type: ACTION_TYPES.fetchError,
-        payload: {
-          message: "No Session state available.",
+
+    return new Promise((resolve, reject) => {
+      return setTimeout(() => {
+        if (!win.__INITIAL_STATE__ || !win.__INITIAL_STATE__.session) {
+          reject(dispatch({
+            type: ACTION_TYPES.fetchError,
+            payload: {
+              message: "No Session state available.",
+            }
+          }))
         }
-      })
-    }
-    return dispatch({
-      type: ACTION_TYPES.fetchSuccess,
-      payload: {
-        session: win.__INITIAL_STATE__.session,
-      }
-    })
+        resolve(dispatch({
+          type: ACTION_TYPES.fetchSuccess,
+          payload: {
+            session: win.__INITIAL_STATE__.session,
+          }
+        }));
+      }, 500);
+    });
   }
 };
+
