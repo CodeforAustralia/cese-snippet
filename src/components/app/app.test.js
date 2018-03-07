@@ -1,9 +1,13 @@
+/* global it,expect */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {mount} from 'enzyme';
+
 import App from './app';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App fetchSession={() => Promise.resolve()} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const wrapper = mount(<App key={1} fetchSession={() => Promise.resolve()} session={{data:{}}} />, {
+    // mock context
+    isAuthenticated: true,
+  });
+  expect(wrapper.instance()).toBeTruthy();
 });
