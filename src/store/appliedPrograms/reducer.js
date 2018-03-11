@@ -33,7 +33,7 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-const dataReducer = (state = initialState.appliedPrograms, action) => {
+const data = (state = initialState.appliedPrograms, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
@@ -44,7 +44,7 @@ const dataReducer = (state = initialState.appliedPrograms, action) => {
 };
 
 const appliedProgramsReducer = combineReducers({
-  data: dataReducer,
+  data,
   isFetching,
   errorMessage,
 });
