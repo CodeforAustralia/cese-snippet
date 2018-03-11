@@ -46,22 +46,19 @@ const mockApi = (path, payload) => {
   switch (path) {
 
     case '/school':
-      const {code} = payload;
       return delay().then(() => {
-        return fakeDatabase.schools.find(school => school.code === code);
+        return fakeDatabase.schools.find(school => school.code === payload.code);
       });
 
     case '/user/schools':
-      const {codes} = payload;
       return delay().then(() => {
-        return codes.map((code) => {
-          return fakeDatabase.schools.find(school => school.code === code);
-        });
+        return fakeDatabase.schools;
       });
 
     case '/appliedPrograms':
+      // todo - fetch year, and make current year the default
       return delay().then(() => {
-        return fakeDatabase.appliedPrograms;
+        return fakeDatabase.appliedPrograms.filter(program => program.schoolCode === payload.code);
       });
 
     case '/programs':

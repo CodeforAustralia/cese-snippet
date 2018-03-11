@@ -5,13 +5,17 @@ import { selectSchool } from 'store/schools/selectors';
 import { fetchAppliedPrograms } from 'store/appliedPrograms/actionCreators';
 // import { selectAppliedPrograms } from 'store/appliedPrograms/selectors';
 
-
 export const mapStateToProps = (state, ownProps) => {
   const code = ownProps.match.params.schoolCode;
+  // const year = ownProps.match.params.year;
+
+  // filters
+  // todo - get the right programs for the right year and the right school
+
   return {
     schoolCode: code,
     school: selectSchool(state, code),
-    // appliedPrograms: selectAppliedPrograms(state, code), // todo - is an object, make this a list
+    // appliedPrograms: selectAppliedPrograms(state, code),
   }
 };
 
@@ -23,3 +27,4 @@ export const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);
+

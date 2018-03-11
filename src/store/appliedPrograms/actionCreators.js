@@ -4,12 +4,12 @@ import { objectify } from 'store/objectify';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
-export const fetchAppliedPrograms = () => {
+export const fetchAppliedPrograms = (code) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/appliedPrograms') : api('/appliedPrograms');
+    const req = USE_MOCKS ? mockApi('/appliedPrograms', {code}) : api(`/appliedPrograms/${code}`);  // todo - api code
     return req.then(
       (appliedPrograms) => {
         dispatch({
