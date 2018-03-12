@@ -12,10 +12,13 @@ import SchoolPrograms from './schoolPrograms';
 
 
 class Account extends React.Component {
+
   componentDidMount() {
     this.props.fetchSchools(this.props.userSchoolCodes);
   }
+
   render() {
+
     if (isEmpty(this.props.session)) {
       return <p>Loading...</p>
     }
@@ -27,7 +30,7 @@ class Account extends React.Component {
           <h1>Account</h1>
           <Switch>
             <Route path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />
-            <Redirect exact from="/account" to={`/account/schools/${this.props.userSchoolCodes[0]}/programs`} />
+            <Redirect exact from="/account" to={`/account/schools/${this.props.userFirstSchoolCode}/programs`} />
           </Switch>
         </div>
       </Layout>

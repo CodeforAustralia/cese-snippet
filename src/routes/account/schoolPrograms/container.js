@@ -2,27 +2,23 @@ import { connect } from 'react-redux';
 
 import { fetchSchool } from "store/schools/actionCreators";
 import { selectSchool } from 'store/schools/selectors';
-import { fetchAppliedPrograms } from 'store/appliedPrograms/actionCreators';
-// import { selectAppliedPrograms } from 'store/appliedPrograms/selectors';
+import { fetchAppliedProgramsBySchool } from 'store/appliedPrograms/actionCreators';
+import { selectAppliedPrograms } from 'store/appliedPrograms/selectors';
 
 export const mapStateToProps = (state, ownProps) => {
   const code = ownProps.match.params.schoolCode;
-  // const year = ownProps.match.params.year;
-
-  // filters
-  // todo - get the right programs for the right year and the right school
-
+  const year = "2018"; //ownProps.match.params.year;  // todo
   return {
     schoolCode: code,
     school: selectSchool(state, code),
-    // appliedPrograms: selectAppliedPrograms(state, code),
+    appliedPrograms: selectAppliedPrograms(state, code, year),
   }
 };
 
 export const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchool: (code) => dispatch(fetchSchool(code)),
-    fetchAppliedPrograms: (code) => dispatch(fetchAppliedPrograms(code))
+    fetchAppliedProgramsBySchool: (code) => dispatch(fetchAppliedProgramsBySchool(code))
   }
 };
 

@@ -33,7 +33,7 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-const dataReducer = (state = initialState.session, action) => {
+const dataReducer = (state = initialState.session.data, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:

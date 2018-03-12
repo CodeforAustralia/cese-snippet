@@ -10,7 +10,7 @@ const fakeDatabase = {
       "schoolCode": "21312",
       "facilitators": ["T8756"],
       "yearGroups": ["7", "8"],
-      "dateYear": "2018",
+      "year": "2018",
       "termStart": 3,
       "termEnd": 4,
       "cohortSize": 120,
@@ -43,22 +43,45 @@ const delay = (ms = 1000) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
 const mockApi = (path, payload) => {
+  const { codes, year } = payload;
+
   switch (path) {
-
-    case '/school':
-      return delay().then(() => {
-        return fakeDatabase.schools.find(school => school.code === payload.code);
-      });
-
-    case '/user/schools':
+    case '/schools':
+      if (codes) {
+        return delay().then(() => {
+          return codes.map(code => {
+            return fakeDatabase.schools.find(school => school.code === code);
+          });
+        });
+      }
       return delay().then(() => {
         return fakeDatabase.schools;
       });
 
     case '/appliedPrograms':
-      // todo - fetch year, and make current year the default
+      if (codes) {
+        return delay().then(() => {
+          return codes.map(code => {
+            return fakeDatabase.appliedPrograms.find(program => {
+              if (program.schoolCode === code) {
+                if (year) {
+                  return program.year === year;
+                } else {
+                  return program;
+                }
+              }
+              return false;
+            });
+          });
+        });
+      }
       return delay().then(() => {
-        return fakeDatabase.appliedPrograms.filter(program => program.schoolCode === payload.code);
+        return fakeDatabase.appliedPrograms.filter(program => {
+          if (year) {
+            return program.year === year;
+          }
+          return program;
+        });
       });
 
     case '/programs':

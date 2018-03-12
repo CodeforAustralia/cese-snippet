@@ -9,11 +9,15 @@ export default {
     },
   },
   session: {
+    data: {},
   },
   schools: {
+    data: [],
   },
   appliedPrograms: {
+    data: [],
   },
   programs: {
+    data: [],
   },
 };

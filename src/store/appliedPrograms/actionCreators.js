@@ -1,21 +1,37 @@
 import mockApi from '_api';
 import { ACTION_TYPES } from './reducer';
-import { objectify } from 'store/objectify';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
-export const fetchAppliedPrograms = (code) => {
+const fetchFromCacheOrApi = (codes, year) => {
+
+  const packet = {
+    codes: null,
+    year: null,
+  };
+  if (typeof codes !== 'undefined') {
+    if (Array.isArray(codes)) {
+      packet.codes = codes;
+    } else {
+      throw new Error('Param provided to fetchFromCacheOrApi is wrong type.');
+    }
+  }
+
+  if (typeof year !== 'undefined') {
+    packet.year = year;
+  }
+
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/appliedPrograms', {code}) : api(`/appliedPrograms/${code}`);  // todo - api code
+    const req = USE_MOCKS ? mockApi('/appliedPrograms', packet) : api(`/appliedPrograms`);  // todo - api path
     return req.then(
       (appliedPrograms) => {
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            appliedPrograms: objectify(appliedPrograms),
+            appliedPrograms: appliedPrograms,
           }
         });
       },
@@ -29,4 +45,8 @@ export const fetchAppliedPrograms = (code) => {
       }
     );
   }
+};
+
+export const fetchAppliedProgramsBySchool = (code, year) => {
+  return fetchFromCacheOrApi([code], year);
 };

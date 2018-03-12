@@ -25,7 +25,7 @@ const appliedPrograms = [
     schoolCode: "21312",
     facilitators: ["T8756"],
     yearGroups: ["7", "8"],
-    dateYear: "2018",
+    year: "2018",
     termStart: 3,
     termEnd: 4,
     cohortSize: 120,

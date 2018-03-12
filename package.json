@@ -60,6 +60,7 @@
   "dependencies": {
     "autoprefixer": "7.1.6",
     "bootstrap": "^4.0.0",
+    "date-fns": "^1.29.0",
     "formik": "^0.11.10",
     "lodash": "^4.17.5",
     "merge": "^1.2.0",
@@ -81,6 +82,8 @@
   },
   "jest": {
     "collectCoverageFrom": [
+      "!src/_api/**.*",
+      "!src/__tests__/**.*",
       "src/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
