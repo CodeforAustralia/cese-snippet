@@ -38,7 +38,7 @@ const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
-      return {...state, ...payload.appliedPrograms.byId};
+      return {...state, ...payload.appliedPrograms};
     default:
       return state;
   }

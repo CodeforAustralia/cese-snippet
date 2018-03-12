@@ -18,7 +18,7 @@ export const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchool: (code) => dispatch(fetchSchool(code)),
-    fetchAppliedProgramsByFilters: (code, year) => dispatch(fetchAppliedProgramsByFilters(code, year))
+    fetchAppliedProgramsByFilters: (code, year) => dispatch(fetchAppliedProgramsByFilters("21312", year))
   }
 };
 

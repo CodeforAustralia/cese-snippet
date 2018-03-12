@@ -1,26 +1,21 @@
 import mockApi from '_api';
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
+import { getYear } from 'utils/formatDate';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
-const fetchFromCacheOrApi = (code, year = null) => {
-  if (typeof code === 'undefined') {
-    throw new Error('Must provide code.');
-  }
-  const payload = {
-    code,
-    year,
-  };
-
+const fetchFromCacheOrApi = (path, filterProps) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/appliedPrograms', payload) : api(`/appliedPrograms`);  // todo - api path
+
+    const req = USE_MOCKS ? mockApi(path) : api(path);  // todo - api path
     return req.then(
       (resp) => {
         const { data } = resp;
+        const { code, year } = filterProps;
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
@@ -49,6 +44,13 @@ const fetchFromCacheOrApi = (code, year = null) => {
   }
 };
 
-export const fetchAppliedProgramsByFilters = (code, year = null) => {
-  return fetchFromCacheOrApi(code, year);
+export const fetchAppliedProgramsByFilters = (code, year = getYear()) => {
+  let path = `/appliedPrograms?code=${code}`;
+  const filterProps = {
+    code: code,
+  };
+  path = path + `&year=${year}`;
+  filterProps.year = year;
+
+  return fetchFromCacheOrApi(path, filterProps);
 };

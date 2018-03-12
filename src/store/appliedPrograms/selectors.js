@@ -5,16 +5,16 @@
  */
 export const selectAppliedPrograms = (state, code, year = null) => {
 
-  return state.appliedPrograms.data.filter(program => {
-    if (program.schoolCode === code) {
-      if (year) {
-        return program.year === year;
-      } else {
-        return program;
-      }
-    }
-    return false;
-  });
+  // return state.appliedPrograms.byId.filter(program => {
+  //   if (program.schoolCode === code) {
+  //     if (year) {
+  //       return program.year === year;
+  //     } else {
+  //       return program;
+  //     }
+  //   }
+  //   return false;
+  // });
 };
 
 
