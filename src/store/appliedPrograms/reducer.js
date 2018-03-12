@@ -10,7 +10,7 @@ export const ACTION_TYPES = {
   setFilter: 'APPLIED_PROGRAMS/SET_FILTER',
 };
 
-const isFetching = (state = false, action) => {
+export const isFetching = (state = false, action) => {
   switch (action.type) {
     case ACTION_TYPES.fetchRequest:
       return true;
@@ -22,7 +22,7 @@ const isFetching = (state = false, action) => {
   }
 };
 
-const errorMessage = (state = null, action) => {
+export const errorMessage = (state = null, action) => {
   const { payload } = action;
   switch (action.type) {
     case ACTION_TYPES.fetchError:
@@ -35,7 +35,7 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-const byId = (state = {}, action) => {
+export const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
@@ -45,7 +45,7 @@ const byId = (state = {}, action) => {
   }
 };
 
-const filters = (state = {}, action) => {
+export const filters = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.setFilter:
