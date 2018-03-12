@@ -10,21 +10,21 @@ const schema = {
     },
   },
   "session": {  // provided on window.__INITIAL_STATE__
-    id: "T8756",
+    id: 8787,
     first: "First",
     last: "Last",
     email: "first.last@det.nsw.edu.au",
-    schools: ["21312"],
-    programsCreated: ["1"],
-    programsFacilitated: ["1"],
+    schools: [21312],
+    programsCreated: [1],
+    programsFacilitated: [1],
   },
   "appliedPrograms": [
     {
-      "id": "1",
-      "programId": "1",
+      "id": 1,
+      "programId": 1,
       "name": "Our Program 1",
-      "schoolCode": "21312",
-      "facilitators": ["T8756"],
+      "schoolCode": 21312,
+      "facilitators": [8787],
       "yearGroups": ["7", "8"],
       "year": "2018",
       "termStart": 3,
@@ -37,7 +37,7 @@ const schema = {
   ],
   "programs": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Program 1",
       "description": "Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.",
       "category": "Literacy",
@@ -46,11 +46,11 @@ const schema = {
   ],
   "schools": [
     {
-      "id": "1",
-      "code": "21312",
+      "id": 1,
+      "code": 21312,
       "name": "Mars High School",
       "type": "Secondary",
-      "programs": ["1"]
+      "programs": [1]
     }
   ]
 };

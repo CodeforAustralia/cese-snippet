@@ -5,11 +5,13 @@ import Nav from './../components/nav';
 import ProgramForm from './../components/programForm';
 
 class SchoolPrograms extends React.Component {
+
   componentDidMount() {
     this.props.fetchSchool(this.props.schoolCode).then(() => {
-      this.props.fetchAppliedProgramsByFilters(this.props.schoolCode);
+      this.props.fetchAppliedProgramsByFilters(this.props.schoolCode, this.props.yearSelected);
     });
   }
+
   render() {
 
     if (isEmpty(this.props.school)) {

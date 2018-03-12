@@ -9,7 +9,7 @@ const fetchFromCacheOrApi = (path) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi(path) : api(path); // todo - api path
+    const req = USE_MOCKS ? mockApi(path) : api(path);
     return req.then(
       (resp) => {
         const { data } = resp;
