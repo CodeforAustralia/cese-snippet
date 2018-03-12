@@ -31,7 +31,7 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-const byId = (state = {}, action) => {
+const byCode = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
@@ -42,7 +42,7 @@ const byId = (state = {}, action) => {
 };
 
 const schoolsReducer = combineReducers({
-  byId,
+  byCode,
   isFetching,
   errorMessage,
 });

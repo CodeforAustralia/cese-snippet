@@ -4,30 +4,19 @@ import { objectify } from 'store/objectify';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
-const fetchFromCacheOrApi = (codes) => {
-
-  const payload = {
-    codes: null,
-  };
-  if (typeof codes !== 'undefined') {
-    if (Array.isArray(codes)) {
-      payload.codes = codes;
-    } else {
-      throw new Error('Param provided to fetchFromCacheOrApi is wrong type.');
-    }
-  }
-
+const fetchFromCacheOrApi = (path) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/schools', payload) : api(`/schools`); // todo - api path
+    const req = USE_MOCKS ? mockApi(path) : api(path); // todo - api path
     return req.then(
-      (schools) => {
+      (resp) => {
+        const { data } = resp;
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            schools: objectify(schools),
+            schools: objectify(data, 'code'),
           }
         });
       },
@@ -44,9 +33,12 @@ const fetchFromCacheOrApi = (codes) => {
 };
 
 export const fetchSchool = (code) => {
-  return fetchFromCacheOrApi([code]);
+  return fetchFromCacheOrApi(`/schools/${code}`);
 };
 
 export const fetchSchools = (codes) => {
-  return fetchFromCacheOrApi(codes);
+  const reqList = codes.reduce((acc, val, idx) => {
+    return acc + `&id=${val}`;
+  }, '');
+  return fetchFromCacheOrApi(`/schools?${reqList}`);
 };

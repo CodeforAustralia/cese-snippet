@@ -6,7 +6,7 @@ import get from 'lodash/get';
  * @returns {Object} School
  */
 export const selectSchool = (state, code) => {
-  return get(state, `schools.data[${code}]`);
+  return get(state, `schools.byCode[${code}]`);
 };
 
 /**
