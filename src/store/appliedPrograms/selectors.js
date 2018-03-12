@@ -1,21 +1,21 @@
 /**
- * @param state {Object}
+ * @param state
  * @param code {String}
- * @returns {Array.<AppliedProgram>}
+ * @param year {String}
  */
-// export const selectAppliedPrograms = (state, code) => {
-//   // return state.appliedPrograms.forEach(program => {
-//   //   .filter(program => {
-//   //     return program.schoolCode === code;
-//   //   })
-//   // })
-// };
+export const selectAppliedPrograms = (state, code, year = null) => {
 
-
-export const selectAppliedProgramsIds = (state, code) => {
-  return state.appliedPrograms.data.filter(program => {
-    if (program.code === code) {
-      return program.id;
-    }
-  })
+  // return state.appliedPrograms.byId.filter(program => {
+  //   if (program.schoolCode === code) {
+  //     if (year) {
+  //       return program.year === year;
+  //     } else {
+  //       return program;
+  //     }
+  //   }
+  //   return false;
+  // });
 };
+
+
+// todo -  select by filter

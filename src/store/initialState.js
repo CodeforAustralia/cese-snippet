@@ -8,12 +8,8 @@ export default {
       type: null,
     },
   },
-  session: {
-  },
-  schools: {
-  },
-  appliedPrograms: {
-  },
-  programs: {
-  },
+  session: {},
+  schools: {},
+  appliedPrograms: {},
+  programs: {},
 };

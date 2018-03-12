@@ -1,21 +1,34 @@
 import mockApi from '_api';
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
+import { getYear } from 'utils/formatDate';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
-export const fetchAppliedPrograms = (code) => {
+const fetchFromCacheOrApi = (path, filterProps) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/appliedPrograms', {code}) : api(`/appliedPrograms/${code}`);  // todo - api code
+
+    const req = USE_MOCKS ? mockApi(path) : api(path);  // todo - api path
     return req.then(
-      (appliedPrograms) => {
+      (resp) => {
+        const { data } = resp;
+        const { code, year } = filterProps;
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            appliedPrograms: objectify(appliedPrograms),
+            appliedPrograms: objectify(data),
+          }
+        });
+        dispatch({
+          type: ACTION_TYPES.setFilter,
+          payload: {
+            key: `${code}_${year}`,
+            ids: data.map(p => p.id),
+            code,
+            year,
           }
         });
       },
@@ -29,4 +42,15 @@ export const fetchAppliedPrograms = (code) => {
       }
     );
   }
+};
+
+export const fetchAppliedProgramsByFilters = (code, year = getYear()) => {
+  let path = `/appliedPrograms?code=${code}`;
+  const filterProps = {
+    code: code,
+  };
+  path = path + `&year=${year}`;
+  filterProps.year = year;
+
+  return fetchFromCacheOrApi(path, filterProps);
 };

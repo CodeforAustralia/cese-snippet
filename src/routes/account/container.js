@@ -7,9 +7,11 @@ import {
 } from 'store/session/selectors';
 
 const mapStateToProps = (state) => {
+  const userSchoolCodes = selectUserSchoolCodes(state);
   return {
     session: selectSession(state),
-    userSchoolCodes: selectUserSchoolCodes(state),
+    userFirstSchoolCode: userSchoolCodes[0],
+    userSchoolCodes,
   }
 };
 
@@ -20,8 +22,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);
-
-
-
-
-

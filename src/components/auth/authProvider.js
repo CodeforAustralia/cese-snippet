@@ -9,7 +9,7 @@ class AuthProvider extends React.Component {
     const { session } = this.props;
 
     const state = {
-      isAuthenticated: !isEmpty(session.data),
+      isAuthenticated: !isEmpty(session),
     };
 
     return {

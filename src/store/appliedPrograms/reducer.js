@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
-
-import initialState from 'store/initialState';
+import merge from 'merge';
 
 export const ACTION_TYPES = {
   fetchRequest: 'APPLIED_PROGRAMS/FETCH_REQUEST',
   fetchSuccess: 'APPLIED_PROGRAMS/FETCH_SUCCESS',
   fetchError: 'APPLIED_PROGRAMS/FETCH_ERROR',
+
+  setFilter: 'APPLIED_PROGRAMS/SET_FILTER',
 };
 
 const isFetching = (state = false, action) => {
@@ -33,7 +34,7 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-const data = (state = initialState.appliedPrograms, action) => {
+const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
@@ -43,10 +44,33 @@ const data = (state = initialState.appliedPrograms, action) => {
   }
 };
 
+const filters = (state = {}, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case ACTION_TYPES.setFilter:
+      const { key, ids } = payload;
+      if (state[key]) {
+        const newKeyState = {...state[key]};
+        newKeyState.ids = [...newKeyState.ids, ...ids];
+        return merge(state, {
+          [key]: newKeyState,
+        });
+      }
+      return merge(state, {
+        [key]: {
+          ids: ids,
+        }
+      });
+    default:
+      return state;
+  }
+};
+
 const appliedProgramsReducer = combineReducers({
-  data,
+  byId,
   isFetching,
   errorMessage,
+  filters,
 });
 
 export default appliedProgramsReducer;

@@ -10,7 +10,7 @@ const fakeDatabase = {
       "schoolCode": "21312",
       "facilitators": ["T8756"],
       "yearGroups": ["7", "8"],
-      "dateYear": "2018",
+      "year": "2018",
       "termStart": 3,
       "termEnd": 4,
       "cohortSize": 120,
@@ -30,7 +30,6 @@ const fakeDatabase = {
   ],
   "schools": [
     {
-      "id": "1",
       "code": "21312",
       "name": "Mars High School",
       "type": "Secondary",
@@ -42,33 +41,69 @@ const fakeDatabase = {
 const delay = (ms = 1000) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
+
 const mockApi = (path, payload) => {
-  switch (path) {
-
-    case '/school':
-      return delay().then(() => {
-        return fakeDatabase.schools.find(school => school.code === payload.code);
-      });
-
-    case '/user/schools':
-      return delay().then(() => {
-        return fakeDatabase.schools;
-      });
-
-    case '/appliedPrograms':
-      // todo - fetch year, and make current year the default
-      return delay().then(() => {
-        return fakeDatabase.appliedPrograms.filter(program => program.schoolCode === payload.code);
-      });
-
-    case '/programs':
-      return delay().then(() => {
-        return fakeDatabase.programs;
-      });
-
-    default:
-      throw new Error(`Mock API request is not handled for path: ${path}`);
+  // all schools
+  if (path.startsWith('/schools')) {
+    return delay().then(() => {
+      return { data: fakeDatabase.schools }
+    });
   }
+  // one school
+  if (path.startsWith('/schools/')) {
+    return delay().then(() => {
+      const s = fakeDatabase.schools.find(s => s.code === payload.code);
+      return { data: [s] }
+    });
+  }
+  // many schools (id is code)
+  if (path.startsWith('/schools?')) {
+    throw new Error('not implemented');
+  }
+
+
+  // all appliedPrograms
+  if (path.startsWith('/appliedPrograms')) {
+    return delay().then(() => {
+      return { data: fakeDatabase.appliedPrograms };
+    });
+  }
+  // one appliedPrograms
+  if (path.startsWith('/appliedPrograms/')) {
+    throw new Error('not implemented');
+  }
+  // many appliedPrograms
+  // filtered appliedPrograms
+  if (path.startsWith('/appliedPrograms?')){
+    return delay().then(() => {
+      const { code, year } = payload;
+      const data = fakeDatabase.appliedPrograms.filter(program => {
+        return program.schoolCode === code;
+      }).filter(program => {
+        return program.year === year;
+      });
+      return { data };
+    });
+  }
+
+
+  // all programs
+  if (path.startsWith('/programs')) {
+    return delay().then(() => {
+      return { data: fakeDatabase.programs };
+    });
+  }
+  // one programs
+  if (path.startsWith('/programs/')) {
+    throw new Error('not implemented');
+  }
+  // many programs
+  if (path.startsWith('/programs?')) {
+    throw new Error('not implemented');
+  }
+
+
+  throw new Error(`Mock API request is not handled for path: ${path}`);
 };
 
 export default mockApi;
