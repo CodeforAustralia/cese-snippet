@@ -1,3 +1,5 @@
+import queryString from 'query-string';
+
 // This is a fake in-memory implementation of something
 // that would be implemented by calling a REST server.
 
@@ -82,29 +84,54 @@ const mockApi = (path, payload) => {
       if (!code) {
         throw new Error(`No code present: ${code}.`);
       }
-      const s = fakeDatabase.schools.find(s => {
-        return Number(s.code) === Number(code);
-      });
-      return { data: [s] }
+      return {
+        data: {
+          school: fakeDatabase.schools.find(s => {
+            return Number(s.code) === Number(code);
+          }),
+        }
+      };
     });
   }
   // many schools (id is code)
   if (path.startsWith('/schools?')) {
     return delay().then(() => {
+      const searchParams = path.replace(/\/schools(.*)/i, '$1');
+      const params = queryString.parse(searchParams);
+      const { code } = params;
 
-      // todo
-      const { codes } = payload;
-
-      const data = codes.map(code => {
-        return fakeDatabase.schools.find(s => s.code === code);
-      });
-      return { data };
+      if (!code) {
+        throw new Error(`No code present: ${code}.`);
+      }
+      const resp = {
+        data: {
+          schools: null,
+        }
+      };
+      if (Array.isArray(code)) {
+        resp.data.schools = code.map(c => {
+          return fakeDatabase.schools.find(s => Number(s.code) === Number(c));
+        });
+      } else {
+        resp.data.schools = [fakeDatabase.schools.find(s => {
+          return Number(s.code) === Number(code);
+        })];
+      }
+      return resp;
     });
   }
   // all schools
   if (path.startsWith('/schools')) {
     return delay().then(() => {
-      return { data: fakeDatabase.schools }
+      const resp = {
+        data: {
+          schools: null,
+        }
+      };
+
+      resp.data.schools = fakeDatabase.schools;
+
+      return resp;
     });
   }
 
