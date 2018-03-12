@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
 
-import initialState from 'store/initialState';
-
 const ACTION_TYPES = {
   fetchRequest: 'PROGRAMS/FETCH_REQUEST',
   fetchSuccess: 'PROGRAMS/FETCH_SUCCESS',
@@ -33,7 +31,7 @@ const errorMessage = (state = null, action) => {
   }
 };
 
-const data = (state = initialState.programs.data, action) => {
+const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
@@ -44,7 +42,7 @@ const data = (state = initialState.programs.data, action) => {
 };
 
 const programsReducer = combineReducers({
-  data,
+  byId,
   isFetching,
   errorMessage,
 });

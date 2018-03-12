@@ -6,12 +6,12 @@ const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
 const fetchFromCacheOrApi = (codes) => {
 
-  const packet = {
+  const payload = {
     codes: null,
   };
   if (typeof codes !== 'undefined') {
     if (Array.isArray(codes)) {
-      packet.codes = codes;
+      payload.codes = codes;
     } else {
       throw new Error('Param provided to fetchFromCacheOrApi is wrong type.');
     }
@@ -21,7 +21,7 @@ const fetchFromCacheOrApi = (codes) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/schools', packet) : api(`/schools`); // todo - api path
+    const req = USE_MOCKS ? mockApi('/schools', payload) : api(`/schools`); // todo - api path
     return req.then(
       (schools) => {
         dispatch({

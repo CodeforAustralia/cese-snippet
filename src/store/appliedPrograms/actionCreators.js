@@ -4,35 +4,36 @@ import { objectify } from 'store/objectify';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
-const fetchFromCacheOrApi = (codes, year) => {
-
-  const packet = {
-    codes: null,
-    year: null,
+const fetchFromCacheOrApi = (code, year = null) => {
+  if (typeof code === 'undefined') {
+    throw new Error('Must provide code.');
+  }
+  const payload = {
+    code,
+    year,
   };
-  if (typeof codes !== 'undefined') {
-    if (Array.isArray(codes)) {
-      packet.codes = codes;
-    } else {
-      throw new Error('Param provided to fetchFromCacheOrApi is wrong type.');
-    }
-  }
-
-  if (typeof year !== 'undefined') {
-    packet.year = year;
-  }
 
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi('/appliedPrograms', packet) : api(`/appliedPrograms`);  // todo - api path
+    const req = USE_MOCKS ? mockApi('/appliedPrograms', payload) : api(`/appliedPrograms`);  // todo - api path
     return req.then(
-      (appliedPrograms) => {
+      (resp) => {
+        const { data } = resp;
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            appliedPrograms: objectify(appliedPrograms),
+            appliedPrograms: objectify(data),
+          }
+        });
+        dispatch({
+          type: ACTION_TYPES.setFilter,
+          payload: {
+            key: `${code}_${year}`,
+            ids: data.map(p => p.id),
+            code,
+            year,
           }
         });
       },
@@ -48,6 +49,6 @@ const fetchFromCacheOrApi = (codes, year) => {
   }
 };
 
-export const fetchAppliedProgramsBySchool = (code, year) => {
-  return fetchFromCacheOrApi([code], year);
+export const fetchAppliedProgramsByFilters = (code, year = null) => {
+  return fetchFromCacheOrApi(code, year);
 };

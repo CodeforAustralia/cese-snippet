@@ -7,7 +7,7 @@ import ProgramForm from './../components/programForm';
 class SchoolPrograms extends React.Component {
   componentDidMount() {
     this.props.fetchSchool(this.props.schoolCode).then(() => {
-      this.props.fetchAppliedProgramsBySchool(this.props.schoolCode);
+      this.props.fetchAppliedProgramsByFilters(this.props.schoolCode);
     });
   }
   render() {

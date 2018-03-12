@@ -59,29 +59,18 @@ const mockApi = (path, payload) => {
       });
 
     case '/appliedPrograms':
-      if (codes) {
-        return delay().then(() => {
-          return codes.map(code => {
-            return fakeDatabase.appliedPrograms.find(program => {
-              if (program.schoolCode === code) {
-                if (year) {
-                  return program.year === year;
-                } else {
-                  return program;
-                }
-              }
-              return false;
-            });
-          });
-        });
-      }
       return delay().then(() => {
-        return fakeDatabase.appliedPrograms.filter(program => {
-          if (year) {
-            return program.year === year;
+        const data = fakeDatabase.appliedPrograms.filter(program => {
+          if (program.schoolCode === payload.code) {
+            if (payload.year) {
+              return program.year === payload.year;
+            } else {
+              return program;
+            }
           }
-          return program;
+          return false;
         });
+        return {data}
       });
 
     case '/programs':
