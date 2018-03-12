@@ -11,7 +11,6 @@ describe('mockApi', () => {
   // '/schools'
 
   describe('Schools', () => {
-
     it('should fetch all Schools', () => {
       expect.assertions(2);
       return mockApi('/schools').then((resp) => {
@@ -41,6 +40,7 @@ describe('mockApi', () => {
         expect(school.code).toBe(76862);
       });
     });
+
     it('should fetch many schools by school code', () => {
       expect.assertions(4);
       return mockApi('/schools?code=76862&code=21312').then((resp) => {
@@ -52,73 +52,71 @@ describe('mockApi', () => {
         expect(schools[1].code).toBe(21312);
       });
     });
-  //
-  //   // it('should fetch many schools by school code', () => {
-  //   //   expect.assertions(2);
-  //   //   return mockApi('/schools?code=76862&code=21312').then((resp) => {
-  //   //
-  //   //   });
-  //   // });
   });
 
-  // describe('AppliedPrograms', () => {
-  //   it('should fetch all Applied Programs', () => {
-  //     expect.assertions(2);
-  //     return mockApi('/appliedPrograms').then((resp) => {
-  //       expect(resp.data).toBeDefined();
-  //       const { data } = resp;
-  //       expect(data.length).toEqual(fakeDatabase.appliedPrograms.length);
-  //     });
-  //   });
-  //
-  //   it('should fetch a single Applied Program', () => {
-  //     expect.assertions(2);
-  //     return mockApi('/appliedPrograms/1').then((resp) => {
-  //       expect(resp.data).toBeDefined();
-  //       const { data } = resp;
-  //       const appliedProgram = data[0];
-  //       expect(appliedProgram.id).toBe(2);
-  //     });
-  //   });
-  // });
-  //
-  //
-  // describe('Programs', () => {
-  //   it('should fetch all Programs', () => {
-  //     expect.assertions(2);
-  //     return mockApi('/programs').then((resp) => {
-  //       expect(resp.data).toBeDefined();
-  //       const { data } = resp;
-  //       expect(data.length).toEqual(fakeDatabase.programs.length);
-  //     });
-  //   });
-  //
-  //   it('should fetch a single Program', () => {
-  //     expect.assertions(2);
-  //     return mockApi('/programs/1').then((resp) => {
-  //       expect(resp.data).toBeDefined();
-  //       const { data } = resp;
-  //       const program = data[0];
-  //       expect(program.id).toBe(1);
-  //     });
-  //   });
-  // });
+
+  // // one appliedPrograms
+  // '/appliedPrograms/1
+  // // many appliedPrograms
+  // // filtered appliedPrograms
+  // '/appliedPrograms?id=1&id=2
+  // // all appliedPrograms
+  // '/appliedPrograms'
+  describe('AppliedPrograms', () => {
+    it('should fetch all Applied Programs', () => {
+      expect.assertions(2);
+      return mockApi('/appliedPrograms').then((resp) => {
+        expect(resp.data).toBeDefined();
+        const { data: { appliedPrograms } } = resp;
+        expect(appliedPrograms.length).toEqual(fakeDatabase.appliedPrograms.length);
+      });
+    });
+
+    it('should fetch a single Applied Program', () => {
+      expect.assertions(2);
+      return mockApi('/appliedPrograms/2').then((resp) => {
+        expect(resp.data).toBeDefined();
+        const { data: { appliedProgram } } = resp;
+        expect(appliedProgram.id).toBe(2);
+      });
+    });
+
+    it('should fetch a single Applied Program by id', () => {
+      expect.assertions(3);
+      return mockApi('/appliedPrograms?id=2').then((resp) => {
+        expect(resp.data).toBeDefined();
+        const { data: { appliedPrograms } } = resp;
+        expect(appliedPrograms.length).toBe(1);
+
+        const appliedProgram = appliedPrograms[0];
+        expect(appliedProgram.id).toBe(2);
+      });
+    });
+
+    it('should fetch Applied Programs by filters', () => {
+      expect.assertions(4);
+      return mockApi('/appliedPrograms?schoolCode=76862&year=2018').then((resp) => {
+        console.log(resp)
+        expect(resp.data).toBeDefined();
+        const { data: { appliedPrograms } } = resp;
+        expect(Array.isArray(appliedPrograms)).toBe(true);
+
+        // assume array length
+        const appliedProgram = appliedPrograms[0];
+        expect(appliedProgram.schoolCode).toBe(76862);
+        expect(appliedProgram.year).toBe("2018");
+      });
+    });
+
+
+    // // one programs
+    // '/programs/1'
+    // // many programs
+    // '/programs?id=1&id=2'
+    // // all programs
+    // '/programs'
+
+  });
 
 });
 
-
-//
-// // one appliedPrograms
-// '/appliedPrograms/1
-// // many appliedPrograms
-// // filtered appliedPrograms
-// '/appliedPrograms?id=1&id=2
-// // all appliedPrograms
-// '/appliedPrograms'
-//
-// // one programs
-// '/programs/1'
-// // many programs
-// '/programs?id=1&id=2'
-// // all programs
-// '/programs'

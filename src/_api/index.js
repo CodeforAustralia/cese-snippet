@@ -1,4 +1,5 @@
 import queryString from 'query-string';
+import isEmpty from 'lodash/isEmpty';
 
 // This is a fake in-memory implementation of something
 // that would be implemented by calling a REST server.
@@ -71,7 +72,7 @@ export const fakeDatabase = {
   ]
 };
 
-const delay = (ms = 1000) =>
+const delay = (ms = process.env.NODE_ENV === 'test' ? 0 : 1000) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
 
@@ -125,12 +126,9 @@ const mockApi = (path, payload) => {
     return delay().then(() => {
       const resp = {
         data: {
-          schools: null,
+          schools: fakeDatabase.schools,
         }
       };
-
-      resp.data.schools = fakeDatabase.schools;
-
       return resp;
     });
   }
@@ -143,29 +141,71 @@ const mockApi = (path, payload) => {
       if (!id) {
         throw new Error(`No id present: ${id}.`);
       }
-      const s = fakeDatabase.appliedPrograms.find(s => {
-        return Number(s.id) === Number(id);
-      });
-      return { data: [s] }
+      return {
+        data: {
+          appliedProgram: fakeDatabase.appliedPrograms.find(s => {
+            return Number(s.id) === Number(id);
+          }),
+        }
+      };
     });
   }
   // many appliedPrograms
   // filtered appliedPrograms
   if (path.startsWith('/appliedPrograms?')){
     return delay().then(() => {
-      const { code, year } = payload;
-      const data = fakeDatabase.appliedPrograms.filter(program => {
-        return program.schoolCode === code;
-      }).filter(program => {
-        return program.year === year;
+      const searchParams = path.replace(/\/appliedPrograms(.*)/i, '$1');
+      const params = queryString.parse(searchParams);
+      const { id, schoolCode, year } = params;
+
+      if (isEmpty(params)) {
+        throw new Error(`No params present: ${JSON.stringify(params)}.`);
+      }
+
+      const resp = {
+        data: {
+          appliedPrograms: null,
+        }
+      };
+
+      if (typeof id !== 'undefined') {
+        if (Array.isArray(id)) {
+          resp.data.appliedPrograms = id.map(c => {
+            return fakeDatabase.appliedPrograms.find(p => Number(p.id) === Number(id));
+          });
+        } else {
+          resp.data.appliedPrograms = [fakeDatabase.appliedPrograms.find(p => {
+            return Number(p.id) === Number(id);
+          })];
+        }
+        return resp;
+      }
+
+      resp.data.appliedPrograms = fakeDatabase.appliedPrograms.filter(p => {
+        if (typeof schoolCode !== 'undefined') {
+          if (Number(p.schoolCode) !== Number(schoolCode)) {
+            return false;
+          }
+        }
+        if (typeof year !== 'undefined') {
+          if (p.year !== year) {
+            return false;
+          }
+        }
+        return true;
       });
-      return { data };
+      return resp;
     });
   }
   // all appliedPrograms
   if (path.startsWith('/appliedPrograms')) {
     return delay().then(() => {
-      return { data: fakeDatabase.appliedPrograms };
+      const resp = {
+        data: {
+          appliedPrograms: fakeDatabase.appliedPrograms,
+        }
+      };
+      return resp;
     });
   }
 
