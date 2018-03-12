@@ -19,13 +19,13 @@ script:
   - NODE_ENV=production yarn build
 after_success:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < ./coverage/lcov.info
-deploy:
-  # deploy master to prod
-  skip_cleanup: true
-  provider: firebase
-  token:
-    secure: "$FIREBASE_TOKEN"
-  on:
-    branch: master
+#deploy:
+#  # deploy master to prod
+#  skip_cleanup: true
+#  provider: firebase
+#  token:
+#    secure: "$FIREBASE_TOKEN"
+#  on:
+#    branch: master
 #after_deploy:
 #  - yarn add slack-notify shelljs && node ./bin/notify-slack.js
