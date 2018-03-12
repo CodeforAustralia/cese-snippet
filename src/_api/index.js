@@ -1,22 +1,49 @@
 // This is a fake in-memory implementation of something
 // that would be implemented by calling a REST server.
 
-const fakeDatabase = {
+export const fakeDatabase = {
   "appliedPrograms": [
     {
       "id": 1,
       "programId": 1,
-      "name": "Our Program 1",
+      "name": "Mars Program 1",
       "schoolCode": 21312,
-      "facilitators": [8787],
+      "facilitators": [ 8787 ],
       "yearGroups": ["7", "8"],
       "year": "2018",
       "termStart": 3,
       "termEnd": 4,
       "cohortSize": 120,
-      "desiredOutcomes": "Student uplift in the history of the classic Lorem Ipsum passage and generate your own text using any number of characters, words, sentences or paragraphs.",
       "lastUpdatedBy": 8787,
+      "lastUpdated": "2018-02-04T23:56:38.363Z"
+    },
+    {
+      "id": 2,
+      "programId": 1,
+      "name": "Jupiter Program 1",
+      "schoolCode": 76862,
+      "facilitators": [ 23423 ],
+      "yearGroups": ["7", "8"],
+      "year": "2018",
+      "termStart": 3,
+      "termEnd": 4,
+      "cohortSize": 160,
+      "lastUpdatedBy": 23423,
       "lastUpdated": "2018-03-04T23:56:38.363Z"
+    },
+    {
+      "id": 3,
+      "programId": 1,
+      "name": "Jupiter Program 2",
+      "schoolCode": 76862,
+      "facilitators": [ 23423 ],
+      "yearGroups": ["7", "8"],
+      "year": "2017",
+      "termStart": 1,
+      "termEnd": 4,
+      "cohortSize": 30,
+      "lastUpdatedBy": 23423,
+      "lastUpdated": "2017-03-04T23:56:38.363Z"
     }
   ],
   "programs": [
@@ -33,7 +60,11 @@ const fakeDatabase = {
       "code": 21312,
       "name": "Mars High School",
       "type": "Secondary",
-      "programs": [1]
+    },
+    {
+      "code": 76862,
+      "name": "Jupiter High School",
+      "type": "Secondary",
     }
   ]
 };
@@ -43,12 +74,7 @@ const delay = (ms = 1000) =>
 
 
 const mockApi = (path, payload) => {
-  // all schools
-  if (path.startsWith('/schools')) {
-    return delay().then(() => {
-      return { data: fakeDatabase.schools }
-    });
-  }
+
   // one school
   if (path.startsWith('/schools/')) {
     return delay().then(() => {
@@ -58,16 +84,25 @@ const mockApi = (path, payload) => {
   }
   // many schools (id is code)
   if (path.startsWith('/schools?')) {
-    throw new Error('not implemented');
-  }
-
-
-  // all appliedPrograms
-  if (path.startsWith('/appliedPrograms')) {
     return delay().then(() => {
-      return { data: fakeDatabase.appliedPrograms };
+
+      // todo
+      const { codes } = payload;
+
+      const data = codes.map(code => {
+        return fakeDatabase.schools.find(s => s.code === code);
+      });
+      return { data };
     });
   }
+  // all schools
+  if (path.startsWith('/schools')) {
+    return delay().then(() => {
+      return { data: fakeDatabase.schools }
+    });
+  }
+
+
   // one appliedPrograms
   if (path.startsWith('/appliedPrograms/')) {
     throw new Error('not implemented');
@@ -85,14 +120,14 @@ const mockApi = (path, payload) => {
       return { data };
     });
   }
-
-
-  // all programs
-  if (path.startsWith('/programs')) {
+  // all appliedPrograms
+  if (path.startsWith('/appliedPrograms')) {
     return delay().then(() => {
-      return { data: fakeDatabase.programs };
+      return { data: fakeDatabase.appliedPrograms };
     });
   }
+
+
   // one programs
   if (path.startsWith('/programs/')) {
     throw new Error('not implemented');
@@ -100,6 +135,12 @@ const mockApi = (path, payload) => {
   // many programs
   if (path.startsWith('/programs?')) {
     throw new Error('not implemented');
+  }
+  // all programs
+  if (path.startsWith('/programs')) {
+    return delay().then(() => {
+      return { data: fakeDatabase.programs };
+    });
   }
 
 
