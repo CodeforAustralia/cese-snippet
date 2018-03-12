@@ -11,18 +11,12 @@ const fetchFromCacheOrApi = (path, filterProps) => {
       type: ACTION_TYPES.fetchRequest,
     });
 
-    const req = USE_MOCKS ? mockApi(path) : api(path);  // todo - api path
+    const req = USE_MOCKS ? mockApi(path) : api(path);
     return req.then(
       (resp) => {
         const { data } = resp;
         const { code, year } = filterProps;
-        debugger
-        dispatch({
-          type: ACTION_TYPES.fetchSuccess,
-          payload: {
-            appliedPrograms: objectify(data),
-          }
-        });
+
 
         dispatch({
           type: ACTION_TYPES.setFilter,
@@ -33,6 +27,14 @@ const fetchFromCacheOrApi = (path, filterProps) => {
             year,
           }
         });
+
+        dispatch({
+          type: ACTION_TYPES.fetchSuccess,
+          payload: {
+            appliedPrograms: objectify(data),
+          }
+        });
+
       },
       (error) => {
         dispatch({

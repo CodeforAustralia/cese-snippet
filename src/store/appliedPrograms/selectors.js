@@ -3,7 +3,7 @@ import { getFilterKey } from './helpers';
 
 
 export const selectAppliedPrograms = (state, ids) => {
-  return ids.map(id => state.appliedPrograms.map(p => p.id === id));
+  return ids.map(id => state.appliedPrograms.byId[id]);
 };
 
 export const selectAppliedProgramsByFilter = (state, code, year) => {
@@ -13,4 +13,6 @@ export const selectAppliedProgramsByFilter = (state, code, year) => {
   if (filteredIds) {
     return selectAppliedPrograms(state, filteredIds);
   }
+  return null;
 };
+

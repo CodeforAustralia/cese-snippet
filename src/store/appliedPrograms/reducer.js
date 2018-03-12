@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import merge from 'merge';
+import uniq from 'lodash/uniq';
+
 
 export const ACTION_TYPES = {
   fetchRequest: 'APPLIED_PROGRAMS/FETCH_REQUEST',
@@ -48,19 +49,23 @@ const filters = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.setFilter:
-      const { key, ids } = payload;
+      const { key, ids, filterProps } = payload;
+
       if (state[key]) {
-        const newKeyState = {...state[key]};
-        newKeyState.ids = [...newKeyState.ids, ...ids];
-        return merge(state, {
-          [key]: newKeyState,
-        });
+        const newKeyValue = {...state[key]};
+        // must be free of dupes
+        newKeyValue.ids = uniq([...newKeyValue.ids, ...ids]);
+        state[key] = newKeyValue;
+        return state;
       }
-      return merge(state, {
-        [key]: {
-          ids: ids,
-        }
-      });
+
+      state[key] = {
+        ids: ids,
+        ...filterProps,
+      };
+
+      return state;
+
     default:
       return state;
   }
