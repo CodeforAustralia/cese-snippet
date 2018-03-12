@@ -96,7 +96,6 @@ describe('mockApi', () => {
     it('should fetch Applied Programs by filters', () => {
       expect.assertions(4);
       return mockApi('/appliedPrograms?schoolCode=76862&year=2018').then((resp) => {
-        console.log(resp)
         expect(resp.data).toBeDefined();
         const { data: { appliedPrograms } } = resp;
         expect(Array.isArray(appliedPrograms)).toBe(true);
@@ -115,6 +114,23 @@ describe('mockApi', () => {
     // '/programs?id=1&id=2'
     // // all programs
     // '/programs'
+    it('should fetch all Programs', () => {
+      expect.assertions(2);
+      return mockApi('/programs').then((resp) => {
+        expect(resp.data).toBeDefined();
+        const { data: { programs } } = resp;
+        expect(programs.length).toEqual(fakeDatabase.programs.length);
+      });
+    });
+
+    it('should fetch a single Program', () => {
+      expect.assertions(2);
+      return mockApi('/programs/1').then((resp) => {
+        expect(resp.data).toBeDefined();
+        const { data: { program } } = resp;
+        expect(program.id).toBe(1);
+      });
+    });
 
   });
 

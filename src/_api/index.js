@@ -217,10 +217,13 @@ const mockApi = (path, payload) => {
       if (!id) {
         throw new Error(`No id present: ${id}.`);
       }
-      const s = fakeDatabase.programs.find(s => {
-        return Number(s.id) === Number(id);
-      });
-      return { data: [s] }
+      return {
+        data: {
+          program: fakeDatabase.programs.find(p => {
+            return Number(p.id) === Number(id);
+          }),
+        }
+      };
     });
   }
   // many programs
@@ -230,7 +233,12 @@ const mockApi = (path, payload) => {
   // all programs
   if (path.startsWith('/programs')) {
     return delay().then(() => {
-      return { data: fakeDatabase.programs };
+      const resp = {
+        data: {
+          programs: fakeDatabase.programs,
+        }
+      };
+      return resp;
     });
   }
 

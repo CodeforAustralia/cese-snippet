@@ -48,6 +48,7 @@ export const byId = (state = {}, action) => {
 export const filters = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
+
     case ACTION_TYPES.setFilter:
       const { key, ids, filterProps } = payload;
 
