@@ -4,6 +4,7 @@
  * @param year {String}
  */
 export const selectAppliedPrograms = (state, code, year = null) => {
+
   return state.appliedPrograms.data.filter(program => {
     if (program.schoolCode === code) {
       if (year) {

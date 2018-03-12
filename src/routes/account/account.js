@@ -29,8 +29,8 @@ class Account extends React.Component {
         <div>
           <h1>Account</h1>
           <Switch>
-            <Route path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />
-            <Redirect exact from="/account" to={`/account/schools/${this.props.userFirstSchoolCode}/programs`} />
+            {/*<Route path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />*/}
+            {/*<Redirect exact from="/account" to={`/account/schools/${this.props.userFirstSchoolCode}/programs`} />*/}
           </Switch>
         </div>
       </Layout>

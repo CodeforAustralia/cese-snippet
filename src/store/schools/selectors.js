@@ -1,10 +1,12 @@
+import get from 'lodash/get';
+
 /**
  * @param state {Object}
  * @param code {String}
  * @returns {Object} School
  */
 export const selectSchool = (state, code) => {
-  return state.schools.data.find(school => school.code === code);
+  return get(state, `schools.data[${code}]`);
 };
 
 /**

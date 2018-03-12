@@ -37,7 +37,7 @@ const data = (state = initialState.schools.data, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
-      return [...state, ...payload.schools];
+      return {...state, ...payload.schools};
     default:
       return state;
   }

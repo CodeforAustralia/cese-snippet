@@ -1,5 +1,6 @@
 import mockApi from '_api';
 import { ACTION_TYPES } from './reducer';
+import { objectify } from 'store/objectify';
 
 const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
 
@@ -31,7 +32,7 @@ const fetchFromCacheOrApi = (codes, year) => {
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            appliedPrograms: appliedPrograms,
+            appliedPrograms: objectify(appliedPrograms),
           }
         });
       },

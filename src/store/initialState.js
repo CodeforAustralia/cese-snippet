@@ -10,12 +10,12 @@ export default {
   },
   session: {},
   schools: {
-    data: [],
+    data: {},
   },
   appliedPrograms: {
-    data: [],
+    data: {},
   },
   programs: {
-    data: [],
+    data: {},
   },
 };

@@ -37,7 +37,7 @@ const data = (state = initialState.programs.data, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
-      return [...state, ...payload.programs];
+      return {...state, ...payload.programs};
     default:
       return state;
   }
