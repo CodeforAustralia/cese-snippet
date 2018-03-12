@@ -1,3 +1,9 @@
-import reducer from './reducer';
+const sessionReducer = (state = {}, action) => {
+  const { type } = action;
+  switch (type) {
+    default:
+      return state;
+  }
+};
 
-export default reducer;
+export default sessionReducer;

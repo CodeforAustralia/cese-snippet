@@ -1,6 +1,9 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 
+import Nav from './../components/nav';
+import ProgramForm from './../components/programForm';
+
 class SchoolPrograms extends React.Component {
   componentDidMount() {
     this.props.fetchSchool(this.props.schoolCode).then(() => {
@@ -16,6 +19,9 @@ class SchoolPrograms extends React.Component {
     return (
       <div>
         <h1>SchoolPrograms</h1>
+
+        <Nav />
+
         <code>School: {JSON.stringify(this.props.school)}</code>
         <hr/>
         {
@@ -23,6 +29,9 @@ class SchoolPrograms extends React.Component {
             <code>Applied programs: {JSON.stringify(this.props.appliedPrograms)}</code> :
             <p>Loading Applied Programs....</p>
         }
+
+        <ProgramForm />
+
       </div>
     )
   }

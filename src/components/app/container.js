@@ -1,17 +1,11 @@
 import { connect } from 'react-redux';
 
-import { fetchSession } from 'store/session/actionCreators';
+import { selectSession } from 'store/session/selectors';
 
 const mapStateToProps = (state) => {
   return {
-    session: state.session,
+    session: selectSession(state),
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSession: () => dispatch(fetchSession()),
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps);
+export default connect(mapStateToProps, null);

@@ -8,9 +8,7 @@ export default {
       type: null,
     },
   },
-  session: {
-    data: {},
-  },
+  session: {},
   schools: {
     data: [],
   },
