@@ -1,21 +1,16 @@
-/**
- * @param state
- * @param code {String}
- * @param year {String}
- */
-export const selectAppliedPrograms = (state, code, year = null) => {
+import get from 'lodash/get';
+import { getFilterKey } from './helpers';
 
-  // return state.appliedPrograms.byId.filter(program => {
-  //   if (program.schoolCode === code) {
-  //     if (year) {
-  //       return program.year === year;
-  //     } else {
-  //       return program;
-  //     }
-  //   }
-  //   return false;
-  // });
+
+export const selectAppliedPrograms = (state, ids) => {
+  return ids.map(id => state.appliedPrograms.map(p => p.id === id));
 };
 
+export const selectAppliedProgramsByFilter = (state, code, year) => {
+  const filterKey = getFilterKey(code, year);
+  const filteredIds = get(state, `appliedPrograms.filters[${filterKey}].ids`, null);
 
-// todo -  select by filter
+  if (filteredIds) {
+    return selectAppliedPrograms(state, filteredIds);
+  }
+};
