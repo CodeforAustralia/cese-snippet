@@ -15,16 +15,12 @@ class AuthProvider extends React.Component {
     return {
       isAuthenticated: state.isAuthenticated,
       authenticate(cb) {
-        if (!state.isAuthenticated) {
-          state.isAuthenticated = true;
-          setTimeout(cb, 100); // fake async
-        }
+        state.isAuthenticated = true;
+        setTimeout(cb, 100); // fake async
       },
       signout(cb) {
-        if (state.isAuthenticated) {
-          state.isAuthenticated = false;
-          setTimeout(cb, 100);
-        }
+        state.isAuthenticated = false;
+        setTimeout(cb, 100);
       }
     }
   }
