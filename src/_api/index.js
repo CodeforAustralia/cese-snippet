@@ -78,7 +78,13 @@ const mockApi = (path, payload) => {
   // one school
   if (path.startsWith('/schools/')) {
     return delay().then(() => {
-      const s = fakeDatabase.schools.find(s => s.code === payload.code);
+      const code = path.replace(/\/schools\/(.*)/i, '$1');
+      if (!code) {
+        throw new Error(`No code present: ${code}.`);
+      }
+      const s = fakeDatabase.schools.find(s => {
+        return Number(s.code) === Number(code);
+      });
       return { data: [s] }
     });
   }
@@ -105,7 +111,16 @@ const mockApi = (path, payload) => {
 
   // one appliedPrograms
   if (path.startsWith('/appliedPrograms/')) {
-    throw new Error('not implemented');
+    return delay().then(() => {
+      const id = path.replace(/\/appliedPrograms\/(.*)/i, '$1');
+      if (!id) {
+        throw new Error(`No id present: ${id}.`);
+      }
+      const s = fakeDatabase.appliedPrograms.find(s => {
+        return Number(s.id) === Number(id);
+      });
+      return { data: [s] }
+    });
   }
   // many appliedPrograms
   // filtered appliedPrograms
@@ -130,7 +145,16 @@ const mockApi = (path, payload) => {
 
   // one programs
   if (path.startsWith('/programs/')) {
-    throw new Error('not implemented');
+    return delay().then(() => {
+      const id = path.replace(/\/programs\/(.*)/i, '$1');
+      if (!id) {
+        throw new Error(`No id present: ${id}.`);
+      }
+      const s = fakeDatabase.programs.find(s => {
+        return Number(s.id) === Number(id);
+      });
+      return { data: [s] }
+    });
   }
   // many programs
   if (path.startsWith('/programs?')) {
