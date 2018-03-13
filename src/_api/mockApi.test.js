@@ -21,10 +21,12 @@ describe('mockApi', () => {
     });
 
     it('should fetch a single School', () => {
-      expect.assertions(2);
+      expect.assertions(3);
       return mockApi('/schools/76862').then((resp) => {
         expect(resp.data).toBeDefined();
-        const { data: { school } } = resp;
+        const { data: { schools } } = resp;
+        expect(schools.length).toBe(1);
+        const school = schools[0];
         expect(school.code).toBe(76862);
       });
     });
@@ -73,10 +75,12 @@ describe('mockApi', () => {
     });
 
     it('should fetch a single Applied Program', () => {
-      expect.assertions(2);
+      expect.assertions(3);
       return mockApi('/appliedPrograms/2').then((resp) => {
         expect(resp.data).toBeDefined();
-        const { data: { appliedProgram } } = resp;
+        const { data: { appliedPrograms } } = resp;
+        expect(appliedPrograms.length).toBe(1);
+        const appliedProgram = appliedPrograms[0];
         expect(appliedProgram.id).toBe(2);
       });
     });
@@ -124,10 +128,12 @@ describe('mockApi', () => {
     });
 
     it('should fetch a single Program', () => {
-      expect.assertions(2);
+      expect.assertions(3);
       return mockApi('/programs/1').then((resp) => {
         expect(resp.data).toBeDefined();
-        const { data: { program } } = resp;
+        const { data: { programs } } = resp;
+        expect(programs.length).toBe(1);
+        const program = programs[0];
         expect(program.id).toBe(1);
       });
     });

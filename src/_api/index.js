@@ -76,10 +76,11 @@ const delay = (ms = process.env.NODE_ENV === 'test' ? 0 : 1000) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
 
-const mockApi = (path, payload) => {
+const mockApi = (path, method = "GET") => {
 
   // one school
   if (path.startsWith('/schools/')) {
+
     return delay().then(() => {
       const code = path.replace(/\/schools\/(.*)/i, '$1');
       if (!code) {
@@ -87,9 +88,9 @@ const mockApi = (path, payload) => {
       }
       return {
         data: {
-          school: fakeDatabase.schools.find(s => {
+          schools: [fakeDatabase.schools.find(s => {
             return Number(s.code) === Number(code);
-          }),
+          })],
         }
       };
     });
@@ -143,9 +144,9 @@ const mockApi = (path, payload) => {
       }
       return {
         data: {
-          appliedProgram: fakeDatabase.appliedPrograms.find(s => {
+          appliedPrograms: [fakeDatabase.appliedPrograms.find(s => {
             return Number(s.id) === Number(id);
-          }),
+          })],
         }
       };
     });
@@ -219,9 +220,9 @@ const mockApi = (path, payload) => {
       }
       return {
         data: {
-          program: fakeDatabase.programs.find(p => {
+          programs: [fakeDatabase.programs.find(p => {
             return Number(p.id) === Number(id);
-          }),
+          })],
         }
       };
     });
