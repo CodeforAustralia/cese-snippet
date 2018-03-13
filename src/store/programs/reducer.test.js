@@ -4,7 +4,7 @@ import {
   filters,
 } from './reducer';
 
-describe('Applied Programs Reducer', () => {
+describe('Programs Reducer', () => {
   describe('Filters', () => {
     it('setFilter should update ids where a state key exists.', () => {
       const state = {

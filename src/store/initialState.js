@@ -10,6 +10,5 @@ export default {
   },
   session: {},
   schools: {},
-  appliedPrograms: {},
   programs: {},
 };
