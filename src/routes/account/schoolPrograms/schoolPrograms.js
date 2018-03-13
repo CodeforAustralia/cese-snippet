@@ -1,15 +1,23 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 
-import Nav from './../components/nav';
-import ProgramForm from './../components/programForm';
 
 class SchoolPrograms extends React.Component {
 
-  componentDidMount() {
+  fetchData() {
     this.props.fetchSchool(this.props.schoolCode).then(() => {
       this.props.fetchAppliedProgramsByFilters(this.props.schoolCode, this.props.yearSelected);
     });
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.schoolCode !== this.props.schoolCode) {
+      this.fetchData();
+    }
   }
 
   render() {
@@ -22,8 +30,6 @@ class SchoolPrograms extends React.Component {
       <div>
         <h1>SchoolPrograms</h1>
 
-        <Nav />
-
         <code>School: {JSON.stringify(this.props.school)}</code>
         <hr/>
         {
@@ -31,8 +37,6 @@ class SchoolPrograms extends React.Component {
             <code>Applied programs: {JSON.stringify(this.props.appliedPrograms)}</code> :
             <p>Loading Applied Programs....</p>
         }
-
-        <ProgramForm />
 
       </div>
     )

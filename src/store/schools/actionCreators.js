@@ -2,7 +2,7 @@ import { ACTION_TYPES } from './reducer';
 import mockApi from '_api';
 import { objectify } from 'store/objectify';
 
-const USE_MOCKS = process.env.REACT_APP_USE_MOCKS || false;
+const USE_MOCKS = Boolean(process.env.REACT_APP_USE_MOCKS) || false;
 
 const fetchFromCacheOrApi = (path) => {
   return (dispatch, getState, api) => {
@@ -12,11 +12,11 @@ const fetchFromCacheOrApi = (path) => {
     const req = USE_MOCKS ? mockApi(path) : api(path);
     return req.then(
       (resp) => {
-        const { data } = resp;
+        const { data: { schools } } = resp;
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            schools: objectify(data, 'code'),
+            schools: objectify(schools, 'code'),
           }
         });
       },

@@ -16,12 +16,13 @@ const fetchFromCacheOrApi = (path, filterProps) => {
     const req = USE_MOCKS ? mockApi(path, filterProps) : api(path);
     return req.then(
       (resp) => {
-        const { data } = resp;
+
+        const { data: { appliedPrograms} } = resp;
         const { code, year } = filterProps;
 
         console.log('setting filter', {
           key: getFilterKey(code, year),
-          ids: data.map(p => p.id),
+          ids: appliedPrograms.map(p => p.id),
           code,
           year,
         });
@@ -30,17 +31,16 @@ const fetchFromCacheOrApi = (path, filterProps) => {
           type: ACTION_TYPES.setFilter,
           payload: {
             key: getFilterKey(code, year),
-            ids: data.map(p => p.id),
+            ids: appliedPrograms.map(p => p.id),
             code,
             year,
           }
         });
 
-        debugger
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            appliedPrograms: objectify(data),
+            appliedPrograms: objectify(appliedPrograms),
           }
         });
 
