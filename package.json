@@ -118,7 +118,8 @@
       "node"
     ],
     "modulePaths": [
-      "src"
+      "src",
+      "__mocks__"
     ]
   },
   "babel": {

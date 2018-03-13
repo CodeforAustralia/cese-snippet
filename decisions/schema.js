@@ -18,7 +18,7 @@ const schema = {
     programsCreated: [1],
     programsFacilitated: [1],
   },
-  "appliedPrograms": [
+  "programs": [
     {
       "id": 1,
       "programId": 1,
