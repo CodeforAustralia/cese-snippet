@@ -6,7 +6,7 @@ class SchoolPrograms extends React.Component {
 
   fetchData() {
     this.props.fetchSchool(this.props.schoolCode).then(() => {
-      this.props.fetchAppliedProgramsByFilters(this.props.schoolCode, this.props.yearSelected);
+      this.props.fetchProgramsByFilters(this.props.schoolCode, this.props.yearSelected);
     });
   }
 
@@ -33,9 +33,9 @@ class SchoolPrograms extends React.Component {
         <code>School: {JSON.stringify(this.props.school)}</code>
         <hr/>
         {
-          this.props.appliedPrograms && this.props.appliedPrograms.length >= 1 ?
-            <code>Applied programs: {JSON.stringify(this.props.appliedPrograms)}</code> :
-            <p>Loading Applied Programs....</p>
+          this.props.programs && this.props.programs.length >= 1 ?
+            <code>Programs: {JSON.stringify(this.props.programs)}</code> :
+            <p>Loading Programs....</p>
         }
 
       </div>

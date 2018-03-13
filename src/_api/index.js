@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 // that would be implemented by calling a REST server.
 
 export const fakeDatabase = {
-  "appliedPrograms": [
+  "programs": [
     {
       "id": 1,
       "programId": 1,
@@ -47,15 +47,6 @@ export const fakeDatabase = {
       "cohortSize": 30,
       "lastUpdatedBy": 23423,
       "lastUpdated": "2017-03-04T23:56:38.363Z"
-    }
-  ],
-  "programs": [
-    {
-      "id": 1,
-      "name": "Program 1",
-      "description": "Reference site about Lorem Ipsum, giving information on its origins, as well as a random Lipsum generator.",
-      "category": "Literacy",
-      "curriculumBased": true
     }
   ],
   "schools": [
@@ -135,27 +126,27 @@ const mockApi = (path, method = "GET") => {
   }
 
 
-  // one appliedPrograms
-  if (path.startsWith('/appliedPrograms/')) {
+  // one programs
+  if (path.startsWith('/programs/')) {
     return delay().then(() => {
-      const id = path.replace(/\/appliedPrograms\/(.*)/i, '$1');
+      const id = path.replace(/\/programs\/(.*)/i, '$1');
       if (!id) {
         throw new Error(`No id present: ${id}.`);
       }
       return {
         data: {
-          appliedPrograms: [fakeDatabase.appliedPrograms.find(s => {
+          programs: [fakeDatabase.programs.find(s => {
             return Number(s.id) === Number(id);
           })],
         }
       };
     });
   }
-  // many appliedPrograms
-  // filtered appliedPrograms
-  if (path.startsWith('/appliedPrograms?')){
+  // many programs
+  // filtered programs
+  if (path.startsWith('/programs?')){
     return delay().then(() => {
-      const searchParams = path.replace(/\/appliedPrograms(.*)/i, '$1');
+      const searchParams = path.replace(/\/programs(.*)/i, '$1');
       const params = queryString.parse(searchParams);
       const { id, schoolCode, year } = params;
 
@@ -165,24 +156,24 @@ const mockApi = (path, method = "GET") => {
 
       const resp = {
         data: {
-          appliedPrograms: null,
+          programs: null,
         }
       };
 
       if (typeof id !== 'undefined') {
         if (Array.isArray(id)) {
-          resp.data.appliedPrograms = id.map(c => {
-            return fakeDatabase.appliedPrograms.find(p => Number(p.id) === Number(id));
+          resp.data.programs = id.map(c => {
+            return fakeDatabase.programs.find(p => Number(p.id) === Number(id));
           });
         } else {
-          resp.data.appliedPrograms = [fakeDatabase.appliedPrograms.find(p => {
+          resp.data.programs = [fakeDatabase.programs.find(p => {
             return Number(p.id) === Number(id);
           })];
         }
         return resp;
       }
 
-      resp.data.appliedPrograms = fakeDatabase.appliedPrograms.filter(p => {
+      resp.data.programs = fakeDatabase.programs.filter(p => {
         if (typeof schoolCode !== 'undefined') {
           if (Number(p.schoolCode) !== Number(schoolCode)) {
             return false;
@@ -198,39 +189,6 @@ const mockApi = (path, method = "GET") => {
       return resp;
     });
   }
-  // all appliedPrograms
-  if (path.startsWith('/appliedPrograms')) {
-    return delay().then(() => {
-      const resp = {
-        data: {
-          appliedPrograms: fakeDatabase.appliedPrograms,
-        }
-      };
-      return resp;
-    });
-  }
-
-
-  // one programs
-  if (path.startsWith('/programs/')) {
-    return delay().then(() => {
-      const id = path.replace(/\/programs\/(.*)/i, '$1');
-      if (!id) {
-        throw new Error(`No id present: ${id}.`);
-      }
-      return {
-        data: {
-          programs: [fakeDatabase.programs.find(p => {
-            return Number(p.id) === Number(id);
-          })],
-        }
-      };
-    });
-  }
-  // many programs
-  if (path.startsWith('/programs?')) {
-    throw new Error('not implemented');
-  }
   // all programs
   if (path.startsWith('/programs')) {
     return delay().then(() => {
@@ -242,7 +200,6 @@ const mockApi = (path, method = "GET") => {
       return resp;
     });
   }
-
 
   throw new Error(`Mock API request is not handled for path: ${path}`);
 };
