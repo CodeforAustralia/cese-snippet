@@ -1,56 +1,56 @@
 {
   "programs": [
     {
-      "id": 1,
-      "programId": 1,
+      "id": "1",
+      "programId": "1",
       "name": "Mars Program 1",
-      "schoolCode": 21312,
-      "facilitators": [ 8787 ],
+      "schoolCode": "21312",
+      "facilitators": [ "8787" ],
       "yearGroups": ["7", "8"],
       "year": "2018",
       "termStart": 3,
       "termEnd": 4,
       "cohortSize": 120,
-      "lastUpdatedBy": 8787,
+      "lastUpdatedBy": "8787",
       "lastUpdated": "2018-02-04T23:56:38.363Z"
     },
     {
       "id": 2,
       "programId": 1,
       "name": "Jupiter Program 1",
-      "schoolCode": 76862,
-      "facilitators": [ 23423 ],
+      "schoolCode": "76862",
+      "facilitators": [ "23423" ],
       "yearGroups": ["7", "8"],
       "year": "2018",
       "termStart": 3,
       "termEnd": 4,
       "cohortSize": 160,
-      "lastUpdatedBy": 23423,
+      "lastUpdatedBy": "23423",
       "lastUpdated": "2018-03-04T23:56:38.363Z"
     },
     {
-      "id": 3,
-      "programId": 1,
+      "id": "3",
+      "programId": "1",
       "name": "Jupiter Program 2",
-      "schoolCode": 76862,
-      "facilitators": [ 23423 ],
+      "schoolCode": "76862",
+      "facilitators": [ "23423" ],
       "yearGroups": ["7", "8"],
       "year": "2017",
       "termStart": 1,
       "termEnd": 4,
       "cohortSize": 30,
-      "lastUpdatedBy": 23423,
+      "lastUpdatedBy": "23423",
       "lastUpdated": "2017-03-04T23:56:38.363Z"
     }
   ],
   "schools": [
     {
-      "code": 21312,
+      "code": "21312",
       "name": "Mars High School",
       "type": "Secondary"
     },
     {
-      "code": 76862,
+      "code": "76862",
       "name": "Jupiter High School",
       "type": "Secondary"
     }

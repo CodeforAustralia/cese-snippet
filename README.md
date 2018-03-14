@@ -1,5 +1,6 @@
-https://nsweducation-snippet.herokuapp.com/
+# NSW Education CESE - Snippet 
 
-Deploy to staging: 
-Push only Server
-heroku container:push web --recursive
+[https://nsweducation-snippet.herokuapp.com/](Snippet)
+
+
+Please refer to [this Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/client/README.md) for now instead. 
