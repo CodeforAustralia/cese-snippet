@@ -1,0 +1,16 @@
+FROM node:alpine
+
+# Create app directory
+RUN mkdir -p /usr/src/server
+WORKDIR /usr/src/server
+
+# Copy to WORKDIR
+# Install app dependencies
+COPY ./package.json ./yarn.lock /usr/src/server/
+RUN yarn
+
+# Bundle app source to WORKDIR
+COPY . /usr/src/server
+
+# Run the app
+CMD PORT=$PORT yarn dev
