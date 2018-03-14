@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+os: linux
+install:
+  - yarn
+notifications:
+  email: false
+branches:
+  only:
+    - master
+cache:
+  yarn: true
+  directories:
+    - $HOME/.yarn-cache
+    - node_modules
+before_script:
+  - yarn test:ci
+script:
+  - NODE_ENV=production yarn build
+after_success:
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < ./coverage/lcov.info

@@ -1,1 +1,0 @@
-cd server && heroku container:push web
