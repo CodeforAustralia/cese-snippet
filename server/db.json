@@ -15,8 +15,8 @@
       "lastUpdated": "2018-02-04T23:56:38.363Z"
     },
     {
-      "id": 2,
-      "programId": 1,
+      "id": "2",
+      "programId": "1",
       "name": "Jupiter Program 1",
       "schoolCode": "76862",
       "facilitators": [ "23423" ],
