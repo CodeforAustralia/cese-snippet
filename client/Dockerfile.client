@@ -1,0 +1,16 @@
+FROM node:alpine
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Copy to WORKDIR
+# Install app dependencies
+COPY package.json yarn.lock /usr/src/app/
+RUN yarn
+
+# Bundle app source to WORKDIR
+COPY . /usr/src/app
+
+# Run the app.  CMD is required to run on Heroku
+CMD yarn start
