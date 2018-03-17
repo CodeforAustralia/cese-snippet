@@ -1,11 +1,8 @@
 sudo: false
 language: node_js
 os: linux
-env:
-  global:
-    - CLIENT_PATH=$HOME/client
 install:
-  - cd $CLIENT_PATH && yarn
+  - cd $HOME/client && yarn
 notifications:
   email: false
 branches:
@@ -13,11 +10,11 @@ branches:
     - master
 cache:
   directories:
-    - $CLIENT_PATH/.yarn-cache
-    - $CLIENT_PATH/node_modules
+    - $HOME/client/.yarn-cache
+    - $HOME/client/node_modules
 before_script:
-  - cd $CLIENT_PATH && yarn test:ci
+  - cd $HOME/client && yarn test:ci
 script:
-  - cd $CLIENT_PATH && NODE_ENV=production yarn build
+  - cd $HOME/client && NODE_ENV=production yarn build
 after_success:
-  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $CLIENT_PATHx/coverage/lcov.info
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $HOME/clientx/coverage/lcov.info
