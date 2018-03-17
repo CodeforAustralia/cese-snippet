@@ -17,17 +17,17 @@ export default {
       "21312"
     ],
     programsCreated: [
-      1
+      "1"
     ],
     programsFacilitated: [
-      1
+      "1"
     ]
   },
   programs: {
     byId: {
       '1': {
-        id: 1,
-        programId: 1,
+        id: "1",
+        programId: "1",
         name: 'Mars Program 1',
         schoolCode: "21312",
         facilitators: [

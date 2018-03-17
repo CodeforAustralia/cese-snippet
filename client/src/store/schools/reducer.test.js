@@ -49,12 +49,12 @@ describe('Schools Reducer', () => {
       it('should append a new school to group when supplied', () => {
         const actual = SchoolsReducer(initialState, {type:ACTION_TYPES.fetchSuccess, payload:{
           schools: {
-            123: { code: 123 },
+            "123": { code: "123" },
           }
         }});
         console.log(actual)
         expect(Object.keys(actual).length).toBe(Object.keys(initialState).length + 1);
-        expect(actual.byCode[123]).toBe({ code: 123 });
+        expect(actual.byCode["123"]).toBe({ code: "123" });
       });
 
       it.todo('should replace an existing school to group when supplied', () => {});

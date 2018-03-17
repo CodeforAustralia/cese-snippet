@@ -4,6 +4,7 @@ import STATE from 'sampleState';
 
 describe('Session Reducer', () => {
   it('should return equivalent state when any action is run.', () => {
-    expect(SessionReducer(STATE, {type:'*'})).toBe(STATE);
+    const state = STATE.session;
+    expect(SessionReducer(state, {type:'*'})).toBe(state);
   });
 });

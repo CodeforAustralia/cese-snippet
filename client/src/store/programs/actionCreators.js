@@ -1,20 +1,14 @@
-import mockApi from '_api';
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
 import { getFilterKey } from "./helpers";
 
-const USE_MOCKS = Boolean(process.env.REACT_APP_USE_MOCKS) || false;
-
-
 const fetchFromCacheOrApi = (path, filterProps) => {
   return (dispatch, getState, api) => {
-
     dispatch({
       type: ACTION_TYPES.fetchRequest,
-      payload: USE_MOCKS ? filterProps: null,
     });
 
-    const req = USE_MOCKS ? mockApi(path, filterProps) : api(path);
+    const req = api(path);
     return req.then(
       (resp) => {
 

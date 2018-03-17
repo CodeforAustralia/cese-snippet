@@ -4,6 +4,7 @@ import STATE from 'sampleState';
 
 describe('App Reducer', () => {
   it('should return equivalent state when any action is run.', () => {
-    expect(AppReducer(STATE, {type:'*'})).toBe(STATE);
+    const state = STATE.app;
+    expect(AppReducer(state, {type:'*'})).toBe(state);
   });
 });
