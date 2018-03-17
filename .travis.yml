@@ -1,8 +1,10 @@
 sudo: false
 language: node_js
 os: linux
+env:
+  - CLIENT_DIR=$TRAVIS_BUILD_DIR/client
 install:
-  - cd $HOME/client && yarn
+  - cd $CLIENT_DIR && yarn
 notifications:
   email: false
 branches:
@@ -10,11 +12,11 @@ branches:
     - master
 cache:
   directories:
-    - $HOME/client/.yarn-cache
-    - $HOME/client/node_modules
+    - $HOME/.yarn-cache
+    - node_modules
 before_script:
-  - cd $HOME/client && yarn test:ci
+  - cd $CLIENT_DIR && yarn test:ci
 script:
-  - cd $HOME/client && NODE_ENV=production yarn build
+  - cd $CLIENT_DIR && NODE_ENV=production yarn build
 after_success:
-  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $HOME/clientx/coverage/lcov.info
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $CLIENT_DIR/coverage/lcov.info
