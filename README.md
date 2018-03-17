@@ -1,6 +1,10 @@
-# NSW Education CESE - Snippet 
+# Snippet 
 
-[Snippet](https://nsweducation-snippet.herokuapp.com/)
+Snippet is an app built in Fellowship with NSW Education Centre for Education Statistics and Evaluation in 2017-18. 
+
+Snippet allows educators to view or publish insights about program applications in NSW schools.
+
+This repository contains both a mock server and the client app that is used internally at NSW Education. 
 
 
 ## Client 
@@ -10,4 +14,9 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2092e91a51aa5a067495/test_coverage)](https://codeclimate.com/github/CodeforAustralia/cese-snippet/test_coverage)
 
 
-Please refer to [this Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/client/README.md) for now instead. 
+View [Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/client/README.md). 
+
+
+## Server 
+
+This is a mock server and documentation is not provided. 

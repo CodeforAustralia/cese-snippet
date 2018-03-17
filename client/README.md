@@ -1,9 +1,4 @@
-# CESE Snippet
-
-Snippet is an app that allows educators to view or publish insights about program applications in NSW schools.
-
-Built during the 2017-18 Fellowship for NSW Department of Education, Centre of Statistics and Evaluation.
-
+# CESE Snippet - client
 
 ## Tech  
 
