@@ -1,4 +1,15 @@
 {
+  "programTemplates": [
+    {
+      "id": "1",
+      "name": "L3",
+      "description": "Language, Learning and Literacy (L3) is a research-based intervention program for kindergarten students, targeting reading and writing.",
+      "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
+      "curriculumBased": false,
+      "lastUpdatedBy": "",
+      "lastUpdated": ""
+    }
+  ],
   "programs": [
     {
       "id": "1",
