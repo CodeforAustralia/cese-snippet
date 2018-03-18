@@ -14,10 +14,10 @@ import {
 import { ACTION_TYPES } from 'store/schools/reducer';
 import sampleState from "__mocks__/sampleState";
 
+
 const mockStore = configureStore([
   thunkMiddleware.withExtraArgument(api)
 ]);
-
 
 describe('Schools Action Creators', () => {
 
