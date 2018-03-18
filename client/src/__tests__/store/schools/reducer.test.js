@@ -4,8 +4,8 @@ import SchoolsReducer, {
   isFetching,
   errorMessage,
   byCode,
-} from './reducer';
-import STATE from 'sampleState';
+} from 'store/schools/reducer';
+import STATE from '__mocks__/sampleState';
 
 describe('Schools Reducer', () => {
 

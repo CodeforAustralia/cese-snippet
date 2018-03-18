@@ -2,8 +2,8 @@
 import {
   selectSession,
   selectUserSchoolCodes,
-} from './selectors';
-import STATE from 'sampleState';
+} from 'store/session/selectors';
+import STATE from '__mocks__/sampleState';
 
 describe('Session selectors', () => {
 

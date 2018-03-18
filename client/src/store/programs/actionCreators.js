@@ -12,12 +12,12 @@ const fetchFromCacheOrApi = (path, filterProps) => {
     return req.then(
       (resp) => {
 
-        const { data: { programs } } = resp;
+        const { data } = resp;
         const { code, year } = filterProps;
 
         console.log('setting filter', {
           key: getFilterKey(code, year),
-          ids: programs.map(p => p.id),
+          ids: data.map(p => p.id),
           code,
           year,
         });
@@ -26,7 +26,7 @@ const fetchFromCacheOrApi = (path, filterProps) => {
           type: ACTION_TYPES.setFilter,
           payload: {
             key: getFilterKey(code, year),
-            ids: programs.map(p => p.id),
+            ids: data.map(p => p.id),
             code,
             year,
           }
@@ -35,7 +35,7 @@ const fetchFromCacheOrApi = (path, filterProps) => {
         dispatch({
           type: ACTION_TYPES.fetchSuccess,
           payload: {
-            programs: objectify(programs),
+            programs: objectify(data),
           }
         });
 
