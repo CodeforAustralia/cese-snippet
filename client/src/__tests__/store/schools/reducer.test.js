@@ -1,10 +1,5 @@
 /* global describe, it, expect */
-import SchoolsReducer, {
-  ACTION_TYPES,
-  isFetching,
-  errorMessage,
-  byCode,
-} from 'store/schools/reducer';
+import SchoolsReducer, { ACTION_TYPES } from 'store/schools/reducer';
 import STATE from '__mocks__/sampleState';
 
 describe('Schools Reducer', () => {
@@ -75,6 +70,5 @@ describe('Schools Reducer', () => {
       });
     });
   });
-
 
 });
