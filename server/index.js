@@ -10,7 +10,6 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // Optional except if you want to have JSON Server defaults
 // app.use('/api', jsonServer.defaults());
 app.use('/api', jsonServer.router(db));

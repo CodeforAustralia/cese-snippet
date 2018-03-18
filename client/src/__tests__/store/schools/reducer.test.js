@@ -4,8 +4,8 @@ import SchoolsReducer, {
   isFetching,
   errorMessage,
   byCode,
-} from './reducer';
-import STATE from 'sampleState';
+} from 'store/schools/reducer';
+import STATE from '__mocks__/sampleState';
 
 describe('Schools Reducer', () => {
 
@@ -37,7 +37,7 @@ describe('Schools Reducer', () => {
         expect(errorState.errorMessage).toBe(message);
       });
 
-      it('should clear errorMessage id not in error', () => {
+      it('should clear errorMessage if not in error', () => {
         const requestState = SchoolsReducer(initialState, {type:ACTION_TYPES.fetchRequest, payload:{}});
         expect(requestState.errorMessage).toBeNull();
         const successState = SchoolsReducer(initialState, {type:ACTION_TYPES.fetchSuccess, payload:{}});
@@ -46,20 +46,34 @@ describe('Schools Reducer', () => {
     });
 
     describe('byCode', () => {
-      it('should append a new school to group when supplied', () => {
-        const actual = SchoolsReducer(initialState, {type:ACTION_TYPES.fetchSuccess, payload:{
-          schools: {
-            123: { code: 123 },
+      it('should append a new school to group if it does not exist', () => {
+        expect(initialState.byCode["123"]).not.toBeDefined();
+        const actual = SchoolsReducer(initialState, {
+          type: ACTION_TYPES.fetchSuccess,
+          payload: {
+            schools: {
+              "123": {code: "123"},
+            }
           }
-        }});
-        console.log(actual)
-        expect(Object.keys(actual).length).toBe(Object.keys(initialState).length + 1);
-        expect(actual.byCode[123]).toBe({ code: 123 });
+        });
+        expect(Object.keys(actual.byCode).length).toBe(Object.keys(initialState.byCode).length + 1);
+        expect(actual.byCode["123"]).toBeDefined();
       });
 
-      it.todo('should replace an existing school to group when supplied', () => {});
+      it('should modify an existing school in group if it exists', () => {
+        expect(initialState.byCode["21312"]).toBeDefined();
+        const actual = SchoolsReducer(initialState, {
+          type: ACTION_TYPES.fetchSuccess,
+          payload: {
+            schools: {
+              "21312": { code: "21312", name: 'zebra-express' },
+            }
+          }
+        });
+        expect(Object.keys(actual.byCode).length).toBe(Object.keys(initialState.byCode).length);
+        expect(actual.byCode["21312"].name).toBe('zebra-express');
+      });
     });
-
   });
 
 

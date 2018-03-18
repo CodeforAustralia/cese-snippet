@@ -1,27 +1,32 @@
 import { ACTION_TYPES } from './reducer';
-import mockApi from '_api';
 import { objectify } from 'store/objectify';
 
-const USE_MOCKS = Boolean(process.env.REACT_APP_USE_MOCKS) || false;
+/**
+ * @param schools {Array|Object} school or schools
+ * @returns {Object} FLUX Action creator
+ */
+export const createOrUpdateSchools = (schools) => {
+  return {
+    type: ACTION_TYPES.fetchSuccess,
+    payload: {
+      schools: objectify(schools, 'code'),
+    }
+  }
+};
 
-const fetchFromCacheOrApi = (path) => {
+export const fetchFromCacheOrApi = (path) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = USE_MOCKS ? mockApi(path) : api(path);
+    const req = api(path);
+
     return req.then(
       (resp) => {
-        const { data: { schools } } = resp;
-        dispatch({
-          type: ACTION_TYPES.fetchSuccess,
-          payload: {
-            schools: objectify(schools, 'code'),
-          }
-        });
+        return dispatch(createOrUpdateSchools(resp.data));
       },
       (error) => {
-        dispatch({
+        return dispatch({
           type: ACTION_TYPES.fetchError,
           payload: {
             message: error.message || 'Something went wrong.'
@@ -33,10 +38,16 @@ const fetchFromCacheOrApi = (path) => {
 };
 
 export const fetchSchool = (code) => {
+  if (typeof code === 'undefined') {
+    throw new Error('Must supply code to request a school.');
+  }
   return fetchFromCacheOrApi(`/schools/${code}`);
 };
 
 export const fetchSchools = (codes) => {
+  if (typeof codes === 'undefined') {
+    return fetchFromCacheOrApi(`/schools`);
+  }
   const reqList = codes.reduce((acc, val, idx) => {
     return acc + `&id=${val}`;
   }, '');

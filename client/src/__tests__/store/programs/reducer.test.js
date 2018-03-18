@@ -2,7 +2,7 @@
 import {
   ACTION_TYPES,
   filters,
-} from './reducer';
+} from 'store/programs/reducer';
 
 describe('Programs Reducer', () => {
   describe('Filters', () => {
