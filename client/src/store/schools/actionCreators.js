@@ -19,19 +19,19 @@ export const fetchFromCacheOrApi = (path) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    const req = api(path);
-
-    return req.then(
+    return api(path).then(
       (resp) => {
-        return dispatch(createOrUpdateSchools(resp.data));
+        dispatch(createOrUpdateSchools(resp.data));
+        return resp;
       },
       (error) => {
-        return dispatch({
+        dispatch({
           type: ACTION_TYPES.fetchError,
           payload: {
             message: error.message || 'Something went wrong.'
           }
-        })
+        });
+        return error;
       }
     );
   }

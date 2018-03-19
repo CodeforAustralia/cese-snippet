@@ -34,6 +34,7 @@ describe('Schools Action Creators', () => {
       const actual = createOrUpdateSchools(data);
       const { payload: { schools } } = actual;
       expect(isObject(schools)).toBe(true);
+      expect(schools["112"]).toBeDefined();
     });
 
     it('should provide an FLUX standard action type when provided many schools', () => {
@@ -54,6 +55,8 @@ describe('Schools Action Creators', () => {
       const actual = createOrUpdateSchools(data);
       const { payload: { schools } } = actual;
       expect(isObject(schools)).toBe(true);
+      expect(schools["112"]).toBeDefined();
+      expect(schools["234"]).toBeDefined();
     });
   });
 
@@ -113,7 +116,7 @@ describe('Schools Action Creators', () => {
       const resp = { data: [ { code: '1212' } ] };
       mockFetch(`/schools?code=1212`, 201, resp);
 
-      return store.dispatch(fetchSchool('/schools?code=1212')).then((resp) => {
+      return store.dispatch(fetchSchool(["1212"]).then((resp) => {
         expect(resp.type).toBe(ACTION_TYPES.fetchSuccess);
         expect(resp.payload.schools).toMatchObject({
           "1212": { code: '1212' },
