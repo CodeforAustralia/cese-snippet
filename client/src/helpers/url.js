@@ -1,3 +1,3 @@
-export const getSchoolProgramsUrl = (schoolCode) => {
-  return `/account/schools/${schoolCode}/programs`;
+export const getSchoolProgramsUrl = (code) => {
+  return `/account/schools/${code}/programs`;
 };

@@ -62,7 +62,7 @@ export const filters = (state = {}, action) => {
 
       state[key] = {
         ids: ids,
-        ...filterProps,
+        filters: filterProps,
       };
 
       return state;

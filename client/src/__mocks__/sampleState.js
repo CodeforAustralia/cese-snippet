@@ -29,7 +29,7 @@ export default {
         id: "1",
         programId: "1",
         name: 'Mars Program 1',
-        schoolCode: "21312",
+        code: "21312",
         facilitators: [
           "8787"
         ],
@@ -48,7 +48,7 @@ export default {
         id: "2",
         programId: "1",
         name: 'Jupiter Program 1',
-        schoolCode: "76862",
+        code: "76862",
         facilitators: [
           "23423"
         ],
@@ -87,6 +87,6 @@ export default {
     errorMessage: null,
   },
   programTemplates: {
-    
+
   }
 }

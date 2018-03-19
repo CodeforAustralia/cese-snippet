@@ -71,17 +71,17 @@ describe('Programs Action Creators', () => {
           byId: {
             '1': {
               id: "1",
-              schoolCode: "21312",
+              code: "21312",
               year: '2017',
             },
             '2': {
               id: "2",
-              schoolCode: "21312",
+              code: "21312",
               year: '2017',
             },
             '100': {
               id: "100",
-              schoolCode: "21312",
+              code: "21312",
               year: '2018',
             },
           },

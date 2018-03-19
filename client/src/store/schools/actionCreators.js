@@ -44,7 +44,7 @@ export const fetchSchool = (code) => {
   if (typeof code === 'undefined') {
     throw new Error('Must supply code to request a school.');
   }
-  return fetchFromCacheOrApi(`/schools/${code}`);
+  return fetchFromCacheOrApi(`/schools?code=${code}`);
 };
 
 export const fetchSchools = (codes) => {
@@ -52,7 +52,7 @@ export const fetchSchools = (codes) => {
     return fetchFromCacheOrApi(`/schools`);
   }
   const reqList = codes.reduce((acc, val, idx) => {
-    return acc + `&id=${val}`;
+    return acc + `&code=${val}`;
   }, '');
   return fetchFromCacheOrApi(`/schools?${reqList}`);
 };
