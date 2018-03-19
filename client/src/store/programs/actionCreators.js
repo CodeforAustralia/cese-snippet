@@ -43,6 +43,9 @@ const fetchFromCacheOrApi = (path, filterProps) => {
     });
     return api(path)
       .then((resp) => {
+        if (!resp.data) {
+          throw new Error('Data not provided in response');
+        }
         dispatch(setFilter(resp.data, filterProps));
         return resp;
       })
@@ -51,6 +54,7 @@ const fetchFromCacheOrApi = (path, filterProps) => {
         return resp;
       })
       .catch((error) => {
+        // todo - status messages
         dispatch({
           type: ACTION_TYPES.fetchError,
           payload: {

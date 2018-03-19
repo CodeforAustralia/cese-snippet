@@ -19,12 +19,16 @@ export const fetchFromCacheOrApi = (path) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
-    return api(path).then(
-      (resp) => {
+    return api(path)
+      .then((resp) => {
+        if (!resp.data) {
+          throw new Error('Data not provided in response');
+        }
         dispatch(createOrUpdateSchools(resp.data));
         return resp;
-      },
-      (error) => {
+      })
+      .catch((error) => {
+        // todo - status messages
         dispatch({
           type: ACTION_TYPES.fetchError,
           payload: {
@@ -32,8 +36,7 @@ export const fetchFromCacheOrApi = (path) => {
           }
         });
         return error;
-      }
-    );
+      });
   }
 };
 

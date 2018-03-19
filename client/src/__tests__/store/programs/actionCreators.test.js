@@ -102,7 +102,7 @@ describe('Programs Action Creators', () => {
       });
     });
 
-    it('should retrieve a response that contains school', () => {
+    it('should retrieve a response that contains programs', () => {
       expect.assertions(1);
 
       const resp = { data: [ { id:'100', code: '1232', year: '2018' } ] };
@@ -114,6 +114,7 @@ describe('Programs Action Creators', () => {
     });
 
     it('should delegate correct actions on success', () => {
+      expect.assertions(1);
       const resp = { data: [ { id:'100', code: '1232', year: '2018' } ] };
       mockFetch('/programs?code=1232&year=2018', 201, resp);
 
@@ -130,6 +131,7 @@ describe('Programs Action Creators', () => {
     });
 
     it('should delegate correct actions on error', () => {
+      expect.assertions(1);
       const resp = { message: 'Not found' };
       mockFetch('/programs?code=1232&year=2018', 404, resp);
 
