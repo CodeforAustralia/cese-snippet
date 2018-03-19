@@ -1,7 +1,7 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 
-import Nav from './../components/nav';
+import FiltersNav from './../components/filtersNav';
 
 class SchoolPrograms extends React.Component {
 
@@ -32,7 +32,7 @@ class SchoolPrograms extends React.Component {
       <div>
         <h1>SchoolPrograms</h1>
 
-        {/*<Nav items={{}} />*/}
+        <FiltersNav filters={this.props.availableFilters} />
 
         <code>School: {JSON.stringify(this.props.school)}</code>
         <hr/>

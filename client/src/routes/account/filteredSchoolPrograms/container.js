@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { fetchSchool } from "store/schools/actionCreators";
 import { selectSchool } from 'store/schools/selectors';
 import { fetchProgramsByFilters } from 'store/programs/actionCreators';
-import { selectProgramsByFilterKey } from 'store/programs/selectors';
+import {
+  selectProgramsByFilterKey,
+  selectAllFilterKeys,
+} from 'store/programs/selectors';
 import { getFilterKey } from "store/programs/helpers";
 
 
@@ -18,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
       code,
       year,
     },
+    availableFilters: selectAllFilterKeys(state),
     school: selectSchool(state, code),
     filteredPrograms: selectProgramsByFilterKey(state, filterKey),
   }

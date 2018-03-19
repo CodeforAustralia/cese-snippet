@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-
+import { parseFilterKeys } from "./helpers";
 
 export const selectProgram = (state, id) => {
   return state.programs.byId[id];
@@ -21,5 +21,17 @@ export const selectProgramsByFilterKey = (state, filterKey) => {
     return selectPrograms(state, filteredIds);
   }
   return null;
+};
+
+export const selectAllFilterKeys = (state) => {
+  const keys = Object.keys(state.programs.filters);
+  console.log('selectAllFilterKeys', keys)
+  if (keys.length) {
+    console.log('selectAllFilterKeys', keys)
+    return parseFilterKeys(keys);
+  }
+
+
+  return keys;
 };
 

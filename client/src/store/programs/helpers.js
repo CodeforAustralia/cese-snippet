@@ -10,3 +10,13 @@ export const getFilterKey = ({code, year = currentYear}) => {
   }
   return `${code}_${year}`;
 };
+
+export const parseFilterKeys = (filterKeys) => {
+  return filterKeys.map(k => {
+    const props = k.split('_');
+    return {
+      code: props[0],
+      year: props[1],
+    }
+  });
+};
