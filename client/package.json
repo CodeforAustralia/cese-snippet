@@ -132,5 +132,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3000"
+    }
   }
 }

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { selectSession } from 'store/session/selectors';
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     session: selectSession(state),
   }

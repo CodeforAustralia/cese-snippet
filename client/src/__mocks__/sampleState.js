@@ -85,5 +85,8 @@ export default {
     },
     isFetching: false,
     errorMessage: null,
+  },
+  programTemplates: {
+    
   }
 }

@@ -12,19 +12,21 @@ export const parseBody = response => {
   return response.json();
 };
 
-const api = route => {
-  return fetch(`${API_BASE_URL}${route}`, {
+const api = (route, opts = {}) => {
+  const options = {
     credentials: 'same-origin',
     headers: {
-      'Accept': 'application/json',
+     'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-  })
+    ...opts
+  };
+  return fetch(`${API_BASE_URL}${route}`, options)
     .then(checkStatus)
     .then(parseBody)
-    .catch(e => {
+    .catch(() => {
       if (process.env.NODE_ENV !== 'test') {
-        console.warn(`Request failed for: "${route}". ${e}. Continuing.`);
+        console.warn(`Request failed for: "${route}". Continuing.`);
       }
     });
 };
