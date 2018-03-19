@@ -4,7 +4,7 @@ import isObject from 'lodash/isObject';
 import configureStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
 import api from 'store/apiInterface';
-import { mockFetch } from "mockFetch";
+import { mockFetch, mockFetchError } from "__mocks__/mockFetch";
 
 import {
   createOrUpdateSchools,
@@ -34,6 +34,7 @@ describe('Schools Action Creators', () => {
       const actual = createOrUpdateSchools(data);
       const { payload: { schools } } = actual;
       expect(isObject(schools)).toBe(true);
+      expect(schools["112"]).toBeDefined();
     });
 
     it('should provide an FLUX standard action type when provided many schools', () => {
@@ -54,6 +55,8 @@ describe('Schools Action Creators', () => {
       const actual = createOrUpdateSchools(data);
       const { payload: { schools } } = actual;
       expect(isObject(schools)).toBe(true);
+      expect(schools["112"]).toBeDefined();
+      expect(schools["234"]).toBeDefined();
     });
   });
 
@@ -81,45 +84,49 @@ describe('Schools Action Creators', () => {
       store = mockStore();
     });
 
-    it('should successfully retrieve a school', () => {
-      expect.assertions(2);
+    it('should retrieve a response that contains schools', () => {
+      expect.assertions(1);
       const resp = { data: [ { code: '1212' } ] };
       mockFetch(`/schools/1212`, 201, resp);
 
       return store.dispatch(fetchSchool("1212")).then((resp) => {
-        expect(resp.type).toBe(ACTION_TYPES.fetchSuccess);
-        expect(resp.payload.schools).toMatchObject({
-          "1212": { code: '1212' }
-        });
+        expect(resp).toBe(resp);
       });
     });
 
-    it('should retrieve schools', () => {
-      expect.assertions(2);
-      const resp = { data: [ { code: 'kjsdf' }, { code: 'pqhsd' } ] };
-      mockFetch(`/schools`, 201, resp);
-
-      return store.dispatch(fetchSchools()).then((resp) => {
-        expect(resp.type).toBe(ACTION_TYPES.fetchSuccess);
-        expect(resp.payload.schools).toMatchObject({
-          "kjsdf": { code: 'kjsdf' },
-          "pqhsd": { code: 'pqhsd' }
-        });
-      });
-    });
-
-    it('should retrieve filtered schools', () => {
-      expect.assertions(2);
+    it('should delegate correct actions on success', () => {
+      expect.assertions(1);
       const resp = { data: [ { code: '1212' } ] };
-      mockFetch(`/schools?code=1212`, 201, resp);
+      mockFetch(`/schools/1212`, 201, resp);
 
-      return store.dispatch(fetchSchool('/schools?code=1212')).then((resp) => {
-        expect(resp.type).toBe(ACTION_TYPES.fetchSuccess);
-        expect(resp.payload.schools).toMatchObject({
-          "1212": { code: '1212' },
-        });
+      return store.dispatch(fetchSchool("1212")).then((resp) => {
+        const actionsCalled = store.getActions();
+        expect(actionsCalled.map(a => a.type)).toEqual(
+          expect.arrayContaining([
+            ACTION_TYPES.fetchRequest,
+            ACTION_TYPES.fetchSuccess,
+          ]
+        ));
       });
     });
+
+    it('should delegate correct actions on error - resource not found', () => {
+      expect.assertions(1);
+      const resp = { message: 'Not found', data: {} };
+      mockFetchError(`/schools/1212`, 404, resp);
+
+      return store.dispatch(fetchSchool("1212")).then((resp) => {
+        const actionsCalled = store.getActions();
+
+        expect(actionsCalled.map(a => a.type)).toEqual(
+          expect.arrayContaining([
+            ACTION_TYPES.fetchRequest,
+            ACTION_TYPES.fetchError,
+          ]
+        ));
+      });
+    });
+
   });
 
 });

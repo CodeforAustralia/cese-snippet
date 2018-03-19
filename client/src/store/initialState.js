@@ -11,4 +11,5 @@ export default {
   session: {},
   schools: {},
   programs: {},
+  programTemplates: {},
 };

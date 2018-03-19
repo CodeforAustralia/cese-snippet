@@ -23,7 +23,9 @@ const api = route => {
     .then(checkStatus)
     .then(parseBody)
     .catch(e => {
-      console.error(`Request failed for: "${route}". ${e}`);
+      if (process.env.NODE_ENV !== 'test') {
+        console.warn(`Request failed for: "${route}". ${e}. Continuing.`);
+      }
     });
 };
 
