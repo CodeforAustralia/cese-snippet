@@ -2,8 +2,17 @@ import get from 'lodash/get';
 import { getFilterKey } from './helpers';
 
 
+export const selectProgram = (state, id) => {
+  return state.programs.byId[id];
+};
+
+/**
+ * @param state
+ * @param ids
+ * @returns {Array<Programs>}
+ */
 export const selectPrograms = (state, ids) => {
-  return ids.map(id => state.programs.byId[id]);
+  return ids.map(id => selectProgram(state, id));
 };
 
 export const selectProgramsByFilter = (state, code, year) => {
