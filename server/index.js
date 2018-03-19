@@ -1,21 +1,21 @@
 const path = require('path');
 const express = require('express');
-const jsonServer = require('json-server');
-
-const db = require('./db.json');
+const bodyParser = require('body-parser');
+const apiRouter = require('./routes/api');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// parse application/json
+app.use(bodyParser.json({ limit: '10mb', extended: false }));
+
+
+app.use('/api', apiRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Optional except if you want to have JSON Server defaults
-// app.use('/api', jsonServer.defaults());
-app.use('/api', jsonServer.router(db));
-
-app.get('*', function (req, res) {
-	res.sendFile(path.join(__dirname, 'public/index.html'));
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(port, () => {

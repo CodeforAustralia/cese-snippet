@@ -6,16 +6,14 @@ import {
   selectUserSchoolCodes,
 } from 'store/session/selectors';
 
-const mapStateToProps = (state) => {
-  const userSchoolCodes = selectUserSchoolCodes(state);
+export const mapStateToProps = (state) => {
   return {
     session: selectSession(state),
-    userFirstSchoolCode: userSchoolCodes[0],
-    userSchoolCodes,
+    userSchoolCodes: selectUserSchoolCodes(state),
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: (schoolCodes) => dispatch(fetchSchools(schoolCodes)),
   }

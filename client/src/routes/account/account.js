@@ -23,6 +23,8 @@ class Account extends React.Component {
       return <p>Loading...</p>
     }
 
+    const firstCode = this.props.userSchoolCodes[0];
+
     return (
       <Layout>
         <AuthButton />
@@ -30,7 +32,7 @@ class Account extends React.Component {
           <h1>Account</h1>
           <Switch>
             <Route path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />
-            <Redirect exact from="/account" to={`/account/schools/${this.props.userFirstSchoolCode}/programs`} />
+            <Redirect exact from="/account" to={`/account/schools/${firstCode}/programs`} />
           </Switch>
         </div>
       </Layout>

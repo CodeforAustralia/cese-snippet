@@ -20,3 +20,8 @@ View [Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/clien
 ## Server 
 
 This is a mock server and documentation is not provided. 
+
+
+## Development setup
+
+You can setup the app as separate services running on your local machine, or use the docker-compose file to run the system within a containerized environment.

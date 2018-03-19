@@ -27,7 +27,7 @@ ReactDOM.render(
 // todo
 // registerServiceWorker();
 
-// // Dev-server HMR
-// if (module.hot) {
-//   module.hot.accept();
-// }
+// Dev-server HMR
+if (module.hot) {
+  module.hot.accept();
+}

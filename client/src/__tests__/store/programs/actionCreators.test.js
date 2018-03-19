@@ -4,7 +4,6 @@ import isObject from 'lodash/isObject';
 import configureStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
 import api from 'store/apiInterface';
-import sinon from 'sinon';
 
 import { mockFetch } from "mockFetch";
 import {
@@ -13,7 +12,6 @@ import {
   fetchProgramsByFilters,
 } from 'store/programs/actionCreators';
 import { ACTION_TYPES } from 'store/programs/reducer';
-import sampleState from "__mocks__/sampleState";
 
 
 const mockStore = configureStore([

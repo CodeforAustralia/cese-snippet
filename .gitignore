@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/node,macos,webstorm+all
 
 ### macOS ###
@@ -86,7 +85,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env
 
 
 ### WebStorm+all ###
