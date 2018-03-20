@@ -1,0 +1,22 @@
+sudo: false
+language: node_js
+os: linux
+env:
+  - CLIENT_DIR=$TRAVIS_BUILD_DIR/client
+install:
+  - cd $CLIENT_DIR && yarn
+notifications:
+  email: false
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - $HOME/.yarn-cache
+    - node_modules
+before_script:
+  - cd $CLIENT_DIR && yarn test:ci
+script:
+  - cd $CLIENT_DIR && NODE_ENV=production yarn build
+after_success:
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $CLIENT_DIR/coverage/lcov.info
