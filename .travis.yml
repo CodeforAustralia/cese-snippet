@@ -7,9 +7,6 @@ install:
   - cd $CLIENT_DIR && yarn
 notifications:
   email: false
-branches:
-  only:
-    - master
 cache:
   directories:
     - $HOME/.yarn-cache
@@ -20,3 +17,12 @@ script:
   - cd $CLIENT_DIR && NODE_ENV=production yarn build
 after_success:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $CLIENT_DIR/coverage/lcov.info
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: "$FIREBASE_TOKEN"
+  on:
+    tags: true
+after_deploy:
+  - cd $CLIENT_DIR && yarn add slack-notify shelljs && node ./bin/notify-slack.js

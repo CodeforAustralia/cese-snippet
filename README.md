@@ -74,9 +74,23 @@ cd client && yarn dev
 
 ## Deploy
 
-~~Deploy to the demo environment happens from CI off merges to master.~~
+Deploy to the demo environment happens from CI off tag creation.
 
-Deployment is manual at the moment.
+To tag a release for deployment:
+
+```bash
+git tag `date "+release-%Y%m%d%H%M%S"` && git push --tags
+```
+
+
+## Rollback
+
+To rollback a release:
+
+```bash
+git checkout -b release-20160101
+git tag `date "+release-%Y%m%d%H%M%S"` && git push --tags
+```
 
 
 ---
