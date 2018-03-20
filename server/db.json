@@ -52,6 +52,20 @@
       "cohortSize": 30,
       "lastUpdatedBy": "23423",
       "lastUpdated": "2017-03-04T23:56:38.363Z"
+    },
+    {
+      "id": "1",
+      "programId": "4",
+      "name": "L3 Program 1",
+      "code": "21312",
+      "facilitators": [ "8787" ],
+      "yearGroups": ["7"],
+      "year": "2017",
+      "termStart": 1,
+      "termEnd": 4,
+      "cohortSize": 150,
+      "lastUpdatedBy": "8787",
+      "lastUpdated": "2018-02-04T23:56:38.363Z"
     }
   ],
   "schools": [

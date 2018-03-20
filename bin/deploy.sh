@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo 'Opening client and building... \n'
-cd client && yarn build
+cd client && NODE_ENV=production yarn build
 
 echo 'Current working directory: '
 pwd
