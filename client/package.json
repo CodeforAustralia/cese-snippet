@@ -1,18 +1,17 @@
 {
   "private": true,
   "name": "snippet-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "yarn start",
     "start": "node scripts/start.js",
-    "build": "NODE_ENV=production node scripts/build.js",
-    "postbuild": "rm -r ../public/ && cp -r build/ ../public/",
+    "build": "node scripts/build.js",
     "test": "NODE_ENV=test node scripts/test.js --env=jsdom",
     "lint": "eslint src",
     "test:ci": "CI=true yarn test --coverage --color",
     "test:watch": "yarn test --watchAll",
-    "serve": "NODE_ENV=production yarn build && serve -s build"
+    "serve": "yarn build && serve -s build"
   },
   "eslintIgnore": [
     "build/*"

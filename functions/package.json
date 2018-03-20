@@ -1,5 +1,5 @@
 {
-  "name": "fb-snippet-functions",
+  "name": "snippet-functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
     "lint": "eslint .",
