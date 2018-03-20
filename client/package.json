@@ -12,7 +12,7 @@
     "lint": "eslint src",
     "test:ci": "CI=true yarn test --coverage --color",
     "test:watch": "yarn test --watchAll",
-    "serve": "NODE_ENV=production yarn build && serve build"
+    "serve": "NODE_ENV=production yarn build && serve -s build"
   },
   "eslintIgnore": [
     "build/*"

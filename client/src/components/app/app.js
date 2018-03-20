@@ -11,6 +11,13 @@ import PrivateRoute from 'components/auth/privateRoute';
 import Login from 'routes/login';
 import Account from 'routes/account';
 
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>No match for <code>{location.pathname}</code></h3>
+  </div>
+);
+
 const App = ({session}) => (
   <AuthProvider session={session}>
     <Router>
@@ -19,6 +26,7 @@ const App = ({session}) => (
           <Route path="/login" component={Login} />
           <PrivateRoute path="/account" component={Account} />
           <Redirect exact from="/" to="/login" />
+          <Route component={NoMatch} />
         </Switch>
       </div>
     </Router>
