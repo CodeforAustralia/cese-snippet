@@ -1,0 +1,83 @@
+{
+  "programTemplates": [
+    {
+      "id": "1",
+      "name": "L3",
+      "description": "Language, Learning and Literacy (L3) is a research-based intervention program for kindergarten students, targeting reading and writing.",
+      "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
+      "curriculumBased": false,
+      "lastUpdatedBy": "",
+      "lastUpdated": "2018-01-01T23:56:38.363Z"
+    }
+  ],
+  "programs": [
+    {
+      "id": "1",
+      "programId": "1",
+      "name": "Mars Program 1",
+      "code": "21312",
+      "facilitators": [ "8787" ],
+      "yearGroups": ["7", "8"],
+      "year": "2018",
+      "termStart": 3,
+      "termEnd": 4,
+      "cohortSize": 120,
+      "lastUpdatedBy": "8787",
+      "lastUpdated": "2018-02-04T23:56:38.363Z"
+    },
+    {
+      "id": "2",
+      "programId": "1",
+      "name": "Jupiter Program 1",
+      "code": "76862",
+      "facilitators": [ "23423" ],
+      "yearGroups": ["7", "8"],
+      "year": "2018",
+      "termStart": 3,
+      "termEnd": 4,
+      "cohortSize": 160,
+      "lastUpdatedBy": "23423",
+      "lastUpdated": "2018-03-04T23:56:38.363Z"
+    },
+    {
+      "id": "3",
+      "programId": "1",
+      "name": "Jupiter Program 2",
+      "code": "76862",
+      "facilitators": [ "23423" ],
+      "yearGroups": ["7", "8"],
+      "year": "2017",
+      "termStart": 1,
+      "termEnd": 4,
+      "cohortSize": 30,
+      "lastUpdatedBy": "23423",
+      "lastUpdated": "2017-03-04T23:56:38.363Z"
+    },
+    {
+      "id": "1",
+      "programId": "4",
+      "name": "L3 Program 1",
+      "code": "21312",
+      "facilitators": [ "8787" ],
+      "yearGroups": ["7"],
+      "year": "2017",
+      "termStart": 1,
+      "termEnd": 4,
+      "cohortSize": 150,
+      "lastUpdatedBy": "8787",
+      "lastUpdated": "2018-02-04T23:56:38.363Z"
+    }
+  ],
+  "schools": [
+    {
+      "code": "21312",
+      "name": "Mars High School",
+      "type": "Secondary"
+    },
+    {
+      "code": "76862",
+      "name": "Jupiter High School",
+      "type": "Secondary"
+    }
+  ]
+}

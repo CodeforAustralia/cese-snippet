@@ -1,15 +1,20 @@
 const path = require('path');
 const express = require('express');
-const { handlebars } = require('consolidate');
+const bodyParser = require('body-parser');
+const apiRouter = require('./routes/api');
+const logger = require('morgan');
 
 const app = express();
 
-app.engine('hbs', handlebars);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.use(logger('dev'));
+app.use(bodyParser.json({ limit: '10mb', extended: false }));
+
+app.use(express.static(path.join(__dirname, './../../', 'public')));
+
+app.use('/api', apiRouter);
 
 app.get('/*', (req, res) => {
-	res.render('index', {});
+	res.sendFile(path.join(__dirname, './../../', 'public/index.html'));
 });
 
 module.exports = app;

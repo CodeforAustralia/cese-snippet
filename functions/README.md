@@ -1,7 +1,12 @@
 npm 5.6.0
+yarn 1.5.1
 
-npm install --global yarn
+installing:
 nvm use
+yarn
 
 local emulation:
-firebase serve --only functions,hosting 
+firebase serve --only functions,hosting
+
+deploy: 
+firebase deploy 
