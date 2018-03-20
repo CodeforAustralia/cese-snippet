@@ -49,7 +49,10 @@ Enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
 
 ## Deploy
 
-Deploy to the demo environment happens from CI off merges to master.
+~~Deploy to the demo environment happens from CI off merges to master.~~
+
+Deployment is manual at the moment. 
+
 
 
 ---
