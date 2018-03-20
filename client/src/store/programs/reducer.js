@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
-import uniq from 'lodash/uniq';
 import merge from 'merge';
-
 
 export const ACTION_TYPES = {
   fetchRequest: 'PROGRAMS/FETCH_REQUEST',

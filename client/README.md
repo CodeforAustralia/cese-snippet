@@ -12,13 +12,6 @@ UI
 - [Reactstrap](https://reactstrap.github.io)
 
 
-## Requirements
-
-Node 8.9.4
-
-Yarn 1.3.2
-
-
 ## CLI Commands
 
 ``` bash
@@ -45,32 +38,4 @@ Debug the state layer with [Redux devtools extension](https://chrome.google.com/
 
 
 Enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
-
-
-## Deploy
-
-~~Deploy to the demo environment happens from CI off merges to master.~~
-
-Deployment is manual at the moment. 
-
-
-
----
-
-## Contributing
-
-For help on setting up the repo locally, building, testing, and contributing
-please see [Contibuting](https://github.com/CodeforAustralia/standards/blob/master/templates/CONTRIBUTING.md).
-
-## Code of Conduct
-
-All developers who wish to contribute through code or issues, take a look at the
-[Code of Conduct](https://github.com/CodeforAustralia/standards/blob/master/templates/CODE_OF_CONDUCT.md).
-
-## License
-
-[MIT](https://github.com/CodeforAustralia/cese-snippet/blob/master/LICENSE).
-
-
-<img src="https://codeforaustralia.org/wp-content/uploads/2017/11/Main-Logo-Black-1.png" width="200" />
 
