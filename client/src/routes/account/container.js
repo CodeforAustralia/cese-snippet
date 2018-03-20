@@ -15,7 +15,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSchools: (schoolCodes) => dispatch(fetchSchools(schoolCodes)),
+    fetchSchools: (codes) => dispatch(fetchSchools(codes)),
   }
 };
 

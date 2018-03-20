@@ -25,3 +25,18 @@ This is a mock server and documentation is not provided.
 ## Development setup
 
 You can setup the app as separate services running on your local machine, or use the docker-compose file to run the system within a containerized environment.
+
+To run separate services, open two command sessions, 
+
+1. Run the backend  
+
+```bash
+cd server && yarn install && yarn dev
+```
+
+2. Run the frontend
+
+```bash
+cd client && yarn install && yarn dev
+```
+

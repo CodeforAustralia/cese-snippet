@@ -16,22 +16,19 @@ export const createOrUpdatePrograms = (programs) => {
  * @param filterProps {Object}
  */
 export const setFilter = (data, filterProps) => {
-  const { code, year } = filterProps;
 
   // console.log('setting filter', {
   //   key: getFilterKey(code, year),
   //   ids: data.map(p => p.id),
-  //   code,
-  //   year,
+  //   filterProps,
   // });
 
   return {
     type: ACTION_TYPES.setFilter,
     payload: {
-      key: getFilterKey(code, year),
+      key: getFilterKey(filterProps),
       ids: data && data.length ? data.map(p => p.id) : [],
-      code,
-      year,
+      filterProps,
     }
   }
 };
@@ -41,6 +38,7 @@ const fetchFromCacheOrApi = (path, filterProps) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
+
     return api(path)
       .then((resp) => {
         if (!resp.data) {
@@ -68,13 +66,16 @@ const fetchFromCacheOrApi = (path, filterProps) => {
 
 export const fetchProgramsByFilters = (filterProps) => {
   if (typeof filterProps === 'undefined') {
-    throw new Error('Must supply code to request a school.');
+    throw new Error('Must supply filterProps to fetchProgramsByFilters.');
   }
-  const { code, year = null } = filterProps;
+  const { code, year } = filterProps;
 
   if (typeof code === 'undefined') {
     throw new Error('Must provide code as a prop to argument filterProps.');
   }
+  if (typeof year === 'undefined') {
+    throw new Error('Must provide year as a prop to argument filterProps.');
+  }
 
-  return fetchFromCacheOrApi(`/programs?code=${code}&year=${year}`, { code, year });
+  return fetchFromCacheOrApi(`/programs?code=${code}&year=${year}`, filterProps);
 };

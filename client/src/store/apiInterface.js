@@ -28,6 +28,9 @@ const api = (route, opts = {}) => {
       if (process.env.NODE_ENV !== 'test') {
         console.warn(`Request failed for: "${route}". Continuing.`);
       }
+      if (process.env.NODE_ENV === 'development') {
+        console.error(`Request failed for: "${route}".`);
+      }
     });
 };
 

@@ -3,7 +3,7 @@
 import {
   selectProgram,
   selectPrograms,
-  selectProgramsByFilter,
+  selectProgramsByFilterKey,
 } from 'store/programs/selectors';
 import sampleState from '__mocks__/sampleState';
 
@@ -24,8 +24,8 @@ describe('Programs Selectors', () => {
   });
 
 
-  describe('selectProgramsByFilter', () => {
-    const actual = selectProgramsByFilter(sampleState, "21312", "2018");
+  describe('selectProgramsByFilterKey', () => {
+    const actual = selectProgramsByFilterKey(sampleState, "21312_2018");
     const expectedIds = sampleState.programs.filters["21312_2018"].ids;
     expect(actual.map(p => p.id)).toEqual(expect.arrayContaining(expectedIds));
   });

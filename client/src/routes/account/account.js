@@ -8,7 +8,8 @@ import isEmpty from 'lodash/isEmpty';
 
 import Layout from 'layouts/account';
 import AuthButton from 'components/auth/authButton';
-import SchoolPrograms from './schoolPrograms';
+import FilteredSchoolPrograms from './filteredSchoolPrograms';
+import { getDefaultYear } from "store/programs/helpers";
 
 
 class Account extends React.Component {
@@ -24,6 +25,7 @@ class Account extends React.Component {
     }
 
     const firstCode = this.props.userSchoolCodes[0];
+    const defaultYear = getDefaultYear();
 
     return (
       <Layout>
@@ -31,8 +33,8 @@ class Account extends React.Component {
         <div>
           <h1>Account</h1>
           <Switch>
-            <Route path="/account/schools/:schoolCode/programs" component={SchoolPrograms} />
-            <Redirect exact from="/account" to={`/account/schools/${firstCode}/programs`} />
+            <Route path="/account/schools/:code/programs/:year" component={FilteredSchoolPrograms} />
+            <Redirect exact from="/account" to={`/account/schools/${firstCode}/programs/${defaultYear}`} />
           </Switch>
         </div>
       </Layout>
@@ -44,7 +46,7 @@ export default Account;
 
 
 // todo
-// /account/schools/:schoolCode/programs
-// /account/schools/:schoolCode/programs/:year
+// /account/schools/:code/programs
+// /account/schools/:code/programs/:year
 // /account/programs/:programId
 
