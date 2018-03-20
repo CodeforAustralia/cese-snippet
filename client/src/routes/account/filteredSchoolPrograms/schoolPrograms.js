@@ -32,7 +32,7 @@ class SchoolPrograms extends React.Component {
       <div>
         <h1>SchoolPrograms</h1>
 
-        <FiltersNav filters={this.props.availableFilters} />
+        {/*<FiltersNav filters={this.props.availableFilters} />*/}
 
         <code>School: {JSON.stringify(this.props.school)}</code>
         <hr/>
