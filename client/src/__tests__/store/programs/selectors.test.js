@@ -26,7 +26,7 @@ describe('Programs Selectors', () => {
 
   describe('selectProgramsByFilterKey', () => {
     const actual = selectProgramsByFilterKey(sampleState, "21312_2018");
-    const expectedIds = sampleState.programs.filters["21312_2018"].ids;
+    const expectedIds = sampleState.programs.filters["21312_2018"];
     expect(actual.map(p => p.id)).toEqual(expect.arrayContaining(expectedIds));
   });
 });

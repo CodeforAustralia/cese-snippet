@@ -67,12 +67,7 @@ export default {
     isFetching: false,
     errorMessage: null,
     filters: {
-      '21312_2018': {
-        ids: [
-          "1",
-          "2"
-        ]
-      }
+      '21312_2018': ["1", "2"]
     }
   },
   schools: {
