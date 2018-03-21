@@ -8,7 +8,7 @@ import api from 'store/apiInterface';
 import { mockFetch } from "mockFetch";
 import {
   createOrUpdatePrograms,
-  setFilter,
+  setFilters,
   fetchProgramsByFilters,
 } from 'store/programs/actionCreators';
 import { ACTION_TYPES } from 'store/programs/reducer';
@@ -50,10 +50,10 @@ describe('Programs Action Creators', () => {
   });
 
 
-  describe('setFilter', () => {
+  describe('setFilters', () => {
     it('should provide a FLUX standard action type', () => {
       const data = [{ id: '112' }];
-      const actual = setFilter(data, {code:"112", year:'2018'});
+      const actual = setFilters(data);
       expect(Object.keys(actual).includes('type')).toBe(true);
       expect(Object.keys(actual).includes('payload')).toBe(true);
     });
@@ -121,7 +121,7 @@ describe('Programs Action Creators', () => {
         expect(actionsCalled.map(a => a.type)).toEqual(
           expect.arrayContaining([
             ACTION_TYPES.fetchRequest,
-            ACTION_TYPES.setFilter,
+            ACTION_TYPES.setFilters,
             ACTION_TYPES.fetchSuccess
           ]
         ));
