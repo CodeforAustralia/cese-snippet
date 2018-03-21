@@ -5,8 +5,13 @@ env:
   - CLIENT_DIR=$TRAVIS_BUILD_DIR/client
   - FUNCTIONS_DIR=$TRAVIS_BUILD_DIR/functions
 install:
+  - echo $CLIENT_DIR
+  - echo $FUNCTIONS_DIR
+  - pwd
   - cd $CLIENT_DIR && yarn
+  - pwd
   - cd $FUNCTIONS_DIR && yarn
+  - pwd
 notifications:
   email: false
 cache:
