@@ -15,7 +15,7 @@ export const selectPrograms = (state, ids) => {
 };
 
 export const selectProgramsByFilterKey = (state, filterKey) => {
-  const filteredIds = get(state, `programs.filters[${filterKey}].ids`, null);
+  const filteredIds = get(state, `programs.filters[${filterKey}]`, null);
 
   if (filteredIds) {
     return selectPrograms(state, filteredIds);

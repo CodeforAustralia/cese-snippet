@@ -5,9 +5,9 @@ import {
 } from 'store/programs/reducer';
 
 describe('Programs Reducer', () => {
-  describe('Filters', () => {
 
-    it('should pass', () => {
+  describe('Filters', () => {
+    it('should update filterKey if filterKey exists', () => {
       expect(1).toBe(1);
     });
 

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import merge from 'merge';
 
 export const ACTION_TYPES = {
   fetchRequest: 'PROGRAMS/FETCH_REQUEST',
@@ -49,7 +48,15 @@ export const filters = (state = {}, action) => {
   switch (type) {
 
     case ACTION_TYPES.setFilters:
-      return merge(state, payload.filters);
+      const newState = {...state};
+      for (let filterKey in payload.filters) {
+        if (newState[filterKey]) {
+          newState[filterKey] = [...newState[filterKey], filters[filterKey]];
+        } else {
+          newState[filterKey] = filters[filterKey];
+        }
+      }
+      return newState;
 
     default:
       return state;

@@ -32,13 +32,7 @@ export const setFilters = (data) => {
 
       const filterKey = getFilterKey({code, year});
 
-      res[filterKey] = {
-        ids,
-        filters: {  // todo - deprecate this and reduce by 1 level
-          code,
-          year,
-        }
-      };
+      res[filterKey] = ids;
     }
   }
 
