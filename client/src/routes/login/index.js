@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Layout from 'layouts/login';
 import style from './style.scss';
@@ -24,7 +25,7 @@ class Login extends React.Component {
 
           <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-          <p>If you're not sure what Snippet is, please read about it <a href="https://nsweducation.cool">here</a>.</p>
+          <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
           <Form onSuccess={this.login} />
         </div>
