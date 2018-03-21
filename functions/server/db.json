@@ -16,8 +16,13 @@
       "programId": "1",
       "name": "Mars Program 1",
       "code": "21312",
-      "facilitators": [ "8787" ],
-      "yearGroups": ["7", "8"],
+      "facilitators": [
+        "8787"
+      ],
+      "yearGroups": [
+        "7",
+        "8"
+      ],
       "year": "2018",
       "termStart": 3,
       "termEnd": 4,
@@ -30,8 +35,13 @@
       "programId": "1",
       "name": "Jupiter Program 1",
       "code": "76862",
-      "facilitators": [ "23423" ],
-      "yearGroups": ["7", "8"],
+      "facilitators": [
+        "23423"
+      ],
+      "yearGroups": [
+        "7",
+        "8"
+      ],
       "year": "2018",
       "termStart": 3,
       "termEnd": 4,
@@ -44,8 +54,13 @@
       "programId": "1",
       "name": "Jupiter Program 2",
       "code": "76862",
-      "facilitators": [ "23423" ],
-      "yearGroups": ["7", "8"],
+      "facilitators": [
+        "23423"
+      ],
+      "yearGroups": [
+        "7",
+        "8"
+      ],
       "year": "2017",
       "termStart": 1,
       "termEnd": 4,
@@ -58,8 +73,12 @@
       "programId": "4",
       "name": "L3 Program 1",
       "code": "21312",
-      "facilitators": [ "8787" ],
-      "yearGroups": ["7"],
+      "facilitators": [
+        "8787"
+      ],
+      "yearGroups": [
+        "7"
+      ],
       "year": "2017",
       "termStart": 1,
       "termEnd": 4,
