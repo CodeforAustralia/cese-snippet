@@ -1,7 +1,6 @@
 sudo: false
 language: node_js
 os: linux
-
 install:
   - cd $TRAVIS_BUILD_DIR/client && yarn
   - cd $TRAVIS_BUILD_DIR/functions && yarn
@@ -10,12 +9,11 @@ notifications:
 cache:
   directories:
     - $HOME/.yarn-cache
-    - node_modules
+    - $TRAVIS_BUILD_DIR/client/node_modules
+    - $TRAVIS_BUILD_DIR/functions/node_modules
 before_script:
-  - pwd
   - cd $TRAVIS_BUILD_DIR/client && yarn test:ci
 script:
-  - pwd
   - cd $TRAVIS_BUILD_DIR/client && NODE_ENV=production yarn build
 after_success:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $TRAVIS_BUILD_DIR/client/coverage/lcov.info
