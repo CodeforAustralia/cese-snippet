@@ -86,3 +86,20 @@ export const fetchProgramsByFilters = (filterProps) => {
   const search = queryString.stringify(filterProps);
   return fetchFromCacheOrApi(`/programs?${search}`);
 };
+
+
+export const createProgram = (program) => {
+  return (dispatch, getState, api) => {
+
+    // todo - sanitize input
+
+    return api('/programs', {
+        method: 'POST',
+        body: JSON.stringify(program),
+      })
+      .then((resp) => {
+        dispatch(createOrUpdatePrograms(resp.data));
+        return resp;
+      })
+  }
+};

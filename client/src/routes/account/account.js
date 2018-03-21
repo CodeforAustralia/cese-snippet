@@ -9,7 +9,7 @@ import isEmpty from 'lodash/isEmpty';
 import Layout from 'layouts/account';
 import AuthButton from 'components/auth/authButton';
 import FilteredSchoolPrograms from './filteredSchoolPrograms';
-
+import CreateProgram from './programForm/create';
 
 class Account extends React.Component {
 
@@ -32,6 +32,9 @@ class Account extends React.Component {
         <div>
           <h1>Account</h1>
           <Switch>
+            <Route path="/account/create-program" render={() => {
+              return <CreateProgram code={this.props.defaultCode} year={this.props.defaultYear} />
+            }} />
             <Route path="/account/schools/:code/programs/:year" component={FilteredSchoolPrograms} />
             <Redirect exact from="/account" to={`/account/schools/${this.props.defaultCode}/programs/${this.props.defaultYear}`} />
           </Switch>
