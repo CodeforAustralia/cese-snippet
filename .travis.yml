@@ -3,8 +3,10 @@ language: node_js
 os: linux
 env:
   - CLIENT_DIR=$TRAVIS_BUILD_DIR/client
+  - FUNCTIONS_DIR=$TRAVIS_BUILD_DIR/functions
 install:
   - cd $CLIENT_DIR && yarn
+  - cd $FUNCTIONS_DIR && yarn
 notifications:
   email: false
 cache:
