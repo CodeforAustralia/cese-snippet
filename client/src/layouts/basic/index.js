@@ -34,6 +34,7 @@ class LayoutBasic extends React.Component {
   }
   render() {
     const { isAuthenticated, signout, history, session } = this.props;
+    console.log('isAuthenticated', isAuthenticated)
     return (
       <div>
         <Navbar color="faded" light expand="md">
@@ -46,28 +47,28 @@ class LayoutBasic extends React.Component {
               </NavItem>
               <NavItem>
                 {!isAuthenticated &&
-                    <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
+                <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
                 }
               </NavItem>
               {isAuthenticated &&
-                <UncontrolledDropdown nav inNavbar>
-                  <DropdownToggle nav caret>
-                    {session.first}
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    {/*<DropdownItem>*/}
-                      {/*Option 1*/}
-                    {/*</DropdownItem>*/}
-                    {/*<DropdownItem>*/}
-                      {/*Option 2*/}
-                    {/*</DropdownItem>*/}
-                    {/*<DropdownItem divider />*/}
-                    <DropdownItem onClick={() => {
-                      signout(() => history.push("/"));
-                    }}>Sign out
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  {session.first}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  {/*<DropdownItem>*/}
+                  {/*Option 1*/}
+                  {/*</DropdownItem>*/}
+                  {/*<DropdownItem>*/}
+                  {/*Option 2*/}
+                  {/*</DropdownItem>*/}
+                  {/*<DropdownItem divider />*/}
+                  <DropdownItem onClick={() => {
+                    signout(() => history.push("/"));
+                  }}>Sign out
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
               }
             </Nav>
           </Collapse>

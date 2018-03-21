@@ -6,7 +6,7 @@ import {
   Col,
 } from "reactstrap";
 
-import LayoutHome from 'components/layoutBasic';
+import LayoutHome from 'layouts/basic';
 import style from './style.scss';
 
 
@@ -25,7 +25,7 @@ const HomePage = () => (
           <Row>
             <Col sm={{size: 6, offset: 3}}>
               <div>
-                <Link to="/login">Log in</Link>
+                <Link to="/login">Start Demo</Link>
               </div>
             </Col>
           </Row>

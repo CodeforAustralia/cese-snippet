@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import isEmpty from 'lodash/isEmpty';
 
-import Layout from 'layouts/account';
 import AuthButton from 'components/auth/authButton';
 import FilteredSchoolPrograms from './filteredSchoolPrograms';
 import CreateProgram from './programForm/create';
@@ -27,7 +26,7 @@ class Account extends React.Component {
     }
 
     return (
-      <Layout>
+      <div>
         <AuthButton />
         <div>
           <h1>Account</h1>
@@ -39,7 +38,7 @@ class Account extends React.Component {
             <Redirect exact from="/account" to={`/account/schools/${this.props.defaultCode}/programs/${this.props.defaultYear}`} />
           </Switch>
         </div>
-      </Layout>
+      </div>
     );
   }
 }
