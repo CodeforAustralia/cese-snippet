@@ -34,7 +34,6 @@ class LayoutBasic extends React.Component {
   }
   render() {
     const { isAuthenticated, signout, history, session } = this.props;
-    console.log('isAuthenticated', isAuthenticated)
     return (
       <div>
         <Navbar color="faded" light expand="md">
