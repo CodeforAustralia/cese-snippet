@@ -7,53 +7,58 @@ import {
 describe('Programs Reducer', () => {
 
   describe('Filters', () => {
-    it('should update filterKey if filterKey exists', () => {
-      expect(1).toBe(1);
+    it('should update filters if filterKey exists', () => {
+      const state = {
+        '21312_2018': ["1", "2"]
+      };
+      const action = {
+        type: ACTION_TYPES.setFilters,
+        payload: {
+          filters: {
+            '21312_2018': ["3"]
+          }
+        }
+      };
+      const actual = filters(state, action);
+      expect(actual['21312_2018'].length).toBe(3);
+      expect(actual['21312_2018']).toEqual(expect.arrayContaining(["1", "2", "3"]));
     });
 
+    it('should expect no change if id exists in filterKey', () => {
+      const state = {
+        '21312_2018': ["1", "2"]
+      };
+      const action = {
+        type: ACTION_TYPES.setFilters,
+        payload: {
+          filters: {
+            '21312_2018': ["2"]
+          }
+        }
+      };
+      const actual = filters(state, action);
 
+      expect(actual['21312_2018'].length).toBe(2);
+      expect(actual['21312_2018']).toEqual(expect.arrayContaining(["1", "2"]));
+    });
 
-
-    // it('setFilter should update ids where a state key exists.', () => {
-    //   const state = {
-    //     '1': {
-    //       ids: [],
-    //     }
-    //   };
-    //   const actual = filters(state, {
-    //     type: ACTION_TYPES.setFilter,
-    //     payload: {
-    //       key: '1',
-    //       ids: [1, 2]
-    //     }
-    //   });
-    //   expect(actual["1"].ids ).toEqual([1, 2]);
-    // });
-    // it('setFilter should update existing ids where a state key exists without duplicates.', () => {
-    //   const state = {
-    //     '1': {
-    //       ids: [1, 2],
-    //     }
-    //   };
-    //   const actual = filters(state, {
-    //     type: ACTION_TYPES.setFilter,
-    //     payload: {
-    //       key: '1',
-    //       ids: [1]
-    //     }
-    //   });
-    //   expect(actual["1"].ids ).toEqual([1,2]);
-    // });
-    // it('setFilter should create a new key where a state key does not exists.', () => {
-    //   const state = {};
-    //   const actual = filters(state, {
-    //     type: ACTION_TYPES.setFilter,
-    //     payload: {
-    //       key: '1',
-    //       ids: [1]
-    //     }
-    //   });
-    //   expect(Object.keys(actual)).toEqual(['1']);
-    // });
+    it('should add new filters if filterKey does not exist', () => {
+      const state = {
+        '21312_2018': ["1", "2"]
+      };
+      const action = {
+        type: ACTION_TYPES.setFilters,
+        payload: {
+          filters: {
+            '546_2018': ["3"]
+          }
+        }
+      };
+      const actual = filters(state, action);
+      expect(actual['21312_2018']).toBeDefined();
+      expect(actual['546_2018']).toBeDefined();
+      expect(actual['21312_2018']).toEqual(expect.arrayContaining(["1", "2"]));
+      expect(actual['546_2018']).toEqual(expect.arrayContaining(["3"]));
+    });
   });
 });

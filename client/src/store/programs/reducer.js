@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import uniq from 'lodash/uniq';
 
 export const ACTION_TYPES = {
   fetchRequest: 'PROGRAMS/FETCH_REQUEST',
@@ -51,9 +52,9 @@ export const filters = (state = {}, action) => {
       const newState = {...state};
       for (let filterKey in payload.filters) {
         if (newState[filterKey]) {
-          newState[filterKey] = [...newState[filterKey], filters[filterKey]];
+          newState[filterKey] = uniq([...newState[filterKey], ...payload.filters[filterKey]]);
         } else {
-          newState[filterKey] = filters[filterKey];
+          newState[filterKey] = payload.filters[filterKey];
         }
       }
       return newState;
