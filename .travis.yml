@@ -1,17 +1,10 @@
 sudo: false
 language: node_js
 os: linux
-env:
-  - CLIENT_DIR=$TRAVIS_BUILD_DIR/client
-  - FUNCTIONS_DIR=$TRAVIS_BUILD_DIR/functions
+
 install:
-  - echo $CLIENT_DIR
-  - echo $FUNCTIONS_DIR
-  - pwd
-  - cd $CLIENT_DIR && yarn
-  - pwd
-  - cd $FUNCTIONS_DIR && yarn
-  - pwd
+  - cd $TRAVIS_BUILD_DIR/client && yarn
+  - cd $TRAVIS_BUILD_DIR/functions && yarn
 notifications:
   email: false
 cache:
@@ -20,12 +13,12 @@ cache:
     - node_modules
 before_script:
   - pwd
-  - cd $CLIENT_DIR && yarn test:ci
+  - cd $TRAVIS_BUILD_DIR/client && yarn test:ci
 script:
   - pwd
-  - cd $CLIENT_DIR && NODE_ENV=production yarn build
+  - cd $TRAVIS_BUILD_DIR/client && NODE_ENV=production yarn build
 after_success:
-  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $CLIENT_DIR/coverage/lcov.info
+  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $TRAVIS_BUILD_DIR/client/coverage/lcov.info
 deploy:
   skip_cleanup: true
   provider: firebase
@@ -34,4 +27,4 @@ deploy:
   on:
     tags: true
 after_deploy:
-  - cd $CLIENT_DIR && yarn add slack-notify shelljs && node ./bin/notify-slack.js
+  - cd $TRAVIS_BUILD_DIR/client && yarn add slack-notify shelljs && node ./bin/notify-slack.js
