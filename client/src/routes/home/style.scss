@@ -1,0 +1,11 @@
+@import '~style/helpers.scss';
+
+.home {
+
+}
+
+.containerWrap {
+  @include sm {
+    margin-top: 10rem;
+  }
+}

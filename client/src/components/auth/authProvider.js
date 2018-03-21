@@ -13,6 +13,7 @@ class AuthProvider extends React.Component {
     };
 
     return {
+      session,
       isAuthenticated: state.isAuthenticated,
       authenticate(cb) {
         state.isAuthenticated = true;
@@ -32,6 +33,7 @@ class AuthProvider extends React.Component {
 
 // tell React _what_ it provides
 AuthProvider.childContextTypes = {
+  session: PropTypes.object,
   isAuthenticated: PropTypes.bool,
   authenticate: PropTypes.func,
   signout: PropTypes.func,

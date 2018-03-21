@@ -5,6 +5,8 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  NavItem,
+  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -17,7 +19,7 @@ import {
 import withAuth from 'components/auth/withAuth';
 
 
-class LayoutAccount extends React.Component {
+class LayoutBasic extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -31,7 +33,7 @@ class LayoutAccount extends React.Component {
     });
   }
   render() {
-    const { signout, history, session } = this.props;
+    const { isAuthenticated, signout, history, session } = this.props;
     return (
       <div>
         <Navbar color="faded" light expand="md">
@@ -39,6 +41,15 @@ class LayoutAccount extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink to="/demo" activeClassName="active" tag={RRNavLink} disabled>Demo</NavLink>
+              </NavItem>
+              <NavItem>
+                {!isAuthenticated &&
+                <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
+                }
+              </NavItem>
+              {isAuthenticated &&
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   {session.first}
@@ -57,6 +68,7 @@ class LayoutAccount extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              }
             </Nav>
           </Collapse>
         </Navbar>
@@ -66,4 +78,4 @@ class LayoutAccount extends React.Component {
   }
 }
 
-export default withRouter(withAuth(LayoutAccount));
+export default withRouter(withAuth(LayoutBasic));
