@@ -14,8 +14,10 @@ cache:
     - $HOME/.yarn-cache
     - node_modules
 before_script:
+  - pwd
   - cd $CLIENT_DIR && yarn test:ci
 script:
+  - pwd
   - cd $CLIENT_DIR && NODE_ENV=production yarn build
 after_success:
   - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $CLIENT_DIR/coverage/lcov.info
