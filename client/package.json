@@ -13,10 +13,6 @@
     "test:watch": "yarn test --watchAll",
     "serve": "yarn build && serve -s build"
   },
-  "engines": {
-    "node": "6.11.5",
-    "npm": ">4.0.0"
-  },
   "eslintIgnore": [
     "build/*"
   ],
