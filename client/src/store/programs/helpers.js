@@ -8,7 +8,7 @@ export const getFilterKey = ({code, year = currentYear}) => {
   if (typeof code === 'undefined') {
     throw new Error('Must provide code to getFilterKey.');
   }
-  return `${code}_${year}`;
+  return String(`${code}_${year}`);
 };
 
 export const parseFilterKeys = (filterKeys) => {

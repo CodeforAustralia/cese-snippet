@@ -1,8 +1,13 @@
 import get from 'lodash/get';
 import { parseFilterKeys } from "./helpers";
 
+
+export const selectIsFetching = (state) => {
+  return get(state, 'programs.isFetching', null);
+};
+
 export const selectProgram = (state, id) => {
-  return state.programs.byId[id];
+  return get(state, `programs.byId[${id}]`, null);
 };
 
 /**
@@ -11,16 +16,17 @@ export const selectProgram = (state, id) => {
  * @returns {Array<Programs>}
  */
 export const selectPrograms = (state, ids) => {
-  return ids.map(id => selectProgram(state, id));
+  return ids.map(id => {
+      return selectProgram(state, id)
+    }).filter(program => {
+      return program !== null;
+    });
 };
 
 export const selectProgramsByFilterKey = (state, filterKey) => {
-  const filteredIds = get(state, `programs.filters[${filterKey}]`, null);
+  const filteredIds = get(state, `programs.filters[${filterKey}]`, []);
 
-  if (filteredIds) {
-    return selectPrograms(state, filteredIds);
-  }
-  return null;
+  return selectPrograms(state, filteredIds);
 };
 
 export const selectAllFilterKeys = (state) => {

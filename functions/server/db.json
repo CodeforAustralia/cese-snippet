@@ -13,7 +13,6 @@
   "programs": [
     {
       "id": "1",
-      "programId": "1",
       "name": "Mars Program 1",
       "code": "21312",
       "facilitators": [
@@ -32,7 +31,6 @@
     },
     {
       "id": "2",
-      "programId": "1",
       "name": "Jupiter Program 1",
       "code": "76862",
       "facilitators": [
@@ -51,9 +49,8 @@
     },
     {
       "id": "3",
-      "programId": "1",
-      "name": "Jupiter Program 2",
-      "code": "76862",
+      "name": "Robotics Club",
+      "code": "21312",
       "facilitators": [
         "23423"
       ],
@@ -69,8 +66,7 @@
       "lastUpdated": "2017-03-04T23:56:38.363Z"
     },
     {
-      "id": "1",
-      "programId": "4",
+      "id": "4",
       "name": "L3 Program 1",
       "code": "21312",
       "facilitators": [

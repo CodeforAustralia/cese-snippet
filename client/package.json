@@ -121,8 +121,7 @@
       "node"
     ],
     "modulePaths": [
-      "src",
-      "__mocks__"
+      "src"
     ]
   },
   "babel": {

@@ -1,53 +1,92 @@
 import React from 'react';
-import isEmpty from 'lodash/isEmpty';
+import {
+  Row,
+  Col,
+} from "reactstrap";
+import bows from 'bows';
 
 import FiltersNav from './../components/filtersNav';
+// import CreateProgram from './programForm/create';
+import Loading from 'components/loading';
+
+
+const log = bows("SchoolPrograms");
+
 
 class SchoolPrograms extends React.Component {
 
-  fetchData() {
-    return Promise.all([
-      this.props.fetchSchool(),
-      this.props.fetchProgramsByFilters(),
-    ]);
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false,
+    }
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData().then(() => {
+      this.setState(() => ({ isReady: true }));
+    });
   }
 
-  componentWillUpdate(nextProps) {
-    if (JSON.stringify(nextProps.filters) !== JSON.stringify(this.props.filters)) {
+  fetchData() {
+    log('Fetching data');
+    return this.props.fetchProgramsByFilter();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.filters) !== JSON.stringify(this.props.filters)) {
       this.fetchData();
     }
   }
 
   render() {
+    const { isReady } = this.state;
+    const {
+      school,
+      filteredPrograms,
+      availableFilters,
+      isFetching,
+    } = this.props;
 
-    if (isEmpty(this.props.school)) {
-      return <p>Loading School...</p>
+    if (!isReady) {
+      return <Loading />
     }
 
     return (
-      <div>
-        <h1>SchoolPrograms</h1>
+      <Row>
+        <Col>
+          <p>School: {school.name}</p>
 
-        <FiltersNav filters={this.props.availableFilters} />
+          <FiltersNav filters={availableFilters} />
 
-        <code>School: {JSON.stringify(this.props.school)}</code>
-        <hr/>
+          <p>Filtered Programs:</p>
+          {
+            (() => {
 
-        {
-          typeof this.props.filteredPrograms === 'undefined' ?
-            <p>Loading Filtered....</p> :
-            this.props.filteredPrograms && this.props.filteredPrograms.length >= 1 ?
-              <code>Filtered Programs: {JSON.stringify(this.props.filteredPrograms)}</code> :
-              <p>No programs</p>
-        }
+              if (!filteredPrograms.length) {
+                return <p>School has no programs for this filter.</p>
+              }
 
-      </div>
-    )
+              if (isFetching) {
+                return <Loading />
+              }
+
+              return (
+                <ul>
+                  {filteredPrograms.map((program, idx) => (
+                    <li key={idx}>{program.name} {program.year}</li>
+                  ))}
+                </ul>
+              )
+            })()
+          }
+        </Col>
+      </Row>
+    );
   }
 }
 
 export default SchoolPrograms;
+
+//
+// <CreateProgram code={this.props.defaultCode} year={this.props.defaultYear} />

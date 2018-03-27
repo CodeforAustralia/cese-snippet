@@ -11,6 +11,19 @@ Data management
 UI
 - [Reactstrap](https://reactstrap.github.io)
 
+## Set up 
+
+1. 
+
+``` bash
+# set the Node version
+nvm use
+````
+
+2.
+
+Create a local `./.env` from `./.env.sample` 
+ 
 
 ## CLI Commands
 
@@ -26,6 +39,9 @@ yarn build
 
 # test the production build locally
 yarn serve 
+
+# run test watcher
+yarn test
 ```
 
 

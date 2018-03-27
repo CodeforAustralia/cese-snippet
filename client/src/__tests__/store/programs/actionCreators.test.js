@@ -5,11 +5,11 @@ import configureStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
 import api from 'store/apiInterface';
 
-import { mockFetch } from "mockFetch";
+import { mockFetch } from "__mocks__/mockFetch";
 import {
   createOrUpdatePrograms,
-  setFilters,
-  fetchProgramsByFilters,
+  setFilter,
+  fetchProgramsByFilter,
 } from 'store/programs/actionCreators';
 import { ACTION_TYPES } from 'store/programs/reducer';
 
@@ -50,10 +50,10 @@ describe('Programs Action Creators', () => {
   });
 
 
-  describe('setFilters', () => {
+  describe('setFilter', () => {
     it('should provide a FLUX standard action type', () => {
       const data = [{ id: '112' }];
-      const actual = setFilters(data);
+      const actual = setFilter(data, {filterKey:'23423_237'});
       expect(Object.keys(actual).includes('type')).toBe(true);
       expect(Object.keys(actual).includes('payload')).toBe(true);
     });
@@ -106,7 +106,7 @@ describe('Programs Action Creators', () => {
       const resp = { data: [ { id:'100', code: '1232', year: '2018' } ] };
       mockFetch('/programs?code=1232&year=2018', 201, resp);
 
-      return store.dispatch(fetchProgramsByFilters({code:1232, year:2018})).then((resp) => {
+      return store.dispatch(fetchProgramsByFilter({code:1232, year:2018})).then((resp) => {
         expect(resp).toBe(resp);
       });
     });
@@ -116,7 +116,7 @@ describe('Programs Action Creators', () => {
       const resp = { data: [ { id:'100', code: '1232', year: '2018' } ] };
       mockFetch('/programs?code=1232&year=2018', 201, resp);
 
-      return store.dispatch(fetchProgramsByFilters({code:1232, year:2018})).then((resp) => {
+      return store.dispatch(fetchProgramsByFilter({code:1232, year:2018})).then((resp) => {
         const actionsCalled = store.getActions();
         expect(actionsCalled.map(a => a.type)).toEqual(
           expect.arrayContaining([
@@ -133,7 +133,7 @@ describe('Programs Action Creators', () => {
       const resp = { message: 'Not found' };
       mockFetch('/programs?code=1232&year=2018', 404, resp);
 
-      return store.dispatch(fetchProgramsByFilters({code:1232, year:2018})).then((resp) => {
+      return store.dispatch(fetchProgramsByFilter({code:1232, year:2018})).then((resp) => {
         const actionsCalled = store.getActions();
         expect(actionsCalled.map(a => a.type)).toEqual(
           expect.arrayContaining([

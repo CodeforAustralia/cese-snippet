@@ -14,11 +14,13 @@ export const createOrUpdateSchools = (schools) => {
   }
 };
 
+
 export const fetchFromCacheOrApi = (path) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
+
     return api(path)
       .then((resp) => {
         if (!resp.data) {

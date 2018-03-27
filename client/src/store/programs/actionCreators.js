@@ -1,5 +1,4 @@
 import queryString from 'query-string';
-import groupBy from 'lodash/groupBy';
 
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
@@ -16,35 +15,28 @@ export const createOrUpdatePrograms = (programs) => {
 };
 
 
-export const setFilters = (data) => {
-  const res = {};
+/**
+ * @param data
+ * @param props {Object} - filterKey {String}
+ */
+export const setFilter = (data, {filterKey}) => {
+  const filters = {
+    [filterKey]: []
+  };
 
-  const schoolGroups = groupBy(data, 'code');
-
-  for (let code in schoolGroups) {
-    const schoolGroup = schoolGroups[code];
-
-    const schoolYearGroups = groupBy(schoolGroup, 'year');
-
-    for (let year in schoolYearGroups) {
-      const schoolYearGroup = schoolYearGroups[year];
-      const ids = schoolYearGroup.map(d => d.id);
-
-      const filterKey = getFilterKey({code, year});
-
-      res[filterKey] = ids;
-    }
+  if (data && data.length) {
+    filters[filterKey] = data.map(d => d.id);
   }
 
   return {
     type: ACTION_TYPES.setFilters,
     payload: {
-      filters: res,
+      filters,
     }
   }
 };
 
-const fetchFromCacheOrApi = (path) => {
+const fetchFromCacheOrApi = (path, props) => {
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
@@ -55,11 +47,11 @@ const fetchFromCacheOrApi = (path) => {
         if (!resp.data) {
           throw new Error('Data not provided in response');
         }
-        dispatch(setFilters(resp.data));
+        dispatch(createOrUpdatePrograms(resp.data));
         return resp;
       })
       .then((resp) => {
-        dispatch(createOrUpdatePrograms(resp.data));
+        dispatch(setFilter(resp.data, props));
         return resp;
       })
       .catch((error) => {
@@ -79,12 +71,12 @@ const fetchFromCacheOrApi = (path) => {
 /**
  * @param filterProps {Object} can be any filter, not just 'code' and 'year'
  */
-export const fetchProgramsByFilters = (filterProps) => {
+export const fetchProgramsByFilter = (filterProps) => {
   if (typeof filterProps === 'undefined') {
-    throw new Error('Must supply filterProps to fetchProgramsByFilters.');
+    throw new Error('Must supply filterProps to fetchProgramsByFilter.');
   }
   const search = queryString.stringify(filterProps);
-  return fetchFromCacheOrApi(`/programs?${search}`);
+  return fetchFromCacheOrApi(`/programs?${search}`, { filterKey: getFilterKey(filterProps) });
 };
 
 

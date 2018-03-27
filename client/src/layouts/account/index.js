@@ -8,7 +8,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+} from 'reactstrap';
 import {
   withRouter,
   NavLink as RRNavLink
@@ -45,7 +46,7 @@ class LayoutAccount extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   {/*<DropdownItem>*/}
-                  {/*Option 1*/}
+                    {/*Option 1*/}
                   {/*</DropdownItem>*/}
                   {/*<DropdownItem>*/}
                   {/*Option 2*/}
@@ -60,6 +61,7 @@ class LayoutAccount extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+
         {this.props.children}
       </div>
     );
