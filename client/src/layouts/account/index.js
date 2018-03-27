@@ -5,7 +5,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -46,9 +45,9 @@ class LayoutAccount extends React.Component {
                   {session.first}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    <NavLink to="/account/create-program" activeClassName="active" tag={RRNavLink}>Create Program</NavLink>
-                  </DropdownItem>
+                  {/*<DropdownItem>*/}
+                    {/*Option 1*/}
+                  {/*</DropdownItem>*/}
                   {/*<DropdownItem>*/}
                   {/*Option 2*/}
                   {/*</DropdownItem>*/}
