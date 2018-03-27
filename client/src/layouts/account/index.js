@@ -5,10 +5,12 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
+  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+} from 'reactstrap';
 import {
   withRouter,
   NavLink as RRNavLink
@@ -44,9 +46,9 @@ class LayoutAccount extends React.Component {
                   {session.first}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  {/*<DropdownItem>*/}
-                  {/*Option 1*/}
-                  {/*</DropdownItem>*/}
+                  <DropdownItem>
+                    <NavLink to="/account/create-program" activeClassName="active" tag={RRNavLink}>Create Program</NavLink>
+                  </DropdownItem>
                   {/*<DropdownItem>*/}
                   {/*Option 2*/}
                   {/*</DropdownItem>*/}
@@ -60,6 +62,7 @@ class LayoutAccount extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
+
         {this.props.children}
       </div>
     );

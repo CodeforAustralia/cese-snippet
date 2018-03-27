@@ -26,6 +26,9 @@ yarn build
 
 # test the production build locally
 yarn serve 
+
+# run tests watcher
+yarn test
 ```
 
 
