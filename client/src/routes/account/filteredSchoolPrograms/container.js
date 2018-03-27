@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { fetchSchool } from "store/schools/actionCreators";
 import { selectSchool } from 'store/schools/selectors';
-import { fetchProgramsByFilters } from 'store/programs/actionCreators';
+import { fetchProgramsByFilter } from 'store/programs/actionCreators';
 import {
   selectProgramsByFilterKey,
   selectAllFilterKeys,
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const year = ownProps.match.params.year;
   return {
     fetchSchool: () => dispatch(fetchSchool(code)),
-    fetchProgramsByFilters: () => dispatch(fetchProgramsByFilters({code, year})),
+    fetchProgramsByFilter: () => dispatch(fetchProgramsByFilter({code, year})),
   }
 };
 

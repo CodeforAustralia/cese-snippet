@@ -1,14 +1,19 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
+import {
+  Row,
+  Col,
+} from "reactstrap";
 
 import FiltersNav from './../components/filtersNav';
+// import CreateProgram from './programForm/create';
 
 class SchoolPrograms extends React.Component {
 
   fetchData() {
     return Promise.all([
       this.props.fetchSchool(),
-      this.props.fetchProgramsByFilters(),
+      this.props.fetchProgramsByFilter(),
     ]);
   }
 
@@ -29,25 +34,30 @@ class SchoolPrograms extends React.Component {
     }
 
     return (
-      <div>
-        <h1>SchoolPrograms</h1>
+      <Row>
+        <Col>
+          <h1>SchoolPrograms</h1>
 
-        <FiltersNav filters={this.props.availableFilters} />
+          <FiltersNav filters={this.props.availableFilters} />
 
-        <code>School: {JSON.stringify(this.props.school)}</code>
-        <hr/>
+          <code>School: {JSON.stringify(this.props.school)}</code>
+          <hr/>
 
-        {
-          typeof this.props.filteredPrograms === 'undefined' ?
-            <p>Loading Filtered....</p> :
-            this.props.filteredPrograms && this.props.filteredPrograms.length >= 1 ?
-              <code>Filtered Programs: {JSON.stringify(this.props.filteredPrograms)}</code> :
-              <p>No programs</p>
-        }
+          {
+            typeof this.props.filteredPrograms === 'undefined' ?
+              <p>Loading Filtered....</p> :
+              this.props.filteredPrograms && this.props.filteredPrograms.length >= 1 ?
+                <code>Filtered Programs: {JSON.stringify(this.props.filteredPrograms)}</code> :
+                <p>No programs</p>
+          }
 
-      </div>
+        </Col>
+      </Row>
     )
   }
 }
 
 export default SchoolPrograms;
+
+//
+// <CreateProgram code={this.props.defaultCode} year={this.props.defaultYear} />

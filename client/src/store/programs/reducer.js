@@ -49,15 +49,10 @@ export const filters = (state = {}, action) => {
   switch (type) {
 
     case ACTION_TYPES.setFilters:
-      const newState = {...state};
-      for (let filterKey in payload.filters) {
-        if (newState[filterKey]) {
-          newState[filterKey] = uniq([...newState[filterKey], ...payload.filters[filterKey]]);
-        } else {
-          newState[filterKey] = payload.filters[filterKey];
-        }
-      }
-      return newState;
+      const { filters } = payload;
+
+      // Replace filter state
+      return {...state, ...filters};
 
     default:
       return state;
