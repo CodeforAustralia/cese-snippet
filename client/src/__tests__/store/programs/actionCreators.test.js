@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import thunkMiddleware from 'redux-thunk';
 import api from 'store/apiInterface';
 
-import { mockFetch } from "mockFetch";
+import { mockFetch } from "__mocks__/mockFetch";
 import {
   createOrUpdatePrograms,
   setFilter,

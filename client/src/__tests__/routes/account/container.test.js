@@ -36,6 +36,8 @@ describe('Account Route Container', () => {
       expect(props.schoolCodes).toBeDefined();
       expect(props.defaultCode).toBeDefined();
       expect(props.defaultYear).toBeDefined();
+      expect(props.schools).toBeDefined();
+      expect(props.isFetching).toBeDefined();
     });
   });
 
@@ -43,7 +45,6 @@ describe('Account Route Container', () => {
     it('should define expected state shape', () => {
       const props = wrapper.props();
       expect(props.fetchSchools).toBeDefined();
-      expect(props.fetchProgramsBySchool).toBeDefined();
     });
 
     it('should be bound to dispatch', () => {
@@ -51,8 +52,6 @@ describe('Account Route Container', () => {
       expect(store.dispatch.mock.calls.length).toBe(0);
       props.fetchSchools();
       expect(store.dispatch.mock.calls.length).toBe(1);
-      props.fetchProgramsBySchool();
-      expect(store.dispatch.mock.calls.length).toBe(2);
     });
   });
 
