@@ -1,5 +1,11 @@
 import get from 'lodash/get';
 
+
+export const selectIsFetching = (state) => {
+  return get(state, 'schools.isFetching', null);
+};
+
+
 /**
  * @param state {Object}
  * @param code {String}

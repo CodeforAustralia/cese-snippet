@@ -15,13 +15,17 @@ export const createOrUpdatePrograms = (programs) => {
 };
 
 
+/**
+ * @param data
+ * @param props {Object} - filterKey {String}
+ */
 export const setFilter = (data, {filterKey}) => {
   const filters = {
     [filterKey]: []
   };
 
   if (data && data.length) {
-    filterKey[filterKey] = data.map(d => d.id);
+    filters[filterKey] = data.map(d => d.id);
   }
 
   return {
@@ -43,11 +47,11 @@ const fetchFromCacheOrApi = (path, props) => {
         if (!resp.data) {
           throw new Error('Data not provided in response');
         }
-        dispatch(setFilter(resp.data, props));
+        dispatch(createOrUpdatePrograms(resp.data));
         return resp;
       })
       .then((resp) => {
-        dispatch(createOrUpdatePrograms(resp.data));
+        dispatch(setFilter(resp.data, props));
         return resp;
       })
       .catch((error) => {

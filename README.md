@@ -36,31 +36,11 @@ This is a mock server and documentation is not provided.
 
 Setup the app as separate services running on your local machine.
 
+
 ### To install, 
 
-1. Set the Node version (if using nvm)
+Follow set up instructions in each container's README.
 
-```bash 
-cd functions && nvm use
-```
-
-```bash 
-cd client && nvm use
-```
-
-2. Cloud functions and api
-
-```bash
-cd functions 
-yarn
-```
-
-3. Frontend
-
-```bash
-cd client
-yarn
-```
 
 ### To run both services, open two command sessions, 
 

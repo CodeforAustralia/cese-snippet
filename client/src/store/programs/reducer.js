@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import uniq from 'lodash/uniq';
 
 export const ACTION_TYPES = {
   fetchRequest: 'PROGRAMS/FETCH_REQUEST',
@@ -8,6 +7,7 @@ export const ACTION_TYPES = {
 
   setFilters: 'PROGRAMS/SET_FILTERS',
 };
+
 
 export const isFetching = (state = false, action) => {
   switch (action.type) {

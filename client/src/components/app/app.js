@@ -21,14 +21,12 @@ const NoMatch = ({ location }) => (
 const App = ({session}) => (
   <AuthProvider session={session}>
     <Router>
-      <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/account" component={Account} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/account" component={Account} />
+        <Route component={NoMatch} />
+      </Switch>
     </Router>
   </AuthProvider>
 );

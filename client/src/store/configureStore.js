@@ -2,7 +2,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import merge from 'merge';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 
 import rootReducer from 'store/rootReducer';
 import initialState from 'store/initialState';
@@ -15,9 +15,9 @@ const middlewares = [
   thunk.withExtraArgument(api),
 ];
 
-if (process.env.NODE_ENV === 'development' || process.env.REACT_APP_DEBUG === true) {
-  middlewares.push(logger);
-}
+// if (process.env.NODE_ENV === 'development' || process.env.REACT_APP_DEBUG === true) {
+//   middlewares.push(logger);
+// }
 
 const composeEnhancers = typeof win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function' ?
   win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) :
