@@ -10,7 +10,7 @@ This repository contains both a mock server and the client app that is used inte
 ## Requirements
 
 * [Node](https://nodejs.org/en/) 6.11.5
-* [npm](http://npmjs.com/) `5.6.0`
+* [npm](http://npmjs.com/) `>4.0.0`
 * [yarn](https://yarnpkg.com) `1.5.1`
 * [firebase-tools](https://www.npmjs.com/package/firebase-tools) `^3.16.0`
 
