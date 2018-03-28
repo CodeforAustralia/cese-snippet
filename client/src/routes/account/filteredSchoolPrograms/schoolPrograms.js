@@ -2,14 +2,17 @@ import React from 'react';
 import {
   Row,
   Col,
+  Button,
 } from "reactstrap";
 import bows from 'bows';
 import get from 'lodash/get';
+import { Link as RRLink } from 'react-router-dom';
 
 import FiltersNav from './../components/filtersNav';
 // import CreateProgram from './programForm/create';
 import Loading from 'components/loading';
 import Form from './../components/programForm/create';
+import { getCreateProgramUrl } from "helpers/url";
 
 
 const log = bows("SchoolPrograms");
@@ -66,14 +69,7 @@ class SchoolPrograms extends React.Component {
         </Row>
 
         <Row>
-          <Col sm={4}>
-            <h1>Create program</h1>
-            <Form code={school.code} year={get(filteredPrograms, '[0].year', '2018')} />
-          </Col>
-
-          <Col sm={8}>
-
-            <p>Filtered Programs:</p>
+          <Col>
             {
               (() => {
 
@@ -86,11 +82,14 @@ class SchoolPrograms extends React.Component {
                 }
 
                 return (
-                  <ul>
-                    {filteredPrograms.map((program, idx) => (
-                      <li key={idx}>{program.name} {program.year}</li>
-                    ))}
-                  </ul>
+                  <div>
+                    <Button color="primary" to={'/account/create-program'} tag={RRLink}>Add Program</Button>
+                    <ul>
+                      {filteredPrograms.map((program, idx) => (
+                        <li key={idx}>{program.name} {program.year}</li>
+                      ))}
+                    </ul>
+                  </div>
                 )
               })()
             }
