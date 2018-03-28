@@ -92,7 +92,8 @@
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js",
-      "<rootDir>/config/jest/enzyme.js"
+      "<rootDir>/config/jest/enzyme.js",
+      "<rootDir>/config/jest/browserMocks.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
