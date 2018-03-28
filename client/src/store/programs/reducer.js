@@ -6,6 +6,9 @@ export const ACTION_TYPES = {
   fetchError: 'PROGRAMS/FETCH_ERROR',
 
   setFilters: 'PROGRAMS/SET_FILTERS',
+
+  createFilters: 'PROGRAMS/CREATE_FILTERS',
+  updateFilters: 'PROGRAMS/UPDATE_FILTERS',
 };
 
 
@@ -46,13 +49,32 @@ export const byId = (state = {}, action) => {
 
 export const filters = (state = {}, action) => {
   const { type, payload } = action;
+  let filterKey, filterValue;
+
   switch (type) {
 
-    case ACTION_TYPES.setFilters:
-      const { filters } = payload;
+    case ACTION_TYPES.updateFilters:
+      filterKey = payload.filterKey;
+      filterValue = payload.filterValue;
 
-      // Replace filter state
-      return {...state, ...filters};
+      const newState = {...state};
+
+      if (newState[filterKey]) {
+        newState[filterKey] = [...newState[filterKey], filterValue];
+      } else {
+        newState[filterKey] = [filterValue];
+      }
+      return newState;
+
+    case ACTION_TYPES.createFilters:
+      filterKey = payload.filterKey;
+      filterValue = payload.filterValue;
+
+      // Replace filter state if it exists
+      return {
+        ...state,
+        [filterKey]: filterValue,
+      };
 
     default:
       return state;

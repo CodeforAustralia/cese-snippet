@@ -17,7 +17,6 @@ const mapStateToProps = (state, ownProps) => {
   const filterKey = getFilterKey({code, year});
   const filteredPrograms = selectProgramsByFilterKey(state, filterKey);
 
-
   return {
     filters: {
       code,

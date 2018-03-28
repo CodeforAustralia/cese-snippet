@@ -4,11 +4,15 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import { Container } from 'reactstrap';
+import {
+  Container,
+} from 'reactstrap';
 import bows from 'bows';
 
+import FilteredSchoolProgramsPage from './filteredSchoolPrograms';
+import CreateProgramPage from './createProgram';
+
 import LayoutAccount from 'layouts/account';
-import FilteredSchoolPrograms from './filteredSchoolPrograms';
 import AccountNav from './components/accountNav';
 import Loading from 'components/loading';
 
@@ -55,15 +59,14 @@ class Account extends React.Component {
             }
 
             return (
-              <div>
+              <Container>
                 <AccountNav schools={schools} defaultYear={defaultYear} />
-                <Container>
-                  <Switch>
-                    <Route path="/account/schools/:code/programs/:year" component={FilteredSchoolPrograms} />
-                    <Redirect exact from="/account" to={`/account/schools/${this.props.defaultCode}/programs/${this.props.defaultYear}`} />
-                  </Switch>
-                </Container>
-              </div>
+                <Switch>
+                  <Route path="/account/create-program" component={CreateProgramPage} />
+                  <Route path="/account/schools/:code/programs/:year" component={FilteredSchoolProgramsPage} />
+                  <Redirect exact from="/account" to={`/account/schools/${this.props.defaultCode}/programs/${this.props.defaultYear}`} />
+                </Switch>
+              </Container>
             )
           })()
         }

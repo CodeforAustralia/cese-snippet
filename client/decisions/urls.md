@@ -9,9 +9,11 @@
 
 // auth
 
-/account/schools/:schoolCode/programs 
-/account/schools/:schoolCode/programs/:year 
+/account/schools/:schoolCode/programs
+/account/schools/:schoolCode/programs/:year
+ 
 /account/programs/:programId 
+/account/create-program
 
 
 ## Phase 2

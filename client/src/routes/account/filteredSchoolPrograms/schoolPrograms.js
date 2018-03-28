@@ -8,6 +8,7 @@ import bows from 'bows';
 import FiltersNav from './../components/filtersNav';
 // import CreateProgram from './programForm/create';
 import Loading from 'components/loading';
+import Form from './../components/programForm/create';
 
 
 const log = bows("SchoolPrograms");
@@ -35,7 +36,7 @@ class SchoolPrograms extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (JSON.stringify(prevProps.filters) !== JSON.stringify(this.props.filters)) {
-      this.fetchData();
+      this.fetchData()
     }
   }
 
@@ -48,40 +49,52 @@ class SchoolPrograms extends React.Component {
       isFetching,
     } = this.props;
 
+
     if (!isReady) {
       return <Loading />
     }
 
     return (
-      <Row>
-        <Col>
-          <p>School: {school.name}</p>
+      <div>
+        <Row>
+          <Col>
+            <p>School: {school.name}</p>
+          </Col>
+        </Row>
 
-          <FiltersNav filters={availableFilters} />
+        <Row>
+          <Col sm={4}>
+            <h1>Create program</h1>
+            <Form />
+          </Col>
 
-          <p>Filtered Programs:</p>
-          {
-            (() => {
+          <Col sm={8}>
+            <FiltersNav filters={availableFilters} />
 
-              if (!filteredPrograms.length) {
-                return <p>School has no programs for this filter.</p>
-              }
+            <p>Filtered Programs:</p>
+            {
+              (() => {
 
-              if (isFetching) {
-                return <Loading />
-              }
+                // if (!filteredPrograms.length) {
+                //   return <p>School has no programs for this filter.</p>
+                // }
 
-              return (
-                <ul>
-                  {filteredPrograms.map((program, idx) => (
-                    <li key={idx}>{program.name} {program.year}</li>
-                  ))}
-                </ul>
-              )
-            })()
-          }
-        </Col>
-      </Row>
+                if (isFetching) {
+                  return <Loading />
+                }
+
+                return (
+                  <ul>
+                    {filteredPrograms.map((program, idx) => (
+                      <li key={idx}>{program.name} {program.year}</li>
+                    ))}
+                  </ul>
+                )
+              })()
+            }
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
