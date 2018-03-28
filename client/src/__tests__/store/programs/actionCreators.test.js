@@ -7,9 +7,12 @@ import api from 'store/apiInterface';
 
 import { mockFetch } from "__mocks__/mockFetch";
 import {
-  createOrUpdatePrograms,
-  setFilter,
+  createFilter,
+  updateFilter,
   fetchProgramsByFilter,
+  createProgram,
+  fetchFromApi,
+
 } from 'store/programs/actionCreators';
 import { ACTION_TYPES } from 'store/programs/reducer';
 
@@ -20,47 +23,7 @@ const mockStore = configureStore([
 
 describe('Programs Action Creators', () => {
 
-  describe('createOrUpdatePrograms', () => {
-    it('should provide a FLUX standard action type', () => {
-      const data = { id: '112' };
-      const actual = createOrUpdatePrograms(data);
-      expect(Object.keys(actual).includes('type')).toBe(true);
-      expect(Object.keys(actual).includes('payload')).toBe(true);
-    });
-
-    it('should provide a payload with correct shape when provided a single school', () => {
-      const data = { id: '112' };
-      const actual = createOrUpdatePrograms(data);
-      const { payload: { programs } } = actual;
-      expect(isObject(programs)).toBe(true);
-      expect(programs["112"]).toBeDefined();
-    });
-
-    it('should provide a payload with correct shape when provided many schools', () => {
-      const data = [
-        { id: '112' },
-        { id: '234' },
-      ];
-      const actual = createOrUpdatePrograms(data);
-      const { payload: { programs } } = actual;
-      expect(isObject(programs)).toBe(true);
-      expect(programs["112"]).toBeDefined();
-      expect(programs["234"]).toBeDefined();
-    });
-  });
-
-
-  describe('setFilter', () => {
-    it('should provide a FLUX standard action type', () => {
-      const data = [{ id: '112' }];
-      const actual = setFilter(data, {filterKey:'23423_237'});
-      expect(Object.keys(actual).includes('type')).toBe(true);
-      expect(Object.keys(actual).includes('payload')).toBe(true);
-    });
-  });
-
-
-  describe('fetchProgramsByFilters', () => {
+  describe('fetchProgramsByFilter', () => {
     let store;
     beforeEach(() => {
       store = mockStore({
@@ -121,7 +84,7 @@ describe('Programs Action Creators', () => {
         expect(actionsCalled.map(a => a.type)).toEqual(
           expect.arrayContaining([
             ACTION_TYPES.fetchRequest,
-            ACTION_TYPES.setFilters,
+            ACTION_TYPES.createFilters,
             ACTION_TYPES.fetchSuccess
           ]
         ));
