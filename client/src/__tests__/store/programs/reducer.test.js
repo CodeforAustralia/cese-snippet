@@ -6,18 +6,17 @@ import {
 
 describe('Programs Reducer', () => {
 
-  describe('Filter', () => {
+  describe('createFilters', () => {
 
     it('should replace filter if filterKey exists', () => {
       const state = {
         '21312_2018': ["1", "2"]
       };
       const action = {
-        type: ACTION_TYPES.setFilters,
+        type: ACTION_TYPES.createFilters,
         payload: {
-          filters: {
-            '21312_2018': ["3"]
-          }
+          filterKey: "21312_2018",
+          filterValue: ["3"],
         }
       };
       const actual = filters(state, action);
@@ -32,11 +31,10 @@ describe('Programs Reducer', () => {
         '21312_2018': ["1", "2"]
       };
       const action = {
-        type: ACTION_TYPES.setFilters,
+        type: ACTION_TYPES.createFilters,
         payload: {
-          filters: {
-            '78672_2018': ["3"]
-          }
+          filterKey: "78672_2018",
+          filterValue: ["3"],
         }
       };
       const actual = filters(state, action);

@@ -6,7 +6,11 @@ import {
   NavLink,
 } from 'reactstrap';
 
-import { getSchoolProgramsUrl } from 'helpers/url';
+import {
+  getSchoolProgramsUrl,
+  getCreateProgramUrl,
+} from 'helpers/url';
+
 
 const AccountNav = ({schools, defaultYear}) => {
   return (
@@ -18,6 +22,11 @@ const AccountNav = ({schools, defaultYear}) => {
                    activeClassName="active">{school.name}</NavLink>
         </NavItem>
       ))}
+      <NavItem>
+        <NavLink tag={RRNavLink}
+                 to={getCreateProgramUrl()}
+                 activeClassName="active">Add Program</NavLink>
+      </NavItem>
     </Nav>
   )
 };

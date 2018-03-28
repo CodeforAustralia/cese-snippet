@@ -8,6 +8,7 @@ import {
   // selectAllFilterKeys,
 } from 'store/programs/selectors';
 import { getFilterKey } from "store/programs/helpers";
+import { activateCreateProgramFormScope } from 'store/app/actionCreators';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,7 +17,6 @@ const mapStateToProps = (state, ownProps) => {
 
   const filterKey = getFilterKey({code, year});
   const filteredPrograms = selectProgramsByFilterKey(state, filterKey);
-
 
   return {
     filters: {
@@ -42,6 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const year = ownProps.match.params.year;
   return {
     fetchProgramsByFilter: () => dispatch(fetchProgramsByFilter({code, year})),
+    activateCreateProgramFormScope: (data) => dispatch(activateCreateProgramFormScope(data))
   }
 };
 

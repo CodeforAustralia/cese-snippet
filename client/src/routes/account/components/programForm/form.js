@@ -22,7 +22,8 @@ const ProgramForm = ({
                onChange={handleChange}
                onBlur={handleBlur}
                value={values.name}
-               valid={errors.name && !errors.name}
+               invalid={errors.name}
+
         />
         {touched.name && errors.name && <FormFeedback>{errors.name}</FormFeedback>}
       </FormGroup>
@@ -35,7 +36,7 @@ const ProgramForm = ({
                onChange={handleChange}
                onBlur={handleBlur}
                value={values.code}
-               valid={errors.code && !errors.code}
+               invalid={errors.code}
         />
         {touched.code && errors.code && <FormFeedback>{errors.code}</FormFeedback>}
       </FormGroup>
@@ -48,7 +49,7 @@ const ProgramForm = ({
                onChange={handleChange}
                onBlur={handleBlur}
                value={values.year}
-               valid={errors.year && !errors.year}
+               invalid={errors.year}
         />
         {touched.year && errors.year && <FormFeedback>{errors.year}</FormFeedback>}
       </FormGroup>
@@ -59,15 +60,21 @@ const ProgramForm = ({
 
 export default withFormik({
   displayName: 'LoginForm',
-  mapPropsToValues: props => ({
-    code: props.code,
-    year: props.year,
-  }),
+  mapPropsToValues: props => {
+    if (typeof props.formScope !== 'undefined') {
+      return {
+        code: props.formScope.code,
+        year: props.formScope.year,
+      }
+    }
+    return {};
+  },
   handleSubmit: (values, { props, setSubmitting, setErrors /* setValues, setStatus, and other goodies */ }) => {
     props.createProgram(values).then(
       (resp) => {
+        console.log('form resp', resp);
         setSubmitting(false);
-        // props.onSuccess();
+        props.onSuccess(resp.data);
       }
     );
   },
