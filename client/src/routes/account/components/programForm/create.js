@@ -3,8 +3,11 @@ import Form from './form';
 
 import { createProgram } from 'store/programs/actionCreators';
 
-const mapStateToProps = (state) => {
-  return {}
+const mapStateToProps = (state, ownProps) => {
+  return {
+    code: ownProps.code,
+    year: ownProps.year,
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {

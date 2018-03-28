@@ -60,10 +60,12 @@ const ProgramForm = ({
 
 export default withFormik({
   displayName: 'LoginForm',
-  mapPropsToValues: props => ({
-    code: "21312", //props.code,
-    year: "2018", //props.year,
-  }),
+  mapPropsToValues: props => {
+    return {
+      code: props.code,
+      year: props.year,
+    }
+  },
   handleSubmit: (values, { props, setSubmitting, setErrors /* setValues, setStatus, and other goodies */ }) => {
     props.createProgram(values).then(
       (resp) => {

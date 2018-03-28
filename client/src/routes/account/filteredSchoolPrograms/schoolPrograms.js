@@ -4,6 +4,7 @@ import {
   Col,
 } from "reactstrap";
 import bows from 'bows';
+import get from 'lodash/get';
 
 import FiltersNav from './../components/filtersNav';
 // import CreateProgram from './programForm/create';
@@ -59,17 +60,18 @@ class SchoolPrograms extends React.Component {
         <Row>
           <Col>
             <p>School: {school.name}</p>
+            <FiltersNav filters={availableFilters} />
+
           </Col>
         </Row>
 
         <Row>
           <Col sm={4}>
             <h1>Create program</h1>
-            <Form />
+            <Form code={school.code} year={get(filteredPrograms, '[0].year', '2018')} />
           </Col>
 
           <Col sm={8}>
-            <FiltersNav filters={availableFilters} />
 
             <p>Filtered Programs:</p>
             {
