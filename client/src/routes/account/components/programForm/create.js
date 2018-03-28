@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 import Form from './form';
+import { withRouter } from 'react-router';
 
 import { createProgram } from 'store/programs/actionCreators';
+import { getSchoolProgramsUrl } from 'helpers/url';
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    code: ownProps.code,
-    year: ownProps.year,
+    formScope: state.app.createProgramFormScope,
+    onSuccess: (data) => ownProps.history.push(getSchoolProgramsUrl(data.code, data.year)),
   }
 };
 
@@ -16,6 +19,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const Container = connect(mapStateToProps, mapDispatchToProps);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form))
 
-export default Container(Form);

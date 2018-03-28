@@ -104,6 +104,7 @@ export const createProgram = (program) => {
           d = [d]
         }
         dispatch(updateFilter(d, {filterKey}));
+        return resp;
       })
       .catch((error) => {
         // todo - status messages

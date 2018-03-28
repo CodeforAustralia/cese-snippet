@@ -61,16 +61,20 @@ const ProgramForm = ({
 export default withFormik({
   displayName: 'LoginForm',
   mapPropsToValues: props => {
-    return {
-      code: props.code,
-      year: props.year,
+    if (typeof props.formScope !== 'undefined') {
+      return {
+        code: props.formScope.code,
+        year: props.formScope.year,
+      }
     }
+    return {};
   },
   handleSubmit: (values, { props, setSubmitting, setErrors /* setValues, setStatus, and other goodies */ }) => {
     props.createProgram(values).then(
       (resp) => {
+        console.log('form resp', resp);
         setSubmitting(false);
-        // props.onSuccess();
+        props.onSuccess(resp.data);
       }
     );
   },

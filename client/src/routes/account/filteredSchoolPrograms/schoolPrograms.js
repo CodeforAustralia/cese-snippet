@@ -5,8 +5,7 @@ import {
   Button,
 } from "reactstrap";
 import bows from 'bows';
-import get from 'lodash/get';
-import { Link as RRLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import FiltersNav from './../components/filtersNav';
 // import CreateProgram from './programForm/create';
@@ -22,6 +21,7 @@ class SchoolPrograms extends React.Component {
 
   constructor(props) {
     super(props);
+    this.navigateToCreateProgramForm = this.navigateToCreateProgramForm.bind(this);
     this.state = {
       isReady: false,
     }
@@ -33,15 +33,23 @@ class SchoolPrograms extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.filters) !== JSON.stringify(this.props.filters)) {
+      this.fetchData()
+    }
+  }
+
   fetchData() {
     log('Fetching data');
     return this.props.fetchProgramsByFilter();
   }
 
-  componentDidUpdate(prevProps) {
-    if (JSON.stringify(prevProps.filters) !== JSON.stringify(this.props.filters)) {
-      this.fetchData()
-    }
+  navigateToCreateProgramForm() {
+    this.props.activateCreateProgramFormScope({
+      code: this.props.school.code,
+      year: this.props.filters.year,
+    });
+    this.props.history.push('/account/create-program');
   }
 
   render() {
@@ -83,7 +91,7 @@ class SchoolPrograms extends React.Component {
 
                 return (
                   <div>
-                    <Button color="primary" to={'/account/create-program'} tag={RRLink}>Add Program</Button>
+                    <Button onClick={() => this.navigateToCreateProgramForm()}>Add Program</Button>
                     <ul>
                       {filteredPrograms.map((program, idx) => (
                         <li key={idx}>{program.name} {program.year}</li>
@@ -100,7 +108,7 @@ class SchoolPrograms extends React.Component {
   }
 }
 
-export default SchoolPrograms;
+export default withRouter(SchoolPrograms);
 
 //
 // <CreateProgram code={this.props.defaultCode} year={this.props.defaultYear} />
