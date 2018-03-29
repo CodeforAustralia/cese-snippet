@@ -20,7 +20,7 @@ export const selectSchool = (state, code) => {
  * @param codes {Array}
  * @param {Array} Schools
  */
-export const selectSchools = (state, codes = []) => {
+export const selectSchools = (state, codes) => {
   return codes.map(code => {
     return selectSchool(state, code);
   }).filter(school => {

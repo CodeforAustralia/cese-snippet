@@ -55,3 +55,8 @@ Debug the state layer with [Redux devtools extension](https://chrome.google.com/
 
 Enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
 
+By typing this in to the Browser Console:
+
+```js
+localStorage.debug = true
+```

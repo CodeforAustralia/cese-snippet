@@ -9,7 +9,7 @@ import AuthProvider from 'components/auth/authProvider';
 import PrivateRoute from 'components/auth/privateRoute';
 import Home from 'routes/home';
 import Login from 'routes/login';
-import Account from 'routes/account';
+import Account from 'routes/account2';
 
 
 const NoMatch = ({ location }) => (
