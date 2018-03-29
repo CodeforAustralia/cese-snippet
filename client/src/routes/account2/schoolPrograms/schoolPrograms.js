@@ -1,6 +1,6 @@
 import React from 'react';
 
-class School extends React.Component {
+class SchoolPrograms extends React.Component {
   componentDidMount() {
     const { school } = this.props;
     if (!school) {
@@ -11,8 +11,8 @@ class School extends React.Component {
     const { school, isFetching } = this.props;
 
     return (
-      <div style={{border: '1px solid green'}}>
-        <h1>School</h1>
+      <div style={{border: '1px solid blue'}}>
+        <h1>SchoolPrograms</h1>
         { isFetching === false && !school ?
           <p>No school</p> :
           <h1>School: {school.name}</h1>
@@ -22,4 +22,4 @@ class School extends React.Component {
   }
 }
 
-export default School;
+export default SchoolPrograms;

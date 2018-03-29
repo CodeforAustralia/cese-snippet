@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 
 import School from './school';
+import SchoolPrograms from './schoolPrograms';
+import SchoolCreateProgram from './schoolCreateProgram';
 
-const SchoolPrograms = () => <h1>School programs 2018</h1>;
-const CreateProgram = () => <h1>Create program</h1>;
 const RegisterFlow = () => <h1>Register flow</h1>;
 
 
@@ -31,7 +31,7 @@ class Account extends React.Component {
         <ul>
           <li><NavLink to="/account/schools/76862">Jupiter School</NavLink></li>
           <li><NavLink to="/account/schools/76862/programs/2018">Jupiter School Programs 2018</NavLink></li>
-          <li><NavLink to="/account/create-program">Create Program</NavLink></li>
+          <li><NavLink to="/account/schools/76862/create-program">Create Program</NavLink></li>
         </ul>
 
         { isFetching === false && !schools.length ?
@@ -42,10 +42,10 @@ class Account extends React.Component {
         <Switch>
           <Route path="/account/schools/:code" exact component={School} />
           <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
-          <Route path="/account/schools/:code/create-program" component={CreateProgram} />
+          <Route path="/account/schools/:code/create-program" component={SchoolCreateProgram} />
           <Route path="/account/register" component={RegisterFlow} />
         </Switch>
-        {isModal ? <Route path="/account/schools/:code/create-program" component={CreateProgram} /> : null}
+        {isModal ? <Route path="/account/schools/:code/create-program" component={SchoolCreateProgram} /> : null}
       </div>
     )
   }
