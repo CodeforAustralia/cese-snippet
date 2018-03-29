@@ -74,6 +74,7 @@ export const fetchFromApi = (path, props) => {
       })
       .catch((error) => {
         // todo - status messages
+        log(`Error: ${error}`);
         dispatch({
           type: ACTION_TYPES.fetchError,
           payload: {
