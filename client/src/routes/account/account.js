@@ -60,6 +60,7 @@ class Account extends React.Component {
             <li><NavLink to={getSchoolProgramsUrl(76862, 2018)}>Jupiter School Programs 2018</NavLink></li>
             <li><NavLink to={getCreateProgramUrl()}>Create Program</NavLink></li>
             <li><NavLink to={getCreateProgramModalUrl({code: 76862, year: 2018})}>Open Create Program modal</NavLink></li>
+            <li><NavLink to={getCreateProgramModalUrl({code: 76862, year: 2018, id: 2})}>Open Update Program modal</NavLink></li>
           </ul>
 
           { isFetching !== false ?
