@@ -1,6 +1,19 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
+const ProgramsList = ({ programs }) => {
+  return (
+    <div>
+      <h2>Programs:</h2>
+      <ul>
+        {programs.map((program, idx) => (
+          <li key={idx}><span>{program.name}</span> <span>{program.year}</span></li>
+        ))}
+      </ul>
+    </div>
+  )
+};
+
 class SchoolPrograms extends React.Component {
   componentDidMount() {
     this.fetchData();
@@ -49,7 +62,7 @@ class SchoolPrograms extends React.Component {
           <p>Loading...</p> :
             !filteredPrograms.length ?
               <p>No programs for that filter</p> :
-              <p>Programs: {filteredPrograms.map((program, idx) => <span key={idx}>{program.name}</span>)}</p>
+              <ProgramsList programs={filteredPrograms} />
         }
       </div>
     );
