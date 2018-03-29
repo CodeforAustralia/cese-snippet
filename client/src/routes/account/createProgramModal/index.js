@@ -1,13 +1,22 @@
 import React from 'react';
-import { CreateForm } from './../components/programForm';
+import {
+  CreateForm,
+  UpdateForm,
+} from './../components/programForm';
 
-const CreateProgramModal = ({ history }) => {
+const CreateProgramModal = ({ history, location }) => {
+
+  const isEdit = location.state && location.state.isEdit || false;
+
   const back = (e) => {
     if (e) {
       e.stopPropagation();
     }
     history.goBack();
   };
+
+  const Form = isEdit ? UpdateForm : CreateForm;
+
   return (
     <div style={{
         position: "absolute",
@@ -33,9 +42,9 @@ const CreateProgramModal = ({ history }) => {
       >
         <h1>Create program modal</h1>
 
-        <CreateForm onSubmitSuccess={() => back()} />
+        <Form onSubmitSuccess={() => back()} />
 
-        <div style={{border: '1px solid orange'}}>
+        <div>
           <button type="button" onClick={back}>
             Close
           </button>

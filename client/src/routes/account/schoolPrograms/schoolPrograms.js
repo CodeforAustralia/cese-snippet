@@ -1,18 +1,8 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-const ProgramsList = ({ programs }) => {
-  return (
-    <div>
-      <h2>Programs:</h2>
-      <ul>
-        {programs.map((program, idx) => (
-          <li key={idx}><span>{program.name}</span> <span>{program.year}</span></li>
-        ))}
-      </ul>
-    </div>
-  )
-};
+import ProgramsList from './../components/programsList';
+
 
 class SchoolPrograms extends React.Component {
   componentDidMount() {

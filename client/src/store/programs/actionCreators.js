@@ -85,7 +85,7 @@ export const createProgram = (program) => {
     year: program.year,
   });
 
-  log(`Posting: ${program}`);
+  log(`Posting (creating): ${JSON.stringify(program)}`);
 
   return (dispatch, getState, api) => {
     // 2.
@@ -119,6 +119,46 @@ export const createProgram = (program) => {
       });
   }
 };
+
+
+/**
+ * Update Program Thunk Sequence
+ * @param program
+ * @returns {Function} Thunk
+ */
+export const updateProgram = (program) => {
+  // Steps:
+  // 1. sanitize input
+  // 2. PUT
+  // 3. update byId
+
+  // 1. todo
+
+  log(`Putting (updating): ${JSON.stringify(program)}`);
+
+  return (dispatch, getState, api) => {
+    // 2.
+    return api(`/programs/${program.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(program),
+    })
+      .then((resp) => {
+        if (!resp.data) {
+          throw new Error('Data not provided in response');
+        }
+        log(`Putted: ${resp.data}`);
+        // 3.
+        dispatch(createOrUpdatePrograms(resp.data));
+        return resp;
+      })
+      .catch((error) => {
+        log(`Error: ${error}`);
+        // todo - status messages
+        return error;
+      });
+  }
+};
+
 
 /**
  * Fetch Programs Thunk Sequence
