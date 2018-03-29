@@ -34,9 +34,11 @@ class Account extends React.Component {
           <li><NavLink to="/account/schools/76862/create-program">Create Program</NavLink></li>
         </ul>
 
-        { isFetching === false && !schools.length ?
-          <p>No schools</p> :
-          <p>Schools: {schools.map((s, idx) => <span key={idx}>{s.name}</span>)}</p>
+        { isFetching !== false ?
+          <p>Loading...</p> :
+          !schools.length ?
+            <p>No schools</p> :
+            <p>Programs: {schools.map((school, idx) => <span key={idx}>{school.name}</span>)}</p>
         }
 
         <Switch>
