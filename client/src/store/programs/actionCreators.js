@@ -1,8 +1,11 @@
+import bows from 'bows';
 import queryString from 'query-string';
 
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
 import { getFilterKey } from "./helpers";
+
+const log = bows('Programs');
 
 
 export const createOrUpdatePrograms = (programs) => {
@@ -82,6 +85,8 @@ export const createProgram = (program) => {
     year: program.year,
   });
 
+  log(`Posting: ${program}`);
+
   return (dispatch, getState, api) => {
     // 2.
     return api('/programs', {
@@ -92,6 +97,7 @@ export const createProgram = (program) => {
         if (!resp.data) {
           throw new Error('Data not provided in response');
         }
+        log(`Posted: ${resp.data}`);
         // 3.
         dispatch(createOrUpdatePrograms(resp.data));
         return resp;
@@ -107,6 +113,7 @@ export const createProgram = (program) => {
         return resp;
       })
       .catch((error) => {
+        log(`Error: ${error}`);
         // todo - status messages
         return error;
       });
@@ -126,6 +133,8 @@ export const fetchFromApi = (path, props) => {
   // 3. *create* new filter values for this search key filter
   //    - do this last in case so filter listeners will update
 
+  log(`Fetching: ${path}`);
+
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.fetchRequest,
@@ -136,6 +145,7 @@ export const fetchFromApi = (path, props) => {
         if (!resp.data) {
           throw new Error('Data not provided in response');
         }
+        log(`Fetched: ${resp.data}`);
         // 2.
         dispatch(createOrUpdatePrograms(resp.data));
         return resp;
@@ -147,6 +157,7 @@ export const fetchFromApi = (path, props) => {
       })
       .catch((error) => {
         // todo - status messages
+        log(`Error: ${error}`);
         dispatch({
           type: ACTION_TYPES.fetchError,
           payload: {
