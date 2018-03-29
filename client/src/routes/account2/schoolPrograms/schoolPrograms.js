@@ -1,21 +1,48 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 class SchoolPrograms extends React.Component {
   componentDidMount() {
+    this.fetchData();
+  }
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.filterProps) !== JSON.stringify(this.props.filterProps)) {
+      this.fetchData();
+    }
+  }
+  fetchData() {
+
     const { school } = this.props;
     if (!school) {
       this.props.fetchSchool();
     }
+    this.props.fetchProgramsByFilter();
   }
   render() {
-    const { school, isFetching } = this.props;
+    const {
+      school,
+      isFetchingSchools,
+      filteredPrograms,
+      isFetchingPrograms,
+    } = this.props;
 
     return (
       <div style={{border: '1px solid blue'}}>
         <h1>SchoolPrograms</h1>
-        { isFetching === false && !school ?
+
+        <ul>
+          <li><NavLink to="/account/schools/76862/programs/2018">Programs 2018</NavLink></li>
+          <li><NavLink to="/account/schools/76862/programs/2017">Programs 2017</NavLink></li>
+        </ul>
+
+        { isFetchingSchools === false && !school ?
           <p>No school</p> :
-          <h1>School: {school.name}</h1>
+          <p>School: {school.name}</p>
+        }
+
+        { isFetchingPrograms === false && !filteredPrograms.length ?
+          <p>No programs for that filter</p> :
+          <p>Programs: {filteredPrograms.map((program, idx) => <span key={idx}>{program.name}</span>)}</p>
         }
       </div>
     );
