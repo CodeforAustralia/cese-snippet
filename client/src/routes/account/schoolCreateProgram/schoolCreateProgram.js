@@ -1,31 +1,15 @@
 import React from 'react';
+import { CreateForm } from './../components/programForm';
+import { getSchoolProgramsUrl } from 'helpers/url';
 
 class SchoolCreateProgram extends React.Component {
-  componentDidMount() {
-    const { school } = this.props;
-    if (!school) {
-      this.props.fetchSchool();
-    }
-  }
   render() {
-    const { school, isFetching } = this.props;
-
-    if (isFetching !== false) {
-      return <p>Loading...</p>;
-    }
-
-    if (!school) {
-      return <p>No school</p>;
-    }
-
+    const { history } = this.props;
     return (
       <div style={{border: '1px solid yellow'}}>
         <h1>SchoolCreateProgram</h1>
 
-        <p>School: {school.name}</p>
-
-        <p>Form goes here</p>
-
+        <CreateForm onSubmitSuccess={(code, year) => history.push(getSchoolProgramsUrl(code, year))} />
       </div>
     );
   }

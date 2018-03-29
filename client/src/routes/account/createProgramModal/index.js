@@ -1,18 +1,15 @@
 import React from 'react';
+import { CreateForm } from './../components/programForm';
 
-const Modal = ({ match, history }) => {
-  const { code } = match.params;
-  if (!code) {
-    return null;
-  }
+const CreateProgramModal = ({ history }) => {
   const back = (e) => {
-    e.stopPropagation();
+    if (e) {
+      e.stopPropagation();
+    }
     history.goBack();
   };
   return (
-    <div
-      onClick={back}
-      style={{
+    <div style={{
         position: "absolute",
         top: 0,
         left: 0,
@@ -34,16 +31,18 @@ const Modal = ({ match, history }) => {
           display: "block",
         }}
       >
-        <h1>Modal with code: {code}</h1>
+        <h1>Create program modal</h1>
 
-        <p>Form goes here</p>
+        <CreateForm onSubmitSuccess={() => back()} />
 
-        <button type="button" onClick={back}>
-          Close
-        </button>
+        <div style={{border: '1px solid orange'}}>
+          <button type="button" onClick={back}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default CreateProgramModal;

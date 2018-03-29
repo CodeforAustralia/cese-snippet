@@ -8,7 +8,12 @@ import {
 import School from './school';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
-import Modal from './modal';
+import CreateProgramModal from './createProgramModal';
+import {
+  getSchoolProgramsUrl,
+  getCreateProgramModalUrl,
+  getCreateProgramUrl,
+} from 'helpers/url';
 
 const RegisterFlow = () => <h1>Register flow</h1>;
 
@@ -35,7 +40,12 @@ class Account extends React.Component {
     }
   }
   render() {
-    const { schools, isFetching, location } = this.props;
+    const {
+      schools,
+      isFetching,
+      location
+    } = this.props;
+
     const isModal = !!(
       location.state &&
       location.state.modal &&
@@ -47,12 +57,9 @@ class Account extends React.Component {
         <div style={{border: '1px solid red'}}>
           <ul>
             <li><NavLink to="/account/schools/76862">Jupiter School</NavLink></li>
-            <li><NavLink to="/account/schools/76862/programs/2018">Jupiter School Programs 2018</NavLink></li>
-            <li><NavLink to="/account/schools/76862/create-program">Create Program</NavLink></li>
-            <li><NavLink to={{
-              pathname: "/account/schools/76862/create-program",
-              state: { modal: true }
-            }}>Open Create Program modal</NavLink></li>
+            <li><NavLink to={getSchoolProgramsUrl(76862, 2018)}>Jupiter School Programs 2018</NavLink></li>
+            <li><NavLink to={getCreateProgramUrl()}>Create Program</NavLink></li>
+            <li><NavLink to={getCreateProgramModalUrl({code: 76862, year: 2018})}>Open Create Program modal</NavLink></li>
           </ul>
 
           { isFetching !== false ?
@@ -65,11 +72,11 @@ class Account extends React.Component {
           <Switch location={isModal ? this.previousLocation : location}>
             <Route path="/account/schools/:code" exact component={School} />
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
-            <Route path="/account/schools/:code/create-program" component={SchoolCreateProgram} />
+            <Route path="/account/create-program" component={SchoolCreateProgram} />
             <Route path="/account/register" component={RegisterFlow} />
           </Switch>
         </div>
-        {isModal ? <Route path="/account/schools/:code/create-program" component={Modal} /> : null}
+        {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
       </div>
     )
   }
