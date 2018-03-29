@@ -1,34 +1,26 @@
 import { connect } from 'react-redux';
-
 import { fetchSchools } from 'store/schools/actionCreators';
+import {
+  selectSchools,
+  selectIsFetching
+} from 'store/schools/selectors';
 import {
   selectSession,
   selectUserSchoolCodes,
-} from 'store/session/selectors';
-import {
-  selectIsFetching,
-  selectSchools
-} from 'store/schools/selectors';
-import { getDefaultYear } from "store/programs/helpers";
+} from "store/session/selectors";
 
-
-export const mapStateToProps = (state) => {
-  const schoolCodes = selectUserSchoolCodes(state);
-  const defaultCode = schoolCodes[0];
-  const schools = selectSchools(state, schoolCodes);
+const mapStateToProps = (state) => {
+  const userSchoolCodes = selectUserSchoolCodes(state);
 
   return {
     session: selectSession(state),
-    schoolCodes,
-    defaultCode,
-    defaultYear: getDefaultYear(),
-
-    schools,
-    isFetching: selectIsFetching(state) === true,
+    userSchoolCodes,
+    isFetching: selectIsFetching(state),
+    schools: selectSchools(state, userSchoolCodes),
   }
 };
 
-export const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: (codes) => dispatch(fetchSchools(codes)),
   }

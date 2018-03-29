@@ -114,7 +114,7 @@ export const createProgram = (program) => {
 };
 
 /**
- * Fetch Program Thunk Sequence
+ * Fetch Programs Thunk Sequence
  * @param path
  * @param props
  * @returns {function(*, *, *)}

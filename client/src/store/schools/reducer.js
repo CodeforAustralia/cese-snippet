@@ -6,7 +6,7 @@ export const ACTION_TYPES = {
   fetchError: 'SCHOOLS/FETCH_ERROR',
 };
 
-export const isFetching = (state = false, action) => {
+export const isFetching = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPES.fetchRequest:
       return true;

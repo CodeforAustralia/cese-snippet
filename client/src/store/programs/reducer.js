@@ -12,7 +12,7 @@ export const ACTION_TYPES = {
 };
 
 
-export const isFetching = (state = false, action) => {
+export const isFetching = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPES.fetchRequest:
       return true;

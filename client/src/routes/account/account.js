@@ -1,77 +1,55 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import {
   Route,
   Switch,
+  NavLink,
 } from "react-router-dom";
-import {
-  Container,
-} from 'reactstrap';
-import bows from 'bows';
 
-import FilteredSchoolProgramsPage from './filteredSchoolPrograms';
-import CreateProgramPage from './createProgram';
+import School from './school';
+import SchoolPrograms from './schoolPrograms';
+import SchoolCreateProgram from './schoolCreateProgram';
 
-import LayoutAccount from 'layouts/account';
-import AccountNav from './components/accountNav';
-import Loading from 'components/loading';
+const RegisterFlow = () => <h1>Register flow</h1>;
 
-
-const log = bows('Account');
 
 class Account extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isReady: false,
+  componentDidMount() {
+    const { userSchoolCodes } = this.props;
+    if (userSchoolCodes && userSchoolCodes.length) {
+      this.props.fetchSchools(userSchoolCodes);
     }
   }
-
-  componentDidMount() {
-    this.fetchData().then(() => {
-      this.setState(() => ({ isReady: true }));
-    });
-  }
-
-  fetchData() {
-    log('Fetching data');
-    return this.props.fetchSchools(this.props.schoolCodes);
-  }
-
   render() {
-    const { isReady } = this.state;
-    const {
-      schools,
-      defaultYear,
-    } = this.props;
+    const { schools, isFetching } = this.props;
+    const isModal = false;
+
+    console.log('isFetching', isFetching);
+    console.log('schools', schools);
 
     return (
-      <LayoutAccount>
-        {
-          (() => {
-            if (!isReady) {
-              return <Loading />
-            }
+      <div style={{border: '1px solid red'}}>
+        <ul>
+          <li><NavLink to="/account/schools/76862">Jupiter School</NavLink></li>
+          <li><NavLink to="/account/schools/76862/programs/2018">Jupiter School Programs 2018</NavLink></li>
+          <li><NavLink to="/account/schools/76862/create-program">Create Program</NavLink></li>
+        </ul>
 
-            if (!schools.length) {
-              return <p>User has no schools</p>
-            }
-
-            return (
-              <Container>
-                <AccountNav schools={schools} defaultYear={defaultYear} />
-                <Switch>
-                  <Route path="/account/create-program" component={CreateProgramPage} />
-                  <Route path="/account/schools/:code/programs/:year" component={FilteredSchoolProgramsPage} />
-                  <Redirect exact from="/account" to={`/account/schools/${this.props.defaultCode}/programs/${this.props.defaultYear}`} />
-                </Switch>
-              </Container>
-            )
-          })()
+        { isFetching !== false ?
+          <p>Loading...</p> :
+          !schools.length ?
+            <p>No schools</p> :
+            <p>Programs: {schools.map((school, idx) => <span key={idx}>{school.name}</span>)}</p>
         }
-      </LayoutAccount>
-    );
+
+        <Switch>
+          <Route path="/account/schools/:code" exact component={School} />
+          <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
+          <Route path="/account/schools/:code/create-program" component={SchoolCreateProgram} />
+          <Route path="/account/register" component={RegisterFlow} />
+        </Switch>
+        {isModal ? <Route path="/account/schools/:code/create-program" component={SchoolCreateProgram} /> : null}
+      </div>
+    )
   }
 }
 
