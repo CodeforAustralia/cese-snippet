@@ -4,81 +4,139 @@
       "id": "1",
       "name": "L3",
       "description": "Language, Learning and Literacy (L3) is a research-based intervention program for kindergarten students, targeting reading and writing.",
-      "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
-      "curriculumBased": false,
-      "lastUpdatedBy": "",
-      "lastUpdated": "2018-01-01T23:56:38.363Z"
+      "descriptionFull": "Cum nuptia peregrinationes, omnes adgiumes talem altus, fidelis nixes placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": "https://l3.com.au",
+      "aims": null,
+      "yearLevels": [
+        "K"
+      ],
+      "category": "Curriculum engagement",
+      "subCategory": "Literacy",
+      "deliveredByType": "School staff",
+      "audience": ["Students"],
+      "audienceType": null,
+      "audienceDescription": null,
+      "tags": ["spelling"],
+      "createdBy": "23423",
+      "lastUpdatedBy": "8787",
+      "lastUpdated": "2017-02-04T23:56:38.363Z"
     }
   ],
   "programs": [
     {
       "id": "1",
       "name": "Mars Program 1",
+      "description": "Gallus peregrinationess, tanquam castus burgus.",
+      "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": null,
+      "aims": null,
       "code": "21312",
-      "facilitators": [
-        "8787"
-      ],
-      "yearGroups": [
+      "yearDelivered": "2018",
+      "termsDelivered": [2, 3],
+      "yearLevels": [
         "7",
         "8"
       ],
-      "year": "2018",
-      "termStart": 3,
-      "termEnd": 4,
       "cohortSize": 120,
+      "category": "Curriculum engagement",
+      "subCategory": "Literacy",
+      "deliveredByType": "School staff",
+      "staff": [
+        "8787"
+      ],
+      "audience": ["Students"],
+      "audienceType": "Disadvantaged",
+      "audienceDescription": null,
+      "tags": ["spelling"],
+      "createdBy": "298364",
       "lastUpdatedBy": "8787",
       "lastUpdated": "2018-02-04T23:56:38.363Z"
     },
     {
       "id": "2",
       "name": "Jupiter Program 1",
+      "description": "A falsis, detrius neuter amicitia.",
+      "descriptionFull": "Accola de barbatus brabeuta, captis orexis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": "https://jupiter.com.au",
+      "aims": null,
       "code": "76862",
-      "facilitators": [
-        "23423"
-      ],
-      "yearGroups": [
+      "yearDelivered": "2018",
+      "termsDelivered": [3, 4],
+      "yearLevels": [
         "7",
         "8"
       ],
-      "year": "2018",
-      "termStart": 3,
-      "termEnd": 4,
       "cohortSize": 160,
+      "category": "Sports",
+      "subCategory": null,
+      "deliveredByType": "School staff",
+      "staff": [
+        "23423"
+      ],
+      "audience": ["Students"],
+      "audienceType": "Disadvantaged",
+      "audienceDescription": null,
+      "tags": ["fitness"],
+      "createdBy": "23423",
       "lastUpdatedBy": "23423",
       "lastUpdated": "2018-03-04T23:56:38.363Z"
     },
     {
       "id": "3",
       "name": "Robotics Club",
+      "description": "Accentors nocere, tanquam castus burgus.",
+      "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": null,
+      "aims": null,
       "code": "21312",
-      "facilitators": [
+      "yearDelivered": "2017",
+      "termsDelivered": [1],
+      "yearLevels": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "cohortSize": 30,
+      "category": "STEM",
+      "subCategory": "Computers",
+      "providerType": "School staff",
+      "staff": [
         "23423"
       ],
-      "yearGroups": [
-        "7",
-        "8"
-      ],
-      "year": "2017",
-      "termStart": 1,
-      "termEnd": 4,
-      "cohortSize": 30,
+      "audience": ["Students"],
+      "audienceType": null,
+      "audienceDescription": null,
+      "tags": [],
+      "createdBy": "23423",
       "lastUpdatedBy": "23423",
       "lastUpdated": "2017-03-04T23:56:38.363Z"
     },
     {
       "id": "4",
       "name": "L3 Program 1",
+      "description": "Language, Learning and Literacy (L3) is a research-based intervention program for kindergarten students, targeting reading and writing.",
+      "descriptionFull": "Cum nuptia peregrinationes, omnes adgiumes talem altus, fidelis nixes placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": "https://l3.com.au",
+      "aims": null,
       "code": "21312",
-      "facilitators": [
+      "yearDelivered": "2017",
+      "termsDelivered": [1,2,3,4],
+      "yearLevels": [
+        "K"
+      ],
+      "cohortSize": 90,
+      "category": "Curriculum engagement",
+      "subCategory": "Literacy",
+      "deliveredByType": "School staff",
+      "staff": [
         "8787"
       ],
-      "yearGroups": [
-        "7"
-      ],
-      "year": "2017",
-      "termStart": 1,
-      "termEnd": 4,
-      "cohortSize": 150,
+      "audience": ["Students"],
+      "audienceType": null,
+      "audienceDescription": null,
+      "tags": ["spelling"],
+      "createdBy": "23423",
       "lastUpdatedBy": "8787",
       "lastUpdated": "2018-02-04T23:56:38.363Z"
     }
@@ -87,12 +145,37 @@
     {
       "code": "21312",
       "name": "Mars High School",
-      "type": "Secondary"
+      "type": "Secondary",
+      "yearLevels": ["7", "8", "8", "10", "11", "12"]
     },
     {
       "code": "76862",
-      "name": "Jupiter High School",
-      "type": "Secondary"
+      "name": "Jupiter Primary School",
+      "type": "Primary",
+      "yearLevels": ["K", "1", "2", "3", "4", "5", "6"]
+    }
+  ],
+  "staff": [
+    {
+      "id": "8787",
+      "first": "Susan",
+      "last": "Kennedy",
+      "email": "susan.kennedy@det.nsw.edu.au",
+      "schools": ["21312", "76862"]
+    },
+    {
+      "id": "23423",
+      "first": "LouAnne",
+      "last": "Johnson",
+      "email": "louanne.johnson@det.nsw.edu.au",
+      "schools": ["76862"]
+    },
+    {
+      "id": "9872",
+      "first": "John",
+      "last": "Kimble",
+      "email": "john.kimble@det.nsw.edu.au",
+      "schools": ["76862"]
     }
   ]
 }
