@@ -1,0 +1,53 @@
+{
+  "categories": [
+    {
+      "1": {
+        "label": "Curriculum Engagement",
+        "categories": {
+          "1": { "label": "Literacy" },
+          "2": { "label": "Numeracy" },
+          "4": { "label": "PDHPE" },
+          "5": { "label": "Science" },
+          "6": { "label": "HSIE" },
+          "7": { "label": "Technology" },
+          "8": { "label": "Creative Arts" },
+          "9": { "label": "Languages" }
+        }
+      },
+      "2": {
+        "label": "Wellbeing and Support",
+        "categories": {
+          "1": { "label": "Student Participation" },
+          "2": { "label": "Social and Emotional Learning" },
+          "3": { "label": "Student Support" }
+        }
+      },
+      "3": {
+        "label": "Co-curricular",
+        "categories": {
+          "1": { "label": "Creative and Performing Arts" },
+          "2": { "label": "Interest Groups" },
+          "3": { "label": "Environmental Initiative" },
+          "4": { "label": "Physical Fitness" },
+          "5": { "label": "Student Enrichment and Leadership" },
+          "6": { "label": "Technology" }
+        }
+      },
+      "4": {
+        "label": "Parent and Community Engagement",
+        "categories": {
+          "1": { "label": "Parent Participation" },
+          "2": { "label": "Contributing to the Community" }
+        }
+      },
+      "5": {
+        "label": "Sports",
+        "categories": null
+      },
+      "6": {
+        "label": "STEM",
+        "categories": null
+      }
+    }
+  ]
+}
