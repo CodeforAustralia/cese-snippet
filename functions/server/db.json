@@ -4,16 +4,30 @@
       "id": "1",
       "name": "L3",
       "description": "Language, Learning and Literacy (L3) is a research-based intervention program for kindergarten students, targeting reading and writing.",
-      "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
-      "curriculumBased": false,
-      "lastUpdatedBy": "",
-      "lastUpdated": "2018-01-01T23:56:38.363Z"
+      "descriptionFull": "Cum nuptia peregrinationes, omnes adgiumes talem altus, fidelis nixes placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": "https://l3.com.au",
+      "yearLevels": [
+        "K"
+      ],
+      "category": "Curriculum engagement",
+      "subCategory": "Literacy",
+      "deliveredByType": "School staff",
+      "audience": ["Students"],
+      "audienceType": null,
+      "audienceDescription": null,
+      "tags": ["spelling"],
+      "createdBy": "23423",
+      "lastUpdatedBy": "8787",
+      "lastUpdated": "2017-02-04T23:56:38.363Z"
     }
   ],
   "programs": [
     {
       "id": "1",
       "name": "Mars Program 1",
+      "description": "Gallus peregrinationess, tanquam castus burgus.",
+      "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": null,
       "code": "21312",
       "yearDelivered": "2018",
       "termsDelivered": [2, 3],
@@ -39,6 +53,9 @@
     {
       "id": "2",
       "name": "Jupiter Program 1",
+      "description": "A falsis, detrius neuter amicitia.",
+      "descriptionFull": "Accola de barbatus brabeuta, captis orexis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": "https://jupiter.com.au",
       "code": "76862",
       "yearDelivered": "2018",
       "termsDelivered": [3, 4],
@@ -64,6 +81,9 @@
     {
       "id": "3",
       "name": "Robotics Club",
+      "description": "Accentors nocere, tanquam castus burgus.",
+      "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": null,
       "code": "21312",
       "yearDelivered": "2017",
       "termsDelivered": [1],
@@ -91,13 +111,16 @@
     {
       "id": "4",
       "name": "L3 Program 1",
+      "description": "Language, Learning and Literacy (L3) is a research-based intervention program for kindergarten students, targeting reading and writing.",
+      "descriptionFull": "Cum nuptia peregrinationes, omnes adgiumes talem altus, fidelis nixes placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "website": "https://l3.com.au",
       "code": "21312",
       "yearDelivered": "2017",
       "termsDelivered": [1,2,3,4],
       "yearLevels": [
-        "7"
+        "K"
       ],
-      "cohortSize": 150,
+      "cohortSize": 90,
       "category": "Curriculum engagement",
       "subCategory": "Literacy",
       "deliveredByType": "School staff",
@@ -107,7 +130,7 @@
       "audience": ["Students"],
       "audienceType": null,
       "audienceDescription": null,
-      "tags": [],
+      "tags": ["spelling"],
       "createdBy": "23423",
       "lastUpdatedBy": "8787",
       "lastUpdated": "2018-02-04T23:56:38.363Z"
