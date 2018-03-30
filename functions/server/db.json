@@ -100,7 +100,7 @@
       "cohortSize": 30,
       "category": "STEM",
       "subCategory": "Computers",
-      "deliveredByType": "School staff",
+      "providerType": "School staff",
       "staff": [
         "23423"
       ],
@@ -145,12 +145,37 @@
     {
       "code": "21312",
       "name": "Mars High School",
-      "type": "Secondary"
+      "type": "Secondary",
+      "yearLevels": ["7", "8", "8", "10", "11", "12"]
     },
     {
       "code": "76862",
-      "name": "Jupiter High School",
-      "type": "Secondary"
+      "name": "Jupiter Primary School",
+      "type": "Primary",
+      "yearLevels": ["K", "1", "2", "3", "4", "5", "6"]
+    }
+  ],
+  "staff": [
+    {
+      "id": "8787",
+      "first": "Susan",
+      "last": "Kennedy",
+      "email": "susan.kennedy@det.nsw.edu.au",
+      "schools": ["21312", "76862"]
+    },
+    {
+      "id": "23423",
+      "first": "LouAnne",
+      "last": "Johnson",
+      "email": "louanne.johnson@det.nsw.edu.au",
+      "schools": ["76862"]
+    },
+    {
+      "id": "9872",
+      "first": "John",
+      "last": "Kimble",
+      "email": "john.kimble@det.nsw.edu.au",
+      "schools": ["76862"]
     }
   ]
 }

@@ -3,49 +3,93 @@
     {
       "1": {
         "label": "Curriculum Engagement",
+        "description": "Speciess congregabo in lutetia.",
         "categories": {
-          "1": { "label": "Literacy" },
-          "2": { "label": "Numeracy" },
-          "4": { "label": "PDHPE" },
-          "5": { "label": "Science" },
-          "6": { "label": "HSIE" },
-          "7": { "label": "Technology" },
-          "8": { "label": "Creative Arts" },
-          "9": { "label": "Languages" }
+          "1": {
+            "label": "Literacy",
+          },
+          "2": {
+            "label": "Numeracy"
+          },
+          "4": {
+            "label": "PDHPE"
+          },
+          "5": {
+            "label": "Science"
+          },
+          "6": {
+            "label": "HSIE"
+          },
+          "7": {
+            "label": "Technology"
+          },
+          "8": {
+            "label": "Creative Arts"
+          },
+          "9": {
+            "label": "Languages"
+          }
         }
       },
       "2": {
         "label": "Wellbeing and Support",
+        "description": null,
         "categories": {
-          "1": { "label": "Student Participation" },
-          "2": { "label": "Social and Emotional Learning" },
-          "3": { "label": "Student Support" }
+          "1": {
+            "label": "Student Participation"
+          },
+          "2": {
+            "label": "Social and Emotional Learning"
+          },
+          "3": {
+            "label": "Student Support"
+          }
         }
       },
       "3": {
         "label": "Co-curricular",
+        "description": null,
         "categories": {
-          "1": { "label": "Creative and Performing Arts" },
-          "2": { "label": "Interest Groups" },
-          "3": { "label": "Environmental Initiative" },
-          "4": { "label": "Physical Fitness" },
-          "5": { "label": "Student Enrichment and Leadership" },
-          "6": { "label": "Technology" }
+          "1": {
+            "label": "Creative and Performing Arts"
+          },
+          "2": {
+            "label": "Interest Groups"
+          },
+          "3": {
+            "label": "Environmental Initiative"
+          },
+          "4": {
+            "label": "Physical Fitness"
+          },
+          "5": {
+            "label": "Student Enrichment and Leadership"
+          },
+          "6": {
+            "label": "Technology"
+          }
         }
       },
       "4": {
         "label": "Parent and Community Engagement",
+        "description": null,
         "categories": {
-          "1": { "label": "Parent Participation" },
-          "2": { "label": "Contributing to the Community" }
+          "1": {
+            "label": "Parent Participation"
+          },
+          "2": {
+            "label": "Contributing to the Community"
+          }
         }
       },
       "5": {
         "label": "Sports",
+        "description": null,
         "categories": null
       },
       "6": {
         "label": "STEM",
+        "description": null,
         "categories": null
       }
     }
