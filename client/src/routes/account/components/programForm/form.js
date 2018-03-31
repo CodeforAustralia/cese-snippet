@@ -7,6 +7,8 @@ import {
   Button,
 } from 'reactstrap';
 
+import CategorySelect from './../fieldCategory';
+
 const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) => {
   const isEdit = typeof formState.id !== 'undefined';
 
@@ -15,11 +17,30 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
 
     const form = e.target;
     const data = {
-      id: form.id.value,
       name: form.name.value,
       code: form.code.value,
       year: form.year.value,
+      // category,
+      // subCategory,
+      // aims,
+      // description,
+      // descriptionFull,
+      // website,
+      // participantGroups,
+      // participantGroupsDescription,
+      // yearLevel,
+      // cohortSize,
+      // deliveredByType,
+      // staff,
+      // yearDelivered,
+      // termsDelivered,
+      // tags,
     };
+
+    if (form.id && form.id.value) {
+      data.id = form.id;
+    }
+
     return onSubmit(data).then(() => {
       onSubmitSuccess(form.code.value, form.year.value);
     });
@@ -46,7 +67,7 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
 
       <FormGroup>
         <Label for="category">Type of program</Label>
-        <Input type="text" id="category" name="category" defaultValue={formState.category} />
+        <CategorySelect id="category" name="category" defaultValue={formState.category} />
       </FormGroup>
       <FormGroup>
         <Label for="subCategory">Sub category</Label>
@@ -67,6 +88,7 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
         <Label for="descriptionFull">Full description</Label>
         <Input type="text" id="descriptionFull" name="descriptionFull" defaultValue={formState.descriptionFull} />
       </FormGroup>
+
       <FormGroup>
         <Label for="website">Website</Label>
         <Input type="url" id="website" name="website" defaultValue={formState.website} />
