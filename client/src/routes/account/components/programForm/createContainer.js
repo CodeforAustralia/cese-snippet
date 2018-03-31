@@ -4,7 +4,7 @@ import { createProgram } from 'store/programs/actionCreators';
 const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
   return {
-    formState: location.state && location.state.formState || {},
+    formState: location.state && location.state.formState,
   }
 };
 
