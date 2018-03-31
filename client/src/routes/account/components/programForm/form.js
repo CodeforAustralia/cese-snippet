@@ -3,6 +3,7 @@ import {
   Form,
   FormGroup,
   Label,
+  FormText,
   Input,
   Button,
 } from 'reactstrap';
@@ -75,11 +76,17 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       </FormGroup>
       <FormGroup>
         <Label for="aims">Desired outcomes</Label>
-        <Input type="text" id="aims" name="aims" defaultValue={formState.aims} />
+        <Input type="textarea" rows={3} id="aims" name="aims" defaultValue={formState.aims} />
+        <FormText color="muted">
+          Briefly describe what outcomes the program hopes to achieve.
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label for="description">Short description</Label>
         <Input type="text" id="description" name="description" defaultValue={formState.description} />
+        <FormText color="muted">
+          What does the program does in a nutshell?
+        </FormText>
       </FormGroup>
 
       <p>Would you like to add a longer description?</p>
@@ -87,11 +94,17 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       <FormGroup>
         <Label for="descriptionFull">Full description</Label>
         <Input type="text" id="descriptionFull" name="descriptionFull" defaultValue={formState.descriptionFull} />
+        <FormText color="muted">
+          A comprehensive full length description of the program.
+        </FormText>
       </FormGroup>
 
       <FormGroup>
         <Label for="website">Website</Label>
         <Input type="url" id="website" name="website" defaultValue={formState.website} />
+        <FormText color="muted">
+          Some programs have a website for more information.
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label for="participantGroups">Who is the program for?</Label>
@@ -106,21 +119,33 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       </FormGroup>
 
       <FormGroup>
-        <Label for="yearLevel">Which school years are participating in this program?</Label>
+        <Label for="yearLevel">Year levels</Label>
         <Input type="text" id="yearLevel" name="yearLevel" defaultValue={formState.yearLevel} disabled={isEdit} />
+        <FormText color="muted">
+          Which school years are participating in this program?
+        </FormText>
       </FormGroup>
       <FormGroup>
         <Label for="cohortSize">Cohort size</Label>
         <Input type="text" id="cohortSize" name="cohortSize" defaultValue={formState.cohortSize} />
+        <FormText color="muted">
+          How many people participated in this program?
+        </FormText>
       </FormGroup>
 
       <FormGroup>
-        <Label for="deliveredByType">Is the program run by school staff or another provider?</Label>
+        <Label for="deliveredByType">Provider</Label>
         <Input type="text" id="deliveredByType" name="deliveredByType" defaultValue={formState.deliveredByType} />
+        <FormText color="muted">
+          Is the program run by school staff or another provider?
+        </FormText>
       </FormGroup>
       <FormGroup>
-        <Label for="staff">Which staff members are involved in organising and/or facilitating?</Label>
+        <Label for="staff">Staff involved</Label>
         <Input type="text" id="staff" name="staff" defaultValue={formState.staff} />
+        <FormText color="muted">
+          Which staff members are involved in organising and/or facilitating?
+        </FormText>
       </FormGroup>
 
       <FormGroup>
@@ -135,6 +160,9 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       <FormGroup>
         <Label for="tags">Keywords</Label>
         <Input type="text" id="tags" name="tags" defaultValue={formState.tags} />
+        <FormText color="muted">
+          Keywords could help others to search for programs like this one in the future.
+        </FormText>
       </FormGroup>
 
       <Button type="submit" className="btn btn-lg btn-primary btn-block">Submit</Button>
