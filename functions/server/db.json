@@ -13,9 +13,8 @@
       "category": "Curriculum engagement",
       "subCategory": "Literacy",
       "deliveredByType": "School staff",
-      "audience": ["Students"],
-      "audienceType": null,
-      "audienceDescription": null,
+      "participantGroups": ["Students"],
+      "participantGroupsDescription": null,
       "tags": ["spelling"],
       "createdBy": "23423",
       "lastUpdatedBy": "8787",
@@ -25,28 +24,27 @@
   "programs": [
     {
       "id": "1",
+      "code": "21312",
       "name": "Mars Program 1",
+      "category": "Curriculum engagement",
+      "subCategory": "Literacy",
+      "aims": null,
       "description": "Gallus peregrinationess, tanquam castus burgus.",
       "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
       "website": null,
-      "aims": null,
-      "code": "21312",
-      "yearDelivered": "2018",
-      "termsDelivered": [2, 3],
+      "participantGroups": ["Students"],
+      "participantGroupsDescription": "Disadvantaged",
       "yearLevels": [
         "7",
         "8"
       ],
       "cohortSize": 120,
-      "category": "Curriculum engagement",
-      "subCategory": "Literacy",
       "deliveredByType": "School staff",
       "staff": [
         "8787"
       ],
-      "audience": ["Students"],
-      "audienceType": "Disadvantaged",
-      "audienceDescription": null,
+      "yearDelivered": "2018",
+      "termsDelivered": [2, 3],
       "tags": ["spelling"],
       "createdBy": "298364",
       "lastUpdatedBy": "8787",
@@ -73,9 +71,8 @@
       "staff": [
         "23423"
       ],
-      "audience": ["Students"],
-      "audienceType": "Disadvantaged",
-      "audienceDescription": null,
+      "participantGroups": ["Students"],
+      "participantGroupsDescription": "Disadvantaged",
       "tags": ["fitness"],
       "createdBy": "23423",
       "lastUpdatedBy": "23423",
@@ -104,9 +101,8 @@
       "staff": [
         "23423"
       ],
-      "audience": ["Students"],
-      "audienceType": null,
-      "audienceDescription": null,
+      "participantGroups": ["Students"],
+      "participantGroupsDescription": null,
       "tags": [],
       "createdBy": "23423",
       "lastUpdatedBy": "23423",
@@ -132,9 +128,8 @@
       "staff": [
         "8787"
       ],
-      "audience": ["Students"],
-      "audienceType": null,
-      "audienceDescription": null,
+      "participantGroups": ["Students"],
+      "participantGroupsDescription": null,
       "tags": ["spelling"],
       "createdBy": "23423",
       "lastUpdatedBy": "8787",

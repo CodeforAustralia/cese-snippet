@@ -1,97 +1,64 @@
 {
   "categories": [
     {
-      "1": {
-        "label": "Curriculum Engagement",
-        "description": "Speciess congregabo in lutetia.",
-        "categories": {
-          "1": {
-            "label": "Literacy"
-          },
-          "2": {
-            "label": "Numeracy"
-          },
-          "4": {
-            "label": "PDHPE"
-          },
-          "5": {
-            "label": "Science"
-          },
-          "6": {
-            "label": "HSIE"
-          },
-          "7": {
-            "label": "Technology"
-          },
-          "8": {
-            "label": "Creative Arts"
-          },
-          "9": {
-            "label": "Languages"
-          }
-        }
-      },
-      "2": {
-        "label": "Wellbeing and Support",
-        "description": null,
-        "categories": {
-          "1": {
-            "label": "Student Participation"
-          },
-          "2": {
-            "label": "Social and Emotional Learning"
-          },
-          "3": {
-            "label": "Student Support"
-          }
-        }
-      },
-      "3": {
-        "label": "Co-curricular",
-        "description": null,
-        "categories": {
-          "1": {
-            "label": "Creative and Performing Arts"
-          },
-          "2": {
-            "label": "Interest Groups"
-          },
-          "3": {
-            "label": "Environmental Initiative"
-          },
-          "4": {
-            "label": "Physical Fitness"
-          },
-          "5": {
-            "label": "Student Enrichment and Leadership"
-          },
-          "6": {
-            "label": "Technology"
-          }
-        }
-      },
-      "4": {
-        "label": "Parent and Community Engagement",
-        "description": null,
-        "categories": {
-          "1": {
-            "label": "Parent Participation"
-          },
-          "2": {
-            "label": "Contributing to the Community"
-          }
-        }
-      },
-      "5": {
-        "label": "Sports",
-        "description": null,
-        "categories": null
-      },
-      "6": {
-        "label": "STEM",
-        "description": null,
-        "categories": null
-      }
+      "id": "1",
+      "label": "Curriculum Engagement",
+      "description": "Speciess congregabo in lutetia.",
+      "categories": [
+        { "id": "1001", "label": "Literacy" },
+        { "id": "1002", "label": "Numeracy" },
+        { "id": "1003", "label": "PDHPE" },
+        { "id": "1004", "label": "Science" },
+        { "id": "1005", "label": "HSIE" },
+        { "id": "1006", "label": "Technology" },
+        { "id": "1007", "label": "Creative Arts" },
+        { "id": "1008", "label": "Languages" }
+      ]
+    },
+    {
+      "id": "2",
+      "label": "Wellbeing and Support",
+      "description": null,
+      "categories": [
+        { "id": "1009", "label": "Student Participation" },
+        { "id": "1009", "label": "Social and Emotional Learning" },
+        { "id": "1009", "label": "Student Support" }
+      ]
+    },
+    {
+      "id": "3",
+      "label": "Co-curricular",
+      "description": null,
+      "categories": [
+        { "id": "1010", "label": "Creative and Performing Arts" },
+        { "id": "1011", "label": "Interest Groups" },
+        { "id": "1012", "label": "Interest" },
+        { "id": "1013", "label": "Environmental Initiative" },
+        { "id": "1014", "label": "Physical Fitness" },
+        { "id": "1015", "label": "Student Enrichment and Leadership" },
+        { "id": "1016", "label": "Technology" }
+      ]
+    },
+    {
+      "id": "4",
+      "label": "Parent and Community Engagement",
+      "description": null,
+      "categories": [
+        { "id": "1017", "label": "Parent Participation" },
+        { "id": "1018", "label": "Contributing to the Community" }
+      ]
+    },
+    {
+      "id": "5",
+      "label": "Sports",
+      "description": null,
+      "categories": null
+    },
+    {
+      "id": "6",
+      "label": "STEM",
+      "description": null,
+      "categories": null
     }
   ]
 }
