@@ -23,38 +23,60 @@ We recommend using [nvm](https://github.com/creationix/nvm) to manage Node versi
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2092e91a51aa5a067495/test_coverage)](https://codeclimate.com/github/CodeforAustralia/cese-snippet/test_coverage)
 
-
 View [Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/client/README.md). 
 
 
-## Server 
+## Functions 
 
-This is a mock server and documentation is not provided. 
-
-
-## Development setup
-
-Setup the app as separate services running on your local machine.
+Various Serverless Functions to support the demo environment. The real app is deployed to Department of Education cloud services and uses APIs provided by the Department. As this is a project aid only, documentation is not provided. 
 
 
-### To install, 
+## But I just want to play with the app! 
 
-Follow set up instructions in each container's README.
+Ok ok ok! 
+
+The client application can be run using a mock api without a database. 
+
+1. Navigate to `./client` and then first install dependencies
+
+```bash 
+cd client
+yarn install 
+```
+
+2. Run the mock API 
+
+```bash 
+yarn api
+```
+
+2. Open a second terminal window and run the app
+
+```bash 
+yarn dev
+``` 
 
 
-### To run both services, open two command sessions, 
+## Developing 
 
-1. Run the api
+You can develop using the mock API or using the Serverless environment connected to MongoDB. 
+
+Install a MongoDB database called "Snippet" and run a third terminal window for the database. 
+
+Run the Functions container individually or use Firebase local to run all of the containers
 
 ```bash
 firebase serve --only functions,hosting
 ```
 
-2. Run the frontend
+You will also need to launch a development session of `./client`
 
 ```bash
-cd client && yarn dev
+cd client
+yarn dev
 ```
+
+Todo: this documentation section could be improved. 
 
 
 ## Deploy
