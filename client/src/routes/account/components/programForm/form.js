@@ -10,8 +10,7 @@ import {
 
 import CategorySelect from './../fieldCategory';
 
-const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) => {
-  const isEdit = typeof formState.id !== 'undefined';
+const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {}, isEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +35,10 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       // year,
       // terms,
       // tags,
+      // createdAt
+      // createdBy
+      // updatedBy
+      // updatedAy
     };
 
     if (form.id && form.id.value) {
@@ -54,6 +57,16 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
           <Label for="id">ID</Label>
           <Input type="text" id="id" name="id" defaultValue={formState.id} />
         </FormGroup>
+      }
+      { isEdit ?
+          <FormGroup hidden>
+            <Label for="updatedBy">Updated By</Label>
+            <Input type="text" id="updatedBy" name="updatedBy" value={formState.updatedBy} disabled={true} />
+          </FormGroup> :
+          <FormGroup hidden>
+            <Label for="createdBy">Created By</Label>
+            <Input type="text" id="createdBy" name="createdBy" value={formState.createdBy} disabled={true} />
+          </FormGroup>
       }
       <FormGroup>
         <Label for="code">School code</Label>
@@ -162,6 +175,15 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
         <Input type="text" id="tags" name="tags" defaultValue={formState.tags} />
         <FormText color="muted">
           Keywords could help others to search for programs like this one in the future.
+        </FormText>
+      </FormGroup>
+
+
+      <FormGroup hidden>
+        <Label for="website">Updated by</Label>
+        <Input type="url" id="website" name="website" defaultValue={formState.website} />
+        <FormText color="muted">
+          Some programs have a website for more information.
         </FormText>
       </FormGroup>
 

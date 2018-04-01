@@ -6,9 +6,21 @@ module.exports = {
     all: [ logger() ],
     find: [],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
+    create: [
+      (context) => {
+	      context.data.createdAt = new Date().getTime();
+      },
+    ],
+    update: [
+	    (context) => {
+		    context.data.updatedAt = new Date().getTime();
+	    },
+    ],
+    patch: [
+	    (context) => {
+		    context.data.updatedAt = new Date().getTime();
+	    },
+    ],
     remove: []
   },
 

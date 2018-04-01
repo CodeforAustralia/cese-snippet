@@ -38,6 +38,7 @@
     "winston": "^2.4.1"
   },
   "devDependencies": {
+    "@feathersjs/cli": "^3.6.1",
     "nodemon": "^1.17.3"
   }
 }

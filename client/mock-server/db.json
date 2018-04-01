@@ -46,9 +46,10 @@
       "year": "2018",
       "terms": [2, 3],
       "tags": ["spelling"],
+      "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "298364",
-      "lastUpdatedBy": "8787",
-      "lastUpdated": "2018-02-04T23:56:38.363Z"
+      "updatedBy": "8787",
+      "updatedAy": "2018-02-04T23:56:38.363Z"
     },
     {
       "id": "2",
@@ -74,9 +75,10 @@
       "participantGroups": ["Students"],
       "participantGroupsDescription": "Disadvantaged",
       "tags": ["fitness"],
-      "createdBy": "23423",
-      "lastUpdatedBy": "23423",
-      "lastUpdated": "2018-03-04T23:56:38.363Z"
+      "createdAt": "2017-02-04T23:56:38.363Z",
+      "createdBy": "298364",
+      "updatedBy": "8787",
+      "updatedAy": "2018-03-04T23:56:38.363Z"
     },
     {
       "id": "3",
@@ -104,9 +106,10 @@
       "participantGroups": ["Students"],
       "participantGroupsDescription": null,
       "tags": [],
+      "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "23423",
-      "lastUpdatedBy": "23423",
-      "lastUpdated": "2017-03-04T23:56:38.363Z"
+      "updatedBy": "23423",
+      "updatedAy": "2017-03-04T23:56:38.363Z"
     },
     {
       "id": "4",
@@ -131,9 +134,10 @@
       "participantGroups": ["Students"],
       "participantGroupsDescription": null,
       "tags": ["spelling"],
+      "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "23423",
-      "lastUpdatedBy": "8787",
-      "lastUpdated": "2018-02-04T23:56:38.363Z"
+      "updatedBy": "8787",
+      "updatedAt": "2018-02-04T23:56:38.363Z"
     }
   ],
   "schools": [

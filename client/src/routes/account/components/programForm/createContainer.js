@@ -1,10 +1,20 @@
 import { connect } from 'react-redux';
 import { createProgram } from 'store/programs/actionCreators';
+import { selectSession } from "store/session/selectors";
 
 const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
+  const session = selectSession(state);
+  const formState = location.state && location.state.formState || {};
+
+  const newFormState = {
+    ...formState,
+    createdBy: session.id,
+  };
+
   return {
-    formState: location.state && location.state.formState,
+    isEdit: false,
+    formState: newFormState,
   }
 };
 

@@ -3,7 +3,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 module.exports = function (app) {
   const config = app.get('mongodb');
-  console.log(config)
   const dbName = url.parse(config).path.substring(1);
   const promise = MongoClient.connect(config).then(client => {
     // For mongodb <= 2.2
