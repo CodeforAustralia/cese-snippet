@@ -12,6 +12,28 @@ module.exports = {
   plugins: [
     // your custom plugins
   ],
+
+
+  resolve: {
+    // This allows you to set a fallback for where Webpack should look for modules.
+    // We placed these paths second because we want `node_modules` to "win"
+    // if there are any conflicts. This matches Node resolution mechanism.
+    // https://github.com/facebookincubator/create-react-app/issues/253
+    modules: [
+      'node_modules',
+      paths.appNodeModules,
+      paths.appSrc,
+    ],
+    // These are the reasonable defaults supported by the Node ecosystem.
+    // We also include JSX as a common component filename extension to support
+    // some tools, although we do not recommend using it, see:
+    // https://github.com/facebookincubator/create-react-app/issues/290
+    // `web` extension prefixes have been added for better support
+    // for React Native Web.
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+  },
+
+
   module: {
     rules: [
       // add your custom rules.
