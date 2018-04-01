@@ -214,6 +214,7 @@ module.exports = {
           //
           {
             test: /(\.css|\.scss)$/,
+            include: [paths.appSrc],
             use: [
               require.resolve('style-loader'),
               {

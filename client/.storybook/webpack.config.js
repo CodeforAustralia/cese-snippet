@@ -6,7 +6,9 @@
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
 
+const autoprefixer = require('autoprefixer');
 const paths = require('./../config/paths');
+
 
 module.exports = {
   plugins: [
@@ -95,6 +97,7 @@ module.exports = {
       //
       {
         test: /(\.css|\.scss)$/,
+        include: [paths.appSrc],
         use: [
           require.resolve('style-loader'),
           {
