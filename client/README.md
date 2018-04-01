@@ -24,15 +24,13 @@ Mock API
 nvm use
 ````
 
-2. Create a local `./.env` from `./.env.sample` 
- 
-3. Run the app:
+2. Run the app:
  
 ```bash
 yarn dev
 ```
 
-4. In a second terminal window, run the mock server: 
+3. In a second terminal window, run the mock server: 
 
 ```bash
 # run the mock server

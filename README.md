@@ -83,7 +83,7 @@ You can run Function containers individually or use Firebase to run all of the c
 firebase serve --only functions,hosting
 ```
 
-To work on the client app, you will need to launch a development session. Alternatively built files are served in combination with `firebase serve` from from `./client/build` 
+To work on the client app, you will need to launch a development session. Alternatively built files are served in combination with `firebase serve` from `./client/build` 
 
 ```bash
 cd client
