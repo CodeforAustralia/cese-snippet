@@ -1,0 +1,41 @@
+@import '~style/helpers.scss';
+
+.program {
+  border: 1px solid #d7dbdb;
+  border-radius: 3px;
+}
+
+.emptyProgram {
+  @extend .program;
+  border-style: dashed;
+  text-align: center;
+  border-radius: 5px;
+  padding: 50px calc(50% - 400px) 50px;
+}
+
+.emptyProgamTitle {
+  color: #9fa1a2;
+  font-weight: 400;
+}
+
+.emptyProgamSubTitle {
+  color: $primary;
+  font-weight: 200;
+}
+
+.emptyProgramHelpText {
+  max-width: 550px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+
+.columnLeft {
+  background: white;
+}
+
+.columnRight {
+  background: #ccc;
+}
