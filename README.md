@@ -4,7 +4,7 @@ Snippet is an app built in Fellowship with NSW Education Centre for Education St
 
 Snippet allows educators to view or publish insights about program applications in NSW schools.
 
-This repository contains both a mock server and the client app that is used internally at NSW Education. 
+This repository contains a client app that is exported to an internal application at NSW Education.  
 
 
 ## Requirements
@@ -13,6 +13,7 @@ This repository contains both a mock server and the client app that is used inte
 * [npm](http://npmjs.com/) `5.6.0`
 * [yarn](https://yarnpkg.com) `1.5.1`
 * [firebase-tools](https://www.npmjs.com/package/firebase-tools) `^3.16.0`
+* [MongoDB](https://www.mongodb.com/) `^3.0.0`
 
 We recommend using [nvm](https://github.com/creationix/nvm) to manage Node versions.
 
