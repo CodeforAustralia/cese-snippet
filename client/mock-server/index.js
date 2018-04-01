@@ -1,4 +1,3 @@
-const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const apiRouter = require('./routes/api');
@@ -10,12 +9,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '10mb', extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, './../../', 'client/build')));
-
 app.use('/api', apiRouter);
 
-app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, './../../', 'client/build/index.html'));
+app.listen(5001, () => {
+  console.log('API running at http://localhost:5001/api');
 });
-
-module.exports = app;

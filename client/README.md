@@ -11,23 +11,36 @@ Data management
 UI
 - [Reactstrap](https://reactstrap.github.io)
 
+Mock API
+- [json-server](https://www.npmjs.com/package/json-server)
+
+
 ## Set up 
 
-1. 
+1. Use the correct Node version
 
 ``` bash
 # set the Node version
 nvm use
 ````
 
-2.
-
-Create a local `./.env` from `./.env.sample` 
+2. Run the app:
  
+```bash
+yarn dev
+```
+
+3. In a second terminal window, run the mock server: 
+
+```bash
+# run the mock server
+yarn api
+```
+
 
 ## CLI Commands
 
-``` bash
+```bash
 # install dependencies
 yarn
 
@@ -42,6 +55,12 @@ yarn serve
 
 # run test watcher
 yarn test
+
+# run test on individual file
+yarn test store/rootReducer
+
+# run the mock server
+yarn api
 ```
 
 

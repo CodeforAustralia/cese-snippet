@@ -1,0 +1,43 @@
+{
+  "name": "api-service",
+  "description": "",
+  "version": "0.0.0",
+  "homepage": "",
+  "main": "src",
+  "keywords": [
+    "feathers"
+  ],
+  "author": {
+    "name": "Elise Chant",
+    "email": "elise.chant@gmail.com"
+  },
+  "contributors": [],
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/"
+  },
+  "engines": {
+    "node": "^6.0.0",
+    "yarn": ">= 0.18.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/",
+    "start": "node src/"
+  },
+  "peerDependencies": {
+    "@feathersjs/configuration": "^1.0.2",
+    "@feathersjs/errors": "^3.3.0",
+    "@feathersjs/express": "^1.2.1",
+    "@feathersjs/feathers": "^3.1.4",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "feathers-mongodb": "^3.0.1",
+    "helmet": "^3.12.0",
+    "mongodb": "^3.0.5",
+    "winston": "^2.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}

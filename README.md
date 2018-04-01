@@ -23,38 +23,74 @@ We recommend using [nvm](https://github.com/creationix/nvm) to manage Node versi
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2092e91a51aa5a067495/test_coverage)](https://codeclimate.com/github/CodeforAustralia/cese-snippet/test_coverage)
 
-
 View [Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/client/README.md). 
 
 
-## Server 
+## Functions 
 
-This is a mock server and documentation is not provided. 
+Serverless Functions that support the demo environment. 
 
+In the real environment. only the client app is deployed to Department of Education cloud services. Here the client app also uses APIs provided by the Department. 
 
-## Development setup
-
-Setup the app as separate services running on your local machine.
-
-
-### To install, 
-
-Follow set up instructions in each container's README.
+As Functions is a project aid only, documentation is not provided. 
 
 
-### To run both services, open two command sessions, 
+## But I just want to play with the app! 
 
-1. Run the api
+Ok ok ok! 
+
+The client application can be run along with a mock api that does not require a database. 
+
+1. Navigate to `./client`
+
+```bash 
+cd client 
+```
+ 
+2. The first time, install dependencies:
+
+```bash 
+yarn install 
+```
+
+3. Run the mock API: 
+
+```bash 
+yarn api
+```
+
+4. Open a second terminal window and run the app:
+
+```bash 
+yarn dev
+``` 
+
+
+## Developing 
+
+You can develop using the mock API described above or by using the Serverless environment connected to a MongoDB instance. 
+
+Install a MongoDB database called "Snippet" and then run a third terminal window for the database: 
+
+```bash
+mongod
+
+```
+
+You can run Function containers individually or use Firebase to run all of the containers at the once:
 
 ```bash
 firebase serve --only functions,hosting
 ```
 
-2. Run the frontend
+To work on the client app, you will need to launch a development session. Alternatively built files are served in combination with `firebase serve` from `./client/build` 
 
 ```bash
-cd client && yarn dev
+cd client
+yarn dev
 ```
+
+Todo: this documentation section could be improved. 
 
 
 ## Deploy

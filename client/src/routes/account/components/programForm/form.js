@@ -33,8 +33,8 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       // cohortSize,
       // deliveredByType,
       // staff,
-      // yearDelivered,
-      // termsDelivered,
+      // year,
+      // terms,
       // tags,
     };
 
@@ -149,12 +149,12 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {} }) =
       </FormGroup>
 
       <FormGroup>
-        <Label for="yearDelivered" hidden>Year delivered</Label>
-        <Input type="text" id="yearDelivered" name="yearDelivered" defaultValue={formState.yearDelivered} />
+        <Label for="year" hidden>Year delivered</Label>
+        <Input type="text" id="year" name="year" defaultValue={formState.year} />
       </FormGroup>
       <FormGroup>
-        <Label for="termsDelivered">Terms delivered</Label>
-        <Input type="text" id="termsDelivered" name="termsDelivered" defaultValue={formState.termsDelivered} />
+        <Label for="terms">Terms delivered</Label>
+        <Input type="text" id="terms" name="terms" defaultValue={formState.terms} />
       </FormGroup>
 
       <FormGroup>

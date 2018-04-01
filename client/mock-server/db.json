@@ -43,8 +43,8 @@
       "staff": [
         "8787"
       ],
-      "yearDelivered": "2018",
-      "termsDelivered": [2, 3],
+      "year": "2018",
+      "terms": [2, 3],
       "tags": ["spelling"],
       "createdBy": "298364",
       "lastUpdatedBy": "8787",
@@ -58,8 +58,8 @@
       "website": "https://jupiter.com.au",
       "aims": null,
       "code": "76862",
-      "yearDelivered": "2018",
-      "termsDelivered": [3, 4],
+      "year": "2018",
+      "terms": [3, 4],
       "yearLevels": [
         "7",
         "8"
@@ -86,8 +86,8 @@
       "website": null,
       "aims": null,
       "code": "21312",
-      "yearDelivered": "2017",
-      "termsDelivered": [1],
+      "year": "2017",
+      "terms": [1],
       "yearLevels": [
         "7",
         "8",
@@ -116,8 +116,8 @@
       "website": "https://l3.com.au",
       "aims": null,
       "code": "21312",
-      "yearDelivered": "2017",
-      "termsDelivered": [1,2,3,4],
+      "year": "2017",
+      "terms": [1,2,3,4],
       "yearLevels": [
         "K"
       ],
