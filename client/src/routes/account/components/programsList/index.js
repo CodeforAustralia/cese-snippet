@@ -11,7 +11,7 @@ import style from './style.scss';
 const EmptyItem = ({ openAddProgram, activeYear }) => {
   return (
     <section className={style.emptyProgram}>
-      {/*<img src={EmptyProgramIcon} />*/}
+      <img src="http://via.placeholder.com/115x115?text=" className={style.emptyProgramIcon} />
       <p className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for {activeYear}</p>
       <p className={cx('h5 mb-4', style.emptyProgamSubTitle)}>If you know details of a Program, it's easy to create one</p>
       <Button color="primary" size="lg" onClick={openAddProgram} className="mb-4">Add a New Program</Button>
