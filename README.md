@@ -28,29 +28,38 @@ View [Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/clien
 
 ## Functions 
 
-Various Serverless Functions to support the demo environment. The real app is deployed to Department of Education cloud services and uses APIs provided by the Department. As this is a project aid only, documentation is not provided. 
+Serverless Functions that support the demo environment. 
+
+In the real environment. only the client app is deployed to Department of Education cloud services. Here the client app also uses APIs provided by the Department. 
+
+As Functions is a project aid only, documentation is not provided. 
 
 
 ## But I just want to play with the app! 
 
 Ok ok ok! 
 
-The client application can be run using a mock api without a database. 
+The client application can be run along with a mock api that does not require a database. 
 
-1. Navigate to `./client` and then first install dependencies
+1. Navigate to `./client`
 
 ```bash 
-cd client
+cd client 
+```
+ 
+2. The first time, install dependencies:
+
+```bash 
 yarn install 
 ```
 
-2. Run the mock API 
+3. Run the mock API: 
 
 ```bash 
 yarn api
 ```
 
-2. Open a second terminal window and run the app
+4. Open a second terminal window and run the app:
 
 ```bash 
 yarn dev
@@ -59,17 +68,22 @@ yarn dev
 
 ## Developing 
 
-You can develop using the mock API or using the Serverless environment connected to MongoDB. 
+You can develop using the mock API described above or by using the Serverless environment connected to a MongoDB instance. 
 
-Install a MongoDB database called "Snippet" and run a third terminal window for the database. 
+Install a MongoDB database called "Snippet" and then run a third terminal window for the database: 
 
-Run the Functions container individually or use Firebase local to run all of the containers
+```bash
+mongod
+
+```
+
+You can run Function containers individually or use Firebase to run all of the containers at the once:
 
 ```bash
 firebase serve --only functions,hosting
 ```
 
-You will also need to launch a development session of `./client`
+To work on the client app, you will need to launch a development session. Alternatively built files are served in combination with `firebase serve` from from `./client/build` 
 
 ```bash
 cd client
