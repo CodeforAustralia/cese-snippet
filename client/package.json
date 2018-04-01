@@ -13,7 +13,9 @@
     "test:watch": "yarn test --watchAll",
     "serve": "yarn build && serve -s build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "predeploy": "NODE_ENV=production yarn build",
+    "deploy": "firebase deploy --only hosting"
   },
   "eslintIgnore": [
     "build/*"
@@ -143,7 +145,10 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://localhost:5000"
+      "target": "http://localhost:5001"
+    },
+    "/snippet-3efc5/us-central1/app": {
+      "target": "http://localhost:5001"
     }
   }
 }

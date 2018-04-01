@@ -1,5 +1,6 @@
-var functions = require('firebase-functions');
+const functions = require('firebase-functions');
 
-var app = require('./server');
+// const localServer = require('./local-server');
+const api = require('./api-service/src/app');
 
-exports.app = functions.https.onRequest(app);
+exports.app = functions.https.onRequest(api);
