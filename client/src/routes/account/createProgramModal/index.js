@@ -3,7 +3,9 @@ import cx from 'classnames';
 import { BodyClass } from 'components/elementClass';
 import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import {
-  Button
+  Button,
+  Row,
+  Col,
 } from 'reactstrap';
 
 import {
@@ -26,6 +28,10 @@ const CreateProgramModal = ({ history, location }) => {
 
   const Form = isEdit ? UpdateForm : CreateForm;
 
+  const title = isEdit ?
+    'Add a Program for your School' :
+    `Update Program`;
+
   return (
     <div className={cx(style.overlay)} tabIndex="-1" role="dialog" onClick={back}>
 
@@ -36,13 +42,17 @@ const CreateProgramModal = ({ history, location }) => {
 
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Create program modal</h5>
+            <h5 className="modal-title">{title}</h5>
             <Button className="close" color="" aria-label="Close" onClick={back}>
               <span aria-hidden="true">&times;</span>
             </Button>
           </div>
           <div className="modal-body">
-            <Form onSubmitSuccess={() => back()} />
+            <Row>
+              <Col sm={8}>
+                <Form onSubmitSuccess={() => back()} />
+              </Col>
+            </Row>
           </div>
         </div>
 
