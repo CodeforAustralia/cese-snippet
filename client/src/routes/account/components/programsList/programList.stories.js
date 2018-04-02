@@ -42,7 +42,7 @@ storiesOf('Programs List', module)
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "298364",
       "updatedBy": "8787",
-      "updatedAy": "2018-02-04T23:56:38.363Z"
+      "updatedAt": "2018-02-04T23:56:38.363Z"
     }]} />
   )
 ;
