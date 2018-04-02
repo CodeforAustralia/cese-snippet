@@ -61,6 +61,9 @@ yarn test store/rootReducer
 
 # run the mock server
 yarn api
+
+# start storybook (develop UI components)
+yarn storybook 
 ```
 
 

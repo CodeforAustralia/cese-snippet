@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 
 import ProgramsList from './../components/programsList';
+import { getCreateProgramModalUrl } from "helpers/url";
 
 
 class SchoolPrograms extends React.Component {
@@ -27,6 +28,7 @@ class SchoolPrograms extends React.Component {
       isFetchingSchools,
       filteredPrograms,
       isFetchingPrograms,
+      filterProps,
     } = this.props;
 
     if (isFetchingSchools !== false) {
@@ -52,7 +54,9 @@ class SchoolPrograms extends React.Component {
           <p>Loading...</p> :
             !filteredPrograms.length ?
               <p>No programs for that filter</p> :
-              <ProgramsList programs={filteredPrograms} />
+              <ProgramsList programs={filteredPrograms}
+                            openAddProgram={() => getCreateProgramModalUrl(filterProps.year, filterProps.code)}
+                            activeYear={filterProps.year} />
         }
       </div>
     );

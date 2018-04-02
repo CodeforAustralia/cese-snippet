@@ -4,7 +4,7 @@ Snippet is an app built in Fellowship with NSW Education Centre for Education St
 
 Snippet allows educators to view or publish insights about program applications in NSW schools.
 
-This repository contains a client app that is exported to an internal application at NSW Education.  
+This repository contains a web application client that is exported to an internal application at NSW Education.  
 
 
 ## Requirements
