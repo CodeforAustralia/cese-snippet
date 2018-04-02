@@ -40,6 +40,7 @@ const ProgramForm = ({
             <Input type="text" id="createdBy" name="createdBy" defaultValue={values.createdBy} disabled={true} />
           </FormGroup>
       }
+
       <FormGroup>
         <Label for="code">School code</Label>
         <Input type="text" id="code" name="code"
@@ -58,117 +59,168 @@ const ProgramForm = ({
                invalid={errors.name} />
       </FormGroup>
 
-      {/*<p>Is it one of these programs? prompt</p>*/}
+      <p>Is it one of these programs? prompt</p>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="category">Type of program</Label>*/}
-        {/*<CategorySelect id="category" name="category" defaultValue={values.category} />*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="subCategory">Sub category</Label>*/}
-        {/*<Input type="text" id="subCategory" name="subCategory" defaultValue={values.subCategory} />*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="aims">Desired outcomes</Label>*/}
-        {/*<Input type="textarea" rows={3} id="aims" name="aims" defaultValue={values.aims} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Briefly describe what outcomes the program hopes to achieve.*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="description">Short description</Label>*/}
-        {/*<Input type="textarea" rows={2} id="description" name="description" defaultValue={values.description} />*/}
-        {/*<FormText color="muted">*/}
-          {/*What does the program does in a nutshell?*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="category">Type of program</Label>
+        <CategorySelect id="category" name="category"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        defaultValue={values.category}
+                        invalid={errors.category} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="subCategory">Sub category</Label>
+        <Input type="text" id="subCategory" name="subCategory"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.subCategory}
+               invalid={errors.subCategory} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="aims">Desired outcomes</Label>
+        <Input type="textarea" rows={3} id="aims" name="aims"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.aims}
+               invalid={errors.aims} />
+        <FormText color="muted">
+          Briefly describe what outcomes the program hopes to achieve.
+        </FormText>
+      </FormGroup>
+      <FormGroup>
+        <Label for="description">Short description</Label>
+        <Input type="textarea" rows={2} id="description" name="description"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.description}
+               invalid={errors.description} />
+        <FormText color="muted">
+          What does the program does in a nutshell?
+        </FormText>
+      </FormGroup>
 
-      {/*<p>Would you like to add a longer description?</p>*/}
+      <p>Would you like to add a longer description?</p>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="descriptionFull">Full description</Label>*/}
-        {/*<Input type="text" id="descriptionFull" name="descriptionFull" defaultValue={values.descriptionFull} />*/}
-        {/*<FormText color="muted">*/}
-          {/*A comprehensive full length description of the program.*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="descriptionFull">Full description</Label>
+        <Input type="text" id="descriptionFull" name="descriptionFull"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.descriptionFull}
+               invalid={errors.descriptionFull} />
+        <FormText color="muted">
+          A comprehensive full length description of the program.
+        </FormText>
+      </FormGroup>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="website">Website</Label>*/}
-        {/*<Input type="url" id="website" name="website" defaultValue={values.website} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Some programs have a website for more information.*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="participantGroups">Who is the program for?</Label>*/}
-        {/*<Input type="text" id="participantGroups" name="participantGroups" defaultValue={values.participantGroups} />*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="website">Website</Label>
+        <Input type="url" id="website" name="website"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.website}
+               invalid={errors.website} />
+        <FormText color="muted">
+          Some programs have a website for more information.
+        </FormText>
+      </FormGroup>
+      <FormGroup>
+        <Label for="participantGroups">Who is the program for?</Label>
+        <Input type="text" id="participantGroups" name="participantGroups"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.participantGroups}
+               invalid={errors.participantGroups} />
+      </FormGroup>
 
-      {/*<p>Would you like to add more detail about the participants?</p>*/}
+      <p>Would you like to add more detail about the participants?</p>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="participantGroupsDescription">Are the participants any of the following?</Label>*/}
-        {/*<Input type="text" id="participantGroupsDescription" name="participantGroupsDescription" defaultValue={values.participantGroupsDescription} />*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="participantGroupsDescription">Are the participants any of the following?</Label>
+        <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.participantGroupsDescription}
+               invalid={errors.participantGroupsDescription} />
+      </FormGroup>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="yearLevel">Year levels</Label>*/}
-        {/*<Input type="text" id="yearLevel" name="yearLevel" defaultValue={values.yearLevel} disabled={isEdit} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Which school years are participating in this program?*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="cohortSize">Cohort size</Label>*/}
-        {/*<Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize" defaultValue={values.cohortSize} />*/}
-        {/*<FormText color="muted">*/}
-          {/*How many people participated in this program?*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="yearLevel">Year levels</Label>
+        <Input type="text" id="yearLevel" name="yearLevel" disabled={isEdit}
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.yearLevel}
+               invalid={errors.yearLevel} />
+        <FormText color="muted">
+          Which school years are participating in this program?
+        </FormText>
+      </FormGroup>
+      <FormGroup>
+        <Label for="cohortSize">Cohort size</Label>
+        <Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.cohortSize}
+               invalid={errors.cohortSize} />
+        <FormText color="muted">
+          How many people participated in this program?
+        </FormText>
+      </FormGroup>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="deliveredByType">Provider</Label>*/}
-        {/*<Input type="text" id="deliveredByType" name="deliveredByType" defaultValue={values.deliveredByType} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Is the program run by school staff or another provider?*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="staff">Staff involved</Label>*/}
-        {/*<Input type="text" id="staff" name="staff" defaultValue={values.staff} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Which staff members are involved in organising and/or facilitating?*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="deliveredByType">Provider</Label>
+        <Input type="text" id="deliveredByType" name="deliveredByType"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.deliveredByType}
+               invalid={errors.deliveredByType} />
+        <FormText color="muted">
+          Is the program run by school staff or another provider?
+        </FormText>
+      </FormGroup>
+      <FormGroup>
+        <Label for="staff">Staff involved</Label>
+        <Input type="text" id="staff" name="staff"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.staff}
+               invalid={errors.staff} />
+        <FormText color="muted">
+          Which staff members are involved in organising and/or facilitating?
+        </FormText>
+      </FormGroup>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="year" hidden>Year delivered</Label>*/}
-        {/*<Input type="text" id="year" name="year" defaultValue={values.year} />*/}
-      {/*</FormGroup>*/}
-      {/*<FormGroup>*/}
-        {/*<Label for="terms">Terms delivered</Label>*/}
-        {/*<Input type="text" id="terms" name="terms" defaultValue={values.terms} />*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="year" hidden>Year delivered</Label>
+        <Input type="text" id="year" name="year"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.year}
+               invalid={errors.year} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="terms">Terms delivered</Label>
+        <Input type="text" id="terms" name="terms"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.terms}
+               invalid={errors.terms} />
+      </FormGroup>
 
-      {/*<FormGroup>*/}
-        {/*<Label for="tags">Keywords</Label>*/}
-        {/*<Input type="text" id="tags" name="tags" defaultValue={values.tags} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Keywords could help others to search for programs like this one in the future.*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
+      <FormGroup>
+        <Label for="tags">Keywords</Label>
+        <Input type="text" id="tags" name="tags"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.tags}
+               invalid={errors.tags} />
+        <FormText color="muted">
+          Keywords could help others to search for programs like this one in the future.
+        </FormText>
+      </FormGroup>
 
-
-      {/*<FormGroup hidden>*/}
-        {/*<Label for="website">Updated by</Label>*/}
-        {/*<Input type="url" id="website" name="website" defaultValue={values.website} />*/}
-        {/*<FormText color="muted">*/}
-          {/*Some programs have a website for more information.*/}
-        {/*</FormText>*/}
-      {/*</FormGroup>*/}
-
-      <Button type="submit" className="btn btn-lg btn-primary btn-block">Submit</Button>
+      <Button type="submit" className="btn btn-lg btn-primary btn-block" disabled={isSubmitting}>Submit</Button>
     </Form>
   )
 };
@@ -177,7 +229,6 @@ const ProgramForm = ({
 export default withFormik({
   displayName: 'ProgramForm',
   mapPropsToValues: (props) => {
-    debugger
     return props.initialFormState;
   },
   validate: (values, props) => {
@@ -185,11 +236,10 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
-    return props.onSubmit().then(
+    return props.onSubmit(values).then(
       (resp) => {
         setSubmitting(false);
         if (props.onSubmitSuccess) {
-          debugger
           return props.onSubmitSuccess(resp.data.code, resp.data.year);
         }
         return resp;

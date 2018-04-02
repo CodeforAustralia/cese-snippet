@@ -13,9 +13,13 @@
       "category": "Curriculum engagement",
       "subCategory": "Literacy",
       "deliveredByType": "School staff",
-      "participantGroups": ["Students"],
+      "participantGroups": [
+        "Students"
+      ],
       "participantGroupsDescription": null,
-      "tags": ["spelling"],
+      "tags": [
+        "spelling"
+      ],
       "createdBy": "23423",
       "lastUpdatedBy": "8787",
       "lastUpdated": "2017-02-04T23:56:38.363Z"
@@ -32,7 +36,9 @@
       "description": "Gallus peregrinationess, tanquam castus burgus.",
       "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
       "website": null,
-      "participantGroups": ["Students"],
+      "participantGroups": [
+        "Students"
+      ],
       "participantGroupsDescription": "Disadvantaged",
       "yearLevels": [
         "7",
@@ -44,8 +50,13 @@
         "8787"
       ],
       "year": "2018",
-      "terms": [2, 3],
-      "tags": ["spelling"],
+      "terms": [
+        2,
+        3
+      ],
+      "tags": [
+        "spelling"
+      ],
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "298364",
       "updatedBy": "8787",
@@ -60,7 +71,10 @@
       "aims": null,
       "code": "76862",
       "year": "2018",
-      "terms": [3, 4],
+      "terms": [
+        3,
+        4
+      ],
       "yearLevels": [
         "7",
         "8"
@@ -72,9 +86,13 @@
       "staff": [
         "23423"
       ],
-      "participantGroups": ["Students"],
+      "participantGroups": [
+        "Students"
+      ],
       "participantGroupsDescription": "Disadvantaged",
-      "tags": ["fitness"],
+      "tags": [
+        "fitness"
+      ],
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "298364",
       "updatedBy": "8787",
@@ -89,7 +107,9 @@
       "aims": null,
       "code": "21312",
       "year": "2017",
-      "terms": [1],
+      "terms": [
+        1
+      ],
       "yearLevels": [
         "7",
         "8",
@@ -103,7 +123,9 @@
       "staff": [
         "23423"
       ],
-      "participantGroups": ["Students"],
+      "participantGroups": [
+        "Students"
+      ],
       "participantGroupsDescription": null,
       "tags": [],
       "createdAt": "2017-02-04T23:56:38.363Z",
@@ -120,7 +142,12 @@
       "aims": null,
       "code": "21312",
       "year": "2017",
-      "terms": [1,2,3,4],
+      "terms": [
+        1,
+        2,
+        3,
+        4
+      ],
       "yearLevels": [
         "K"
       ],
@@ -131,9 +158,13 @@
       "staff": [
         "8787"
       ],
-      "participantGroups": ["Students"],
+      "participantGroups": [
+        "Students"
+      ],
       "participantGroupsDescription": null,
-      "tags": ["spelling"],
+      "tags": [
+        "spelling"
+      ],
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "23423",
       "updatedBy": "8787",
@@ -145,13 +176,28 @@
       "code": "21312",
       "name": "Mars High School",
       "type": "Secondary",
-      "yearLevels": ["7", "8", "8", "10", "11", "12"]
+      "yearLevels": [
+        "7",
+        "8",
+        "8",
+        "10",
+        "11",
+        "12"
+      ]
     },
     {
       "code": "76862",
       "name": "Jupiter Primary School",
       "type": "Primary",
-      "yearLevels": ["K", "1", "2", "3", "4", "5", "6"]
+      "yearLevels": [
+        "K",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
     }
   ],
   "staff": [
@@ -161,7 +207,10 @@
       "last": "Kennedy",
       "email": "susan.kennedy@det.nsw.edu.au",
       "avatar": null,
-      "schools": ["21312", "76862"]
+      "schools": [
+        "21312",
+        "76862"
+      ]
     },
     {
       "id": "23423",
@@ -169,7 +218,9 @@
       "last": "Johnson",
       "email": "louanne.johnson@det.nsw.edu.au",
       "avatar": null,
-      "schools": ["76862"]
+      "schools": [
+        "76862"
+      ]
     },
     {
       "id": "9872",
@@ -177,7 +228,9 @@
       "last": "Kimble",
       "email": "john.kimble@det.nsw.edu.au",
       "avatar": null,
-      "schools": ["76862"]
+      "schools": [
+        "76862"
+      ]
     }
   ]
 }
