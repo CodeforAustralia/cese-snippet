@@ -1,18 +1,11 @@
 @import '~style/helpers.scss';
 
-.program {
-  border: 1px solid #d7dbdb;
-  border-radius: 3px;
-  position: relative;
-}
-
 /**
   Empty type
  */
 
 .emptyProgram {
-  @extend .program;
-  border-style: dashed;
+  border: 1px dashed #d7dbdb;
   text-align: center;
   border-radius: 5px;
   padding: 50px calc(50% - 400px) 50px;
@@ -44,19 +37,23 @@
   Standard type
  */
 
+.program {
+  border: 1px solid #d7dbdb;
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+}
+
 .programLhs {
   background: white;
   padding: 24px 18px;
   width: 290px;
   position: relative;
+  min-height: 300px;
 }
 
 .programRhs {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 290px;
+  flex: 1;
   background: #f4f6f6;
   padding: 18px;
 }
@@ -88,6 +85,10 @@
 }
 
 .programMetaList {
+  position: absolute;
+  left: 18px;
+  bottom: 24px;
+  right: 18px;
   dd:last-child {
     margin-bottom: 0;
   }
