@@ -38,7 +38,7 @@ const ProgramForm = ({ onSubmit, onSubmitSuccess = () => {}, formState = {}, isE
       // createdAt
       // createdBy
       // updatedBy
-      // updatedAy
+      // updatedAt
     };
 
     if (form.id && form.id.value) {

@@ -49,7 +49,7 @@
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "298364",
       "updatedBy": "8787",
-      "updatedAy": "2018-02-04T23:56:38.363Z"
+      "updatedAt": "2018-02-04T23:56:38.363Z"
     },
     {
       "id": "2",
@@ -78,7 +78,7 @@
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "298364",
       "updatedBy": "8787",
-      "updatedAy": "2018-03-04T23:56:38.363Z"
+      "updatedAt": "2018-03-04T23:56:38.363Z"
     },
     {
       "id": "3",
@@ -109,7 +109,7 @@
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "23423",
       "updatedBy": "23423",
-      "updatedAy": "2017-03-04T23:56:38.363Z"
+      "updatedAt": "2017-03-04T23:56:38.363Z"
     },
     {
       "id": "4",
@@ -160,6 +160,7 @@
       "first": "Susan",
       "last": "Kennedy",
       "email": "susan.kennedy@det.nsw.edu.au",
+      "avatar": null,
       "schools": ["21312", "76862"]
     },
     {
@@ -167,6 +168,7 @@
       "first": "LouAnne",
       "last": "Johnson",
       "email": "louanne.johnson@det.nsw.edu.au",
+      "avatar": null,
       "schools": ["76862"]
     },
     {
@@ -174,6 +176,7 @@
       "first": "John",
       "last": "Kimble",
       "email": "john.kimble@det.nsw.edu.au",
+      "avatar": null,
       "schools": ["76862"]
     }
   ]
