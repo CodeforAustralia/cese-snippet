@@ -6,8 +6,11 @@ import {
   FormText,
   Input,
   Button,
+  FormFeedback,
 } from 'reactstrap';
 import { withFormik } from 'formik';
+
+import FieldCode from './../fieldCode';
 
 import CategorySelect from './../fieldCategory';
 
@@ -19,7 +22,9 @@ const ProgramForm = ({
                        handleBlur,
                        isSubmitting,
                        handleSubmit,
+
                        isEdit,
+                       codeOptions,
 }) => {
 
   return (
@@ -43,12 +48,14 @@ const ProgramForm = ({
 
       <FormGroup>
         <Label for="code">School code</Label>
-        <Input type="text" id="code" name="code"
+        <FieldCode id="code" name="code"
+               options={codeOptions}
                disabled={isEdit}
                onChange={handleChange}
                onBlur={handleBlur}
                defaultValue={values.code}
                invalid={errors.code} />
+        {touched.code && errors.code && <FormFeedback>{errors.code}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label for="name">Program name</Label>
