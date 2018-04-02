@@ -52,11 +52,9 @@ class SchoolPrograms extends React.Component {
 
         { isFetchingPrograms !== false ?
           <p>Loading...</p> :
-            !filteredPrograms.length ?
-              <p>No programs for that filter</p> :
-              <ProgramsList programs={filteredPrograms}
-                            openAddProgram={() => getCreateProgramModalUrl(filterProps.year, filterProps.code)}
-                            activeYear={filterProps.year} />
+          <ProgramsList programs={filteredPrograms}
+                        openAddProgram={() => getCreateProgramModalUrl(filterProps.year, filterProps.code)}
+                        activeYear={filterProps.year} />
         }
       </div>
     );
