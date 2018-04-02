@@ -33,7 +33,7 @@ const CreateProgramModal = ({ history, location }) => {
     `Update Program`;
 
   return (
-    <div className={cx(style.overlay)} tabIndex="-1" role="dialog" onClick={back}>
+    <div className={cx(style.overlay)} tabIndex="-1" role="dialog">
 
       <BodyClass add={style.noScroll} />
       <DocumentOnKeyUp keyCode={27} onKeyUp={back} />

@@ -2,30 +2,30 @@ export const getSchoolProgramsUrl = (code, year) => {
   return `/account/schools/${code}/programs/${year}`;
 };
 
-export const getCreateProgramModalUrl = (formState = {}) => {
+export const getCreateProgramModalUrl = (initialFormState = {}) => {
   let isEdit = false;
-  if (formState.id) {
+  if (initialFormState.id) {
     isEdit = true;
   }
   return {
     pathname: `/account/create-program`,
     state: {
-      formState,
+      initialFormState,
       modal: true,
       isEdit,
     },
   }
 };
 
-export const getCreateProgramUrl = (formState = {}) => {
+export const getCreateProgramUrl = (initialFormState = {}) => {
   let isEdit = false;
-  if (formState.id) {
+  if (initialFormState.id) {
     isEdit = true;
   }
   return {
     pathname: `/account/create-program`,
     state: {
-      formState,
+      initialFormState,
       isEdit,
     }
   }
