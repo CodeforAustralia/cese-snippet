@@ -5,16 +5,16 @@ import { selectSession } from "store/session/selectors";
 const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
   const session = selectSession(state);
-  const formState = location.state && location.state.formState || {};
+  const initialFormState = location.state && location.state.initialFormState || {};
 
-  const newFormState = {
-    ...formState,
+  const newInitialFormState = {
+    ...initialFormState,
     createdBy: session.id,
   };
 
   return {
     isEdit: false,
-    formState: newFormState,
+    initialFormState: newInitialFormState,
   }
 };
 

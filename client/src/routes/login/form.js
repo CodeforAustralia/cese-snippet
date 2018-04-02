@@ -37,7 +37,7 @@ const LoginForm = ({
                onChange={handleChange}
                onBlur={handleBlur}
                value={values.email}
-               valid={errors.email && !errors.email}
+               invalid={errors.email}
         />
         {touched.email && errors.email && <FormFeedback>{errors.email}</FormFeedback>}
       </FormGroup>
@@ -49,7 +49,7 @@ const LoginForm = ({
                onChange={handleChange}
                onBlur={handleBlur}
                value={values.password}
-               valid={errors.password && !errors.password}
+               invalid={errors.password}
         />
         {touched.password && errors.password && <FormFeedback>{errors.email}</FormFeedback>}
       </FormGroup>
