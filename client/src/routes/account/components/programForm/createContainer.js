@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import { createProgram } from 'store/programs/actionCreators';
 import { selectSession } from "store/session/selectors";
+import { selectSchools } from "store/schools/selectors";
 
 const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
   const session = selectSession(state);
+  const schools = selectSchools(state, session.schools);
   const initialFormState = location.state && location.state.initialFormState || {};
 
   const newInitialFormState = {
@@ -15,6 +17,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     isEdit: false,
     initialFormState: newInitialFormState,
+
+    codeOptions: schools.map(s => ({ value: s.code, label: s.name })),
   }
 };
 
