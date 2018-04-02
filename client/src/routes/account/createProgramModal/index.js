@@ -1,8 +1,19 @@
 import React from 'react';
+import cx from 'classnames';
+import { BodyClass } from 'components/elementClass';
+import DocumentOnKeyUp from 'components/documentOnKeyUp';
+import {
+  Button,
+  Row,
+  Col,
+} from 'reactstrap';
+
 import {
   CreateForm,
   UpdateForm,
 } from './../components/programForm';
+import style from './style.scss';
+
 
 const CreateProgramModal = ({ history, location }) => {
 
@@ -17,38 +28,34 @@ const CreateProgramModal = ({ history, location }) => {
 
   const Form = isEdit ? UpdateForm : CreateForm;
 
+  const title = isEdit ?
+    'Add a Program for your School' :
+    `Update Program`;
+
   return (
-    <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        background: "rgba(0, 0, 0, 0.15)"
-      }}
-    >
-      <div
-        className="modal"
-        style={{
-          position: "absolute",
-          background: "#fff",
-          top: 25,
-          left: "10%",
-          right: "10%",
-          padding: 15,
-          border: "2px solid #444",
-          display: "block",
-        }}
-      >
-        <h1>Create program modal</h1>
+    <div className={cx(style.overlay)} tabIndex="-1" role="dialog" onClick={back}>
 
-        <Form onSubmitSuccess={() => back()} />
+      <BodyClass add={style.noScroll} />
+      <DocumentOnKeyUp keyCode={27} onKeyUp={back} />
 
-        <div>
-          <button type="button" onClick={back}>
-            Close
-          </button>
+      <div className={cx(style.modal)}>
+
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{title}</h5>
+            <Button className="close" color="" aria-label="Close" onClick={back}>
+              <span aria-hidden="true">&times;</span>
+            </Button>
+          </div>
+          <div className="modal-body">
+            <Row>
+              <Col sm={8}>
+                <Form onSubmitSuccess={() => back()} />
+              </Col>
+            </Row>
+          </div>
         </div>
+
       </div>
     </div>
   );
