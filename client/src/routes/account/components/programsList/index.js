@@ -15,7 +15,7 @@ const EmptyItem = ({ openAddProgram, activeYear }) => {
       <p className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for {activeYear}</p>
       <p className={cx('h5 mb-4', style.emptyProgamSubTitle)}>If you know details of a Program, it's easy to create one</p>
       <Button color="primary" size="lg" onClick={openAddProgram} className="mb-4">Add a New Program</Button>
-      <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any one from your school will be able to edit after the Program is added.</p>
+      <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.</p>
     </section>
   )
 };

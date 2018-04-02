@@ -5,6 +5,10 @@
   border-radius: 3px;
 }
 
+/**
+  Empty type
+ */
+
 .emptyProgram {
   @extend .program;
   border-style: dashed;
@@ -35,6 +39,9 @@
 }
 
 
+/**
+  Standard type
+ */
 
 .columnLeft {
   background: white;
