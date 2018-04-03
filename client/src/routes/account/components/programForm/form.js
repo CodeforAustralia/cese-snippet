@@ -20,25 +20,37 @@ import CategorySelect from './../fieldCategory';
 const log = Bows('Form');
 
 
-const ProgramForm = ({
-                       values,
-                       errors,
-                       touched,
-                       handleChange,
-                       handleBlur,
-                       isSubmitting,
-                       handleSubmit,
+const ProgramForm = (props) => {
 
-                       isEdit,
-                       getCodeOptions,
-                       getYearLevelOptions,
-}) => {
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    isSubmitting,
+    handleSubmit,
+    setValues,
 
-  const codeOptions = getCodeOptions();
+    isEdit,
+    getYearLevelOptions,
+    codeOptions,
+  } = props;
+
+
+  log('values:', values);
+
 
   if (!codeOptions.length) {
     return <p>Loading...</p>
   }
+
+  if (!values.code && codeOptions.length === 1) {
+    setValues({...values, code: codeOptions[0].value});
+  }
+
+  const yearLevelOptions = getYearLevelOptions(values.code);
+
 
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
@@ -158,14 +170,14 @@ const ProgramForm = ({
 
       <FormGroup>
         <Label htmlFor="yearLevel">Year levels</Label>
-
           <FieldYearLevel id="yearLevel" name="yearLevel"
                         disabled={isEdit}
-                        options={getYearLevelOptions(values.code)}
+                        options={yearLevelOptions}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         defaultValue={values.yearLevel}
                         invalid={errors.yearLevel} />
+        {touched.yearLevel && errors.yearLevel && <FormFeedback>{errors.yearLevel}</FormFeedback>}
         <FormText color="muted">
           Which year levels are participating in this program?
         </FormText>

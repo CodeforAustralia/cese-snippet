@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     isEdit: false,
     initialFormState: newInitialFormState,
 
-    getCodeOptions: () => schools.map(s => ({ value: s.code, label: s.name })),
+    codeOptions: schools.map(s => ({ value: s.code, label: s.name })),
     getYearLevelOptions: (code) => {
       const school = schools.find(s => s.code === code);
       if (!school) {

@@ -25,8 +25,6 @@ FieldCode.propTypes = {
   name: PropTypes.string.isRequired,
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
-
-  options: PropTypes.array.isRequired,
 };
 
 export default FieldCode;
