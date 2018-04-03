@@ -36,9 +36,7 @@ const ProgramForm = (props) => {
     codeOptions,
   } = props;
 
-
   log('values:', values);
-
 
   if (!codeOptions.length) {
     return <p>Loading...</p>
@@ -174,10 +172,14 @@ const ProgramForm = (props) => {
             <div>
               {yearLevelsOptions.map((o, idx) => {
                 const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
+
+                {/*todo - make this an inline checkbox component*/}
+
                 return (
-                  <div key={idx}>
-                    <label>
+                  <div key={idx} className="form-check form-check-inline">
+                    <label className="form-check-label">
                       <input
+                        className="form-check-input"
                         name={`yearLevels.${o.value}`}
                         type="checkbox"
                         value={o.value}
@@ -199,6 +201,7 @@ const ProgramForm = (props) => {
             </div>
           )}
         />
+
         {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
         <FormText color="muted">
           Which year levels are participating in this program?
