@@ -40,12 +40,15 @@
         "Students"
       ],
       "participantGroupsDescription": "Disadvantaged",
+      "focusGroup": "None",
+      "focusGroupOther": null,
       "yearLevels": [
         "7",
         "8"
       ],
       "cohortSize": 120,
       "deliveredByType": "School staff",
+      "externalProvider": null,
       "staff": [
         "8787"
       ],
@@ -83,6 +86,7 @@
       "category": "Sports",
       "subCategory": null,
       "deliveredByType": "School staff",
+      "externalProvider": null,
       "staff": [
         "23423"
       ],
@@ -90,6 +94,8 @@
         "Students"
       ],
       "participantGroupsDescription": "Disadvantaged",
+      "focusGroup": "None",
+      "focusGroupOther": null,
       "tags": [
         "fitness"
       ],
@@ -117,6 +123,8 @@
         "10"
       ],
       "cohortSize": 30,
+      "deliveredByType": "School staff",
+      "externalProvider": null,
       "category": "STEM",
       "subCategory": "Computers",
       "providerType": "School staff",
@@ -127,6 +135,8 @@
         "Students"
       ],
       "participantGroupsDescription": null,
+      "focusGroup": "None",
+      "focusGroupOther": null,
       "tags": [],
       "createdAt": "2017-02-04T23:56:38.363Z",
       "createdBy": "23423",
@@ -152,9 +162,10 @@
         "K"
       ],
       "cohortSize": 90,
+      "deliveredByType": "School staff",
+      "externalProvider": null,
       "category": "Curriculum engagement",
       "subCategory": "Literacy",
-      "deliveredByType": "School staff",
       "staff": [
         "8787"
       ],
@@ -162,6 +173,8 @@
         "Students"
       ],
       "participantGroupsDescription": null,
+      "focusGroup": "None",
+      "focusGroupOther": null,
       "tags": [
         "spelling"
       ],
