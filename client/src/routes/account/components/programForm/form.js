@@ -11,7 +11,7 @@ import {
 import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
-import FieldData from 'static/programFieldData.json';
+import FIELDS_STATIC from 'static/programFieldData.json';
 
 import FieldCode from './../fieldCode';
 
@@ -49,6 +49,7 @@ const ProgramForm = (props) => {
   }
 
   const yearLevelsOptions = getYearLevelsOptions(values.code);
+  const participantGroupsOptions = FIELDS_STATIC.participantGroups;
 
 
   return (
@@ -147,15 +148,48 @@ const ProgramForm = (props) => {
           Some programs have a website for more information.
         </FormText>
       </FormGroup>
+
       <FormGroup>
         <Label htmlFor="participantGroups">Who is the program for?</Label>
-        <Input type="text" id="participantGroups" name="participantGroups"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.participantGroups}
-               invalid={errors.participantGroups} />
+        <FieldArray
+          name="participantGroups"
+          id="participantGroups"
+          render={arrayHelpers => (
+            <div>
+              {participantGroupsOptions.map((o, idx) => {
+                const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
+
+                {/*todo - make this an inline checkbox component*/}
+
+                return (
+                  <div key={idx} className="form-check form-check-inline">
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        name={`yearLevels.${o.value}`}
+                        type="checkbox"
+                        value={o.value}
+                        checked={isChecked}
+                        onChange={e => {
+                          if (isChecked) {
+                            const idx = values.participantGroups.indexOf(o.value);
+                            arrayHelpers.remove(idx);
+                          } else {
+                            arrayHelpers.push(o.value);
+                          }
+                        }}
+                      />
+                      {o.label}
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        />
         {touched.participantGroups && errors.participantGroups && <FormFeedback>{errors.participantGroups}</FormFeedback>}
       </FormGroup>
+
       <FormGroup>
         <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
         <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
