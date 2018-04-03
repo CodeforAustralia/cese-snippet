@@ -51,6 +51,7 @@ const ProgramForm = (props) => {
   const yearLevelsOptions = getYearLevelsOptions(values.code);
   const participantGroupsOptions = FIELDS_STATIC.participantGroups;
   const focusGroupOptions = FIELDS_STATIC.focusGroup;
+  const deliveredByTypeOptions = FIELDS_STATIC.deliveredByType;
 
 
   return (
@@ -205,7 +206,7 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label>Does the program cater to a particular focus group?</Label>
-        <div>
+        <div id="focusGroup">
           {focusGroupOptions.map((o, idx) => {
             const oName = `focusGroup.${o.value}`;
             {/*todo - make this an radio component*/}
@@ -218,7 +219,8 @@ const ProgramForm = (props) => {
                        checked={values.focusGroup === o.value}
                        onChange={() => {
                          props.setFieldValue('focusGroup', o.value);
-                       }} />
+                       }}
+                       invalid={errors.focusGroup} />
                 <label className="form-check-label" htmlFor={oName}>{o.label}</label>
               </div>
             )
@@ -289,12 +291,27 @@ const ProgramForm = (props) => {
       </FormGroup>
 
       <FormGroup>
-        <Label htmlFor="deliveredByType">Provider</Label>
-        <Input type="text" id="deliveredByType" name="deliveredByType"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.deliveredByType}
-               invalid={errors.deliveredByType} />
+        <Label>Provider</Label>
+        <div id="deliveredByType">
+          {deliveredByTypeOptions.map((o, idx) => {
+            const oName = `deliveredByType.${o.value}`;
+            {/*todo - make this an radio component*/}
+            return (
+              <div key={idx} className="form-check">
+                <input type="radio" className="form-check-input"
+                       name={oName}
+                       id={oName}
+                       value={o.value}
+                       checked={values.deliveredByType === o.value}
+                       onChange={() => {
+                         props.setFieldValue('deliveredByType', o.value);
+                       }}
+                       invalid={errors.deliveredByType} />
+                <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+              </div>
+            )
+          })}
+        </div>
         <FormText color="muted">
           Is the program run by school staff or another provider?
         </FormText>
