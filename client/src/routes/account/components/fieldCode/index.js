@@ -4,10 +4,6 @@ import { Input } from 'reactstrap';
 
 const FieldCode = ({ options, ...fieldProps }) => {
 
-  if (!options.length) {
-    return <p>Loading...</p>;
-  }
-
   if (options.length === 1) {
     return (
       <Input type="text" {...fieldProps} disabled={true} value={options[0].label} />
@@ -16,6 +12,7 @@ const FieldCode = ({ options, ...fieldProps }) => {
 
   return (
     <Input type="select" {...fieldProps}>
+      <option>Select</option>
       {options.map((option, idx) => (
         <option key={idx} value={option.value}>{option.label}</option>
       ))}
@@ -26,10 +23,10 @@ const FieldCode = ({ options, ...fieldProps }) => {
 FieldCode.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
-
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
+
+  options: PropTypes.array.isRequired,
 };
 
 export default FieldCode;

@@ -17,7 +17,7 @@
     },
     {
       "id": "2",
-      "label": "Wellbeing and Support",
+      "label": "Student Wellbeing and Support",
       "description": null,
       "categories": [
         { "id": "1009", "label": "Student Participation" },
@@ -47,18 +47,6 @@
         { "id": "1017", "label": "Parent Participation" },
         { "id": "1018", "label": "Contributing to the Community" }
       ]
-    },
-    {
-      "id": "5",
-      "label": "Sports",
-      "description": null,
-      "categories": null
-    },
-    {
-      "id": "6",
-      "label": "STEM",
-      "description": null,
-      "categories": null
     }
   ]
 }
