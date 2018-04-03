@@ -11,16 +11,22 @@ const mapStateToProps = (state, ownProps) => {
   const initialFormState = location.state && location.state.initialFormState || {};
   const year = location.state && location.state.year || getYear();
 
+  const codeOptions = schools.map(s => ({ value: s.code, label: s.name }));
+
   const newInitialFormState = {
     ...initialFormState,
     createdBy: session.id,
   };
 
+  if (typeof newInitialFormState.code === 'undefined' && codeOptions.length === 1) {
+    newInitialFormState.code = codeOptions[0].value;
+  }
+
   return {
     isEdit: false,
     initialFormState: newInitialFormState,
 
-    codeOptions: schools.map(s => ({ value: s.code, label: s.name })),
+    codeOptions,
     getYearLevelsOptions: (code) => {
       const school = schools.find(s => s.code === code);
       if (!school) {

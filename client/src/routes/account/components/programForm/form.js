@@ -31,7 +31,6 @@ const ProgramForm = (props) => {
     handleBlur,
     isSubmitting,
     handleSubmit,
-    setValues,
 
     isEdit,
     getYearLevelsOptions,
@@ -44,10 +43,6 @@ const ProgramForm = (props) => {
 
   if (!codeOptions.length) {
     return <p>Loading...</p>
-  }
-
-  if (!values.code && codeOptions.length === 1) {
-    setValues({...values, code: codeOptions[0].value});
   }
 
   const yearLevelsOptions = getYearLevelsOptions(values.code);
