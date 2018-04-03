@@ -11,6 +11,8 @@ import {
 import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
+import FieldData from 'static/programFieldData.json';
+
 import FieldCode from './../fieldCode';
 
 import CategorySelect from './../fieldCategory';
@@ -130,7 +132,7 @@ const ProgramForm = (props) => {
                defaultValue={values.descriptionFull}
                invalid={errors.descriptionFull} />
         <FormText color="muted">
-          A comprehensive full length description of the program.
+          A comprehensive full length description of the program. Describe the structure of the program, and how it is delivered.
         </FormText>
       </FormGroup>
 
@@ -152,22 +154,41 @@ const ProgramForm = (props) => {
                onBlur={handleBlur}
                defaultValue={values.participantGroups}
                invalid={errors.participantGroups} />
+        {touched.participantGroups && errors.participantGroups && <FormFeedback>{errors.participantGroups}</FormFeedback>}
       </FormGroup>
-
-      <p>Would you like to add more detail about the participants?</p>
-
       <FormGroup>
-        <Label htmlFor="participantGroupsDescription">Does the program cater to a particular focus group?</Label>
+        <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
         <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
                onChange={handleChange}
                onBlur={handleBlur}
                defaultValue={values.participantGroupsDescription}
                invalid={errors.participantGroupsDescription} />
+        <FormText color="muted">
+          Example: Partner schools students, charities, aged care residents
+        </FormText>
       </FormGroup>
 
       <FormGroup>
+        <Label>Does the program cater to a particular focus group?</Label>
+        <Input type="text" id="focusGroup" name="focusGroup"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.focusGroup}
+               invalid={errors.focusGroup} />
+      </FormGroup>
+      <FormGroup>
+        <Input type="text" id="focusGroupOther" name="focusGroupOther"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.focusGroupOther}
+               invalid={errors.focusGroupOther} />
+      </FormGroup>
+
+      <FormGroup>
+        <Label>Year Levels</Label>
         <FieldArray
           name="yearLevels"
+          id="yearLevels"
           render={arrayHelpers => (
             <div>
               {yearLevelsOptions.map((o, idx) => {
@@ -201,7 +222,6 @@ const ProgramForm = (props) => {
             </div>
           )}
         />
-
         {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
         <FormText color="muted">
           Which year levels are participating in this program?
@@ -229,6 +249,14 @@ const ProgramForm = (props) => {
         <FormText color="muted">
           Is the program run by school staff or another provider?
         </FormText>
+      </FormGroup>
+      <FormGroup>
+        <Label htmlFor="externalProvider">Who is the External Provider?</Label>
+        <Input type="text" id="externalProvider" name="externalProvider"
+               onChange={handleChange}
+               onBlur={handleBlur}
+               defaultValue={values.externalProvider}
+               invalid={errors.externalProvider} />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="staff">Staff involved</Label>

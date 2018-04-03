@@ -1,10 +1,10 @@
 {
-  "audience": [
+  "participantGroups": [
     { "label": "Students", "value": "Students" },
     { "label": "Parents", "value": "Parents" },
     { "label": "Community", "value": "Community" }
   ],
-  "providerType": [
+  "deliveredByType": [
     { "label": "School Staff", "value": "School Staff" },
     { "label": "External Provider", "value": "External Provider" }
   ],
@@ -23,13 +23,15 @@
     { "label": "11", "value": "11" },
     { "label": "12", "value": "12" }
   ],
-  "targetGroups": [
+  "focusGroups": [
+    { "label": "None", "value": "None" },
     { "label": "Indigenous", "value": "Indigenous" },
     { "label": "Linguistically Diverse", "value": "Linguistically Diverse" },
     { "label": "Refugee", "value": "Refugee" },
-    { "label": "At Risk", "value": "At Risk" },
-    { "label": "Disadvantaged", "value": "Disadvantaged" },
     { "label": "Gifted", "value": "Gifted" },
-    { "label": "None", "value": "None" }
+    { "label": "Trauma", "value": "Trauma" },
+    { "label": "Learning Difficulties", "value": "Learning Difficulties" },
+    { "label": "Emotional Difficulties", "value": "Emotional Difficulties" },
+    { "label": "Other", "value": "Other" }
   ]
 }
