@@ -12,7 +12,7 @@ const FieldCode = ({ options, ...fieldProps }) => {
 
   return (
     <Input type="select" {...fieldProps}>
-      <option>Select</option>
+      <option>Select...</option>
       {options.map((option, idx) => (
         <option key={idx} value={option.value}>{option.label}</option>
       ))}

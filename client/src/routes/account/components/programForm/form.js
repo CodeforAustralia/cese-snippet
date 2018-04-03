@@ -8,11 +8,10 @@ import {
   Button,
   FormFeedback,
 } from 'reactstrap';
-import { withFormik } from 'formik';
+import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
 import FieldCode from './../fieldCode';
-import FieldYearLevels from './../fieldYearLevels';
 
 import CategorySelect from './../fieldCategory';
 
@@ -169,13 +168,37 @@ const ProgramForm = (props) => {
       </FormGroup>
 
       <FormGroup>
-        <Label htmlFor="yearLevels">Year levels</Label>
-          <FieldYearLevels id="yearLevels" name="yearLevels"
-                        disabled={isEdit}
-                        options={yearLevelsOptions}
-                        defaultValue={values.yearLevels}
-                        setValues={props.setValues}
-                        invalid={errors.yearLevels} />
+        <FieldArray
+          name="yearLevels"
+          render={arrayHelpers => (
+            <div>
+              {yearLevelsOptions.map((o, idx) => {
+                const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
+                return (
+                  <div key={idx}>
+                    <label>
+                      <input
+                        name={`yearLevels.${o.value}`}
+                        type="checkbox"
+                        value={o.value}
+                        checked={isChecked}
+                        onChange={e => {
+                          if (isChecked) {
+                            const idx = values.yearLevels.indexOf(o.value);
+                            arrayHelpers.remove(idx);
+                          } else {
+                            arrayHelpers.push(o.value);
+                          }
+                        }}
+                      />
+                      {o.label}
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        />
         {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
         <FormText color="muted">
           Which year levels are participating in this program?
