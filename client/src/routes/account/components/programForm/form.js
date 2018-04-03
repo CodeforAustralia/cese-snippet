@@ -289,8 +289,7 @@ export default withFormik({
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
 
     log('Submitting values:', values);
-
-    return new Promise((res) => res());
+    // return new Promise((res) => res());
 
     return props.onSubmit(values).then(
       (resp) => {
