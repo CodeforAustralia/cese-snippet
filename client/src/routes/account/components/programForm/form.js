@@ -8,46 +8,59 @@ import {
   Button,
   FormFeedback,
 } from 'reactstrap';
-import { withFormik } from 'formik';
+import { withFormik, FieldArray } from 'formik';
+import Bows from 'bows';
 
 import FieldCode from './../fieldCode';
 
 import CategorySelect from './../fieldCategory';
 
-const ProgramForm = ({
-                       values,
-                       errors,
-                       touched,
-                       handleChange,
-                       handleBlur,
-                       isSubmitting,
-                       handleSubmit,
 
-                       isEdit,
-                       codeOptions,
-}) => {
+const log = Bows('Form');
+
+
+const ProgramForm = (props) => {
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    isSubmitting,
+    handleSubmit,
+    setValues,
+
+    isEdit,
+    getYearLevelsOptions,
+    codeOptions,
+  } = props;
+
+  log('values:', values);
+
+  if (!codeOptions.length) {
+    return <p>Loading...</p>
+  }
+
+  if (!values.code && codeOptions.length === 1) {
+    setValues({...values, code: codeOptions[0].value});
+  }
+
+  const yearLevelsOptions = getYearLevelsOptions(values.code);
+
 
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
       { isEdit &&
-        <FormGroup hidden>
-          <Label for="id">ID</Label>
-          <Input type="text" id="id" name="id" defaultValue={values.id} />
-        </FormGroup>
+        <Input hidden type="text" name="id" defaultValue={values.id} />
       }
       { isEdit ?
-          <FormGroup hidden>
-            <Label for="updatedBy">Updated By</Label>
-            <Input type="text" id="updatedBy" name="updatedBy" defaultValue={values.updatedBy} disabled={true} />
-          </FormGroup> :
-          <FormGroup hidden>
-            <Label for="createdBy">Created By</Label>
-            <Input type="text" id="createdBy" name="createdBy" defaultValue={values.createdBy} disabled={true} />
-          </FormGroup>
+        <Input hidden type="text" name="updatedBy" defaultValue={values.updatedBy} disabled={true} />  :
+        <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true} />
       }
 
       <FormGroup>
-        <Label for="code">School code</Label>
+        <Label htmlFor="code">School code</Label>
         <FieldCode id="code" name="code"
                options={codeOptions}
                disabled={isEdit}
@@ -58,7 +71,7 @@ const ProgramForm = ({
         {touched.code && errors.code && <FormFeedback>{errors.code}</FormFeedback>}
       </FormGroup>
       <FormGroup>
-        <Label for="name">Program name</Label>
+        <Label htmlFor="name">Program name</Label>
         <Input type="text" id="name" name="name"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -69,7 +82,7 @@ const ProgramForm = ({
       <p>Is it one of these programs? prompt</p>
 
       <FormGroup>
-        <Label for="category">Type of program</Label>
+        <Label htmlFor="category">Program Area</Label>
         <CategorySelect id="category" name="category"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -77,7 +90,7 @@ const ProgramForm = ({
                         invalid={errors.category} />
       </FormGroup>
       <FormGroup>
-        <Label for="subCategory">Sub category</Label>
+        <Label htmlFor="subCategory">Program Category</Label>
         <Input type="text" id="subCategory" name="subCategory"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -85,7 +98,7 @@ const ProgramForm = ({
                invalid={errors.subCategory} />
       </FormGroup>
       <FormGroup>
-        <Label for="aims">Desired outcomes</Label>
+        <Label htmlFor="aims">Aims</Label>
         <Input type="textarea" rows={3} id="aims" name="aims"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -96,7 +109,7 @@ const ProgramForm = ({
         </FormText>
       </FormGroup>
       <FormGroup>
-        <Label for="description">Short description</Label>
+        <Label htmlFor="description">Program overview</Label>
         <Input type="textarea" rows={2} id="description" name="description"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -110,7 +123,7 @@ const ProgramForm = ({
       <p>Would you like to add a longer description?</p>
 
       <FormGroup>
-        <Label for="descriptionFull">Full description</Label>
+        <Label htmlFor="descriptionFull">Detailed description</Label>
         <Input type="text" id="descriptionFull" name="descriptionFull"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -122,7 +135,7 @@ const ProgramForm = ({
       </FormGroup>
 
       <FormGroup>
-        <Label for="website">Website</Label>
+        <Label htmlFor="website">Website</Label>
         <Input type="url" id="website" name="website"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -133,7 +146,7 @@ const ProgramForm = ({
         </FormText>
       </FormGroup>
       <FormGroup>
-        <Label for="participantGroups">Who is the program for?</Label>
+        <Label htmlFor="participantGroups">Who is the program for?</Label>
         <Input type="text" id="participantGroups" name="participantGroups"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -144,7 +157,7 @@ const ProgramForm = ({
       <p>Would you like to add more detail about the participants?</p>
 
       <FormGroup>
-        <Label for="participantGroupsDescription">Are the participants any of the following?</Label>
+        <Label htmlFor="participantGroupsDescription">Does the program cater to a particular focus group?</Label>
         <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -153,18 +166,49 @@ const ProgramForm = ({
       </FormGroup>
 
       <FormGroup>
-        <Label for="yearLevel">Year levels</Label>
-        <Input type="text" id="yearLevel" name="yearLevel" disabled={isEdit}
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.yearLevel}
-               invalid={errors.yearLevel} />
+        <FieldArray
+          name="yearLevels"
+          render={arrayHelpers => (
+            <div>
+              {yearLevelsOptions.map((o, idx) => {
+                const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
+
+                {/*todo - make this an inline checkbox component*/}
+
+                return (
+                  <div key={idx} className="form-check form-check-inline">
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        name={`yearLevels.${o.value}`}
+                        type="checkbox"
+                        value={o.value}
+                        checked={isChecked}
+                        onChange={e => {
+                          if (isChecked) {
+                            const idx = values.yearLevels.indexOf(o.value);
+                            arrayHelpers.remove(idx);
+                          } else {
+                            arrayHelpers.push(o.value);
+                          }
+                        }}
+                      />
+                      {o.label}
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        />
+
+        {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
         <FormText color="muted">
-          Which school years are participating in this program?
+          Which year levels are participating in this program?
         </FormText>
       </FormGroup>
       <FormGroup>
-        <Label for="cohortSize">Cohort size</Label>
+        <Label htmlFor="cohortSize">Number of Participants</Label>
         <Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -176,7 +220,7 @@ const ProgramForm = ({
       </FormGroup>
 
       <FormGroup>
-        <Label for="deliveredByType">Provider</Label>
+        <Label htmlFor="deliveredByType">Provider</Label>
         <Input type="text" id="deliveredByType" name="deliveredByType"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -187,19 +231,19 @@ const ProgramForm = ({
         </FormText>
       </FormGroup>
       <FormGroup>
-        <Label for="staff">Staff involved</Label>
+        <Label htmlFor="staff">Staff involved</Label>
         <Input type="text" id="staff" name="staff"
                onChange={handleChange}
                onBlur={handleBlur}
                defaultValue={values.staff}
                invalid={errors.staff} />
         <FormText color="muted">
-          Which staff members are involved in organising and/or facilitating?
+          Who are the staff members involved in organising or facilitating the program?
         </FormText>
       </FormGroup>
 
       <FormGroup>
-        <Label for="year" hidden>Year delivered</Label>
+        <Label htmlFor="year" hidden>Year delivered</Label>
         <Input type="text" id="year" name="year"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -207,7 +251,7 @@ const ProgramForm = ({
                invalid={errors.year} />
       </FormGroup>
       <FormGroup>
-        <Label for="terms">Terms delivered</Label>
+        <Label htmlFor="terms">Terms delivered</Label>
         <Input type="text" id="terms" name="terms"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -216,7 +260,7 @@ const ProgramForm = ({
       </FormGroup>
 
       <FormGroup>
-        <Label for="tags">Keywords</Label>
+        <Label htmlFor="tags">Keywords</Label>
         <Input type="text" id="tags" name="tags"
                onChange={handleChange}
                onBlur={handleBlur}
@@ -243,6 +287,10 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
+
+    log('Submitting values:', values);
+    // return new Promise((res) => res());
+
     return props.onSubmit(values).then(
       (resp) => {
         setSubmitting(false);
