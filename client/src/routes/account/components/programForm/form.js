@@ -12,13 +12,29 @@ import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
 import FIELDS_STATIC from 'static/programFieldData.json';
+import CATEGORIES_STATIC from 'static/categories.json';
+
 
 import FieldCode from './../fieldCode';
-
-import CategorySelect from './../fieldCategory';
+import FieldCategory from './../fieldCategory';
 
 
 const log = Bows('Form');
+
+
+const getLevel1Cats = () => CATEGORIES_STATIC.categories.map(level1 => {
+  return { value: level1.id, label: level1.label };
+});
+
+const getLevel2Cats = (level1Id) => {
+  const level1Cat = CATEGORIES_STATIC.categories.find(level1 => level1.id === level1Id);
+  if (!level1Cat) {
+    return null;
+  }
+  return level1Cat.categories.map(level2 => {
+    return { value: level2.id, label: level2.label };
+  });
+};
 
 
 const ProgramForm = (props) => {
@@ -50,7 +66,8 @@ const ProgramForm = (props) => {
   const focusGroupOptions = FIELDS_STATIC.focusGroup;
   const deliveredByTypeOptions = FIELDS_STATIC.deliveredByType;
   const termsOptions = getTermsOptions();
-
+  const level1CategoryOptions = getLevel1Cats();
+  const level2CategoryOptions = getLevel2Cats(values.category);
 
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
@@ -86,11 +103,15 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="category">Program Area</Label>
-        <CategorySelect id="category" name="category"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        defaultValue={values.category}
-                        invalid={errors.category} />
+        <FieldCategory className="form-control" name="category"
+                       options={level1CategoryOptions}
+                       value={values.category}
+                       onChange={props.setFieldValue}
+                       onBlur={props.setFieldTouched}
+                       error={errors.category}
+                       touched={touched.category}
+                       invalid={errors.category} />
+        {!!errors.category && touched.category &&  <FormFeedback>{errors.category}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="subCategory">Program Category</Label>
@@ -99,6 +120,7 @@ const ProgramForm = (props) => {
                onBlur={handleBlur}
                defaultValue={values.subCategory}
                invalid={errors.subCategory} />
+
       </FormGroup>
       <FormGroup>
         <Label htmlFor="aims">Aims</Label>
@@ -168,7 +190,7 @@ const ProgramForm = (props) => {
                         type="checkbox"
                         value={o.value}
                         checked={isChecked}
-                        onChange={e => {
+                        onChange={(e) => {
                           if (isChecked) {
                             const idx = values.participantGroups.indexOf(o.value);
                             arrayHelpers.remove(idx);
