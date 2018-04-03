@@ -36,6 +36,8 @@ const ProgramForm = (props) => {
     isEdit,
     getYearLevelsOptions,
     codeOptions,
+    year,
+    getTermsOptions,
   } = props;
 
   log('values:', values);
@@ -52,6 +54,7 @@ const ProgramForm = (props) => {
   const participantGroupsOptions = FIELDS_STATIC.participantGroups;
   const focusGroupOptions = FIELDS_STATIC.focusGroup;
   const deliveredByTypeOptions = FIELDS_STATIC.deliveredByType;
+  const termsOptions = getTermsOptions();
 
 
   return (
@@ -153,6 +156,7 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="participantGroups">Who is the program for?</Label>
+        {/*todo - make this an inline checkbox component*/}
         <FieldArray
           name="participantGroups"
           id="participantGroups"
@@ -160,9 +164,6 @@ const ProgramForm = (props) => {
             <div>
               {participantGroupsOptions.map((o, idx) => {
                 const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
-
-                {/*todo - make this an inline checkbox component*/}
-
                 return (
                   <div key={idx} className="form-check form-check-inline">
                     <label className="form-check-label">
@@ -207,9 +208,9 @@ const ProgramForm = (props) => {
       <FormGroup>
         <Label>Does the program cater to a particular focus group?</Label>
         <div id="focusGroup">
+          {/*todo - make this an radio component*/}
           {focusGroupOptions.map((o, idx) => {
             const oName = `focusGroup.${o.value}`;
-            {/*todo - make this an radio component*/}
             return (
               <div key={idx} className="form-check">
                 <input type="radio" className="form-check-input"
@@ -237,6 +238,7 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label>Year Levels</Label>
+        {/*todo - make this an inline checkbox component*/}
         <FieldArray
           name="yearLevels"
           id="yearLevels"
@@ -244,9 +246,6 @@ const ProgramForm = (props) => {
             <div>
               {yearLevelsOptions.map((o, idx) => {
                 const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
-
-                {/*todo - make this an inline checkbox component*/}
-
                 return (
                   <div key={idx} className="form-check form-check-inline">
                     <label className="form-check-label">
@@ -292,10 +291,10 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label>Provider</Label>
+        {/*todo - make this an radio component*/}
         <div id="deliveredByType">
           {deliveredByTypeOptions.map((o, idx) => {
             const oName = `deliveredByType.${o.value}`;
-            {/*todo - make this an radio component*/}
             return (
               <div key={idx} className="form-check">
                 <input type="radio" className="form-check-input"
@@ -336,21 +335,48 @@ const ProgramForm = (props) => {
         </FormText>
       </FormGroup>
 
-      <FormGroup>
-        <Label htmlFor="year" hidden>Year delivered</Label>
+      <FormGroup hidden>
+        <Label htmlFor="year">Year delivered</Label>
         <Input type="text" id="year" name="year"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.year}
+               defaultValue={year}
                invalid={errors.year} />
       </FormGroup>
       <FormGroup>
         <Label htmlFor="terms">Terms delivered</Label>
-        <Input type="text" id="terms" name="terms"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.terms}
-               invalid={errors.terms} />
+        {/*todo - make this an inline checkbox component*/}
+        <FieldArray
+          name="terms"
+          id="terms"
+          render={arrayHelpers => (
+            <div>
+              {termsOptions.map((o, idx) => {
+                const isChecked = typeof values.terms !== 'undefined' ? values.terms.includes(o.value) : false;
+                return (
+                  <div key={idx} className="form-check">
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        name={`terms.${o.value}`}
+                        type="checkbox"
+                        value={o.value}
+                        checked={isChecked}
+                        onChange={(e) => {
+                          if (isChecked) {
+                            const idx = values.terms.indexOf(o.value);
+                            arrayHelpers.remove(idx);
+                          } else {
+                            arrayHelpers.push(o.value);
+                          }
+                        }}
+                      />
+                      {o.label}
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        />
       </FormGroup>
 
       <FormGroup>
