@@ -19,10 +19,10 @@ const mapStateToProps = (state, ownProps) => {
     initialFormState: newInitialFormState,
 
     codeOptions: schools.map(s => ({ value: s.code, label: s.name })),
-    getYearLevelOptions: (code) => {
+    getYearLevelsOptions: (code) => {
       const school = schools.find(s => s.code === code);
       if (!school) {
-        return null;
+        return [];
       }
       return school.yearLevels.map((y) => ({ value: y, label: y }));
     }

@@ -16,7 +16,7 @@
     "build-storybook": "build-storybook",
     "predeploy": "NODE_ENV=production yarn build",
     "deploy": "firebase deploy --only hosting",
-    "api": "nodemon ./mock-server"
+    "api": "node ./mock-server"
   },
   "eslintIgnore": [
     "build/*"
@@ -57,7 +57,6 @@
     "json-server": "^0.12.1",
     "morgan": "^1.9.0",
     "node-sass": "^4.7.2",
-    "nodemon": "^1.17.3",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "react-dev-utils": "^5.0.0",

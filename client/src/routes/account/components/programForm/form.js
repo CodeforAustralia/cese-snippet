@@ -12,7 +12,7 @@ import { withFormik } from 'formik';
 import Bows from 'bows';
 
 import FieldCode from './../fieldCode';
-import FieldYearLevel from './../fieldYearLevel';
+import FieldYearLevels from './../fieldYearLevels';
 
 import CategorySelect from './../fieldCategory';
 
@@ -33,7 +33,7 @@ const ProgramForm = (props) => {
     setValues,
 
     isEdit,
-    getYearLevelOptions,
+    getYearLevelsOptions,
     codeOptions,
   } = props;
 
@@ -49,7 +49,7 @@ const ProgramForm = (props) => {
     setValues({...values, code: codeOptions[0].value});
   }
 
-  const yearLevelOptions = getYearLevelOptions(values.code);
+  const yearLevelsOptions = getYearLevelsOptions(values.code);
 
 
   return (
@@ -169,15 +169,14 @@ const ProgramForm = (props) => {
       </FormGroup>
 
       <FormGroup>
-        <Label htmlFor="yearLevel">Year levels</Label>
-          <FieldYearLevel id="yearLevel" name="yearLevel"
+        <Label htmlFor="yearLevels">Year levels</Label>
+          <FieldYearLevels id="yearLevels" name="yearLevels"
                         disabled={isEdit}
-                        options={yearLevelOptions}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        defaultValue={values.yearLevel}
-                        invalid={errors.yearLevel} />
-        {touched.yearLevel && errors.yearLevel && <FormFeedback>{errors.yearLevel}</FormFeedback>}
+                        options={yearLevelsOptions}
+                        defaultValue={values.yearLevels}
+                        setValues={props.setValues}
+                        invalid={errors.yearLevels} />
+        {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
         <FormText color="muted">
           Which year levels are participating in this program?
         </FormText>
