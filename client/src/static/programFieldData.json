@@ -23,7 +23,7 @@
     { "label": "11", "value": "11" },
     { "label": "12", "value": "12" }
   ],
-  "focusGroups": [
+  "focusGroup": [
     { "label": "None", "value": "None" },
     { "label": "Indigenous", "value": "Indigenous" },
     { "label": "Linguistically Diverse", "value": "Linguistically Diverse" },

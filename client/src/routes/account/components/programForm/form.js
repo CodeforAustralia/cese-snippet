@@ -50,6 +50,7 @@ const ProgramForm = (props) => {
 
   const yearLevelsOptions = getYearLevelsOptions(values.code);
   const participantGroupsOptions = FIELDS_STATIC.participantGroups;
+  const focusGroupOptions = FIELDS_STATIC.focusGroup;
 
 
   return (
@@ -204,11 +205,25 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label>Does the program cater to a particular focus group?</Label>
-        <Input type="text" id="focusGroup" name="focusGroup"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.focusGroup}
-               invalid={errors.focusGroup} />
+        <div>
+          {focusGroupOptions.map((o, idx) => {
+            const oName = `focusGroup.${o.value}`;
+            {/*todo - make this an radio component*/}
+            return (
+              <div key={idx} className="form-check">
+                <input type="radio" className="form-check-input"
+                       name={oName}
+                       id={oName}
+                       value={o.value}
+                       checked={values.focusGroup === o.value}
+                       onChange={() => {
+                         props.setFieldValue('focusGroup', o.value);
+                       }} />
+                <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+              </div>
+            )
+          })}
+        </div>
       </FormGroup>
       <FormGroup>
         <Input type="text" id="focusGroupOther" name="focusGroupOther"
