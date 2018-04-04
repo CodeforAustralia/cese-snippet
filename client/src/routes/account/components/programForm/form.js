@@ -14,9 +14,8 @@ import Bows from 'bows';
 import FIELDS_STATIC from 'static/programFieldData.json';
 import CATEGORIES_STATIC from 'static/categories.json';
 
-
+import FieldSelect from 'components/fieldSelect';
 import FieldCode from './../fieldCode';
-import FieldCategory from './../fieldCategory';
 
 
 const log = Bows('Form');
@@ -81,14 +80,15 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="code">School code</Label>
-        <FieldCode id="code" name="code"
-               options={codeOptions}
-               disabled={isEdit}
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.code}
-               invalid={errors.code} />
-        {touched.code && errors.code && <FormFeedback>{errors.code}</FormFeedback>}
+        <FieldCode name="code"
+                   disabled={isEdit}
+                   options={codeOptions}
+                   value={values.code}
+                   onChange={props.setFieldValue}
+                   onBlur={props.setFieldTouched}
+                   touched={touched.code}
+                   invalid={errors.code} />
+        {errors.code && touched.code &&  <FormFeedback>{errors.code}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="name">Program name</Label>
@@ -103,25 +103,30 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="category">Program Area</Label>
-        <FieldCategory className="form-control" name="category"
-                       options={level1CategoryOptions}
-                       value={values.category}
-                       onChange={props.setFieldValue}
-                       onBlur={props.setFieldTouched}
-                       error={errors.category}
-                       touched={touched.category}
-                       invalid={errors.category} />
+        <FieldSelect name="category"
+                     options={level1CategoryOptions}
+                     clearable={false}
+                     value={values.category}
+                     onChange={props.setFieldValue}
+                     onBlur={props.setFieldTouched}
+                     touched={touched.category}
+                     invalid={errors.category} />
         {!!errors.category && touched.category &&  <FormFeedback>{errors.category}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="subCategory">Program Category</Label>
-        <Input type="text" id="subCategory" name="subCategory"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.subCategory}
-               invalid={errors.subCategory} />
-
+        <FieldSelect name="subCategory"
+                     clearable={false}
+                     options={level2CategoryOptions}
+                     disabled={typeof values.category === 'undefined'}
+                     value={values.subCategory}
+                     onChange={props.setFieldValue}
+                     onBlur={props.setFieldTouched}
+                     touched={touched.subCategory}
+                     invalid={errors.subCategory} />
+        {!!errors.subCategory && touched.subCategory &&  <FormFeedback>{errors.subCategory}</FormFeedback>}
       </FormGroup>
+
       <FormGroup>
         <Label htmlFor="aims">Aims</Label>
         <Input type="textarea" rows={3} id="aims" name="aims"
