@@ -4,6 +4,9 @@ import {
   Switch,
   NavLink,
 } from "react-router-dom";
+import {
+  Container
+} from 'reactstrap';
 
 import School from './school';
 import SchoolPrograms from './schoolPrograms';
@@ -70,12 +73,14 @@ class Account extends React.Component {
               <p>Programs: {schools.map((school, idx) => <span key={idx}>{school.name}</span>)}</p>
           }
 
-          <Switch location={isModal ? this.previousLocation : location}>
-            <Route path="/account/schools/:code" exact component={School} />
-            <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
-            <Route path="/account/create-program" component={SchoolCreateProgram} />
-            <Route path="/account/register" component={RegisterFlow} />
-          </Switch>
+          <Container>
+            <Switch location={isModal ? this.previousLocation : location}>
+              <Route path="/account/schools/:code" exact component={School} />
+              <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
+              <Route path="/account/create-program" component={SchoolCreateProgram} />
+              <Route path="/account/register" component={RegisterFlow} />
+            </Switch>
+          </Container>
         </div>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
       </div>
