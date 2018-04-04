@@ -1,0 +1,324 @@
+[
+  {
+    "firstname": "Malorie",
+    "lastname": "Mahn",
+    "email": "Malorie.Mahn@test.nsw.edu.au",
+    "schoolcode": 3717,
+    "staffid": 37171
+  },
+  {
+    "firstname": "Kenda",
+    "lastname": "Kist",
+    "email": "Kenda.Kist@test.nsw.edu.au",
+    "schoolcode": 3717,
+    "staffid": 37172
+  },
+  {
+    "firstname": "Leontine",
+    "lastname": "Leija",
+    "email": "Leontine.Leija@test.nsw.edu.au",
+    "schoolcode": 4118,
+    "staffid": 41181
+  },
+  {
+    "firstname": "Aurelio",
+    "lastname": "Aikins",
+    "email": "Aurelio.Aikins@test.nsw.edu.au",
+    "schoolcode": 4118,
+    "staffid": 41182
+  },
+  {
+    "firstname": "Raymonde",
+    "lastname": "Rye",
+    "email": "Raymonde.Rye@test.nsw.edu.au",
+    "schoolcode": 3475,
+    "staffid": 34751
+  },
+  {
+    "firstname": "Gertude",
+    "lastname": "Guadarrama",
+    "email": "Gertude.Guadarrama@test.nsw.edu.au",
+    "schoolcode": 3475,
+    "staffid": 34752
+  },
+  {
+    "firstname": "Gerda",
+    "lastname": "Garey",
+    "email": "Gerda.Garey@test.nsw.edu.au",
+    "schoolcode": 3129,
+    "staffid": 31291
+  },
+  {
+    "firstname": "Olevia",
+    "lastname": "Overfield",
+    "email": "Olevia.Overfield@test.nsw.edu.au",
+    "schoolcode": 3129,
+    "staffid": 31292
+  },
+  {
+    "firstname": "Ayanna",
+    "lastname": "Alderete",
+    "email": "Ayanna.Alderete@test.nsw.edu.au",
+    "schoolcode": 1768,
+    "staffid": 17681
+  },
+  {
+    "firstname": "Berenice",
+    "lastname": "Barga",
+    "email": "Berenice.Barga@test.nsw.edu.au",
+    "schoolcode": 1768,
+    "staffid": 17682
+  },
+  {
+    "firstname": "Cristen",
+    "lastname": "Ceja",
+    "email": "Cristen.Ceja@test.nsw.edu.au",
+    "schoolcode": 2360,
+    "staffid": 23601
+  },
+  {
+    "firstname": "Micha",
+    "lastname": "Mayhall",
+    "email": "Micha.Mayhall@test.nsw.edu.au",
+    "schoolcode": 2360,
+    "staffid": 23602
+  },
+  {
+    "firstname": "Dona",
+    "lastname": "Delapp",
+    "email": "Dona.Delapp@test.nsw.edu.au",
+    "schoolcode": 1513,
+    "staffid": 15131
+  },
+  {
+    "firstname": "Lena",
+    "lastname": "Lamorte",
+    "email": "Lena.Lamorte@test.nsw.edu.au",
+    "schoolcode": 1513,
+    "staffid": 15132
+  },
+  {
+    "firstname": "Ruth",
+    "lastname": "Roche",
+    "email": "Ruth.Roche@test.nsw.edu.au",
+    "schoolcode": 1605,
+    "staffid": 16051
+  },
+  {
+    "firstname": "Lan",
+    "lastname": "Laurence",
+    "email": "Lan.Laurence@test.nsw.edu.au",
+    "schoolcode": 1605,
+    "staffid": 16052
+  },
+  {
+    "firstname": "Antonina",
+    "lastname": "Amaral",
+    "email": "Antonina.Amaral@test.nsw.edu.au",
+    "schoolcode": 3288,
+    "staffid": 32881
+  },
+  {
+    "firstname": "Syreeta",
+    "lastname": "Staiger",
+    "email": "Syreeta.Staiger@test.nsw.edu.au",
+    "schoolcode": 3288,
+    "staffid": 32882
+  },
+  {
+    "firstname": "Lauretta",
+    "lastname": "Lyall",
+    "email": "Lauretta.Lyall@test.nsw.edu.au",
+    "schoolcode": 1073,
+    "staffid": 10731
+  },
+  {
+    "firstname": "Ismael",
+    "lastname": "Iglesia",
+    "email": "Ismael.Iglesia@test.nsw.edu.au",
+    "schoolcode": 1073,
+    "staffid": 10732
+  },
+  {
+    "firstname": "Wei",
+    "lastname": "Wardlaw",
+    "email": "Wei.Wardlaw@test.nsw.edu.au",
+    "schoolcode": 4212,
+    "staffid": 42121
+  },
+  {
+    "firstname": "Jefferson",
+    "lastname": "Jeffery",
+    "email": "Jefferson.Jeffery@test.nsw.edu.au",
+    "schoolcode": 4212,
+    "staffid": 42122
+  },
+  {
+    "firstname": "Blaine",
+    "lastname": "Bellantoni",
+    "email": "Blaine.Bellantoni@test.nsw.edu.au",
+    "schoolcode": 8436,
+    "staffid": 84361
+  },
+  {
+    "firstname": "Buford",
+    "lastname": "Bisbee",
+    "email": "Buford.Bisbee@test.nsw.edu.au",
+    "schoolcode": 8436,
+    "staffid": 84362
+  },
+  {
+    "firstname": "Gordon",
+    "lastname": "Grabowski",
+    "email": "Gordon.Grabowski@test.nsw.edu.au",
+    "schoolcode": 8908,
+    "staffid": 89081
+  },
+  {
+    "firstname": "Lavonda",
+    "lastname": "Lones",
+    "email": "Lavonda.Lones@test.nsw.edu.au",
+    "schoolcode": 8908,
+    "staffid": 89082
+  },
+  {
+    "firstname": "Jerrold",
+    "lastname": "Jenner",
+    "email": "Jerrold.Jenner@test.nsw.edu.au",
+    "schoolcode": 8137,
+    "staffid": 81371
+  },
+  {
+    "firstname": "Darron",
+    "lastname": "Devore",
+    "email": "Darron.Devore@test.nsw.edu.au",
+    "schoolcode": 8137,
+    "staffid": 81372
+  },
+  {
+    "firstname": "Moshe",
+    "lastname": "Macdonald",
+    "email": "Moshe.Macdonald@test.nsw.edu.au",
+    "schoolcode": 8255,
+    "staffid": 82551
+  },
+  {
+    "firstname": "Carlotta",
+    "lastname": "Cuenca",
+    "email": "Carlotta.Cuenca@test.nsw.edu.au",
+    "schoolcode": 8255,
+    "staffid": 82552
+  },
+  {
+    "firstname": "Cherlyn",
+    "lastname": "Campuzano",
+    "email": "Cherlyn.Campuzano@test.nsw.edu.au",
+    "schoolcode": 8460,
+    "staffid": 84601
+  },
+  {
+    "firstname": "Maple",
+    "lastname": "Merriam",
+    "email": "Maple.Merriam@test.nsw.edu.au",
+    "schoolcode": 8460,
+    "staffid": 84602
+  },
+  {
+    "firstname": "Janessa",
+    "lastname": "Jude",
+    "email": "Janessa.Jude@test.nsw.edu.au",
+    "schoolcode": 8123,
+    "staffid": 81231
+  },
+  {
+    "firstname": "Kimberley",
+    "lastname": "Kuhns",
+    "email": "Kimberley.Kuhns@test.nsw.edu.au",
+    "schoolcode": 8123,
+    "staffid": 81232
+  },
+  {
+    "firstname": "Stella",
+    "lastname": "Swain",
+    "email": "Stella.Swain@test.nsw.edu.au",
+    "schoolcode": 8550,
+    "staffid": 85501
+  },
+  {
+    "firstname": "Nanette",
+    "lastname": "Nilles",
+    "email": "Nanette.Nilles@test.nsw.edu.au",
+    "schoolcode": 8550,
+    "staffid": 85502
+  },
+  {
+    "firstname": "Carolina",
+    "lastname": "Carpenter",
+    "email": "Carolina.Carpenter@test.nsw.edu.au",
+    "schoolcode": 7424,
+    "staffid": 74241
+  },
+  {
+    "firstname": "Flavia",
+    "lastname": "Fouts",
+    "email": "Flavia.Fouts@test.nsw.edu.au",
+    "schoolcode": 7424,
+    "staffid": 74242
+  },
+  {
+    "firstname": "Dot",
+    "lastname": "Dunn",
+    "email": "Dot.Dunn@test.nsw.edu.au",
+    "schoolcode": 5109,
+    "staffid": 51091
+  },
+  {
+    "firstname": "Eufemia",
+    "lastname": "Eliason",
+    "email": "Eufemia.Eliason@test.nsw.edu.au",
+    "schoolcode": 5109,
+    "staffid": 51092
+  },
+  {
+    "firstname": "Alise",
+    "lastname": "Arner",
+    "email": "Alise.Arner@test.nsw.edu.au",
+    "schoolcode": 7307,
+    "staffid": 73071
+  },
+  {
+    "firstname": "Mozelle",
+    "lastname": "Muth",
+    "email": "Mozelle.Muth@test.nsw.edu.au",
+    "schoolcode": 7307,
+    "staffid": 73072
+  },
+  {
+    "firstname": "Kathe",
+    "lastname": "Kovar",
+    "email": "Kathe.Kovar@test.nsw.edu.au",
+    "schoolcode": 4027,
+    "staffid": 40271
+  },
+  {
+    "firstname": "Opal",
+    "lastname": "Oconnell",
+    "email": "Opal.Oconnell@test.nsw.edu.au",
+    "schoolcode": 4027,
+    "staffid": 40272
+  },
+  {
+    "firstname": "Felipe",
+    "lastname": "Fyock",
+    "email": "Felipe.Fyock@test.nsw.edu.au",
+    "schoolcode": 1379,
+    "staffid": 13791
+  },
+  {
+    "firstname": "Pinkie",
+    "lastname": "Pardue",
+    "email": "Pinkie.Pardue@test.nsw.edu.au",
+    "schoolcode": 1379,
+    "staffid": 13792
+  }
+]
