@@ -29,12 +29,13 @@ class FieldSelect extends React.Component {
   render() {
     const { options, value,
       // invalid = {}, touched = {},
-      name, disabled = false, clearable = true } = this.props;
+      name, disabled = false, clearable = true, multi = false } = this.props;
     return (
       <Select
         id={name}
         name={name}
         clearable={clearable}
+        multi={multi}
         disabled={disabled}
         options={options}
         onChange={this.handleChange}
