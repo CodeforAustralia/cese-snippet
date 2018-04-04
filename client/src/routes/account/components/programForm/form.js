@@ -12,10 +12,11 @@ import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
 import FIELDS_STATIC from 'static/programFieldData.json';
+import STAFF_STATIC from 'static/staff.json';
 
 import FieldSelect from 'components/fieldSelect';
+import FieldSelectTags from 'components/fieldSelectTags';
 import FieldCode from './../fieldCode';
-import FieldKeywords from './../fieldKeywords';
 
 
 const log = Bows('Form');
@@ -34,6 +35,8 @@ const getLevel2Cats = (level1Value) => {
     return { value: level2.value, label: level2.label };
   });
 };
+
+const getStaffOptions = () => STAFF_STATIC.staff.map((staff) => ({ value: staff.id, label: staff.email }));
 
 
 const ProgramForm = (props) => {
@@ -68,6 +71,8 @@ const ProgramForm = (props) => {
   const termsOptions = getTermsOptions();
   const level1CategoryOptions = getLevel1Cats();
   const level2CategoryOptions = getLevel2Cats(values.category);
+  const staffOptions = getStaffOptions();
+
 
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
@@ -348,11 +353,13 @@ const ProgramForm = (props) => {
       </FormGroup>
       <FormGroup>
         <Label htmlFor="staff">Staff involved</Label>
-        <Input type="text" id="staff" name="staff"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.staff}
-               invalid={errors.staff} />
+        <FieldSelectTags name="staff"
+                    options={staffOptions}
+                    value={values.staff}
+                    onChange={props.setFieldValue}
+                    onBlur={props.setFieldTouched}
+                    touched={touched.staff}
+                    invalid={errors.staff} />
         <FormText color="muted">
           Who are the staff members involved in organising or facilitating the program?
         </FormText>
@@ -404,9 +411,13 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="tags">Keywords</Label>
-        <FieldKeywords name="tags"
+        <FieldSelectTags name="tags"
                        options={tagsOptions}
-                       value={values.tags} />
+                       value={values.tags}
+                       onChange={props.setFieldValue}
+                       onBlur={props.setFieldTouched}
+                       touched={touched.tags}
+                       invalid={errors.tags} />
         <FormText color="muted">
           Keywords could help others to search for programs like this one in the future.
         </FormText>
