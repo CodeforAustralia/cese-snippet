@@ -12,13 +12,28 @@ import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
 import FIELDS_STATIC from 'static/programFieldData.json';
+import CATEGORIES_STATIC from 'static/categories.json';
 
+import FieldSelect from 'components/fieldSelect';
 import FieldCode from './../fieldCode';
-
-import CategorySelect from './../fieldCategory';
 
 
 const log = Bows('Form');
+
+
+const getLevel1Cats = () => CATEGORIES_STATIC.categories.map(level1 => {
+  return { value: level1.id, label: level1.label };
+});
+
+const getLevel2Cats = (level1Id) => {
+  const level1Cat = CATEGORIES_STATIC.categories.find(level1 => level1.id === level1Id);
+  if (!level1Cat) {
+    return null;
+  }
+  return level1Cat.categories.map(level2 => {
+    return { value: level2.id, label: level2.label };
+  });
+};
 
 
 const ProgramForm = (props) => {
@@ -50,7 +65,8 @@ const ProgramForm = (props) => {
   const focusGroupOptions = FIELDS_STATIC.focusGroup;
   const deliveredByTypeOptions = FIELDS_STATIC.deliveredByType;
   const termsOptions = getTermsOptions();
-
+  const level1CategoryOptions = getLevel1Cats();
+  const level2CategoryOptions = getLevel2Cats(values.category);
 
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
@@ -64,14 +80,15 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="code">School code</Label>
-        <FieldCode id="code" name="code"
-               options={codeOptions}
-               disabled={isEdit}
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.code}
-               invalid={errors.code} />
-        {touched.code && errors.code && <FormFeedback>{errors.code}</FormFeedback>}
+        <FieldCode name="code"
+                   disabled={isEdit}
+                   options={codeOptions}
+                   value={values.code}
+                   onChange={props.setFieldValue}
+                   onBlur={props.setFieldTouched}
+                   touched={touched.code}
+                   invalid={errors.code} />
+        {errors.code && touched.code &&  <FormFeedback>{errors.code}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="name">Program name</Label>
@@ -86,20 +103,30 @@ const ProgramForm = (props) => {
 
       <FormGroup>
         <Label htmlFor="category">Program Area</Label>
-        <CategorySelect id="category" name="category"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        defaultValue={values.category}
-                        invalid={errors.category} />
+        <FieldSelect name="category"
+                     options={level1CategoryOptions}
+                     clearable={false}
+                     value={values.category}
+                     onChange={props.setFieldValue}
+                     onBlur={props.setFieldTouched}
+                     touched={touched.category}
+                     invalid={errors.category} />
+        {!!errors.category && touched.category &&  <FormFeedback>{errors.category}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label htmlFor="subCategory">Program Category</Label>
-        <Input type="text" id="subCategory" name="subCategory"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.subCategory}
-               invalid={errors.subCategory} />
+        <FieldSelect name="subCategory"
+                     clearable={false}
+                     options={level2CategoryOptions}
+                     disabled={typeof values.category === 'undefined'}
+                     value={values.subCategory}
+                     onChange={props.setFieldValue}
+                     onBlur={props.setFieldTouched}
+                     touched={touched.subCategory}
+                     invalid={errors.subCategory} />
+        {!!errors.subCategory && touched.subCategory &&  <FormFeedback>{errors.subCategory}</FormFeedback>}
       </FormGroup>
+
       <FormGroup>
         <Label htmlFor="aims">Aims</Label>
         <Input type="textarea" rows={3} id="aims" name="aims"
@@ -168,7 +195,7 @@ const ProgramForm = (props) => {
                         type="checkbox"
                         value={o.value}
                         checked={isChecked}
-                        onChange={e => {
+                        onChange={(e) => {
                           if (isChecked) {
                             const idx = values.participantGroups.indexOf(o.value);
                             arrayHelpers.remove(idx);

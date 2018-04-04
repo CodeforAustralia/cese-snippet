@@ -1,30 +1,35 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 
-const FieldCode = ({ options, ...fieldProps }) => {
+import FieldSelect from 'components/fieldSelect';
+
+
+const FieldCode = ({ options, disabled, name, value, onChange, onBlur, touched, errors }) => {
+
+  if (disabled) {
+    return (
+      <Input type="text" disabled={true} value={value} />
+    )
+  }
 
   if (options.length === 1) {
     return (
-      <Input type="text" {...fieldProps} disabled={true} value={options[0].label} />
+      <Input type="text" disabled={true} value={options[0].label} />
     )
   }
 
   return (
-    <Input type="select" {...fieldProps}>
-      <option>Select...</option>
-      {options.map((option, idx) => (
-        <option key={idx} value={option.value}>{option.label}</option>
-      ))}
-    </Input>
-  )
+    <FieldSelect name={name}
+                 clearable={false}
+                 disabled={disabled}
+                 options={options}
+                 value={value}
+                 onChange={onChange}
+                 onBlur={onBlur}
+                 touched={touched}
+                 invalid={errors} />
+  );
 };
 
-FieldCode.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string,
-  disabled: PropTypes.bool,
-};
 
 export default FieldCode;
