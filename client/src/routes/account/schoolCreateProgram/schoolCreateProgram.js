@@ -1,5 +1,10 @@
 import React from 'react';
 import {
+  Row,
+  Col,
+} from 'reactstrap';
+
+import {
   CreateForm,
   UpdateForm,
 } from './../components/programForm';
@@ -12,9 +17,8 @@ class SchoolCreateProgram extends React.Component {
     const Form = isEdit ? UpdateForm : CreateForm;
 
     return (
-      <div style={{border: '1px solid yellow'}}>
-        <h1>SchoolCreateProgram</h1>
-
+      <div>
+        <h1>Add a Program</h1>
         <Form onSubmitSuccess={(code, year) => history.push(getSchoolProgramsUrl(code, year))} />
       </div>
     );

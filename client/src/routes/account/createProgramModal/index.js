@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { BodyClass } from 'components/elementClass';
 import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import {
+  Container,
   Button,
   Row,
   Col,
@@ -39,23 +40,23 @@ const CreateProgramModal = ({ history, location }) => {
       <DocumentOnKeyUp keyCode={27} onKeyUp={back} />
 
       <div className={cx(style.modal)}>
-
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">{title}</h5>
-            <Button className="close" color="" aria-label="Close" onClick={back}>
-              <span aria-hidden="true">&times;</span>
-            </Button>
+        <Container>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">{title}</h5>
+              <Button className="close" color="" aria-label="Close" onClick={back}>
+                <span aria-hidden="true">&times;</span>
+              </Button>
+            </div>
+            <div className="modal-body">
+              <Row>
+                <Col sm={8}>
+                  <Form onSubmitSuccess={() => back()} />
+                </Col>
+              </Row>
+            </div>
           </div>
-          <div className="modal-body">
-            <Row>
-              <Col sm={8}>
-                <Form onSubmitSuccess={() => back()} />
-              </Col>
-            </Row>
-          </div>
-        </div>
-
+        </Container>
       </div>
     </div>
   );
