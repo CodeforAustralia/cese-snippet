@@ -27,7 +27,9 @@ class FieldSelect extends React.Component {
   }
 
   render() {
-    const { options, value, error, touched, name, disabled, clearable } = this.props;
+    const { options, value,
+      // invalid = {}, touched = {},
+      name, disabled = false, clearable = true } = this.props;
     return (
       <Select
         id={name}
@@ -41,6 +43,8 @@ class FieldSelect extends React.Component {
     );
   }
 }
+
+// todo - invalid
 
 // todo
 FieldSelect.propTypes = {

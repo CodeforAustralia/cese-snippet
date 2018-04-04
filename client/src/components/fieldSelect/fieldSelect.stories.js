@@ -1,16 +1,18 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Field from './index';
+import FieldSelect from './index';
 
 storiesOf('Field - category', module)
   .add('default', () => {
     const values = {};
     const errors = {};
+    const touched = {};
     const setFieldValue = () => {};
     const setFieldTouched = () => {};
     return (
-      <Field name="category"
+      <FieldSelect
+        name="category"
         value={values.category}
         onChange={setFieldValue}
         onBlur={setFieldTouched}
