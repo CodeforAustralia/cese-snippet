@@ -10,6 +10,7 @@ import PrivateRoute from 'components/auth/privateRoute';
 import Home from 'routes/home';
 import Login from 'routes/login';
 import Account from 'routes/account';
+import TopBanner from './topBanner';
 
 
 const NoMatch = ({ location }) => (
@@ -18,17 +19,20 @@ const NoMatch = ({ location }) => (
   </div>
 );
 
-const App = ({session}) => (
-  <AuthProvider session={session}>
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <PrivateRoute path="/account" component={Account} />
-        <Route component={NoMatch} />
-      </Switch>
-    </Router>
-  </AuthProvider>
+const App = ({ session }) => (
+  <div>
+    <TopBanner></TopBanner>
+    <AuthProvider session={session}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/account" component={Account} />
+          <Route component={NoMatch} />
+        </Switch>
+      </Router>
+    </AuthProvider>
+  </div>
 );
 
 export default App;
