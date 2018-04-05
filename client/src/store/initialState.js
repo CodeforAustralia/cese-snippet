@@ -13,4 +13,5 @@ export default {
   schools: {},
   programs: {},
   programTemplates: {},
+  static: {},
 };

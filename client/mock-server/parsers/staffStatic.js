@@ -1,15 +1,13 @@
 var arrayify = require('./arrayify');
-var raw = require('./../raw/schools.json');
+var raw = require('./../raw/staff.json');
 
 var makeJson = (data) => {
   return JSON.stringify(data.map(d => {
     return {
-      "code": String(d.School_code),
-      "name": d.School_name,
-      "yearLevels": arrayify(d.yearLevels),
+      "id": String(d.staffid),
+      "email": d.email,
     };
   }));
 };
-
 
 console.log(makeJson(raw));

@@ -1,12 +1,5 @@
+var arrayify = require('./arrayify');
 var raw = require('./../raw/staff.json');
-
-var arrify = (str) => {
-  let a = str.slice(1, str.length -1);
-  if (a.includes(',')) {
-    return JSON.stringify(a.split(','));
-  }
-  return JSON.stringify(a);
-};
 
 var makeJson = (data) => {
   return JSON.stringify(data.map(d => {
@@ -16,10 +9,11 @@ var makeJson = (data) => {
       "last": d.lastname,
       "email": d.email,
       "avatar": null,
-      "schools": String(d.schoolcode)
+      "schools": String(d.schoolcode),
+      "programsCreated": [],
+      "programsFacilitated": [],
     };
   }));
 };
-
 
 console.log(makeJson(raw));

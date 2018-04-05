@@ -25,7 +25,6 @@ const AccountNav = () => {
         <li><NavLink to={getCreateProgramModalUrl({code: "3717", year: "2018"})}>Open Create Program modal</NavLink></li>
         <li><NavLink to={getCreateProgramModalUrl({code: "3717", year: "2018", id: "1"})}>Open Update Program modal</NavLink></li>
       </ul>
-
       <Container>
         <NavbarBrand href="/">Account</NavbarBrand>
       </Container>

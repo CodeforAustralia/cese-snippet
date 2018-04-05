@@ -1,8 +1,19 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink as RRNavLink } from "react-router-dom";
+import {
+  Nav,
+  NavItem,
+  NavLink,
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+} from 'reactstrap';
 
 import ProgramsList from './../components/programsList';
-import { getCreateProgramModalUrl } from "helpers/url";
+import {
+  getSchoolProgramsUrl,
+  getCreateProgramModalUrl
+} from "helpers/url";
 
 
 class SchoolPrograms extends React.Component {
@@ -15,7 +26,6 @@ class SchoolPrograms extends React.Component {
     }
   }
   fetchData() {
-
     const { school } = this.props;
     if (!school) {
       this.props.fetchSchool();
@@ -39,21 +49,35 @@ class SchoolPrograms extends React.Component {
       return <p>No school</p>;
     }
 
+    const openAddProgram = () => getCreateProgramModalUrl(filterProps.year, filterProps.code);
+
     return (
-      <div style={{border: '1px solid blue'}}>
-        <h1>SchoolPrograms</h1>
+      <div>
+        <Breadcrumb>
+          <BreadcrumbItem active>{school.name}</BreadcrumbItem>
+          <BreadcrumbItem>Programs</BreadcrumbItem>
+        </Breadcrumb>
 
-        <ul>
-          <li><NavLink to="/account/schools/76862/programs/2018">Programs 2018</NavLink></li>
-          <li><NavLink to="/account/schools/76862/programs/2017">Programs 2017</NavLink></li>
-        </ul>
+        <div>
+          <div className="float-right">
+            <Button color="primary" size="lg" onClick={openAddProgram} className="mb-4">Add a New Program</Button>
+          </div>
+          <h1>Programs</h1>
+        </div>
 
-        <p>School: {school.name}</p>
+        <Nav tabs>
+          <NavItem>
+            <NavLink to={getSchoolProgramsUrl(school.code, "2018")} activeClassName="active" tag={RRNavLink}>2018</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to={getSchoolProgramsUrl(school.code, "2017")} activeClassName="active" tag={RRNavLink}>2017</NavLink>
+          </NavItem>
+        </Nav>
 
         { isFetchingPrograms !== false ?
           <p>Loading...</p> :
           <ProgramsList programs={filteredPrograms}
-                        openAddProgram={() => getCreateProgramModalUrl(filterProps.year, filterProps.code)}
+                        openAddProgram={openAddProgram}
                         activeYear={filterProps.year} />
         }
       </div>
