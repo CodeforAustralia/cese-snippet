@@ -23,6 +23,8 @@ class Account extends React.Component {
     if (userSchoolCodes && userSchoolCodes.length) {
       this.props.fetchSchools(userSchoolCodes);
     }
+    this.props.fetchProgramFields();
+    this.props.fetchStaffList();
   }
   componentWillUpdate(nextProps) {
     const { location } = this.props;

@@ -11,32 +11,12 @@ import {
 import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
 
-import FIELDS_STATIC from 'static/programFieldData.json';
-import STAFF_STATIC from 'static/staff.json';
-
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldCode from './../fieldCode';
 
 
 const log = Bows('Form');
-
-
-const getLevel1Cats = () => FIELDS_STATIC.categories.map(level1 => {
-  return { value: level1.value, label: level1.label };
-});
-
-const getLevel2Cats = (level1Value) => {
-  const level1Cat = FIELDS_STATIC.categories.find(level1 => level1.value === level1Value);
-  if (!level1Cat) {
-    return null;
-  }
-  return level1Cat.categories.map(level2 => {
-    return { value: level2.value, label: level2.label };
-  });
-};
-
-const getStaffOptions = () => STAFF_STATIC.staff.map((staff) => ({ value: staff.id, label: staff.email }));
 
 
 const ProgramForm = (props) => {
@@ -50,6 +30,7 @@ const ProgramForm = (props) => {
     isSubmitting,
     handleSubmit,
 
+    staticData,
     isEdit,
     getYearLevelsOptions,
     codeOptions,
@@ -63,11 +44,29 @@ const ProgramForm = (props) => {
     return <p>Loading...</p>
   }
 
+
+  const getLevel1Cats = () => staticData.categories.map(level1 => {
+    return { value: level1.value, label: level1.label };
+  });
+
+  const getLevel2Cats = (level1Value) => {
+    const level1Cat = staticData.categories.find(level1 => level1.value === level1Value);
+    if (!level1Cat) {
+      return null;
+    }
+    return level1Cat.categories.map(level2 => {
+      return { value: level2.value, label: level2.label };
+    });
+  };
+
+  const getStaffOptions = () => staticData.staff.map((staff) => ({ value: staff.id, label: staff.email }));
+
+
   const yearLevelsOptions = getYearLevelsOptions(values.code);
-  const participantGroupsOptions = FIELDS_STATIC.participantGroups;
-  const focusGroupOptions = FIELDS_STATIC.focusGroup;
-  const deliveredByTypeOptions = FIELDS_STATIC.deliveredByType;
-  const tagsOptions = FIELDS_STATIC.tags;
+  const participantGroupsOptions = staticData.participantGroups;
+  const focusGroupOptions = staticData.focusGroup;
+  const deliveredByTypeOptions = staticData.deliveredByType;
+  const tagsOptions = staticData.tags;
   const termsOptions = getTermsOptions();
   const level1CategoryOptions = getLevel1Cats();
   const level2CategoryOptions = getLevel2Cats(values.category);

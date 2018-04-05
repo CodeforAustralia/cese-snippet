@@ -152,6 +152,9 @@
     "/api": {
       "target": "http://localhost:5001"
     },
+    "/static": {
+      "target": "http://localhost:5001"
+    },
     "/snippet-3efc5/us-central1/app": {
       "target": "http://localhost:5001"
     }

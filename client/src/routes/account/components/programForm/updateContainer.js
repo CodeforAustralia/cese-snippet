@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { updateProgram } from 'store/programs/actionCreators';
 import { selectSession } from "store/session/selectors";
 import { selectSchool } from "store/schools/selectors";
-
+import { selectStatic } from "store/static/selectors";
 
 
 /*
@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
   const { code, year } = location.state.initialFormState;
 
+  const staticData = selectStatic(state);
   const session = selectSession(state);
   const school = selectSchool(state, code);
 
@@ -34,6 +35,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    staticData,
     isEdit: true,
     initialFormState: newInitialFormState,
 
