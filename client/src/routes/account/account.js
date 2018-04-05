@@ -51,9 +51,7 @@ class Account extends React.Component {
       <AccountLayout>
         { isFetching !== false ?
           <p>Loading...</p> :
-          !schools.length ?
-            <p>No schools</p> :
-            <p>Programs: {schools.map((school, idx) => <span key={idx}>{school.name}</span>)}</p>
+          !schools.length && <p>No schools</p>
         }
         <Switch location={isModal ? this.previousLocation : location}>
           <Route path="/account/schools/:code" exact component={School} />
