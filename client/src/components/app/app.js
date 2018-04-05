@@ -1,9 +1,5 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import AuthProvider from 'components/auth/authProvider';
 import PrivateRoute from 'components/auth/privateRoute';
@@ -12,16 +8,17 @@ import Login from 'routes/login';
 import Account from 'routes/account';
 import TopBanner from './topBanner';
 
-
 const NoMatch = ({ location }) => (
   <div>
-    <h3>No match for <code>{location.pathname}</code></h3>
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
   </div>
 );
 
 const App = ({ session }) => (
   <div>
-    <TopBanner></TopBanner>
+    <TopBanner />
     <AuthProvider session={session}>
       <Router>
         <Switch>
