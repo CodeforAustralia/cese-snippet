@@ -42,9 +42,6 @@ class LayoutBasic extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink to="/demo" activeClassName="active" tag={RRNavLink} disabled>Demo</NavLink>
-              </NavItem>
-              <NavItem>
                 {!isAuthenticated &&
                 <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
                 }

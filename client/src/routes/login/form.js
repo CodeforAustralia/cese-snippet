@@ -61,7 +61,7 @@ const LoginForm = ({
 export default withFormik({
   displayName: 'LoginForm',
   mapPropsToValues: props => ({
-    email: 'susan.kennedy@det.nsw.edu.au',
+    email: "Malorie.Mahn@test.nsw.edu.au",
     password: '*******'
   }),
   validate: (values, props) => {

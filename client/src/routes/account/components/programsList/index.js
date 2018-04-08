@@ -111,7 +111,6 @@ const ProgramItem = ({ program, openAddProgram }) => {
 
 
 const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
-
   if (!programs.length) {
     return <EmptyItem openAddProgram={openAddProgram} activeYear={activeYear} />
   }

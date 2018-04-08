@@ -9,6 +9,9 @@ export const fetchProgramFields = () => {
           type: ACTION_TYPES.fetchedProgramFields,
           payload: data,
         })
+      })
+      .catch((err) => {
+        throw new Error(`Unable to fetch program fields data: ${err}`);
       });
   }
 };
@@ -22,6 +25,9 @@ export const fetchStaffList = () => {
           type: ACTION_TYPES.fetchedStaffList,
           payload: data,
         })
+      })
+      .catch((err) => {
+        throw new Error(`Unable to fetch staff list: ${err}`);
       });
   }
 };

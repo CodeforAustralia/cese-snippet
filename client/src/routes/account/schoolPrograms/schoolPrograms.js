@@ -49,7 +49,7 @@ class SchoolPrograms extends React.Component {
       return <p>No school</p>;
     }
 
-    const openAddProgram = () => getCreateProgramModalUrl(filterProps.year, filterProps.code);
+    const openAddProgram = () => getCreateProgramModalUrl(filterProps);
 
     return (
       <div>
