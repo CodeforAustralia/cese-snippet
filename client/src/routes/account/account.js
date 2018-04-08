@@ -4,7 +4,7 @@ import {
   Switch,
 } from "react-router-dom";
 
-import AccountLayout from './layouts';
+import AccountLayout from './layout';
 import School from './school';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';

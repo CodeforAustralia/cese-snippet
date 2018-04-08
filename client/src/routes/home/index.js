@@ -6,7 +6,7 @@ import {
   Col,
 } from "reactstrap";
 
-import LayoutHome from 'layouts/basic';
+import LayoutHome from 'layout';
 import style from './style.scss';
 
 

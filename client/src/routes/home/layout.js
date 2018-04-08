@@ -52,13 +52,6 @@ class LayoutBasic extends React.Component {
                   {session.first}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  {/*<DropdownItem>*/}
-                  {/*Option 1*/}
-                  {/*</DropdownItem>*/}
-                  {/*<DropdownItem>*/}
-                  {/*Option 2*/}
-                  {/*</DropdownItem>*/}
-                  {/*<DropdownItem divider />*/}
                   <DropdownItem onClick={() => {
                     signout(() => history.push("/"));
                   }}>Sign out

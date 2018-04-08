@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Layout from 'layouts/login';
+import Layout from 'layout';
 import style from './style.scss';
 import Logo from './logo.png';
 import Form from './form';
