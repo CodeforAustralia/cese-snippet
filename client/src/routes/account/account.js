@@ -62,7 +62,7 @@ class Account extends React.Component {
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
             <Route path="/account/register" component={RegisterFlow} />
-            <Redirect to={`/account/schools/3717/programs/2018`} />
+            <Redirect to={`/account/schools/4118/programs/2018`} />
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}

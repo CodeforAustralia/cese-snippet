@@ -55,7 +55,6 @@ class SchoolPrograms extends React.Component {
     return (
       <div>
 
-
         <div>
           <div className="float-right">
             <Button color="primary" size="lg" onClick={openAddProgram} className="mb-4">Add a New Program</Button>
