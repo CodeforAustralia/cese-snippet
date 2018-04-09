@@ -1,0 +1,13 @@
+@import '~style/helpers';
+
+.navBar {
+  padding-top: 5px;
+  padding-bottom: 3px;
+}
+
+.navbarBrand {
+  font-size: 13px;
+  font-weight: $font-weight-bold;
+  letter-spacing: 1px;
+  color: rgba(white, .4) !important;
+}
