@@ -7,9 +7,11 @@ import {
   Input,
   Button,
   FormFeedback,
+  Col,
 } from 'reactstrap';
 import { withFormik, FieldArray } from 'formik';
 import Bows from 'bows';
+import { Link } from 'react-router-dom';
 
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
@@ -83,285 +85,320 @@ const ProgramForm = (props) => {
         <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true} />
       }
 
-      <FormGroup>
-        <Label htmlFor="code">School code</Label>
-        <FieldCode name="code"
-                   disabled={isEdit}
-                   options={codeOptions}
-                   value={values.code}
-                   onChange={props.setFieldValue}
-                   onBlur={props.setFieldTouched}
-                   touched={touched.code}
-                   invalid={errors.code} />
-        {errors.code && touched.code &&  <FormFeedback>{errors.code}</FormFeedback>}
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="code">School</Label>
+          <FieldCode name="code"
+                     disabled={isEdit}
+                     options={codeOptions}
+                     value={values.code}
+                     onChange={props.setFieldValue}
+                     onBlur={props.setFieldTouched}
+                     touched={touched.code}
+                     invalid={errors.code} />
+          {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
+        </Col>
       </FormGroup>
-      <FormGroup>
-        <Label htmlFor="name">Program name</Label>
-        <Input type="text" id="name" name="name"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.name}
-               invalid={errors.name} />
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="name">Program name</Label>
+          <Input type="text" id="name" name="name"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.name}
+                 invalid={errors.name} />
+        </Col>
       </FormGroup>
 
       <p>Is it one of these programs? prompt</p>
 
-      <FormGroup>
-        <Label htmlFor="category">Program Area</Label>
-        <FieldSelect name="category"
-                     options={level1CategoryOptions}
-                     clearable={false}
-                     value={values.category}
-                     onChange={props.setFieldValue}
-                     onBlur={props.setFieldTouched}
-                     touched={touched.category}
-                     invalid={errors.category} />
-        {!!errors.category && touched.category &&  <FormFeedback>{errors.category}</FormFeedback>}
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="subCategory">Program Category</Label>
-        <FieldSelect name="subCategory"
-                     clearable={false}
-                     options={level2CategoryOptions}
-                     disabled={typeof values.category === 'undefined'}
-                     value={values.subCategory}
-                     onChange={props.setFieldValue}
-                     onBlur={props.setFieldTouched}
-                     touched={touched.subCategory}
-                     invalid={errors.subCategory} />
-        {!!errors.subCategory && touched.subCategory &&  <FormFeedback>{errors.subCategory}</FormFeedback>}
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="category">Program Area</Label>
+          <FieldSelect name="category"
+                       options={level1CategoryOptions}
+                       clearable={false}
+                       value={values.category}
+                       onChange={props.setFieldValue}
+                       onBlur={props.setFieldTouched}
+                       touched={touched.category}
+                       invalid={errors.category} />
+          {!!errors.category && touched.category &&  <FormFeedback>{errors.category}</FormFeedback>}
+        </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Label htmlFor="aims">Aims</Label>
-        <Input type="textarea" rows={3} id="aims" name="aims"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.aims}
-               invalid={errors.aims} />
-        <FormText color="muted">
-          Briefly describe what outcomes the program hopes to achieve.
-        </FormText>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="subCategory">Program Category</Label>
+          <FieldSelect name="subCategory"
+                       clearable={false}
+                       options={level2CategoryOptions}
+                       disabled={typeof values.category === 'undefined'}
+                       value={values.subCategory}
+                       onChange={props.setFieldValue}
+                       onBlur={props.setFieldTouched}
+                       touched={touched.subCategory}
+                       invalid={errors.subCategory} />
+          {!!errors.subCategory && touched.subCategory &&  <FormFeedback>{errors.subCategory}</FormFeedback>}
+        </Col>
       </FormGroup>
-      <FormGroup>
-        <Label htmlFor="description">Program overview</Label>
-        <Input type="textarea" rows={2} id="description" name="description"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.description}
-               invalid={errors.description} />
-        <FormText color="muted">
-          What does the program does in a nutshell?
-        </FormText>
+
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="aims">Aims</Label>
+          <Input type="textarea" rows={3} id="aims" name="aims"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.aims}
+                 invalid={errors.aims} />
+          <FormText color="muted">
+            Briefly describe what outcomes the program hopes to achieve.
+          </FormText>
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="description">Program overview</Label>
+          <Input type="textarea" rows={2} id="description" name="description"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.description}
+                 invalid={errors.description} />
+          <FormText color="muted">
+            What does the program does in a nutshell?
+          </FormText>
+        </Col>
       </FormGroup>
 
       <p>Would you like to add a longer description?</p>
 
-      <FormGroup>
-        <Label htmlFor="descriptionFull">Detailed description</Label>
-        <Input type="text" id="descriptionFull" name="descriptionFull"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.descriptionFull}
-               invalid={errors.descriptionFull} />
-        <FormText color="muted">
-          A comprehensive full length description of the program. Describe the structure of the program, and how it is delivered.
-        </FormText>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="descriptionFull">Detailed description</Label>
+          <Input type="text" id="descriptionFull" name="descriptionFull"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.descriptionFull}
+                 invalid={errors.descriptionFull} />
+          <FormText color="muted">
+            A comprehensive full length description of the program. Describe the structure of the program, and how it is delivered.
+          </FormText>
+        </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Label htmlFor="website">Website</Label>
-        <Input type="url" id="website" name="website"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.website}
-               invalid={errors.website} />
-        <FormText color="muted">
-          Some programs have a website for more information.
-        </FormText>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="website">Website</Label>
+          <Input type="url" id="website" name="website"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.website}
+                 invalid={errors.website} />
+          <FormText color="muted">
+            Some programs have a website for more information.
+          </FormText>
+        </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Label htmlFor="participantGroups">Who is the program for?</Label>
-        {/*todo - make this an inline checkbox component*/}
-        <FieldArray
-          name="participantGroups"
-          id="participantGroups"
-          render={arrayHelpers => (
-            <div>
-              {participantGroupsOptions.map((o, idx) => {
-                const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
-                return (
-                  <div key={idx} className="form-check form-check-inline">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        name={`yearLevels.${o.value}`}
-                        type="checkbox"
-                        value={o.value}
-                        checked={isChecked}
-                        onChange={(e) => {
-                          if (isChecked) {
-                            const idx = values.participantGroups.indexOf(o.value);
-                            arrayHelpers.remove(idx);
-                          } else {
-                            arrayHelpers.push(o.value);
-                          }
-                        }}
-                      />
-                      {o.label}
-                    </label>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-        />
-        {touched.participantGroups && errors.participantGroups && <FormFeedback>{errors.participantGroups}</FormFeedback>}
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="participantGroups">Who is the program for?</Label>
+          {/*todo - make this an inline checkbox component*/}
+          <FieldArray
+            name="participantGroups"
+            id="participantGroups"
+            render={arrayHelpers => (
+              <div>
+                {participantGroupsOptions.map((o, idx) => {
+                  const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
+                  return (
+                    <div key={idx} className="form-check form-check-inline">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          name={`yearLevels.${o.value}`}
+                          type="checkbox"
+                          value={o.value}
+                          checked={isChecked}
+                          onChange={(e) => {
+                            if (isChecked) {
+                              const idx = values.participantGroups.indexOf(o.value);
+                              arrayHelpers.remove(idx);
+                            } else {
+                              arrayHelpers.push(o.value);
+                            }
+                          }}
+                        />
+                        {o.label}
+                      </label>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          />
+          {touched.participantGroups && errors.participantGroups && <FormFeedback>{errors.participantGroups}</FormFeedback>}
+        </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-        <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.participantGroupsDescription}
-               invalid={errors.participantGroupsDescription} />
-        <FormText color="muted">
-          Example: Partner schools students, charities, aged care residents
-        </FormText>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
+          <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.participantGroupsDescription}
+                 invalid={errors.participantGroupsDescription} />
+          <FormText color="muted">
+            Example: Partner schools students, charities, aged care residents
+          </FormText>
+        </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Label>Does the program cater to a particular focus group?</Label>
-        <div id="focusGroup">
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label>Does the program cater to a particular focus group?</Label>
+          <div id="focusGroup">
+            {/*todo - make this an radio component*/}
+            {focusGroupOptions.map((o, idx) => {
+              const oName = `focusGroup.${o.value}`;
+              return (
+                <div key={idx} className="form-check">
+                  <input type="radio" className="form-check-input"
+                         name={oName}
+                         id={oName}
+                         value={o.value}
+                         checked={values.focusGroup === o.value}
+                         onChange={() => {
+                           props.setFieldValue('focusGroup', o.value);
+                         }}
+                         invalid={errors.focusGroup} />
+                  <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+                </div>
+              )
+            })}
+          </div>
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Input type="text" id="focusGroupOther" name="focusGroupOther"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.focusGroupOther}
+                 invalid={errors.focusGroupOther} />
+        </Col>
+      </FormGroup>
+
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label>Year Levels</Label>
+          {/*todo - make this an inline checkbox component*/}
+          <FieldArray
+            name="yearLevels"
+            id="yearLevels"
+            render={arrayHelpers => (
+              <div>
+                {yearLevelsOptions.map((o, idx) => {
+                  const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
+                  return (
+                    <div key={idx} className="form-check form-check-inline">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          name={`yearLevels.${o.value}`}
+                          type="checkbox"
+                          value={o.value}
+                          checked={isChecked}
+                          onChange={e => {
+                            if (isChecked) {
+                              const idx = values.yearLevels.indexOf(o.value);
+                              arrayHelpers.remove(idx);
+                            } else {
+                              arrayHelpers.push(o.value);
+                            }
+                          }}
+                        />
+                        {o.label}
+                      </label>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          />
+          {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+          <FormText color="muted">
+            Which year levels are participating in this program?
+          </FormText>
+        </Col>
+      </FormGroup>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="cohortSize">Number of Participants</Label>
+          <Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.cohortSize}
+                 invalid={errors.cohortSize} />
+          <FormText color="muted">
+            How many people participated in this program?
+          </FormText>
+        </Col>
+      </FormGroup>
+
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label>Provider</Label>
           {/*todo - make this an radio component*/}
-          {focusGroupOptions.map((o, idx) => {
-            const oName = `focusGroup.${o.value}`;
-            return (
-              <div key={idx} className="form-check">
-                <input type="radio" className="form-check-input"
-                       name={oName}
-                       id={oName}
-                       value={o.value}
-                       checked={values.focusGroup === o.value}
-                       onChange={() => {
-                         props.setFieldValue('focusGroup', o.value);
-                       }}
-                       invalid={errors.focusGroup} />
-                <label className="form-check-label" htmlFor={oName}>{o.label}</label>
-              </div>
-            )
-          })}
-        </div>
+          <div id="deliveredByType">
+            {deliveredByTypeOptions.map((o, idx) => {
+              const oName = `deliveredByType.${o.value}`;
+              return (
+                <div key={idx} className="form-check">
+                  <input type="radio" className="form-check-input"
+                         name={oName}
+                         id={oName}
+                         value={o.value}
+                         checked={values.deliveredByType === o.value}
+                         onChange={() => {
+                           props.setFieldValue('deliveredByType', o.value);
+                         }}
+                         invalid={errors.deliveredByType} />
+                  <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+                </div>
+              )
+            })}
+          </div>
+          <FormText color="muted">
+            Is the program run by school staff or another provider?
+          </FormText>
+        </Col>
       </FormGroup>
-      <FormGroup>
-        <Input type="text" id="focusGroupOther" name="focusGroupOther"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.focusGroupOther}
-               invalid={errors.focusGroupOther} />
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="externalProvider">Who is the External Provider?</Label>
+          <Input type="text" id="externalProvider" name="externalProvider"
+                 onChange={handleChange}
+                 onBlur={handleBlur}
+                 defaultValue={values.externalProvider}
+                 invalid={errors.externalProvider} />
+        </Col>
       </FormGroup>
-
-      <FormGroup>
-        <Label>Year Levels</Label>
-        {/*todo - make this an inline checkbox component*/}
-        <FieldArray
-          name="yearLevels"
-          id="yearLevels"
-          render={arrayHelpers => (
-            <div>
-              {yearLevelsOptions.map((o, idx) => {
-                const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
-                return (
-                  <div key={idx} className="form-check form-check-inline">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        name={`yearLevels.${o.value}`}
-                        type="checkbox"
-                        value={o.value}
-                        checked={isChecked}
-                        onChange={e => {
-                          if (isChecked) {
-                            const idx = values.yearLevels.indexOf(o.value);
-                            arrayHelpers.remove(idx);
-                          } else {
-                            arrayHelpers.push(o.value);
-                          }
-                        }}
-                      />
-                      {o.label}
-                    </label>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-        />
-        {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
-        <FormText color="muted">
-          Which year levels are participating in this program?
-        </FormText>
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="cohortSize">Number of Participants</Label>
-        <Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.cohortSize}
-               invalid={errors.cohortSize} />
-        <FormText color="muted">
-          How many people participated in this program?
-        </FormText>
-      </FormGroup>
-
-      <FormGroup>
-        <Label>Provider</Label>
-        {/*todo - make this an radio component*/}
-        <div id="deliveredByType">
-          {deliveredByTypeOptions.map((o, idx) => {
-            const oName = `deliveredByType.${o.value}`;
-            return (
-              <div key={idx} className="form-check">
-                <input type="radio" className="form-check-input"
-                       name={oName}
-                       id={oName}
-                       value={o.value}
-                       checked={values.deliveredByType === o.value}
-                       onChange={() => {
-                         props.setFieldValue('deliveredByType', o.value);
-                       }}
-                       invalid={errors.deliveredByType} />
-                <label className="form-check-label" htmlFor={oName}>{o.label}</label>
-              </div>
-            )
-          })}
-        </div>
-        <FormText color="muted">
-          Is the program run by school staff or another provider?
-        </FormText>
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-        <Input type="text" id="externalProvider" name="externalProvider"
-               onChange={handleChange}
-               onBlur={handleBlur}
-               defaultValue={values.externalProvider}
-               invalid={errors.externalProvider} />
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="staff">Staff involved</Label>
-        <FieldSelectTags name="staff"
-                    options={staffOptions}
-                    value={values.staff}
-                    onChange={props.setFieldValue}
-                    onBlur={props.setFieldTouched}
-                    touched={touched.staff}
-                    invalid={errors.staff} />
-        <FormText color="muted">
-          Who are the staff members involved in organising or facilitating the program?
-        </FormText>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="staff">Staff involved</Label>
+          <FieldSelectTags name="staff"
+                      options={staffOptions}
+                      value={values.staff}
+                      onChange={props.setFieldValue}
+                      onBlur={props.setFieldTouched}
+                      touched={touched.staff}
+                      invalid={errors.staff} />
+          <FormText color="muted">
+            Who are the staff members involved in organising or facilitating the program?
+          </FormText>
+        </Col>
       </FormGroup>
 
       <FormGroup hidden>
@@ -370,59 +407,67 @@ const ProgramForm = (props) => {
                defaultValue={year}
                invalid={errors.year} />
       </FormGroup>
-      <FormGroup>
-        <Label htmlFor="terms">Terms delivered</Label>
-        {/*todo - make this an inline checkbox component*/}
-        <FieldArray
-          name="terms"
-          id="terms"
-          render={arrayHelpers => (
-            <div>
-              {termsOptions.map((o, idx) => {
-                const isChecked = typeof values.terms !== 'undefined' ? values.terms.includes(o.value) : false;
-                return (
-                  <div key={idx} className="form-check">
-                    <label className="form-check-label">
-                      <input
-                        className="form-check-input"
-                        name={`terms.${o.value}`}
-                        type="checkbox"
-                        value={o.value}
-                        checked={isChecked}
-                        onChange={(e) => {
-                          if (isChecked) {
-                            const idx = values.terms.indexOf(o.value);
-                            arrayHelpers.remove(idx);
-                          } else {
-                            arrayHelpers.push(o.value);
-                          }
-                        }}
-                      />
-                      {o.label}
-                    </label>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-        />
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="terms">Terms delivered</Label>
+          {/*todo - make this an inline checkbox component*/}
+          <FieldArray
+            name="terms"
+            id="terms"
+            render={arrayHelpers => (
+              <div>
+                {termsOptions.map((o, idx) => {
+                  const isChecked = typeof values.terms !== 'undefined' ? values.terms.includes(o.value) : false;
+                  return (
+                    <div key={idx} className="form-check">
+                      <label className="form-check-label">
+                        <input
+                          className="form-check-input"
+                          name={`terms.${o.value}`}
+                          type="checkbox"
+                          value={o.value}
+                          checked={isChecked}
+                          onChange={(e) => {
+                            if (isChecked) {
+                              const idx = values.terms.indexOf(o.value);
+                              arrayHelpers.remove(idx);
+                            } else {
+                              arrayHelpers.push(o.value);
+                            }
+                          }}
+                        />
+                        {o.label}
+                      </label>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          />
+        </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Label htmlFor="tags">Keywords</Label>
-        <FieldSelectTags name="tags"
-                       options={tagsOptions}
-                       value={values.tags}
-                       onChange={props.setFieldValue}
-                       onBlur={props.setFieldTouched}
-                       touched={touched.tags}
-                       invalid={errors.tags} />
-        <FormText color="muted">
-          Keywords could help others to search for programs like this one in the future.
-        </FormText>
+      <FormGroup row>
+        <Col md={8} lg={6}>
+          <Label htmlFor="tags">Keywords</Label>
+          <FieldSelectTags name="tags"
+                         options={tagsOptions}
+                         value={values.tags}
+                         onChange={props.setFieldValue}
+                         onBlur={props.setFieldTouched}
+                         touched={touched.tags}
+                         invalid={errors.tags} />
+          <FormText color="muted">
+            Keywords could help others to search for programs like this one in the future.
+          </FormText>
+        </Col>
       </FormGroup>
 
-      <Button type="submit" className="btn btn-lg btn-primary btn-block" disabled={isSubmitting}>Submit</Button>
+      <Col md={8} lg={6}>
+        <Link to="account">Cancel</Link>
+        <Button type="submit" color="primary" size="lg" className="float-right" disabled={isSubmitting}>Submit</Button>
+      </Col>
+
     </Form>
   )
 };

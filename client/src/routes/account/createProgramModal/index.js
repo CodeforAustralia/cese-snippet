@@ -40,23 +40,17 @@ const CreateProgramModal = ({ history, location }) => {
       <DocumentOnKeyUp keyCode={27} onKeyUp={back} />
 
       <div className={cx(style.modal)}>
-        <Container>
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">{title}</h5>
-              <Button className="close" color="" aria-label="Close" onClick={back}>
-                <span aria-hidden="true">&times;</span>
-              </Button>
-            </div>
-            <div className="modal-body">
-              <Row>
-                <Col sm={8}>
-                  <Form onSubmitSuccess={() => back()} />
-                </Col>
-              </Row>
-            </div>
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{title}</h5>
+            <Button className="close" color="" aria-label="Close" onClick={back}>
+              <span aria-hidden="true">&times;</span>
+            </Button>
           </div>
-        </Container>
+          <div className="modal-body">
+            <Form onSubmitSuccess={() => back()} />
+          </div>
+        </div>
       </div>
     </div>
   );
