@@ -446,7 +446,12 @@ export default withFormik({
       (resp) => {
         setSubmitting(false);
         if (props.onSubmitSuccess) {
-          return props.onSubmitSuccess(resp.data.code, resp.data.year);
+          if (resp && resp.data) {
+            return props.onSubmitSuccess(resp.data.code, resp.data.year);
+          } else {
+            debugger; // todo
+          }
+          return;
         }
         return resp;
       },

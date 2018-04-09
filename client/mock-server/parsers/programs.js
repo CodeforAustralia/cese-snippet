@@ -38,6 +38,7 @@ const makeJson = (data) => {
       "createdBy": String(d.createdBy),
       "updatedBy": String(d.updatedBy),
       "updatedAt": d.updatedAt,
+      "name": d.name,
     }
   }));
 };

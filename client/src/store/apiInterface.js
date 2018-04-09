@@ -25,7 +25,7 @@ const api = (route, opts = {}) => {
     credentials: 'same-origin',
     headers: {
      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+     'Content-Type': 'application/json'
     },
     ...opts
   };
