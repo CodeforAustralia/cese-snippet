@@ -183,13 +183,13 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        <p onClick={() => this.toggleShowDetail()}>Would you like to add a longer description?</p>
+        {!this.state.showDetail && <p><Button color="link" onClick={() => this.toggleShowDetail()}>Would you like to add a longer description?</Button></p>}
 
-        <FormGroup row>
-          {this.state.showDetail ? (
+        {this.state.showDetail ?
+          <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
-              <Input type="text" id="descriptionFull" name="descriptionFull"
+              <Input type="textarea" rows={6} id="descriptionFull" name="descriptionFull"
                      onChange={handleChange}
                      onBlur={handleBlur}
                      defaultValue={values.descriptionFull}
@@ -199,9 +199,8 @@ class ProgramForm extends React.Component {
                 it is delivered.
               </FormText>
             </Col>
-          ) : null}
+        </FormGroup> : null}
 
-        </FormGroup>
 
         <FormGroup row>
           <Col md={8} lg={6}>
