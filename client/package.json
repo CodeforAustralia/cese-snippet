@@ -55,6 +55,8 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "json-server": "^0.12.1",
+    "math-floor": "^1.0.1",
+    "math-random": "^1.0.1",
     "morgan": "^1.9.0",
     "node-sass": "^4.7.2",
     "postcss-flexbugs-fixes": "3.2.0",

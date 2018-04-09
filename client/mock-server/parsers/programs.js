@@ -1,8 +1,18 @@
-var arrayify = require('./arrayify');
-var raw = require('./../raw/programs.json');
+// node parsers/programs.js | pbcopy
 
-var makeJson = (data) => {
+const arrayify = require('./arrayify');
+const raw = require('./../raw/programs.json');
+const random = require('math-random');
+const floor = require( 'math-floor' );
+
+const possibleYears = ['2018', '2018', '2018', '2018', '2018', '2018', '2018', '2017'];
+const possibleTerms = ['[1,2,3,4]', '[1,2]', '[3,4]', '[1]', '[2]', '[3]', '[4]'];
+
+const makeJson = (data) => {
   return JSON.stringify(data.map(d => {
+    const year = possibleYears[floor(random() * possibleYears.length)];
+    const terms = possibleTerms[floor(random() * possibleTerms.length)];
+
     return {
       "id": String(d.id),
       "code": String(d.schoolcode),
@@ -21,8 +31,8 @@ var makeJson = (data) => {
       "deliveredByType": d.deliveredByType,
       "externalProvider": d.externalProvider,
       "staff": Array.isArray(d.staff) ? d.staff.map(d => String(d)) : d.staff,
-      "year": String(d.yearDelivered),
-      "terms": d.termsDelivered,
+      "year": year,
+      "terms": terms,
       "tags": arrayify(d.tags),
       "createdAt": d.createdAt,
       "createdBy": String(d.createdBy),

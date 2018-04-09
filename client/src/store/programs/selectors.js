@@ -27,9 +27,7 @@ export const selectPrograms = (state, ids) => {
 };
 
 export const selectProgramsByFilterKey = (state, filterProps) => {
-
   const filterKey = getFilterKey(filterProps);
-
   const filteredIds = get(state, `programs.filters[${filterKey}]`, []);
   return selectPrograms(state, filteredIds);
 };
