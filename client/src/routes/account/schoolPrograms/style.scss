@@ -1,7 +1,20 @@
+@import '~style/helpers';
+
 .pageTitle {
   span {
     display: block;
     font-size: 14px;
     text-transform: uppercase;
+  }
+}
+
+.tabPageContainer {
+  padding: 1em 0;
+}
+
+.tabAddProgramBtn {
+  @include clearfix;
+  button {
+    float: right
   }
 }

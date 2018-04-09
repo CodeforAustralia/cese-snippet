@@ -19,7 +19,7 @@ import {
 import withAuth from 'components/auth/withAuth';
 
 
-class LayoutBasic extends React.Component {
+class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -68,4 +68,4 @@ class LayoutBasic extends React.Component {
   }
 }
 
-export default withRouter(withAuth(LayoutBasic));
+export default withRouter(withAuth(Layout));

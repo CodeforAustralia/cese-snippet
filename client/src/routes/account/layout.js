@@ -114,9 +114,3 @@ class LayoutBasic extends React.Component {
 }
 
 export default withRouter(withAuth(LayoutBasic));
-
-
-
-{/*<DropdownItem>*/}
-  {/*<NavLink to={getCreateProgramModalUrl({code: "4118", year: "2018", id: "1"})} activeClassName="active" tag={RRNavLink}>Update Modal</NavLink>*/}
-{/*</DropdownItem>*/}
