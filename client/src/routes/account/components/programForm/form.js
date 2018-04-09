@@ -20,27 +20,40 @@ import FieldCode from './../fieldCode';
 
 const log = Bows('Form');
 
+class ProgramForm extends React.Component {
 
-const ProgramForm = (props) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDetail: false
+    };
+  }
 
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    isSubmitting,
-    handleSubmit,
+  toggleShowDetail() {
+    this.setState({
+      showDetail: !this.state.showDetail
+    });
+  }
 
-    staticData,
-    isEdit,
-    getYearLevelsOptions,
-    codeOptions,
-    year,
-    getTermsOptions,
-  } = props;
+  render() {
+    const {
+      values,
+      errors,
+      touched,
+      handleChange,
+      handleBlur,
+      isSubmitting,
+      handleSubmit,
 
-  log('values:', values);
+      staticData,
+      isEdit,
+      getYearLevelsOptions,
+      codeOptions,
+      year,
+      getTermsOptions,
+    } = this.props;
+
+    log('values:', values);
 
   if (!codeOptions.length) {
     return <p>Loading...</p>
@@ -75,6 +88,7 @@ const ProgramForm = (props) => {
   const staffOptions = getStaffOptions();
 
 
+
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
       { isEdit &&
@@ -92,8 +106,8 @@ const ProgramForm = (props) => {
                      disabled={isEdit}
                      options={codeOptions}
                      value={values.code}
-                     onChange={props.setFieldValue}
-                     onBlur={props.setFieldTouched}
+                     onChange={this.props.setFieldValue}
+                     onBlur={this.props.setFieldTouched}
                      touched={touched.code}
                      invalid={errors.code} />
           {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
@@ -119,8 +133,8 @@ const ProgramForm = (props) => {
                        options={level1CategoryOptions}
                        clearable={false}
                        value={values.category}
-                       onChange={props.setFieldValue}
-                       onBlur={props.setFieldTouched}
+                       onChange={this.props.setFieldValue}
+                       onBlur={this.props.setFieldTouched}
                        touched={touched.category}
                        invalid={errors.category} />
           {!!errors.category && touched.category &&  <FormFeedback>{errors.category}</FormFeedback>}
@@ -135,8 +149,8 @@ const ProgramForm = (props) => {
                        options={level2CategoryOptions}
                        disabled={typeof values.category === 'undefined'}
                        value={values.subCategory}
-                       onChange={props.setFieldValue}
-                       onBlur={props.setFieldTouched}
+                       onChange={this.props.setFieldValue}
+                       onBlur={this.props.setFieldTouched}
                        touched={touched.subCategory}
                        invalid={errors.subCategory} />
           {!!errors.subCategory && touched.subCategory &&  <FormFeedback>{errors.subCategory}</FormFeedback>}
@@ -170,10 +184,11 @@ const ProgramForm = (props) => {
         </Col>
       </FormGroup>
 
-      <p>Would you like to add a longer description?</p>
+      <p onClick={() => this.toggleShowDetail()}>Would you like to add a longer description?</p>
 
       <FormGroup row>
-        <Col md={8} lg={6}>
+        {this.state.showDetail ? (
+          <Col md={8} lg={6}>
           <Label htmlFor="descriptionFull">Detailed description</Label>
           <Input type="text" id="descriptionFull" name="descriptionFull"
                  onChange={handleChange}
@@ -184,6 +199,8 @@ const ProgramForm = (props) => {
             A comprehensive full length description of the program. Describe the structure of the program, and how it is delivered.
           </FormText>
         </Col>
+        ): null}
+
       </FormGroup>
 
       <FormGroup row>
@@ -270,7 +287,7 @@ const ProgramForm = (props) => {
                          value={o.value}
                          checked={values.focusGroup === o.value}
                          onChange={() => {
-                           props.setFieldValue('focusGroup', o.value);
+                           this.props.setFieldValue('focusGroup', o.value);
                          }}
                          invalid={errors.focusGroup} />
                   <label className="form-check-label" htmlFor={oName}>{o.label}</label>
@@ -362,7 +379,7 @@ const ProgramForm = (props) => {
                          value={o.value}
                          checked={values.deliveredByType === o.value}
                          onChange={() => {
-                           props.setFieldValue('deliveredByType', o.value);
+                           this.props.setFieldValue('deliveredByType', o.value);
                          }}
                          invalid={errors.deliveredByType} />
                   <label className="form-check-label" htmlFor={oName}>{o.label}</label>
@@ -391,8 +408,8 @@ const ProgramForm = (props) => {
           <FieldSelectTags name="staff"
                       options={staffOptions}
                       value={values.staff}
-                      onChange={props.setFieldValue}
-                      onBlur={props.setFieldTouched}
+                      onChange={this.props.setFieldValue}
+                      onBlur={this.props.setFieldTouched}
                       touched={touched.staff}
                       invalid={errors.staff} />
           <FormText color="muted">
@@ -453,8 +470,8 @@ const ProgramForm = (props) => {
           <FieldSelectTags name="tags"
                          options={tagsOptions}
                          value={values.tags}
-                         onChange={props.setFieldValue}
-                         onBlur={props.setFieldTouched}
+                         onChange={this.props.setFieldValue}
+                         onBlur={this.props.setFieldTouched}
                          touched={touched.tags}
                          invalid={errors.tags} />
           <FormText color="muted">
@@ -475,7 +492,7 @@ const ProgramForm = (props) => {
 
 export default withFormik({
   displayName: 'ProgramForm',
-  mapPropsToValues: (props) => {
+  mapToValues: (props) => {
     return props.initialFormState;
   },
   validate: (values, props) => {
@@ -508,3 +525,4 @@ export default withFormik({
     );
   }
 })(ProgramForm);
+
