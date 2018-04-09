@@ -29,13 +29,11 @@ class ProgramForm extends React.Component {
     };
   }
 
-  toggleShowDetail() {
-    this.setState({
-      showDetail: !this.state.showDetail
-    });
-  }
-
   render() {
+    const {
+      showDetail,
+    } = this.state;
+
     const {
       values,
       errors,
@@ -183,9 +181,9 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        {!this.state.showDetail && <p><Button color="link" onClick={() => this.toggleShowDetail()}>Would you like to add a longer description?</Button></p>}
+        {!showDetail && <p><Button color="link" onClick={() => this.setState({showDetail: true})}>Would you like to add a longer description?</Button></p>}
 
-        {this.state.showDetail ?
+        {showDetail ?
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
