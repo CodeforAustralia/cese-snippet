@@ -86,8 +86,6 @@ class ProgramForm extends React.Component {
     const level2CategoryOptions = getLevel2Cats(values.category);
     const staffOptions = getStaffOptions();
 
-    console.log(yearLevelsOptions);
-    console.log(values.yearLevels);
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
@@ -341,7 +339,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Does the program cater to a particular focus group?</Label>
-            <FieldArray name="category" render={({form}) => (
+            <FieldArray name="focusGroup" render={({form}) => (
               focusGroupOptions.map((o, idx) => {
                 const oName = `focusGroup.${camelCase(o.value)}`;
                 return (
@@ -392,40 +390,46 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Provider</Label>
-            <div id="deliveredByType">
-              {deliveredByTypeOptions.map((o, idx) => {
-                const oName = `deliveredByType.${o.value}`;
+            <FieldArray name="deliveredByType" render={({form}) => {
+              return deliveredByTypeOptions.map((o, idx) => {
+                const oName = `deliveredByType.${camelCase(o.label)}`;
+                const isChecked = o.value === values.deliveredByType;
                 return (
                   <div key={idx} className="form-check">
-                    <input type="radio" className="form-check-input"
-                           name={oName}
-                           id={oName}
-                           value={o.value}
-                           checked={values.deliveredByType === o.value}
-                           onChange={() => {
-                             this.props.setFieldValue('deliveredByType', o.value);
-                           }}
-                           invalid={errors.deliveredByType}/>
-                    <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+                    <label htmlFor={oName} className="form-check-label">
+                      <input type="radio" name="deliveredByType"
+                             id={oName}
+                             value={o.value}
+                             checked={isChecked}
+                             onChange={() => {
+                               form.setFieldValue('deliveredByType', o.value);
+                             }}
+                             invalid={errors.deliveredByType}
+                             className="form-check-input"
+                      />{o.label}
+                    </label>
                   </div>
                 )
-              })}
-            </div>
+              })
+            }} />
             <FormText color="muted">
               Is the program run by school staff or another provider?
             </FormText>
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-            <Input type="text" id="externalProvider" name="externalProvider"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.externalProvider}
-                   invalid={errors.externalProvider}/>
+            <Field name="externalProvider" invalid={errors.externalProvider} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" id="externalProvider" {...rest} defaultValue={value} />
+              )
+            }} />
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="staff">Staff involved</Label>
@@ -448,27 +452,27 @@ class ProgramForm extends React.Component {
                  defaultValue={year}
                  invalid={errors.year}/>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="terms">Terms delivered</Label>
-            {/*todo - make this an inline checkbox component*/}
-            <FieldArray
-              name="terms"
-              id="terms"
-              render={arrayHelpers => (
-                <div>
-                  {termsOptions.map((o, idx) => {
+            <div>
+              <FieldArray
+                name="terms"
+                render={arrayHelpers => (
+                  termsOptions.map((o, idx) => {
+                    const oName = `terms.${o.value}`;
                     const isChecked = typeof values.terms !== 'undefined' ? values.terms.includes(o.value) : false;
                     return (
-                      <div key={idx} className="form-check">
-                        <label className="form-check-label">
+                      <div key={idx} className="form-check form-check-inline">
+                        <label className="form-check-label" htmlFor={oName}>
                           <input
                             className="form-check-input"
-                            name={`terms.${o.value}`}
+                            id={oName}
                             type="checkbox"
                             value={o.value}
                             checked={isChecked}
-                            onChange={(e) => {
+                            onChange={() => {
                               if (isChecked) {
                                 const idx = values.terms.indexOf(o.value);
                                 arrayHelpers.remove(idx);
@@ -481,10 +485,10 @@ class ProgramForm extends React.Component {
                         </label>
                       </div>
                     )
-                  })}
-                </div>
-              )}
-            />
+                  })
+                )}
+              />
+            </div>
           </Col>
         </FormGroup>
 
