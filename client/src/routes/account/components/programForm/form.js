@@ -76,7 +76,7 @@ class ProgramForm extends React.Component {
     const getStaffOptions = () => staticData.staff.map((staff) => ({value: staff.id, label: staff.email}));
 
 
-    const yearLevelsOptions = getYearLevelsOptions(values.code);
+    const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
     const participantGroupsOptions = staticData.participantGroups;
     const focusGroupOptions = staticData.focusGroup;
     const deliveredByTypeOptions = staticData.deliveredByType;
@@ -86,7 +86,8 @@ class ProgramForm extends React.Component {
     const level2CategoryOptions = getLevel2Cats(values.category);
     const staffOptions = getStaffOptions();
 
-    console.log(values.category);
+    console.log(yearLevelsOptions);
+    console.log(values.yearLevels);
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
@@ -97,11 +98,6 @@ class ProgramForm extends React.Component {
           <Input hidden type="text" name="updatedBy" defaultValue={values.updatedBy} disabled={true}/> :
           <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true}/>
         }
-
-
-        {/*<Field name="radiotest" type="radio" value={values.radiotest} />*/}
-
-
 
         <FormGroup row>
           <Col md={8} lg={6}>
@@ -160,6 +156,49 @@ class ProgramForm extends React.Component {
               })
             }} />
             {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+          </Col>
+        </FormGroup>
+
+        <FormGroup row>
+          <Col md={8} lg={6}>
+            <Label>For Year Levels</Label>
+            <div>
+              <FieldArray
+                name="yearLevels"
+                render={arrayHelpers => (
+                  yearLevelsOptions.map((o, idx) => {
+                    const oName = `yearLevels.${o.value}`;
+                    const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
+                    return (
+                      <div key={idx} className="form-check form-check-inline">
+                        <label className="form-check-label" htmlFor={oName}>
+                          <input
+                            className="form-check-input"
+                            id={oName}
+                            type="checkbox"
+                            value={o.value}
+                            checked={isChecked}
+                            onChange={() => {
+                              if (isChecked) {
+                                const idx = values.yearLevels.indexOf(o.value);
+                                arrayHelpers.remove(idx);
+                              } else {
+                                arrayHelpers.push(o.value);
+                              }
+                            }}
+                          />
+                          {o.label}
+                        </label>
+                      </div>
+                    )
+                  })
+                )}
+              />
+            </div>
+            {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+            <FormText color="muted">
+              Which year levels are participating in this program?
+            </FormText>
           </Col>
         </FormGroup>
 
@@ -337,49 +376,7 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        <FormGroup row>
-          <Col md={8} lg={6}>
-            <Label>Year Levels</Label>
-            {/*todo - make this an inline checkbox component*/}
-            <FieldArray
-              name="yearLevels"
-              id="yearLevels"
-              render={arrayHelpers => (
-                <div>
-                  {yearLevelsOptions.map((o, idx) => {
-                    const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
-                    return (
-                      <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label">
-                          <input
-                            className="form-check-input"
-                            name={`yearLevels.${o.value}`}
-                            type="checkbox"
-                            value={o.value}
-                            checked={isChecked}
-                            onChange={e => {
-                              if (isChecked) {
-                                const idx = values.yearLevels.indexOf(o.value);
-                                arrayHelpers.remove(idx);
-                              } else {
-                                arrayHelpers.push(o.value);
-                              }
-                            }}
-                          />
-                          {o.label}
-                        </label>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-            />
-            {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
-            <FormText color="muted">
-              Which year levels are participating in this program?
-            </FormText>
-          </Col>
-        </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="cohortSize">Number of Participants</Label>
@@ -525,9 +522,7 @@ class ProgramForm extends React.Component {
 export default withFormik({
   displayName: 'ProgramForm',
   mapToValues: (props) => {
-    return {name:'fred'}
-          // }
-    // return props.initialFormState;
+    return props.initialFormState;
   },
   validate: (values, props) => {
     const errors = {};
