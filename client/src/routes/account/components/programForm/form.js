@@ -12,6 +12,7 @@ import {
 import { withFormik, FieldArray, Field } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
+import camelCase from 'lodash/camelCase';
 
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
@@ -85,7 +86,7 @@ class ProgramForm extends React.Component {
     const level2CategoryOptions = getLevel2Cats(values.category);
     const staffOptions = getStaffOptions();
 
-    console.log(values.aims);
+    console.log(values.category);
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
@@ -106,6 +107,7 @@ class ProgramForm extends React.Component {
           <Col md={8} lg={6}>
             <Label htmlFor="code">School</Label>
             <FieldCode name="code"
+                       id="code"
                        disabled={isEdit}
                        options={codeOptions}
                        value={values.code}
@@ -123,25 +125,40 @@ class ProgramForm extends React.Component {
             <Field name="name" invalid={errors.name} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="text" {...rest} defaultValue={value} />
+                <Input type="text" id="name" {...rest} defaultValue={value} />
               )
             }} />
           </Col>
         </FormGroup>
 
+
         <p>Is it one of these programs? prompt</p>
 
         <FormGroup row>
           <Col md={8} lg={6}>
-            <Label htmlFor="category">Program Area</Label>
-            <FieldSelect name="category"
-                         options={level1CategoryOptions}
-                         clearable={false}
-                         value={values.category}
-                         onChange={this.props.setFieldValue}
-                         onBlur={this.props.setFieldTouched}
-                         touched={touched.category}
-                         invalid={errors.category}/>
+            <Label htmlFor="category">Program Focus Area</Label>
+            <FieldArray name="category" render={({form}) => {
+              return level1CategoryOptions.map((o, idx) => {
+                const oName = `category.${camelCase(o.label)}`;
+                const isChecked = o.value === values.category;
+                return (
+                  <div key={idx} className="form-check">
+                    <label htmlFor={oName} className="form-check-label">
+                      <input type="radio" name="category"
+                             id={oName}
+                             value={o.value}
+                             checked={isChecked}
+                             onChange={() => {
+                               form.setFieldValue('category', o.value);
+                             }}
+                             invalid={errors.category}
+                             className="form-check-input"
+                      />{o.label}
+                    </label>
+                  </div>
+                )
+              })
+            }} />
             {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
           </Col>
         </FormGroup>
@@ -168,7 +185,7 @@ class ProgramForm extends React.Component {
             <Field name="aims" invalid={errors.aims} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="textarea" rows={3} {...rest} defaultValue={value} />
+                <Input type="textarea" id="aims" rows={3} {...rest} defaultValue={value} />
               )
             }} />
             <FormText color="muted">
@@ -183,7 +200,7 @@ class ProgramForm extends React.Component {
             <Field name="description" invalid={errors.description} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="textarea" rows={3} {...rest} defaultValue={value} />
+                <Input type="textarea" id="description" rows={3} {...rest} defaultValue={value} />
               )
             }} />
             <FormText color="muted">
@@ -201,7 +218,7 @@ class ProgramForm extends React.Component {
               <Field name="descriptionFull" invalid={errors.aims} render={({field}) => {
                 const { value, ...rest } = field;
                 return (
-                  <Input type="textarea" rows={6} {...rest} defaultValue={value} />
+                  <Input type="textarea" id="descriptionFull" rows={6} {...rest} defaultValue={value} />
                 )
               }} />
               <FormText color="muted">
@@ -215,10 +232,10 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
-            <Field name="descriptionFull" invalid={errors.aims} render={({field}) => {
+            <Field name="website" invalid={errors.aims} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="url" {...rest} defaultValue={value} />
+                <Input type="url" id="website" {...rest} defaultValue={value} />
               )
             }} />
             <FormText color="muted">
@@ -275,7 +292,7 @@ class ProgramForm extends React.Component {
             <Field name="participantGroupsDescription" invalid={errors.aims} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="text" {...rest} defaultValue={value} />
+                <Input type="text" id="participantGroupsDescription" {...rest} defaultValue={value} />
               )
             }} />
             <FormText color="muted">
