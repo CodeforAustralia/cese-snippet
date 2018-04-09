@@ -50,7 +50,7 @@ class Account extends React.Component {
     ); // not initial render;
 
     return (
-      <Layout>
+      <Layout schools={schools}>
         { isFetching !== false ?
           <p>Loading...</p> :
           !schools.length && <p>No schools</p>
