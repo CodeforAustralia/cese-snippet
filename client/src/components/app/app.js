@@ -6,7 +6,7 @@ import PrivateRoute from 'components/auth/privateRoute';
 import Home from 'routes/home';
 import Login from 'routes/login';
 import Account from 'routes/account';
-import TopBanner from 'components/topBanner/topBanner';
+import TopBanner from 'components/topBanner';
 
 const NoMatch = ({ location }) => (
   <div>
