@@ -3,6 +3,9 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import {
+  Redirect
+} from 'react-router';
 
 import Layout from './layout';
 import School from './school';
@@ -60,6 +63,7 @@ class Account extends React.Component {
           <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
           <Route path="/account/create-program" component={SchoolCreateProgram} />
           <Route path="/account/register" component={RegisterFlow} />
+          <Redirect to={`/account/schools/3717`} />
         </Switch>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
       </Layout>
