@@ -12,7 +12,6 @@ body {
   height: 100%;
 }
 
-
 @font-face {
   font-family: 'Frutiger';
   src: url('./fonts/FrutigerLTPro-Light.otf') format("opentype");
@@ -28,4 +27,11 @@ body {
 @font-face {
   font-family: 'Frutiger-Roman';
   src: url('./fonts/FrutigerLTPro-Roman.otf') format("opentype");
+}
+
+:global(.btn-xs) {
+  padding: 4px 5px 1px;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 3px;
 }
