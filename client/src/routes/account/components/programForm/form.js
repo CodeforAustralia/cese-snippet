@@ -171,20 +171,21 @@ class ProgramForm extends React.Component {
                 <Input type="textarea" rows={3} {...rest} defaultValue={value} />
               )
             }} />
-
             <FormText color="muted">
               Briefly describe what outcomes the program hopes to achieve.
             </FormText>
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="description">Program overview</Label>
-            <Input type="textarea" rows={2} id="description" name="description"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.description}
-                   invalid={errors.description}/>
+            <Field name="description" invalid={errors.description} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="textarea" rows={3} {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               What does the program does in a nutshell?
             </FormText>
@@ -197,11 +198,12 @@ class ProgramForm extends React.Component {
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
-              <Input type="textarea" rows={6} id="descriptionFull" name="descriptionFull"
-                     onChange={handleChange}
-                     onBlur={handleBlur}
-                     defaultValue={values.descriptionFull}
-                     invalid={errors.descriptionFull}/>
+              <Field name="descriptionFull" invalid={errors.aims} render={({field}) => {
+                const { value, ...rest } = field;
+                return (
+                  <Input type="textarea" rows={6} {...rest} defaultValue={value} />
+                )
+              }} />
               <FormText color="muted">
                 A comprehensive full length description of the program. Describe the structure of the program, and how
                 it is delivered.
@@ -213,11 +215,12 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
-            <Input type="url" id="website" name="website"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.website}
-                   invalid={errors.website}/>
+            <Field name="descriptionFull" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="url" {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               Some programs have a website for more information.
             </FormText>
@@ -269,11 +272,12 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-            <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.participantGroupsDescription}
-                   invalid={errors.participantGroupsDescription}/>
+            <Field name="participantGroupsDescription" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               Example: Partner schools students, charities, aged care residents
             </FormText>
@@ -307,11 +311,12 @@ class ProgramForm extends React.Component {
         </FormGroup>
         <FormGroup row>
           <Col md={8} lg={6}>
-            <Input type="text" id="focusGroupOther" name="focusGroupOther"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.focusGroupOther}
-                   invalid={errors.focusGroupOther}/>
+            <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" {...rest} defaultValue={value} />
+              )
+            }} />
           </Col>
         </FormGroup>
 
