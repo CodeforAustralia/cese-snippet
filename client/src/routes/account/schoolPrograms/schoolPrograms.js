@@ -14,6 +14,7 @@ import {
   getSchoolProgramsUrl,
   getCreateProgramModalUrl
 } from "helpers/url";
+import style from './style.scss';
 
 
 class SchoolPrograms extends React.Component {
@@ -42,7 +43,7 @@ class SchoolPrograms extends React.Component {
     } = this.props;
 
     if (isFetchingSchools !== false) {
-      return <p>Loading...</p>;
+      return <p style={{border: '1px solid blue'}}>Loading...</p>;
     }
 
     if (!school) {
@@ -53,16 +54,16 @@ class SchoolPrograms extends React.Component {
 
     return (
       <div>
-        <Breadcrumb>
-          <BreadcrumbItem active>{school.name}</BreadcrumbItem>
-          <BreadcrumbItem>Programs</BreadcrumbItem>
-        </Breadcrumb>
+
 
         <div>
           <div className="float-right">
             <Button color="primary" size="lg" onClick={openAddProgram} className="mb-4">Add a New Program</Button>
           </div>
-          <h1>Programs</h1>
+
+          <h1 className={style.pageTitle}>
+            <span>{school.name}</span>
+            Programs</h1>
         </div>
 
         <Nav tabs>

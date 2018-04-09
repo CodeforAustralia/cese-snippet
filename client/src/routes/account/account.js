@@ -8,7 +8,6 @@ import {
 } from 'react-router';
 
 import Layout from './layout';
-import School from './school';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
@@ -53,20 +52,21 @@ class Account extends React.Component {
     ); // not initial render;
 
     return (
-      <Layout schools={schools}>
-        { isFetching !== false ?
-          <p>Loading...</p> :
-          !schools.length && <p>No schools</p>
-        }
-        <Switch location={isModal ? this.previousLocation : location}>
-          <Route path="/account/schools/:code" exact component={School} />
-          <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
-          <Route path="/account/create-program" component={SchoolCreateProgram} />
-          <Route path="/account/register" component={RegisterFlow} />
-          <Redirect to={`/account/schools/3717`} />
-        </Switch>
+      <div>
+        <Layout schools={schools}>
+          { isFetching !== false ?
+            <p style={{border:'1px solid red'}}>Loading...</p> :
+            !schools.length && <p>No schools</p>
+          }
+          <Switch location={isModal ? this.previousLocation : location}>
+            <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
+            <Route path="/account/create-program" component={SchoolCreateProgram} />
+            <Route path="/account/register" component={RegisterFlow} />
+            <Redirect to={`/account/schools/3717/programs/2018`} />
+          </Switch>
+        </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
-      </Layout>
+      </div>
     )
   }
 }

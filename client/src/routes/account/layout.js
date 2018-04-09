@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Container,
   Collapse,
   Navbar,
   NavbarToggler,
@@ -17,7 +18,6 @@ import {
   NavLink as RRNavLink,
   Link as RRLink,
 } from 'react-router-dom';
-import cx from 'classnames';
 
 import {
   getSchoolProgramsUrl,
@@ -57,7 +57,7 @@ class LayoutBasic extends React.Component {
               {schools && schools.length ?
                 <NavItem className={style.navbarAddProgramBtn}>
                   <form className="form-inline">
-                    <Button color="primary" size="xs" className="mb-0 mr-2">
+                    <Button outline color="secondary" size="xs" className="mb-0 mr-2">
                       <NavLink to={getCreateProgramModalUrl()}
                                activeClassName="active"
                                tag={RRLink}
@@ -74,7 +74,6 @@ class LayoutBasic extends React.Component {
                 <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
                 }
               </NavItem>
-
 
               {isAuthenticated &&
               <UncontrolledDropdown nav inNavbar>
@@ -105,7 +104,10 @@ class LayoutBasic extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        {this.props.children}
+
+        <Container className={style.layoutContainer}>
+          {this.props.children}
+        </Container>
       </div>
     );
   }
