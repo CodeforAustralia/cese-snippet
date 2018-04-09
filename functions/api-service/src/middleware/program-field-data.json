@@ -1,0 +1,90 @@
+{
+  "participantGroups": [
+    { "label": "Students", "value": "Students" },
+    { "label": "Parents", "value": "Parents" },
+    { "label": "Community", "value": "Community" }
+  ],
+  "deliveredByType": [
+    { "label": "School Staff", "value": "School Staff" },
+    { "label": "External Provider", "value": "External Provider" }
+  ],
+  "yearLevels": [
+    { "label": "Kindergarten", "value": "K" },
+    { "label": "1", "value": "1" },
+    { "label": "2", "value": "2" },
+    { "label": "3", "value": "3" },
+    { "label": "4", "value": "4" },
+    { "label": "5", "value": "5" },
+    { "label": "6", "value": "6" },
+    { "label": "7", "value": "7" },
+    { "label": "8", "value": "8" },
+    { "label": "9", "value": "9" },
+    { "label": "10", "value": "10" },
+    { "label": "11", "value": "11" },
+    { "label": "12", "value": "12" }
+  ],
+  "focusGroup": [
+    { "label": "None", "value": "None" },
+    { "label": "Indigenous", "value": "Indigenous" },
+    { "label": "Linguistically Diverse", "value": "Linguistically Diverse" },
+    { "label": "Refugee", "value": "Refugee" },
+    { "label": "Gifted", "value": "Gifted" },
+    { "label": "Trauma", "value": "Trauma" },
+    { "label": "Learning Difficulties", "value": "Learning Difficulties" },
+    { "label": "Emotional Difficulties", "value": "Emotional Difficulties" },
+    { "label": "Other", "value": "Other" }
+  ],
+  "categories": [
+    {
+      "value": "1",
+      "label": "Curriculum Engagement",
+      "description": "Speciess congregabo in lutetia.",
+      "categories": [
+        { "value": "1001", "label": "Literacy" },
+        { "value": "1002", "label": "Numeracy" },
+        { "value": "1003", "label": "PDHPE" },
+        { "value": "1004", "label": "Science" },
+        { "value": "1005", "label": "HSIE" },
+        { "value": "1006", "label": "Technology" },
+        { "value": "1007", "label": "Creative Arts" },
+        { "value": "1008", "label": "Languages" }
+      ]
+    },
+    {
+      "value": "2",
+      "label": "Student Wellbeing and Support",
+      "description": null,
+      "categories": [
+        { "value": "1009", "label": "Student Participation" },
+        { "value": "1009", "label": "Social and Emotional Learning" },
+        { "value": "1009", "label": "Student Support" }
+      ]
+    },
+    {
+      "value": "3",
+      "label": "Extra-Curricular",
+      "description": null,
+      "categories": [
+        { "value": "1010", "label": "Creative and Performing Arts" },
+        { "value": "1011", "label": "Interest Groups" },
+        { "value": "1012", "label": "Interest" },
+        { "value": "1013", "label": "Environmental Initiative" },
+        { "value": "1014", "label": "Physical Fitness" },
+        { "value": "1015", "label": "Student Enrichment and Leadership" },
+        { "value": "1016", "label": "Technology" }
+      ]
+    },
+    {
+      "value": "4",
+      "label": "Parent and Community Engagement",
+      "description": null,
+      "categories": [
+        { "value": "1017", "label": "Parent Participation" },
+        { "value": "1018", "label": "Contributing to the Community" }
+      ]
+    }
+  ],
+  "tags": [
+    { "value": "spelling", "label": "spelling" }
+  ]
+}
