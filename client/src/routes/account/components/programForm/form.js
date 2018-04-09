@@ -9,7 +9,7 @@ import {
   FormFeedback,
   Col,
 } from 'reactstrap';
-import { withFormik, FieldArray } from 'formik';
+import { withFormik, FieldArray, Field } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
 
@@ -85,6 +85,7 @@ class ProgramForm extends React.Component {
     const level2CategoryOptions = getLevel2Cats(values.category);
     const staffOptions = getStaffOptions();
 
+    console.log(values.aims);
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
@@ -95,6 +96,11 @@ class ProgramForm extends React.Component {
           <Input hidden type="text" name="updatedBy" defaultValue={values.updatedBy} disabled={true}/> :
           <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true}/>
         }
+
+
+        {/*<Field name="radiotest" type="radio" value={values.radiotest} />*/}
+
+
 
         <FormGroup row>
           <Col md={8} lg={6}>
@@ -110,14 +116,16 @@ class ProgramForm extends React.Component {
             {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="name">Program name</Label>
-            <Input type="text" id="name" name="name"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.name}
-                   invalid={errors.name}/>
+            <Field name="name" invalid={errors.name} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" {...rest} defaultValue={value} />
+              )
+            }} />
           </Col>
         </FormGroup>
 
@@ -157,11 +165,13 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="aims">Aims</Label>
-            <Input type="textarea" rows={3} id="aims" name="aims"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.aims}
-                   invalid={errors.aims}/>
+            <Field name="aims" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="textarea" rows={3} {...rest} defaultValue={value} />
+              )
+            }} />
+
             <FormText color="muted">
               Briefly describe what outcomes the program hopes to achieve.
             </FormText>
@@ -493,7 +503,9 @@ class ProgramForm extends React.Component {
 export default withFormik({
   displayName: 'ProgramForm',
   mapToValues: (props) => {
-    return props.initialFormState;
+    return {name:'fred'}
+          // }
+    // return props.initialFormState;
   },
   validate: (values, props) => {
     const errors = {};
