@@ -267,7 +267,6 @@ class ProgramForm extends React.Component {
             </Col>
         </FormGroup> : null}
 
-
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
@@ -286,24 +285,23 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroups">Who is the program for?</Label>
-            {/*todo - make this an inline checkbox component*/}
-            <FieldArray
-              name="participantGroups"
-              id="participantGroups"
-              render={arrayHelpers => (
-                <div>
-                  {participantGroupsOptions.map((o, idx) => {
+            <div>
+              <FieldArray
+                name="participantGroups"
+                render={arrayHelpers => (
+                  participantGroupsOptions.map((o, idx) => {
+                    const oName = `participantGroups.${o.value}`;
                     const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
                     return (
                       <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label">
+                        <label className="form-check-label" htmlFor={oName}>
                           <input
                             className="form-check-input"
-                            name={`yearLevels.${o.value}`}
+                            name={oName}
                             type="checkbox"
                             value={o.value}
                             checked={isChecked}
-                            onChange={(e) => {
+                            onChange={() => {
                               if (isChecked) {
                                 const idx = values.participantGroups.indexOf(o.value);
                                 arrayHelpers.remove(idx);
@@ -316,10 +314,10 @@ class ProgramForm extends React.Component {
                         </label>
                       </div>
                     )
-                  })}
-                </div>
-              )}
-            />
+                  })
+                )}
+              />
+            </div>
             {touched.participantGroups && errors.participantGroups &&
             <FormFeedback>{errors.participantGroups}</FormFeedback>}
           </Col>
@@ -343,28 +341,28 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Does the program cater to a particular focus group?</Label>
-            <div id="focusGroup">
-              {/*todo - make this an radio component*/}
-              {focusGroupOptions.map((o, idx) => {
-                const oName = `focusGroup.${o.value}`;
+            <FieldArray name="category" render={({form}) => (
+              focusGroupOptions.map((o, idx) => {
+                const oName = `focusGroup.${camelCase(o.value)}`;
                 return (
                   <div key={idx} className="form-check">
-                    <input type="radio" className="form-check-input"
-                           name={oName}
-                           id={oName}
-                           value={o.value}
-                           checked={values.focusGroup === o.value}
-                           onChange={() => {
-                             this.props.setFieldValue('focusGroup', o.value);
-                           }}
-                           invalid={errors.focusGroup}/>
-                    <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+                    <label className="form-check-label" htmlFor={oName}>
+                      <input type="radio" className="form-check-input"
+                             id={oName}
+                             value={o.value}
+                             checked={values.focusGroup === o.value}
+                             onChange={() => {
+                               this.props.setFieldValue('focusGroup', o.value);
+                             }}
+                             invalid={errors.focusGroup}
+                      />{o.label}</label>
                   </div>
                 )
-              })}
-            </div>
+              })
+            )} />
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
@@ -376,15 +374,15 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="cohortSize">Number of Participants</Label>
-            <Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.cohortSize}
-                   invalid={errors.cohortSize}/>
+            <Field name="cohortSize" render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="number" id="cohortSize" min={1} max={3000} {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               How many people participated in this program?
             </FormText>
@@ -394,7 +392,6 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Provider</Label>
-            {/*todo - make this an radio component*/}
             <div id="deliveredByType">
               {deliveredByTypeOptions.map((o, idx) => {
                 const oName = `deliveredByType.${o.value}`;
