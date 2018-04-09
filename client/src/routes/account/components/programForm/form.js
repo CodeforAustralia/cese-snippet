@@ -9,9 +9,10 @@ import {
   FormFeedback,
   Col,
 } from 'reactstrap';
-import { withFormik, FieldArray } from 'formik';
+import { withFormik, FieldArray, Field } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
+import camelCase from 'lodash/camelCase';
 
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
@@ -75,7 +76,7 @@ class ProgramForm extends React.Component {
     const getStaffOptions = () => staticData.staff.map((staff) => ({value: staff.id, label: staff.email}));
 
 
-    const yearLevelsOptions = getYearLevelsOptions(values.code);
+    const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
     const participantGroupsOptions = staticData.participantGroups;
     const focusGroupOptions = staticData.focusGroup;
     const deliveredByTypeOptions = staticData.deliveredByType;
@@ -100,6 +101,7 @@ class ProgramForm extends React.Component {
           <Col md={8} lg={6}>
             <Label htmlFor="code">School</Label>
             <FieldCode name="code"
+                       id="code"
                        disabled={isEdit}
                        options={codeOptions}
                        value={values.code}
@@ -110,31 +112,91 @@ class ProgramForm extends React.Component {
             {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="name">Program name</Label>
-            <Input type="text" id="name" name="name"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.name}
-                   invalid={errors.name}/>
+            <Field name="name" invalid={errors.name} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" id="name" {...rest} defaultValue={value} />
+              )
+            }} />
           </Col>
         </FormGroup>
+
 
         <p>Is it one of these programs? prompt</p>
 
         <FormGroup row>
           <Col md={8} lg={6}>
-            <Label htmlFor="category">Program Area</Label>
-            <FieldSelect name="category"
-                         options={level1CategoryOptions}
-                         clearable={false}
-                         value={values.category}
-                         onChange={this.props.setFieldValue}
-                         onBlur={this.props.setFieldTouched}
-                         touched={touched.category}
-                         invalid={errors.category}/>
+            <Label htmlFor="category">Program Focus Area</Label>
+            <FieldArray name="category" render={({form}) => {
+              return level1CategoryOptions.map((o, idx) => {
+                const oName = `category.${camelCase(o.label)}`;
+                const isChecked = o.value === values.category;
+                return (
+                  <div key={idx} className="form-check">
+                    <label htmlFor={oName} className="form-check-label">
+                      <input type="radio" name="category"
+                             id={oName}
+                             value={o.value}
+                             checked={isChecked}
+                             onChange={() => {
+                               form.setFieldValue('category', o.value);
+                             }}
+                             invalid={errors.category}
+                             className="form-check-input"
+                      />{o.label}
+                    </label>
+                  </div>
+                )
+              })
+            }} />
             {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+          </Col>
+        </FormGroup>
+
+        <FormGroup row>
+          <Col md={8} lg={6}>
+            <Label>For Year Levels</Label>
+            <div>
+              <FieldArray
+                name="yearLevels"
+                render={arrayHelpers => (
+                  yearLevelsOptions.map((o, idx) => {
+                    const oName = `yearLevels.${o.value}`;
+                    const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
+                    return (
+                      <div key={idx} className="form-check form-check-inline">
+                        <label className="form-check-label" htmlFor={oName}>
+                          <input
+                            className="form-check-input"
+                            id={oName}
+                            type="checkbox"
+                            value={o.value}
+                            checked={isChecked}
+                            onChange={() => {
+                              if (isChecked) {
+                                const idx = values.yearLevels.indexOf(o.value);
+                                arrayHelpers.remove(idx);
+                              } else {
+                                arrayHelpers.push(o.value);
+                              }
+                            }}
+                          />
+                          {o.label}
+                        </label>
+                      </div>
+                    )
+                  })
+                )}
+              />
+            </div>
+            {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+            <FormText color="muted">
+              Which year levels are participating in this program?
+            </FormText>
           </Col>
         </FormGroup>
 
@@ -157,24 +219,27 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="aims">Aims</Label>
-            <Input type="textarea" rows={3} id="aims" name="aims"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.aims}
-                   invalid={errors.aims}/>
+            <Field name="aims" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="textarea" id="aims" rows={3} {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               Briefly describe what outcomes the program hopes to achieve.
             </FormText>
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="description">Program overview</Label>
-            <Input type="textarea" rows={2} id="description" name="description"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.description}
-                   invalid={errors.description}/>
+            <Field name="description" invalid={errors.description} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="textarea" id="description" rows={3} {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               What does the program does in a nutshell?
             </FormText>
@@ -187,11 +252,12 @@ class ProgramForm extends React.Component {
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
-              <Input type="textarea" rows={6} id="descriptionFull" name="descriptionFull"
-                     onChange={handleChange}
-                     onBlur={handleBlur}
-                     defaultValue={values.descriptionFull}
-                     invalid={errors.descriptionFull}/>
+              <Field name="descriptionFull" invalid={errors.aims} render={({field}) => {
+                const { value, ...rest } = field;
+                return (
+                  <Input type="textarea" id="descriptionFull" rows={6} {...rest} defaultValue={value} />
+                )
+              }} />
               <FormText color="muted">
                 A comprehensive full length description of the program. Describe the structure of the program, and how
                 it is delivered.
@@ -199,15 +265,15 @@ class ProgramForm extends React.Component {
             </Col>
         </FormGroup> : null}
 
-
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
-            <Input type="url" id="website" name="website"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.website}
-                   invalid={errors.website}/>
+            <Field name="website" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="url" id="website" {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               Some programs have a website for more information.
             </FormText>
@@ -217,24 +283,23 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroups">Who is the program for?</Label>
-            {/*todo - make this an inline checkbox component*/}
-            <FieldArray
-              name="participantGroups"
-              id="participantGroups"
-              render={arrayHelpers => (
-                <div>
-                  {participantGroupsOptions.map((o, idx) => {
+            <div>
+              <FieldArray
+                name="participantGroups"
+                render={arrayHelpers => (
+                  participantGroupsOptions.map((o, idx) => {
+                    const oName = `participantGroups.${o.value}`;
                     const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
                     return (
                       <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label">
+                        <label className="form-check-label" htmlFor={oName}>
                           <input
                             className="form-check-input"
-                            name={`yearLevels.${o.value}`}
+                            name={oName}
                             type="checkbox"
                             value={o.value}
                             checked={isChecked}
-                            onChange={(e) => {
+                            onChange={() => {
                               if (isChecked) {
                                 const idx = values.participantGroups.indexOf(o.value);
                                 arrayHelpers.remove(idx);
@@ -247,10 +312,10 @@ class ProgramForm extends React.Component {
                         </label>
                       </div>
                     )
-                  })}
-                </div>
-              )}
-            />
+                  })
+                )}
+              />
+            </div>
             {touched.participantGroups && errors.participantGroups &&
             <FormFeedback>{errors.participantGroups}</FormFeedback>}
           </Col>
@@ -259,11 +324,12 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-            <Input type="text" id="participantGroupsDescription" name="participantGroupsDescription"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.participantGroupsDescription}
-                   invalid={errors.participantGroupsDescription}/>
+            <Field name="participantGroupsDescription" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" id="participantGroupsDescription" {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               Example: Partner schools students, charities, aged care residents
             </FormText>
@@ -273,89 +339,48 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Does the program cater to a particular focus group?</Label>
-            <div id="focusGroup">
-              {/*todo - make this an radio component*/}
-              {focusGroupOptions.map((o, idx) => {
-                const oName = `focusGroup.${o.value}`;
+            <FieldArray name="focusGroup" render={({form}) => (
+              focusGroupOptions.map((o, idx) => {
+                const oName = `focusGroup.${camelCase(o.value)}`;
                 return (
                   <div key={idx} className="form-check">
-                    <input type="radio" className="form-check-input"
-                           name={oName}
-                           id={oName}
-                           value={o.value}
-                           checked={values.focusGroup === o.value}
-                           onChange={() => {
-                             this.props.setFieldValue('focusGroup', o.value);
-                           }}
-                           invalid={errors.focusGroup}/>
-                    <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+                    <label className="form-check-label" htmlFor={oName}>
+                      <input type="radio" className="form-check-input"
+                             id={oName}
+                             value={o.value}
+                             checked={values.focusGroup === o.value}
+                             onChange={() => {
+                               this.props.setFieldValue('focusGroup', o.value);
+                             }}
+                             invalid={errors.focusGroup}
+                      />{o.label}</label>
                   </div>
                 )
-              })}
-            </div>
-          </Col>
-        </FormGroup>
-        <FormGroup row>
-          <Col md={8} lg={6}>
-            <Input type="text" id="focusGroupOther" name="focusGroupOther"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.focusGroupOther}
-                   invalid={errors.focusGroupOther}/>
+              })
+            )} />
           </Col>
         </FormGroup>
 
         <FormGroup row>
           <Col md={8} lg={6}>
-            <Label>Year Levels</Label>
-            {/*todo - make this an inline checkbox component*/}
-            <FieldArray
-              name="yearLevels"
-              id="yearLevels"
-              render={arrayHelpers => (
-                <div>
-                  {yearLevelsOptions.map((o, idx) => {
-                    const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
-                    return (
-                      <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label">
-                          <input
-                            className="form-check-input"
-                            name={`yearLevels.${o.value}`}
-                            type="checkbox"
-                            value={o.value}
-                            checked={isChecked}
-                            onChange={e => {
-                              if (isChecked) {
-                                const idx = values.yearLevels.indexOf(o.value);
-                                arrayHelpers.remove(idx);
-                              } else {
-                                arrayHelpers.push(o.value);
-                              }
-                            }}
-                          />
-                          {o.label}
-                        </label>
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-            />
-            {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
-            <FormText color="muted">
-              Which year levels are participating in this program?
-            </FormText>
+            <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" {...rest} defaultValue={value} />
+              )
+            }} />
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="cohortSize">Number of Participants</Label>
-            <Input type="number" min={1} max={3000} id="cohortSize" name="cohortSize"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.cohortSize}
-                   invalid={errors.cohortSize}/>
+            <Field name="cohortSize" render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="number" id="cohortSize" min={1} max={3000} {...rest} defaultValue={value} />
+              )
+            }} />
             <FormText color="muted">
               How many people participated in this program?
             </FormText>
@@ -365,41 +390,46 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Provider</Label>
-            {/*todo - make this an radio component*/}
-            <div id="deliveredByType">
-              {deliveredByTypeOptions.map((o, idx) => {
-                const oName = `deliveredByType.${o.value}`;
+            <FieldArray name="deliveredByType" render={({form}) => {
+              return deliveredByTypeOptions.map((o, idx) => {
+                const oName = `deliveredByType.${camelCase(o.label)}`;
+                const isChecked = o.value === values.deliveredByType;
                 return (
                   <div key={idx} className="form-check">
-                    <input type="radio" className="form-check-input"
-                           name={oName}
-                           id={oName}
-                           value={o.value}
-                           checked={values.deliveredByType === o.value}
-                           onChange={() => {
-                             this.props.setFieldValue('deliveredByType', o.value);
-                           }}
-                           invalid={errors.deliveredByType}/>
-                    <label className="form-check-label" htmlFor={oName}>{o.label}</label>
+                    <label htmlFor={oName} className="form-check-label">
+                      <input type="radio" name="deliveredByType"
+                             id={oName}
+                             value={o.value}
+                             checked={isChecked}
+                             onChange={() => {
+                               form.setFieldValue('deliveredByType', o.value);
+                             }}
+                             invalid={errors.deliveredByType}
+                             className="form-check-input"
+                      />{o.label}
+                    </label>
                   </div>
                 )
-              })}
-            </div>
+              })
+            }} />
             <FormText color="muted">
               Is the program run by school staff or another provider?
             </FormText>
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-            <Input type="text" id="externalProvider" name="externalProvider"
-                   onChange={handleChange}
-                   onBlur={handleBlur}
-                   defaultValue={values.externalProvider}
-                   invalid={errors.externalProvider}/>
+            <Field name="externalProvider" invalid={errors.externalProvider} render={({field}) => {
+              const { value, ...rest } = field;
+              return (
+                <Input type="text" id="externalProvider" {...rest} defaultValue={value} />
+              )
+            }} />
           </Col>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="staff">Staff involved</Label>
@@ -422,27 +452,27 @@ class ProgramForm extends React.Component {
                  defaultValue={year}
                  invalid={errors.year}/>
         </FormGroup>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="terms">Terms delivered</Label>
-            {/*todo - make this an inline checkbox component*/}
-            <FieldArray
-              name="terms"
-              id="terms"
-              render={arrayHelpers => (
-                <div>
-                  {termsOptions.map((o, idx) => {
+            <div>
+              <FieldArray
+                name="terms"
+                render={arrayHelpers => (
+                  termsOptions.map((o, idx) => {
+                    const oName = `terms.${o.value}`;
                     const isChecked = typeof values.terms !== 'undefined' ? values.terms.includes(o.value) : false;
                     return (
-                      <div key={idx} className="form-check">
-                        <label className="form-check-label">
+                      <div key={idx} className="form-check form-check-inline">
+                        <label className="form-check-label" htmlFor={oName}>
                           <input
                             className="form-check-input"
-                            name={`terms.${o.value}`}
+                            id={oName}
                             type="checkbox"
                             value={o.value}
                             checked={isChecked}
-                            onChange={(e) => {
+                            onChange={() => {
                               if (isChecked) {
                                 const idx = values.terms.indexOf(o.value);
                                 arrayHelpers.remove(idx);
@@ -455,10 +485,10 @@ class ProgramForm extends React.Component {
                         </label>
                       </div>
                     )
-                  })}
-                </div>
-              )}
-            />
+                  })
+                )}
+              />
+            </div>
           </Col>
         </FormGroup>
 
