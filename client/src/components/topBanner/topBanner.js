@@ -1,10 +1,8 @@
 import React from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
+import style from './style.scss';
 
-const styles = {
-  fontSize: '1.1em',
-  fontWeight: 'bolder'
-};
+
 
 const TopBanner = () => (
   <div>
@@ -12,7 +10,7 @@ const TopBanner = () => (
       <NavbarBrand
         href="https://education.nsw.gov.au/"
         target="_blank"
-        style={styles}
+        className={style.topBanner}
       >
         NSW DEPARTMENT OF EDUCATION
       </NavbarBrand>
