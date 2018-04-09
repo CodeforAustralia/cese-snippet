@@ -59,7 +59,7 @@ class LayoutBasic extends React.Component {
                   <form className="form-inline">
                     <Button outline color="secondary" size="xs" className="mb-0 mr-2">
                       <NavLink to={getCreateProgramModalUrl()}
-                               activeClassName="active"
+                               activeclassname="active"
                                tag={RRLink}
                                disabled={location.pathname === getCreateProgramUrl().pathname}
                       >Add a New Program</NavLink>
@@ -71,7 +71,7 @@ class LayoutBasic extends React.Component {
 
               <NavItem>
                 {!isAuthenticated &&
-                <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
+                <NavLink to="/login" activeclassname="active" tag={RRNavLink}>Login</NavLink>
                 }
               </NavItem>
 
@@ -86,7 +86,7 @@ class LayoutBasic extends React.Component {
 
                   {schools.map((school, idx) => (
                     <DropdownItem key={idx}>
-                      <NavLink to={`/account/schools/${school.code}`} activeClassName="active" tag={RRNavLink}>{school.name}</NavLink>
+                      <NavLink to={`/account/schools/${school.code}`} activeclassname="active" tag={RRNavLink}>{school.name}</NavLink>
                     </DropdownItem>
                   ))}
 

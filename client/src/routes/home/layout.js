@@ -43,7 +43,7 @@ class Layout extends React.Component {
             <Nav className="ml-auto" navbar>
               <NavItem>
                 {!isAuthenticated &&
-                <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
+                <NavLink to="/login" activeclassname="active" tag={RRNavLink}>Login</NavLink>
                 }
               </NavItem>
               {isAuthenticated &&

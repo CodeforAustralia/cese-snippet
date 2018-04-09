@@ -59,10 +59,10 @@ class SchoolPrograms extends React.Component {
 
         <Nav tabs>
           <NavItem>
-            <NavLink to={getSchoolProgramsUrl(school.code, "2018")} activeClassName="active" tag={RRNavLink}>2018</NavLink>
+            <NavLink to={getSchoolProgramsUrl(school.code, "2018")} activeclassname="active" tag={RRNavLink}>2018</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink to={getSchoolProgramsUrl(school.code, "2017")} activeClassName="active" tag={RRNavLink}>2017</NavLink>
+            <NavLink to={getSchoolProgramsUrl(school.code, "2017")} activeclassname="active" tag={RRNavLink}>2017</NavLink>
           </NavItem>
         </Nav>
 
