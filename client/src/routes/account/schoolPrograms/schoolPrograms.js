@@ -70,9 +70,9 @@ class SchoolPrograms extends React.Component {
           { isFetchingPrograms !== false ?
             <p>Loading...</p> :
             <div>
-              <div className={style.tabAddProgramBtn}>
-                <Button color="primary" size="lg" onClick={() => getCreateProgramModalUrl(filterProps)} className="mb-4">Add a New Program</Button>
-              </div>
+              {/*<div className={style.tabAddProgramBtn}>*/}
+                {/*<Button color="primary" size="lg" onClick={() => getCreateProgramModalUrl(filterProps)} className="mb-4">Add a New Program</Button>*/}
+              {/*</div>*/}
               <ProgramsList programs={filteredPrograms}
                           openAddProgram={() => getCreateProgramModalUrl(filterProps)}
                           activeYear={filterProps.year} />
