@@ -56,13 +56,15 @@ class LayoutBasic extends React.Component {
 
               {schools && schools.length ?
                 <NavItem className={style.navbarAddProgramBtn}>
-                  <Button color="primary" size="xs" className="mb-0 mr-2">
-                    <NavLink to={getCreateProgramModalUrl()}
-                             activeClassName="active"
-                             tag={RRLink}
-                             disabled={location.pathname === getCreateProgramUrl().pathname}
-                    >Add a New Program</NavLink>
-                  </Button>
+                  <form className="form-inline">
+                    <Button color="primary" size="xs" className="mb-0 mr-2">
+                      <NavLink to={getCreateProgramModalUrl()}
+                               activeClassName="active"
+                               tag={RRLink}
+                               disabled={location.pathname === getCreateProgramUrl().pathname}
+                      >Add a New Program</NavLink>
+                    </Button>
+                  </form>
                 </NavItem> :
                 null
               }
@@ -76,9 +78,11 @@ class LayoutBasic extends React.Component {
 
               {isAuthenticated &&
               <UncontrolledDropdown nav inNavbar>
+
                 <DropdownToggle nav caret>
                   {session.first}
                 </DropdownToggle>
+
                 <DropdownMenu right>
 
                   {schools.map((school, idx) => (
