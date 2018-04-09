@@ -6,13 +6,13 @@ import {
   Col,
 } from "reactstrap";
 
-import LayoutHome from 'layout';
+import Layout from './layout';
 import style from './style.scss';
 
 
 const HomePage = () => (
   <div className={style.home}>
-    <LayoutHome>
+    <Layout>
       <div className={style.containerWrap}>
         <Container>
           <Row>
@@ -31,7 +31,7 @@ const HomePage = () => (
           </Row>
         </Container>
       </div>
-    </LayoutHome>
+    </Layout>
   </div>
 );
 

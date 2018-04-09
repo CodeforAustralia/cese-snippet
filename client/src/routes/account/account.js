@@ -4,7 +4,7 @@ import {
   Switch,
 } from "react-router-dom";
 
-import AccountLayout from './layout';
+import Layout from './layout';
 import School from './school';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
@@ -50,7 +50,7 @@ class Account extends React.Component {
     ); // not initial render;
 
     return (
-      <AccountLayout>
+      <Layout>
         { isFetching !== false ?
           <p>Loading...</p> :
           !schools.length && <p>No schools</p>
@@ -62,7 +62,7 @@ class Account extends React.Component {
           <Route path="/account/register" component={RegisterFlow} />
         </Switch>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
-      </AccountLayout>
+      </Layout>
     )
   }
 }
