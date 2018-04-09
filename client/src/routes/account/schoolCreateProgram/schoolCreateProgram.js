@@ -3,6 +3,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import {
   CreateForm,
@@ -18,6 +19,8 @@ class SchoolCreateProgram extends React.Component {
 
     return (
       <div>
+        <p><Link to="/account">{`< Programs`}</Link></p>
+
         <h1>Add a Program</h1>
         <Form onSubmitSuccess={(code, year) => history.push(getSchoolProgramsUrl(code, year))} />
       </div>
