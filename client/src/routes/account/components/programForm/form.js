@@ -26,7 +26,7 @@ class ProgramForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDescriptionFull: false
+      showDescriptionFull: false,
     };
   }
 
@@ -360,16 +360,18 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        <FormGroup row>
-          <Col md={8} lg={6}>
-            <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="text" {...rest} defaultValue={value} />
-              )
-            }} />
-          </Col>
-        </FormGroup>
+        {values.focusGroup === 'Other' &&
+          <FormGroup row>
+            <Col md={8} lg={6}>
+              <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
+                const { value, ...rest } = field;
+                return (
+                  <Input type="text" {...rest} defaultValue={value} />
+                )
+              }} />
+            </Col>
+          </FormGroup>
+        }
 
         <FormGroup row>
           <Col md={8} lg={6}>
