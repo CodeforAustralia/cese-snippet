@@ -210,7 +210,6 @@ class ProgramForm extends React.Component {
                          value={values.subCategory}
                          onChange={this.props.setFieldValue}
                          onBlur={this.props.setFieldTouched}
-                         placeholder="First select a Program Focus Area"
                          touched={touched.subCategory}
                          invalid={errors.subCategory}/>
             {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
