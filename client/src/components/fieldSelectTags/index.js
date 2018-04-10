@@ -34,6 +34,14 @@ class FieldSelectTags extends React.Component {
   render () {
     const { options, name } = this.props;
     const { multiValue } = this.state;
+
+    const optsKeys = options.map(o => o.value);
+    multiValue.forEach(val => { // render initial values even if not in options provided
+      if (!optsKeys.includes(val)) {
+        options.push({value: val, label: val});
+      }
+    });
+
     return (
       <Select.Creatable
         id={name}

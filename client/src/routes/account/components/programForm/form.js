@@ -26,13 +26,13 @@ class ProgramForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDetail: false
+      showDescriptionFull: false,
     };
   }
 
   render() {
     const {
-      showDetail,
+      showDescriptionFull,
     } = this.state;
 
     const {
@@ -52,12 +52,12 @@ class ProgramForm extends React.Component {
       getTermsOptions,
     } = this.props;
 
+
     log('values:', values);
 
     if (!codeOptions.length) {
       return <p>Loading...</p>
     }
-
 
     const getLevel1Cats = () => staticData.categories.map(level1 => {
       return {value: level1.value, label: level1.label};
@@ -210,6 +210,7 @@ class ProgramForm extends React.Component {
                          value={values.subCategory}
                          onChange={this.props.setFieldValue}
                          onBlur={this.props.setFieldTouched}
+                         placeholder="First select a Program Focus Area"
                          touched={touched.subCategory}
                          invalid={errors.subCategory}/>
             {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
@@ -246,9 +247,9 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        {!showDetail && <p><Button color="link" onClick={() => this.setState({showDetail: true})}>Would you like to add a longer description?</Button></p>}
+        {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add a longer description?</Button></p>}
 
-        {showDetail ?
+        {values.descriptionFull || showDescriptionFull === true ?
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
@@ -361,16 +362,18 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        <FormGroup row>
-          <Col md={8} lg={6}>
-            <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="text" {...rest} defaultValue={value} />
-              )
-            }} />
-          </Col>
-        </FormGroup>
+        {values.focusGroup === 'Other' &&
+          <FormGroup row>
+            <Col md={8} lg={6}>
+              <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
+                const { value, ...rest } = field;
+                return (
+                  <Input type="text" {...rest} defaultValue={value} />
+                )
+              }} />
+            </Col>
+          </FormGroup>
+        }
 
         <FormGroup row>
           <Col md={8} lg={6}>
@@ -522,7 +525,7 @@ class ProgramForm extends React.Component {
 
 export default withFormik({
   displayName: 'ProgramForm',
-  mapToValues: (props) => {
+  mapPropsToValues: (props) => {
     return props.initialFormState;
   },
   validate: (values, props) => {

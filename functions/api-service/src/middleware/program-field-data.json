@@ -9,7 +9,7 @@
     { "label": "External Provider", "value": "External Provider" }
   ],
   "yearLevels": [
-    { "label": "Kindergarten", "value": "K" },
+    { "label": "Kindergarten", "value": "Kindergarten" },
     { "label": "1", "value": "1" },
     { "label": "2", "value": "2" },
     { "label": "3", "value": "3" },
@@ -40,14 +40,14 @@
       "label": "Curriculum Engagement",
       "description": "Speciess congregabo in lutetia.",
       "categories": [
-        { "value": "1001", "label": "Literacy" },
-        { "value": "1002", "label": "Numeracy" },
-        { "value": "1003", "label": "PDHPE" },
-        { "value": "1004", "label": "Science" },
-        { "value": "1005", "label": "HSIE" },
-        { "value": "1006", "label": "Technology" },
-        { "value": "1007", "label": "Creative Arts" },
-        { "value": "1008", "label": "Languages" }
+        { "value": "Literacy", "label": "Literacy" },
+        { "value": "Numeracy", "label": "Numeracy" },
+        { "value": "PDHPE", "label": "PDHPE" },
+        { "value": "Science", "label": "Science" },
+        { "value": "HSIE", "label": "HSIE" },
+        { "value": "Technology", "label": "Technology" },
+        { "value": "Creative Arts", "label": "Creative Arts" },
+        { "value": "Languages", "label": "Languages" }
       ]
     },
     {
@@ -55,9 +55,9 @@
       "label": "Student Wellbeing and Support",
       "description": null,
       "categories": [
-        { "value": "1009", "label": "Student Participation" },
-        { "value": "1009", "label": "Social and Emotional Learning" },
-        { "value": "1009", "label": "Student Support" }
+        { "value": "Student Participation", "label": "Student Participation" },
+        { "value": "Social and Emotional Learning", "label": "Social and Emotional Learning" },
+        { "value": "Student Support", "label": "Student Support" }
       ]
     },
     {
@@ -65,13 +65,13 @@
       "label": "Extra-Curricular",
       "description": null,
       "categories": [
-        { "value": "1010", "label": "Creative and Performing Arts" },
-        { "value": "1011", "label": "Interest Groups" },
-        { "value": "1012", "label": "Interest" },
-        { "value": "1013", "label": "Environmental Initiative" },
-        { "value": "1014", "label": "Physical Fitness" },
-        { "value": "1015", "label": "Student Enrichment and Leadership" },
-        { "value": "1016", "label": "Technology" }
+        { "value": "Creative and Performing Arts", "label": "Creative and Performing Arts" },
+        { "value": "Interest Groups", "label": "Interest Groups" },
+        { "value": "Interest", "label": "Interest" },
+        { "value": "Environmental Initiative", "label": "Environmental Initiative" },
+        { "value": "Physical Fitness", "label": "Physical Fitness" },
+        { "value": "Student Enrichment and Leadership", "label": "Student Enrichment and Leadership" },
+        { "value": "Technology", "label": "Technology" }
       ]
     },
     {
@@ -79,8 +79,8 @@
       "label": "Parent and Community Engagement",
       "description": null,
       "categories": [
-        { "value": "1017", "label": "Parent Participation" },
-        { "value": "1018", "label": "Contributing to the Community" }
+        { "value": "Parent Participation", "label": "Parent Participation" },
+        { "value": "Contributing to the Community", "label": "Contributing to the Community" }
       ]
     }
   ],
