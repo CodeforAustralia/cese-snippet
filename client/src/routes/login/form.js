@@ -53,7 +53,7 @@ const LoginForm = ({
         />
         {touched.password && errors.password && <FormFeedback>{errors.email}</FormFeedback>}
       </FormGroup>
-      <Button type="submit" className="btn btn-lg btn-primary btn-block" disabled={isSubmitting}>Submit</Button>
+      <Button type="submit" className="btn btn-lg btn-primary btn-block" disabled={isSubmitting}>Log in</Button>
     </Form>
   )
 };
