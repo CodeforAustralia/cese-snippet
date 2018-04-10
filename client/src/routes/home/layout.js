@@ -38,29 +38,29 @@ class Layout extends React.Component {
       <div>
         <Navbar color="faded" light expand="md">
           <NavbarBrand to="/" tag={RRNavLink}>Snippet</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                {!isAuthenticated &&
-                <NavLink to="/login" activeclassname="active" tag={RRNavLink}>Login</NavLink>
-                }
-              </NavItem>
-              {isAuthenticated &&
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  {session.first}
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem onClick={() => {
-                    signout(() => history.push("/"));
-                  }}>Sign out
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              }
-            </Nav>
-          </Collapse>
+          {/*<NavbarToggler onClick={this.toggle} />*/}
+          {/*<Collapse isOpen={this.state.isOpen} navbar>*/}
+            {/*<Nav className="ml-auto" navbar>*/}
+              {/*<NavItem>*/}
+                {/*{!isAuthenticated &&*/}
+                {/*<NavLink to="/login" activeclassname="active" tag={RRNavLink}>Login</NavLink>*/}
+                {/*}*/}
+              {/*</NavItem>*/}
+              {/*{isAuthenticated &&*/}
+              {/*<UncontrolledDropdown nav inNavbar>*/}
+                {/*<DropdownToggle nav caret>*/}
+                  {/*{session.first}*/}
+                {/*</DropdownToggle>*/}
+                {/*<DropdownMenu right>*/}
+                  {/*<DropdownItem onClick={() => {*/}
+                    {/*signout(() => history.push("/"));*/}
+                  {/*}}>Sign out*/}
+                  {/*</DropdownItem>*/}
+                {/*</DropdownMenu>*/}
+              {/*</UncontrolledDropdown>*/}
+              {/*}*/}
+            {/*</Nav>*/}
+          {/*</Collapse>*/}
         </Navbar>
         {this.props.children}
       </div>
