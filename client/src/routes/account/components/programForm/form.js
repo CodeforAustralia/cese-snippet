@@ -522,7 +522,7 @@ class ProgramForm extends React.Component {
 
 export default withFormik({
   displayName: 'ProgramForm',
-  mapToValues: (props) => {
+  mapPropsToValues: (props) => {
     return props.initialFormState;
   },
   validate: (values, props) => {
