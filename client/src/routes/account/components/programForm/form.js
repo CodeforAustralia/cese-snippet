@@ -52,6 +52,7 @@ class ProgramForm extends React.Component {
       getTermsOptions,
     } = this.props;
 
+
     log('values:', values);
 
     if (!codeOptions.length) {
