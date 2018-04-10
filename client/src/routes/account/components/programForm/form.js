@@ -26,13 +26,13 @@ class ProgramForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDetail: false
+      showDescriptionFull: false
     };
   }
 
   render() {
     const {
-      showDetail,
+      showDescriptionFull,
     } = this.state;
 
     const {
@@ -57,7 +57,6 @@ class ProgramForm extends React.Component {
     if (!codeOptions.length) {
       return <p>Loading...</p>
     }
-
 
     const getLevel1Cats = () => staticData.categories.map(level1 => {
       return {value: level1.value, label: level1.label};
@@ -246,9 +245,9 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        {!showDetail && <p><Button color="link" onClick={() => this.setState({showDetail: true})}>Would you like to add a longer description?</Button></p>}
+        {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add a longer description?</Button></p>}
 
-        {showDetail ?
+        {values.descriptionFull || showDescriptionFull === true ?
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
