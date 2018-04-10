@@ -17,6 +17,7 @@ import camelCase from 'lodash/camelCase';
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldCode from './../fieldCode';
+import FieldRadioBtnList from 'components/fieldRadioBtnList';
 
 
 const log = Bows('Form');
@@ -393,28 +394,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Provider</Label>
-            <FieldArray name="deliveredByType" render={({form}) => {
-              return deliveredByTypeOptions.map((o, idx) => {
-                const oName = `deliveredByType.${camelCase(o.label)}`;
-                const isChecked = o.value === values.deliveredByType;
-                return (
-                  <div key={idx} className="form-check">
-                    <label htmlFor={oName} className="form-check-label">
-                      <input type="radio" name="deliveredByType"
-                             id={oName}
-                             value={o.value}
-                             checked={isChecked}
-                             onChange={() => {
-                               form.setFieldValue('deliveredByType', o.value);
-                             }}
-                             invalid={errors.deliveredByType}
-                             className="form-check-input"
-                      />{o.label}
-                    </label>
-                  </div>
-                )
-              })
-            }} />
+            <FieldRadioBtnList options={deliveredByTypeOptions} name="deliveredByType" value={values.deliveredByType} />
             <FormText color="muted">
               Is the program run by school staff or another provider?
             </FormText>
