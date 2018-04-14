@@ -1,4 +1,4 @@
 import Container from './container';
-import Schools from './schools';
+import Decision from './decision';
 
-export default Container(Schools);
+export default Container(Decision);

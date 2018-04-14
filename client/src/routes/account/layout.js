@@ -94,6 +94,10 @@ class LayoutBasic extends React.Component {
 
                   <DropdownItem divider />
 
+                  <DropdownItem onClick={() => history.push('/account/register')}>
+                    Add a school
+                  </DropdownItem>
+
                   <DropdownItem onClick={() => {
                     signout(() => history.push("/"));
                   }}>

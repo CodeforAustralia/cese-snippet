@@ -74,7 +74,7 @@ class ProgramForm extends React.Component {
       });
     };
 
-    const getStaffOptions = () => staticData.staff.map((staff) => ({value: staff.id, label: staff.email}));
+    const getStaffOptions = () => staticData.staffList.map((staff) => ({value: staff.id, label: staff.email}));
 
 
     const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo

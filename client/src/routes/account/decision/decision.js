@@ -3,7 +3,10 @@ import { withRouter } from 'react-router';
 
 class Schools extends React.Component {
   componentDidMount() {
-    this.props.fetchSchools();
+    const { schools } = this.props;
+    if (typeof schools === 'undefined' || !schools.length) {
+      this.props.fetchSchools();
+    }
   }
   render() {
     const {
@@ -19,10 +22,8 @@ class Schools extends React.Component {
     }
 
     if (!schools.length) {
-      debugger
       history.push('/account/register');
     } else {
-      debugger
       history.push(`/account/schools/${schools[0].code}/programs/2018`);
     }
 
