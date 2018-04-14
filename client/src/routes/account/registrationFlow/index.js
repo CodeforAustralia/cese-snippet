@@ -1,4 +1,6 @@
+import { withRouter } from 'react-router';
+
 import Container from './container';
 import RegistrationFlow from './registrationFlow';
 
-export default Container(RegistrationFlow);
+export default withRouter(Container(RegistrationFlow));

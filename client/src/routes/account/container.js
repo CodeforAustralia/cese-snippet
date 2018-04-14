@@ -15,7 +15,6 @@ import {
 
 const mapStateToProps = (state) => {
   const userSchoolCodes = selectUserSchoolCodes(state);
-
   return {
     session: selectSession(state),
     userSchoolCodes,

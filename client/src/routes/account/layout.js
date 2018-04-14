@@ -42,7 +42,9 @@ class LayoutBasic extends React.Component {
     });
   }
   render() {
-    const { isAuthenticated, signout, history, session, location, schools } = this.props;
+    const { isAuthenticated, signout, history, session, location } = this.props;
+
+    const schools = []; // todo
 
     return (
       <div>
