@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-// import Form from './form';
+import Form from './../components/registerSchoolForm';
+
 
 class RegistrationFlow extends React.Component {
   componentDidMount() {
@@ -8,13 +10,11 @@ class RegistrationFlow extends React.Component {
     if (userSchoolCodes && !schools.length) {
       this.props.fetchSchools(userSchoolCodes);
     }
-    this.props.fetchSchoolsList();
   }
   render() {
     const {
       schools,
       isFetching,
-      schoolsListOptions,
     } = this.props;
 
     if (isFetching !== false) {
@@ -24,6 +24,8 @@ class RegistrationFlow extends React.Component {
     return (
       <div>
         <h1>RegistrationFlow</h1>
+
+        <Link to="/account">Close</Link>
 
         <h2>Your current schools</h2>
         {schools.length ?
@@ -37,8 +39,7 @@ class RegistrationFlow extends React.Component {
 
         <h2>Register a new school</h2>
 
-        <p>Form</p>
-        <code>{JSON.stringify(schoolsListOptions)}</code>
+        <Form />
 
       </div>
     )
