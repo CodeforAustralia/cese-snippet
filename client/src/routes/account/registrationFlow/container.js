@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { addSchool } from "store/session/actionCreators";
 import { fetchSchools } from 'store/schools/actionCreators';
 import {
   selectSession,
@@ -25,7 +24,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: (codes) => dispatch(fetchSchools(codes)),
-    addSchool: (code) => dispatch(addSchool(code)),
+    onSubmitSuccess: (resp) => {
+      console.log(resp);
+      debugger }
   }
 };
 

@@ -4,6 +4,7 @@ import { selectUserSchoolCodes } from "store/session/selectors";
 import { selectSchoolsList } from 'store/static/selectors';
 import { fetchSchoolsList } from 'store/static/actionCreators';
 import { makeSchoolsListOptions } from 'store/static/helpers';
+import { registerMySchool } from 'store/session/actionCreators';
 
 
 const mapStateToProps = (state) => {
@@ -25,7 +26,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchoolsList: () => dispatch(fetchSchoolsList()),
-    // onSubmit: (values) => dispatch(createProgram(values)),
+    onSubmit: (values) => dispatch(registerMySchool(values)),
   }
 };
 

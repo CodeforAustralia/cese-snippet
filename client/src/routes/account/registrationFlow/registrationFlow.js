@@ -15,6 +15,7 @@ class RegistrationFlow extends React.Component {
     const {
       schools,
       isFetching,
+      onSubmitSuccess,
     } = this.props;
 
     if (isFetching !== false) {
@@ -39,7 +40,7 @@ class RegistrationFlow extends React.Component {
 
         <h2>Register a new school</h2>
 
-        <Form />
+        <Form onSubmitSuccess={onSubmitSuccess} />
 
       </div>
     )
