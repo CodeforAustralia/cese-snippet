@@ -31,3 +31,19 @@ export const fetchStaffList = () => {
       });
   }
 };
+
+export const fetchSchoolsList = () => {
+  return (dispatch) => {
+    return fetch('/static/schools-list.json')
+      .then((resp) => resp.json())
+      .then((data) => {
+        return dispatch({
+          type: ACTION_TYPES.fetchedSchoolsList,
+          payload: data,
+        })
+      })
+      .catch((err) => {
+        throw new Error(`Unable to fetch schools list: ${err}`);
+      });
+  }
+};

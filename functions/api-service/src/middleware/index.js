@@ -1,4 +1,5 @@
 const staffListData = require('./staff-list.json');
+const schoolsListData = require('./schools-list.json');
 const programFieldsData = require('./program-field-data.json');
 
 // eslint-disable-next-line no-unused-vars
@@ -14,6 +15,11 @@ module.exports = function (app) {
 	app.get('/static/staff-list.json', (req, res) => {
 		res.setHeader('Content-Type', 'application/json');
 		res.send(staffListData);
+		return res;
+	});
+	app.get('/static/schools-list.json', (req, res) => {
+		res.setHeader('Content-Type', 'application/json');
+		res.send(schoolsListData);
 		return res;
 	});
 };
