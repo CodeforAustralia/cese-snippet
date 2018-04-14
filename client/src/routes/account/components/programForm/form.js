@@ -484,7 +484,7 @@ class ProgramForm extends React.Component {
                              onChange={this.props.setFieldValue}
                              onBlur={this.props.setFieldTouched}
                              touched={touched.tags}
-                             invalid={errors.tags}/>
+                             invalid={errors.tags} />
             <FormText color="muted">
               Keywords could help others to search for programs like this one in the future.
             </FormText>

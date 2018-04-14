@@ -11,8 +11,7 @@ import Layout from './layout';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
-
-const RegisterFlow = () => <h1>Register flow</h1>;
+import RegistrationFlow from './registrationFlow';
 
 
 class Account extends React.Component {
@@ -54,14 +53,10 @@ class Account extends React.Component {
     return (
       <div>
         <Layout schools={schools}>
-          { isFetching !== false ?
-            <p style={{border:'1px solid red'}}>Loading...</p> :
-            !schools.length && <p>No schools</p>
-          }
           <Switch location={isModal ? this.previousLocation : location}>
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
-            <Route path="/account/register" component={RegisterFlow} />
+            <Route path="/account/register" component={RegistrationFlow} />
             <Redirect to={`/account/schools/4118/programs/2018`} />
           </Switch>
         </Layout>

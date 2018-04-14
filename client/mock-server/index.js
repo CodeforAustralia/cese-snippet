@@ -4,6 +4,7 @@ const apiRouter = require('./routes/api');
 const logger = require('morgan');
 
 const staffListData = require('./staff-list.json');
+const schoolsListData = require('./schools-list.json');
 const programFieldsData = require('./program-field-data.json');
 
 const app = express();
@@ -22,6 +23,11 @@ app.get('/static/program-fields.json', (req, res) => {
 app.get('/static/staff-list.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(staffListData);
+  return res;
+});
+app.get('/static/schools-list.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(schoolsListData);
   return res;
 });
 

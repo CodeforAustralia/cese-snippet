@@ -6,7 +6,7 @@ export const ACTION_TYPES = {
   fetchedSchoolsList: 'STATIC/SCHOOLS_LIST',
 };
 
-const appReducer = (state = initialState.static, action) => {
+const staticReducer = (state = initialState.static, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchedProgramFields:
@@ -22,4 +22,4 @@ const appReducer = (state = initialState.static, action) => {
   }
 };
 
-export default appReducer;
+export default staticReducer;

@@ -18,7 +18,7 @@ const HomePage = () => (
           <Row>
             <Col sm={{size: 6, offset: 3}}>
               <h2>Programs happening in schools now</h2>
-              <p>For school staff to view or publish news about program applications in NSW schools.</p>
+              <p>For school staff to view or publish news about program applications in NSW Public Schools.</p>
             </Col>
           </Row>
 
