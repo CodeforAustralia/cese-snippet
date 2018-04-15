@@ -146,6 +146,16 @@ const HomePage = () => (
           </Col>
         </Row>
 
+        <Row className={style.featureBanner}>
+          <Col sm={{size: 6}}>
+            [screen shot]
+          </Col>
+          <Col sm={{size: 6}}>
+            <h3>Update the Community</h3>
+            <p>High level information about programs and initiatives are also published to SchoolFinder to help parents easily find what your school offers.</p>
+          </Col>
+        </Row>
+
       </Container>
     </div>
 
