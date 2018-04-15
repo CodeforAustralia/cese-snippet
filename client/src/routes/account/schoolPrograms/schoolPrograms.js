@@ -4,9 +4,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
 } from 'reactstrap';
 
 import ProgramsList from './../components/programsList';

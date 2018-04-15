@@ -20,7 +20,7 @@ import {
 } from 'react-router-dom';
 
 import {
-  getSchoolProgramsUrl,
+  // getSchoolProgramsUrl,
   getCreateProgramModalUrl,
   getCreateProgramUrl,
 } from 'helpers/url';

@@ -1,16 +1,17 @@
 import React from 'react';
 import {
-  Collapse,
+  // Collapse,
   Navbar,
-  NavbarToggler,
+  // NavbarToggler,
   NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  // Nav,
+  // NavItem,
+  // NavLink,
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem
+} from 'reactstrap';
 import {
   withRouter,
   NavLink as RRNavLink
@@ -33,7 +34,7 @@ class Layout extends React.Component {
     });
   }
   render() {
-    const { isAuthenticated, signout, history, session } = this.props;
+    // const { isAuthenticated, signout, history, session } = this.props;
     return (
       <div>
         <Navbar color="faded" light expand="md">

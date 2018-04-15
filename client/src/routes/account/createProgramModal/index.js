@@ -3,10 +3,10 @@ import cx from 'classnames';
 import { BodyClass } from 'components/elementClass';
 import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import {
-  Container,
+  // Container,
   Button,
-  Row,
-  Col,
+  // Row,
+  // Col,
 } from 'reactstrap';
 
 import {
