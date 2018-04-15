@@ -1,7 +1,6 @@
 @import '~style/helpers.scss';
 
 .home {
-
 }
 
 :global(.navbar-brand) {
@@ -12,20 +11,21 @@
   margin-left: 10px;
   font-size: 8px;
   opacity: .8;
-  color: #d40c58;
+  color: rgba(black, .5);
   position: absolute;
   top: 9px;
   left: 100%;
+  border: 1px solid rgba(black, .5);
 }
 
 .topLayoutBand,
 .lowerCtaLayoutBand {
-  background-color: #d40c58;
-  color: white;
+  background-color: $blue-concrete; //#d40c58;
+  //color: white;
 }
 
 .layoutHeadline {
-  padding-top: 6em;
+  padding-top: 4em;
   padding-bottom: 2em;
 }
 
@@ -35,14 +35,20 @@
 }
 
 .featureBlock {
+  position: relative;
 }
 
 .comingSoonBadge {
   font-size: 10px;
-  font-weight: 400;
+  text-transform: uppercase;
   position: absolute;
   top: 0;
+  right: 1px;
+  color: rgba(white, .8);
+  //font-weight: 200;
+  letter-spacing: .25px;
 }
+
 
 .headline {
   h2 {
@@ -61,6 +67,17 @@
   margin-top: 3em;
   .btn {
     color: white !important;
+  }
+}
+
+.alertBanner {
+  background: $gray-300; //#e0e0e0;;
+  padding: 12px;
+  text-align: center;
+  p {
+    font-weight: 200;
+    padding: 0;
+    margin: 0;
   }
 }
 
