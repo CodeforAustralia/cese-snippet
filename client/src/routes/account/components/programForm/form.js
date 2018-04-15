@@ -74,7 +74,7 @@ class ProgramForm extends React.Component {
       });
     };
 
-    const getStaffOptions = () => staticData.staff.map((staff) => ({value: staff.id, label: staff.email}));
+    const getStaffOptions = () => staticData.staffList.map((staff) => ({value: staff.id, label: staff.email}));
 
 
     const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
@@ -484,7 +484,7 @@ class ProgramForm extends React.Component {
                              onChange={this.props.setFieldValue}
                              onBlur={this.props.setFieldTouched}
                              touched={touched.tags}
-                             invalid={errors.tags}/>
+                             invalid={errors.tags} />
             <FormText color="muted">
               Keywords could help others to search for programs like this one in the future.
             </FormText>
@@ -515,7 +515,6 @@ export default withFormik({
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
 
     log('Submitting values:', values);
-    // return new Promise((res) => res());
 
     return props.onSubmit(values).then(
       (resp) => {

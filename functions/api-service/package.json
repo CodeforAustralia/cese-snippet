@@ -40,5 +40,9 @@
   "devDependencies": {
     "@feathersjs/cli": "^3.6.1",
     "nodemon": "^1.17.3"
+  },
+  "dependencies": {
+    "feathers-mongodb": "^3.0.1",
+    "mongodb": "^3.0.6"
   }
 }

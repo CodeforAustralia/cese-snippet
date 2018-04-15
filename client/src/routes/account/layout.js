@@ -42,7 +42,9 @@ class LayoutBasic extends React.Component {
     });
   }
   render() {
-    const { isAuthenticated, signout, history, session, location, schools } = this.props;
+    const { isAuthenticated, signout, history, session, location } = this.props;
+
+    const schools = []; // todo
 
     return (
       <div>
@@ -91,6 +93,10 @@ class LayoutBasic extends React.Component {
                   ))}
 
                   <DropdownItem divider />
+
+                  <DropdownItem onClick={() => history.push('/account/register')}>
+                    Add a school
+                  </DropdownItem>
 
                   <DropdownItem onClick={() => {
                     signout(() => history.push("/"));

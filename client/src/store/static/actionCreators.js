@@ -10,9 +10,9 @@ export const fetchProgramFields = () => {
           payload: data,
         })
       })
-      .catch((err) => {
-        throw new Error(`Unable to fetch program fields data: ${err}`);
-      });
+      // .catch((err) => {
+      //   throw new Error(`Unable to fetch program fields data: ${err}`);
+      // });
   }
 };
 
@@ -26,8 +26,24 @@ export const fetchStaffList = () => {
           payload: data,
         })
       })
-      .catch((err) => {
-        throw new Error(`Unable to fetch staff list: ${err}`);
-      });
+      // .catch((err) => {
+      //   throw new Error(`Unable to fetch staff list: ${err}`);
+      // });
+  }
+};
+
+export const fetchSchoolsList = () => {
+  return (dispatch) => {
+    return fetch('/static/schools-list.json')
+      .then((resp) => resp.json())
+      .then((data) => {
+        return dispatch({
+          type: ACTION_TYPES.fetchedSchoolsList,
+          payload: data,
+        })
+      })
+      // .catch((err) => {
+      //   throw new Error(`Unable to fetch schools list: ${err}`);
+      // });
   }
 };

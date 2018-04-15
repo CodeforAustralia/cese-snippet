@@ -14,7 +14,7 @@ class Login extends React.Component {
   }
 
   login() {
-    setTimeout(this.props.history.push('/account'), 100);
+    setTimeout(this.props.history.push('/account/decision'), 100);
   }
 
   render() {

@@ -1,20 +1,18 @@
 import { connect } from 'react-redux';
 import { fetchSchools } from 'store/schools/actionCreators';
 import {
-  selectSchools,
-  selectIsFetching
-} from 'store/schools/selectors';
-import {
   selectSession,
   selectUserSchoolCodes,
 } from "store/session/selectors";
 import {
-  fetchStaffList,
-  fetchProgramFields,
-} from 'store/static/actionCreators';
+  selectSchools,
+  selectIsFetching,
+} from 'store/schools/selectors';
+
 
 const mapStateToProps = (state) => {
   const userSchoolCodes = selectUserSchoolCodes(state);
+
   return {
     session: selectSession(state),
     userSchoolCodes,
@@ -23,12 +21,16 @@ const mapStateToProps = (state) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchSchools: (codes) => dispatch(fetchSchools(codes)),
-    fetchProgramFields: () => dispatch(fetchProgramFields()),
-    fetchStaffList: () => dispatch(fetchStaffList()),
+    onSubmitSuccess: (resp) => {
+      console.log(resp);
+      // navigate to account
+      ownProps.history.push('/account');
+    }
   }
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps);

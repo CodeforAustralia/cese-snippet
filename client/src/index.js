@@ -11,7 +11,7 @@ import 'style/index.scss';
 
 const win = typeof window !== 'undefined' ? window : global;
 
-const preloadedSession = get(win, '__INITIAL_STATE__.session', null);
+const preloadedSession = get(win, '__INITIAL_STATE__.session', null); // todo - deprecate when we know how the auth works
 if (!preloadedSession) {
   throw new Error('No page session available at window.win.__INITIAL_STATE__.session');
 }

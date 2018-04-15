@@ -3,16 +3,15 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import {
-  Redirect
-} from 'react-router';
+// import { Redirect } from 'react-router';
 
 import Layout from './layout';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
+import RegistrationFlow from './registrationFlow';
 
-const RegisterFlow = () => <h1>Register flow</h1>;
+import Decision from './decision';
 
 
 class Account extends React.Component {
@@ -21,10 +20,6 @@ class Account extends React.Component {
     this.previousLocation = props.location;
   }
   componentDidMount() {
-    const { userSchoolCodes } = this.props;
-    if (userSchoolCodes && userSchoolCodes.length) {
-      this.props.fetchSchools(userSchoolCodes);
-    }
     this.props.fetchProgramFields();
     this.props.fetchStaffList();
   }
@@ -39,11 +34,7 @@ class Account extends React.Component {
     }
   }
   render() {
-    const {
-      schools,
-      isFetching,
-      location
-    } = this.props;
+    const { location } = this.props;
 
     const isModal = !!(
       location.state &&
@@ -53,16 +44,13 @@ class Account extends React.Component {
 
     return (
       <div>
-        <Layout schools={schools}>
-          { isFetching !== false ?
-            <p style={{border:'1px solid red'}}>Loading...</p> :
-            !schools.length && <p>No schools</p>
-          }
+        <Layout>
           <Switch location={isModal ? this.previousLocation : location}>
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
-            <Route path="/account/register" component={RegisterFlow} />
-            <Redirect to={`/account/schools/4118/programs/2018`} />
+            <Route path="/account/register" component={RegistrationFlow} />
+            <Route to="/account/decision" component={Decision} />
+            {/*<Redirect to="/account/decision" component={Decision} /> */}
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
