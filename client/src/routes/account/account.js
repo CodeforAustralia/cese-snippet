@@ -3,15 +3,14 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 
 import Layout from './layout';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
-
-import Decision from './decision';
+import Schools from './schools';
 
 
 class Account extends React.Component {
@@ -46,11 +45,11 @@ class Account extends React.Component {
       <div>
         <Layout>
           <Switch location={isModal ? this.previousLocation : location}>
+            <Route path="/account/schools" exact component={Schools} />
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
             <Route path="/account/register" component={RegistrationFlow} />
-            <Route to="/account/decision" component={Decision} />
-            {/*<Redirect to="/account/decision" component={Decision} /> */}
+            <Redirect to="/account/schools" />
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}

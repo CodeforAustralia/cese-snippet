@@ -6,9 +6,9 @@ const sessionReducer = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.registerMySchool:
-      const code = payload.school.code;
-      state.schools = [...state.schools, code];
-      return state;
+      const newState = {...state};
+      newState.schools.push(payload.code);
+      return newState;
     default:
       return state;
   }

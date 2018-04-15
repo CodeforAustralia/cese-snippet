@@ -1,20 +1,16 @@
 import { connect } from 'react-redux';
 
-import { fetchSchools } from 'store/schools/actionCreators';
 import {
   selectSchools,
-  selectIsFetching
-} from 'store/schools/selectors';
-import {
-  selectSession,
-  selectUserSchoolCodes,
-} from "store/session/selectors";
+  selectIsFetching,
+} from "store/schools/selectors";
+import { selectUserSchoolCodes } from "store/session/selectors";
+import { fetchSchools } from 'store/schools/actionCreators';
 
 
 const mapStateToProps = (state) => {
   const userSchoolCodes = selectUserSchoolCodes(state);
   return {
-    session: selectSession(state),
     userSchoolCodes,
     isFetching: selectIsFetching(state),
     schools: selectSchools(state, userSchoolCodes),
