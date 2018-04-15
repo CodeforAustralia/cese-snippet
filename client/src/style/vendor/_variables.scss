@@ -1,3 +1,5 @@
+@import './../variables';
+
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
@@ -80,7 +82,12 @@ $theme-colors: map-merge((
   "warning":    $warning,
   "danger":     $danger,
   "light":      $light,
-  "dark":       $dark
+  "dark":       $dark,
+
+  "concrete": $brand-concrete,
+  "pink": $brand-primary,
+  "teal": $brand-secondary,
+  "highlight": $brand-highlight,
 ), $theme-colors);
 // stylelint-enable
 
