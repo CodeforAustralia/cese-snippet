@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  withRouter,
-  Redirect,
-} from 'react-router';
+import { Redirect } from 'react-router';
 import Bows from 'bows';
 
 const log = Bows('Schools');
@@ -17,24 +14,6 @@ class Schools extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const {
-      isFetching,
-      schools,
-      history,
-    } = this.props;
-
-    if (isFetching === false) {  // it's ready
-      if (schools && schools.length) {
-        log('Navigating to SchoolPrograms');
-        history.push(`/account/schools/${schools[0].code}/programs/2018`);
-      } else {
-        log('Navigating to Register');
-        history.push('/account/register');
-      }
-    }
-  }
-
   render() {
     const { isFetching, schools } = this.props;
 
@@ -46,11 +25,9 @@ class Schools extends React.Component {
       if (schools && schools.length) {
         log('Navigating to SchoolPrograms');
         return <Redirect to={`/account/schools/${schools[0].code}/programs/2018`} />
-        // history.push(`/account/schools/${schools[0].code}/programs/2018`);
       } else {
         log('Navigating to Register');
         return <Redirect to={`/account/register`} />
-        // history.push('/account/register');
       }
     }
 
@@ -58,4 +35,4 @@ class Schools extends React.Component {
   }
 }
 
-export default withRouter(Schools);
+export default Schools;
