@@ -30,7 +30,7 @@ const HomePage = () => (
             <div className={style.headline}>
               <h2>Programs happening in schools now</h2>
               <p className="h4">For school staff to discover and publish practical knowledge, insights and resources about programs in NSW Public Schools.</p>
-              <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Start Demo</Button></p>
+              <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">Start Demo</Button></p>
             </div>
           </Col>
         </Row>
@@ -166,7 +166,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I want to get started!</Label>
-              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
+              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
             </Form>
           </Col>
         </Row>
