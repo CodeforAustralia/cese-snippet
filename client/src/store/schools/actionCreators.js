@@ -28,13 +28,8 @@ export const fetchSchool = (code) => {
 };
 
 export const fetchSchools = (codes) => {
-  if (typeof codes === 'undefined' || !codes.length) {
-    return {
-      type: ACTION_TYPES.fetchSuccess,
-      payload: {
-        schools: null,
-      }
-    }
+  if (typeof codes === 'undefined') { // todo
+    return () => {};
   }
   const reqList = codes.reduce((acc, val, idx) => {
     return acc + `&code=${val}`;
