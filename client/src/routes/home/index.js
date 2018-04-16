@@ -96,7 +96,7 @@ const HomePage = () => (
         <Row className={style.ctaBanner}>
           <Col>
             <Form inline>
-              <Label className="mr-2">I'm interested and I want to get started!</Label>
+              <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
               <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
             </Form>
           </Col>
@@ -178,7 +178,7 @@ const HomePage = () => (
         <Row className={style.ctaBanner}>
           <Col>
             <Form inline>
-              <Label className="mr-2">I'm interested and I want to get started!</Label>
+              <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
               <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
             </Form>
           </Col>
