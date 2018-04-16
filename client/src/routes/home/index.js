@@ -11,6 +11,7 @@ import {
   Label,
   Badge,
 } from "reactstrap";
+import cx from 'classnames';
 
 import DetLogo from './doe-black-logo.png';
 import style from './style.scss';
@@ -29,56 +30,20 @@ const HomePage = () => (
           <Col sm={{size: 7}}>
             <div className={style.headline}>
               <h2>Programs happening in schools now</h2>
-              <p className="h4">For school staff to discover and publish practical knowledge, insights and resources about programs in NSW Public Schools.</p>
+              <p className="h4">For school staff<supp className={style.conditionMark}>*</supp> to discover and publish practical knowledge, insights and resources about programs in NSW Public Schools.</p>
               <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">Start Demo</Button></p>
             </div>
           </Col>
         </Row>
 
-        <Row className={style.layoutFeatures}>
-          <Col sm={{size: 3}}>
-            <div className={style.featureBlock}>
-              <p>Icon</p>
-              <h3 className="h4">School level view</h3>
-              <p>View and manage all of your school's active programs, update them and create new ones. View programs historically from your school too.</p>
-            </div>
-          </Col>
-          {/*<Col sm={{size: 3}}>*/}
-            {/*<div className={style.featureBlock}>*/}
-              {/*<Badge color="warning" pill className={style.comingSoonBadge}>Coming soon</Badge>*/}
-              {/*<p>Icon</p>*/}
-              {/*<h3 className="h4">Attach documents</h3>*/}
-            {/*</div>*/}
-          {/*</Col>*/}
-          <Col sm={{size: 3}}>
-            <div className={style.featureBlock}>
-              <Badge color="info" pill className={style.comingSoonBadge}>Coming soon</Badge>
-              <p>Icon</p>
-              <h3 className="h4">Fast publishing</h3>
-              <p>Publish and share resources like work sheets, documents and photographs about active school programs in real time from your smartphone. Build the rich story of each program over time.</p>
-            </div>
-          </Col>
-          <Col sm={{size: 3}}>
-            <div className={style.featureBlock}>
-              <Badge color="info" pill className={style.comingSoonBadge}>Coming soon</Badge>
-              <p>Icon</p>
-              <h3 className="h4">Intelligent Search</h3>
-              <p>Research tools allow you to earch for programs occurring in other schools using local and specific search criteria to find programs used in others schools in conditions alike your own.</p>
-            </div>
-          </Col>
-          <Col sm={{size: 3}}>
-            <div className={style.featureBlock}>
-              <Badge color="info" pill className={style.comingSoonBadge}>Coming soon</Badge>
-              <p>Icon</p>
-              <h3 className="h4">Fresh content</h3>
-              <p>Over time we'll learn about you and your school and we'll deliver relevant content to you about programs happening at your school as well as those happening in all NSW Public Schools.</p>
-            </div>
+        <Row>
+          <Col>
+            <p className="text-muted"><small>You must have a Department of Education email to log in.</small></p>
           </Col>
         </Row>
       </Container>
-
-
     </div>
+
 
     <div className={style.alertBanner}>
       <Container>
@@ -86,15 +51,62 @@ const HomePage = () => (
       </Container>
     </div>
 
-    <div className={style.lowerLayoutBand}>
-      <Container>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 8, offset: 2}}>
+    <div className={style.howtoBand}>
+      <Container>
+        <Row className={cx(style.howtoBannerTop, 'mb-4')}>
+          <Col sm={{size: 8, offset: 2}} className="text-center">
             <h3>Why Snippet?</h3>
             <p>You do a lot as a school staff, and often your amazing initiatives and insights from the frontline may go under the radar. Snippet hopes to give you a space to showcase, teach and learn from others beyond the school gate in the context of NSW Public schools.</p>
           </Col>
         </Row>
+
+        <Row className={cx(style.howtoBannerTop, 'mb-2')}>
+          <Col>
+            <h3 className="text-center">It's as easy as..</h3>
+          </Col>
+        </Row>
+
+        <Row className={style.howtoBannerLower}>
+          <Col sm={{size: 4}} className={style.howtoCard}>
+            <p className="h3">1.</p>
+            <img src="http://via.placeholder.com/350x250" width="350" height="250" />
+            <p>Log in with your DET login.</p>
+          </Col>
+
+          <Col sm={{size: 4}} className={style.howtoCard}>
+            <p className="h3">2.</p>
+            <img src="http://via.placeholder.com/350x250" width="350" height="250" />
+            <p>View and keep up to date with programs by your school.</p>
+          </Col>
+
+          <Col sm={{size: 4}} className={style.howtoCard}>
+            <p className="h3">3.</p>
+            <img src="http://via.placeholder.com/350x250" width="350" height="250" />
+            <p>Add a new program or update one that exists.</p>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+
+
+    <div className={style.ctaLayoutBand}>
+      <Container>
+        <Row className={style.ctaBanner}>
+          <Col>
+            <Form inline>
+              <Label className="mr-2">I'm interested and I want to get started!</Label>
+              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+
+
+
+    <div className={style.lowerLayoutBand}>
+      <Container>
 
         <Row className={style.featureBanner}>
           <Col sm={{size: 6}}>
@@ -160,7 +172,7 @@ const HomePage = () => (
     </div>
 
 
-    <div className={style.lowerCtaLayoutBand}>
+    <div className={style.ctaLayoutBand}>
       <Container>
         <Row className={style.ctaBanner}>
           <Col>
