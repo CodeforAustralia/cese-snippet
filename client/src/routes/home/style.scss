@@ -19,9 +19,13 @@
 }
 
 .topLayoutBand,
-.lowerCtaLayoutBand {
+.ctaLayoutBand {
   background-color: $blue-concrete; //#d40c58;
   //color: white;
+}
+
+.topLayoutBand {
+  padding-bottom: 1em;
 }
 
 .layoutHeadline {
@@ -63,6 +67,10 @@
   }
 }
 
+.conditionMark {
+  margin-left: 3px;
+}
+
 .headlineCta {
   margin-top: 3em;
   .btn {
@@ -86,12 +94,27 @@
   padding-bottom: 2em;
 }
 
+.howtoBand,
 .featureBanner {
   padding-top: 2em;
   padding-bottom: 2em;
 }
 
-.lowerCtaLayoutBand {
+.howtoBannerTop {
+
+}
+
+.howtoBannerLower {
+
+}
+
+.howtoCard {
+  img {
+    margin-bottom: 1em;
+  }
+}
+
+.ctaLayoutBand {
   padding-top: 2em;
   padding-bottom: 2em;
 }
