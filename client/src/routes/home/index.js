@@ -30,16 +30,20 @@ const HomePage = () => (
           <Col sm={{size: 7}}>
             <div className={style.headline}>
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
-              <h2>Programs happening in schools now</h2>
-              <p className="h4">For school staff<supp className={style.conditionMark}>*</supp> to discover and publish practical knowledge, insights and resources about programs in NSW Public Schools.</p>
+              <h2>School programs happening now</h2>
+              <p className="h4">Public Schools program information sharing for NSW Education.</p>
               <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">View Demo</Button></p>
             </div>
+          </Col>
+
+          <Col sm={{size: 5}}>
+            <img src="http://via.placeholder.com/443x406?text=compelling-product" width="443" height="406" />
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <p className="text-muted"><small>You must have a Department of Education email to log in.</small></p>
+            <p className="text-muted"><small>You must have a Department of Education (DET) email to log in.</small></p>
           </Col>
         </Row>
       </Container>
@@ -71,19 +75,19 @@ const HomePage = () => (
         <Row className={style.howtoBannerLower}>
           <Col sm={{size: 4}} className={style.howtoCard}>
             <p className="h3">1.</p>
-            <img src="http://via.placeholder.com/350x250" width="350" height="250" />
+            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" />
             <p>Log in with your DET login.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
             <p className="h3">2.</p>
-            <img src="http://via.placeholder.com/350x250" width="350" height="250" />
+            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" />
             <p>View and keep up to date with programs by your school.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
             <p className="h3">3.</p>
-            <img src="http://via.placeholder.com/350x250" width="350" height="250" />
+            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" />
             <p>Add a new program or update one that exists.</p>
           </Col>
         </Row>
