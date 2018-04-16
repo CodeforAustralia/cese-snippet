@@ -38,6 +38,7 @@ const LoginForm = ({
                onBlur={handleBlur}
                value={values.email}
                invalid={errors.email}
+               disabled={true}
         />
         {touched.email && errors.email && <FormFeedback>{errors.email}</FormFeedback>}
       </FormGroup>
@@ -50,10 +51,12 @@ const LoginForm = ({
                onBlur={handleBlur}
                value={values.password}
                invalid={errors.password}
+               disabled={true}
         />
         {touched.password && errors.password && <FormFeedback>{errors.email}</FormFeedback>}
       </FormGroup>
-      <Button type="submit" className="btn btn-lg btn-primary btn-block" disabled={isSubmitting}>Log in</Button>
+
+      <Button type="submit" className="btn btn-lg btn-primary mt-4" disabled={isSubmitting}>Log in</Button>
     </Form>
   )
 };
