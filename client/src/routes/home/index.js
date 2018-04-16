@@ -32,7 +32,7 @@ const HomePage = () => (
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
               <h2>Programs happening in schools now</h2>
               <p className="h4">For school staff<supp className={style.conditionMark}>*</supp> to discover and publish practical knowledge, insights and resources about programs in NSW Public Schools.</p>
-              <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">Start Demo</Button></p>
+              <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">View Demo</Button></p>
             </div>
           </Col>
         </Row>
@@ -97,7 +97,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
-              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
+              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Fire up the demo!</Button>
             </Form>
           </Col>
         </Row>
@@ -151,8 +151,8 @@ const HomePage = () => (
 
         <Row className={style.featureBanner}>
           <Col sm={{size: 6}}>
-            <h3>Relevant Information</h3>
-            <p>Especially designed for NSW Public schools to allow you access and support for programs relevant to your local needs.</p>
+            <h3>Find Relevant Information</h3>
+            <p>Especially designed for NSW Public Schools to allow you access and support for programs relevant to your local needs.</p>
           </Col>
           <Col sm={{size: 6}}>
             [screen shot]
@@ -179,7 +179,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
-              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Start Demo</Button>
+              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Fire up the demo!</Button>
             </Form>
           </Col>
         </Row>
