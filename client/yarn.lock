@@ -7804,6 +7804,10 @@ renderkid@^2.0.1:
     strip-ansi "^3.0.0"
     utila "~0.3"
 
+repaintless@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/repaintless/-/repaintless-1.4.0.tgz#f3fcc32bc18fdeac9e66c00903b24cd9a79cc20e"
+
 repeat-element@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/repeat-element/-/repeat-element-1.1.2.tgz#ef089a178d1483baae4d93eb98b4f9e4e11d990a"
