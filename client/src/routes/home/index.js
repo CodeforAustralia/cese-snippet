@@ -4,8 +4,6 @@ import {
   Container,
   Row,
   Col,
-  Navbar,
-  NavbarBrand,
   Button,
   Form,
   Label,
@@ -13,25 +11,22 @@ import {
 } from "reactstrap";
 import cx from 'classnames';
 
+import Layout from './layout';
 import DetLogo from './doe-black-logo.png';
 import style from './style.scss';
 
 
 const HomePage = () => (
-  <div className={style.home}>
+  <Layout>
 
     <div className={style.topLayoutBand}>
-      <Navbar fixed color="transparent">
-        <NavbarBrand to="/">Snippet<Badge color="light" pill className={style.alphaBadge}>ALPHA</Badge></NavbarBrand>
-      </Navbar>
-
       <Container>
         <Row className={style.layoutHeadline}>
           <Col sm={{size: 7}}>
             <div className={style.headline}>
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
               <h2>School programs happening now</h2>
-              <p className="h4">Public Schools program information sharing for NSW Education.</p>
+              <p className="h4">Public Schools program information sharing for NSW Education<supp>*</supp>.</p>
               <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">View Demo</Button></p>
             </div>
           </Col>
@@ -107,7 +102,6 @@ const HomePage = () => (
         </Row>
       </Container>
     </div>
-
 
 
     <div className={style.lowerLayoutBand}>
@@ -192,14 +186,14 @@ const HomePage = () => (
 
 
     <div className={style.footerBand}>
-      <Container>
-        <Col size={{sm: 2}}>
-          <img src={DetLogo} width={130} height={47} alt="NSW Department of Education logo" />
-        </Col>
-      </Container>
-    </div>
+        <Container>
+          <Col size={{sm: 2}}>
+            <img src={DetLogo} width={130} height={47} alt="NSW Department of Education logo" />
+          </Col>
+        </Container>
+      </div>
 
-  </div>
+  </Layout>
 );
 
 export default HomePage;

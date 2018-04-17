@@ -1,22 +1,5 @@
 @import '~style/helpers.scss';
 
-.home {
-}
-
-:global(.navbar-brand) {
-  position: relative;
-  display: inline-block;
-}
-.alphaBadge {
-  margin-left: 10px;
-  font-size: 8px;
-  opacity: .8;
-  color: rgba(black, .5);
-  position: absolute;
-  top: 9px;
-  left: 100%;
-  border: 1px solid rgba(black, .5);
-}
 
 .topLayoutBand,
 .ctaLayoutBand {

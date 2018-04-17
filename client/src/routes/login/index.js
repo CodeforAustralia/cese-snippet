@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Alert
+  Alert,
+  Row,
+  Col,
+  Container,
 } from 'reactstrap';
 
-import Layout from './layout';
+import Layout from './../home/layout';
 import Form from './form';
+import style from './style.scss';
 
 
 class Login extends React.Component {
@@ -21,17 +25,23 @@ class Login extends React.Component {
   render() {
     return (
       <Layout>
-        <div>
-          <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <Container>
+          <Row>
+            <Col sm={{size: 6, offset: 3}} md={{size: 8, offset: 2}}>
+              <div className={style.loginContainer}>
+                <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-          <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
+                <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
-          <Alert color="info">
-            This is just a demo site, so there's no need to supply log in credentials, you can continue as Malorie.
-          </Alert>
+                <Alert color="info">
+                  This is a demo site, so there is no need to supply log in credentials. You can continue as Malorie.
+                </Alert>
 
-          <Form onSuccess={this.login} />
-        </div>
+                <Form onSuccess={this.login} />
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </Layout>
     );
   }
