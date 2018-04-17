@@ -113,6 +113,25 @@
   }
 }
 
+.valuepropBanner {
+  display: flex;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.valuepropIcon,
+.valuepropProp {
+  padding: 1em;
+}
+
+.valuepropIcon {
+
+}
+
+.valuepropProp {
+  flex: 1;
+}
+
 
 .footerBand {
   background: #e0e0e0;

@@ -14,6 +14,11 @@ import cx from 'classnames';
 import Layout from './layout';
 import DetLogo from './doe-black-logo.png';
 import style from './style.scss';
+import HandsIcon from './hands.svg';
+import IdeaIcon from './idea.svg';
+import NswIcon from './nsw.svg';
+import WheelIcon from './wheel.svg';
+import WifiIcon from './wifi.svg';
 
 
 const HomePage = () => (
@@ -26,7 +31,7 @@ const HomePage = () => (
             <div className={style.headline}>
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
               <h2>School programs happening now</h2>
-              <p className="h4">Public Schools program information sharing for NSW Education<supp>*</supp>.</p>
+              <p className="h4">Public Schools program information sharing for NSW Education<sup>*</sup>.</p>
               <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">View Demo</Button></p>
             </div>
           </Col>
@@ -107,63 +112,75 @@ const HomePage = () => (
     <div className={style.lowerLayoutBand}>
       <Container>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 6}}>
-            <h3>Discover and Learn</h3>
-            <p>Know what other schools are doing well, and adapt to your own context. Save time and energy. No one wants to reinvent the wheel!</p>
-          </Col>
-          <Col sm={{size: 6}}>
-            [screen shot]
-          </Col>
-        </Row>
+        <Row>
+          <Col sm={{size:10, offset:1}}>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 6}}>
-            [screen shot]
-          </Col>
-          <Col sm={{size: 6}}>
-            <h3>Amplify your Impact</h3>
-            <p>Imagine your insight helping 100 more students. Sharing your knowledge may help other schools positively impact their students.</p>
-          </Col>
-        </Row>
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={WheelIcon} width={100} height={100} alt="Icon of a wheel" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Discover and Learn</h3>
+                <p>Know what other schools are doing well, and adapt to your own context. Save time and energy. No one wants to reinvent the wheel!</p>
+              </div>
+            </div>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 6}}>
-            <h3>Get Recognised</h3>
-            <p>Get some love from your peers. You can get "Shout Outs" for your good work. Of course, don't forget to give a Shout Out back to others to say thank you!</p>
-          </Col>
-          <Col sm={{size: 6}}>
-            [screen shot]
-          </Col>
-        </Row>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 6}}>
-            [screen shot]
-          </Col>
-          <Col sm={{size: 6}}>
-            <h3>Keep Up-to-date</h3>
-            <p>Stay on top on what programs are happening in your school. Find out the latest and trending programs in NSW Public schools.</p>
-          </Col>
-        </Row>
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={IdeaIcon} width={100} height={100} alt="Icon of a light bulb idea" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Amplify your Impact</h3>
+                <p>Imagine your insight helping 100 more students. Sharing your knowledge may help other schools positively impact their students.</p>
+              </div>
+            </div>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 6}}>
-            <h3>Find Relevant Information</h3>
-            <p>Especially designed for NSW Public Schools to allow you access and support for programs relevant to your local needs.</p>
-          </Col>
-          <Col sm={{size: 6}}>
-            [screen shot]
-          </Col>
-        </Row>
 
-        <Row className={style.featureBanner}>
-          <Col sm={{size: 6}}>
-            [screen shot]
-          </Col>
-          <Col sm={{size: 6}}>
-            <h3>Update the Community</h3>
-            <p>High level information about programs and initiatives are also published to SchoolFinder to help parents easily find what your school offers.</p>
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={HandsIcon} width={100} height={100} alt="Icon of hands" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Get Recognised</h3>
+                <p>Get some love from your peers. You can get "Shout Outs" for your good work. Of course, don't forget to give a Shout Out back to others to say thank you!</p>
+              </div>
+            </div>
+
+
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={WifiIcon} width={100} height={100} alt="Icon of wifi" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Keep Up-to-date</h3>
+                <p>Stay on top on what programs are happening in your school. Find out the latest and trending programs in NSW Public schools.</p>
+              </div>
+            </div>
+
+
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={NswIcon} width={100} height={100} alt="Icon of NSW State" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Find Relevant Information</h3>
+                <p>Especially designed for NSW Public Schools to allow you access and support for programs relevant to your local needs.</p>
+              </div>
+            </div>
+
+
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={WheelIcon} width={100} height={100} alt="Icon of a wheel" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Update the Community</h3>
+                <p>High level information about programs and initiatives are also published to SchoolFinder to help parents easily find what your school offers.</p>
+              </div>
+            </div>
+
+
           </Col>
         </Row>
 
