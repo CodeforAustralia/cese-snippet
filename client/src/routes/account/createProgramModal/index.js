@@ -39,7 +39,7 @@ const CreateProgramModal = ({ history, location }) => {
       <BodyClass add={style.noScroll} />
       <DocumentOnKeyUp keyCode={27} onKeyUp={back} />
 
-      <div className={cx(style.modal)}>
+      <div className={cx(style.modal, style.modalAnimation, 'element-animated"')}>
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{title}</h5>

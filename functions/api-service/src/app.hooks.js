@@ -8,6 +8,7 @@ module.exports = {
     get: [],
     create: [
       (context) => {
+	      context.data.updatedAt = new Date().getTime();
 	      context.data.createdAt = new Date().getTime();
       },
     ],

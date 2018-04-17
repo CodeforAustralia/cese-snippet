@@ -27,6 +27,7 @@ class SchoolPrograms extends React.Component {
       this.fetchData();
     }
   }
+
   fetchData() {
     const { school } = this.props;
     if (!school) {
@@ -34,6 +35,13 @@ class SchoolPrograms extends React.Component {
     }
     this.props.fetchProgramsByFilter();
   }
+
+  sortByLatestDate(programs = []) {
+    return programs.sort((a, b) => {
+      return new Date(a.createdAt) < new Date(b.createdAt);
+    });
+  }
+
   render() {
     const {
       school,
@@ -54,14 +62,25 @@ class SchoolPrograms extends React.Component {
     return (
       <div>
 
-        <h1 className={style.pageTitle}>
-          <span>{school.name}</span>
-          Programs
-        </h1>
+        <div className={style.titleBlock}>
+          <div className={style.titleBlockLhs}>
+            <h1>
+              <span className={style.supTitle}>{school.name}</span>
+              Programs
+            </h1>
+          </div>
+          <div className={style.titleBlockRhs}>
+            {isFetchingPrograms === false && filteredPrograms.length ?
+              <Button color="primary" outline to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program for {filterProps.year}</Button> :
+              null
+            }
+          </div>
+        </div>
 
-        <Nav tabs>
+
+        <Nav pills>
           <NavItem>
-            <NavLink to={getSchoolProgramsUrl(school.code, "2018")} activeclassname="active" tag={RRNavLink}>2018</NavLink>
+            <NavLink color="light" to={getSchoolProgramsUrl(school.code, "2018")} activeclassname="active" tag={RRNavLink}>2018</NavLink>
           </NavItem>
           <NavItem>
             <NavLink to={getSchoolProgramsUrl(school.code, "2017")} activeclassname="active" tag={RRNavLink}>2017</NavLink>
@@ -72,14 +91,7 @@ class SchoolPrograms extends React.Component {
           { isFetchingPrograms !== false ?
             <p>Loading...</p> :
             <div>
-              {filteredPrograms.length ?
-                <div className={style.tabAddProgramBtn}>
-                  <Button color="primary" size="lg" to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program</Button>
-                </div> :
-                null
-              }
-              <ProgramsList programs={filteredPrograms}
-                          openAddProgram={() => {console.log('clickin n')}}
+              <ProgramsList programs={this.sortByLatestDate(filteredPrograms)}
                           activeYear={filterProps.year} />
             </div>
           }
@@ -91,6 +103,3 @@ class SchoolPrograms extends React.Component {
 }
 
 export default SchoolPrograms;
-
-
-// () => getCreateProgramModalUrl(filterProps)

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import get from 'lodash/get';
 // import registerServiceWorker from './registerServiceWorker';
 import "style/vendor/bootstrap.global.scss";
+import "repaintless/repaintless-css/repaintless.css"
 
 import App from 'components/app';
 import configureStore from 'store/configureStore';

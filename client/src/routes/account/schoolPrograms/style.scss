@@ -1,15 +1,30 @@
 @import '~style/helpers';
 
-.pageTitle {
-  span {
-    display: block;
-    font-size: 14px;
-    text-transform: uppercase;
+.titleBlock {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.titleBlockLhs {
+  flex: 1;
+}
+
+.titleBlockRhs {
+  padding-top: 1em;
+  .btn {
+    margin-bottom: 0;
   }
 }
 
+.supTitle {
+  display: block;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
 .tabPageContainer {
-  padding: 1em 0;
+  padding: 2em 0;
 }
 
 .tabAddProgramBtn {

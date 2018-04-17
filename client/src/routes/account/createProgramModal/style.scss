@@ -20,6 +20,25 @@
   display: block;
 }
 
+@keyframes modal-slide-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  25% {
+    opacity: .5;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.modalAnimation {
+  animation-duration: .4s !important;
+  animation-name: modal-slide-from-bottom;
+}
+
 .noScroll {
   overflow: hidden;
 }

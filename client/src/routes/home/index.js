@@ -33,7 +33,7 @@ const HomePage = () => (
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
               <h2>School programs happening now</h2>
               <p className="h4">Public Schools program information sharing for NSW Education<sup>*</sup>.</p>
-              <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">Get Started</Button></p>
+              <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p>
             </div>
           </Col>
 
@@ -99,7 +99,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
-              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
+              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
             </Form>
           </Col>
         </Row>
@@ -120,6 +120,17 @@ const HomePage = () => (
               <div className={style.valuepropProp}>
                 <h3>Discover and Learn</h3>
                 <p>Know what other schools are doing well, and adapt to your own context. Save time and energy. No one wants to reinvent the wheel!</p>
+              </div>
+            </div>
+
+
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={CloudIcon} width={70} height={70} alt="Icon of a cloud" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Share your knowledge</h3>
+                <p>Never underestimate what you know. What is obvious to you may be amazing to someone else!</p>
               </div>
             </div>
 
@@ -178,16 +189,6 @@ const HomePage = () => (
               </div>
             </div>
 
-            <div className={style.valuepropBanner}>
-              <div className={style.valuepropIcon}>
-                <img src={CloudIcon} width={70} height={70} alt="Icon of a wheel" />
-              </div>
-              <div className={style.valuepropProp}>
-                <h3>Share your knowledge</h3>
-                <p>Never underestimate what you know. What is obvious to you may be amazing to someone else!</p>
-              </div>
-            </div>
-
           </Col>
         </Row>
 
@@ -201,7 +202,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
-              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
+              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
             </Form>
           </Col>
         </Row>
