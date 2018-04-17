@@ -20,7 +20,6 @@ import {
 } from 'react-router-dom';
 
 import {
-  // getSchoolProgramsUrl,
   getCreateProgramModalUrl,
   getCreateProgramUrl,
 } from 'helpers/url';
@@ -86,16 +85,10 @@ class LayoutBasic extends React.Component {
 
                 <DropdownMenu right>
 
-                  {schools.map((school, idx) => (
-                    <DropdownItem key={idx}>
-                      <NavLink to={`/account/schools/${school.code}`} activeclassname="active" tag={RRNavLink}>{school.name}</NavLink>
-                    </DropdownItem>
-                  ))}
-
-                  <DropdownItem divider />
+                  {/*<DropdownItem divider />*/}
 
                   <DropdownItem onClick={() => history.push('/account/register')}>
-                    Add a school
+                    Add another school
                   </DropdownItem>
 
                   <DropdownItem onClick={() => {

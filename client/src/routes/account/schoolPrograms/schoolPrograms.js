@@ -1,9 +1,13 @@
 import React from 'react';
-import { NavLink as RRNavLink } from "react-router-dom";
+import {
+  NavLink as RRNavLink,
+  Link as RRLink,
+} from "react-router-dom";
 import {
   Nav,
   NavItem,
   NavLink,
+  Button,
 } from 'reactstrap';
 
 import ProgramsList from './../components/programsList';
@@ -49,6 +53,7 @@ class SchoolPrograms extends React.Component {
 
     return (
       <div>
+
         <h1 className={style.pageTitle}>
           <span>{school.name}</span>
           Programs
@@ -67,11 +72,14 @@ class SchoolPrograms extends React.Component {
           { isFetchingPrograms !== false ?
             <p>Loading...</p> :
             <div>
-              {/*<div className={style.tabAddProgramBtn}>*/}
-                {/*<Button color="primary" size="lg" onClick={() => getCreateProgramModalUrl(filterProps)} className="mb-4">Add a New Program</Button>*/}
-              {/*</div>*/}
+              {filteredPrograms.length ?
+                <div className={style.tabAddProgramBtn}>
+                  <Button color="primary" size="lg" to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program</Button>
+                </div> :
+                null
+              }
               <ProgramsList programs={filteredPrograms}
-                          openAddProgram={() => getCreateProgramModalUrl(filterProps)}
+                          openAddProgram={() => {console.log('clickin n')}}
                           activeYear={filterProps.year} />
             </div>
           }
@@ -83,3 +91,6 @@ class SchoolPrograms extends React.Component {
 }
 
 export default SchoolPrograms;
+
+
+// () => getCreateProgramModalUrl(filterProps)

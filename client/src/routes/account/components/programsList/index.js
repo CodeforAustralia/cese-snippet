@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RRLink } from 'react-router-dom';
 import {
   Button,
   Badge,
@@ -9,20 +9,19 @@ import { getCreateProgramModalUrl } from 'helpers/url';
 import style from './style.scss';
 
 
-const EmptyItem = ({ openAddProgram, activeYear }) => {
+const EmptyItem = ({ activeYear }) => {
   return (
     <section className={style.emptyProgram}>
       <img src="https://via.placeholder.com/115x115?text=" className={style.emptyProgramIcon} alt="" />
       <h1 className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for {activeYear}</h1>
       <p className={cx('h5 mb-4', style.emptyProgamSubTitle)}>If you know details of a Program, it's easy to create one</p>
-      <Button color="primary" size="lg" onClick={openAddProgram} className="mb-4">Add a New Program</Button>
+      <Button color="primary" size="lg" to={getCreateProgramModalUrl({year: activeYear})} className="mb-4" tag={RRLink}>Add a New Program</Button>
       <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.</p>
     </section>
   )
 };
 
-const ProgramItem = ({ program, openAddProgram }) => {
-  const editProgramUrl = getCreateProgramModalUrl(program);
+const ProgramItem = ({ program }) => {
   return (
     <section className={style.program}>
       <div className={style.programLhs}>
@@ -36,7 +35,7 @@ const ProgramItem = ({ program, openAddProgram }) => {
         <p className={style.programUpdatedAt}>Last updated: {program.updatedAt}</p>
 
         <div className={style.programActions}>
-          <Button size="sm" tag={Link} to={editProgramUrl} className="btn-light">Edit</Button>
+          <Button size="sm" to={getCreateProgramModalUrl(program)} className="btn-light" tag={RRLink}>Edit</Button>
         </div>
 
         <dl className={cx(style.programMetaList, 'mb-0')}>

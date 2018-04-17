@@ -32,7 +32,7 @@ const HomePage = () => (
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
               <h2>School programs happening now</h2>
               <p className="h4">Public Schools program information sharing for NSW Education<sup>*</sup>.</p>
-              <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">View Demo</Button></p>
+              <p className={style.headlineCta}><Button size="lg" color="primary" tag={RRLink} to="/login">Get Started</Button></p>
             </div>
           </Col>
 
@@ -101,7 +101,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
-              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Fire up the demo!</Button>
+              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
             </Form>
           </Col>
         </Row>
@@ -193,7 +193,7 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
-              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Fire up the demo!</Button>
+              <Button size="lg" color="primary" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
             </Form>
           </Col>
         </Row>
