@@ -47,7 +47,7 @@ class LayoutBasic extends React.Component {
 
     return (
       <div>
-        <Navbar color="faded" light expand="md" className={style.navbar}>
+        <Navbar color="concrete" light expand="md" className={style.navbar}>
           <NavbarBrand to="/account" tag={RRNavLink}>Snippet</NavbarBrand>
 
           <NavbarToggler onClick={this.toggle} />

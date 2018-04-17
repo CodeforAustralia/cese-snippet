@@ -15,6 +15,7 @@ import {
 const mapStateToProps = (state, ownProps) => {
   const { code, year } = ownProps.match.params;
   const filterProps = { code, year };
+
   return {
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),

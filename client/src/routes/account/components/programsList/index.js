@@ -35,7 +35,7 @@ const ProgramItem = ({ program }) => {
         <p className={style.programUpdatedAt}>Last updated: {program.updatedAt}</p>
 
         <div className={style.programActions}>
-          <Button size="sm" to={getCreateProgramModalUrl(program)} className="btn-light" tag={RRLink}>Edit</Button>
+          <Button size="sm" to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</Button>
         </div>
 
         <dl className={cx(style.programMetaList, 'mb-0')}>
