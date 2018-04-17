@@ -24,7 +24,7 @@ const EmptyItem = ({ activeYear }) => {
 };
 
 const ProgramItem = ({ program }) => {
-  const isNew = isThisMinute(program.createdAt);
+  const isNew = isThisMinute(program.createdAt) || isThisMinute(program.updatedAt);
   return (
     <section className={cx(
       style.program,
