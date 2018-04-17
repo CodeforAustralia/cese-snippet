@@ -1,8 +1,10 @@
 import { ACTION_TYPES } from "./reducer";
 
+const BASE_URL = process.env.REACT_APP_STATIC_BASE_URL;
+
 export const fetchProgramFields = () => {
   return (dispatch) => {
-    return fetch('/static/program-fields.json')
+    return fetch(`${BASE_URL}/program-fields.json`)
       .then((resp) => resp.json())
       .then((data) => {
         return dispatch({
@@ -18,7 +20,7 @@ export const fetchProgramFields = () => {
 
 export const fetchStaffList = () => {
   return (dispatch) => {
-    return fetch('/static/staff-list.json')
+    return fetch(`${BASE_URL}/staff-list.json`)
       .then((resp) => resp.json())
       .then((data) => {
         return dispatch({
@@ -34,7 +36,7 @@ export const fetchStaffList = () => {
 
 export const fetchSchoolsList = () => {
   return (dispatch) => {
-    return fetch('/static/schools-list.json')
+    return fetch(`${BASE_URL}/schools-list.json`)
       .then((resp) => resp.json())
       .then((data) => {
         return dispatch({
