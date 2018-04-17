@@ -37,7 +37,7 @@ const HomePage = () => (
           </Col>
 
           <Col sm={{size: 5}}>
-            <img src="http://via.placeholder.com/443x406?text=compelling-product" width="443" height="406" />
+            <img src="http://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" />
           </Col>
         </Row>
 
@@ -75,19 +75,19 @@ const HomePage = () => (
         <Row className={style.howtoBannerLower}>
           <Col sm={{size: 4}} className={style.howtoCard}>
             <p className="h3">1.</p>
-            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" />
+            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
             <p>Log in with your DET login.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
             <p className="h3">2.</p>
-            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" />
+            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
             <p>View and keep up to date with programs by your school.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
             <p className="h3">3.</p>
-            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" />
+            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
             <p>Add a new program or update one that exists.</p>
           </Col>
         </Row>
