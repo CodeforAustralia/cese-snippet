@@ -5,6 +5,8 @@ import {
   Badge,
 } from 'reactstrap';
 import cx from 'classnames';
+import isThisMinute from 'date-fns/is_this_minute';
+
 import { getCreateProgramModalUrl } from 'helpers/url';
 import style from './style.scss';
 
@@ -22,8 +24,12 @@ const EmptyItem = ({ activeYear }) => {
 };
 
 const ProgramItem = ({ program }) => {
+  const isNew = isThisMinute(program.createdAt);
   return (
-    <section className={style.program}>
+    <section className={cx(
+      style.program,
+      isNew ? `element-animated ${style.newTransition}` : null,
+    )}>
       <div className={style.programLhs}>
 
         <div className={style.programStatusLabel}>
