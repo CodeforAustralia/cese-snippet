@@ -15,9 +15,6 @@ import {
   getSchoolProgramsUrl,
   getCreateProgramModalUrl
 } from "helpers/url";
-
-import '@material/fab/dist/mdc.fab.css';
-import './fab.global.scss';
 import style from './style.scss';
 
 
@@ -56,19 +53,6 @@ class SchoolPrograms extends React.Component {
 
     return (
       <div>
-        {isFetchingPrograms === false && filteredPrograms.length ?
-          <button className="mdc-fab material-icons app-fab--absolute" aria-label="Add program">
-            <RRLink to={getCreateProgramModalUrl(filterProps)}>
-              <span className="mdc-fab__icon">
-                add
-              </span>
-            </RRLink>
-          </button> :
-          null
-        }
-
-
-        {/*mdc-fab material-icons app-fab--absolute*/}
 
         <h1 className={style.pageTitle}>
           <span>{school.name}</span>
@@ -88,7 +72,12 @@ class SchoolPrograms extends React.Component {
           { isFetchingPrograms !== false ?
             <p>Loading...</p> :
             <div>
-
+              {filteredPrograms.length ?
+                <div className={style.tabAddProgramBtn}>
+                  <Button color="primary" size="lg" to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program</Button>
+                </div> :
+                null
+              }
               <ProgramsList programs={filteredPrograms}
                           openAddProgram={() => {console.log('clickin n')}}
                           activeYear={filterProps.year} />
