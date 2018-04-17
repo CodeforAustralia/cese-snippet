@@ -126,6 +126,17 @@ const HomePage = () => (
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
+                <img src={CloudIcon} width={70} height={70} alt="Icon of a cloud" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Share your knowledge</h3>
+                <p>Never underestimate what you know. What is obvious to you may be amazing to someone else!</p>
+              </div>
+            </div>
+
+
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
                 <img src={IdeaIcon} width={70} height={70} alt="Icon of a light bulb idea" />
               </div>
               <div className={style.valuepropProp}>
@@ -175,16 +186,6 @@ const HomePage = () => (
               <div className={style.valuepropProp}>
                 <h3>Update the Community</h3>
                 <p>High level information about programs and initiatives are also published to SchoolFinder to help parents easily find what your school offers.</p>
-              </div>
-            </div>
-
-            <div className={style.valuepropBanner}>
-              <div className={style.valuepropIcon}>
-                <img src={CloudIcon} width={70} height={70} alt="Icon of a wheel" />
-              </div>
-              <div className={style.valuepropProp}>
-                <h3>Share your knowledge</h3>
-                <p>Never underestimate what you know. What is obvious to you may be amazing to someone else!</p>
               </div>
             </div>
 
