@@ -16,13 +16,8 @@ import {
 import {
   withRouter,
   NavLink as RRNavLink,
-  Link as RRLink,
 } from 'react-router-dom';
 
-import {
-  getCreateProgramModalUrl,
-  getCreateProgramUrl,
-} from 'helpers/url';
 import withAuth from 'components/auth/withAuth';
 import style from './style.scss';
 
@@ -41,9 +36,9 @@ class LayoutBasic extends React.Component {
     });
   }
   render() {
-    const { isAuthenticated, signout, history, session, location } = this.props;
-
-    const schools = []; // todo
+    const { isAuthenticated, signout, history, session,
+      // location, schools
+    } = this.props;
 
     return (
       <div>
@@ -55,20 +50,20 @@ class LayoutBasic extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
 
-              {schools && schools.length ?
-                <NavItem className={style.navbarAddProgramBtn}>
-                  <form className="form-inline">
-                    <Button outline color="secondary" size="xs" className="mb-0 mr-2">
-                      <NavLink to={getCreateProgramModalUrl()}
-                               activeclassname="active"
-                               tag={RRLink}
-                               disabled={location.pathname === getCreateProgramUrl().pathname}
-                      >Add a New Program</NavLink>
-                    </Button>
-                  </form>
-                </NavItem> :
-                null
-              }
+              {/*{schools && schools.length ?*/}
+                {/*<NavItem className={style.navbarAddProgramBtn}>*/}
+                  {/*<form className="form-inline">*/}
+                    {/*<Button outline color="secondary" size="xs" className="mb-0 mr-2">*/}
+                      {/*<NavLink to={getCreateProgramModalUrl()}*/}
+                               {/*activeclassname="active"*/}
+                               {/*tag={RRLink}*/}
+                               {/*disabled={location.pathname === getCreateProgramUrl().pathname}*/}
+                      {/*>Add a New Program</NavLink>*/}
+                    {/*</Button>*/}
+                  {/*</form>*/}
+                {/*</NavItem> :*/}
+                {/*null*/}
+              {/*}*/}
 
               <NavItem>
                 {!isAuthenticated &&
@@ -85,9 +80,18 @@ class LayoutBasic extends React.Component {
 
                 <DropdownMenu right>
 
+                  {/*{schools && schools.length ?*/}
+                    {/*schools.map((school, idx) => (*/}
+                      {/*<DropdownItem tag={RRNavLink} to={getSchoolProgramsUrl(school.code, '2018')}>*/}
+                        {/*{school.name}*/}
+                      {/*</DropdownItem>*/}
+                    {/*)) :*/}
+                    {/*null*/}
+                  {/*}*/}
+
                   {/*<DropdownItem divider />*/}
 
-                  <DropdownItem onClick={() => history.push('/account/register')}>
+                  <DropdownItem tag={RRNavLink} to={'/account/register'}>
                     Add another school
                   </DropdownItem>
 

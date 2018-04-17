@@ -71,7 +71,7 @@ class SchoolPrograms extends React.Component {
           </div>
           <div className={style.titleBlockRhs}>
             {isFetchingPrograms === false && filteredPrograms.length ?
-              <Button color="primary" outline size="lg" to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program</Button> :
+              <Button color="primary" outline to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program for {filterProps.year}</Button> :
               null
             }
           </div>

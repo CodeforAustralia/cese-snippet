@@ -33,7 +33,7 @@ class Account extends React.Component {
     }
   }
   render() {
-    const { location } = this.props;
+    const { location, schools } = this.props;
 
     const isModal = !!(
       location.state &&
@@ -43,7 +43,7 @@ class Account extends React.Component {
 
     return (
       <div>
-        <Layout>
+        <Layout schools={schools}>
           <Switch location={isModal ? this.previousLocation : location}>
             <Route path="/account/schools" exact component={Schools} />
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
