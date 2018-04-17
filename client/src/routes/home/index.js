@@ -19,6 +19,7 @@ import IdeaIcon from './idea.svg';
 import NswIcon from './nsw.svg';
 import WheelIcon from './wheel.svg';
 import WifiIcon from './wifi.svg';
+import CloudIcon from './cloud.svg';
 
 
 const HomePage = () => (
@@ -74,21 +75,18 @@ const HomePage = () => (
 
         <Row className={style.howtoBannerLower}>
           <Col sm={{size: 4}} className={style.howtoCard}>
-            <p className="h3">1.</p>
             <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
-            <p>Log in with your DET login.</p>
+            <p>1. Log in with your Department of Education login.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
-            <p className="h3">2.</p>
             <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
-            <p>View and keep up to date with programs by your school.</p>
+            <p>2. View and keep up to date with programs by your school.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
-            <p className="h3">3.</p>
             <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
-            <p>Add a new program or update one that exists.</p>
+            <p>3. Add a new program or update one that exists.</p>
           </Col>
         </Row>
       </Container>
@@ -177,6 +175,16 @@ const HomePage = () => (
               <div className={style.valuepropProp}>
                 <h3>Update the Community</h3>
                 <p>High level information about programs and initiatives are also published to SchoolFinder to help parents easily find what your school offers.</p>
+              </div>
+            </div>
+
+            <div className={style.valuepropBanner}>
+              <div className={style.valuepropIcon}>
+                <img src={CloudIcon} width={70} height={70} alt="Icon of a wheel" />
+              </div>
+              <div className={style.valuepropProp}>
+                <h3>Share your knowledge</h3>
+                <p>Never underestimate what you know. What is obvious to you may be amazing to someone else!</p>
               </div>
             </div>
 
