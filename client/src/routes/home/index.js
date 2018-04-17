@@ -38,7 +38,7 @@ const HomePage = () => (
           </Col>
 
           <Col sm={{size: 5}}>
-            <img src="http://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" />
+            <img src="https://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" />
           </Col>
         </Row>
 
@@ -75,17 +75,17 @@ const HomePage = () => (
 
         <Row className={style.howtoBannerLower}>
           <Col sm={{size: 4}} className={style.howtoCard}>
-            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
+            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
             <p>1. Log in with your Department of Education login.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
-            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
+            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
             <p>2. View and keep up to date with programs by your school.</p>
           </Col>
 
           <Col sm={{size: 4}} className={style.howtoCard}>
-            <img src="http://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
+            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
             <p>3. Add a new program or update one that exists.</p>
           </Col>
         </Row>

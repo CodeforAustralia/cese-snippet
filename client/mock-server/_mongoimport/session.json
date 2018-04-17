@@ -1,7 +1,10 @@
-{
-  "id": "37171",
-  "first": "Malorie",
-  "last": "Mahn",
-  "email": "Malorie.Mahn@test.nsw.edu.au",
-  "schools": ["4118"]
-}
+[
+  {
+    "id": "37171",
+    "first": "Malorie",
+    "last": "Mahn",
+    "email": "Malorie.Mahn@test.nsw.edu.au",
+    "schools": ["4118"]
+  }
+
+]
