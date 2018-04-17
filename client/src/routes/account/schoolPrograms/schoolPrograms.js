@@ -38,7 +38,7 @@ class SchoolPrograms extends React.Component {
 
   sortByLatestDate(programs = []) {
     return programs.sort((a, b) => {
-      return new Date(a.createdBy) < new Date(b.createdBy);
+      return new Date(b.createdBy) < new Date(<a href=""></a>.createdBy);
     });
   }
 
