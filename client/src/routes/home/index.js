@@ -117,7 +117,7 @@ const HomePage = () => (
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
-                <img src={WheelIcon} width={100} height={100} alt="Icon of a wheel" />
+                <img src={WheelIcon} width={70} height={70} alt="Icon of a wheel" />
               </div>
               <div className={style.valuepropProp}>
                 <h3>Discover and Learn</h3>
@@ -128,18 +128,18 @@ const HomePage = () => (
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
-                <img src={IdeaIcon} width={100} height={100} alt="Icon of a light bulb idea" />
+                <img src={IdeaIcon} width={70} height={70} alt="Icon of a light bulb idea" />
               </div>
               <div className={style.valuepropProp}>
                 <h3>Amplify your Impact</h3>
-                <p>Imagine your insight helping 100 more students. Sharing your knowledge may help other schools positively impact their students.</p>
+                <p>Imagine your insight helping 70 more students. Sharing your knowledge may help other schools positively impact their students.</p>
               </div>
             </div>
 
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
-                <img src={HandsIcon} width={100} height={100} alt="Icon of hands" />
+                <img src={HandsIcon} width={70} height={70} alt="Icon of hands" />
               </div>
               <div className={style.valuepropProp}>
                 <h3>Get Recognised</h3>
@@ -150,7 +150,7 @@ const HomePage = () => (
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
-                <img src={WifiIcon} width={100} height={100} alt="Icon of wifi" />
+                <img src={WifiIcon} width={70} height={70} alt="Icon of wifi" />
               </div>
               <div className={style.valuepropProp}>
                 <h3>Keep Up-to-date</h3>
@@ -161,7 +161,7 @@ const HomePage = () => (
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
-                <img src={NswIcon} width={100} height={100} alt="Icon of NSW State" />
+                <img src={NswIcon} width={70} height={70} alt="Icon of NSW State" />
               </div>
               <div className={style.valuepropProp}>
                 <h3>Find Relevant Information</h3>
@@ -172,14 +172,13 @@ const HomePage = () => (
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>
-                <img src={WheelIcon} width={100} height={100} alt="Icon of a wheel" />
+                <img src={WheelIcon} width={70} height={70} alt="Icon of a wheel" />
               </div>
               <div className={style.valuepropProp}>
                 <h3>Update the Community</h3>
                 <p>High level information about programs and initiatives are also published to SchoolFinder to help parents easily find what your school offers.</p>
               </div>
             </div>
-
 
           </Col>
         </Row>
