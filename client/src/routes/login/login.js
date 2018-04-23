@@ -76,7 +76,7 @@ class Login extends React.Component {
                         <Form>
                           <FormGroup row>
                             <Col md={12} lg={6}>
-                              <Label htmlFor="subCategory">Program Category</Label>
+                              <Label htmlFor="subCategory">Select user</Label>
                               <FieldSelect name="id"
                                            options={staff.map(s => ({
                                              value: s.id,
