@@ -1,32 +1,36 @@
 import { connect } from 'react-redux';
+import without from 'lodash/without';
 
-import { selectUserSchoolCodes } from "store/session/selectors";
+import {
+  selectSession,
+  selectUserSchoolCodes,
+} from "store/session/selectors";
 import { selectSchoolsList } from 'store/static/selectors';
 import { fetchSchoolsList } from 'store/static/actionCreators';
 import { makeSchoolsListOptions } from 'store/static/helpers';
-import { registerMySchool } from 'store/session/actionCreators';
+import { saveSession } from 'store/session/actionCreators';
+import { getSchoolProgramsUrl } from 'helpers/url';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const userSchoolCodes = selectUserSchoolCodes(state) || [];
   const schoolsList = selectSchoolsList(state);
 
-  const filteredSchoolsList = typeof schoolsList !== 'undefined' ?
-    schoolsList.filter(school => {
-      return userSchoolCodes.includes(school.code) === false;
-    }) :
-    []
-  ;
+  const schoolsListFiltered = without(schoolsList, ...userSchoolCodes);
 
   return {
-    schoolsListOptions: makeSchoolsListOptions(filteredSchoolsList),
+    session: selectSession(state),
+    schoolsListOptions: makeSchoolsListOptions(schoolsListFiltered),
+    onSubmitSuccess: (code) => {
+      ownProps.history.push(getSchoolProgramsUrl(code, '2018'));
+    },
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchoolsList: () => dispatch(fetchSchoolsList()),
-    onSubmit: (values) => dispatch(registerMySchool(values)),
+    onSubmit: (session) => dispatch(saveSession(session)),
   }
 };
 

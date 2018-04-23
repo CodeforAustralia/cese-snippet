@@ -14,9 +14,13 @@ const log = Bows('Form');
 
 
 class RegistrationForm extends React.Component {
+
   componentDidMount() {
-    this.props.fetchSchoolsList();
+    if (!this.props.schoolsListOptions.length) {
+      this.props.fetchSchoolsList();
+    }
   }
+
   render() {
     const {
       errors,
@@ -50,24 +54,28 @@ class RegistrationForm extends React.Component {
 
 export default withFormik({
   displayName: 'RegisterForm',
+
   validate: (values, props) => {
     const errors = {};
     return errors;
   },
+
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
 
-    const payload = {
-      code: values.code,
-    };
+    const { code } = values;
 
-    log('Submitting values:', payload);
+    const newSession = {...props.session};
+    newSession.schools.push(code);
 
-    return props.onSubmit(payload).then(
+
+    log('Submitting payload:', newSession);
+
+    return props.onSubmit(newSession).then(
       (resp) => {
         setSubmitting(false);
         if (props.onSubmitSuccess) {
           if (resp && resp.data) {
-            return props.onSubmitSuccess(resp.data);
+            return props.onSubmitSuccess(code);
           } else {
             debugger; // todo
           }

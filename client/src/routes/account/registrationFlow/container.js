@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { fetchSchools } from 'store/schools/actionCreators';
 import {
   selectSession,
@@ -34,3 +35,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps);
+
+
+// after
+
