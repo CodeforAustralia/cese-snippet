@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Bows from 'bows';
+import get from 'lodash/get';
 import {
   Alert,
   Row,
   Col,
   Container,
   Button,
+  FormGroup,
+  Label,
 } from 'reactstrap';
 import {
   Formik,
@@ -46,6 +49,7 @@ class Login extends React.Component {
     const {
       staff,
       isFetching,
+      session,
     } = this.props;
 
     return (
@@ -66,18 +70,25 @@ class Login extends React.Component {
                   <p>Loading ...</p> :
                   staff && staff.length ?
                     <Formik
-                      initialValues={{ id: null }}
+                      initialValues={{ id: get(session, 'id') }}
                       onSubmit={(values) => this.handleSubmit(values)}
                       render={({values, setFieldValue, setFieldTouched}) => (
                         <Form>
-                          <FieldSelect name="id"
-                                       options={staff.map(s => ({
-                                         value: s.id,
-                                         label: `${s.first} ${s.last}`,
-                                       }))}
-                                       onChange={setFieldValue}
-                                       onBlur={setFieldTouched}
-                                       value={values.id} />
+                          <FormGroup row>
+                            <Col md={12} lg={6}>
+                              <Label htmlFor="subCategory">Program Category</Label>
+                              <FieldSelect name="id"
+                                           options={staff.map(s => ({
+                                             value: s.id,
+                                             label: `${s.first} ${s.last}`,
+                                           }))}
+                                           clearable={false}
+                                           onChange={setFieldValue}
+                                           onBlur={setFieldTouched}
+                                           value={values.id} />
+                            </Col>
+                          </FormGroup>
+
                           <Button type="submit">Login</Button>
                         </Form>
                       )}

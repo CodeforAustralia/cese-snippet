@@ -16,7 +16,7 @@ export const setSession = (session = null) => {
           session,
         }
       });
-      win.localStorage.setItem('snippet_session', session);
+      win.localStorage.setItem('snippet_session', JSON.stringify(session));
       return session;
     });
   }
