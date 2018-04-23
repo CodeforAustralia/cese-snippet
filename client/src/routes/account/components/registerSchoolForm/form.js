@@ -6,7 +6,7 @@ import {
   Form,
   FormGroup,
   Button,
-  Label
+  Col,
 } from 'reactstrap';
 import FieldSelect from "components/fieldSelect";
 
@@ -27,25 +27,29 @@ class RegistrationForm extends React.Component {
       handleSubmit,
       values,
       touched,
+      isSubmitting,
 
       schoolsListOptions,
     } = this.props;
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label>Select your school</Label>
-          <FieldSelect name="code"
-                       value={values.code}
-                       options={schoolsListOptions}
-                       disabled={!schoolsListOptions.length}
-                       onChange={this.props.setFieldValue}
-                       onBlur={this.props.setFieldTouched}
-                       invalid={errors.code}
-                       touched={touched.code}
-          />
+        <FormGroup row>
+          <Col md={{size: 10}}>
+            <FieldSelect name="code"
+                         value={values.code}
+                         options={schoolsListOptions}
+                         disabled={!schoolsListOptions.length}
+                         onChange={this.props.setFieldValue}
+                         onBlur={this.props.setFieldTouched}
+                         invalid={errors.code}
+                         touched={touched.code}
+            />
+          </Col>
         </FormGroup>
-        <Button type="submit">Register</Button>
+        <Button type="submit" color="primary" disabled={isSubmitting}>
+          {isSubmitting ? 'Registering...' : 'Register'}
+        </Button>
       </Form>
     )
   }

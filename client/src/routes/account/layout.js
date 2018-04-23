@@ -93,7 +93,7 @@ class LayoutBasic extends React.Component {
                   {/*<DropdownItem divider />*/}
 
                   <DropdownItem tag={RRNavLink} to={'/account/register'}>
-                    Add another school
+                    Add school
                   </DropdownItem>
 
                   <DropdownItem onClick={() => {

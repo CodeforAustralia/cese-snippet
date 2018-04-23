@@ -494,7 +494,9 @@ class ProgramForm extends React.Component {
         <Col md={8} lg={6}>
           <Link to="account">Cancel</Link>
           <Button type="submit" color="primary" size="lg" className="float-right"
-                  disabled={isSubmitting}>Submit</Button>
+                  disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </Button>
         </Col>
 
       </Form>
