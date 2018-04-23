@@ -17,7 +17,7 @@ const makeJson = (data) => {
       "participantGroupsDescription": d.participantGroupsDescription,
       "focusGroup": d.focusGroup,
       "focusGroupOther": d.focusGroupOther,
-      "yearLevel": arrayify(String(d.yearLevel)),
+      "yearLevels": arrayify(String(d.yearLevel)),
       "deliveredByType": d.deliveredByType,
       "externalProvider": d.externalProvider,
       "tags": arrayify(d.tags),

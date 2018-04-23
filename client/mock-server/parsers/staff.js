@@ -10,8 +10,8 @@ var makeJson = (data) => {
       "email": d.email,
       "avatar": null,
       "schools": arrayify(`[${d.schoolcode}]`),
-      "programsCreated": JSON.stringify([]),
-      "programsFacilitated": JSON.stringify([]),
+      "programsCreated": [],
+      "programsFacilitated": [],
     };
   }));
 };
