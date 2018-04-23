@@ -9,12 +9,14 @@ import {
   NavLink,
   Button,
 } from 'reactstrap';
+import without from 'lodash/without';
 
 import ProgramsList from './../components/programsList';
 import {
   getSchoolProgramsUrl,
   getCreateProgramModalUrl
 } from "helpers/url";
+import ChangeSchoolBtn from './../components/changeSchoolBtn';
 import style from './style.scss';
 
 
@@ -22,6 +24,7 @@ class SchoolPrograms extends React.Component {
   componentDidMount() {
     this.fetchData();
   }
+
   componentDidUpdate(prevProps) {
     if (JSON.stringify(prevProps.filterProps) !== JSON.stringify(this.props.filterProps)) {
       this.fetchData();
@@ -49,6 +52,7 @@ class SchoolPrograms extends React.Component {
       filteredPrograms,
       isFetchingPrograms,
       filterProps,
+      session,
     } = this.props;
 
     if (isFetchingSchools !== false) {
@@ -59,13 +63,15 @@ class SchoolPrograms extends React.Component {
       return <p>No school</p>;
     }
 
+    const otherSchoolCodes = without(session.schools, school.code);
+
     return (
       <div>
 
         <div className={style.titleBlock}>
           <div className={style.titleBlockLhs}>
             <h1>
-              <span className={style.supTitle}>{school.name}</span>
+              <span className={style.supTitle}>{school.name} {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}</span>
               Programs
             </h1>
           </div>
@@ -76,7 +82,6 @@ class SchoolPrograms extends React.Component {
             }
           </div>
         </div>
-
 
         <Nav pills>
           <NavItem>
@@ -90,6 +95,8 @@ class SchoolPrograms extends React.Component {
         <div className={style.tabPageContainer}>
           { isFetchingPrograms !== false ?
             <p>Loading...</p> :
+
+
             <div>
               <ProgramsList programs={this.sortByLatestDate(filteredPrograms)}
                           activeYear={filterProps.year} />
@@ -103,3 +110,6 @@ class SchoolPrograms extends React.Component {
 }
 
 export default SchoolPrograms;
+
+
+{/*<Button color="link" size="sm" onClick={this.handleChangeSchool}>Change</Button>*/}
