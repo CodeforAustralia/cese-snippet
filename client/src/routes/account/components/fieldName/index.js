@@ -3,7 +3,7 @@ import Select from 'react-select';
 import Bows from 'bows';
 
 
-const log = Bows('Field - select tag');
+const log = Bows('Field - name');
 
 
 class FieldName extends React.Component {
@@ -13,17 +13,17 @@ class FieldName extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.state = {
-      multiValue: props.value || [],
-    };
+      selectedValue: props.value,
+    }
   }
 
   handleChange (option) {
-    log(`Selected: ${JSON.stringify(option ? option.map(o => o.value) : null)}`);
+    log(`Selected: ${JSON.stringify(option)}`);
 
-    this.setState({ multiValue: option });
+    this.setState({ selectedValue: option ? option.value: null });
+
     // // manually update values.category
-    this.props.onChange(this.props.name, option ? option.map(o => o.value) : null);
-
+    this.props.onChange(this.props.name, option? option.value : null);
   }
 
   handleBlur() {
@@ -32,25 +32,24 @@ class FieldName extends React.Component {
   }
 
   render () {
-    const { options, name } = this.props;
-    const { multiValue } = this.state;
+    const { options, name, value } = this.props;
 
-    const optsKeys = options.map(o => o.value);
-    multiValue.forEach(val => { // render initial values even if not in options provided
-      if (!optsKeys.includes(val)) {
-        options.push({value: val, label: val});
-      }
-    });
+    const { selectedValue } = this.state;
+
+    if (!options.find(o => o.value === selectedValue)) {
+      options.push({ value: selectedValue, label: selectedValue });
+    }
+
+    log('Selected value:', selectedValue);
 
     return (
       <Select.Creatable
         id={name}
         name={name}
-        multi={true}
         options={options}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
-        value={multiValue}
+        value={selectedValue}
       />
     );
   }

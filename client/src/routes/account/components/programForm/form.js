@@ -89,7 +89,7 @@ class ProgramForm extends React.Component {
 
     const getStaffOptions = () => staticData.staffList.map((staff) => ({value: staff.id, label: staff.email}));
 
-    const getProgramTemplateOptions = () => programTemplates.map(p => ({value: p.id, label: p.name}));
+    const getProgramTemplateOptions = () => programTemplates.map(p => ({ value: p.id, label: p.name }));
 
     const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
     const participantGroupsOptions = staticData.participantGroups;
