@@ -8,6 +8,7 @@ import {
   Button,
   FormFeedback,
   Col,
+  Alert,
 } from 'reactstrap';
 import { withFormik, FieldArray, Field } from 'formik';
 import Bows from 'bows';
@@ -29,6 +30,7 @@ class ProgramForm extends React.Component {
     super(props);
     this.state = {
       showDescriptionFull: false,
+      prefilledProgramTemplateId: null,
     };
   }
 
@@ -42,6 +44,7 @@ class ProgramForm extends React.Component {
   render() {
     const {
       showDescriptionFull,
+      prefilledProgramTemplateId,
     } = this.state;
 
     const {
@@ -103,6 +106,17 @@ class ProgramForm extends React.Component {
 
     const programTemplateOptions = getProgramTemplateOptions();
 
+    const getSelectedProgramTemplateOption = () => {
+      if (touched.name && values.name) {
+        const matched = programTemplateOptions.find(p => p.value === values.name);
+        if (matched) {
+          return matched;
+        }
+      }
+      return null;
+    };
+    const selectedProgramTemplateOption = getSelectedProgramTemplateOption();
+
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
         {isEdit &&
@@ -143,7 +157,16 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        <p>Is it one of these programs? prompt</p>
+        {!touched.category && selectedProgramTemplateOption ?
+          !prefilledProgramTemplateId ?
+            <div>
+              <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
+                <br/>
+                <Button color="link" className="alert-link" onClick={() => this.setState({prefilledProgramTemplateId: selectedProgramTemplateOption.value})}>Yes please, prefill.</Button></Alert>
+            </div> :
+           null :
+          null
+        }
 
         <FormGroup row>
           <Col md={8} lg={6}>

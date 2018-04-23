@@ -32,7 +32,7 @@ class FieldName extends React.Component {
   }
 
   render () {
-    const { options, name, value } = this.props;
+    const { options, name } = this.props;
 
     const { selectedValue } = this.state;
 
