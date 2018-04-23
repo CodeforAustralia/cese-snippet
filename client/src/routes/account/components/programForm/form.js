@@ -18,6 +18,7 @@ import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldCode from './../fieldCode';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldName from './../fieldName';
 
 
 const log = Bows('Form');
@@ -29,6 +30,13 @@ class ProgramForm extends React.Component {
     this.state = {
       showDescriptionFull: false,
     };
+  }
+
+  componentDidMount() {
+    const { programTemplates } = this.props;
+    if (!programTemplates || !programTemplates.length) {
+      this.props.fetchProgramTemplates();
+    }
   }
 
   render() {
@@ -51,12 +59,17 @@ class ProgramForm extends React.Component {
       codeOptions,
       year,
       getTermsOptions,
+      isFetchingProgramTemplates,
+      programTemplates,
     } = this.props;
-
 
     log('values:', values);
 
     if (!codeOptions.length) {
+      return <p>Loading...</p>
+    }
+
+    if (isFetchingProgramTemplates !== false) {
       return <p>Loading...</p>
     }
 
@@ -76,6 +89,7 @@ class ProgramForm extends React.Component {
 
     const getStaffOptions = () => staticData.staffList.map((staff) => ({value: staff.id, label: staff.email}));
 
+    const getProgramTemplateOptions = () => programTemplates.map(p => ({value: p.id, label: p.name}));
 
     const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
     const participantGroupsOptions = staticData.participantGroups;
@@ -87,6 +101,7 @@ class ProgramForm extends React.Component {
     const level2CategoryOptions = getLevel2Cats(values.category);
     const staffOptions = getStaffOptions();
 
+    const programTemplateOptions = getProgramTemplateOptions();
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
@@ -117,15 +132,16 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="name">Program name</Label>
-            <Field name="name" invalid={errors.name} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="text" id="name" {...rest} defaultValue={value} />
-              )
-            }} />
+
+            <FieldName name="name"
+                       options={programTemplateOptions}
+                       value={values.name}
+                       onChange={this.props.setFieldValue}
+                       onBlur={this.props.setFieldTouched}
+                       touched={touched.staff}
+                       invalid={errors.staff} />
           </Col>
         </FormGroup>
-
 
         <p>Is it one of these programs? prompt</p>
 
@@ -515,7 +531,6 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
-
     log('Submitting values:', values);
 
     return props.onSubmit(values).then(

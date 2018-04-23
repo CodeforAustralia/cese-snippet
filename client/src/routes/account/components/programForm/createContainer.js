@@ -1,5 +1,10 @@
 import { connect } from 'react-redux';
 import { createProgram } from 'store/programs/actionCreators';
+import { fetchProgramTemplates } from 'store/programTemplates/actionCreators';
+import {
+  selectIsFetching as selectIsFetchingProgramTemplates,
+  selectProgramTemplates
+} from 'store/programTemplates/selectors';
 import { selectSession } from "store/session/selectors";
 import { selectSchools } from "store/schools/selectors";
 import { selectStatic } from "store/static/selectors";
@@ -27,6 +32,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     staticData,
 
+    programTemplates: selectProgramTemplates(state),
+    isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),
 
     isEdit: false,
     initialFormState: newInitialFormState,
@@ -48,11 +55,12 @@ const mapStateToProps = (state, ownProps) => {
         { value: '4', label: `T4 - ${year}` },
       ]
     }
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchProgramTemplates: () => dispatch(fetchProgramTemplates()),
     onSubmit: (values) => dispatch(createProgram(values)),
   }
 };

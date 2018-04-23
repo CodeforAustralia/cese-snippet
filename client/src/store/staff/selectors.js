@@ -1,10 +1,8 @@
 import get from 'lodash/get';
 
-
 export const selectIsFetching = (state) => {
   return get(state, 'staff.isFetching', null);
 };
-
 
 export const selectStaffMember = (state, id) => {
   return get(state, `staff.byId[${id}]`, null);
