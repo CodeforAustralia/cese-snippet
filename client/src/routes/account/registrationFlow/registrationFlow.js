@@ -5,12 +5,14 @@ import Form from './../components/registerSchoolForm';
 
 
 class RegistrationFlow extends React.Component {
+
   componentDidMount() {
     const { userSchoolCodes, schools } = this.props;
     if (userSchoolCodes && !schools.length) {
       this.props.fetchSchools(userSchoolCodes);
     }
   }
+
   render() {
     const {
       schools,
