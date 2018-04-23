@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import isObject from 'lodash/isObject';
 // import registerServiceWorker from './registerServiceWorker';
 import "style/vendor/bootstrap.global.scss";
 import "repaintless/repaintless-css/repaintless.css"
@@ -13,16 +12,9 @@ import 'style/index.scss';
 const win = typeof window !== 'undefined' ? window : global;
 
 const session = win.localStorage.getItem('snippet_session');
-let store = {};
 
-if (session && session.length) {
-  const s = JSON.parse(session);
-  if (isObject(s)) {
-    store = configureStore({session: s});
-  } else {
-    store = configureStore();
-  }
-}
+const store = configureStore({session: session ? JSON.parse(session) : null});
+
 
 ReactDOM.render(
   <Provider store={store}>
