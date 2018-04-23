@@ -3,52 +3,31 @@ import bows from 'bows';
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
 
-const log = bows('Schools');
+const log = bows('Program Templates');
 
 
-/**
- * @param schools {Array|Object} school or schools
- * @returns {Object} FLUX Action creator
- */
-export const createOrUpdateSchools = (schools) => {
+export const createOrUpdateProgramTemplates = (programTemplates) => {
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
-      schools: objectify(schools, 'code'),
+      programTemplates: objectify(programTemplates),
     }
   }
 };
 
-
-export const fetchSchool = (code) => {
-  if (typeof code === 'undefined') {
-    throw new Error('Must supply code to request a school.');
-  }
-  return fetchFromApi(`/schools?code=${code}`);
+export const fetchProgramTemplates = () => {
+  return fetchFromApi(`/programTemplates`);
 };
-
-export const fetchSchools = (codes) => {
-  if (typeof codes === 'undefined') { // todo
-    return () => {};
-  }
-  const reqList = codes.reduce((acc, val, idx) => {
-    return acc + `&code=${val}`;
-  }, '');
-  return fetchFromApi(`/schools?${reqList}`);
-};
-
-
 
 /**
- * Fetch Schools Thunk Sequence
+ * Fetch Programs Thunk Sequence
  * @param path
- * @param props
  * @returns {function(*, *, *)}
  */
-export const fetchFromApi = (path, props) => {
+export const fetchFromApi = (path) => {
   // Steps:
   // 1. GET
-  // 2. update byCode
+  // 2. update byId
 
   log(`Fetching: ${path}`);
 
@@ -64,7 +43,7 @@ export const fetchFromApi = (path, props) => {
         }
         log(`Fetched: ${resp.data}`);
         // 2.
-        dispatch(createOrUpdateSchools(resp.data));
+        dispatch(createOrUpdateProgramTemplates(resp.data));
         return resp;
       })
       .catch((error) => {

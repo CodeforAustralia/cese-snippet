@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 
 import { getSchoolProgramsUrl } from 'helpers/url';
+import style from './style.scss';
 
 class ChangeSchoolBtn extends React.Component{
 
@@ -36,7 +37,7 @@ class ChangeSchoolBtn extends React.Component{
         </DropdownToggle>
         <DropdownMenu>
           {schools.map((school, idx) => (
-            <DropdownItem key={idx} tag={RRNavLink} to={getSchoolProgramsUrl(school.code, '2018')}>{school.name}</DropdownItem>
+            <DropdownItem key={idx} tag={RRNavLink} to={getSchoolProgramsUrl(school.code, '2018')} className={style.dropdownItem}>{school.name}</DropdownItem>
           ))}
         </DropdownMenu>
       </ButtonDropdown>

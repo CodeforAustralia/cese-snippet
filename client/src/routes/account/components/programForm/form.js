@@ -8,6 +8,7 @@ import {
   Button,
   FormFeedback,
   Col,
+  Alert,
 } from 'reactstrap';
 import { withFormik, FieldArray, Field } from 'formik';
 import Bows from 'bows';
@@ -18,6 +19,7 @@ import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldCode from './../fieldCode';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldName from './../fieldName';
 
 
 const log = Bows('Form');
@@ -26,14 +28,53 @@ class ProgramForm extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handlePrefill = this.handlePrefill.bind(this);
     this.state = {
       showDescriptionFull: false,
+      prefilledProgramTemplateId: null,
     };
+  }
+
+  componentDidMount() {
+    const { programTemplates } = this.props;
+    if (!programTemplates || !programTemplates.length) {
+      this.props.fetchProgramTemplates();
+    }
+  }
+
+  handlePrefill(programTemplateId) {
+    const {
+      selectProgramTemplate,
+      setValues,  // formik
+      values,
+      validateForm,
+    } = this.props;
+    const programTemplate = selectProgramTemplate(programTemplateId);
+
+    if (programTemplate) {
+      log('Prefilling: ', JSON.stringify(programTemplate));
+
+      delete programTemplate.updatedAt;
+      delete programTemplate.updatedBy;
+      delete programTemplate.createdAt;
+      delete programTemplate.createdBy;
+      delete programTemplate.id;
+      delete programTemplate.name;
+
+      setValues(programTemplate);
+      // this.forceUpdate();
+      // validateForm();
+    } else {
+      // todo
+    }
+
+    this.setState({prefilledProgramTemplateId: programTemplateId});
   }
 
   render() {
     const {
       showDescriptionFull,
+      prefilledProgramTemplateId,
     } = this.state;
 
     const {
@@ -51,12 +92,17 @@ class ProgramForm extends React.Component {
       codeOptions,
       year,
       getTermsOptions,
+      isFetchingProgramTemplates,
+      programTemplates,
     } = this.props;
-
 
     log('values:', values);
 
     if (!codeOptions.length) {
+      return <p>Loading...</p>
+    }
+
+    if (isFetchingProgramTemplates !== false) {
       return <p>Loading...</p>
     }
 
@@ -76,6 +122,7 @@ class ProgramForm extends React.Component {
 
     const getStaffOptions = () => staticData.staffList.map((staff) => ({value: staff.id, label: staff.email}));
 
+    const getProgramTemplateOptions = () => programTemplates.map(p => ({ value: p.id, label: p.name }));
 
     const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
     const participantGroupsOptions = staticData.participantGroups;
@@ -87,6 +134,18 @@ class ProgramForm extends React.Component {
     const level2CategoryOptions = getLevel2Cats(values.category);
     const staffOptions = getStaffOptions();
 
+    const programTemplateOptions = getProgramTemplateOptions();
+
+    const getSelectedProgramTemplateOption = () => {
+      if (touched.name && values.name) {
+        const matched = programTemplateOptions.find(p => p.value === values.name);
+        if (matched) {
+          return matched;
+        }
+      }
+      return null;
+    };
+    const selectedProgramTemplateOption = getSelectedProgramTemplateOption();
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
@@ -97,6 +156,10 @@ class ProgramForm extends React.Component {
           <Input hidden type="text" name="updatedBy" defaultValue={values.updatedBy} disabled={true}/> :
           <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true}/>
         }
+
+        <code>
+          {JSON.stringify(values)}
+        </code>
 
         <FormGroup row>
           <Col md={8} lg={6}>
@@ -117,17 +180,27 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="name">Program name</Label>
-            <Field name="name" invalid={errors.name} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="text" id="name" {...rest} defaultValue={value} />
-              )
-            }} />
+
+            <FieldName name="name"
+                       options={programTemplateOptions}
+                       value={values.name}
+                       onChange={this.props.setFieldValue}
+                       onBlur={this.props.setFieldTouched}
+                       touched={touched.staff}
+                       invalid={errors.staff} />
           </Col>
         </FormGroup>
 
-
-        <p>Is it one of these programs? prompt</p>
+        {!touched.category && selectedProgramTemplateOption ?
+          !prefilledProgramTemplateId ?
+            <div>
+              <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
+                <br/>
+                <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
+            </div> :
+           null :
+          null
+        }
 
         <FormGroup row>
           <Col md={8} lg={6}>
@@ -515,7 +588,6 @@ export default withFormik({
     return errors;
   },
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
-
     log('Submitting values:', values);
 
     return props.onSubmit(values).then(

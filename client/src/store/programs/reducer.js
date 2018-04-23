@@ -11,7 +11,6 @@ export const ACTION_TYPES = {
   updateFilters: 'PROGRAMS/UPDATE_FILTERS',
 };
 
-
 export const isFetching = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPES.fetchRequest:

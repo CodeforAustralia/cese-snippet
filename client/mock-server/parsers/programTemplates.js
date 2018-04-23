@@ -3,10 +3,13 @@
 const arrayify = require('./../arrayify');
 const raw = require('./../raw/programTemplates.json');
 
+let id = 1000;
+
 const makeJson = (data) => {
   return JSON.stringify(data.map(d => {
 
     return {
+      "id": String(id++),
       "category": d.programArea,
       "subCategory": d.programCategory,
       "aims": d.aims,
