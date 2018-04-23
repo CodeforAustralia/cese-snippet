@@ -1,46 +1,41 @@
 import bows from 'bows';
 
-import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
+import { ACTION_TYPES } from './reducer';
 
-const log = bows('Schools');
+const log = bows('Staff');
 
 
 /**
- * @param schools {Array|Object} school or schools
+ * @param staff {Array|Object}
  * @returns {Object} FLUX Action creator
  */
-export const createOrUpdateSchools = (schools) => {
+export const createOrUpdateStaff = (staff) => {
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
-      schools: objectify(schools, 'code'),
+      staff: objectify(staff),
     }
   }
 };
 
-
-export const fetchSchool = (code) => {
-  if (typeof code === 'undefined') {
-    throw new Error('Must supply code to request a school.');
+export const fetchStaff = (ids = []) => {
+  if (!Array.isArray(ids)) {
+    throw new Error('Must supply array to fetchStaff.');
   }
-  return fetchFromApi(`/schools?code=${code}`);
-};
-
-export const fetchSchools = (codes) => {
-  if (typeof codes === 'undefined') { // todo
-    return () => {};
+  if (ids.length) {
+    const reqList = ids.reduce((acc, val) => {
+      return acc + `&id=${val}`;
+    }, '');
+    return fetchFromApi(`/staff?${reqList}`);
   }
-  const reqList = codes.reduce((acc, val, idx) => {
-    return acc + `&code=${val}`;
-  }, '');
-  return fetchFromApi(`/schools?${reqList}`);
+  return fetchFromApi('/staff');
 };
 
 
 
 /**
- * Fetch Schools Thunk Sequence
+ * Fetch Staff Thunk Sequence
  * @param path
  * @param props
  * @returns {function(*, *, *)}
@@ -48,7 +43,7 @@ export const fetchSchools = (codes) => {
 export const fetchFromApi = (path, props) => {
   // Steps:
   // 1. GET
-  // 2. update byCode
+  // 2. update byId
 
   log(`Fetching: ${path}`);
 
@@ -64,7 +59,7 @@ export const fetchFromApi = (path, props) => {
         }
         log(`Fetched: ${resp.data}`);
         // 2.
-        dispatch(createOrUpdateSchools(resp.data));
+        dispatch(createOrUpdateStaff(resp.data));
         return resp;
       })
       .catch((error) => {

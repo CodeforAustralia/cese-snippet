@@ -1,6 +1,6 @@
 // node parsers/programTemplates.js | pbcopy
 
-const arrayify = require('./arrayify');
+const arrayify = require('./../arrayify');
 const raw = require('./../raw/programTemplates.json');
 
 const makeJson = (data) => {

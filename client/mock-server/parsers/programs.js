@@ -1,6 +1,6 @@
 // node parsers/programs.js | pbcopy
 
-const arrayify = require('./arrayify');
+const arrayify = require('./../arrayify');
 const raw = require('./../raw/programs.json');
 const random = require('math-random');
 const floor = require( 'math-floor' );
