@@ -1,4 +1,4 @@
-var arrayify = require('./arrayify');
+var arrayify = require('./../arrayify');
 var raw = require('./../raw/staff.json');
 
 var makeJson = (data) => {
@@ -9,7 +9,7 @@ var makeJson = (data) => {
       "last": d.lastname,
       "email": d.email,
       "avatar": null,
-      "schools": String(d.schoolcode),
+      "schools": arrayify(`[${d.schoolcode}]`),
       "programsCreated": [],
       "programsFacilitated": [],
     };

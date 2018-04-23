@@ -1,4 +1,4 @@
-var arrayify = require('./arrayify');
+var arrayify = require('./../arrayify');
 var raw = require('./../raw/staff.json');
 
 var makeJson = (data) => {

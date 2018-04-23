@@ -3,7 +3,7 @@ var arrayify = (str) => {
   if (a.includes(',')) {
     return a.split(',');
   }
-  return a;
+  return Array(a);
 };
 
 module.exports = arrayify;

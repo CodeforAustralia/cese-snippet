@@ -1,6 +1,6 @@
 // node parsers/programs.js | pbcopy
 
-const arrayify = require('./arrayify');
+const arrayify = require('./../arrayify');
 const raw = require('./../raw/programs.json');
 const random = require('math-random');
 const floor = require( 'math-floor' );
@@ -10,8 +10,8 @@ const possibleTerms = ['[1,2,3,4]', '[1,2]', '[3,4]', '[1]', '[2]', '[3]', '[4]'
 
 const makeJson = (data) => {
   return JSON.stringify(data.map(d => {
-    const year = possibleYears[floor(random() * possibleYears.length)];
-    const terms = possibleTerms[floor(random() * possibleTerms.length)];
+    const year = JSON.parse(possibleYears[floor(random() * possibleYears.length)]);
+    const terms = JSON.parse(possibleTerms[floor(random() * possibleTerms.length)]);
 
     return {
       "id": String(d.id),

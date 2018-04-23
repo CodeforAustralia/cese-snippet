@@ -1,4 +1,4 @@
-var arrayify = require('./arrayify');
+var arrayify = require('./../arrayify');
 var raw = require('./../raw/schools.json');
 
 var makeJson = (data) => {
@@ -6,7 +6,7 @@ var makeJson = (data) => {
     return {
       "code": String(d.School_code),
       "name": d.School_name,
-      "yearLevels": arrayify(d.yearLevels),
+      "yearLevels": arrayify(String(d.yearLevels)),
     };
   }));
 };

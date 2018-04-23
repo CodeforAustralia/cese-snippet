@@ -1,6 +1,6 @@
 // node parsers/programTemplates.js | pbcopy
 
-const arrayify = require('./arrayify');
+const arrayify = require('./../arrayify');
 const raw = require('./../raw/programTemplates.json');
 
 const makeJson = (data) => {
@@ -17,7 +17,7 @@ const makeJson = (data) => {
       "participantGroupsDescription": d.participantGroupsDescription,
       "focusGroup": d.focusGroup,
       "focusGroupOther": d.focusGroupOther,
-      "yearLevel": arrayify(d.yearLevel),
+      "yearLevels": arrayify(String(d.yearLevel)),
       "deliveredByType": d.deliveredByType,
       "externalProvider": d.externalProvider,
       "tags": arrayify(d.tags),

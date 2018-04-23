@@ -4,6 +4,29 @@ import { ACTION_TYPES } from './reducer';
 
 const log = bows('Session');
 
+const win = typeof window !== 'undefined' ? window : global;
+
+
+export const setSession = (session = null) => {
+  return (dispatch) => {
+    return new Promise(resolve => setTimeout(resolve, 200)).then(() => {
+      dispatch({
+        type: ACTION_TYPES.setSession,
+        payload: {
+          session,
+        }
+      });
+      win.localStorage.setItem('snippet_session', JSON.stringify(session));
+      return session;
+    });
+  }
+};
+
+
+export const clearSession = () => {
+  return setSession();
+};
+
 
 export const registerMySchool = (school) => {
   // Steps:
