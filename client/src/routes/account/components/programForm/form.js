@@ -28,6 +28,7 @@ class ProgramForm extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handlePrefill = this.handlePrefill.bind(this);
     this.state = {
       showDescriptionFull: false,
       prefilledProgramTemplateId: null,
@@ -39,6 +40,35 @@ class ProgramForm extends React.Component {
     if (!programTemplates || !programTemplates.length) {
       this.props.fetchProgramTemplates();
     }
+  }
+
+  handlePrefill(programTemplateId) {
+    const {
+      selectProgramTemplate,
+      setValues,  // formik
+      values,
+      validateForm,
+    } = this.props;
+    const programTemplate = selectProgramTemplate(programTemplateId);
+
+    if (programTemplate) {
+      log('Prefilling: ', JSON.stringify(programTemplate));
+
+      delete programTemplate.updatedAt;
+      delete programTemplate.updatedBy;
+      delete programTemplate.createdAt;
+      delete programTemplate.createdBy;
+      delete programTemplate.id;
+      delete programTemplate.name;
+
+      setValues(programTemplate);
+      // this.forceUpdate();
+      // validateForm();
+    } else {
+      // todo
+    }
+
+    this.setState({prefilledProgramTemplateId: programTemplateId});
   }
 
   render() {
@@ -127,6 +157,10 @@ class ProgramForm extends React.Component {
           <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true}/>
         }
 
+        <code>
+          {JSON.stringify(values)}
+        </code>
+
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="code">School</Label>
@@ -162,7 +196,7 @@ class ProgramForm extends React.Component {
             <div>
               <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
                 <br/>
-                <Button color="link" className="alert-link" onClick={() => this.setState({prefilledProgramTemplateId: selectedProgramTemplateOption.value})}>Yes please, prefill.</Button></Alert>
+                <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
             </div> :
            null :
           null

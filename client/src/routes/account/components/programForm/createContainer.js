@@ -3,6 +3,7 @@ import { createProgram } from 'store/programs/actionCreators';
 import { fetchProgramTemplates } from 'store/programTemplates/actionCreators';
 import {
   selectIsFetching as selectIsFetchingProgramTemplates,
+  selectProgramTemplate,
   selectProgramTemplates
 } from 'store/programTemplates/selectors';
 import { selectSession } from "store/session/selectors";
@@ -34,6 +35,7 @@ const mapStateToProps = (state, ownProps) => {
 
     programTemplates: selectProgramTemplates(state),
     isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),
+    selectProgramTemplate: (id) => selectProgramTemplate(state, id),
 
     isEdit: false,
     initialFormState: newInitialFormState,
