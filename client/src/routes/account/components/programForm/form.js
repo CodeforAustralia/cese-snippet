@@ -17,9 +17,12 @@ import camelCase from 'lodash/camelCase';
 
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
-import FieldCode from './../fieldCode';
+import FieldTextInput from 'components/fieldTextInput';
+import FieldTextareaInput from 'components/fieldTextAreaInput';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import FieldCheckboxList from 'components/fieldCheckboxList';
+
+import FieldCode from './../fieldCode';
 import FieldName from './../fieldName';
 
 
@@ -153,7 +156,7 @@ class ProgramForm extends React.Component {
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
         {isEdit &&
-        <Input hidden type="text" name="id" defaultValue={values.id}/>
+          <Input hidden type="text" name="id" defaultValue={values.id} disabled={true} />
         }
         {isEdit ?
           <Input hidden type="text" name="updatedBy" defaultValue={values.updatedBy} disabled={true}/> :
@@ -254,12 +257,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="aims">Aims</Label>
-            <Field name="aims" invalid={errors.aims} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="textarea" id="aims" rows={3} {...rest} value={value} />
-              )
-            }} />
+            <FieldTextareaInput name="aims" />
             <FormText color="muted">
               Briefly describe what outcomes the program hopes to achieve.
             </FormText>
@@ -430,9 +428,7 @@ class ProgramForm extends React.Component {
 
         <FormGroup hidden>
           <Label htmlFor="year">Year delivered</Label>
-          <Input type="text" id="year" name="year"
-                 defaultValue={year}
-                 invalid={errors.year} />
+          <FieldTextInput name="year" invalid={errors.year} />
         </FormGroup>
 
         <FormGroup row>

@@ -7,10 +7,10 @@ import {
   Form,
 } from 'formik';
 
-import FieldTextAreaInput from './index';
+import FieldTextInput from './index';
 
 
-storiesOf('Field text input', module)
+storiesOf('Field textarea input', module)
 
   .add('should enter input on keystroke', () => {
     return (
@@ -19,7 +19,7 @@ storiesOf('Field text input', module)
         render={({values }) => {
           return (
             <Form>
-              <FieldTextAreaInput name="prop1" />
+              <FieldTextInput name="prop1" />
               <code>
                 Form state: {JSON.stringify(values)}
               </code>
@@ -37,7 +37,7 @@ storiesOf('Field text input', module)
         render={({ values }) => {
           return (
             <Form>
-              <FieldTextAreaInput name="prop1" />
+              <FieldTextInput name="prop1" />
               <code>
                 Form state: {JSON.stringify(values)}
               </code>
@@ -56,7 +56,7 @@ storiesOf('Field text input', module)
             <div>
               <button type="button" onClick={() => setFieldValue('prop1', '1002')}>Set prop1 to "1002"</button>
               <Form>
-                <FieldTextAreaInput name="prop1" />
+                <FieldTextInput name="prop1" />
                 <code>
                   Form state: {JSON.stringify(values)}
                 </code>
