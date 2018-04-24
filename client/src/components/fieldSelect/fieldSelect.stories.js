@@ -94,7 +94,7 @@ storiesOf('Field select', module)
         render={({values, setFieldValue, setFieldTouched}) => {
           return (
             <div>
-              <button type="button" onClick={() => setFieldValue('prop1', '2')}>Set prop1 to "2"</button>
+              <button type="button" onClick={() => setFieldValue('prop1', '1002')}>Set prop1 to "1002"</button>
               <Form>
                 <FieldSelect name="prop1"
                              options={options}
@@ -119,7 +119,7 @@ storiesOf('Field select', module)
         render={({values, setFieldValue, setFieldTouched, setValues}) => {
           return (
             <div>
-              <button type="button" onClick={() => setValues({prop1: '2'})}>Set prop1 to "2"</button>
+              <button type="button" onClick={() => setValues({prop1: '1002'})}>Set prop1 to "1002"</button>
               <Form>
                 <FieldSelect name="prop1"
                              options={options}
