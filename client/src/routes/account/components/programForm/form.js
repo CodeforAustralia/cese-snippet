@@ -208,28 +208,13 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="category">Program Focus Area</Label>
-            <FieldArray name="category" render={({form}) => {
-              return level1CategoryOptions.map((o, idx) => {
-                const oName = `category.${camelCase(o.label)}`;
-                const isChecked = o.value === values.category;
-                return (
-                  <div key={idx} className="form-check">
-                    <label htmlFor={oName} className="form-check-label">
-                      <input type="radio" name="category"
-                             id={oName}
-                             value={o.value}
-                             checked={isChecked}
-                             onChange={() => {
-                               form.setFieldValue('category', o.value);
-                             }}
-                             invalid={errors.category}
-                             className="form-check-input"
-                      />{o.label}
-                    </label>
-                  </div>
-                )
-              })
-            }} />
+            <FieldRadioBtnList name="category"
+                               value={values.category}
+                               options={level1CategoryOptions}
+                               onChange={setFieldValue}
+                               onBlur={setFieldTouched}
+                               invalid={errors.category}
+            />
             {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
           </Col>
         </FormGroup>
@@ -359,25 +344,13 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Does the program cater to a particular focus group?</Label>
-            <FieldArray name="focusGroup" render={({form}) => (
-              focusGroupOptions.map((o, idx) => {
-                const oName = `focusGroup.${camelCase(o.value)}`;
-                return (
-                  <div key={idx} className="form-check">
-                    <label className="form-check-label" htmlFor={oName}>
-                      <input type="radio" className="form-check-input"
-                             id={oName}
-                             value={o.value}
-                             checked={values.focusGroup === o.value}
-                             onChange={() => {
-                               this.props.setFieldValue('focusGroup', o.value);
-                             }}
-                             invalid={errors.focusGroup}
-                      />{o.label}</label>
-                  </div>
-                )
-              })
-            )} />
+            <FieldRadioBtnList name="focusGroup"
+                                  value={values.focusGroup}
+                                  options={focusGroupOptions}
+                                  onChange={setFieldValue}
+                                  onBlur={setFieldTouched}
+                                  invalid={errors.focusGroup}
+            />
           </Col>
         </FormGroup>
 
