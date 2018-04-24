@@ -47,13 +47,15 @@ class FieldSelect extends React.Component {
   }
 }
 
-// todo - invalid
-
-// todo
 FieldSelect.propTypes = {
   name: PropTypes.string.isRequired,
-  // value: PropTypes.string,
-  // disabled: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    label: PropTypes.number,
+  })).isRequired,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
 };
 
 export default FieldSelect;
