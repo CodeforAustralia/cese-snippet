@@ -19,6 +19,7 @@ import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldCode from './../fieldCode';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldCheckboxList from 'components/fieldCheckboxList';
 import FieldName from './../fieldName';
 
 
@@ -85,6 +86,8 @@ class ProgramForm extends React.Component {
       // handleBlur,
       isSubmitting,
       handleSubmit,
+      setFieldValue,
+      setFieldTouched,
 
       staticData,
       isEdit,
@@ -113,7 +116,7 @@ class ProgramForm extends React.Component {
     const getLevel2Cats = (level1Value) => {
       const level1Cat = staticData.categories.find(level1 => level1.value === level1Value);
       if (!level1Cat) {
-        return null;
+        return [];
       }
       return level1Cat.categories.map(level2 => {
         return {value: level2.value, label: level2.label};
@@ -234,39 +237,10 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>For Year Levels</Label>
-            <div>
-              <FieldArray
-                name="yearLevels"
-                render={arrayHelpers => (
-                  yearLevelsOptions.map((o, idx) => {
-                    const oName = `yearLevels.${o.value}`;
-                    const isChecked = typeof values.yearLevels !== 'undefined' ? values.yearLevels.includes(o.value) : false;
-                    return (
-                      <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label" htmlFor={oName}>
-                          <input
-                            className="form-check-input"
-                            id={oName}
-                            type="checkbox"
-                            value={o.value}
-                            checked={isChecked}
-                            onChange={() => {
-                              if (isChecked) {
-                                const idx = values.yearLevels.indexOf(o.value);
-                                arrayHelpers.remove(idx);
-                              } else {
-                                arrayHelpers.push(o.value);
-                              }
-                            }}
-                          />
-                          {o.label}
-                        </label>
-                      </div>
-                    )
-                  })
-                )}
-              />
-            </div>
+            <FieldCheckboxList name="yearLevels"
+                               value={values.yearLevels}
+                               options={yearLevelsOptions}
+            />
             {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
             <FormText color="muted">
               Which year levels are participating in this program?
@@ -358,39 +332,10 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroups">Who is the program for?</Label>
-            <div>
-              <FieldArray
-                name="participantGroups"
-                render={arrayHelpers => (
-                  participantGroupsOptions.map((o, idx) => {
-                    const oName = `participantGroups.${o.value}`;
-                    const isChecked = typeof values.participantGroups !== 'undefined' ? values.participantGroups.includes(o.value) : false;
-                    return (
-                      <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label" htmlFor={oName}>
-                          <input
-                            className="form-check-input"
-                            name={oName}
-                            type="checkbox"
-                            value={o.value}
-                            checked={isChecked}
-                            onChange={() => {
-                              if (isChecked) {
-                                const idx = values.participantGroups.indexOf(o.value);
-                                arrayHelpers.remove(idx);
-                              } else {
-                                arrayHelpers.push(o.value);
-                              }
-                            }}
-                          />
-                          {o.label}
-                        </label>
-                      </div>
-                    )
-                  })
-                )}
-              />
-            </div>
+            <FieldCheckboxList name="participantGroups"
+                               value={values.yearLevels}
+                               options={participantGroupsOptions}
+            />
             {touched.participantGroups && errors.participantGroups &&
             <FormFeedback>{errors.participantGroups}</FormFeedback>}
           </Col>
@@ -467,7 +412,12 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label>Provider</Label>
-            <FieldRadioBtnList options={deliveredByTypeOptions} name="deliveredByType" value={values.deliveredByType} />
+            <FieldRadioBtnList options={deliveredByTypeOptions}
+                               name="deliveredByType"
+                               value={values.deliveredByType}
+                               onChange={setFieldValue}
+                               onBlur={setFieldTouched}
+            />
             <FormText color="muted">
               Is the program run by school staff or another provider?
             </FormText>
@@ -486,21 +436,21 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        <FormGroup row>
-          <Col md={8} lg={6}>
-            <Label htmlFor="staff">Staff involved</Label>
-            <FieldSelectTags name="staff"
-                             options={staffOptions}
-                             value={values.staff}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             touched={touched.staff}
-                             invalid={errors.staff}/>
-            <FormText color="muted">
-              Who are the staff members involved in organising or facilitating the program?
-            </FormText>
-          </Col>
-        </FormGroup>
+        {/*<FormGroup row>*/}
+          {/*<Col md={8} lg={6}>*/}
+            {/*<Label htmlFor="staff">Staff involved</Label>*/}
+            {/*<FieldSelectTags name="staff"*/}
+                             {/*options={staffOptions}*/}
+                             {/*value={values.staff}*/}
+                             {/*onChange={this.props.setFieldValue}*/}
+                             {/*onBlur={this.props.setFieldTouched}*/}
+                             {/*touched={touched.staff}*/}
+                             {/*invalid={errors.staff}/>*/}
+            {/*<FormText color="muted">*/}
+              {/*Who are the staff members involved in organising or facilitating the program?*/}
+            {/*</FormText>*/}
+          {/*</Col>*/}
+        {/*</FormGroup>*/}
 
         <FormGroup hidden>
           <Label htmlFor="year">Year delivered</Label>
@@ -512,57 +462,28 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="terms">Terms delivered</Label>
-            <div>
-              <FieldArray
-                name="terms"
-                render={arrayHelpers => (
-                  termsOptions.map((o, idx) => {
-                    const oName = `terms.${o.value}`;
-                    const isChecked = typeof values.terms !== 'undefined' ? values.terms.includes(o.value) : false;
-                    return (
-                      <div key={idx} className="form-check form-check-inline">
-                        <label className="form-check-label" htmlFor={oName}>
-                          <input
-                            className="form-check-input"
-                            id={oName}
-                            type="checkbox"
-                            value={o.value}
-                            checked={isChecked}
-                            onChange={() => {
-                              if (isChecked) {
-                                const idx = values.terms.indexOf(o.value);
-                                arrayHelpers.remove(idx);
-                              } else {
-                                arrayHelpers.push(o.value);
-                              }
-                            }}
-                          />
-                          {o.label}
-                        </label>
-                      </div>
-                    )
-                  })
-                )}
-              />
-            </div>
+            <FieldCheckboxList name="terms"
+                               value={values.yearLevels}
+                               options={termsOptions}
+            />
           </Col>
         </FormGroup>
 
-        <FormGroup row>
-          <Col md={8} lg={6}>
-            <Label htmlFor="tags">Keywords</Label>
-            <FieldSelectTags name="tags"
-                             options={tagsOptions}
-                             value={values.tags}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             touched={touched.tags}
-                             invalid={errors.tags} />
-            <FormText color="muted">
-              Keywords could help others to search for programs like this one in the future.
-            </FormText>
-          </Col>
-        </FormGroup>
+        {/*<FormGroup row>*/}
+          {/*<Col md={8} lg={6}>*/}
+            {/*<Label htmlFor="tags">Keywords</Label>*/}
+            {/*<FieldSelectTags name="tags"*/}
+                             {/*options={tagsOptions}*/}
+                             {/*value={values.tags}*/}
+                             {/*onChange={this.props.setFieldValue}*/}
+                             {/*onBlur={this.props.setFieldTouched}*/}
+                             {/*touched={touched.tags}*/}
+                             {/*invalid={errors.tags} />*/}
+            {/*<FormText color="muted">*/}
+              {/*Keywords could help others to search for programs like this one in the future.*/}
+            {/*</FormText>*/}
+          {/*</Col>*/}
+        {/*</FormGroup>*/}
 
         <Col md={8} lg={6}>
           <Link to="account">Cancel</Link>
