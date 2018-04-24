@@ -63,7 +63,7 @@ class Login extends React.Component {
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
                 <div className="alert alert-primary" role="alert">
-                  This is a demo site, so there is no need to supply your own login credentials.
+                  There is no need to supply your own login credentials as this is a demo site.
                 </div>
 
                 {isFetching !== false ?
