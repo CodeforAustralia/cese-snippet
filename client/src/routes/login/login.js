@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Bows from 'bows';
 import get from 'lodash/get';
 import {
-  Alert,
   Row,
   Col,
   Container,
@@ -62,9 +61,9 @@ class Login extends React.Component {
 
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
-                <Alert color="info">
-                  This is a demo site, so there is no need to supply log in credentials. Select someone from the dropdown to continue with and then click "Login".
-                </Alert>
+                <div className="alert alert-primary" role="alert">
+                  This is a demo site, so there is no need to supply your own login credentials.
+                </div>
 
                 {isFetching !== false ?
                   <p>Loading ...</p> :
@@ -76,7 +75,7 @@ class Login extends React.Component {
                         <Form>
                           <FormGroup row>
                             <Col md={12} lg={6}>
-                              <Label htmlFor="subCategory">Select user</Label>
+                              <Label htmlFor="subCategory">Select a user</Label>
                               <FieldSelect name="id"
                                            options={staff.map(s => ({
                                              value: s.id,

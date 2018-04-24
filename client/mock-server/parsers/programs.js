@@ -8,6 +8,13 @@ const floor = require( 'math-floor' );
 const possibleYears = ['2018', '2018', '2018', '2018', '2018', '2018', '2018', '2017'];
 const possibleTerms = ['[1,2,3,4]', '[1,2]', '[3,4]', '[1]', '[2]', '[3]', '[4]'];
 
+const getDeliveredByType = (d) => {
+  if (d === 'Staff') {
+    return 'School Staff';
+  }
+  return d;
+};
+
 const makeJson = (data) => {
   return JSON.stringify(data.map(d => {
     const year = JSON.parse(possibleYears[floor(random() * possibleYears.length)]);
@@ -28,7 +35,7 @@ const makeJson = (data) => {
       "focusGroupOther": d.focusGroupOther,
       "yearLevels": arrayify(d.yearLevel),
       "cohortSize": d.cohortSize,
-      "deliveredByType": d.deliveredByType,
+      "deliveredByType": getDeliveredByType(d.deliveredByType),
       "externalProvider": d.externalProvider,
       "staff": Array.isArray(d.staff) ? d.staff.map(d => String(d)) : d.staff,
       "year": year,
@@ -46,3 +53,4 @@ const makeJson = (data) => {
 console.log(makeJson(raw));
 
 
+module.exports.getDeliveredByType = getDeliveredByType;
