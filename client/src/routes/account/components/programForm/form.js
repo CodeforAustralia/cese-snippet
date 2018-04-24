@@ -4,17 +4,15 @@ import {
   FormGroup,
   Label,
   FormText,
-  Input,
   Button,
   FormFeedback,
   Col,
   Row,
   Alert,
 } from 'reactstrap';
-import { withFormik, FieldArray, Field } from 'formik';
+import { withFormik } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
-import camelCase from 'lodash/camelCase';
 
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
@@ -53,8 +51,7 @@ class ProgramForm extends React.Component {
     const {
       selectProgramTemplate,
       setValues,  // formik
-      values,
-      validateForm,
+      // validateForm,
     } = this.props;
     const programTemplate = selectProgramTemplate(programTemplateId);
 
@@ -178,8 +175,6 @@ class ProgramForm extends React.Component {
               <FieldTextInput name="updatedBy" disabled={true} hidden /> :
               <FieldTextInput name="createdBy" disabled={true} hidden />
             }
-
-
 
             <FormGroup row>
               <Col md={8}>
