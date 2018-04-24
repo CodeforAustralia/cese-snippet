@@ -29,6 +29,7 @@ storiesOf('Field select', module)
                            onChange={setFieldValue}
                            onBlur={setFieldTouched}
                            clearable={false}
+                           placeholder="Select..."
               />
               <code>
                 Form state: {JSON.stringify(values)}

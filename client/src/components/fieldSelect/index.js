@@ -17,12 +17,18 @@ class FieldSelect extends React.Component {
   }
 
   handleChange(option) {
+    if (this.props.disabled) {
+      return;
+    }
     log(`Selected: ${JSON.stringify(option)}`);
     // // manually update values.category
     this.props.onChange(this.props.name, option ? option.value : null);
   }
 
   handleBlur() {
+    if (this.props.disabled) {
+      return;
+    }
     // manually update touched.category
     this.props.onBlur(this.props.name, true);
   }
@@ -36,7 +42,6 @@ class FieldSelect extends React.Component {
         id={name}
         name={name}
         clearable={clearable}
-        multi={false}
         disabled={disabled}
         options={options}
         onChange={this.handleChange}
@@ -56,6 +61,9 @@ FieldSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
   value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  clearable: PropTypes.bool,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default FieldSelect;
