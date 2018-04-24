@@ -38,26 +38,73 @@ storiesOf('Field select', module)
     )
   })
 
-  // .add('should preload data if provided', () => {})
-  //
-  // .add('should update value imperatively', () => {})
-  //
+  .add('should preload data if provided', () => {
+    return (
+      <Formik
+        initialValues={{prop1: '3'}}
+        render={({values, setFieldValue, setFieldTouched}) => {
+          return (
+            <Form>
+              <FieldSelect name="prop1"
+                           options={options}
+                           value={values.prop1}
+                           onChange={setFieldValue}
+                           onBlur={setFieldTouched}
+              />
+              <code>
+                Form state: {JSON.stringify(values)}
+              </code>
+            </Form>
+          )
+        }} />
+    )
+  })
 
-  // .add('default', () => {
-  //   const values = {};
-  //   const errors = {};
-  //   const touched = {};
-  //   const setFieldValue = () => {};
-  //   const setFieldTouched = () => {};
-  //   return (
-  //     <FieldSelect
-  //       name="category"
-  //       value={values.category}
-  //       onChange={setFieldValue}
-  //       onBlur={setFieldTouched}
-  //       error={errors.category}
-  //       touched={touched.category}
-  //     />
-  //   )
-  // })
+  .add('should update value imperatively', () => {
+    return (
+      <Formik
+        render={({values, setFieldValue, setFieldTouched}) => {
+          return (
+            <div>
+              <button type="button" onClick={() => setFieldValue('prop1', '2')}>Set prop1 to "2"</button>
+              <Form>
+                <FieldSelect name="prop1"
+                             options={options}
+                             value={values.prop1}
+                             onChange={setFieldValue}
+                             onBlur={setFieldTouched}
+                />
+                <code>
+                  Form state: {JSON.stringify(values)}
+                </code>
+              </Form>
+            </div>
+          )
+        }} />
+    )
+  })
+
+  .add('should update value imperatively - bulk', () => {
+    return (
+      <Formik
+        render={({values, setFieldValue, setFieldTouched, setValues}) => {
+          return (
+            <div>
+              <button type="button" onClick={() => setValues({prop1: '2'})}>Set prop1 to "2"</button>
+              <Form>
+                <FieldSelect name="prop1"
+                             options={options}
+                             value={values.prop1}
+                             onChange={setFieldValue}
+                             onBlur={setFieldTouched}
+                />
+                <code>
+                  Form state: {JSON.stringify(values)}
+                </code>
+              </Form>
+            </div>
+          )
+        }} />
+    )
+  })
 ;
