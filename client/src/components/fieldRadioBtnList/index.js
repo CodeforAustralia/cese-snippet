@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import { FieldArray } from 'formik';
 
-const RadioBtnList = ({ options, name, value, onChange, onBlur }) => {
+const FieldRadioBtnList = ({ options, name, value, onChange, onBlur }) => {
   return (
     <div>
       <FieldArray name={name} render={() => (
@@ -23,4 +23,4 @@ const RadioBtnList = ({ options, name, value, onChange, onBlur }) => {
   )
 };
 
-export default RadioBtnList;
+export default FieldRadioBtnList;
