@@ -439,7 +439,10 @@ class ProgramForm extends React.Component {
               <Link to="account">Cancel</Link>
               <Button type="submit" color="primary" size="lg" className="float-right"
                       disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                {isEdit ?
+                  isSubmitting ? 'Update' : 'Updating...' :
+                  isSubmitting ? 'Add' : 'Adding...'
+                }
               </Button>
             </Col>
 
