@@ -55,12 +55,12 @@ class FieldSelect extends React.Component {
 FieldSelect.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-    label: PropTypes.number,
+    // value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    // label: PropTypes.string,
   })).isRequired,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
-  value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  // value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
   clearable: PropTypes.bool,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
