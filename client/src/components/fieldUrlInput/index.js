@@ -8,18 +8,18 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextareaInput = ({ name, rows = 3 }) => {
+const FieldUrlInput = ({ name }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="textarea" rows={rows} {...field} />
+             <Input type="url" {...field} />
            )}
     />
   )
 };
 
-FieldTextareaInput.propTypes = {
+FieldUrlInput.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default FieldTextareaInput;
+export default FieldUrlInput;

@@ -7,10 +7,10 @@ import {
   Form,
 } from 'formik';
 
-import FieldTextInput from './index';
+import FieldNumberInput from './index';
 
 
-storiesOf('Field text input', module)
+storiesOf('Field number input', module)
 
   .add('should enter input on keystroke', () => {
     return (
@@ -19,7 +19,7 @@ storiesOf('Field text input', module)
         render={({values }) => {
           return (
             <Form>
-              <FieldTextInput name="prop1" />
+              <FieldNumberInput name="prop1" />
               <code>
                 Form state: {JSON.stringify(values)}
               </code>
@@ -32,12 +32,12 @@ storiesOf('Field text input', module)
   .add('should preload data if provided', () => {
     return (
       <Formik
-        initialValues={{prop1: 'hello world'}}
+        initialValues={{prop1: 213}}
         onSubmit={() => action('Submitted')}
         render={({ values }) => {
           return (
             <Form>
-              <FieldTextInput name="prop1" />
+              <FieldNumberInput name="prop1" />
               <code>
                 Form state: {JSON.stringify(values)}
               </code>
@@ -54,9 +54,9 @@ storiesOf('Field text input', module)
         render={({ values, setFieldValue }) => {
           return (
             <div>
-              <button type="button" onClick={() => setFieldValue('prop1', '1002')}>Set prop1 to "1002"</button>
+              <button type="button" onClick={() => setFieldValue('prop1', 213)}>Set prop1 to 213</button>
               <Form>
-                <FieldTextInput name="prop1" />
+                <FieldNumberInput name="prop1" />
                 <code>
                   Form state: {JSON.stringify(values)}
                 </code>

@@ -17,6 +17,8 @@ import camelCase from 'lodash/camelCase';
 
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
+import FieldNumberInput from 'components/fieldNumberInput';
+import FieldUrlInput from 'components/fieldUrlInput';
 import FieldTextInput from 'components/fieldTextInput';
 import FieldTextareaInput from 'components/fieldTextAreaInput';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
@@ -267,12 +269,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="description">Program overview</Label>
-            <Field name="description" invalid={errors.description} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="textarea" id="description" rows={3} {...rest} value={value} />
-              )
-            }} />
+            <FieldTextareaInput name="description" value={values.description} />
             <FormText color="muted">
               What does the program does in a nutshell?
             </FormText>
@@ -285,12 +282,7 @@ class ProgramForm extends React.Component {
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
-              <Field name="descriptionFull" invalid={errors.descriptionFull} render={({field}) => {
-                const { value, ...rest } = field;
-                return (
-                  <Input type="textarea" id="descriptionFull" rows={6} {...rest} value={value} />
-                )
-              }} />
+              <FieldTextareaInput name="descriptionFull" rows={6} value={values.descriptionFull} />
               <FormText color="muted">
                 A comprehensive full length description of the program. Describe the structure of the program, and how
                 it is delivered.
@@ -301,12 +293,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
-            <Field name="website" invalid={errors.website} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="url" id="website" {...rest} value={value} />
-              )
-            }} />
+            <FieldUrlInput name="website" value={values.website} />
             <FormText color="muted">
               Some programs have a website for more information.
             </FormText>
@@ -328,12 +315,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-            <Field name="participantGroupsDescription" invalid={errors.participantGroupsDescription} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="text" id="participantGroupsDescription" {...rest} value={value} />
-              )
-            }} />
+            <FieldTextInput name="participantGroupsDescription" value={values.participantGroupsDescription} />
             <FormText color="muted">
               Example: Partner schools students, charities, aged care residents
             </FormText>
@@ -357,12 +339,7 @@ class ProgramForm extends React.Component {
         {values.focusGroup === 'Other' &&
           <FormGroup row>
             <Col md={8} lg={6}>
-              <Field name="focusGroupOther" invalid={errors.focusGroupOther} render={({field}) => {
-                const { value, ...rest } = field;
-                return (
-                  <Input type="text" {...rest} value={value} />
-                )
-              }} />
+              <FieldTextInput name="focusGroupOther" value={values.focusGroupOther} />
             </Col>
           </FormGroup>
         }
@@ -370,12 +347,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="cohortSize">Number of Participants</Label>
-            <Field name="cohortSize" render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="number" id="cohortSize" min={1} max={3000} {...rest} value={value} />
-              )
-            }} />
+            <FieldNumberInput name="cohortSize" min={1} max={3000} value={values.cohortSize} />
             <FormText color="muted">
               How many people participated in this program?
             </FormText>
@@ -401,12 +373,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-            <Field name="externalProvider" invalid={errors.externalProvider} render={({field}) => {
-              const { value, ...rest } = field;
-              return (
-                <Input type="text" id="externalProvider" {...rest} value={value} />
-              )
-            }} />
+            <FieldTextInput name="externalProvider" value={values.externalProvider} />
           </Col>
         </FormGroup>
 
@@ -428,7 +395,7 @@ class ProgramForm extends React.Component {
 
         <FormGroup hidden>
           <Label htmlFor="year">Year delivered</Label>
-          <FieldTextInput name="year" invalid={errors.year} />
+          <FieldTextInput name="year" value={values.year} invalid={errors.year} />
         </FormGroup>
 
         <FormGroup row>

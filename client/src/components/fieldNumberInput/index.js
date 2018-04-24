@@ -8,18 +8,20 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextareaInput = ({ name, rows = 3 }) => {
+const FieldNumberInput = ({ name, min, max }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="textarea" rows={rows} {...field} />
+             <Input type="number" min={min} max={max} {...field} />
            )}
     />
   )
 };
 
-FieldTextareaInput.propTypes = {
+FieldNumberInput.propTypes = {
   name: PropTypes.string.isRequired,
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
-export default FieldTextareaInput;
+export default FieldNumberInput;
