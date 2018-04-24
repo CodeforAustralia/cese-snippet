@@ -67,8 +67,15 @@ class ProgramForm extends React.Component {
       delete programTemplate.id;
       delete programTemplate.name;
 
+      // exclude all null values
+      Object.keys(programTemplate).forEach(key => {
+        const value = programTemplate[key];
+        if (value === null) {
+          delete programTemplate[key];
+        }
+      });
+
       setValues(programTemplate);
-      // this.forceUpdate();
       // validateForm();
     } else {
       // todo
@@ -115,7 +122,8 @@ class ProgramForm extends React.Component {
     }
 
     const getLevel1Cats = () => staticData.categories.map(level1 => {
-      return {value: level1.value, label: level1.label};
+      // return {value: level1.value, label: level1.label};
+      return {value: level1.label, label: level1.label};
     });
 
     const getLevel2Cats = (level1Value) => {
@@ -124,11 +132,14 @@ class ProgramForm extends React.Component {
         return [];
       }
       return level1Cat.categories.map(level2 => {
-        return {value: level2.value, label: level2.label};
+        // return {value: level2.value, label: level2.label};
+        return {value: level2.label, label: level2.label};
       });
     };
 
-    const getStaffOptions = () => staticData.staffList.map((staff) => ({value: staff.id, label: staff.email}));
+    const getStaffOptions = () => staticData.staffList.map((staff) => (
+      {value: staff.id, label: staff.email}
+    ));
 
     const getProgramTemplateOptions = () => programTemplates.map(p => ({ value: p.id, label: p.name }));
 
@@ -158,11 +169,11 @@ class ProgramForm extends React.Component {
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
         {isEdit &&
-          <Input hidden type="text" name="id" defaultValue={values.id} disabled={true} />
+          <FieldTextInput name="id" disabled={true} hidden />
         }
         {isEdit ?
-          <Input hidden type="text" name="updatedBy" defaultValue={values.updatedBy} disabled={true}/> :
-          <Input hidden type="text" name="createdBy" defaultValue={values.createdBy} disabled={true}/>
+          <FieldTextInput name="updatedBy" disabled={true} hidden /> :
+          <FieldTextInput name="createdBy" disabled={true} hidden />
         }
 
         <code>
@@ -269,7 +280,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="description">Program overview</Label>
-            <FieldTextareaInput name="description" value={values.description} />
+            <FieldTextareaInput name="description" />
             <FormText color="muted">
               What does the program does in a nutshell?
             </FormText>
@@ -282,7 +293,7 @@ class ProgramForm extends React.Component {
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
-              <FieldTextareaInput name="descriptionFull" rows={6} value={values.descriptionFull} />
+              <FieldTextareaInput name="descriptionFull" rows={6} />
               <FormText color="muted">
                 A comprehensive full length description of the program. Describe the structure of the program, and how
                 it is delivered.
@@ -293,7 +304,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
-            <FieldUrlInput name="website" value={values.website} />
+            <FieldUrlInput name="website" />
             <FormText color="muted">
               Some programs have a website for more information.
             </FormText>
@@ -315,7 +326,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-            <FieldTextInput name="participantGroupsDescription" value={values.participantGroupsDescription} />
+            <FieldTextInput name="participantGroupsDescription" />
             <FormText color="muted">
               Example: Partner schools students, charities, aged care residents
             </FormText>
@@ -326,12 +337,12 @@ class ProgramForm extends React.Component {
           <Col md={8} lg={6}>
             <Label>Does the program cater to a particular focus group?</Label>
             <FieldRadioBtnList name="focusGroup"
-                                  value={values.focusGroup}
-                                  options={focusGroupOptions}
-                                  onChange={setFieldValue}
-                                  onBlur={setFieldTouched}
-                                  invalid={errors.focusGroup}
-                              vertical={true}
+                               value={values.focusGroup}
+                               options={focusGroupOptions}
+                               onChange={setFieldValue}
+                               onBlur={setFieldTouched}
+                               invalid={errors.focusGroup}
+                               vertical={true}
             />
           </Col>
         </FormGroup>
@@ -339,7 +350,7 @@ class ProgramForm extends React.Component {
         {values.focusGroup === 'Other' &&
           <FormGroup row>
             <Col md={8} lg={6}>
-              <FieldTextInput name="focusGroupOther" value={values.focusGroupOther} />
+              <FieldTextInput name="focusGroupOther" />
             </Col>
           </FormGroup>
         }
@@ -347,7 +358,7 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="cohortSize">Number of Participants</Label>
-            <FieldNumberInput name="cohortSize" min={1} max={3000} value={values.cohortSize} />
+            <FieldNumberInput name="cohortSize" min={1} max={3000} />
             <FormText color="muted">
               How many people participated in this program?
             </FormText>
@@ -373,29 +384,29 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-            <FieldTextInput name="externalProvider" value={values.externalProvider} />
+            <FieldTextInput name="externalProvider" />
           </Col>
         </FormGroup>
 
-        {/*<FormGroup row>*/}
-          {/*<Col md={8} lg={6}>*/}
-            {/*<Label htmlFor="staff">Staff involved</Label>*/}
-            {/*<FieldSelectTags name="staff"*/}
-                             {/*options={staffOptions}*/}
-                             {/*value={values.staff}*/}
-                             {/*onChange={this.props.setFieldValue}*/}
-                             {/*onBlur={this.props.setFieldTouched}*/}
-                             {/*touched={touched.staff}*/}
-                             {/*invalid={errors.staff}/>*/}
-            {/*<FormText color="muted">*/}
-              {/*Who are the staff members involved in organising or facilitating the program?*/}
-            {/*</FormText>*/}
-          {/*</Col>*/}
-        {/*</FormGroup>*/}
+        <FormGroup row>
+          <Col md={8} lg={6}>
+            <Label htmlFor="staff">Staff involved</Label>
+            <FieldSelectTags name="staff"
+                             options={staffOptions}
+                             value={values.staff}
+                             onChange={this.props.setFieldValue}
+                             onBlur={this.props.setFieldTouched}
+                             touched={touched.staff}
+                             invalid={errors.staff}/>
+            <FormText color="muted">
+              Who are the staff members involved in organising or facilitating the program?
+            </FormText>
+          </Col>
+        </FormGroup>
 
         <FormGroup hidden>
           <Label htmlFor="year">Year delivered</Label>
-          <FieldTextInput name="year" value={values.year} invalid={errors.year} />
+          <FieldTextInput name="year" />
         </FormGroup>
 
         <FormGroup row>
@@ -408,21 +419,21 @@ class ProgramForm extends React.Component {
           </Col>
         </FormGroup>
 
-        {/*<FormGroup row>*/}
-          {/*<Col md={8} lg={6}>*/}
-            {/*<Label htmlFor="tags">Keywords</Label>*/}
-            {/*<FieldSelectTags name="tags"*/}
-                             {/*options={tagsOptions}*/}
-                             {/*value={values.tags}*/}
-                             {/*onChange={this.props.setFieldValue}*/}
-                             {/*onBlur={this.props.setFieldTouched}*/}
-                             {/*touched={touched.tags}*/}
-                             {/*invalid={errors.tags} />*/}
-            {/*<FormText color="muted">*/}
-              {/*Keywords could help others to search for programs like this one in the future.*/}
-            {/*</FormText>*/}
-          {/*</Col>*/}
-        {/*</FormGroup>*/}
+        <FormGroup row>
+          <Col md={8} lg={6}>
+            <Label htmlFor="tags">Keywords</Label>
+            <FieldSelectTags name="tags"
+                             options={tagsOptions}
+                             value={values.tags}
+                             onChange={this.props.setFieldValue}
+                             onBlur={this.props.setFieldTouched}
+                             touched={touched.tags}
+                             invalid={errors.tags} />
+            <FormText color="muted">
+              Keywords could help others to search for programs like this one in the future.
+            </FormText>
+          </Col>
+        </FormGroup>
 
         <Col md={8} lg={6}>
           <Link to="account">Cancel</Link>

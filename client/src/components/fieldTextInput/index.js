@@ -8,11 +8,11 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextInput = ({ name }) => {
+const FieldTextInput = ({ name, disabled = false }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="text" {...field} />
+             <Input type="text" disabled={disabled} {...field} />
            )}
     />
   )
@@ -20,6 +20,7 @@ const FieldTextInput = ({ name }) => {
 
 FieldTextInput.propTypes = {
   name: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default FieldTextInput;

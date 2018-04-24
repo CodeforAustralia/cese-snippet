@@ -2,6 +2,7 @@
 
 const arrayify = require('./../arrayify');
 const raw = require('./../raw/programTemplates.json');
+const getDeliveredByType = require('./programs').getDeliveredByType;
 
 let id = 1000;
 
@@ -21,7 +22,7 @@ const makeJson = (data) => {
       "focusGroup": d.focusGroup,
       "focusGroupOther": d.focusGroupOther,
       "yearLevels": arrayify(String(d.yearLevel)),
-      "deliveredByType": d.deliveredByType,
+      "deliveredByType": getDeliveredByType(d.deliveredByType),
       "externalProvider": d.externalProvider,
       "tags": arrayify(d.tags),
       "createdAt": d.createdAt,
