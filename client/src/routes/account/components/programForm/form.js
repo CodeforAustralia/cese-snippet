@@ -214,6 +214,7 @@ class ProgramForm extends React.Component {
                                onChange={setFieldValue}
                                onBlur={setFieldTouched}
                                invalid={errors.category}
+                               vertical={true}
             />
             {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
           </Col>
@@ -256,7 +257,7 @@ class ProgramForm extends React.Component {
             <Field name="aims" invalid={errors.aims} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="textarea" id="aims" rows={3} {...rest} defaultValue={value} />
+                <Input type="textarea" id="aims" rows={3} {...rest} value={value} />
               )
             }} />
             <FormText color="muted">
@@ -271,7 +272,7 @@ class ProgramForm extends React.Component {
             <Field name="description" invalid={errors.description} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="textarea" id="description" rows={3} {...rest} defaultValue={value} />
+                <Input type="textarea" id="description" rows={3} {...rest} value={value} />
               )
             }} />
             <FormText color="muted">
@@ -286,10 +287,10 @@ class ProgramForm extends React.Component {
           <FormGroup row>
             <Col md={8} lg={6}>
               <Label htmlFor="descriptionFull">Detailed description</Label>
-              <Field name="descriptionFull" invalid={errors.aims} render={({field}) => {
+              <Field name="descriptionFull" invalid={errors.descriptionFull} render={({field}) => {
                 const { value, ...rest } = field;
                 return (
-                  <Input type="textarea" id="descriptionFull" rows={6} {...rest} defaultValue={value} />
+                  <Input type="textarea" id="descriptionFull" rows={6} {...rest} value={value} />
                 )
               }} />
               <FormText color="muted">
@@ -302,10 +303,10 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="website">Website</Label>
-            <Field name="website" invalid={errors.aims} render={({field}) => {
+            <Field name="website" invalid={errors.website} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="url" id="website" {...rest} defaultValue={value} />
+                <Input type="url" id="website" {...rest} value={value} />
               )
             }} />
             <FormText color="muted">
@@ -318,7 +319,7 @@ class ProgramForm extends React.Component {
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroups">Who is the program for?</Label>
             <FieldCheckboxList name="participantGroups"
-                               value={values.yearLevels}
+                               value={values.participantGroups}
                                options={participantGroupsOptions}
             />
             {touched.participantGroups && errors.participantGroups &&
@@ -329,10 +330,10 @@ class ProgramForm extends React.Component {
         <FormGroup row>
           <Col md={8} lg={6}>
             <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-            <Field name="participantGroupsDescription" invalid={errors.aims} render={({field}) => {
+            <Field name="participantGroupsDescription" invalid={errors.participantGroupsDescription} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="text" id="participantGroupsDescription" {...rest} defaultValue={value} />
+                <Input type="text" id="participantGroupsDescription" {...rest} value={value} />
               )
             }} />
             <FormText color="muted">
@@ -350,6 +351,7 @@ class ProgramForm extends React.Component {
                                   onChange={setFieldValue}
                                   onBlur={setFieldTouched}
                                   invalid={errors.focusGroup}
+                              vertical={true}
             />
           </Col>
         </FormGroup>
@@ -357,10 +359,10 @@ class ProgramForm extends React.Component {
         {values.focusGroup === 'Other' &&
           <FormGroup row>
             <Col md={8} lg={6}>
-              <Field name="focusGroupOther" invalid={errors.aims} render={({field}) => {
+              <Field name="focusGroupOther" invalid={errors.focusGroupOther} render={({field}) => {
                 const { value, ...rest } = field;
                 return (
-                  <Input type="text" {...rest} defaultValue={value} />
+                  <Input type="text" {...rest} value={value} />
                 )
               }} />
             </Col>
@@ -373,7 +375,7 @@ class ProgramForm extends React.Component {
             <Field name="cohortSize" render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="number" id="cohortSize" min={1} max={3000} {...rest} defaultValue={value} />
+                <Input type="number" id="cohortSize" min={1} max={3000} {...rest} value={value} />
               )
             }} />
             <FormText color="muted">
@@ -390,6 +392,7 @@ class ProgramForm extends React.Component {
                                value={values.deliveredByType}
                                onChange={setFieldValue}
                                onBlur={setFieldTouched}
+                               vertical={true}
             />
             <FormText color="muted">
               Is the program run by school staff or another provider?
@@ -403,7 +406,7 @@ class ProgramForm extends React.Component {
             <Field name="externalProvider" invalid={errors.externalProvider} render={({field}) => {
               const { value, ...rest } = field;
               return (
-                <Input type="text" id="externalProvider" {...rest} defaultValue={value} />
+                <Input type="text" id="externalProvider" {...rest} value={value} />
               )
             }} />
           </Col>
@@ -429,7 +432,7 @@ class ProgramForm extends React.Component {
           <Label htmlFor="year">Year delivered</Label>
           <Input type="text" id="year" name="year"
                  defaultValue={year}
-                 invalid={errors.year}/>
+                 invalid={errors.year} />
         </FormGroup>
 
         <FormGroup row>
