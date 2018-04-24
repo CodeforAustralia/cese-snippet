@@ -436,8 +436,8 @@ class ProgramForm extends React.Component {
               <Button type="submit" color="primary" size="lg" className="float-right"
                       disabled={isSubmitting}>
                 {isEdit ?
-                  isSubmitting ? 'Update' : 'Updating...' :
-                  isSubmitting ? 'Add' : 'Adding...'
+                  isSubmitting ? 'Updating...' : 'Update' :
+                  isSubmitting ? 'Adding...' : 'Add'
                 }
               </Button>
             </Col>

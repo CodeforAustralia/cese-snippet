@@ -10,7 +10,7 @@ const AuthButton = ({ history, isAuthenticated, signout }) => {
         onClick={() => {
           signout(() => process.env.NODE_ENV === 'production' ?
             window.location = "http://nsweducation.cool" :
-            history.push("/")
+            history.push("/logged-out")
           )
         }}
       >

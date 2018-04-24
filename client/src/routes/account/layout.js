@@ -99,7 +99,7 @@ class LayoutBasic extends React.Component {
                   <DropdownItem onClick={() => {
                     signout(() => {
                       win.localStorage.removeItem('snippet_session');
-                      history.push("/");
+                      history.push("/logged-out");
                     });
                   }}>
                     Sign out

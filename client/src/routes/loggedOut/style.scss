@@ -1,0 +1,21 @@
+@import '~style/helpers.scss';
+
+.loggedOutContainer {
+  margin-top: 60px;
+  @include sm() {
+    margin-top: 140px;
+  }
+}
+
+.upperContainer,
+.lowerContainer {
+  padding: 1em;
+}
+
+.upperContainer {
+  margin-bottom: 4em;
+}
+
+.lowerContainer {
+  border-top: 1px solid $gray-200;
+}
