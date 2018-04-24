@@ -28,6 +28,28 @@ storiesOf('Field select', module)
                            value={values.prop1}
                            onChange={setFieldValue}
                            onBlur={setFieldTouched}
+                           clearable={false}
+              />
+              <code>
+                Form state: {JSON.stringify(values)}
+              </code>
+            </Form>
+          )
+        }} />
+    )
+  })
+
+  .add('single value should be clearable', () => {
+    return (
+      <Formik
+        render={({values, setFieldValue, setFieldTouched}) => {
+          return (
+            <Form>
+              <FieldSelect name="prop1"
+                           options={options}
+                           value={values.prop1}
+                           onChange={setFieldValue}
+                           onBlur={setFieldTouched}
               />
               <code>
                 Form state: {JSON.stringify(values)}
