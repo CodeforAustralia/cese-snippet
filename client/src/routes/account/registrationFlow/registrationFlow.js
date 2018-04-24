@@ -5,6 +5,7 @@ import {
   Row,
 } from 'reactstrap';
 
+import Loading from 'components/loading';
 import Form from './../components/registerSchoolForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
 
@@ -26,7 +27,7 @@ class RegistrationFlow extends React.Component {
     } = this.props;
 
     if (isFetching !== false) {
-      return <p style={{border:'1px solid red'}}>Loading...</p>
+      return <Loading />
     }
 
     return (

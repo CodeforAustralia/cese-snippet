@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 import without from 'lodash/without';
 
+import Loading from 'components/loading';
 import ProgramsList from './../components/programsList';
 import {
   getSchoolProgramsUrl,
@@ -56,7 +57,7 @@ class SchoolPrograms extends React.Component {
     } = this.props;
 
     if (isFetchingSchools !== false) {
-      return <p style={{border: '1px solid blue'}}>Loading...</p>;
+      return <Loading />
     }
 
     if (!school) {
@@ -94,8 +95,7 @@ class SchoolPrograms extends React.Component {
 
         <div className={style.tabPageContainer}>
           { isFetchingPrograms !== false ?
-            <p>Loading...</p> :
-
+            <Loading /> :
 
             <div>
               <ProgramsList programs={this.sortByLatestDate(filteredPrograms)}

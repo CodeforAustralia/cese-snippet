@@ -14,6 +14,7 @@ import { withFormik } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
 
+import Loading from 'components/loading';
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldNumberInput from 'components/fieldNumberInput';
@@ -112,11 +113,11 @@ class ProgramForm extends React.Component {
     log('values:', values);
 
     if (!codeOptions.length) {
-      return <p>Loading...</p>
+      return <Loading />
     }
 
     if (isFetchingProgramTemplates !== false) {
-      return <p>Loading...</p>
+      return <Loading />
     }
 
     const getLevel1Cats = () => staticData.categories.map(level1 => {

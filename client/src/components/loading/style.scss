@@ -1,3 +1,5 @@
+@import '~style/helpers';
+
 .container {
   height: 100%;
   width: 100%;
@@ -8,4 +10,25 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  color: $text-muted;
+}
+
+// http://tobiasahlin.com/spinkit/
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: $gray-200;
+  margin: 6em auto 2em;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  } 50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    } 100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      }
 }

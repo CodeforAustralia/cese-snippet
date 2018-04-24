@@ -17,6 +17,7 @@ import {
 import FieldSelect from 'components/fieldSelect';
 
 import Layout from './../home/layout';
+import Loading from 'components/loading';
 import style from './style.scss';
 
 const log = Bows('Login view');
@@ -66,7 +67,7 @@ class Login extends React.Component {
                 </div>
 
                 {isFetching !== false ?
-                  <p>Loading ...</p> :
+                  <Loading /> :
                   staff && staff.length ?
                     <Formik
                       initialValues={{ id: get(session, 'id') }}

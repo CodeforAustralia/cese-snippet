@@ -15,7 +15,7 @@ const EmptyItem = ({ activeYear }) => {
   return (
     <section className={style.emptyProgram}>
       <img src="https://via.placeholder.com/115x115?text=" className={style.emptyProgramIcon} alt="" />
-      <h1 className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for {activeYear}</h1>
+      <h1 className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for <span className="text-secondary">{activeYear}</span></h1>
       <p className={cx('h5 mb-4', style.emptyProgamSubTitle)}>If you know details of a Program, it's easy to create one</p>
       <Button color="primary" size="lg" to={getCreateProgramModalUrl({year: activeYear})} className="mb-4" tag={RRLink}>Add a New Program</Button>
       <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.</p>

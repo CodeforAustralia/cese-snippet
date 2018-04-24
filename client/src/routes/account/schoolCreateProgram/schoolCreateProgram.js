@@ -2,8 +2,10 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import Loading from 'components/loading';
 import { CreateForm as Form } from './../components/programForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
+
 
 class SchoolCreateProgram extends React.Component {
 
@@ -28,7 +30,7 @@ class SchoolCreateProgram extends React.Component {
     }
 
     if (isFetching !== false) {
-      return <p>Loading ...</p>
+      return <Loading />
     }
 
     if (!schools || !schools.length) {
