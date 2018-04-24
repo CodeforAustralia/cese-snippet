@@ -18,7 +18,7 @@ class FieldSelectTags extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.multiValue) {
+    if (nextProps.value !== 'undefined' && nextProps.value !== this.state.multiValue) {
       this.setState({multiValue: nextProps.value});
     }
   }
@@ -47,7 +47,8 @@ class FieldSelectTags extends React.Component {
     const { multiValue } = this.state;
 
     const optsKeys = options.map(o => o.value);
-    multiValue.forEach(val => { // render initial values even if not in options provided
+
+    multiValue && multiValue.forEach(val => { // render initial values even if not in options provided
       if (!optsKeys.includes(val)) {
         options.push({value: val, label: val});
       }

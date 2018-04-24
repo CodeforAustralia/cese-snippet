@@ -8,11 +8,11 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextareaInput = ({ name, rows = 3, disabled = false }) => {
+const FieldTextareaInput = ({ name, rows = 3, disabled = false, hidden = false }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="textarea" disabled={disabled} rows={rows} {...field} />
+             <Input type="textarea" disabled={disabled} hidden={hidden} rows={rows} {...field} />
            )}
     />
   )
@@ -21,6 +21,7 @@ const FieldTextareaInput = ({ name, rows = 3, disabled = false }) => {
 FieldTextareaInput.propTypes = {
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  hidden: PropTypes.bool,
 };
 
 export default FieldTextareaInput;

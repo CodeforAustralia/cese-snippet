@@ -8,11 +8,11 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldUrlInput = ({ name, disabled = false }) => {
+const FieldUrlInput = ({ name, disabled = false, hidden = false }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="url" disabled={disabled} {...field} />
+             <Input type="url" disabled={disabled} hidden={hidden} {...field} />
            )}
     />
   )
@@ -21,6 +21,7 @@ const FieldUrlInput = ({ name, disabled = false }) => {
 FieldUrlInput.propTypes = {
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  hidden: PropTypes.bool,
 };
 
 export default FieldUrlInput;
