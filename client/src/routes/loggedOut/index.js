@@ -34,7 +34,7 @@ const LoggedOutPage = () => {
                 <h3 className="h5 pt-2">Amazing things are coming!</h3>
                 <p className="pt-2 mb-6">We'll notify you as we get closer to launching Snippet Beta.</p>
 
-                <Link className="mt-4" to="/" tag={Link}>Visit the homepage</Link>
+                <Link className="mt-4" to="/">Visit the homepage</Link>
               </div>
             </div>
           </Col>
