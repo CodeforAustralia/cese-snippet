@@ -3,13 +3,13 @@ import {
   Row,
   Col,
   Container,
-  Button,
 } from 'reactstrap';
 import {
-  Link as RRLink,
+  Link,
 } from 'react-router-dom';
 
 import Layout from './../home/layout';
+import Form from 'components/feedbackForm';
 import style from './style.scss';
 
 const LoggedOutPage = () => {
@@ -17,20 +17,24 @@ const LoggedOutPage = () => {
     <Layout>
       <Container>
         <Row>
-          <Col sm={{size: 6, offset: 3}} md={{size: 8, offset: 2}}>
+          <Col md={{size: 6, offset: 3}}>
             <div className={style.loggedOutContainer}>
-              <div className={style.upperContainer}>
+              <div className={style.headlineContainer}>
                 <p>You are logged out of <strong>Snippet</strong>.</p>
 
-                <h1>Thank you for being part of&nbsp;<strong>Snippet</strong>.</h1>
-                <h2 className="h3 text-primary pt-3">Come back anytime!</h2>
+                <h1>Thank you for being part of&nbsp;<strong>Snippet</strong></h1>
               </div>
 
-              <div className={style.lowerContainer}>
-                <h3 className="h4 pt-2">Some amazing things are coming!</h3>
+              <div className={style.feedbackContainer}>
+                <h3 className="h5 pb-2">Please take a moment to tell us how your experience was today?</h3>
+                <Form />
+              </div>
+
+              <div className={style.goHomeContainer}>
+                <h3 className="h5 pt-2">Amazing things are coming!</h3>
                 <p className="pt-2 mb-6">We'll notify you as we get closer to launching Snippet Beta.</p>
 
-                <Button className="mt-4" to="/" color="pink" tag={RRLink}>Visit the homepage</Button>
+                <Link className="mt-4" to="/" tag={Link}>Visit the homepage</Link>
               </div>
             </div>
           </Col>

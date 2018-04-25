@@ -10,7 +10,14 @@ import {
 import FieldStampBtnList from './index';
 
 
-storiesOf('Field stamp button list', module)
+const options = [
+  { value: 'Well done', label: 'Well done' },
+  { value: 'Helpful', label: 'Helpful' },
+  { value: 'Thank you', label: 'Thank you' },
+  { value: 'Legend', label: 'Legend' },
+];
+
+storiesOf('Field checkbox button list', module)
 
   .add('should render correctly', () => {
     return (
@@ -21,7 +28,8 @@ storiesOf('Field stamp button list', module)
             <div>
               <Form>
                 <FieldStampBtnList name="stamp"
-                                   value={values.prop1}
+                                   value={values.stamp}
+                                   options={options}
                 />
               </Form>
               <code>
