@@ -85,7 +85,9 @@ class Login extends React.Component {
                                            clearable={false}
                                            onChange={setFieldValue}
                                            onBlur={setFieldTouched}
-                                           value={values.id} />
+                                           value={values.id}
+                                           placeholder="Select ..."
+                              />
                             </Col>
                           </FormGroup>
 

@@ -11,6 +11,7 @@ import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 import Schools from './schools';
+import Footer from './components/stickyFooter';
 
 
 class Account extends React.Component {
@@ -53,6 +54,7 @@ class Account extends React.Component {
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
+        <Footer />
       </div>
     )
   }
