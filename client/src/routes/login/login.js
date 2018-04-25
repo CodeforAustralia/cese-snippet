@@ -72,7 +72,7 @@ class Login extends React.Component {
                     <Formik
                       initialValues={{ id: get(session, 'id') }}
                       onSubmit={(values) => this.handleSubmit(values)}
-                      render={({values, setFieldValue, setFieldTouched}) => (
+                      render={({values, setFieldValue, setFieldTouched, isSubmitting}) => (
                         <Form>
                           <FormGroup row>
                             <Col md={12} lg={6}>
@@ -85,7 +85,9 @@ class Login extends React.Component {
                                            clearable={false}
                                            onChange={setFieldValue}
                                            onBlur={setFieldTouched}
-                                           value={values.id} />
+                                           value={values.id}
+                                           placeholder="Select ..."
+                              />
                             </Col>
                           </FormGroup>
 
