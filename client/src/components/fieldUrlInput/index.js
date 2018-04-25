@@ -12,7 +12,7 @@ const FieldUrlInput = ({ name, disabled = false, hidden = false }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="url" disabled={disabled} hidden={hidden} {...field} />
+             <Input type="url" id={name} disabled={disabled} hidden={hidden} {...field} />
            )}
     />
   )

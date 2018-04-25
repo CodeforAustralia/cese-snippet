@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FieldArray } from 'formik';
 
 const FieldCheckboxList = ({ options, name, value }) => {
@@ -37,6 +38,10 @@ const FieldCheckboxList = ({ options, name, value }) => {
       />
     </div>
   )
+};
+
+FieldCheckboxList.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 export default FieldCheckboxList;

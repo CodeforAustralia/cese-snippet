@@ -12,7 +12,7 @@ const FieldTextInput = ({ name, disabled = false, hidden = false }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="text" disabled={disabled} hidden={hidden} {...field} />
+             <Input type="text" id={name} disabled={disabled} hidden={hidden} {...field} />
            )}
     />
   )

@@ -12,7 +12,7 @@ const FieldTextareaInput = ({ name, rows = 3, disabled = false, hidden = false }
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="textarea" disabled={disabled} hidden={hidden} rows={rows} {...field} />
+             <Input type="textarea" id={name} disabled={disabled} hidden={hidden} rows={rows} {...field} />
            )}
     />
   )

@@ -12,7 +12,7 @@ const FieldNumberInput = ({ name, min, max, disabled = false, hidden = false }) 
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="number" disabled={disabled} hidden={hidden} min={min} max={max} {...field} />
+             <Input type="number" id={name} disabled={disabled} hidden={hidden} min={min} max={max} {...field} />
            )}
     />
   )

@@ -6,7 +6,7 @@ const FieldRadioBtnList = ({ options, name, value, onChange, onBlur, vertical = 
   return (
     <div>
       <FieldArray name={name} render={() => (
-        <div className={vertical ? 'btn-group-vertical' : 'btn-group'} role="group" aria-label="Basic example">
+        <div className={vertical ? 'btn-group-vertical' : 'btn-group'} role="group">
           {options.map((o, idx) => {
             const isChecked = o.value === value;
             return (
