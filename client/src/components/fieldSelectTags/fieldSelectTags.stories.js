@@ -29,7 +29,7 @@ const options = [
   },
 ];
 
-storiesOf('Field - select tags', module)
+storiesOf('Field select - tags', module)
 
   .add('should be able to select multiple tags', () => {
     return (

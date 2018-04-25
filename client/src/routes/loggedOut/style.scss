@@ -1,21 +1,32 @@
 @import '~style/helpers.scss';
 
 .loggedOutContainer {
-  margin-top: 60px;
+  margin-top: 20px;
   @include sm() {
-    margin-top: 140px;
+    margin-top: 60px;
   }
 }
 
-.upperContainer,
-.lowerContainer {
-  padding: 1em;
+.headlineContainer,
+.feedbackContainer,
+.goHomeContainer {
 }
 
-.upperContainer {
-  margin-bottom: 4em;
+.headlineContainer,
+.feedbackContainer {
+  margin-bottom: 2em;
 }
 
-.lowerContainer {
-  border-top: 1px solid $gray-200;
+.headlineContainer {
+  //margin-bottom: 4em;
+}
+
+.feedbackContainer {
+  border: 1px solid $gray-400;
+  border-radius: .5em;
+  padding: 1.4em;
+  background: $brand-concrete;
+}
+
+.goHomeContainer {
 }
