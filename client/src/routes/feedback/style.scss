@@ -1,0 +1,8 @@
+@import '~style/helpers.scss';
+
+.feedbackContainer {
+  margin-top: 60px;
+  @include sm() {
+    margin-top: 140px;
+  }
+}

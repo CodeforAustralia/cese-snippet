@@ -9,7 +9,9 @@ import {
   Button,
   Col,
 } from 'reactstrap';
+import { withRouter } from 'react-router';
 import Bows from 'bows';
+
 import FieldTextareaInput from 'components/fieldTextAreaInput';
 import FieldCheckboxBtnList from 'components/fieldCheckboxBtnList';
 
@@ -30,14 +32,23 @@ class FeedbackForm extends React.Component {
   handleSubmit(values) {
     log('Submitting: ', values);
 
+    setTimeout(() => {
+      this.setState({hasSubmitted: true});
+    }, 2000);
+
+
     // todo - save
+
+    // setTimeout(() => {
+    //   this.props.history.push('/');
+    // }, 8000);
   }
 
   render() {
     if (this.state.hasSubmitted) {
       return (
-        <div className="alert alert-success">
-          Thank you for your feedback! We'll be looking at this soon.
+        <div className="alert alert-success mb-4">
+          Thank you for your feedback, it helps us improve!
         </div>
       )
     }
@@ -45,7 +56,7 @@ class FeedbackForm extends React.Component {
     return (
       <Formik
         onSubmit={(values) => this.handleSubmit(values)}
-        render={(({values, setFieldValue, setFieldTouched}) => (
+        render={(({values, setFieldValue, setFieldTouched, isSubmitting}) => (
           <Form>
             <FormGroup row>
               <Col sm={{size: 12}}>
@@ -69,7 +80,7 @@ class FeedbackForm extends React.Component {
               </Col>
             </FormGroup>
 
-            <Button type="submit" color="primary">Leave feedback</Button>
+            <Button type="submit" color="primary">{isSubmitting ? 'Submitting...' : 'Leave feedback'}</Button>
           </Form>
         ))}
       />
@@ -77,4 +88,4 @@ class FeedbackForm extends React.Component {
   }
 }
 
-export default FeedbackForm;
+export default withRouter(FeedbackForm);
