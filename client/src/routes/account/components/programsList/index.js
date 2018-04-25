@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link as RRLink } from 'react-router-dom';
+import {
+  Link as RRLink,
+  NavLink as RRNavLink,
+} from 'react-router-dom';
 import {
   Button,
   Badge,
@@ -7,7 +10,10 @@ import {
 import cx from 'classnames';
 import isThisMinute from 'date-fns/is_this_minute';
 
-import { getCreateProgramModalUrl } from 'helpers/url';
+import {
+  getCreateProgramModalUrl,
+  getProgramUrl,
+} from "helpers/url";
 import style from './style.scss';
 
 
@@ -36,7 +42,7 @@ const ProgramItem = ({ program }) => {
           <Badge color="info" pill>Active</Badge>
         </div>
 
-        <h1 className="h5 font-weight-bold">{program.name}</h1>
+        <h1 className="h5 font-weight-bold"><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></h1>
 
         <p className={style.programUpdatedAt}>Last updated: {program.updatedAt}</p>
 

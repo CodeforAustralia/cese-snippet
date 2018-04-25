@@ -15,7 +15,7 @@ import Loading from 'components/loading';
 import ProgramsList from './../components/programsList';
 import {
   getSchoolProgramsUrl,
-  getCreateProgramModalUrl
+  getCreateProgramModalUrl,
 } from "helpers/url";
 import ChangeSchoolBtn from './../components/changeSchoolBtn';
 import style from './style.scss';
