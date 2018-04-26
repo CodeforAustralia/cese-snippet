@@ -246,10 +246,20 @@ class ProgramForm extends React.Component {
                                    value={values.yearLevels}
                                    options={yearLevelsOptions}
                 />
+               <input type="checkbox" onClick={(event) => {
+                  const selectAll = ['Kindergarten', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                  event.target.checked
+                    ? setFieldValue("yearLevels", selectAll)
+                    : setFieldValue("yearLevels", [])
+                }} />
+                <Label>Select all years</Label>
                 {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+
+
                 <FormText color="muted">
                   Which year levels are participating in this program?
                 </FormText>
+
               </Col>
             </FormGroup>
 
