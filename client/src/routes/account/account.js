@@ -6,11 +6,13 @@ import {
 import { Redirect } from 'react-router';
 
 import Layout from './layout';
+import Program from './program';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 import Schools from './schools';
+import Footer from './components/stickyFooter';
 
 
 class Account extends React.Component {
@@ -47,12 +49,14 @@ class Account extends React.Component {
           <Switch location={isModal ? this.previousLocation : location}>
             <Route path="/account/schools" exact component={Schools} />
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
+            <Route path="/account/programs/:programId" component={Program} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
             <Route path="/account/register" component={RegistrationFlow} />
             <Redirect to="/account/schools" />
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
+        <Footer />
       </div>
     )
   }

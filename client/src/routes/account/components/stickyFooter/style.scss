@@ -1,0 +1,28 @@
+@import "~style/helpers";
+
+.footerBand {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid $gray-300;
+  color: $gray-600;
+  font-size: 12px;
+  padding: 6px 0 6px 16px;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+
+.link {
+  color: $brand-primary;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: darken($brand-primary, .25);
+  }
+}

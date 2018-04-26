@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Bows from 'bows';
 import get from 'lodash/get';
 import {
-  Alert,
   Row,
   Col,
   Container,
@@ -18,6 +17,7 @@ import {
 import FieldSelect from 'components/fieldSelect';
 
 import Layout from './../home/layout';
+import Loading from 'components/loading';
 import style from './style.scss';
 
 const log = Bows('Login view');
@@ -62,21 +62,21 @@ class Login extends React.Component {
 
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
-                <Alert color="info">
-                  This is a demo site, so there is no need to supply log in credentials. Select someone from the dropdown to continue with and then click "Login".
-                </Alert>
+                <div className="alert alert-primary" role="alert">
+                  There is no need to supply your own login credentials as this is a demo site.
+                </div>
 
                 {isFetching !== false ?
-                  <p>Loading ...</p> :
+                  <Loading /> :
                   staff && staff.length ?
                     <Formik
                       initialValues={{ id: get(session, 'id') }}
                       onSubmit={(values) => this.handleSubmit(values)}
-                      render={({values, setFieldValue, setFieldTouched}) => (
+                      render={({values, setFieldValue, setFieldTouched, isSubmitting}) => (
                         <Form>
                           <FormGroup row>
                             <Col md={12} lg={6}>
-                              <Label htmlFor="subCategory">Program Category</Label>
+                              <Label htmlFor="subCategory">Select a user</Label>
                               <FieldSelect name="id"
                                            options={staff.map(s => ({
                                              value: s.id,
@@ -85,7 +85,9 @@ class Login extends React.Component {
                                            clearable={false}
                                            onChange={setFieldValue}
                                            onBlur={setFieldTouched}
-                                           value={values.id} />
+                                           value={values.id}
+                                           placeholder="Select ..."
+                              />
                             </Col>
                           </FormGroup>
 

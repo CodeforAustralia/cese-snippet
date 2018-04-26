@@ -77,6 +77,6 @@ export const fetchFromApi = (path, props) => {
           }
         });
         return error;
-      })
+      });
   }
 };

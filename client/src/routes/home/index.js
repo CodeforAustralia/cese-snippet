@@ -32,7 +32,12 @@ const HomePage = () => (
             <div className={style.headline}>
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
               <h2>School programs happening now</h2>
-              <p className="h4">Public Schools program information sharing for NSW Education<sup>*</sup>.</p>
+              <p className="h4">Easily discover and publish practical knowledge and resources about school programs and initiatives in NSW Public Schools<sup>*</sup>.</p>
+
+
+
+
+
               <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p>
             </div>
           </Col>

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import { fetchSchools } from 'store/schools/actionCreators';
 import {
   selectSession,
@@ -10,7 +11,7 @@ import {
 } from 'store/schools/selectors';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   const userSchoolCodes = selectUserSchoolCodes(state);
 
   return {
@@ -18,12 +19,6 @@ const mapStateToProps = (state) => {
     userSchoolCodes,
     isFetching: selectIsFetching(state),
     schools: selectSchools(state, userSchoolCodes),
-  }
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchSchools: (codes) => dispatch(fetchSchools(codes)),
     onSubmitSuccess: (resp) => {
       console.log(resp);
       // navigate to account
@@ -32,5 +27,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchSchools: (codes) => dispatch(fetchSchools(codes)),
+  }
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps);
+

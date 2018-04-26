@@ -28,19 +28,19 @@ export const clearSession = () => {
 };
 
 
-export const registerMySchool = (school) => {
+export const saveSession = (session) => {
   // Steps:
   // 1. sanitize input
   // 2. POST
   // 3. Update client state
 
-  log(`Registering: ${JSON.stringify(school)}`);
+  log(`Saving: ${JSON.stringify(session)}`);
 
   return (dispatch, getState, api) => {
     // 2.
     return api('/session', {
       method: 'POST',
-      body: JSON.stringify(school),
+      body: JSON.stringify(session),
     })
       .then((resp) => {
         if (!resp.data) {
@@ -49,9 +49,9 @@ export const registerMySchool = (school) => {
         log(`Posted: ${resp.data}`);
         // 3.
         dispatch({
-          type: ACTION_TYPES.registerMySchool,
+          type: ACTION_TYPES.setSession,
           payload: {
-            school: resp.data,
+            session: resp.data,
           }
         });
         return resp;

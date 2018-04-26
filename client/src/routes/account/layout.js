@@ -20,6 +20,8 @@ import {
 import withAuth from 'components/auth/withAuth';
 import style from './style.scss';
 
+const win = typeof window !== 'undefined' ? window : global;
+
 
 class LayoutBasic extends React.Component {
   constructor(props) {
@@ -91,11 +93,14 @@ class LayoutBasic extends React.Component {
                   {/*<DropdownItem divider />*/}
 
                   <DropdownItem tag={RRNavLink} to={'/account/register'}>
-                    Add another school
+                    Add school
                   </DropdownItem>
 
                   <DropdownItem onClick={() => {
-                    signout(() => history.push("/"));
+                    signout(() => {
+                      win.localStorage.removeItem('snippet_session');
+                      history.push("/logged-out");
+                    });
                   }}>
                     Sign out
                   </DropdownItem>

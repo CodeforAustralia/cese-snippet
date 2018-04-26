@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import Bows from 'bows';
 
+import Loading from 'components/loading';
+
 const log = Bows('Schools');
 
 
@@ -18,7 +20,7 @@ class Schools extends React.Component {
     const { isFetching, schools } = this.props;
 
     if (isFetching !== false) {
-      return <p style={{border: '1px solid green'}}>Loading...</p>;
+      return <Loading />
     }
 
     if (isFetching === false) {  // it's ready

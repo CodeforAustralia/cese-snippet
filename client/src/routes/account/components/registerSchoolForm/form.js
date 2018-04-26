@@ -6,7 +6,7 @@ import {
   Form,
   FormGroup,
   Button,
-  Label
+  Col,
 } from 'reactstrap';
 import FieldSelect from "components/fieldSelect";
 
@@ -14,34 +14,42 @@ const log = Bows('Form');
 
 
 class RegistrationForm extends React.Component {
+
   componentDidMount() {
-    this.props.fetchSchoolsList();
+    if (!this.props.schoolsListOptions.length) {
+      this.props.fetchSchoolsList();
+    }
   }
+
   render() {
     const {
       errors,
       handleSubmit,
       values,
       touched,
+      isSubmitting,
 
       schoolsListOptions,
     } = this.props;
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label>Select your school</Label>
-          <FieldSelect name="code"
-                       value={values.code}
-                       options={schoolsListOptions}
-                       disabled={!schoolsListOptions.length}
-                       onChange={this.props.setFieldValue}
-                       onBlur={this.props.setFieldTouched}
-                       invalid={errors.code}
-                       touched={touched.code}
-          />
+        <FormGroup row>
+          <Col md={{size: 10}}>
+            <FieldSelect name="code"
+                         value={values.code}
+                         options={schoolsListOptions}
+                         disabled={!schoolsListOptions.length}
+                         onChange={this.props.setFieldValue}
+                         onBlur={this.props.setFieldTouched}
+                         invalid={errors.code}
+                         touched={touched.code}
+            />
+          </Col>
         </FormGroup>
-        <Button type="submit">Register</Button>
+        <Button type="submit" color="primary" disabled={isSubmitting}>
+          {isSubmitting ? 'Registering...' : 'Register'}
+        </Button>
       </Form>
     )
   }
@@ -50,24 +58,28 @@ class RegistrationForm extends React.Component {
 
 export default withFormik({
   displayName: 'RegisterForm',
+
   validate: (values, props) => {
     const errors = {};
     return errors;
   },
+
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
 
-    const payload = {
-      code: values.code,
-    };
+    const { code } = values;
 
-    log('Submitting values:', payload);
+    const newSession = {...props.session};
+    newSession.schools.push(code);
 
-    return props.onSubmit(payload).then(
+
+    log('Submitting payload:', newSession);
+
+    return props.onSubmit(newSession).then(
       (resp) => {
         setSubmitting(false);
         if (props.onSubmitSuccess) {
           if (resp && resp.data) {
-            return props.onSubmitSuccess(resp.data);
+            return props.onSubmitSuccess(code);
           } else {
             debugger; // todo
           }

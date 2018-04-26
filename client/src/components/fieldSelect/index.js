@@ -17,12 +17,18 @@ class FieldSelect extends React.Component {
   }
 
   handleChange(option) {
+    if (this.props.disabled) {
+      return;
+    }
     log(`Selected: ${JSON.stringify(option)}`);
     // // manually update values.category
     this.props.onChange(this.props.name, option ? option.value : null);
   }
 
   handleBlur() {
+    if (this.props.disabled) {
+      return;
+    }
     // manually update touched.category
     this.props.onBlur(this.props.name, true);
   }
@@ -30,13 +36,12 @@ class FieldSelect extends React.Component {
   render() {
     const { options, value,
       // invalid = {}, touched = {},
-      name, disabled = false, clearable = true, multi = false, placeholder = null } = this.props;
+      name, disabled = false, clearable = true, placeholder = null } = this.props;
     return (
       <Select
         id={name}
         name={name}
         clearable={clearable}
-        multi={multi}
         disabled={disabled}
         options={options}
         onChange={this.handleChange}
@@ -47,13 +52,18 @@ class FieldSelect extends React.Component {
   }
 }
 
-// todo - invalid
-
-// todo
 FieldSelect.propTypes = {
   name: PropTypes.string.isRequired,
-  // value: PropTypes.string,
-  // disabled: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    // value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+    // label: PropTypes.string,
+  })).isRequired,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  // value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+  clearable: PropTypes.bool,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default FieldSelect;

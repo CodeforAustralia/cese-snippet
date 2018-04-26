@@ -53,6 +53,11 @@ export const updateFilter = (data, {filterKey}) => {
 };
 
 
+export const fetchProgram = (programId) => {
+  return fetchFromApi(`/programs/${programId}`);
+};
+
+
 /**
  * @param filterProps {Object} can be any filter, not just 'code' and 'year'
  */

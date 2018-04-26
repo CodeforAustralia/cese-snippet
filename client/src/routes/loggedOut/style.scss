@@ -1,0 +1,32 @@
+@import '~style/helpers.scss';
+
+.loggedOutContainer {
+  margin-top: 20px;
+  @include sm() {
+    margin-top: 60px;
+  }
+}
+
+.headlineContainer,
+.feedbackContainer,
+.goHomeContainer {
+}
+
+.headlineContainer,
+.feedbackContainer {
+  margin-bottom: 2em;
+}
+
+.headlineContainer {
+  //margin-bottom: 4em;
+}
+
+.feedbackContainer {
+  border: 1px solid $gray-400;
+  border-radius: .5em;
+  padding: 1.4em;
+  //background: $brand-concrete;
+}
+
+.goHomeContainer {
+}

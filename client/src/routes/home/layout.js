@@ -12,7 +12,7 @@ const Layout = ({containerClassName, children}) => (
   <div className={cx(containerClassName, style.layout)}>
 
     <Navbar color="transparent" className={style.navbar}>
-      <NavbarBrand to="/" className={style.navbarBrand}>Snippet<Badge color="light" pill className={style.alphaBadge}>ALPHA</Badge></NavbarBrand>
+      <NavbarBrand href="/" className={style.navbarBrand}>Snippet<Badge color="light" pill className={style.alphaBadge}>ALPHA</Badge></NavbarBrand>
     </Navbar>
 
     {children}

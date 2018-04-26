@@ -4,6 +4,7 @@ import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchools,
 } from "store/schools/selectors";
+import { selectSession } from "store/session/selectors";
 import {
   selectProgramsByFilterKey,
   selectIsFetching as selectIsFetchingPrograms,
@@ -17,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   const filterProps = { code, year };
 
   return {
+    session: selectSession(state),
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),
     isFetchingPrograms: selectIsFetchingPrograms(state),

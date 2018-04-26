@@ -30,3 +30,8 @@ export const getCreateProgramUrl = (initialFormState = {}) => {
     }
   }
 };
+
+
+export const getProgramUrl = (programId) => ({
+  pathname: `/account/programs/${programId}`,
+});

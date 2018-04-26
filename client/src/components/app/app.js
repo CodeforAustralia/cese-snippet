@@ -5,7 +5,9 @@ import AuthProvider from 'components/auth/authProvider';
 import PrivateRoute from 'components/auth/privateRoute';
 import Home from 'routes/home';
 import Login from 'routes/login';
+import LoggedOut from 'routes/loggedOut';
 import Account from 'routes/account';
+import Feedback from 'routes/feedback';
 import TopBanner from 'components/topBanner';
 
 const NoMatch = ({ location }) => (
@@ -24,6 +26,8 @@ const App = ({ session }) => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/logged-out" component={LoggedOut} />
+          <Route path="/feedback" component={Feedback} />
           <PrivateRoute path="/account" component={Account} />
           <Route component={NoMatch} />
         </Switch>

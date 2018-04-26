@@ -1,5 +1,8 @@
 import React from 'react';
-import { Link as RRLink } from 'react-router-dom';
+import {
+  Link as RRLink,
+  NavLink as RRNavLink,
+} from 'react-router-dom';
 import {
   Button,
   Badge,
@@ -7,7 +10,10 @@ import {
 import cx from 'classnames';
 import isThisMinute from 'date-fns/is_this_minute';
 
-import { getCreateProgramModalUrl } from 'helpers/url';
+import {
+  getCreateProgramModalUrl,
+  getProgramUrl,
+} from "helpers/url";
 import style from './style.scss';
 
 
@@ -15,7 +21,7 @@ const EmptyItem = ({ activeYear }) => {
   return (
     <section className={style.emptyProgram}>
       <img src="https://via.placeholder.com/115x115?text=" className={style.emptyProgramIcon} alt="" />
-      <h1 className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for {activeYear}</h1>
+      <h1 className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for <span className="text-secondary">{activeYear}</span></h1>
       <p className={cx('h5 mb-4', style.emptyProgamSubTitle)}>If you know details of a Program, it's easy to create one</p>
       <Button color="primary" size="lg" to={getCreateProgramModalUrl({year: activeYear})} className="mb-4" tag={RRLink}>Add a New Program</Button>
       <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.</p>
@@ -36,7 +42,7 @@ const ProgramItem = ({ program }) => {
           <Badge color="info" pill>Active</Badge>
         </div>
 
-        <h1 className="h5 font-weight-bold">{program.name}</h1>
+        <h1 className="h5 font-weight-bold"><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></h1>
 
         <p className={style.programUpdatedAt}>Last updated: {program.updatedAt}</p>
 
