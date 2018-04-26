@@ -24,6 +24,7 @@ class Program extends React.Component {
       <div>
         <p><Link to="/account">{`< Programs`}</Link></p>
         <h1>School program {program.id}</h1>
+        <code>{JSON.stringify(program)}</code>
       </div>
     )
   }

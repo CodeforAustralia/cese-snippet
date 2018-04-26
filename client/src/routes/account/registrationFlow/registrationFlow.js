@@ -33,7 +33,7 @@ class RegistrationFlow extends React.Component {
     return (
       <Row>
         <Col md={{size: 6, offset: 3}}>
-          <Link to="/account">{`< Back`}</Link>
+          <Link to="/account">{`< Programs`}</Link>
           <br />
           <br />
           <h1>Your schools</h1>

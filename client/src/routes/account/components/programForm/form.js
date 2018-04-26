@@ -168,6 +168,7 @@ class ProgramForm extends React.Component {
     return (
       <Row>
         <Col md={{size:9}}>
+
           <Form noValidate={true} onSubmit={handleSubmit}>
             {isEdit &&
             <FieldTextInput name="id" disabled={true} hidden />
@@ -176,6 +177,7 @@ class ProgramForm extends React.Component {
               <FieldTextInput name="updatedBy" disabled={true} hidden /> :
               <FieldTextInput name="createdBy" disabled={true} hidden />
             }
+
 
             <FormGroup row>
               <Col md={8}>
@@ -192,6 +194,7 @@ class ProgramForm extends React.Component {
                 {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
               </Col>
             </FormGroup>
+
 
             <FormGroup row>
               <Col md={8}>
@@ -262,6 +265,7 @@ class ProgramForm extends React.Component {
                 {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
               </Col>
             </FormGroup>
+
 
             <FormGroup row>
               <Col md={8}>
