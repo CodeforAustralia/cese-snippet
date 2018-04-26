@@ -27,6 +27,8 @@ import FieldCheckboxList from 'components/fieldCheckboxList';
 import FieldCode from './../fieldCode';
 import FieldName from './../fieldName';
 
+import style from './style.scss';
+
 
 const log = Bows('Form');
 
@@ -169,7 +171,7 @@ class ProgramForm extends React.Component {
       <Row>
         <Col md={{size:9}}>
 
-          <Form noValidate={true} onSubmit={handleSubmit}>
+          <Form noValidate={true} onSubmit={handleSubmit} className={style.programForm}>
             {isEdit &&
             <FieldTextInput name="id" disabled={true} hidden />
             }
@@ -178,262 +180,285 @@ class ProgramForm extends React.Component {
               <FieldTextInput name="createdBy" disabled={true} hidden />
             }
 
+            <fieldset className={style.fieldset}>
+              <legend>What is the program and when did it happen?</legend>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="code">School</Label>
-                <FieldCode name="code"
-                           id="code"
-                           disabled={isEdit}
-                           options={codeOptions}
-                           value={values.code}
-                           onChange={this.props.setFieldValue}
-                           onBlur={this.props.setFieldTouched}
-                           touched={touched.code}
-                           invalid={errors.code}/>
-                {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
-              </Col>
-            </FormGroup>
-
-
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="name">Program name</Label>
-                <FieldName name="name"
-                           options={programTemplateOptions}
-                           value={values.name}
-                           onChange={this.props.setFieldValue}
-                           onBlur={this.props.setFieldTouched}
-                           touched={touched.staff}
-                           invalid={errors.staff} />
-              </Col>
-            </FormGroup>
-
-            {!touched.category && selectedProgramTemplateOption ?
-              !prefilledProgramTemplateId ?
-                <div>
-                  <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
-                    <br/>
-                    <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
-                </div> :
-                null :
-              null
-            }
-
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="category">Program Focus Area</Label>
-                <FieldRadioBtnList name="category"
-                                   value={values.category}
-                                   options={level1CategoryOptions}
-                                   onChange={setFieldValue}
-                                   onBlur={setFieldTouched}
-                                   invalid={errors.category}
-                                   vertical={true}
-                />
-                {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Col md={8}>
-                <Label>For Year Levels</Label>
-                <FieldCheckboxList name="yearLevels"
-                                   value={values.yearLevels}
-                                   options={yearLevelsOptions}
-                />
-                {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
-                <FormText color="muted">
-                  Which year levels are participating in this program?
-                </FormText>
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="subCategory">Program Category</Label>
-                <FieldSelect name="subCategory"
-                             clearable={false}
-                             options={level2CategoryOptions}
-                             disabled={typeof values.category === 'undefined'}
-                             value={values.subCategory}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             placeholder="First select a Program Focus Area"
-                             touched={touched.subCategory}
-                             invalid={errors.subCategory}/>
-                {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
-              </Col>
-            </FormGroup>
-
-
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="aims">Aims</Label>
-                <FieldTextareaInput name="aims" />
-                <FormText color="muted">
-                  Briefly describe what outcomes the program hopes to achieve.
-                </FormText>
-              </Col>
-            </FormGroup>
-
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="description">Program overview</Label>
-                <FieldTextareaInput name="description" />
-                <FormText color="muted">
-                  What does the program does in a nutshell?
-                </FormText>
-              </Col>
-            </FormGroup>
-
-            {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add a longer description?</Button></p>}
-
-            {values.descriptionFull || showDescriptionFull === true ?
               <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="descriptionFull">Detailed description</Label>
-                  <FieldTextareaInput name="descriptionFull" rows={6} />
+                  <Label htmlFor="code">School</Label>
+                  <FieldCode name="code"
+                             id="code"
+                             disabled={isEdit}
+                             options={codeOptions}
+                             value={values.code}
+                             onChange={this.props.setFieldValue}
+                             onBlur={this.props.setFieldTouched}
+                             touched={touched.code}
+                             invalid={errors.code}/>
+                  {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="name">Program name</Label>
+                  <FieldName name="name"
+                             options={programTemplateOptions}
+                             value={values.name}
+                             onChange={this.props.setFieldValue}
+                             onBlur={this.props.setFieldTouched}
+                             touched={touched.staff}
+                             invalid={errors.staff} />
+                </Col>
+              </FormGroup>
+
+              {!touched.category && selectedProgramTemplateOption ?
+                !prefilledProgramTemplateId ?
+                  <Col md={{size:8}}>
+                    <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
+                      <br/>
+                      <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
+                  </Col> :
+                  null :
+                null
+              }
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="participantGroups">Who is the program for?</Label>
+                  <FieldCheckboxList name="participantGroups"
+                                     value={values.participantGroups}
+                                     options={participantGroupsOptions}
+                  />
+                  {touched.participantGroups && errors.participantGroups &&
+                  <FormFeedback>{errors.participantGroups}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
+                  <FieldTextInput name="participantGroupsDescription" />
                   <FormText color="muted">
-                    A comprehensive full length description of the program. Describe the structure of the program, and how
-                    it is delivered.
+                    Example: Partner schools students, charities, aged care residents
                   </FormText>
                 </Col>
-              </FormGroup> : null}
+              </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="website">Website</Label>
-                <FieldUrlInput name="website" />
-                <FormText color="muted">
-                  Some programs have a website for more information.
-                </FormText>
-              </Col>
-            </FormGroup>
+              <FormGroup row>
+                <Col md={8}>
+                  <Label>Does the program cater to a particular focus group?</Label>
+                  <FieldRadioBtnList name="focusGroup"
+                                     value={values.focusGroup}
+                                     options={focusGroupOptions}
+                                     onChange={setFieldValue}
+                                     onBlur={setFieldTouched}
+                                     invalid={errors.focusGroup}
+                                     vertical={true}
+                  />
+                </Col>
+              </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="participantGroups">Who is the program for?</Label>
-                <FieldCheckboxList name="participantGroups"
-                                   value={values.participantGroups}
-                                   options={participantGroupsOptions}
-                />
-                {touched.participantGroups && errors.participantGroups &&
-                <FormFeedback>{errors.participantGroups}</FormFeedback>}
-              </Col>
-            </FormGroup>
+              {values.focusGroup === 'Other' &&
+              <FormGroup row>
+                <Col md={8}>
+                  <FieldTextInput name="focusGroupOther" />
+                </Col>
+              </FormGroup>
+              }
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-                <FieldTextInput name="participantGroupsDescription" />
-                <FormText color="muted">
-                  Example: Partner schools students, charities, aged care residents
-                </FormText>
-              </Col>
-            </FormGroup>
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="cohortSize">Number of Participants</Label>
+                  <FieldNumberInput name="cohortSize" min={1} max={3000} />
+                  <FormText color="muted">
+                    How many people participated in this program?
+                  </FormText>
+                </Col>
+              </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label>Does the program cater to a particular focus group?</Label>
-                <FieldRadioBtnList name="focusGroup"
-                                   value={values.focusGroup}
-                                   options={focusGroupOptions}
-                                   onChange={setFieldValue}
-                                   onBlur={setFieldTouched}
-                                   invalid={errors.focusGroup}
-                                   vertical={true}
-                />
-              </Col>
-            </FormGroup>
+              <FormGroup row>
+                <Col md={8}>
+                  <Label>For Year Levels</Label>
+                  <FieldCheckboxList name="yearLevels"
+                                     value={values.yearLevels}
+                                     options={yearLevelsOptions}
+                  />
+                  {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+                  <FormText color="muted">
+                    Which year levels are participating in this program?
+                  </FormText>
+                </Col>
+              </FormGroup>
 
-            {values.focusGroup === 'Other' &&
-            <FormGroup row>
-              <Col md={8}>
-                <FieldTextInput name="focusGroupOther" />
-              </Col>
-            </FormGroup>
-            }
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="subCategory">Program Category</Label>
+                  <FieldSelect name="subCategory"
+                               clearable={false}
+                               options={level2CategoryOptions}
+                               disabled={typeof values.category === 'undefined'}
+                               value={values.subCategory}
+                               onChange={this.props.setFieldValue}
+                               onBlur={this.props.setFieldTouched}
+                               placeholder="First select a Program Focus Area"
+                               touched={touched.subCategory}
+                               invalid={errors.subCategory}/>
+                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
+                </Col>
+              </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="cohortSize">Number of Participants</Label>
-                <FieldNumberInput name="cohortSize" min={1} max={3000} />
-                <FormText color="muted">
-                  How many people participated in this program?
-                </FormText>
-              </Col>
-            </FormGroup>
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="terms">Terms delivered</Label>
+                  <FieldCheckboxList name="terms"
+                                     value={values.yearLevels}
+                                     options={termsOptions}
+                  />
+                </Col>
+              </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label>Provider</Label>
-                <FieldRadioBtnList options={deliveredByTypeOptions}
-                                   name="deliveredByType"
-                                   value={values.deliveredByType}
-                                   onChange={setFieldValue}
-                                   onBlur={setFieldTouched}
-                                   vertical={true}
-                />
-                <FormText color="muted">
-                  Is the program run by school staff or another provider?
-                </FormText>
-              </Col>
-            </FormGroup>
+              <FormGroup hidden>
+                <Label htmlFor="year">Year delivered</Label>
+                <FieldTextInput name="year" />
+              </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-                <FieldTextInput name="externalProvider" />
-              </Col>
-            </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="staff">Staff involved</Label>
-                <FieldSelectTags name="staff"
-                                 options={staffOptions}
-                                 value={values.staff}
-                                 onChange={this.props.setFieldValue}
-                                 onBlur={this.props.setFieldTouched}
-                                 touched={touched.staff}
-                                 invalid={errors.staff}/>
-                <FormText color="muted">
-                  Who are the staff members involved in organising or facilitating the program?
-                </FormText>
-              </Col>
-            </FormGroup>
+            </fieldset>
 
-            <FormGroup hidden>
-              <Label htmlFor="year">Year delivered</Label>
-              <FieldTextInput name="year" />
-            </FormGroup>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="terms">Terms delivered</Label>
-                <FieldCheckboxList name="terms"
-                                   value={values.yearLevels}
-                                   options={termsOptions}
-                />
-              </Col>
-            </FormGroup>
+            <fieldset className={style.fieldset}>
+              <legend>Why did the program happen?</legend>
 
-            <FormGroup row>
-              <Col md={8}>
-                <Label htmlFor="tags">Keywords</Label>
-                <FieldSelectTags name="tags"
-                                 options={tagsOptions}
-                                 value={values.tags}
-                                 onChange={this.props.setFieldValue}
-                                 onBlur={this.props.setFieldTouched}
-                                 touched={touched.tags}
-                                 invalid={errors.tags} />
-                <FormText color="muted">
-                  Keywords could help others to search for programs like this one in the future.
-                </FormText>
-              </Col>
-            </FormGroup>
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="category">Program Focus Area</Label>
+                  <FieldRadioBtnList name="category"
+                                     value={values.category}
+                                     options={level1CategoryOptions}
+                                     onChange={setFieldValue}
+                                     onBlur={setFieldTouched}
+                                     invalid={errors.category}
+                                     vertical={true}
+                  />
+                  {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="aims">Aims</Label>
+                  <FieldTextareaInput name="aims" />
+                  <FormText color="muted">
+                    Briefly describe what outcomes the program hopes to achieve.
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="description">Program overview</Label>
+                  <FieldTextareaInput name="description" />
+                  <FormText color="muted">
+                    What does the program does in a nutshell?
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+              {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add a longer description?</Button></p>}
+
+              {values.descriptionFull || showDescriptionFull === true ?
+                <FormGroup row>
+                  <Col md={8}>
+                    <Label htmlFor="descriptionFull">Detailed description</Label>
+                    <FieldTextareaInput name="descriptionFull" rows={6} />
+                    <FormText color="muted">
+                      A comprehensive full length description of the program. Describe the structure of the program, and how
+                      it is delivered.
+                    </FormText>
+                  </Col>
+                </FormGroup> : null}
+
+            </fieldset>
+
+
+            <fieldset className={style.fieldset}>
+              <legend>Who and how?</legend>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="staff">Staff involved</Label>
+                  <FieldSelectTags name="staff"
+                                   options={staffOptions}
+                                   value={values.staff}
+                                   onChange={this.props.setFieldValue}
+                                   onBlur={this.props.setFieldTouched}
+                                   touched={touched.staff}
+                                   invalid={errors.staff}/>
+                  <FormText color="muted">
+                    Who are the staff members involved in organising or facilitating the program?
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label>Provider</Label>
+                  <FieldRadioBtnList options={deliveredByTypeOptions}
+                                     name="deliveredByType"
+                                     value={values.deliveredByType}
+                                     onChange={setFieldValue}
+                                     onBlur={setFieldTouched}
+                                     vertical={true}
+                  />
+                  <FormText color="muted">
+                    Is the program run by school staff or another provider?
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="externalProvider">Who is the External Provider?</Label>
+                  <FieldTextInput name="externalProvider" />
+                </Col>
+              </FormGroup>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="website">Website</Label>
+                  <FieldUrlInput name="website" />
+                  <FormText color="muted">
+                    Some programs have a website for more information.
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+            </fieldset>
+
+
+            <fieldset className={style.fieldset}>
+              <legend>Meta data</legend>
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="tags">Keywords</Label>
+                  <FieldSelectTags name="tags"
+                                   options={tagsOptions}
+                                   value={values.tags}
+                                   onChange={this.props.setFieldValue}
+                                   onBlur={this.props.setFieldTouched}
+                                   touched={touched.tags}
+                                   invalid={errors.tags} />
+                  <FormText color="muted">
+                    Keywords could help others to search for programs like this one in the future.
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+            </fieldset>
+
+
 
             <Col md={8}>
               <Link to="account">Cancel</Link>
