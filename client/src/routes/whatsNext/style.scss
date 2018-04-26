@@ -1,0 +1,18 @@
+@import '~style/helpers';
+
+.whatsNextContainer {
+  margin-top: 20px;
+  @include sm() {
+    margin-top: 60px;
+  }
+}
+
+.headline {
+  margin-bottom: 2em;
+}
+
+.whatsNextList {
+  li {
+    margin-bottom: 1em;
+  }
+}

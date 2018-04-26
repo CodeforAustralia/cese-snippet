@@ -78,7 +78,8 @@
 }
 
 .howtoBand,
-.featureBanner {
+.featureBanner,
+.snippetBetaBand {
   padding-top: 2em;
   padding-bottom: 2em;
 }
@@ -132,9 +133,17 @@
   flex: 1;
 }
 
+.snippetBetaBand.snippetBetaBand {
+  text-align: center;
+
+  p {
+    margin-bottom: 0;
+  }
+}
 
 .footerBand {
   background: #e0e0e0;
   padding-top: 2em;
   padding-bottom: 2em;
 }
+

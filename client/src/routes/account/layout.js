@@ -81,20 +81,11 @@ class LayoutBasic extends React.Component {
 
                 <DropdownMenu right>
 
-                  {/*{schools && schools.length ?*/}
-                    {/*schools.map((school, idx) => (*/}
-                      {/*<DropdownItem tag={RRNavLink} to={getSchoolProgramsUrl(school.code, '2018')}>*/}
-                        {/*{school.name}*/}
-                      {/*</DropdownItem>*/}
-                    {/*)) :*/}
-                    {/*null*/}
-                  {/*}*/}
-
-                  {/*<DropdownItem divider />*/}
-
                   <DropdownItem tag={RRNavLink} to={'/account/register'}>
-                    Add school
+                    Add another school
                   </DropdownItem>
+
+                  <DropdownItem divider />
 
                   <DropdownItem onClick={() => {
                     signout(() => {
