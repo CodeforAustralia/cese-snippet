@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 // import registerServiceWorker from './registerServiceWorker';
 import "style/vendor/bootstrap.global.scss";
-import "repaintless/repaintless-css/repaintless.css"
+// import "repaintless/repaintless-css/repaintless.css"
 
 import App from 'components/app';
 import configureStore from 'store/configureStore';

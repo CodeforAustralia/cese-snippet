@@ -8,7 +8,7 @@ import {
   FormFeedback,
   Col,
   Row,
-  Alert,
+  Alert
 } from 'reactstrap';
 import { withFormik } from 'formik';
 import Bows from 'bows';
@@ -29,17 +29,15 @@ import FieldName from './../fieldName';
 
 import style from './style.scss';
 
-
 const log = Bows('Form');
 
 class ProgramForm extends React.Component {
-
   constructor(props) {
     super(props);
     this.handlePrefill = this.handlePrefill.bind(this);
     this.state = {
       showDescriptionFull: false,
-      prefilledProgramTemplateId: null,
+      prefilledProgramTemplateId: null
     };
   }
 
@@ -53,7 +51,7 @@ class ProgramForm extends React.Component {
   handlePrefill(programTemplateId) {
     const {
       selectProgramTemplate,
-      setValues,  // formik
+      setValues // formik
       // validateForm,
     } = this.props;
     const programTemplate = selectProgramTemplate(programTemplateId);
@@ -82,15 +80,11 @@ class ProgramForm extends React.Component {
       // todo
     }
 
-    this.setState({prefilledProgramTemplateId: programTemplateId});
+    this.setState({ prefilledProgramTemplateId: programTemplateId });
   }
 
   render() {
-    const {
-      showDescriptionFull,
-      prefilledProgramTemplateId,
-    } = this.state;
-
+    const { showDescriptionFull, prefilledProgramTemplateId } = this.state;
     const {
       values,
       errors,
@@ -107,43 +101,49 @@ class ProgramForm extends React.Component {
       // getYearLevelsOptions,
       codeOptions,
       year,
+
       getTermsOptions,
       isFetchingProgramTemplates,
-      programTemplates,
+      programTemplates
     } = this.props;
 
     log('values:', values);
 
     if (!codeOptions.length) {
-      return <Loading />
+      return <Loading />;
     }
 
     if (isFetchingProgramTemplates !== false) {
-      return <Loading />
+      return <Loading />;
     }
 
-    const getLevel1Cats = () => staticData.categories.map(level1 => {
-      // return {value: level1.value, label: level1.label};
-      return {value: level1.label, label: level1.label};
-    });
+    const getLevel1Cats = () =>
+      staticData.categories.map(level1 => {
+        // return {value: level1.value, label: level1.label};
+        return { value: level1.label, label: level1.label };
+      });
 
-    const getLevel2Cats = (level1Value) => {
-      const level1Cat = staticData.categories.find(level1 => level1.value === level1Value);
+    const getLevel2Cats = level1Value => {
+      const level1Cat = staticData.categories.find(
+        level1 => level1.value === level1Value
+      );
       if (!level1Cat) {
         return [];
       }
       return level1Cat.categories.map(level2 => {
         // return {value: level2.value, label: level2.label};
-        return {value: level2.label, label: level2.label};
+        return { value: level2.label, label: level2.label };
       });
     };
 
-    const getStaffOptions = () => staticData.staffList.map((staff) => (
-      {value: staff.id, label: staff.email}
-    ));
+    const getStaffOptions = () =>
+      staticData.staffList.map(staff => ({
+        value: staff.id,
+        label: staff.email
+      }));
 
-    const getProgramTemplateOptions = () => programTemplates.map(p => ({ value: p.id, label: p.name }));
-
+    const getProgramTemplateOptions = () =>
+      programTemplates.map(p => ({ value: p.id, label: p.name }));
     const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
     const participantGroupsOptions = staticData.participantGroups;
     const focusGroupOptions = staticData.focusGroup;
@@ -158,7 +158,9 @@ class ProgramForm extends React.Component {
 
     const getSelectedProgramTemplateOption = () => {
       if (touched.name && values.name) {
-        const matched = programTemplateOptions.find(p => p.value === values.name);
+        const matched = programTemplateOptions.find(
+          p => p.value === values.name
+        );
         if (matched) {
           return matched;
         }
@@ -169,16 +171,18 @@ class ProgramForm extends React.Component {
 
     return (
       <Row>
-        <Col md={{size:9}}>
-
-          <Form noValidate={true} onSubmit={handleSubmit} className={style.programForm}>
-            {isEdit &&
-            <FieldTextInput name="id" disabled={true} hidden />
-            }
-            {isEdit ?
-              <FieldTextInput name="updatedBy" disabled={true} hidden /> :
+        <Col md={{ size: 9 }}>
+          <Form
+            noValidate={true}
+            onSubmit={handleSubmit}
+            className={style.programForm}
+          >
+            {isEdit && <FieldTextInput name="id" disabled={true} hidden />}
+            {isEdit ? (
+              <FieldTextInput name="updatedBy" disabled={true} hidden />
+            ) : (
               <FieldTextInput name="createdBy" disabled={true} hidden />
-            }
+            )}
 
             <fieldset className={style.fieldset}>
               <legend>What is the program and when did it happen?</legend>
@@ -186,86 +190,114 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="code">School</Label>
-                  <FieldCode name="code"
-                             id="code"
-                             disabled={isEdit}
-                             options={codeOptions}
-                             value={values.code}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             touched={touched.code}
-                             invalid={errors.code}/>
-                  {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
+                  <FieldCode
+                    name="code"
+                    id="code"
+                    disabled={isEdit}
+                    options={codeOptions}
+                    value={values.code}
+                    onChange={this.props.setFieldValue}
+                    onBlur={this.props.setFieldTouched}
+                    touched={touched.code}
+                    invalid={errors.code}
+                  />
+                  {errors.code &&
+                    touched.code && <FormFeedback>{errors.code}</FormFeedback>}
                 </Col>
               </FormGroup>
 
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="name">Program name</Label>
-                  <FieldName name="name"
-                             options={programTemplateOptions}
-                             value={values.name}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             touched={touched.staff}
-                             invalid={errors.staff} />
-                </Col>
-              </FormGroup>
-
-              {!touched.category && selectedProgramTemplateOption ?
-                !prefilledProgramTemplateId ?
-                  <Col md={{size:8}}>
-                    <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
-                      <br/>
-                      <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
-                  </Col> :
-                  null :
-                null
-              }
-
-              <FormGroup row>
-                <Col md={8}>
-                  <Label htmlFor="participantGroups">Who is the program for?</Label>
-                  <FieldCheckboxList name="participantGroups"
-                                     value={values.participantGroups}
-                                     options={participantGroupsOptions}
+                  <FieldName
+                    name="name"
+                    options={programTemplateOptions}
+                    value={values.name}
+                    onChange={this.props.setFieldValue}
+                    onBlur={this.props.setFieldTouched}
+                    touched={touched.staff}
+                    invalid={errors.staff}
                   />
-                  {touched.participantGroups && errors.participantGroups &&
-                  <FormFeedback>{errors.participantGroups}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+              {!touched.category && selectedProgramTemplateOption ? (
+                !prefilledProgramTemplateId ? (
+                  <Col md={{ size: 8 }}>
+                    <Alert color="info">
+                      Would you like to prefill this form with known information
+                      for "{selectedProgramTemplateOption.label}"?
+                      <br />
+                      <Button
+                        color="link"
+                        className="alert-link"
+                        onClick={() =>
+                          this.handlePrefill(
+                            selectedProgramTemplateOption.value
+                          )
+                        }
+                      >
+                        Yes please, prefill.
+                      </Button>
+                    </Alert>
+                  </Col>
+                ) : null
+              ) : null}
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="participantGroups">
+                    Who is the program for?
+                  </Label>
+                  <FieldCheckboxList
+                    name="participantGroups"
+                    value={values.participantGroups}
+                    options={participantGroupsOptions}
+                  />
+                  {touched.participantGroups &&
+                    errors.participantGroups && (
+                      <FormFeedback>{errors.participantGroups}</FormFeedback>
+                    )}
                 </Col>
               </FormGroup>
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
+                  <Label htmlFor="participantGroupsDescription">
+                    Who in the community?
+                  </Label>
                   <FieldTextInput name="participantGroupsDescription" />
                   <FormText color="muted">
-                    Example: Partner schools students, charities, aged care residents
+                    Example: Partner schools students, charities, aged care
+                    residents
                   </FormText>
                 </Col>
               </FormGroup>
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label>Does the program cater to a particular focus group?</Label>
-                  <FieldRadioBtnList name="focusGroup"
-                                     value={values.focusGroup}
-                                     options={focusGroupOptions}
-                                     onChange={setFieldValue}
-                                     onBlur={setFieldTouched}
-                                     invalid={errors.focusGroup}
-                                     vertical={true}
+                  <Label>
+                    Does the program cater to a particular focus group?
+                  </Label>
+                  <FieldRadioBtnList
+                    name="focusGroup"
+                    value={values.focusGroup}
+                    options={focusGroupOptions}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    invalid={errors.focusGroup}
+                    vertical={true}
                   />
                 </Col>
               </FormGroup>
 
-              {values.focusGroup === 'Other' &&
-              <FormGroup row>
-                <Col md={8}>
-                  <FieldTextInput name="focusGroupOther" />
-                </Col>
-              </FormGroup>
-              }
+              {values.focusGroup === 'Other' && (
+                <FormGroup row>
+                  <Col md={8}>
+                    <FieldTextInput name="focusGroupOther" />
+                  </Col>
+                </FormGroup>
+              )}
 
               <FormGroup row>
                 <Col md={8}>
@@ -280,11 +312,25 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>For Year Levels</Label>
-                  <FieldCheckboxList name="yearLevels"
-                                     value={values.yearLevels}
-                                     options={yearLevelsOptions}
+                  <FieldCheckboxList
+                    name="yearLevels"
+                    value={values.yearLevels}
+                    options={yearLevelsOptions}
                   />
-                  {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+                  <input
+                    type="checkbox"
+                    onClick={event => {
+                      const selectAll = ['Kindergarten','1','2','3','4','5','6','7','8','9','10','11','12'];
+                      event.target.checked
+                        ? setFieldValue('yearLevels', selectAll)
+                        : setFieldValue('yearLevels', []);
+                    }}
+                  />
+                  <Label>Select all years</Label>
+                  {touched.yearLevels &&
+                    errors.yearLevels && (
+                      <FormFeedback>{errors.yearLevels}</FormFeedback>
+                    )}
                   <FormText color="muted">
                     Which year levels are participating in this program?
                   </FormText>
@@ -294,26 +340,32 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="subCategory">Program Category</Label>
-                  <FieldSelect name="subCategory"
-                               clearable={false}
-                               options={level2CategoryOptions}
-                               disabled={typeof values.category === 'undefined'}
-                               value={values.subCategory}
-                               onChange={this.props.setFieldValue}
-                               onBlur={this.props.setFieldTouched}
-                               placeholder="First select a Program Focus Area"
-                               touched={touched.subCategory}
-                               invalid={errors.subCategory}/>
-                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
+                  <FieldSelect
+                    name="subCategory"
+                    clearable={false}
+                    options={level2CategoryOptions}
+                    disabled={typeof values.category === 'undefined'}
+                    value={values.subCategory}
+                    onChange={this.props.setFieldValue}
+                    onBlur={this.props.setFieldTouched}
+                    placeholder="First select a Program Focus Area"
+                    touched={touched.subCategory}
+                    invalid={errors.subCategory}
+                  />
+                  {!!errors.subCategory &&
+                    touched.subCategory && (
+                      <FormFeedback>{errors.subCategory}</FormFeedback>
+                    )}
                 </Col>
               </FormGroup>
 
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="terms">Terms delivered</Label>
-                  <FieldCheckboxList name="terms"
-                                     value={values.yearLevels}
-                                     options={termsOptions}
+                  <FieldCheckboxList
+                    name="terms"
+                    value={values.yearLevels}
+                    options={termsOptions}
                   />
                 </Col>
               </FormGroup>
@@ -322,10 +374,7 @@ class ProgramForm extends React.Component {
                 <Label htmlFor="year">Year delivered</Label>
                 <FieldTextInput name="year" />
               </FormGroup>
-
-
             </fieldset>
-
 
             <fieldset className={style.fieldset}>
               <legend>Why did the program happen?</legend>
@@ -333,15 +382,19 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="category">Program Focus Area</Label>
-                  <FieldRadioBtnList name="category"
-                                     value={values.category}
-                                     options={level1CategoryOptions}
-                                     onChange={setFieldValue}
-                                     onBlur={setFieldTouched}
-                                     invalid={errors.category}
-                                     vertical={true}
+                  <FieldRadioBtnList
+                    name="category"
+                    value={values.category}
+                    options={level1CategoryOptions}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    invalid={errors.category}
+                    vertical={true}
                   />
-                  {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+                  {!!errors.category &&
+                    touched.category && (
+                      <FormFeedback>{errors.category}</FormFeedback>
+                    )}
                 </Col>
               </FormGroup>
 
@@ -365,22 +418,36 @@ class ProgramForm extends React.Component {
                 </Col>
               </FormGroup>
 
-              {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add a longer description?</Button></p>}
+              {!values.descriptionFull &&
+                showDescriptionFull === false && (
+                  <p>
+                    <Button
+                      color="link"
+                      onClick={() =>
+                        this.setState({ showDescriptionFull: true })
+                      }
+                    >
+                      Would you like to add a longer description?
+                    </Button>
+                  </p>
+                )}
 
-              {values.descriptionFull || showDescriptionFull === true ?
+              {values.descriptionFull || showDescriptionFull === true ? (
                 <FormGroup row>
                   <Col md={8}>
-                    <Label htmlFor="descriptionFull">Detailed description</Label>
+                    <Label htmlFor="descriptionFull">
+                      Detailed description
+                    </Label>
                     <FieldTextareaInput name="descriptionFull" rows={6} />
                     <FormText color="muted">
-                      A comprehensive full length description of the program. Describe the structure of the program, and how
-                      it is delivered.
+                      A comprehensive full length description of the program.
+                      Describe the structure of the program, and how it is
+                      delivered.
                     </FormText>
                   </Col>
-                </FormGroup> : null}
-
+                </FormGroup>
+              ) : null}
             </fieldset>
-
 
             <fieldset className={style.fieldset}>
               <legend>Who and how?</legend>
@@ -388,15 +455,18 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="staff">Staff involved</Label>
-                  <FieldSelectTags name="staff"
-                                   options={staffOptions}
-                                   value={values.staff}
-                                   onChange={this.props.setFieldValue}
-                                   onBlur={this.props.setFieldTouched}
-                                   touched={touched.staff}
-                                   invalid={errors.staff}/>
+                  <FieldSelectTags
+                    name="staff"
+                    options={staffOptions}
+                    value={values.staff}
+                    onChange={this.props.setFieldValue}
+                    onBlur={this.props.setFieldTouched}
+                    touched={touched.staff}
+                    invalid={errors.staff}
+                  />
                   <FormText color="muted">
-                    Who are the staff members involved in organising or facilitating the program?
+                    Who are the staff members involved in organising or
+                    facilitating the program?
                   </FormText>
                 </Col>
               </FormGroup>
@@ -404,12 +474,13 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Provider</Label>
-                  <FieldRadioBtnList options={deliveredByTypeOptions}
-                                     name="deliveredByType"
-                                     value={values.deliveredByType}
-                                     onChange={setFieldValue}
-                                     onBlur={setFieldTouched}
-                                     vertical={true}
+                  <FieldRadioBtnList
+                    options={deliveredByTypeOptions}
+                    name="deliveredByType"
+                    value={values.deliveredByType}
+                    onChange={setFieldValue}
+                    onBlur={setFieldTouched}
+                    vertical={true}
                   />
                   <FormText color="muted">
                     Is the program run by school staff or another provider?
@@ -419,7 +490,9 @@ class ProgramForm extends React.Component {
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="externalProvider">Who is the External Provider?</Label>
+                  <Label htmlFor="externalProvider">
+                    Who is the External Provider?
+                  </Label>
                   <FieldTextInput name="externalProvider" />
                 </Col>
               </FormGroup>
@@ -433,9 +506,7 @@ class ProgramForm extends React.Component {
                   </FormText>
                 </Col>
               </FormGroup>
-
             </fieldset>
-
 
             <fieldset className={style.fieldset}>
               <legend>Meta data</legend>
@@ -443,50 +514,54 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="tags">Keywords</Label>
-                  <FieldSelectTags name="tags"
-                                   options={tagsOptions}
-                                   value={values.tags}
-                                   onChange={this.props.setFieldValue}
-                                   onBlur={this.props.setFieldTouched}
-                                   touched={touched.tags}
-                                   invalid={errors.tags} />
+                  <FieldSelectTags
+                    name="tags"
+                    options={tagsOptions}
+                    value={values.tags}
+                    onChange={this.props.setFieldValue}
+                    onBlur={this.props.setFieldTouched}
+                    touched={touched.tags}
+                    invalid={errors.tags}
+                  />
                   <FormText color="muted">
-                    Keywords could help others to search for programs like this one in the future.
+                    Keywords could help others to search for programs like this
+                    one in the future.
                   </FormText>
                 </Col>
               </FormGroup>
-
             </fieldset>
-
-
 
             <Col md={8}>
               <Link to="account">Cancel</Link>
-              <Button type="submit" color="primary" size="lg" className="float-right"
-                      disabled={isSubmitting}>
-                {isEdit ?
-                  isSubmitting ? 'Updating...' : 'Update' :
-                  isSubmitting ? 'Adding...' : 'Add'
-                }
+              <Button
+                type="submit"
+                color="primary"
+                size="lg"
+                className="float-right"
+                disabled={isSubmitting}
+              >
+                {isEdit
+                  ? isSubmitting
+                    ? 'Updating...'
+                    : 'Update'
+                  : isSubmitting
+                    ? 'Adding...'
+                    : 'Add'}
               </Button>
             </Col>
-
           </Form>
         </Col>
-        <Col md={{size:3}}>
-          <code>
-            {JSON.stringify(values)}
-          </code>
+        <Col md={{ size: 3 }}>
+          <code>{JSON.stringify(values)}</code>
         </Col>
       </Row>
-    )
-  };
+    );
+  }
 }
-
 
 export default withFormik({
   displayName: 'ProgramForm',
-  mapPropsToValues: (props) => {
+  mapPropsToValues: props => {
     return props.initialFormState;
   },
   validate: (values, props) => {
@@ -497,7 +572,7 @@ export default withFormik({
     log('Submitting values:', values);
 
     return props.onSubmit(values).then(
-      (resp) => {
+      resp => {
         setSubmitting(false);
         if (props.onSubmitSuccess) {
           if (resp && resp.data) {
@@ -509,7 +584,7 @@ export default withFormik({
         }
         return resp;
       },
-      (errors) => {
+      errors => {
         console.log('submission errors', errors);
         debugger;
         return errors;
@@ -517,4 +592,3 @@ export default withFormik({
     );
   }
 })(ProgramForm);
-
