@@ -9,7 +9,9 @@
   border-top: 1px solid $gray-300;
   color: $gray-600;
   font-size: 12px;
-  padding: 6px 0 6px 16px;
+  padding: 6px 16px;
+
+  @include clearfix();
 
   p {
     margin-bottom: 0;
@@ -25,4 +27,13 @@
   &:focus {
     color: darken($brand-primary, .25);
   }
+}
+
+
+.lhs {
+  float: left;
+}
+
+.rhs {
+  float: right;
 }

@@ -54,7 +54,7 @@ class RegistrationFlow extends React.Component {
           <br />
 
           <p>{schools.length ?
-            'Register another school' :
+            'Register another school that you are staff at' :
             'Find your school'
           }</p>
 

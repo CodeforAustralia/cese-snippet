@@ -31,12 +31,8 @@ const HomePage = () => (
           <Col sm={{size: 7}}>
             <div className={style.headline}>
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
-              <h2>School programs happening now</h2>
-              <p className="h4">Easily discover and publish practical knowledge and resources about school programs and initiatives in NSW Public Schools<sup>*</sup>.</p>
-
-
-
-
+              <h2>Snippet</h2>
+              <p className="h4">Helping you share and discover programs in action for NSW Public Schools.<sup>*</sup>.</p>
 
               <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p>
             </div>
@@ -209,6 +205,16 @@ const HomePage = () => (
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
               <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>
             </Form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+
+    <div className={style.snippetBetaBand}>
+      <Container>
+        <Row>
+          <Col>
+            <p>Amazing things are coming! <RRLink to="/whats-next">Find out about Snippet Beta</RRLink>.</p>
           </Col>
         </Row>
       </Container>
