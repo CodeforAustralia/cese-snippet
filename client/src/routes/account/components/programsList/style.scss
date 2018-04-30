@@ -74,70 +74,70 @@
   animation-name: new-card-animation;
 }
 
-.programLhs {
-  background: white;
-  padding: 24px 18px;
-  width: 290px;
-  position: relative;
-  min-height: 300px;
-}
-
-.programRhs {
-  flex: 1;
-  background: #f4f6f6;
-  padding: 18px;
-}
-
-.programStatusLabel {
-  position: absolute;
-  top: -12px;
-}
-
-.programUpdatedAt {
-  display: block;
-  font-size: 14px;
-  font-weight: 400;
-  color: #9fa1a2;
-}
-
-.programActions {
-  margin: 18px 0 24px;
-}
-
-.programStaffAvatars {
-  padding: 5px;
-  margin-right: 4px;
-  display: inline-block;
-  margin-top: 2px;
-  width: 30px;
-  height: 30px;
-  color: $dark;
-}
-
-.programMetaList {
-  position: absolute;
-  left: 18px;
-  bottom: 24px;
-  right: 18px;
-  dd:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.programMetaLabel {
-  display: block;
-  color: #464c4f;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-.programMetaValue {
-  display: block;
-  color: #9fa1a2;
-  font-size: 14px;
-  font-weight: 400;
-
-  .programLhs & {
-    padding-bottom: 10px;
-  }
-}
+//.programLhs {
+//  background: white;
+//  padding: 24px 18px;
+//  width: 290px;
+//  position: relative;
+//  min-height: 300px;
+//}
+//
+//.programRhs {
+//  flex: 1;
+//  background: #f4f6f6;
+//  padding: 18px;
+//}
+//
+//.programStatusLabel {
+//  position: absolute;
+//  top: -12px;
+//}
+//
+//.programUpdatedAt {
+//  display: block;
+//  font-size: 14px;
+//  font-weight: 400;
+//  color: #9fa1a2;
+//}
+//
+//.programActions {
+//  margin: 18px 0 24px;
+//}
+//
+//.programStaffAvatars {
+//  padding: 5px;
+//  margin-right: 4px;
+//  display: inline-block;
+//  margin-top: 2px;
+//  width: 30px;
+//  height: 30px;
+//  color: $dark;
+//}
+//
+//.programMetaList {
+//  position: absolute;
+//  left: 18px;
+//  bottom: 24px;
+//  right: 18px;
+//  dd:last-child {
+//    margin-bottom: 0;
+//  }
+//}
+//
+//.programMetaLabel {
+//  display: block;
+//  color: #464c4f;
+//  font-size: 11px;
+//  text-transform: uppercase;
+//}
+//
+//.programMetaValue {
+//  display: block;
+//  color: #9fa1a2;
+//  font-size: 14px;
+//  font-weight: 400;
+//
+//  .programLhs & {
+//    padding-bottom: 10px;
+//  }
+//}
