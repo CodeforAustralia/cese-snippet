@@ -17,7 +17,6 @@ import {
 import cx from 'classnames';
 
 import TruncatedText from 'components/truncatedText';
-import { commarise } from 'helpers/textFormats';
 import {
   getCreateProgramModalUrl,
   getProgramUrl,
@@ -25,6 +24,7 @@ import {
 import {
   getIsCurrent,
   getIsNew,
+  getHumanisedMetaDescription,
 } from 'store/programs/helpers';
 import style from './style.scss';
 
@@ -51,41 +51,6 @@ const EmptyItem = ({ activeYear }) => {
 };
 
 
-const CardMetaText = ({ yearLevels,
-                        participantGroups,
-                        focusGroup = null,
-                        focusGroupOther = null,
-                        externalProvider = null,
-}) => {
-  let str = 'For ';
-
-  if (participantGroups) {
-    str += + commarise(participantGroups) + ' ';
-  }
-
-  if (focusGroup) { // todo - check
-    str += ', focusing on ' + focusGroup;
-
-    if (focusGroupOther) {
-      str += 'and ' + focusGroupOther;
-    }
-  }
-
-  if (externalProvider) {
-    str += ' with ' + externalProvider;
-  }
-
-  if (yearLevels) {
-    if (yearLevels.length > 1) {
-      str += ' in Years ' + commarise(yearLevels);
-    } else {
-      str += ' in Year ' + yearLevels[0];
-    }
-  }
-
-  return str;
-};
-
 
 const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
 
@@ -100,6 +65,8 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
         const isNew = getIsNew(program);
 
         const isCurrent = getIsCurrent(program);
+
+        const metaDescription = getHumanisedMetaDescription(program);
 
         return (
           <Card key={idx} className={cx(
@@ -127,12 +94,7 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
 
             <CardBody className={style.programMeta}>
               <CardText>
-                <CardMetaText yearLevels={program.yearLevels}
-                              focusGroup={program.focusGroup}
-                              focusGroupOther={program.focusGroupOther}
-                              externalProvider={program.externalProvider}
-                              participantGroups={program.participantGroups}
-                />
+                {metaDescription}
               </CardText>
             </CardBody>
 

@@ -1,7 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import {
+  Button,
+  Badge,
+} from 'reactstrap';
 
 import Loading from 'components/loading';
+import {
+  getIsCurrent,
+} from 'store/programs/helpers';
+import { commarise } from 'helpers/textFormats';
+import { getCreateProgramModalUrl } from "helpers/url";
+
+import style from './style.scss';
 
 
 class Program extends React.Component {
@@ -14,110 +26,191 @@ class Program extends React.Component {
   }
 
   render() {
-    const { isFetching, program } = this.props;
+    const { isFetching, program, history } = this.props;
 
     if (isFetching !== false) {
       return <Loading />
     }
 
+    const isCurrent = getIsCurrent(program);
+
+    const editUrl = getCreateProgramModalUrl(program);
+
     return (
       <div>
-        <p><Link to="/account">{`< Programs`}</Link></p>
-        <h1>School program {program.id}</h1>
-        <code>{JSON.stringify(program)}</code>
+        <p>
+          {history.length > 0 ?
+            <Button color="link" className="pl-0" onClick={() => history.goBack()}>{`< Back`}</Button> :
+            <Button color="link" className="pl-0" tag={Link} to="/account">{`< Programs`}</Button>
+          }
+        </p>
+
+        {isCurrent ?
+          <div className="mb-3">
+            <Badge color="info" pill>Active</Badge>
+          </div> :
+          null
+        }
+
+        <h1>{program.name}</h1>
+
+        <p>{program.description}</p>
+
+        {/*<p className={style.itemprop}>*/}
+          {/*<span className={style.itempropKey}>Long description</span>*/}
+          {/*<span className={style.itempropValue}>*/}
+              {/*{program.descriptionFull ? program.descriptionFull : '-'}*/}
+            {/*</span>*/}
+        {/*</p>*/}
+
+
+        <div className={style.fieldSection}>
+          <h2>What is the program and when did it happen?</h2>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Who is the program for?</span>
+            <span className={style.itempropValue}>
+              {program.participantGroups ? program.participantGroups : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Who in the community?</span>
+            <span className={style.itempropValue}>
+              {program.participantGroupsDescription ? program.participantGroupsDescription : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Does the program cater to a particular focus group?</span>
+            <span className={style.itempropValue}>
+              {program.focusGroup ? program.focusGroup : '-'}{program.focusGroupOther ? ` - ${program.focusGroupOther}` : null}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Number of Participants</span>
+            <span className={style.itempropValue}>
+              {program.cohortSize ? program.cohortSize : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>For Year Levels</span>
+            <span className={style.itempropValue}>
+              {program.yearLevels ? commarise(program.yearLevels) : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Terms delivered</span>
+            <span className={style.itempropValue}>
+              {program.terms ? commarise(program.terms) : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Year delivered</span>
+            <span className={style.itempropValue}>
+              {program.year ? program.year : '-'}
+            </span>
+          </p>
+        </div>
+
+
+
+
+        <div className={style.fieldSection}>
+          <h2>Why did the program happen?</h2>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Program Focus Area</span>
+            <span className={style.itempropValue}>
+              {program.category ? program.category : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Program Category</span>
+            <span className={style.itempropValue}>
+              {program.subCategory ? program.subCategory : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Aims</span>
+            <span className={style.itempropValue}>
+              {program.aims ? program.aims : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Program Overview</span>
+            <span className={style.itempropValue}>
+              {program.description ? program.description : '-'}
+            </span>
+          </p>
+
+
+        </div>
+
+
+
+
+
+        <div className={style.fieldSection}>
+          <h2>Who and how</h2>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Staff involved</span>
+            <span className={style.itempropValue}>
+              {program.staff ? program.staff : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Provider</span>
+            <span className={style.itempropValue}>
+              {program.deliveredByType ? program.deliveredByType : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Who is the External Provider?</span>
+            <span className={style.itempropValue}>
+              {program.externalProvider ? program.externalProvider : '-'}
+            </span>
+          </p>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Website</span>
+            <span className={style.itempropValue}>
+              {program.website ? program.website : '-'}
+            </span>
+          </p>
+        </div>
+
+
+        <div className={style.fieldSection}>
+          <h2>Meta</h2>
+
+          <p className={style.itemprop}>
+            <span className={style.itempropKey}>Who</span>
+            <span className={style.itempropValue}>
+              {program.tags ? commarise(program.tags) : '-'}
+            </span>
+          </p>
+        </div>
+
+
+        <div className={style.fieldSection}>
+          <Button to={editUrl} tag={Link} color="secondary">Edit</Button>
+        </div>
+
       </div>
     )
   }
 
 }
 
-export default Program;
-
-
-// return (
-//   <section className={cx(
-//     style.program,
-//     isNew ? `element-animated ${style.newTransition}` : null,
-//   )}>
-//     <div className={style.programLhs}>
-//
-//       <div className={style.programStatusLabel}>
-//         <Badge color="info" pill>Active</Badge>
-//       </div>
-//
-//       <h1 className="h5 font-weight-bold"><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></h1>
-//
-//       <p className={style.programUpdatedAt}>Last updated: {program.updatedAt}</p>
-//
-//       <div className={style.programActions}>
-//         <Button size="sm" to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</Button>
-//       </div>
-//
-//       <dl className={cx(style.programMetaList, 'mb-0')}>
-//         <dd className={style.programMetaValue}>
-//           <div>
-//             <span className={cx(style.programStaffAvatars, 'border border-dark rounded-circle')}>SK</span>
-//             <span className={cx(style.programStaffAvatars, 'border border-dark rounded-circle')}>JJ</span>
-//           </div>
-//         </dd>
-//
-//         <dt className={style.programMetaLabel}>Category</dt>
-//         <dd className={style.programMetaValue}>{program.category}{program.subCategory && ` > ${program.subCategory}`}</dd>
-//       </dl>
-//     </div>
-//
-//     <div className={style.programRhs}>
-//       <p>{program.description}</p>
-//
-//       {program.aims &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>Aims</dt>
-//         <dd className={style.programMetaValue}>{program.aims}</dd>
-//       </dl>
-//       }
-//
-//       {program.participantGroups && program.participantGroups.length &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>participantGroups</dt>
-//         <dd className={style.programMetaValue}>{program.participantGroups}</dd>
-//       </dl>
-//       }
-//
-//       {program.participantGroupsDescription &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>participantGroupsDescription</dt>
-//         <dd className={style.programMetaValue}>{program.participantGroupsDescription}</dd>
-//       </dl>
-//       }
-//
-//       {program.yearLevels && program.yearLevels.length &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>yearLevels</dt>
-//         <dd className={style.programMetaValue}>{program.yearLevels}</dd>
-//       </dl>
-//       }
-//
-//       {program.cohortSize &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>cohortSize</dt>
-//         <dd className={style.programMetaValue}>{program.cohortSize}</dd>
-//       </dl>
-//       }
-//
-//       {program.deliveredByType &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>deliveredByType</dt>
-//         <dd className={style.programMetaValue}>{program.deliveredByType}</dd>
-//       </dl>
-//       }
-//
-//       {program.tags && program.tags.length &&
-//       <dl>
-//         <dt className={style.programMetaLabel}>Keywords</dt>
-//         <dd className={style.programMetaValue}>{program.tags}</dd>
-//       </dl>
-//       }
-//     </div>
-//
-//   </section>
-// )
+export default withRouter(Program);

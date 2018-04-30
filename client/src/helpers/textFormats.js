@@ -1,1 +1,6 @@
-export const commarise = (list) => list.join(', ');
+export const commarise = (list) => {
+  if (list.length) {
+    return list.join(', ');
+  }
+  return list;
+};

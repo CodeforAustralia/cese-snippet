@@ -293,26 +293,9 @@ class ProgramForm extends React.Component {
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="subCategory">Program Category</Label>
-                  <FieldSelect name="subCategory"
-                               clearable={false}
-                               options={level2CategoryOptions}
-                               disabled={typeof values.category === 'undefined'}
-                               value={values.subCategory}
-                               onChange={this.props.setFieldValue}
-                               onBlur={this.props.setFieldTouched}
-                               placeholder="First select a Program Focus Area"
-                               touched={touched.subCategory}
-                               invalid={errors.subCategory}/>
-                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
-                <Col md={8}>
                   <Label htmlFor="terms">Terms delivered</Label>
                   <FieldCheckboxList name="terms"
-                                     value={values.yearLevels}
+                                     value={values.terms}
                                      options={termsOptions}
                   />
                 </Col>
@@ -342,6 +325,24 @@ class ProgramForm extends React.Component {
                                      vertical={true}
                   />
                   {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="subCategory">Program Category</Label>
+                  <FieldSelect name="subCategory"
+                               clearable={false}
+                               options={level2CategoryOptions}
+                               disabled={typeof values.category === 'undefined'}
+                               value={values.subCategory}
+                               onChange={this.props.setFieldValue}
+                               onBlur={this.props.setFieldTouched}
+                               placeholder="First select a Program Focus Area"
+                               touched={touched.subCategory}
+                               invalid={errors.subCategory}/>
+                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
                 </Col>
               </FormGroup>
 

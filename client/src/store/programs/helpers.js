@@ -1,8 +1,10 @@
+import isThisMinute from 'date-fns/is_this_minute';
+
 import {
   getYear,
   getTerm,
 } from 'utils/formatDate';
-import isThisMinute from 'date-fns/is_this_minute';
+import { commarise } from 'helpers/textFormats';
 
 
 const currentYear = getYear();
@@ -34,4 +36,42 @@ export const getIsCurrent = (program) => {
 
 export const getIsNew = (program) => {
   return isThisMinute(program.createdAt) || isThisMinute(program.updatedAt);
+};
+
+export const getHumanisedMetaDescription = (program) => {
+  const {
+    yearLevels,
+    participantGroups,
+    focusGroup = null,
+    focusGroupOther = null,
+    externalProvider = null,
+  } = program;
+
+  let str = 'For ';
+
+  if (participantGroups) {
+    str += + commarise(participantGroups) + ' ';
+  }
+
+  if (focusGroup) { // todo - check
+    str += ', focusing on ' + focusGroup;
+
+    if (focusGroupOther) {
+      str += 'and ' + focusGroupOther;
+    }
+  }
+
+  if (externalProvider) {
+    str += ' with ' + externalProvider;
+  }
+
+  if (yearLevels) {
+    if (yearLevels.length > 1) {
+      str += ' in Years ' + commarise(yearLevels);
+    } else {
+      str += ' in Year ' + yearLevels[0];
+    }
+  }
+
+  return str;
 };
