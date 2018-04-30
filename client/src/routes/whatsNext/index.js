@@ -43,7 +43,7 @@ const WhatsNextPage = ({ history }) => {
 
               <br />
 
-              <p>You can read more about the new Snippet in out <a href="https://www.yammer.com/det.nsw.edu.au/#/threads/inGroup?type=in_group&feedId=13755246&view=all" target="_blank">Yammer post</a></p>
+              <p>You can read more about the new Snippet in out <a href="https://www.yammer.com/det.nsw.edu.au/#/threads/inGroup?type=in_group&feedId=13755246&view=all" target="_blank" rel="noopener noreferrer">Yammer post</a></p>
             </div>
           </Col>
         </Row>
