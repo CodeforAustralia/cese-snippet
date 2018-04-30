@@ -10,6 +10,41 @@ import Form from './../components/registerSchoolForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
 
 
+
+const WithoutSchools = ({ children }) => {
+  return (
+    <div>
+      <h1>Thank you for signing up to Snippet.</h1>
+      <p>Before you start, please add your school.</p>
+
+      {children}
+    </div>
+  )
+};
+
+const ExistingSchools = ({ children, schools }) => {
+  return (
+    <div>
+      <h1>Your schools</h1>
+
+      <ul>
+        {schools.map((school, idx) => (
+          <li key={idx}>
+            <Link to={getSchoolProgramsUrl(school.code, '2018')}>{school.name}</Link>
+          </li>
+        ))}
+      </ul>
+
+      <p>Can't see your school in the list?</p>
+
+      <p>Add any missing school.</p>
+
+      {children}
+    </div>
+  )
+};
+
+
 class RegistrationFlow extends React.Component {
 
   componentDidMount() {
@@ -30,35 +65,18 @@ class RegistrationFlow extends React.Component {
       return <Loading />
     }
 
+    const Template = schools.length ? ExistingSchools : WithoutSchools;
+
     return (
       <Row>
         <Col md={{size: 6, offset: 3}}>
           <Link to="/account">{`< Programs`}</Link>
           <br />
           <br />
-          <h1>Your schools</h1>
-          <p>Before you can view your school's programs, we need you to choose the schools that you belong to.</p>
 
-          <p>Your current schools are:</p>
-          {schools.length ?
-            <ul>
-              {schools.map((school, idx) => (
-                <li key={idx}>
-                  <Link to={getSchoolProgramsUrl(school.code, '2018')}>{school.name}</Link>
-                </li>
-              ))}
-            </ul> :
-            <p>You currently have no schools registered.</p>
-          }
-
-          <br />
-
-          <p>{schools.length ?
-            'Register another school that you are staff at' :
-            'Find your school'
-          }</p>
-
-          <Form onSubmitSuccess={onSubmitSuccess} />
+          <Template schools={schools}>
+            <Form onSubmitSuccess={onSubmitSuccess} />
+          </Template>
 
         </Col>
       </Row>
