@@ -31,6 +31,8 @@ const LoggedOutPage = () => {
                 <Form />
               </div>
 
+              <Link to="/">{`> Go to home`}</Link>
+
             </div>
           </Col>
         </Row>
