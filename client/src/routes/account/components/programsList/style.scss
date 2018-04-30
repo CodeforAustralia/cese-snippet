@@ -8,7 +8,7 @@
   border: 1px dashed #d7dbdb;
   text-align: center;
   border-radius: 5px;
-  padding: 50px calc(50% - 400px) 50px;
+  padding: 2rem calc(50% - 400px);
 }
 
 .emptyProgramIcon {
@@ -18,11 +18,15 @@
 .emptyProgamTitle {
   color: #9fa1a2;
   font-weight: 400;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .emptyProgamSubTitle {
   color: $primary;
   font-weight: 200;
+  margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .emptyProgramHelpText {
