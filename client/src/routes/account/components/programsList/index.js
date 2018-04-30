@@ -6,10 +6,18 @@ import {
 import {
   Button,
   Badge,
+  CardColumns,
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+  CardLink,
 } from 'reactstrap';
 import cx from 'classnames';
 
 import TruncatedText from 'components/truncatedText';
+import CommarisedList from 'components/commarisedList';
 import {
   getCreateProgramModalUrl,
   getProgramUrl,
@@ -40,54 +48,60 @@ const EmptyItem = ({ activeYear }) => {
 };
 
 
-const ProgramItem = ({ program }) => {
-
-  const isNew = getIsNew(program);
-
-  const isCurrent = getIsCurrent(program);
-
-
-  return (
-    <section className={cx(
-      style.program,
-      isNew ? `element-animated ${style.newTransition}` : null,
-    )}>
-
-      {isCurrent ?
-        <div className={style.programStatusLabel}>
-          <Badge color="info" pill>Active</Badge>
-        </div> :
-        null
-      }
-
-      <h1 className="h5 font-weight-bold"><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></h1>
-
-      <p>{program.yearLevels}</p>
-
-      <p><TruncatedText text={program.description} length={40} /></p>
-
-      <p>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</p>
-
-      {program.focusGroup ? <p>{program.focusGroup}</p> : null}
-      {program.focusGroupOther ? <p>{program.focusGroupOther}</p> : null}
-      {program.externalProvider ? <p>{program.externalProvider}</p> : null}
-
-      <div className={style.programActions}>
-        <Button size="sm" to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</Button>
-      </div>
-
-    </section>
-  )
-};
-
 
 const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
+
   if (!programs.length) {
     return <EmptyItem openAddProgram={openAddProgram} activeYear={activeYear} />
   }
-  return sortByNewest(programs).map((program, idx) => {
-    return <ProgramItem key={idx} program={program} />
-  });
+
+  return (
+    <CardColumns>
+      {sortByNewest(programs).map((program, idx) => {
+
+        const isNew = getIsNew(program);
+
+        const isCurrent = getIsCurrent(program);
+
+        return (
+          <Card key={idx} className={isNew ? `element-animated ${style.newTransition}` : null}>
+            <CardBody>
+              {isCurrent ?
+                <div className="mb-2">
+                  <Badge color="info" pill>Active</Badge>
+                </div> :
+                null
+              }
+
+              <CardTitle><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></CardTitle>
+              <CardSubtitle className="mb-2">{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
+
+              <CardText>
+                <p className="mb-0"><TruncatedText text={program.description} length={300} /></p>
+              </CardText>
+
+            </CardBody>
+
+            <CardBody className={style.programMeta}>
+              <CardText>
+                <p className="mb-1">Years: <CommarisedList list={program.yearLevels} /></p>
+                {program.focusGroup ? <p className="mb-1">{program.focusGroup}</p> : null}
+                {program.focusGroupOther ? <p className="mb-1">{program.focusGroupOther}</p> : null}
+                {program.externalProvider ? <p className="mb-1">{program.externalProvider}</p> : null}
+              </CardText>
+            </CardBody>
+
+            <CardBody>
+              <CardLink to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</CardLink>
+              <CardLink to={getProgramUrl(program.id)} color="secondary" tag={RRNavLink} className="float-right" alt="Read more">{`>`}</CardLink>
+            </CardBody>
+
+          </Card>
+        )
+      })}
+    </CardColumns>
+  );
+
 };
 
 export default ProgramsList;

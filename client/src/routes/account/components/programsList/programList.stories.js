@@ -21,7 +21,7 @@ storiesOf('Programs List', module)
       "subCategory": "Literacy",
       "aims": null,
       "description": "Gallus peregrinationess, tanquam castus burgus.",
-      "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
+      "descriptionFull": "Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori! Placidus, superbus terrors tandem vitare de brevis, velox adelphis pius capio sed mire pugnas secula est. Luna regius apolloniates cabulare de lotus finis, experientia torus est Fraticinidas mori!",
       "website": null,
       "participantGroups": ["Students"],
       "participantGroupsDescription": "Disadvantaged",
