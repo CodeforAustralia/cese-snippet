@@ -37,16 +37,9 @@
   Standard type
  */
 
-.program {
-  border: 1px solid #d7dbdb;
-  border-radius: 3px;
-  position: relative;
-  display: flex;
-  margin-bottom: 2em;
+.programCard {
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+
 }
 
 @keyframes new-card-animation {
@@ -74,8 +67,46 @@
   animation-name: new-card-animation;
 }
 
+
+.cardSubtitle {
+  font-size: .6rem;
+  color: $text-muted;
+  font-weight: 200;
+  margin-bottom: 1rem !important;
+}
+
+//.programDescriptionText {
+//  font-size: 14px;
+//}
+
+.programMeta,
+.programActions {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .85rem;
+}
+
+.programMeta {
+  font-size: .75rem;
+}
+
 .programMeta {
   background: $light;
+}
+
+.metaKey {
+  display: inline-block;
+  color: $text-muted;
+  min-width: 70px;
+}
+
+.metaValue {
+  display: inline-block;
+  font-size: .85rem;
+}
+
+.programActions {
+
 }
 
 //.programLhs {

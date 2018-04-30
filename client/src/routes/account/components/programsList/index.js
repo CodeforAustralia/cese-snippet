@@ -17,7 +17,7 @@ import {
 import cx from 'classnames';
 
 import TruncatedText from 'components/truncatedText';
-import CommarisedList from 'components/commarisedList';
+import { commarise } from 'helpers/textFormats';
 import {
   getCreateProgramModalUrl,
   getProgramUrl,
@@ -48,6 +48,35 @@ const EmptyItem = ({ activeYear }) => {
 };
 
 
+const CardMetaText = ({ yearLevels,
+                        participantGroups,
+                        focusGroup = null,
+                        focusGroupOther = null,
+                        externalProvider = null,
+}) => {
+  let str = 'For ' + commarise(participantGroups);
+
+  if (focusGroup) { // todo - check
+    str += ', focusing on ' + focusGroup;
+
+    if (focusGroupOther) {
+      str += 'and ' + focusGroupOther;
+    }
+  }
+
+  if (externalProvider) {
+    str += ' with ' + externalProvider;
+  }
+
+  if (yearLevels.length > 1) {
+    str += ' in Years ' + commarise(yearLevels);
+  } else {
+    str += ' in Year ' + yearLevels[0];
+  }
+
+  return str;
+};
+
 
 const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
 
@@ -64,34 +93,41 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
         const isCurrent = getIsCurrent(program);
 
         return (
-          <Card key={idx} className={isNew ? `element-animated ${style.newTransition}` : null}>
+          <Card key={idx} className={cx(
+            style.programCard,
+            isNew ? `element-animated ${style.newTransition}` : null
+          )}>
+
             <CardBody>
               {isCurrent ?
-                <div className="mb-2">
+                <div className="mb-3">
                   <Badge color="info" pill>Active</Badge>
                 </div> :
                 null
               }
 
+              <CardSubtitle className={cx(style.cardSubtitle, 'mb-3')}>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
+
               <CardTitle><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></CardTitle>
-              <CardSubtitle className="mb-2">{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
 
               <CardText>
-                <p className="mb-0"><TruncatedText text={program.description} length={300} /></p>
+                <p className={cx(style.programDescriptionText, 'mb-0')}><TruncatedText text={program.description} length={160} /></p>
               </CardText>
 
             </CardBody>
 
             <CardBody className={style.programMeta}>
               <CardText>
-                <p className="mb-1">Years: <CommarisedList list={program.yearLevels} /></p>
-                {program.focusGroup ? <p className="mb-1">{program.focusGroup}</p> : null}
-                {program.focusGroupOther ? <p className="mb-1">{program.focusGroupOther}</p> : null}
-                {program.externalProvider ? <p className="mb-1">{program.externalProvider}</p> : null}
+                <CardMetaText yearLevels={program.yearLevels}
+                              focusGroup={program.focusGroup}
+                              focusGroupOther={program.focusGroupOther}
+                              externalProvider={program.externalProvider}
+                              participantGroups={program.participantGroups}
+                />
               </CardText>
             </CardBody>
 
-            <CardBody>
+            <CardBody className={style.programActions}>
               <CardLink to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</CardLink>
               <CardLink to={getProgramUrl(program.id)} color="secondary" tag={RRNavLink} className="float-right" alt="Read more">{`>`}</CardLink>
             </CardBody>
