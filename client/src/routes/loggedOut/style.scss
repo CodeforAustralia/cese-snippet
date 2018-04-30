@@ -23,10 +23,23 @@
 
 .feedbackContainer {
   border: 1px solid $gray-400;
-  border-radius: .5em;
+  border-radius: .25em;
   padding: 1.4em;
   //background: $brand-concrete;
 }
 
 .goHomeContainer {
 }
+
+
+.snippetBetaBand {
+  text-align: center;
+  background-color: $blue-concrete; //#d40c58;
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+

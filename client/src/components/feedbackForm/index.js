@@ -47,8 +47,8 @@ class FeedbackForm extends React.Component {
   render() {
     if (this.state.hasSubmitted) {
       return (
-        <div className="alert alert-success mb-4">
-          Thank you for your feedback, it helps us improve!
+        <div className="alert alert-success mb-0">
+          Thanks for your feedback, it will help us improve!
         </div>
       )
     }
@@ -58,9 +58,10 @@ class FeedbackForm extends React.Component {
         onSubmit={(values) => this.handleSubmit(values)}
         render={(({values, setFieldValue, setFieldTouched, isSubmitting}) => (
           <Form>
-            <FormGroup row>
+
+            <FormGroup row className="mb-0">
               <Col sm={{size: 12}}>
-                {/*<Label htmlFor="stamps">Select any of these that describe Snippet?</Label>*/}
+                <Label htmlFor="stamps">Please select any of these:</Label>
                 <FieldCheckboxBtnList name="stamps"
                                       value={values.stamps}
                                       options={[
@@ -69,14 +70,15 @@ class FeedbackForm extends React.Component {
                                         { value: 'Thank you', label: 'Thank you' },
                                         { value: 'Not good', label: 'Not good' },
                                       ]}
+                                      disabled={isSubmitting}
                 />
               </Col>
             </FormGroup>
 
             <FormGroup row>
               <Col sm={{size: 12}}>
-                <Label htmlFor="description">What did you like or could be improved?</Label>
-                <FieldTextareaInput name="description" rows={4} />
+                <Label htmlFor="description">And anything other that you would like to share?</Label>
+                <FieldTextareaInput name="description" rows={4} disabled={isSubmitting} />
               </Col>
             </FormGroup>
 
