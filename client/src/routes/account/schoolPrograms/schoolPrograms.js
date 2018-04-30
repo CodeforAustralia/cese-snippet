@@ -22,6 +22,7 @@ import style from './style.scss';
 
 
 class SchoolPrograms extends React.Component {
+
   componentDidMount() {
     this.fetchData();
   }

@@ -6,128 +6,147 @@ import {
 import {
   Button,
   Badge,
+  CardColumns,
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+  CardLink,
 } from 'reactstrap';
 import cx from 'classnames';
-import isThisMinute from 'date-fns/is_this_minute';
 
+import TruncatedText from 'components/truncatedText';
+import { commarise } from 'helpers/textFormats';
 import {
   getCreateProgramModalUrl,
   getProgramUrl,
 } from "helpers/url";
+import {
+  getIsCurrent,
+  getIsNew,
+} from 'store/programs/helpers';
 import style from './style.scss';
 
 
-const EmptyItem = ({ activeYear }) => {
-  return (
-    <section className={style.emptyProgram}>
-      <img src="https://via.placeholder.com/115x115?text=" className={style.emptyProgramIcon} alt="" />
-      <h1 className={cx('h2 mb-3', style.emptyProgamTitle)}>There are no Programs for <span className="text-secondary">{activeYear}</span></h1>
-      <p className={cx('h5 mb-4', style.emptyProgamSubTitle)}>If you know details of a Program, it's easy to create one</p>
-      <Button color="primary" size="lg" to={getCreateProgramModalUrl({year: activeYear})} className="mb-4" tag={RRLink}>Add a New Program</Button>
-      <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.</p>
-    </section>
-  )
+const sortByNewest = (programs) => {
+  return programs.sort((a, b) => {
+    return new Date(a.createdAt) < new Date(b.createdAt);
+  });
 };
 
-const ProgramItem = ({ program }) => {
-  const isNew = isThisMinute(program.createdAt) || isThisMinute(program.updatedAt);
+const EmptyItem = ({ activeYear }) => {
   return (
-    <section className={cx(
-      style.program,
-      isNew ? `element-animated ${style.newTransition}` : null,
-    )}>
-      <div className={style.programLhs}>
+    <Card className={style.emptyProgram}>
+      <CardBody>
+        <CardTitle className={style.emptyProgamTitle}>There are no Programs for {activeYear}</CardTitle>
+        <CardSubtitle className={style.emptyProgamSubTitle}>If you know details of any Program <br/>it's easy to create one!</CardSubtitle>
+        <CardText className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>
+          Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.
+        </CardText>
+        <Button color="primary" to={getCreateProgramModalUrl({year: activeYear})} tag={RRLink}>Add a New Program</Button>
+      </CardBody>
+    </Card>
+  );
+};
 
-        <div className={style.programStatusLabel}>
-          <Badge color="info" pill>Active</Badge>
-        </div>
 
-        <h1 className="h5 font-weight-bold"><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></h1>
+const CardMetaText = ({ yearLevels,
+                        participantGroups,
+                        focusGroup = null,
+                        focusGroupOther = null,
+                        externalProvider = null,
+}) => {
+  let str = 'For ';
 
-        <p className={style.programUpdatedAt}>Last updated: {program.updatedAt}</p>
+  if (participantGroups) {
+    str += + commarise(participantGroups) + ' ';
+  }
 
-        <div className={style.programActions}>
-          <Button size="sm" to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</Button>
-        </div>
+  if (focusGroup) { // todo - check
+    str += ', focusing on ' + focusGroup;
 
-        <dl className={cx(style.programMetaList, 'mb-0')}>
-          <dd className={style.programMetaValue}>
-            <div>
-              <span className={cx(style.programStaffAvatars, 'border border-dark rounded-circle')}>SK</span>
-              <span className={cx(style.programStaffAvatars, 'border border-dark rounded-circle')}>JJ</span>
-            </div>
-          </dd>
+    if (focusGroupOther) {
+      str += 'and ' + focusGroupOther;
+    }
+  }
 
-          <dt className={style.programMetaLabel}>Category</dt>
-          <dd className={style.programMetaValue}>{program.category}{program.subCategory && ` > ${program.subCategory}`}</dd>
-        </dl>
-      </div>
+  if (externalProvider) {
+    str += ' with ' + externalProvider;
+  }
 
-      <div className={style.programRhs}>
-        <p>{program.description}</p>
+  if (yearLevels) {
+    if (yearLevels.length > 1) {
+      str += ' in Years ' + commarise(yearLevels);
+    } else {
+      str += ' in Year ' + yearLevels[0];
+    }
+  }
 
-        {program.aims &&
-          <dl>
-            <dt className={style.programMetaLabel}>Aims</dt>
-            <dd className={style.programMetaValue}>{program.aims}</dd>
-          </dl>
-        }
-
-        {program.participantGroups && program.participantGroups.length &&
-          <dl>
-            <dt className={style.programMetaLabel}>participantGroups</dt>
-            <dd className={style.programMetaValue}>{program.participantGroups}</dd>
-          </dl>
-        }
-
-        {program.participantGroupsDescription &&
-          <dl>
-            <dt className={style.programMetaLabel}>participantGroupsDescription</dt>
-            <dd className={style.programMetaValue}>{program.participantGroupsDescription}</dd>
-          </dl>
-        }
-
-        {program.yearLevels && program.yearLevels.length &&
-          <dl>
-            <dt className={style.programMetaLabel}>yearLevels</dt>
-            <dd className={style.programMetaValue}>{program.yearLevels}</dd>
-          </dl>
-        }
-
-        {program.cohortSize &&
-          <dl>
-            <dt className={style.programMetaLabel}>cohortSize</dt>
-            <dd className={style.programMetaValue}>{program.cohortSize}</dd>
-          </dl>
-        }
-
-        {program.deliveredByType &&
-          <dl>
-            <dt className={style.programMetaLabel}>deliveredByType</dt>
-            <dd className={style.programMetaValue}>{program.deliveredByType}</dd>
-          </dl>
-        }
-
-        {program.tags && program.tags.length &&
-          <dl>
-            <dt className={style.programMetaLabel}>Keywords</dt>
-            <dd className={style.programMetaValue}>{program.tags}</dd>
-          </dl>
-        }
-      </div>
-
-    </section>
-  )
+  return str;
 };
 
 
 const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
+
   if (!programs.length) {
     return <EmptyItem openAddProgram={openAddProgram} activeYear={activeYear} />
   }
-  return programs.map((program, idx) => {
-    return <ProgramItem key={idx} program={program} />
-  })
+
+  return (
+    <CardColumns>
+      {sortByNewest(programs).map((program, idx) => {
+
+        const isNew = getIsNew(program);
+
+        const isCurrent = getIsCurrent(program);
+
+        return (
+          <Card key={idx} className={cx(
+            style.programCard,
+            isNew ? `element-animated ${style.newTransition}` : null
+          )}>
+
+            <CardBody>
+              {isCurrent ?
+                <div className="mb-3">
+                  <Badge color="info" pill>Active</Badge>
+                </div> :
+                null
+              }
+
+              <CardSubtitle className={cx(style.cardSubtitle, 'mb-3')}>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
+
+              <CardTitle><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></CardTitle>
+
+              <CardText className={cx(style.programDescriptionText, 'mb-0')}>
+                {program.description && <TruncatedText text={program.description} length={160} />}
+              </CardText>
+
+            </CardBody>
+
+            <CardBody className={style.programMeta}>
+              <CardText>
+                <CardMetaText yearLevels={program.yearLevels}
+                              focusGroup={program.focusGroup}
+                              focusGroupOther={program.focusGroupOther}
+                              externalProvider={program.externalProvider}
+                              participantGroups={program.participantGroups}
+                />
+              </CardText>
+            </CardBody>
+
+            <CardBody className={style.programActions}>
+              <CardLink to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</CardLink>
+              <CardLink to={getProgramUrl(program.id)} color="secondary" tag={RRNavLink} className="float-right" alt="Read more">{`>`}</CardLink>
+            </CardBody>
+
+          </Card>
+        )
+      })}
+    </CardColumns>
+  );
+
 };
 
 export default ProgramsList;

@@ -8,7 +8,7 @@
   border: 1px dashed #d7dbdb;
   text-align: center;
   border-radius: 5px;
-  padding: 50px calc(50% - 400px) 50px;
+  padding: 2rem calc(50% - 400px);
 }
 
 .emptyProgramIcon {
@@ -18,11 +18,15 @@
 .emptyProgamTitle {
   color: #9fa1a2;
   font-weight: 400;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .emptyProgamSubTitle {
   color: $primary;
   font-weight: 200;
+  margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .emptyProgramHelpText {
@@ -37,16 +41,9 @@
   Standard type
  */
 
-.program {
-  border: 1px solid #d7dbdb;
-  border-radius: 3px;
-  position: relative;
-  display: flex;
-  margin-bottom: 2em;
+.programCard {
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+
 }
 
 @keyframes new-card-animation {
@@ -74,70 +71,112 @@
   animation-name: new-card-animation;
 }
 
-.programLhs {
-  background: white;
-  padding: 24px 18px;
-  width: 290px;
-  position: relative;
-  min-height: 300px;
+
+.cardSubtitle {
+  font-size: .6rem;
+  color: $text-muted;
+  font-weight: 200;
+  margin-bottom: 1rem !important;
 }
 
-.programRhs {
-  flex: 1;
-  background: #f4f6f6;
-  padding: 18px;
+//.programDescriptionText {
+//  font-size: 14px;
+//}
+
+.programMeta,
+.programActions {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .85rem;
 }
 
-.programStatusLabel {
-  position: absolute;
-  top: -12px;
+.programMeta {
+  font-size: .75rem;
 }
 
-.programUpdatedAt {
-  display: block;
-  font-size: 14px;
-  font-weight: 400;
-  color: #9fa1a2;
+.programMeta {
+  background: $light;
+}
+
+.metaKey {
+  display: inline-block;
+  color: $text-muted;
+  min-width: 70px;
+}
+
+.metaValue {
+  display: inline-block;
+  font-size: .85rem;
 }
 
 .programActions {
-  margin: 18px 0 24px;
+
 }
 
-.programStaffAvatars {
-  padding: 5px;
-  margin-right: 4px;
-  display: inline-block;
-  margin-top: 2px;
-  width: 30px;
-  height: 30px;
-  color: $dark;
-}
-
-.programMetaList {
-  position: absolute;
-  left: 18px;
-  bottom: 24px;
-  right: 18px;
-  dd:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.programMetaLabel {
-  display: block;
-  color: #464c4f;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-.programMetaValue {
-  display: block;
-  color: #9fa1a2;
-  font-size: 14px;
-  font-weight: 400;
-
-  .programLhs & {
-    padding-bottom: 10px;
-  }
-}
+//.programLhs {
+//  background: white;
+//  padding: 24px 18px;
+//  width: 290px;
+//  position: relative;
+//  min-height: 300px;
+//}
+//
+//.programRhs {
+//  flex: 1;
+//  background: #f4f6f6;
+//  padding: 18px;
+//}
+//
+//.programStatusLabel {
+//  position: absolute;
+//  top: -12px;
+//}
+//
+//.programUpdatedAt {
+//  display: block;
+//  font-size: 14px;
+//  font-weight: 400;
+//  color: #9fa1a2;
+//}
+//
+//.programActions {
+//  margin: 18px 0 24px;
+//}
+//
+//.programStaffAvatars {
+//  padding: 5px;
+//  margin-right: 4px;
+//  display: inline-block;
+//  margin-top: 2px;
+//  width: 30px;
+//  height: 30px;
+//  color: $dark;
+//}
+//
+//.programMetaList {
+//  position: absolute;
+//  left: 18px;
+//  bottom: 24px;
+//  right: 18px;
+//  dd:last-child {
+//    margin-bottom: 0;
+//  }
+//}
+//
+//.programMetaLabel {
+//  display: block;
+//  color: #464c4f;
+//  font-size: 11px;
+//  text-transform: uppercase;
+//}
+//
+//.programMetaValue {
+//  display: block;
+//  color: #9fa1a2;
+//  font-size: 14px;
+//  font-weight: 400;
+//
+//  .programLhs & {
+//    padding-bottom: 10px;
+//  }
+//}
