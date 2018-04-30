@@ -29,7 +29,7 @@ export const parseFilterKeys = (filterKeys) => {
 
 
 export const getIsCurrent = (program) => {
-  return program.terms.includes(currentTerm);
+  return program.terms && program.terms.length ? program.terms.includes(currentTerm) : program.terms;
 };
 
 export const getIsNew = (program) => {

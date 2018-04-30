@@ -41,8 +41,8 @@ const EmptyItem = ({ activeYear }) => {
       <CardBody>
         <CardTitle className={style.emptyProgamTitle}>There are no Programs for {activeYear}</CardTitle>
         <CardSubtitle className={style.emptyProgamSubTitle}>If you know details of any Program <br/>it's easy to create one!</CardSubtitle>
-        <CardText>
-          <p className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.</p>
+        <CardText className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>
+          Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.
         </CardText>
         <Button color="primary" to={getCreateProgramModalUrl({year: activeYear})} tag={RRLink}>Add a New Program</Button>
       </CardBody>
@@ -57,7 +57,11 @@ const CardMetaText = ({ yearLevels,
                         focusGroupOther = null,
                         externalProvider = null,
 }) => {
-  let str = 'For ' + commarise(participantGroups);
+  let str = 'For ';
+
+  if (participantGroups) {
+    str += + commarise(participantGroups) + ' ';
+  }
 
   if (focusGroup) { // todo - check
     str += ', focusing on ' + focusGroup;
@@ -71,10 +75,12 @@ const CardMetaText = ({ yearLevels,
     str += ' with ' + externalProvider;
   }
 
-  if (yearLevels.length > 1) {
-    str += ' in Years ' + commarise(yearLevels);
-  } else {
-    str += ' in Year ' + yearLevels[0];
+  if (yearLevels) {
+    if (yearLevels.length > 1) {
+      str += ' in Years ' + commarise(yearLevels);
+    } else {
+      str += ' in Year ' + yearLevels[0];
+    }
   }
 
   return str;
@@ -113,8 +119,8 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
 
               <CardTitle><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></CardTitle>
 
-              <CardText>
-                <p className={cx(style.programDescriptionText, 'mb-0')}><TruncatedText text={program.description} length={160} /></p>
+              <CardText className={cx(style.programDescriptionText, 'mb-0')}>
+                {program.description && <TruncatedText text={program.description} length={160} />}
               </CardText>
 
             </CardBody>
