@@ -77,7 +77,6 @@ const mapStateToProps = (state, ownProps) => {
     school = schools.find(s => s.code === newInitialFormState.code);
   }
 
-
   return {
     school,
     schools,
@@ -87,7 +86,6 @@ const mapStateToProps = (state, ownProps) => {
     isEdit: false,
 
     initialFormState: newInitialFormState,
-
 
     programTemplates: selectProgramTemplates(state),
     isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),

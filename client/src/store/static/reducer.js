@@ -8,6 +8,7 @@ export const ACTION_TYPES = {
 
 const staticReducer = (state = initialState.static, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case ACTION_TYPES.fetchedProgramFields:
     case ACTION_TYPES.fetchedStaffList:
@@ -17,6 +18,7 @@ const staticReducer = (state = initialState.static, action) => {
         newState[key] = payload[key];
       }
       return newState;
+
     default:
       return state;
   }

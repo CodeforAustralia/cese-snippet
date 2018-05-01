@@ -9,8 +9,12 @@ import {
   Col,
   Row,
   Alert,
+  Input,
 } from 'reactstrap';
-import { withFormik } from 'formik';
+import {
+  withFormik,
+  Field,
+} from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
 import get from 'lodash/get';
@@ -66,11 +70,13 @@ class ProgramForm extends React.Component {
 
   componentDidMount() {
     const { programTemplates } = this.props;
-    if (!programTemplates || !programTemplates.length) {
-      this.props.fetchProgramTemplates();
 
-      // todo - fetch schools
+    if (typeof programTemplates !== 'undefined') {
+      if (!programTemplates || !programTemplates.length) {
+        this.props.fetchProgramTemplates();
+      }
     }
+    // todo - fetch schools
   }
 
   handlePrefill(programTemplateId) {
@@ -186,13 +192,19 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="name">Program name</Label>
-                  <FieldName name="name"
-                             options={optionsProgramTemplates}
-                             value={values.name}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             touched={touched.staff}
-                             invalid={errors.staff} />
+
+                  <Input type="text" id="name" name="name"
+                         onChange={this.props.handleChange}
+                         onBlur={this.props.handleBlur}
+                         defaultValue={values.name}
+                         invalid={errors.name} />
+                  {/*<FieldName name="name"*/}
+                             {/*options={optionsProgramTemplates}*/}
+                             {/*value={values.name}*/}
+                             {/*onChange={this.props.setFieldValue}*/}
+                             {/*onBlur={this.props.setFieldTouched}*/}
+                             {/*touched={touched.name}*/}
+                             {/*invalid={errors.name} />*/}
                 </Col>
               </FormGroup>
 
@@ -244,11 +256,11 @@ class ProgramForm extends React.Component {
               </FormGroup>
 
               {values.focusGroup === 'Other' &&
-              <FormGroup row>
-                <Col md={8}>
-                  <FieldTextInput name="focusGroupOther" />
-                </Col>
-              </FormGroup>
+                <FormGroup row>
+                  <Col md={8}>
+                    <FieldTextInput name="focusGroupOther" />
+                  </Col>
+                </FormGroup>
               }
 
               <FormGroup row>
@@ -405,7 +417,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-                  <FieldTextInput name="externalProvider" />
+                  {/*<FieldTextInput name="externalProvider" />*/}
                 </Col>
               </FormGroup>
 

@@ -10,7 +10,7 @@ export const getLevel2Categories = (staticCategories, level1Value) => {
     return [];
   }
   if (!level1Category.categories) {
-    throw Error('No categories accessible from static program categories');
+    return [];
   }
   return level1Category.categories.map(level2 => {
     // return {value: level2.value, label: level2.label};
@@ -38,6 +38,9 @@ export const getProgramTemplateOptions = (programTemplates) => {
 };
 
 export const getSchoolsOptions = (schools) => {
+  if (!schools) {
+    return [];
+  }
   return schools.map(s => ({ value: s.code, label: s.name }));
 };
 

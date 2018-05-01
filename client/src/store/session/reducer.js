@@ -4,6 +4,7 @@ export const ACTION_TYPES = {
 
 const sessionReducer = (state = {}, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case ACTION_TYPES.setSession:
       return payload.session;
