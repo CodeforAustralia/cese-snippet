@@ -21,6 +21,7 @@ import {
   getLevel2Categories,
   getStaffOptions,
   getTermsOptions,
+  getSchoolsOptions,
   getProgramTemplateOptions,
 } from 'store/programs/formHelpers';
 import Loading from 'components/loading';
@@ -47,11 +48,11 @@ class ProgramForm extends React.Component {
     super(props);
     this.handlePrefill = this.handlePrefill.bind(this);
 
-    this.optionsSchoolCodes = getTermsOptions(props.schools);
+    this.optionsSchoolCodes = getSchoolsOptions(props.schools);
     this.optionsYearLevels = getSchoolYearLevelsOptions(props.school);
-    this.optionsPartipantGroups = get(props, 'staticData.participantGroups');
-    this.optionsFocusGroup = get(props, 'staticData.focusGroup');
-    this.optionsDeliveredByType = get(props, 'staticData.deliveredByType');
+    this.optionsParticipantGroups = get(props, 'staticData.participantGroupsOptions');
+    this.optionsFocusGroup = get(props, 'staticData.focusGroupOptions');
+    this.optionsDeliveredByType = get(props, 'staticData.deliveredByTypeOptions');
     this.optionsTags = get(props, 'staticData.tagsOptions');
     this.optionsTerms = getTermsOptions(props.year);
     this.optionsLevel1Categories = getLevel1Categories(get(props, 'staticData.categoriesOptions'));
@@ -186,7 +187,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="name">Program name</Label>
                   <FieldName name="name"
-                             options={this.optionsProgramTemplates}
+                             options={optionsProgramTemplates}
                              value={values.name}
                              onChange={this.props.setFieldValue}
                              onBlur={this.props.setFieldTouched}
@@ -211,7 +212,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="participantGroups">Who is the program for?</Label>
                   <FieldCheckboxList name="participantGroups"
                                      value={values.participantGroups}
-                                     options={this.optionsPartipantGroups}
+                                     options={this.optionsParticipantGroups}
                   />
                   {touched.participantGroups && errors.participantGroups &&
                   <FormFeedback>{errors.participantGroups}</FormFeedback>}
