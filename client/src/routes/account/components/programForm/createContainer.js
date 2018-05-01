@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
   const initialFormState = location.state && location.state.initialFormState || {};
   const year = location.state && location.state.year || getYear();
 
-  const codeOptions = schools.map(s => ({ value: s.code, label: s.name }));
+  let school;
 
   const newInitialFormState = {
     ...initialFormState,
@@ -68,37 +68,28 @@ const mapStateToProps = (state, ownProps) => {
     createdBy: session.id,
   };
 
-  if (typeof newInitialFormState.code === 'undefined' && codeOptions.length === 1) {
-    newInitialFormState.code = codeOptions[0].value;
+  if (typeof newInitialFormState.code === 'undefined') {
+    if (schools.length === 1) {
+      school = schools[0];
+      newInitialFormState.code = school.code;
+    }
+  } else {
+    school = schools.find(s => s.code === newInitialFormState.code);
   }
 
   return {
+    school,
+    schools,
+    year,
     staticData,
+
+    isEdit: false,
+
+    initialFormState: newInitialFormState,
 
     programTemplates: selectProgramTemplates(state),
     isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),
     selectProgramTemplate: (id) => selectProgramTemplate(state, id),
-
-    isEdit: false,
-    initialFormState: newInitialFormState,
-
-    codeOptions,
-    getYearLevelsOptions: (code) => {
-      const school = schools.find(s => s.code === code);
-      if (!school) {
-        return [];
-      }
-      return school.yearLevels.map((y) => ({ value: y, label: y }));
-    },
-    year,
-    getTermsOptions: () => {
-      return [
-        { value: '1', label: `T1 - ${year}` },
-        { value: '2', label: `T2 - ${year}` },
-        { value: '3', label: `T3 - ${year}` },
-        { value: '4', label: `T4 - ${year}` },
-      ]
-    }
   };
 };
 

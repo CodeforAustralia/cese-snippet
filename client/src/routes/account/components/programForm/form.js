@@ -9,11 +9,25 @@ import {
   Col,
   Row,
   Alert,
+  Input,
 } from 'reactstrap';
-import { withFormik } from 'formik';
+import {
+  withFormik,
+  Field,
+} from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
+import get from 'lodash/get';
 
+import {
+  getSchoolYearLevelsOptions,
+  getLevel1Categories,
+  getLevel2Categories,
+  getStaffOptions,
+  getTermsOptions,
+  getSchoolsOptions,
+  getProgramTemplateOptions,
+} from 'store/programs/formHelpers';
 import Loading from 'components/loading';
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
@@ -37,6 +51,17 @@ class ProgramForm extends React.Component {
   constructor(props) {
     super(props);
     this.handlePrefill = this.handlePrefill.bind(this);
+
+    this.optionsSchoolCodes = getSchoolsOptions(props.schools);
+    this.optionsYearLevels = getSchoolYearLevelsOptions(props.school);
+    this.optionsParticipantGroups = get(props, 'staticData.participantGroupsOptions');
+    this.optionsFocusGroup = get(props, 'staticData.focusGroupOptions');
+    this.optionsDeliveredByType = get(props, 'staticData.deliveredByTypeOptions');
+    this.optionsTags = get(props, 'staticData.tagsOptions');
+    this.optionsTerms = getTermsOptions(props.year);
+    this.optionsLevel1Categories = getLevel1Categories(get(props, 'staticData.categoriesOptions'));
+    this.optionsStaff = getStaffOptions(get(props, 'staticData.staffList'));
+
     this.state = {
       showDescriptionFull: false,
       prefilledProgramTemplateId: null,
@@ -45,9 +70,13 @@ class ProgramForm extends React.Component {
 
   componentDidMount() {
     const { programTemplates } = this.props;
-    if (!programTemplates || !programTemplates.length) {
-      this.props.fetchProgramTemplates();
+
+    if (typeof programTemplates !== 'undefined') {
+      if (!programTemplates || !programTemplates.length) {
+        this.props.fetchProgramTemplates();
+      }
     }
+    // todo - fetch schools
   }
 
   handlePrefill(programTemplateId) {
@@ -95,77 +124,38 @@ class ProgramForm extends React.Component {
       values,
       errors,
       touched,
-      // handleChange,
-      // handleBlur,
       isSubmitting,
       handleSubmit,
       setFieldValue,
       setFieldTouched,
 
-      staticData,
       isEdit,
-      // getYearLevelsOptions,
-      codeOptions,
-      year,
-      getTermsOptions,
       isFetchingProgramTemplates,
       programTemplates,
     } = this.props;
 
     log('values:', values);
 
-    if (!codeOptions.length) {
-      return <Loading />
-    }
+    // if (!schools) {
+    //   return <Loading />
+    // }
 
     if (isFetchingProgramTemplates !== false) {
-      return <Loading />
+      return <Loading/>
     }
 
-    const getLevel1Cats = () => staticData.categories.map(level1 => {
-      // return {value: level1.value, label: level1.label};
-      return {value: level1.label, label: level1.label};
-    });
+    const optionsLevel2Categories = getLevel2Categories(this.optionsLevel1Categories, values.category);
+    const optionsProgramTemplates = getProgramTemplateOptions(programTemplates);
 
-    const getLevel2Cats = (level1Value) => {
-      const level1Cat = staticData.categories.find(level1 => level1.value === level1Value);
-      if (!level1Cat) {
-        return [];
-      }
-      return level1Cat.categories.map(level2 => {
-        // return {value: level2.value, label: level2.label};
-        return {value: level2.label, label: level2.label};
-      });
-    };
-
-    const getStaffOptions = () => staticData.staffList.map((staff) => (
-      {value: staff.id, label: staff.email}
-    ));
-
-    const getProgramTemplateOptions = () => programTemplates.map(p => ({ value: p.id, label: p.name }));
-
-    const yearLevelsOptions = staticData.yearLevels; //getYearLevelsOptions(values.code) || ; // todo
-    const participantGroupsOptions = staticData.participantGroups;
-    const focusGroupOptions = staticData.focusGroup;
-    const deliveredByTypeOptions = staticData.deliveredByType;
-    const tagsOptions = staticData.tags;
-    const termsOptions = getTermsOptions();
-    const level1CategoryOptions = getLevel1Cats();
-    const level2CategoryOptions = getLevel2Cats(values.category);
-    const staffOptions = getStaffOptions();
-
-    const programTemplateOptions = getProgramTemplateOptions();
-
-    const getSelectedProgramTemplateOption = () => {
+    const selectedProgramTemplateOption = function() {
       if (touched.name && values.name) {
-        const matched = programTemplateOptions.find(p => p.value === values.name);
+        const matched = optionsProgramTemplates.find(p => p.value === values.name);
         if (matched) {
           return matched;
         }
       }
       return null;
-    };
-    const selectedProgramTemplateOption = getSelectedProgramTemplateOption();
+    }();
 
     return (
       <Row>
@@ -189,7 +179,7 @@ class ProgramForm extends React.Component {
                   <FieldCode name="code"
                              id="code"
                              disabled={isEdit}
-                             options={codeOptions}
+                             options={this.optionsSchoolCodes}
                              value={values.code}
                              onChange={this.props.setFieldValue}
                              onBlur={this.props.setFieldTouched}
@@ -202,13 +192,19 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="name">Program name</Label>
-                  <FieldName name="name"
-                             options={programTemplateOptions}
-                             value={values.name}
-                             onChange={this.props.setFieldValue}
-                             onBlur={this.props.setFieldTouched}
-                             touched={touched.staff}
-                             invalid={errors.staff} />
+
+                  <Input type="text" id="name" name="name"
+                         onChange={this.props.handleChange}
+                         onBlur={this.props.handleBlur}
+                         defaultValue={values.name}
+                         invalid={errors.name} />
+                  {/*<FieldName name="name"*/}
+                             {/*options={optionsProgramTemplates}*/}
+                             {/*value={values.name}*/}
+                             {/*onChange={this.props.setFieldValue}*/}
+                             {/*onBlur={this.props.setFieldTouched}*/}
+                             {/*touched={touched.name}*/}
+                             {/*invalid={errors.name} />*/}
                 </Col>
               </FormGroup>
 
@@ -228,7 +224,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="participantGroups">Who is the program for?</Label>
                   <FieldCheckboxList name="participantGroups"
                                      value={values.participantGroups}
-                                     options={participantGroupsOptions}
+                                     options={this.optionsParticipantGroups}
                   />
                   {touched.participantGroups && errors.participantGroups &&
                   <FormFeedback>{errors.participantGroups}</FormFeedback>}
@@ -250,7 +246,7 @@ class ProgramForm extends React.Component {
                   <Label>Does the program cater to a particular focus group?</Label>
                   <FieldRadioBtnList name="focusGroup"
                                      value={values.focusGroup}
-                                     options={focusGroupOptions}
+                                     options={this.optionsFocusGroup}
                                      onChange={setFieldValue}
                                      onBlur={setFieldTouched}
                                      invalid={errors.focusGroup}
@@ -260,11 +256,11 @@ class ProgramForm extends React.Component {
               </FormGroup>
 
               {values.focusGroup === 'Other' &&
-              <FormGroup row>
-                <Col md={8}>
-                  <FieldTextInput name="focusGroupOther" />
-                </Col>
-              </FormGroup>
+                <FormGroup row>
+                  <Col md={8}>
+                    <FieldTextInput name="focusGroupOther" />
+                  </Col>
+                </FormGroup>
               }
 
               <FormGroup row>
@@ -282,7 +278,7 @@ class ProgramForm extends React.Component {
                   <Label>For Year Levels</Label>
                   <FieldCheckboxList name="yearLevels"
                                      value={values.yearLevels}
-                                     options={yearLevelsOptions}
+                                     options={this.optionsYearLevels}
                   />
                   {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
                   <FormText color="muted">
@@ -296,7 +292,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="terms">Terms delivered</Label>
                   <FieldCheckboxList name="terms"
                                      value={values.terms}
-                                     options={termsOptions}
+                                     options={this.optionsTerms}
                   />
                 </Col>
               </FormGroup>
@@ -318,7 +314,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="category">Program Focus Area</Label>
                   <FieldRadioBtnList name="category"
                                      value={values.category}
-                                     options={level1CategoryOptions}
+                                     options={this.optionsLevel1Categories}
                                      onChange={setFieldValue}
                                      onBlur={setFieldTouched}
                                      invalid={errors.category}
@@ -334,7 +330,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="subCategory">Program Category</Label>
                   <FieldSelect name="subCategory"
                                clearable={false}
-                               options={level2CategoryOptions}
+                               options={optionsLevel2Categories}
                                disabled={typeof values.category === 'undefined'}
                                value={values.subCategory}
                                onChange={this.props.setFieldValue}
@@ -390,7 +386,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="staff">Staff involved</Label>
                   <FieldSelectTags name="staff"
-                                   options={staffOptions}
+                                   options={this.optionsStaff}
                                    value={values.staff}
                                    onChange={this.props.setFieldValue}
                                    onBlur={this.props.setFieldTouched}
@@ -405,7 +401,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Provider</Label>
-                  <FieldRadioBtnList options={deliveredByTypeOptions}
+                  <FieldRadioBtnList options={this.optionsDeliveredByType}
                                      name="deliveredByType"
                                      value={values.deliveredByType}
                                      onChange={setFieldValue}
@@ -421,7 +417,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-                  <FieldTextInput name="externalProvider" />
+                  {/*<FieldTextInput name="externalProvider" />*/}
                 </Col>
               </FormGroup>
 
@@ -445,7 +441,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="tags">Keywords</Label>
                   <FieldSelectTags name="tags"
-                                   options={tagsOptions}
+                                   options={this.optionsTags}
                                    value={values.tags}
                                    onChange={this.props.setFieldValue}
                                    onBlur={this.props.setFieldTouched}

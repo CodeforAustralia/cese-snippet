@@ -52,6 +52,10 @@ class Program extends React.Component {
           null
         }
 
+        <p>Last updated on {program.updatedAt} by {program.updatedBy}</p>
+        <p>Created on {program.createdAt} by {program.createdBy}</p>
+
+
         <h1>{program.name}</h1>
 
         <p>{program.description}</p>

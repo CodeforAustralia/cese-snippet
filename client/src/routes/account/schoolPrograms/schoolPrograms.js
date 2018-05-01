@@ -111,6 +111,3 @@ class SchoolPrograms extends React.Component {
 }
 
 export default SchoolPrograms;
-
-
-{/*<Button color="link" size="sm" onClick={this.handleChangeSchool}>Change</Button>*/}

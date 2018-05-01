@@ -1,14 +1,14 @@
 {
-  "participantGroups": [
+  "participantGroupsOptions": [
     { "label": "Students", "value": "Students" },
     { "label": "Parents", "value": "Parents" },
     { "label": "Community", "value": "Community" }
   ],
-  "deliveredByType": [
+  "deliveredByTypeOptions": [
     { "label": "School Staff", "value": "School Staff" },
     { "label": "External Provider", "value": "External Provider" }
   ],
-  "yearLevels": [
+  "yearLevelsOptions": [
     { "label": "Kindergarten", "value": "Kindergarten" },
     { "label": "1", "value": "1" },
     { "label": "2", "value": "2" },
@@ -23,7 +23,7 @@
     { "label": "11", "value": "11" },
     { "label": "12", "value": "12" }
   ],
-  "focusGroup": [
+  "focusGroupOptions": [
     { "label": "None", "value": "None" },
     { "label": "Indigenous", "value": "Indigenous" },
     { "label": "Linguistically Diverse", "value": "Linguistically Diverse" },
@@ -34,9 +34,12 @@
     { "label": "Emotional Difficulties", "value": "Emotional Difficulties" },
     { "label": "Other", "value": "Other" }
   ],
-  "categories": [
+  "tagsOptions": [
+    { "value": "spelling", "label": "spelling" }
+  ],
+  "categoriesOptions": [
     {
-      "value": "1",
+      "value": "Curriculum Engagement",
       "label": "Curriculum Engagement",
       "description": "Speciess congregabo in lutetia.",
       "categories": [
@@ -51,7 +54,7 @@
       ]
     },
     {
-      "value": "2",
+      "value": "Student Wellbeing and Support",
       "label": "Student Wellbeing and Support",
       "description": null,
       "categories": [
@@ -61,7 +64,7 @@
       ]
     },
     {
-      "value": "3",
+      "value": "Extra-Curricular",
       "label": "Extra-Curricular",
       "description": null,
       "categories": [
@@ -75,7 +78,7 @@
       ]
     },
     {
-      "value": "4",
+      "value": "Parent and Community Engagement",
       "label": "Parent and Community Engagement",
       "description": null,
       "categories": [
@@ -83,8 +86,5 @@
         { "value": "Contributing to the Community", "label": "Contributing to the Community" }
       ]
     }
-  ],
-  "tags": [
-    { "value": "spelling", "label": "spelling" }
   ]
 }
