@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchSchool } from "store/schools/actionCreators";
+import { fetchSchools } from "store/schools/actionCreators";
 import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchools,
@@ -30,7 +30,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { code, year } = ownProps.match.params;
   return {
-    fetchSchool: () => dispatch(fetchSchool(code)),
+    fetchSchools: (codes) => { // get all of their schools, in case they have more than 1
+      return dispatch(fetchSchools(codes));
+    },
     fetchProgramsByFilter: (filterProps) => dispatch(fetchProgramsByFilter({ code, year })),
   }
 };

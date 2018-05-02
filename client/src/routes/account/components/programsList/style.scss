@@ -1,5 +1,6 @@
 @import '~style/helpers.scss';
 
+
 /**
   Empty type
  */
@@ -41,8 +42,12 @@
   Standard type
  */
 
-.programCard {
 
+.programCard {
+  margin-bottom: 2em;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 
 }
 

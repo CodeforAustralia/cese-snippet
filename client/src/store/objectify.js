@@ -15,6 +15,10 @@ export const objectify = (data, key = 'id') => {
     data = [data];
   }
 
+  if (!data.length) { // set is empty
+    return {};
+  }
+
   const firstKey = data[0][key];
 
   if (typeof firstKey === 'undefined') {

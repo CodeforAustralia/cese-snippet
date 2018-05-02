@@ -23,9 +23,9 @@ export const createOrUpdatePrograms = (programs) => {
  * @param filterKey {String}
  */
 export const createFilter = (data, {filterKey}) => {
-  if (typeof data === 'undefined' || !Array.isArray(data)) {
-    throw new Error('Data provided to setFilter must be an Array.');
-  }
+  // if (typeof data === 'undefined' || !Array.isArray(data)) {
+  //   throw new Error('Data provided to setFilter must be an Array.');
+  // }
   return {
     type: ACTION_TYPES.createFilters,
     payload: {
@@ -40,9 +40,9 @@ export const createFilter = (data, {filterKey}) => {
  * @param filterKey {String}
  */
 export const updateFilter = (data, {filterKey}) => {
-  if (typeof data === 'undefined' || !Array.isArray(data)) {
-    throw new Error('Data provided to setFilter must be an Array.');
-  }
+  // if (typeof data === 'undefined' || !Array.isArray(data)) {
+  //   throw new Error('Data provided to setFilter must be an Array.');
+  // }
   return {
     type: ACTION_TYPES.updateFilters,
     payload: {
@@ -54,7 +54,7 @@ export const updateFilter = (data, {filterKey}) => {
 
 
 export const fetchProgram = (programId) => {
-  return fetchFromApi(`/programs/${programId}`);
+  return fetchFromApiOrCache(`/programs/${programId}`);
 };
 
 
@@ -66,7 +66,7 @@ export const fetchProgramsByFilter = (filterProps) => {
     throw new Error('Must supply filterProps to fetchProgramsByFilter.');
   }
   const search = queryString.stringify(filterProps);
-  return fetchFromApi(`/programs?${search}`, { filterKey: getFilterKey(filterProps) });
+  return fetchFromApiOrCache(`/programs?${search}`, { filterKey: getFilterKey(filterProps) });
 };
 
 
@@ -171,8 +171,9 @@ export const updateProgram = (program) => {
  * @param props
  * @returns {function(*, *, *)}
  */
-export const fetchFromApi = (path, props) => {
+export const fetchFromApiOrCache = (path, props) => {
   // Steps:
+  // 0. Check if item is cached, if it is serve it instead and end.
   // 1. GET
   // 2. update byId
   // 3. *create* new filter values for this search key filter
@@ -181,6 +182,14 @@ export const fetchFromApi = (path, props) => {
   log(`Fetching: ${path}`);
 
   return (dispatch, getState, api) => {
+
+    // 0.
+    const { filterKey } = props;
+    const state = getState();
+    if (filterKey in state.programs.filters) {
+      return state.programs.filters[filterKey];
+    }
+
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
