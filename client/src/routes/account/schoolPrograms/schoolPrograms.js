@@ -12,6 +12,7 @@ import {
   Col,
 } from 'reactstrap';
 import without from 'lodash/without';
+import Bows from 'bows';
 
 import { CircleLoading } from 'components/loading';
 import ProgramsList from './../components/programsList';
@@ -21,6 +22,8 @@ import {
 } from "helpers/url";
 import ChangeSchoolBtn from './../components/changeSchoolBtn';
 import style from './style.scss';
+
+const log = Bows('School Programs');
 
 
 class SchoolPrograms extends React.Component {
@@ -36,10 +39,17 @@ class SchoolPrograms extends React.Component {
   }
 
   fetchData() {
-    const { school, session } = this.props;
+    const {
+      school,
+      session,
+    } = this.props;
+
     if (!school) {
+      log('fetching schools');
       this.props.fetchSchools(session.schools);
     }
+
+    log('fetching programs with filters: ', this.props.filterProps);
     this.props.fetchProgramsByFilter();
   }
 
