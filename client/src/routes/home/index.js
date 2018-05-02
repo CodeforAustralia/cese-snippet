@@ -20,11 +20,14 @@ import NswIcon from './nsw.svg';
 import WheelIcon from './wheel.svg';
 import WifiIcon from './wifi.svg';
 import CloudIcon from './cloud.svg';
+import ScrollToTopOnMount from 'components/scrollToTopOnMount';
 
 
 const HomePage = () => (
 
   <Layout homeHeader={true}>
+
+    <ScrollToTopOnMount />
 
     <div className={style.topLayoutBand}>
       <Container>
