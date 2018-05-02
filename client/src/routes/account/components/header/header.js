@@ -13,7 +13,7 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
-// import { getRegisterSchoolUrl } from 'helpers/url';
+import { getRegisterSchoolUrl } from 'helpers/url';
 
 import style from './style.scss';
 
@@ -24,7 +24,7 @@ class Header extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
 
-    // this.registerSchoolUrl = getRegisterSchoolUrl(true);
+    this.registerSchoolUrl = getRegisterSchoolUrl(true);
 
     this.state = {
       isOpen: false
@@ -85,9 +85,9 @@ class Header extends React.Component {
 
               <DropdownMenu right>
 
-                {/*<DropdownItem tag={RRNavLink} to={this.registerSchoolUrl}>*/}
-                {/*Add another school*/}
-                {/*</DropdownItem>*/}
+                <DropdownItem tag={RRNavLink} to={this.registerSchoolUrl}>
+                  Add another school
+                </DropdownItem>
 
                 <DropdownItem divider />
 

@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       win.localStorage.removeItem('snippet_session');
       history.push("/logged-out");
       return dispatch(clearSession());
-    })
+    }),
   }
 };
 

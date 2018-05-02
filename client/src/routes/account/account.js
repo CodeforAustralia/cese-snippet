@@ -5,16 +5,19 @@ import {
 } from "react-router-dom";
 import { Redirect } from 'react-router';
 import Bows from 'bows';
+import { Container } from 'reactstrap';
 
-import Layout from './layout';
 import Program from './program';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
-// import Schools from './schools';
 
+import Header from './components/header';
+import Footer from './components/stickyFooter';
 import { BoxLoading } from 'components/loading';
+
+import style from './style.scss';
 
 
 const log = Bows('Account View');
@@ -28,14 +31,12 @@ class Account extends React.Component {
   }
 
   componentDidMount() {
-    const { schools, userSchoolCodes } = this.props;
-    if (!schools.length) {
-      if (userSchoolCodes.length) {
-        log('Fetching schools.');
-        this.props.fetchSchools(this.props.userSchoolCodes);
-      }
+    const { userSchoolCodes } = this.props;
+    if (userSchoolCodes.length) { // get it fresh every time account is opened
+      log('Fetching schools: ', this.props.userSchoolCodes);
+      this.props.fetchSchools(this.props.userSchoolCodes);
     }
-    log('Fetching static.');  // todo - don't refetch
+    log('Fetching static.');
     this.props.fetchProgramFields();
     this.props.fetchStaffList();
   }
@@ -70,16 +71,19 @@ class Account extends React.Component {
 
     const RedirectFork = () => {
       if (schools.length) {
+        log('Fork to render school');
         return <Redirect to={`/account/schools/${schools[0].code}/programs/${2018}`} />
       } else {
-        return null;
-      //   return <Redirect to="/account/register-school" />
+        log('Fork to register school');
+        // return null;
+        return <Redirect to="/account/register-school" />
       }
     };
 
     return (
       <div>
-        <Layout schools={schools}>
+        <Header />
+        <Container className={style.layoutContainer}>
           <Switch location={isModal ? this.previousLocation : location}>
             {/*<Route path="/account/index" exact component={Index} />*/}
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
@@ -88,7 +92,8 @@ class Account extends React.Component {
             <Route path="/account/register-school" component={RegistrationFlow} />
             <RedirectFork />
           </Switch>
-        </Layout>
+        </Container>
+        <Footer />
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
       </div>
     );

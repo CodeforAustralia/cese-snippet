@@ -3,14 +3,11 @@ import { Link } from 'react-router-dom';
 import {
   Col,
   Row,
-  Button,
 } from 'reactstrap';
-import get from 'lodash/get';
 
 import { CircleLoading } from 'components/loading';
 import Form from './../components/registerSchoolForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
-
 
 
 const WithoutSchools = ({ children }) => {
@@ -51,7 +48,8 @@ class RegistrationFlow extends React.Component {
 
   componentDidMount() {
     const { userSchoolCodes, schools } = this.props;
-    if (userSchoolCodes && !schools.length) {
+
+    if (userSchoolCodes.length && !schools.length) {  // only if I have schools, fetch them
       this.props.fetchSchools(userSchoolCodes);
     }
   }
@@ -63,11 +61,12 @@ class RegistrationFlow extends React.Component {
       onSubmitSuccess,
       history,
       location,
+      userSchoolCodes,
     } = this.props;
 
     // const showBreadcrumb = get(location, 'state.showBreadcrumb', false);
 
-    if (isFetching !== false) {
+    if (userSchoolCodes.length && isFetching !== false) {
       return <CircleLoading />
     }
 
@@ -76,17 +75,9 @@ class RegistrationFlow extends React.Component {
     return (
       <Row>
         <Col md={{size: 6, offset: 3}}>
-
-          {/*{showBreadcrumb ?*/}
-            // <Link to="/account">{`< Programs`}</Link> :
-            // null
-            // }
-
-
           <Template schools={schools}>
             <Form onSubmitSuccess={onSubmitSuccess} autoFocus={true} />
           </Template>
-
         </Col>
       </Row>
     )
