@@ -219,6 +219,23 @@ class ProgramForm extends React.Component {
                 null
               }
 
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="category">Program Focus Area</Label>
+                  <FieldRadioBtnList name="category"
+                                     value={values.category}
+                                     options={this.optionsLevel1Categories}
+                                     onChange={setFieldValue}
+                                     onBlur={setFieldTouched}
+                                     invalid={errors.category}
+                                     vertical={true}
+                  />
+                  {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="participantGroups">Who is the program for?</Label>
@@ -231,7 +248,9 @@ class ProgramForm extends React.Component {
                 </Col>
               </FormGroup>
 
-              <FormGroup row>
+              {values.participantGroups &&
+                values.participantGroups.find(group => group === 'Community') &&
+                <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
                   <FieldTextInput name="participantGroupsDescription" />
@@ -240,6 +259,79 @@ class ProgramForm extends React.Component {
                   </FormText>
                 </Col>
               </FormGroup>
+              }
+
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="subCategory">Program Category</Label>
+                  <FieldSelect name="subCategory"
+                               clearable={false}
+                               options={optionsLevel2Categories}
+                               disabled={typeof values.category === 'undefined'}
+                               value={values.subCategory}
+                               onChange={this.props.setFieldValue}
+                               onBlur={this.props.setFieldTouched}
+                               placeholder="First select a Program Focus Area"
+                               touched={touched.subCategory}
+                               invalid={errors.subCategory}/>
+                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
+                </Col>
+              </FormGroup>
+
+
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label>For Year Levels</Label>
+                  <FieldCheckboxList name="yearLevels"
+                                     value={values.yearLevels}
+                                     options={this.optionsYearLevels}
+                  />
+                  {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+                  <FormText color="muted">
+                    Which year levels are participating in this program?
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="cohortSize">Number of Participants</Label>
+                  <FieldNumberInput name="cohortSize" min={1} max={3000} />
+                  <FormText color="muted">
+                    How many people participated in this program?
+                  </FormText>
+                </Col>
+              </FormGroup>
+
+
+              <FormGroup row>
+                <Col md={8}>
+                  <Label htmlFor="terms">Terms delivered</Label>
+                  <FieldCheckboxList name="terms"
+                                     value={values.terms}
+                                     options={this.optionsTerms}
+                  />
+                </Col>
+              </FormGroup>
+
+
+
+
+              <FormGroup hidden>
+                <Label htmlFor="year">Year delivered</Label>
+                <FieldTextInput name="year" />
+              </FormGroup>
+
+
+            </fieldset>
+
+
+            <fieldset className={style.fieldset}>
+              <legend>Why did the program happen?</legend>
 
               <FormGroup row>
                 <Col md={8}>
@@ -263,84 +355,7 @@ class ProgramForm extends React.Component {
                 </FormGroup>
               }
 
-              <FormGroup row>
-                <Col md={8}>
-                  <Label htmlFor="cohortSize">Number of Participants</Label>
-                  <FieldNumberInput name="cohortSize" min={1} max={3000} />
-                  <FormText color="muted">
-                    How many people participated in this program?
-                  </FormText>
-                </Col>
-              </FormGroup>
 
-              <FormGroup row>
-                <Col md={8}>
-                  <Label>For Year Levels</Label>
-                  <FieldCheckboxList name="yearLevels"
-                                     value={values.yearLevels}
-                                     options={this.optionsYearLevels}
-                  />
-                  {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
-                  <FormText color="muted">
-                    Which year levels are participating in this program?
-                  </FormText>
-                </Col>
-              </FormGroup>
-
-              <FormGroup row>
-                <Col md={8}>
-                  <Label htmlFor="terms">Terms delivered</Label>
-                  <FieldCheckboxList name="terms"
-                                     value={values.terms}
-                                     options={this.optionsTerms}
-                  />
-                </Col>
-              </FormGroup>
-
-              <FormGroup hidden>
-                <Label htmlFor="year">Year delivered</Label>
-                <FieldTextInput name="year" />
-              </FormGroup>
-
-
-            </fieldset>
-
-
-            <fieldset className={style.fieldset}>
-              <legend>Why did the program happen?</legend>
-
-              <FormGroup row>
-                <Col md={8}>
-                  <Label htmlFor="category">Program Focus Area</Label>
-                  <FieldRadioBtnList name="category"
-                                     value={values.category}
-                                     options={this.optionsLevel1Categories}
-                                     onChange={setFieldValue}
-                                     onBlur={setFieldTouched}
-                                     invalid={errors.category}
-                                     vertical={true}
-                  />
-                  {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
-                </Col>
-              </FormGroup>
-
-
-              <FormGroup row>
-                <Col md={8}>
-                  <Label htmlFor="subCategory">Program Category</Label>
-                  <FieldSelect name="subCategory"
-                               clearable={false}
-                               options={optionsLevel2Categories}
-                               disabled={typeof values.category === 'undefined'}
-                               value={values.subCategory}
-                               onChange={this.props.setFieldValue}
-                               onBlur={this.props.setFieldTouched}
-                               placeholder="First select a Program Focus Area"
-                               touched={touched.subCategory}
-                               invalid={errors.subCategory}/>
-                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
-                </Col>
-              </FormGroup>
 
               <FormGroup row>
                 <Col md={8}>
@@ -362,19 +377,7 @@ class ProgramForm extends React.Component {
                 </Col>
               </FormGroup>
 
-              {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add a longer description?</Button></p>}
 
-              {values.descriptionFull || showDescriptionFull === true ?
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="descriptionFull">Detailed description</Label>
-                    <FieldTextareaInput name="descriptionFull" rows={6} />
-                    <FormText color="muted">
-                      A comprehensive full length description of the program. Describe the structure of the program, and how
-                      it is delivered.
-                    </FormText>
-                  </Col>
-                </FormGroup> : null}
 
             </fieldset>
 
@@ -420,6 +423,20 @@ class ProgramForm extends React.Component {
                   {/*<FieldTextInput name="externalProvider" />*/}
                 </Col>
               </FormGroup>
+
+              {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add more Program information?</Button></p>}
+
+              {values.descriptionFull || showDescriptionFull === true ?
+                <FormGroup row>
+                  <Col md={8}>
+                    <Label htmlFor="descriptionFull">Detailed description</Label>
+                    <FieldTextareaInput name="descriptionFull" rows={6} />
+                    <FormText color="muted">
+                      A comprehensive full length description of the program. Describe the structure of the program, and how
+                      it is delivered.
+                    </FormText>
+                  </Col>
+                </FormGroup> : null}
 
               <FormGroup row>
                 <Col md={8}>
