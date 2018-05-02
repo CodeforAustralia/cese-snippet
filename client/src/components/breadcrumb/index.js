@@ -5,7 +5,6 @@ const Breadcrumb = ({ items }) => {
   if (items.length === 1) {
     return <p style={{fontSize:'.85rem'}}>{items[0].label}</p>
   }
-
   return (
     <p style={{fontSize:'.85rem'}}>
       {items.map((item, idx, arr) => {
@@ -20,5 +19,5 @@ const Breadcrumb = ({ items }) => {
     </p>
   )
 };
-
+Breadcrumb
 export default Breadcrumb;

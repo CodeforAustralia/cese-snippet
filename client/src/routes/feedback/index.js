@@ -7,38 +7,39 @@ import {
 } from 'reactstrap';
 import { withRouter } from 'react-router';
 
+import Layout from './../home/layout';
 import Form from 'components/feedbackForm';
-import style from './style.scss'
 
 
 const FeedbackPage = ({ history }) => {
+
+  const handleGoBack = () => {
+    if (history.location.pathname && history.location.pathname !== '/feedback') {
+      return history.goBack();
+    }
+    return history.push('/');
+  };
+
   return (
-    <Container>
-      <Row>
-        <Col md={{size: 6, offset: 3}}>
-          <div className={style.feedbackContainer}>
-            <div className="mb-2" >
+    <Layout>
+      <Container>
+        <Row>
+          <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
+            <div>
+              <div className="mb-2">
+                <Button color="link" onClick={handleGoBack} className="pl-0" style={{fontSize:'.85rem'}}>{`< Back`}</Button>
+              </div>
 
-              <Button color="link"
-                      onClick={() => {
-                        if (history.location.pathname && history.location.pathname !== '/feedback') {
-                          return history.goBack();
-                        }
-                        return history.push('/');
-                      }}
-                      className="pl-0"
-              >{`Back`}</Button>
+              <h1 className="h2 mb-4">Leave feedback</h1>
+
+              <p>We'd love to know how your overall experience of Snippet was today.</p>
+              <Form />
+
             </div>
-
-            <h1 className="mb-4">Leave feedback</h1>
-            <h3 className="h5 pb-4">Please take a moment to tell us how your experience was today?</h3>
-
-            <Form />
-
-          </div>
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
   )
 };
 
