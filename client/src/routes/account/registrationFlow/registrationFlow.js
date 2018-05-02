@@ -1,20 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+  Link as RRLink,
+} from 'react-router-dom';
 import {
   Col,
   Row,
+  Button,
 } from 'reactstrap';
 
+import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import Form from './../components/registerSchoolForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
+import style from './style.scss';
 
 
 const WithoutSchools = ({ children }) => {
   return (
     <div>
-      <h1 className="h3 mb-2">Thank you for signing up to Snippet.</h1>
-      <p>Before you start, please search for your school.</p>
+      <h1 className="h3 mb-4">Thank you for signing up to Snippet.</h1>
+      <p>Before you start, please find your school:</p>
 
       {children}
     </div>
@@ -24,19 +29,19 @@ const WithoutSchools = ({ children }) => {
 const ExistingSchools = ({ children, schools }) => {
   return (
     <div>
-      <h1 className="h3">Your schools</h1>
+      <h1 className="h3 mb-4">Register another school</h1>
 
-      <ul>
+      <p>Schools you are registered for:</p>
+
+      <div className={style.currentSchoolsList}>
         {schools.map((school, idx) => (
-          <li key={idx}>
-            <Link to={getSchoolProgramsUrl(school.code, '2018')}>{school.name}</Link>
-          </li>
+          <Button className={style.currentSchoolsListItem} key={idx} to={getSchoolProgramsUrl(school.code, '2018')} tag={RRLink} block color="light">
+            {school.name}
+          </Button>
         ))}
-      </ul>
+      </div>
 
-      <p>Can't see your school in the list?</p>
-
-      <p>Add any missing school.</p>
+      <p>Can't see your school in the list? Find it here:</p>
 
       {children}
     </div>
@@ -73,13 +78,20 @@ class RegistrationFlow extends React.Component {
     const Template = schools.length ? ExistingSchools : WithoutSchools;
 
     return (
+      <div>
+        <Breadcrumb items={[
+          { label: 'Programs', to: schools.length ? '/account/schools' : null },
+          { label: 'Register school' }
+        ]} />
+
       <Row>
-        <Col md={{size: 6, offset: 3}}>
+        <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
           <Template schools={schools}>
             <Form onSubmitSuccess={onSubmitSuccess} autoFocus={true} />
           </Template>
         </Col>
       </Row>
+      </div>
     )
   }
 }
