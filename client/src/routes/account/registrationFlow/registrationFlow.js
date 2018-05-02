@@ -18,8 +18,9 @@ import style from './style.scss';
 const WithoutSchools = ({ children }) => {
   return (
     <div>
-      <h1 className="h3 mb-4">Thank you for signing up to Snippet.</h1>
-      <p>Before you start, please find your school:</p>
+      <h1 className="h3 mb-4">Thank you for signing up to Snippet</h1>
+
+      <p>Before you start, please select your school:</p>
 
       {children}
     </div>
@@ -29,7 +30,7 @@ const WithoutSchools = ({ children }) => {
 const ExistingSchools = ({ children, schools }) => {
   return (
     <div>
-      <h1 className="h3 mb-4">Register another school</h1>
+      <h1 className="h3 mb-4">Please select your school</h1>
 
       <p>Schools you are registered for:</p>
 
