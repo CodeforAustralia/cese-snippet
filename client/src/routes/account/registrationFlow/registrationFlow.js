@@ -65,12 +65,8 @@ class RegistrationFlow extends React.Component {
       schools,
       isFetching,
       onSubmitSuccess,
-      history,
-      location,
       userSchoolCodes,
     } = this.props;
-
-    // const showBreadcrumb = get(location, 'state.showBreadcrumb', false);
 
     if (userSchoolCodes.length && isFetching !== false) {
       return <CircleLoading />
@@ -88,7 +84,9 @@ class RegistrationFlow extends React.Component {
       <Row>
         <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
           <Template schools={schools}>
-            <Form onSubmitSuccess={onSubmitSuccess} autoFocus={true} />
+            <Form onSubmitSuccess={onSubmitSuccess}
+                  autoFocus={!!schools.length === false}
+            />
           </Template>
         </Col>
       </Row>
