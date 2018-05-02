@@ -4,6 +4,7 @@ import {
   Switch,
 } from "react-router-dom";
 import { Redirect } from 'react-router';
+import Bows from 'bows';
 
 import Layout from './layout';
 import Program from './program';
@@ -11,7 +12,12 @@ import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
-import Schools from './schools';
+// import Schools from './schools';
+
+import { BoxLoading } from 'components/loading';
+
+
+const log = Bows('Account View');
 
 
 class Account extends React.Component {
@@ -22,6 +28,14 @@ class Account extends React.Component {
   }
 
   componentDidMount() {
+    const { schools, userSchoolCodes } = this.props;
+    if (!schools.length) {
+      if (userSchoolCodes.length) {
+        log('Fetching schools.');
+        this.props.fetchSchools(this.props.userSchoolCodes);
+      }
+    }
+    log('Fetching static.');  // todo - don't refetch
     this.props.fetchProgramFields();
     this.props.fetchStaffList();
   }
@@ -38,7 +52,11 @@ class Account extends React.Component {
   }
 
   render() {
-    const { location, schools } = this.props;
+    const {
+      location,
+      schools,
+      isFetchingSchools,
+    } = this.props;
 
     const isModal = !!(
       location.state &&
@@ -46,16 +64,29 @@ class Account extends React.Component {
       this.previousLocation !== location
     ); // not initial render;
 
+    if (!isModal && isFetchingSchools !== false) {
+      return <BoxLoading />
+    }
+
+    const RedirectFork = () => {
+      if (schools.length) {
+        return <Redirect to={`/account/schools/${schools[0].code}/programs/${2018}`} />
+      } else {
+        return null;
+      //   return <Redirect to="/account/register-school" />
+      }
+    };
+
     return (
       <div>
         <Layout schools={schools}>
           <Switch location={isModal ? this.previousLocation : location}>
-            <Route path="/account/schools" exact component={Schools} />
+            {/*<Route path="/account/index" exact component={Index} />*/}
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/programs/:programId" component={Program} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
             <Route path="/account/register-school" component={RegistrationFlow} />
-            {/*<Redirect to="/account/schools" />*/}
+            <RedirectFork />
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}

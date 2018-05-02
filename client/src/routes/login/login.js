@@ -41,7 +41,7 @@ class Login extends React.Component {
     log('Logging in');
     this.props.loginSession(staffMember).then((session) => {
       log('Logged in:', session);
-      this.props.history.push('/account/schools');
+      this.props.history.push('/account');
     });
   }
 

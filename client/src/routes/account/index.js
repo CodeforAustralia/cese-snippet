@@ -1,4 +1,6 @@
+import { withRouter } from 'react-router-dom';
+
 import Container from './container';
 import Account from './account';
 
-export default Container(Account);
+export default withRouter(Container(Account));

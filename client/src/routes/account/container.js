@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
+
 import { fetchSchools } from 'store/schools/actionCreators';
 import {
   selectSchools,
-  selectIsFetching
+  selectIsFetching as selectIsFetchingSchools,
 } from 'store/schools/selectors';
 import {
   selectSession,
@@ -13,12 +14,13 @@ import {
   fetchProgramFields,
 } from 'store/static/actionCreators';
 
+
 const mapStateToProps = (state) => {
   const userSchoolCodes = selectUserSchoolCodes(state);
   return {
     session: selectSession(state),
     userSchoolCodes,
-    isFetching: selectIsFetching(state),
+    isFetchingSchools: selectIsFetchingSchools(state),
     schools: selectSchools(state, userSchoolCodes),
   }
 };

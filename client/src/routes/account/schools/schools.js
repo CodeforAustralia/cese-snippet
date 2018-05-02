@@ -22,18 +22,25 @@ class Schools extends React.Component {
     if (isFetching !== false) {
       return <Loading />
     }
-
-    if (isFetching === false) {  // it's ready
-      if (schools && schools.length) {
-        log('Navigating to SchoolPrograms');
-        return <Redirect to={`/account/schools/${schools[0].code}/programs/2018`} />
-      } else {
-        log('Navigating to Register');
-        return <Redirect to={`/account/register-school`} />
-      }
-    }
-
+  //
+  //   if (isFetching === false) {  // it's ready
+  //     if (schools && schools.length) {
+  //       log('Navigating to SchoolPrograms');
+  //       return <Redirect to={`/account/schools/${schools[0].code}/programs/2018`} />
+  //     } else {
+  //       log('Navigating to Register');
+  //       return <Redirect to={`/account/register-school`} />
+  //     }
+  //   }
+  //
     return null;
+  }
+
+
+  render() {
+
+
+
   }
 }
 

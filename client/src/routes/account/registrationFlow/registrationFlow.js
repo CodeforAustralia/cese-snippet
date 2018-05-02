@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import {
   Col,
   Row,
+  Button,
 } from 'reactstrap';
+import get from 'lodash/get';
 
 import { CircleLoading } from 'components/loading';
 import Form from './../components/registerSchoolForm';
@@ -59,7 +61,11 @@ class RegistrationFlow extends React.Component {
       schools,
       isFetching,
       onSubmitSuccess,
+      history,
+      location,
     } = this.props;
+
+    // const showBreadcrumb = get(location, 'state.showBreadcrumb', false);
 
     if (isFetching !== false) {
       return <CircleLoading />
@@ -70,9 +76,12 @@ class RegistrationFlow extends React.Component {
     return (
       <Row>
         <Col md={{size: 6, offset: 3}}>
-          <Link to="/account">{`< Programs`}</Link>
-          <br />
-          <br />
+
+          {/*{showBreadcrumb ?*/}
+            // <Link to="/account">{`< Programs`}</Link> :
+            // null
+            // }
+
 
           <Template schools={schools}>
             <Form onSubmitSuccess={onSubmitSuccess} autoFocus={true} />
