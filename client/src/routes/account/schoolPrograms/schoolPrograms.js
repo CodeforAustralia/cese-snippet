@@ -14,6 +14,7 @@ import {
 import without from 'lodash/without';
 import Bows from 'bows';
 
+import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import ProgramsList from './../components/programsList';
 import {
@@ -81,6 +82,11 @@ class SchoolPrograms extends React.Component {
 
     return (
       <div>
+
+        <Breadcrumb items={[
+          { label: 'Programs' },
+          { label: school.name }
+        ]} />
 
         <div className={style.titleBlock}>
           <div className={style.titleBlockLhs}>

@@ -28,7 +28,7 @@ import {
   getSchoolsOptions,
   getProgramTemplateOptions,
 } from 'store/programs/formHelpers';
-import Loading from 'components/loading';
+import { CircleLoading } from 'components/loading';
 import FieldSelect from 'components/fieldSelect';
 import FieldSelectTags from 'components/fieldSelectTags';
 import FieldNumberInput from 'components/fieldNumberInput';
@@ -141,7 +141,7 @@ class ProgramForm extends React.Component {
     // }
 
     if (isFetchingProgramTemplates !== false) {
-      return <Loading/>
+      return <CircleLoading />
     }
 
     const optionsLevel2Categories = getLevel2Categories(this.optionsLevel1Categories, values.category);

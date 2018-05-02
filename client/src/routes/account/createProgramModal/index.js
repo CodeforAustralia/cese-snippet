@@ -3,10 +3,7 @@ import cx from 'classnames';
 import { BodyClass } from 'components/elementClass';
 import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import {
-  // Container,
   Button,
-  // Row,
-  // Col,
 } from 'reactstrap';
 
 import {
@@ -36,7 +33,7 @@ const CreateProgramModal = ({ history, location }) => {
       <DocumentOnKeyUp keyCode={27} onKeyUp={back} />
 
       <div className={cx(style.modal, style.modalAnimation, 'element-animated"')}>
-        <div className="modal-content">
+        <div className={`modal-content ${style.modalContent}`}>
           <div className="modal-header">
             <h5 className="modal-title">{isEdit ? 'Update Program' : 'Add a Program'}</h5>
             <Button className="close" color="" aria-label="Close" onClick={back}>

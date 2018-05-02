@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
 
+import Breadcrumb from 'components/breadcrumb';
 import Loading from 'components/loading';
 import { CreateForm as Form } from './../components/programForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
@@ -39,9 +39,12 @@ class SchoolCreateProgram extends React.Component {
 
     return (
       <div>
-        <p><Link to="/account">{`< Programs`}</Link></p>
+        <Breadcrumb items={[
+          { label: 'Programs', to: '/account' },
+          { label: 'Add Program' }
+        ]} />
 
-        <h1>Add a Program</h1>
+        <h1>Add a program</h1>
 
         <Form onSubmitSuccess={(code, year) => history.push(getSchoolProgramsUrl(code, year))} />
       </div>
