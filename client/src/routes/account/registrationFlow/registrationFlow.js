@@ -5,7 +5,7 @@ import {
   Row,
 } from 'reactstrap';
 
-import Loading from 'components/loading';
+import { CircleLoading } from 'components/loading';
 import Form from './../components/registerSchoolForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
 
@@ -14,8 +14,8 @@ import { getSchoolProgramsUrl } from 'helpers/url';
 const WithoutSchools = ({ children }) => {
   return (
     <div>
-      <h1>Thank you for signing up to Snippet.</h1>
-      <p>Before you start, please add your school.</p>
+      <h1 className="h3 mb-2">Thank you for signing up to Snippet.</h1>
+      <p>Before you start, please search for your school.</p>
 
       {children}
     </div>
@@ -25,7 +25,7 @@ const WithoutSchools = ({ children }) => {
 const ExistingSchools = ({ children, schools }) => {
   return (
     <div>
-      <h1>Your schools</h1>
+      <h1 className="h3">Your schools</h1>
 
       <ul>
         {schools.map((school, idx) => (
@@ -62,7 +62,7 @@ class RegistrationFlow extends React.Component {
     } = this.props;
 
     if (isFetching !== false) {
-      return <Loading />
+      return <CircleLoading />
     }
 
     const Template = schools.length ? ExistingSchools : WithoutSchools;
@@ -75,7 +75,7 @@ class RegistrationFlow extends React.Component {
           <br />
 
           <Template schools={schools}>
-            <Form onSubmitSuccess={onSubmitSuccess} />
+            <Form onSubmitSuccess={onSubmitSuccess} autoFocus={true} />
           </Template>
 
         </Col>

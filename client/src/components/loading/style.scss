@@ -13,9 +13,13 @@
   color: $text-muted;
 }
 
+
 // http://tobiasahlin.com/spinkit/
 
-.spinner {
+
+// Box
+
+.boxSpinner {
   width: 40px;
   height: 40px;
   background-color: $gray-200;
@@ -31,4 +35,39 @@
     } 100% {
         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
       }
+}
+
+
+// Circle
+
+.circleSpinner {
+  margin: 100px auto 0;
+  width: 70px;
+  text-align: center;
+}
+
+.circleSpinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: $gray-200;
+
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.circleSpinner .circleSpinnerBounce1 {
+  animation-delay: -0.32s;
+}
+
+.circleSpinner .circleSpinnerBounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+  } 40% {
+      transform: scale(1.0);
+    }
 }
