@@ -10,7 +10,6 @@ import Form from './../components/registerSchoolForm';
 import { getSchoolProgramsUrl } from 'helpers/url';
 
 
-
 const WithoutSchools = ({ children }) => {
   return (
     <div>
@@ -49,7 +48,8 @@ class RegistrationFlow extends React.Component {
 
   componentDidMount() {
     const { userSchoolCodes, schools } = this.props;
-    if (userSchoolCodes && !schools.length) {
+
+    if (userSchoolCodes.length && !schools.length) {  // only if I have schools, fetch them
       this.props.fetchSchools(userSchoolCodes);
     }
   }
@@ -59,9 +59,14 @@ class RegistrationFlow extends React.Component {
       schools,
       isFetching,
       onSubmitSuccess,
+      history,
+      location,
+      userSchoolCodes,
     } = this.props;
 
-    if (isFetching !== false) {
+    // const showBreadcrumb = get(location, 'state.showBreadcrumb', false);
+
+    if (userSchoolCodes.length && isFetching !== false) {
       return <CircleLoading />
     }
 
@@ -70,14 +75,9 @@ class RegistrationFlow extends React.Component {
     return (
       <Row>
         <Col md={{size: 6, offset: 3}}>
-          <Link to="/account">{`< Programs`}</Link>
-          <br />
-          <br />
-
           <Template schools={schools}>
             <Form onSubmitSuccess={onSubmitSuccess} autoFocus={true} />
           </Template>
-
         </Col>
       </Row>
     )

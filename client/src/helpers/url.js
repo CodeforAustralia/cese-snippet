@@ -31,7 +31,15 @@ export const getCreateProgramUrl = (initialFormState = {}) => {
   }
 };
 
-
 export const getProgramUrl = (programId) => ({
   pathname: `/account/programs/${programId}`,
 });
+
+export const getRegisterSchoolUrl = (showBreadcrumb = false) => {
+  return {
+    pathname: `/account/register-school`,
+    state: {
+      showBreadcrumb,
+    }
+  }
+};

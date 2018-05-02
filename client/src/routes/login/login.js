@@ -41,7 +41,7 @@ class Login extends React.Component {
     log('Logging in');
     this.props.loginSession(staffMember).then((session) => {
       log('Logged in:', session);
-      this.props.history.push('/account/decision');
+      this.props.history.push('/account');
     });
   }
 
@@ -66,7 +66,7 @@ class Login extends React.Component {
       <Layout>
         <Container>
           <Row>
-            <Col sm={{size: 6, offset: 3}} md={{size: 8, offset: 2}}>
+            <Col sm={{size: 8, offset: 2}}>
               <div className={style.loginContainer}>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
@@ -75,7 +75,6 @@ class Login extends React.Component {
                 </div>
 
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
-
 
 
                 {isFetching !== false ?

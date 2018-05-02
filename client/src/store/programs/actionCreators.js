@@ -151,7 +151,7 @@ export const updateProgram = (program) => {
         if (!resp.data) {
           throw new Error('Data not provided in response');
         }
-        log(`Putted: ${resp.data}`);
+        log(`Putted`);
         // 3.
         dispatch(createOrUpdatePrograms(resp.data));
         return resp;
@@ -199,7 +199,7 @@ export const fetchFromApiOrCache = (path, props) => {
         if (!resp.data) {
           throw new Error('Data not provided in response');
         }
-        log(`Fetched: ${resp.data}`);
+        log(`Fetched`);
         // 2.
         dispatch(createOrUpdatePrograms(resp.data));
         return resp;

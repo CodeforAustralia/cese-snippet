@@ -111,7 +111,7 @@ class SchoolPrograms extends React.Component {
             <CircleLoading /> :
 
             <Row>
-              <Col sm={{size: 6, offset: 3}}>
+              <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
                   <ProgramsList programs={this.sortByLatestDate(filteredPrograms)}
                               activeYear={filterProps.year} />
               </Col>
