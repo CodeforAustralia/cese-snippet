@@ -39,7 +39,11 @@ class SchoolPrograms extends React.Component {
   }
 
   fetchData() {
-    const { school, session } = this.props;
+    const {
+      school,
+      session,
+    } = this.props;
+
     if (!school) {
       log('fetching schools');
       this.props.fetchSchools(session.schools);
