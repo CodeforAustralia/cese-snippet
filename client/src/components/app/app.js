@@ -9,7 +9,6 @@ import LoggedOut from 'routes/loggedOut';
 import Account from 'routes/account';
 import Feedback from 'routes/feedback';
 import WhatsNext from 'routes/whatsNext';
-import TopBanner from 'components/topBanner';
 
 const NoMatch = ({ location }) => (
   <div>
@@ -21,7 +20,6 @@ const NoMatch = ({ location }) => (
 
 const App = ({ session }) => (
   <div>
-    <TopBanner />
     <AuthProvider session={session}>
       <Router>
         <Switch>

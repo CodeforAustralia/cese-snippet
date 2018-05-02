@@ -13,6 +13,7 @@ import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 
+import TopBar from 'components/detTopBanner';
 import Header from './components/header';
 import Footer from './components/stickyFooter';
 import { BoxLoading } from 'components/loading';
@@ -82,6 +83,7 @@ class Account extends React.Component {
 
     return (
       <div>
+        <TopBar />
         <Header />
         <Container className={style.layoutContainer}>
           <Switch location={isModal ? this.previousLocation : location}>

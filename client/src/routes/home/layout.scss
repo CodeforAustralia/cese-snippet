@@ -4,11 +4,16 @@
   position: relative;
 }
 
-.navbar {
+.homeNavbar {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+}
+
+.navbar {
+  @include xs() {
+    background-color: $brand-concrete !important;
+    border-bottom: 1px solid rgba(black, .75);
+    margin-bottom: 1.4em;
+  }
 }
 
 .navbarBrand {

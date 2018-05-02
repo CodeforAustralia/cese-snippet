@@ -23,7 +23,8 @@ import CloudIcon from './cloud.svg';
 
 
 const HomePage = () => (
-  <Layout>
+
+  <Layout homeHeader={true}>
 
     <div className={style.topLayoutBand}>
       <Container>

@@ -23,7 +23,7 @@
   width: 40px;
   height: 40px;
   background-color: $gray-200;
-  margin: 6em auto 2em;
+  margin: 1em auto;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
 }
 
@@ -50,7 +50,7 @@
   width: 18px;
   height: 18px;
   background-color: $gray-200;
-
+  margin: 1em auto;
   border-radius: 100%;
   display: inline-block;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
