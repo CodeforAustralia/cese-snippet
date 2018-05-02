@@ -223,7 +223,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="category">Program Focus Area</Label>
-                  <FieldRadioBtnList name="category"
+                  <FieldCheckboxList name="category"
                                      value={values.category}
                                      options={this.optionsLevel1Categories}
                                      onChange={setFieldValue}
@@ -288,6 +288,15 @@ class ProgramForm extends React.Component {
                                      value={values.yearLevels}
                                      options={this.optionsYearLevels}
                   />
+                  <input type="checkbox" className="form-check form-check-inline" onClick={(event) => {
+                    const selectAll = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                    event.target.checked
+                      ? setFieldValue("yearLevels", selectAll)
+                      : setFieldValue("yearLevels", [])
+                    }} />
+                    <label className="form-check-label">Select all years</label>
+
+
                   {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
                   <FormText color="muted">
                     Which year levels are participating in this program?
@@ -336,7 +345,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Does the program cater to a particular focus group?</Label>
-                  <FieldRadioBtnList name="focusGroup"
+                  <FieldCheckboxList name="focusGroup"
                                      value={values.focusGroup}
                                      options={this.optionsFocusGroup}
                                      onChange={setFieldValue}
@@ -404,7 +413,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Provider</Label>
-                  <FieldRadioBtnList options={this.optionsDeliveredByType}
+                  <FieldCheckboxList options={this.optionsDeliveredByType}
                                      name="deliveredByType"
                                      value={values.deliveredByType}
                                      onChange={setFieldValue}
