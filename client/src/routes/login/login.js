@@ -52,6 +52,16 @@ class Login extends React.Component {
       session,
     } = this.props;
 
+    const optionsStaff = staff.map(s => ({
+      value: s.id,
+      label: `${s.first} ${s.last}`,
+    })).sort((a,b) => {
+      if (a.label.includes('(')) {
+        return false;
+      }
+      return true;
+    });
+
     return (
       <Layout>
         <Container>
@@ -78,10 +88,7 @@ class Login extends React.Component {
                             <Col md={12} lg={6}>
                               <Label htmlFor="subCategory">Select a user</Label>
                               <FieldSelect name="id"
-                                           options={staff.map(s => ({
-                                             value: s.id,
-                                             label: `${s.first} ${s.last}`,
-                                           }))}
+                                           options={optionsStaff}
                                            clearable={false}
                                            onChange={setFieldValue}
                                            onBlur={setFieldTouched}
