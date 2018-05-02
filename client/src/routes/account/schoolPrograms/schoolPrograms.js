@@ -8,10 +8,12 @@ import {
   NavItem,
   NavLink,
   Button,
+  Row,
+  Col,
 } from 'reactstrap';
 import without from 'lodash/without';
 
-import Loading from 'components/loading';
+import { CircleLoading } from 'components/loading';
 import ProgramsList from './../components/programsList';
 import {
   getSchoolProgramsUrl,
@@ -34,9 +36,9 @@ class SchoolPrograms extends React.Component {
   }
 
   fetchData() {
-    const { school } = this.props;
+    const { school, session } = this.props;
     if (!school) {
-      this.props.fetchSchool();
+      this.props.fetchSchools(session.schools);
     }
     this.props.fetchProgramsByFilter();
   }
@@ -58,7 +60,7 @@ class SchoolPrograms extends React.Component {
     } = this.props;
 
     if (isFetchingSchools !== false) {
-      return <Loading />
+      return <CircleLoading />
     }
 
     if (!school) {
@@ -96,12 +98,14 @@ class SchoolPrograms extends React.Component {
 
         <div className={style.tabPageContainer}>
           { isFetchingPrograms !== false ?
-            <Loading /> :
+            <CircleLoading /> :
 
-            <div>
-              <ProgramsList programs={this.sortByLatestDate(filteredPrograms)}
-                          activeYear={filterProps.year} />
-            </div>
+            <Row>
+              <Col sm={{size: 6, offset: 3}}>
+                  <ProgramsList programs={this.sortByLatestDate(filteredPrograms)}
+                              activeYear={filterProps.year} />
+              </Col>
+            </Row>
           }
         </div>
 

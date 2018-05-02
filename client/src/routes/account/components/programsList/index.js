@@ -39,9 +39,9 @@ const EmptyItem = ({ activeYear }) => {
   return (
     <Card className={style.emptyProgram}>
       <CardBody>
-        <CardTitle className={style.emptyProgamTitle}>There are no Programs for {activeYear}</CardTitle>
+        <CardTitle className={style.emptyProgamTitle}>There are no Programs for "{activeYear}"</CardTitle>
         <CardSubtitle className={style.emptyProgamSubTitle}>If you know details of any Program <br/>it's easy to create one!</CardSubtitle>
-        <CardText className={cx('font-weight-light text-muted', style.emptyProgramHelpText)}>
+        <CardText className={cx('font-weight-light text-muted mb-4', style.emptyProgramHelpText)}>
           Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.
         </CardText>
         <Button color="primary" to={getCreateProgramModalUrl({year: activeYear})} tag={RRLink}>Add a New Program</Button>
@@ -58,56 +58,48 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
     return <EmptyItem openAddProgram={openAddProgram} activeYear={activeYear} />
   }
 
-  return (
-    <CardColumns>
-      {sortByNewest(programs).map((program, idx) => {
+  return sortByNewest(programs).map((program, idx) => {
+    const isNew = getIsNew(program);
+    const isCurrent = getIsCurrent(program);
+    const metaDescription = getHumanisedMetaDescription(program);
 
-        const isNew = getIsNew(program);
+    return (
+      <Card key={idx} className={cx(
+        style.programCard,
+        isNew ? `element-animated ${style.newTransition}` : null
+      )}>
+        <CardBody>
+          {isCurrent ?
+            <div className="mb-3">
+              <Badge color="info" pill>Active</Badge>
+            </div> :
+            null
+          }
 
-        const isCurrent = getIsCurrent(program);
+          <CardSubtitle className={cx(style.cardSubtitle, 'mb-3')}>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
 
-        const metaDescription = getHumanisedMetaDescription(program);
+          <CardTitle><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></CardTitle>
 
-        return (
-          <Card key={idx} className={cx(
-            style.programCard,
-            isNew ? `element-animated ${style.newTransition}` : null
-          )}>
+          <CardText className={cx(style.programDescriptionText, 'mb-0')}>
+            {program.description && <TruncatedText text={program.description} length={160} />}
+          </CardText>
 
-            <CardBody>
-              {isCurrent ?
-                <div className="mb-3">
-                  <Badge color="info" pill>Active</Badge>
-                </div> :
-                null
-              }
+        </CardBody>
 
-              <CardSubtitle className={cx(style.cardSubtitle, 'mb-3')}>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
+        <CardBody className={style.programMeta}>
+          <CardText>
+            {metaDescription}
+          </CardText>
+        </CardBody>
 
-              <CardTitle><RRNavLink to={getProgramUrl(program.id)}>{program.name}</RRNavLink></CardTitle>
+        <CardBody className={style.programActions}>
+          <CardLink to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</CardLink>
+          <CardLink to={getProgramUrl(program.id)} color="secondary" tag={RRNavLink} className="float-right" alt="Read more">{`>`}</CardLink>
+        </CardBody>
 
-              <CardText className={cx(style.programDescriptionText, 'mb-0')}>
-                {program.description && <TruncatedText text={program.description} length={160} />}
-              </CardText>
-
-            </CardBody>
-
-            <CardBody className={style.programMeta}>
-              <CardText>
-                {metaDescription}
-              </CardText>
-            </CardBody>
-
-            <CardBody className={style.programActions}>
-              <CardLink to={getCreateProgramModalUrl(program)} color="secondary" tag={RRLink}>Edit</CardLink>
-              <CardLink to={getProgramUrl(program.id)} color="secondary" tag={RRNavLink} className="float-right" alt="Read more">{`>`}</CardLink>
-            </CardBody>
-
-          </Card>
-        )
-      })}
-    </CardColumns>
-  );
+      </Card>
+    )
+  });
 
 };
 
