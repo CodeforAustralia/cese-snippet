@@ -29,7 +29,7 @@ class Schools extends React.Component {
         return <Redirect to={`/account/schools/${schools[0].code}/programs/2018`} />
       } else {
         log('Navigating to Register');
-        return <Redirect to={`/account/register`} />
+        return <Redirect to={`/account/register-school`} />
       }
     }
 

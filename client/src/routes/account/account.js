@@ -12,18 +12,20 @@ import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 import Schools from './schools';
-import Footer from './components/stickyFooter';
 
 
 class Account extends React.Component {
+
   constructor(props) {
     super(props);
     this.previousLocation = props.location;
   }
+
   componentDidMount() {
     this.props.fetchProgramFields();
     this.props.fetchStaffList();
   }
+
   componentWillUpdate(nextProps) {
     const { location } = this.props;
     // set previousLocation if props.location is not modal
@@ -34,6 +36,7 @@ class Account extends React.Component {
       this.previousLocation = this.props.location;
     }
   }
+
   render() {
     const { location, schools } = this.props;
 
@@ -51,15 +54,15 @@ class Account extends React.Component {
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/programs/:programId" component={Program} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
-            <Route path="/account/register" component={RegistrationFlow} />
-            <Redirect to="/account/schools" />
+            <Route path="/account/register-school" component={RegistrationFlow} />
+            {/*<Redirect to="/account/schools" />*/}
           </Switch>
         </Layout>
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
-        <Footer />
       </div>
-    )
+    );
   }
+
 }
 
 export default Account;
