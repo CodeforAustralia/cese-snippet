@@ -21,3 +21,10 @@
     @content;
   }
 }
+
+
+@mixin max-md {
+  @media (max-width: 768px) {
+    @content;
+  }
+}

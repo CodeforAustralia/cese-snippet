@@ -1,9 +1,9 @@
 @import '~style/helpers.scss';
 
 .loginContainer {
-  margin-top: 0; //20px;
-  @include sm() {
-    margin-top: 100px;
+  margin-top: 60px !important;
+  @include max-md() {
+    margin-top: 0 !important;
   }
 }
 
