@@ -33,7 +33,7 @@ const makeJson = (data) => {
       "participantGroupsDescription": d.participantGroupsDescription,
       "focusGroup": d.focusGroup,
       "focusGroupOther": d.focusGroupOther,
-      "yearLevels": arrayify(d.yearLevel),
+      "yearLevels": Array.isArray(d.yearLevel) ? d.yearLevel.map(y => String(y)) : arrayify(d.yearLevel),
       "cohortSize": d.cohortSize,
       "deliveredByType": getDeliveredByType(d.deliveredByType),
       "externalProvider": d.externalProvider,
