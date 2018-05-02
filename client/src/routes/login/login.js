@@ -17,7 +17,7 @@ import {
 import FieldSelect from 'components/fieldSelect';
 
 import Layout from './../home/layout';
-import Loading from 'components/loading';
+import { CircleLoading } from 'components/loading';
 import style from './style.scss';
 
 const log = Bows('Login view');
@@ -52,6 +52,16 @@ class Login extends React.Component {
       session,
     } = this.props;
 
+    const optionsStaff = staff.map(s => ({
+      value: s.id,
+      label: `${s.first} ${s.last}`,
+    })).sort((a,b) => {
+      if (a.label.includes('(')) {
+        return false;
+      }
+      return true;
+    });
+
     return (
       <Layout>
         <Container>
@@ -60,38 +70,40 @@ class Login extends React.Component {
               <div className={style.loginContainer}>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-                <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
-
-                <div className="alert alert-primary" role="alert">
+                <div className={`alert alert-info mb-4 ${style.alert}`} role="alert">
                   There is no need to supply your own login credentials as this is a demo site.
                 </div>
 
+                <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
+
+
+
                 {isFetching !== false ?
-                  <Loading /> :
+                  <CircleLoading /> :
                   staff && staff.length ?
                     <Formik
                       initialValues={{ id: get(session, 'id') }}
                       onSubmit={(values) => this.handleSubmit(values)}
                       render={({values, setFieldValue, setFieldTouched, isSubmitting}) => (
                         <Form>
-                          <FormGroup row>
+                          <FormGroup row className="mb-4">
                             <Col md={12} lg={6}>
                               <Label htmlFor="subCategory">Select a user</Label>
                               <FieldSelect name="id"
-                                           options={staff.map(s => ({
-                                             value: s.id,
-                                             label: `${s.first} ${s.last}`,
-                                           }))}
+                                           options={optionsStaff}
                                            clearable={false}
                                            onChange={setFieldValue}
                                            onBlur={setFieldTouched}
                                            value={values.id}
                                            placeholder="Select ..."
+                                           autoFocus={true}
                               />
                             </Col>
                           </FormGroup>
 
-                          <Button type="submit">Login</Button>
+                          <Button type="submit" color="primary" disabled={isSubmitting || !values.id}>
+                            {isSubmitting ? 'Logging in...' : 'Log in'}
+                          </Button>
                         </Form>
                       )}
                     /> :

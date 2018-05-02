@@ -29,12 +29,13 @@ class RegistrationForm extends React.Component {
       touched,
       isSubmitting,
 
+      autoFocus,
       schoolsListOptions,
     } = this.props;
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
-        <FormGroup row>
+        <FormGroup row className="mb-4">
           <Col md={{size: 10}}>
             <FieldSelect name="code"
                          value={values.code}
@@ -44,11 +45,12 @@ class RegistrationForm extends React.Component {
                          onBlur={this.props.setFieldTouched}
                          invalid={errors.code}
                          touched={touched.code}
+                         autoFocus={autoFocus}
             />
           </Col>
         </FormGroup>
-        <Button type="submit" color="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Registering...' : 'Register'}
+        <Button type="submit" color="primary" disabled={isSubmitting || !values.code}>
+          {isSubmitting ? 'Adding...' : `Add`}
         </Button>
       </Form>
     )

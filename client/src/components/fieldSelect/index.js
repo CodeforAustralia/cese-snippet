@@ -12,6 +12,7 @@ class FieldSelect extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
@@ -36,9 +37,12 @@ class FieldSelect extends React.Component {
   render() {
     const { options, value,
       // invalid = {}, touched = {},
-      name, disabled = false, clearable = true, placeholder = null } = this.props;
+      name, disabled = false, clearable = true, placeholder = null,
+      autoFocus = false,
+    } = this.props;
     return (
       <Select
+        ref={(el) => this.el = el}
         id={name}
         name={name}
         clearable={clearable}
@@ -47,7 +51,9 @@ class FieldSelect extends React.Component {
         onChange={this.handleChange}
         onBlur={this.handleBlur}
         placeholder={placeholder}
-        value={value} />
+        value={value}
+        autoFocus={autoFocus}
+      />
     );
   }
 }
