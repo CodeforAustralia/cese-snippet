@@ -215,7 +215,7 @@ const HomePage = () => (
       <Container>
         <Row>
           <Col>
-            <p>Amazing things are coming! <RRLink to="/whats-next">Find out about Snippet Beta</RRLink>.</p>
+            <p>Amazing things are coming! <RRLink to="/whats-next" className="text-brand-primary">Find out about Snippet Beta</RRLink>.</p>
           </Col>
         </Row>
       </Container>

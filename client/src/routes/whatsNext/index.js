@@ -20,7 +20,7 @@ const WhatsNextPage = ({ history }) => {
             <div className={style.whatsNextContainer}>
 
               {history.length > 0 ?
-                <p><Button color="link" className="pl-0" onClick={() => history.goBack()}>{`< Back`}</Button></p> :
+                <p><Button color="link" className="pl-0" onClick={() => history.goBack()}>{`Back`}</Button></p> :
                 null
               }
 

@@ -27,7 +27,7 @@ const FeedbackPage = ({ history }) => {
                         return history.push('/');
                       }}
                       className="pl-0"
-              >{`< Back`}</Button>
+              >{`Back`}</Button>
             </div>
 
             <h1 className="mb-4">Leave feedback</h1>

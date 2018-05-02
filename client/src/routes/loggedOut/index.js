@@ -13,36 +13,39 @@ import Layout from './../home/layout';
 import Form from 'components/feedbackForm';
 import style from './style.scss';
 
+
 const LoggedOutPage = () => {
   return (
     <Layout>
       <Container>
         <Row>
-          <Col md={{size: 6, offset: 3}}>
+          <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
             <div className={style.loggedOutContainer}>
-              <div className={style.headlineContainer}>
-                <p>You are logged out of Snippet.</p>
 
-                <h1>Thank you for being part of&nbsp;<strong>Snippet</strong></h1>
-              </div>
+              <p className={style.breadcrumb}>You are logged out of Snippet.</p>
 
-              <div className={style.feedbackContainer}>
-                <h3 className="h5 pb-2">How was your overall experience of Snippet today?</h3>
+              <h1 className="h2 mb-4">Thank you for being part of&nbsp;Snippet</h1>
+
+              <p>Please come back anytime and tell all of your colleagues!</p>
+
+              <p>If you have the time, we'd love to know how your overall experience of Snippet was today.</p>
+              <div className={style.formPanel}>
                 <Form />
               </div>
 
-              <Link to="/">{`> Back to home`}</Link>
-
+              <div className="mb-4">
+                <Link to="/">{`Back to home`}</Link>
+              </div>
             </div>
           </Col>
         </Row>
       </Container>
 
-      <div className={cx(style.snippetBetaBand, 'mt-4')}>
+      <div className={cx(style.snippetBetaBand, 'mt-4 mb-5')}>
         <Container>
           <Row>
             <Col>
-              <p>Amazing things are coming! <Link to="/whats-next">Find out about Snippet Beta</Link>.</p>
+              <p>Amazing things are coming! <Link to="/whats-next" className="text-brand-primary">Find out about Snippet Beta</Link>.</p>
             </Col>
           </Row>
         </Container>
