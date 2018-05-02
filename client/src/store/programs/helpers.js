@@ -50,7 +50,7 @@ export const getHumanisedMetaDescription = (program) => {
   let str = 'For ';
 
   if (participantGroups) {
-    str += + commarise(participantGroups) + ' ';
+    str += commarise(participantGroups) + ' ';
   }
 
   if (focusGroup) { // todo - check
