@@ -288,6 +288,15 @@ class ProgramForm extends React.Component {
                                      value={values.yearLevels}
                                      options={this.optionsYearLevels}
                   />
+                  <input type="checkbox" className="form-check form-check-inline" onClick={(event) => {
+                    const selectAll = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                    event.target.checked
+                      ? setFieldValue("yearLevels", selectAll)
+                      : setFieldValue("yearLevels", [])
+                    }} />
+                    <label className="form-check-label">Select all years</label>
+
+
                   {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
                   <FormText color="muted">
                     Which year levels are participating in this program?
