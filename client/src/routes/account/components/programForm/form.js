@@ -223,7 +223,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="category">Program Focus Area</Label>
-                  <FieldCheckboxList name="category"
+                  <FieldRadioBtnList name="category"
                                      value={values.category}
                                      options={this.optionsLevel1Categories}
                                      onChange={setFieldValue}
@@ -345,7 +345,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Does the program cater to a particular focus group?</Label>
-                  <FieldCheckboxList name="focusGroup"
+                  <FieldRadioBtnList name="focusGroup"
                                      value={values.focusGroup}
                                      options={this.optionsFocusGroup}
                                      onChange={setFieldValue}
@@ -413,7 +413,7 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Provider</Label>
-                  <FieldCheckboxList options={this.optionsDeliveredByType}
+                  <FieldRadioBtnList options={this.optionsDeliveredByType}
                                      name="deliveredByType"
                                      value={values.deliveredByType}
                                      onChange={setFieldValue}
