@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { FieldArray } from 'formik';
 
 const FieldCheckboxList = ({ options, name, value }) => {
+  const styles = {
+    display: 'inline-block',
+}
   return (
-    <div>
+    <div style={styles}>
       <FieldArray
         name={name}
         render={arrayHelpers => (
