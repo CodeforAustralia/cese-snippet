@@ -77,22 +77,11 @@ class FeedbackForm extends React.Component {
 
             <FormGroup row>
               <Col sm={{size: 12}}>
-                <Label htmlFor="description">Was there anything that you would like to share?</Label>
+                <Label htmlFor="description">It’s OK if you don’t, but was there anything that you would like to share?</Label>
+                {/*Like other ideas communities you've been a part of?*/}
+                {/*Your day job if it's relevant (e.g. a developer or designer)?*/}
+                {/*Any websites, blogs or profiles to share?*/}
                 <FieldTextareaInput name="description" rows={4} disabled={isSubmitting} />
-              </Col>
-            </FormGroup>
-
-            <FormGroup row className="mb-0">
-              <Col sm={{size: 12}}>
-                <Label htmlFor="willReturn">Would you use Snippet again?</Label>
-                <FieldCheckboxBtnList name="willReturn"
-                                      value={values.willReturn}
-                                      options={[
-                                        { value: 'Yes', label: 'Yes' },
-                                        { value: 'No', label: 'No' },
-                                      ]}
-                                      disabled={isSubmitting}
-                />
               </Col>
             </FormGroup>
 
