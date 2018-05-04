@@ -40,6 +40,7 @@ import FieldCheckboxList from 'components/fieldCheckboxList';
 
 import FieldCode from './../fieldCode';
 import FieldName from './../fieldName';
+import SelectAllYears from './../selectAllYears';
 
 import style from './style.scss';
 
@@ -238,7 +239,7 @@ class ProgramForm extends React.Component {
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="participantGroups">Who is the program for?</Label>
+                  <Label className={style.formLabel} htmlFor="participantGroups">Who is the program for?</Label>
                   <FieldCheckboxList name="participantGroups"
                                      value={values.participantGroups}
                                      options={this.optionsParticipantGroups}
@@ -252,7 +253,7 @@ class ProgramForm extends React.Component {
                 values.participantGroups.find(group => group === 'Community') &&
                 <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
+                  <Label  htmlFor="participantGroupsDescription">Who in the community?</Label>
                   <FieldTextInput name="participantGroupsDescription" />
                   <FormText color="muted">
                     Example: Partner schools students, charities, aged care residents
@@ -283,11 +284,22 @@ class ProgramForm extends React.Component {
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label>For Year Levels</Label>
+                  <Label className={style.formLabel}>For Year Levels</Label>
                   <FieldCheckboxList name="yearLevels"
                                      value={values.yearLevels}
                                      options={this.optionsYearLevels}
                   />
+
+                  <SelectAllYears allYears={this.props.setFieldValue}/>
+                  {/* <input type="checkbox" className="form-check form-check-inline" onClick={(event) => {
+                    const selectAll = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                    event.target.checked
+                      ? setFieldValue("yearLevels", selectAll)
+                      : setFieldValue("yearLevels", [])
+                    }} />
+                  <label className="form-check-label">Select all years</label> */}
+
+
                   {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
                   <FormText color="muted">
                     Which year levels are participating in this program?
@@ -310,7 +322,7 @@ class ProgramForm extends React.Component {
 
               <FormGroup row>
                 <Col md={8}>
-                  <Label htmlFor="terms">Terms delivered</Label>
+                  <Label className={style.formLabel} htmlFor="terms">Terms delivered</Label>
                   <FieldCheckboxList name="terms"
                                      value={values.terms}
                                      options={this.optionsTerms}
