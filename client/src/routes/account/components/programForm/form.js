@@ -40,6 +40,7 @@ import FieldCheckboxList from 'components/fieldCheckboxList';
 
 import FieldCode from './../fieldCode';
 import FieldName from './../fieldName';
+import { isRequired } from 'helpers/validators';
 
 import style from './style.scss';
 
@@ -524,11 +525,15 @@ export default withFormik({
   validate: (values, props) => {
     const errors = {};
 
-    if (typeof values.aims === 'undefined') {
-      errors.aims = 'Required';
+    if (isRequired(values.name)) {
+      errors.name = 'Required';
     }
-
-    log('Invalid: ', errors);
+    if (isRequired(values.code)) {
+      errors.code = 'Required';
+    }
+    if (isRequired(values.description)) {
+      errors.description = 'Required';
+    }
 
     return errors;
   },
@@ -556,47 +561,4 @@ export default withFormik({
     );
   }
 })(ProgramForm);
-// "id": "1",
-//   "code": "3717",
-//   "aims": "L3 is a whole-class intervention that aims to reduce the\nrisk of students not achieving expected literacy levels by\nthe end of their first year of schooling.",
-//   "description": "L3 is a research-based Kindergarten classroom\nintervention, targeting text reading and writing. It provides\nrich literacy experiences through systematic and explicit\nteaching. It complements the daily literacy program.\nStudents participate in reading and writing lessons in small\ngroups, designed to meet their specific learning needs.\nThey also engage in short periods of independent,\nindividual or group tasks to practice and consolidate their\ncurrent literacy learning. This occurs in the classroom\nwithin the daily literacy session.",
-//   "descriptionFull": null,
-//   "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
-//   "participantGroups": [
-//   []
-// ],
-//   "participantGroupsDescription": null,
-//   "focusGroup": null,
-//   "focusGroupOther": null,
-//   "yearLevels": [
-//   "K",
-//   "1",
-//   "2",
-//   "3",
-//   "4",
-//   "5",
-//   "6"
-// ],
-//   "cohortSize": 20,
-//   "deliveredByType": "School Staff",
-//   "externalProvider": null,
-//   "staff": [
-//   "37171",
-//   "37172"
-// ],
-//   "year": 2018,
-//   "terms": [
-//   3,
-//   4
-// ],
-//   "tags": [
-//   [
-//     " writing"
-//   ]
-// ],
-//   "createdAt": "2018-02-04",
-//   "createdBy": "73072",
-//   "updatedBy": "73071",
-//   "updatedAt": "2018-02-04",
-//   "name":
 
