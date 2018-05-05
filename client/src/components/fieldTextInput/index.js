@@ -8,11 +8,11 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextInput = ({ name, disabled = false, hidden = false }) => {
+const FieldTextInput = ({ name, className = null, disabled = false, hidden = false }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="text" id={name} disabled={disabled} hidden={hidden} {...field} />
+             <Input type="text" id={name} className={className} disabled={disabled} hidden={hidden} {...field} />
            )}
     />
   )

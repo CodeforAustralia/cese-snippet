@@ -8,11 +8,11 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldNumberInput = ({ name, min, max, disabled = false, hidden = false }) => {
+const FieldNumberInput = ({ name, min, max, disabled = false, hidden = false, className = null }) => {
   return (
     <Field name={name}
            render={({ field }) => (
-             <Input type="number" id={name} disabled={disabled} hidden={hidden} min={min} max={max} {...field} />
+             <Input type="number" id={name} disabled={disabled} hidden={hidden} min={min} max={max} className={className} {...field} />
            )}
     />
   )

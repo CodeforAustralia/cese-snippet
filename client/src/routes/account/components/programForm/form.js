@@ -188,8 +188,10 @@ class ProgramForm extends React.Component {
                              onChange={this.props.setFieldValue}
                              onBlur={this.props.setFieldTouched}
                              touched={touched.code}
-                             invalid={errors.code}/>
-                  {errors.code <FormFeedback>{errors.code}</FormFeedback>}
+                             invalid={errors.code}
+                             className={errors.code && 'is-invalid'}
+                  />
+                  {/*{errors.code <FormFeedback>{errors.code}</FormFeedback>}*/}
                 </Col>
               </FormGroup>
 
@@ -202,6 +204,7 @@ class ProgramForm extends React.Component {
                          onBlur={this.props.handleBlur}
                          defaultValue={values.name}
                          invalid={errors.name}
+                         className={errors.name && 'is-invalid'}
                   />
                   {/*<FieldName name="name"*/}
                              {/*options={optionsProgramTemplates}*/}
@@ -258,7 +261,9 @@ class ProgramForm extends React.Component {
                 <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
-                  <FieldTextInput name="participantGroupsDescription" />
+                  <FieldTextInput name="participantGroupsDescription"
+                                  className={errors.participantGroupsDescription && 'is-invalid'}
+                  />
                   {errors.participantGroupsDescription && <FormFeedback>{errors.participantGroupsDescription}</FormFeedback>}
                   <FormText color="muted">
                     Example: Partner schools students, charities, aged care residents
@@ -280,7 +285,8 @@ class ProgramForm extends React.Component {
                                onBlur={this.props.setFieldTouched}
                                placeholder="First select a Program Focus Area"
                                touched={touched.subCategory}
-                               invalid={errors.subCategory}/>
+                               invalid={errors.subCategory}
+                  />
                   {errors.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
                 </Col>
               </FormGroup>
@@ -306,7 +312,11 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="cohortSize">Number of Participants</Label>
-                  <FieldNumberInput name="cohortSize" min={1} max={3000} />
+                  <FieldNumberInput name="cohortSize"
+                                    min={1}
+                                    max={3000}
+                                    className={errors.cohortSize && 'is-invalid'}
+                  />
                   {errors.cohortSize && <FormFeedback>{errors.cohortSize}</FormFeedback>}
                   <FormText color="muted">
                     How many people participated in this program?
@@ -359,7 +369,9 @@ class ProgramForm extends React.Component {
               {values.focusGroup === 'Other' &&
                 <FormGroup row>
                   <Col md={8}>
-                    <FieldTextInput name="focusGroupOther" />
+                    <FieldTextInput name="focusGroupOther"
+                                    className={errors.focusGroupOther && 'is-invalid'}
+                    />
                     {errors.focusGroupOther && <FormFeedback>{errors.focusGroupOther}</FormFeedback>}
                   </Col>
                 </FormGroup>
@@ -370,7 +382,9 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="aims">Aims</Label>
-                  <FieldTextareaInput name="aims" />
+                  <FieldTextareaInput name="aims"
+                                      className={errors.aims && 'is-invalid'}
+                  />
                   <FormText color="muted">
                     Briefly describe what outcomes the program hopes to achieve.
                   </FormText>
@@ -382,7 +396,9 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="description">Program overview</Label>
-                  <FieldTextareaInput name="description" />
+                  <FieldTextareaInput name="description"
+                                      className={errors.description && 'is-invalid'}
+                  />
                   {errors.description && <FormFeedback>{errors.description}</FormFeedback>}
                   <FormText color="muted">
                     What does the program does in a nutshell?
@@ -407,7 +423,8 @@ class ProgramForm extends React.Component {
                                    onChange={this.props.setFieldValue}
                                    onBlur={this.props.setFieldTouched}
                                    touched={touched.staff}
-                                   invalid={errors.staff}/>
+                                   invalid={errors.staff}
+                  />
                   {errors.staff && <FormFeedback>{errors.staff}</FormFeedback>}
                   <FormText color="muted">
                     Who are the staff members involved in organising or facilitating the program?
@@ -435,7 +452,9 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-                  <FieldTextInput name="externalProvider" />
+                  <FieldTextInput name="externalProvider"
+                                  className={errors.externalProvider && 'is-invalid'}
+                  />
                   {errors.externalProvider && <FormFeedback>{errors.externalProvider}</FormFeedback>}
                 </Col>
               </FormGroup>
@@ -446,7 +465,10 @@ class ProgramForm extends React.Component {
                 <FormGroup row>
                   <Col md={8}>
                     <Label htmlFor="descriptionFull">Detailed description</Label>
-                    <FieldTextareaInput name="descriptionFull" rows={6} />
+                    <FieldTextareaInput name="descriptionFull"
+                                        rows={6}
+                                        className={errors.descriptionFull && 'is-invalid'}
+                    />
                     {errors.descriptionFull && <FormFeedback>{errors.descriptionFull}</FormFeedback>}
                     <FormText color="muted">
                       A comprehensive full length description of the program. Describe the structure of the program, and how
@@ -458,7 +480,9 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="website">Website</Label>
-                  <FieldUrlInput name="website" />
+                  <FieldUrlInput name="website"
+                                 className={errors.website && 'is-invalid'}
+                  />
                   {errors.website && <FormFeedback>{errors.website}</FormFeedback>}
                   <FormText color="muted">
                     Some programs have a website for more information.
@@ -481,7 +505,8 @@ class ProgramForm extends React.Component {
                                    onChange={this.props.setFieldValue}
                                    onBlur={this.props.setFieldTouched}
                                    touched={touched.tags}
-                                   invalid={errors.tags} />
+                                   invalid={errors.tags}
+                  />
                   {errors.tags && <FormFeedback>{errors.tags}</FormFeedback>}
                   <FormText color="muted">
                     Keywords could help others to search for programs like this one in the future.
@@ -525,9 +550,9 @@ export default withFormik({
   validate: (values, props) => {
     const errors = {};
 
-    if (isRequired(values.name)) {
+    // if (isRequired(values.name)) {
       errors.name = 'Required';
-    }
+    // }
     if (isRequired(values.code)) {
       errors.code = 'Required';
     }
