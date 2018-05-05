@@ -15,6 +15,13 @@ const getDeliveredByType = (d) => {
   return d;
 };
 
+const getYearLevels = (d) => {
+  if (Array.isArray(d.yearLevels)) {
+    return d.yearLevels.map(y => String(y));
+  }
+  return arrayify(d.yearLevels);
+};
+
 const makeJson = (data) => {
   return JSON.stringify(data.map(d => {
     const year = JSON.parse(possibleYears[floor(random() * possibleYears.length)]);
@@ -22,7 +29,7 @@ const makeJson = (data) => {
 
     return {
       "id": String(d.id),
-      "code": String(d.schoolcode),
+      "code": String(d.code),
       "category": d.programArea,
       "subCategory": d.programCategory,
       "aims": d.aims,
@@ -33,7 +40,7 @@ const makeJson = (data) => {
       "participantGroupsDescription": d.participantGroupsDescription,
       "focusGroup": d.focusGroup,
       "focusGroupOther": d.focusGroupOther,
-      "yearLevels": Array.isArray(d.yearLevel) ? d.yearLevel.map(y => String(y)) : arrayify(d.yearLevel),
+      "yearLevels": getYearLevels(d),
       "cohortSize": d.cohortSize,
       "deliveredByType": getDeliveredByType(d.deliveredByType),
       "externalProvider": d.externalProvider,

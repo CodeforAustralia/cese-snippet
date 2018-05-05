@@ -9,7 +9,7 @@ import {
 import { selectSession } from "store/session/selectors";
 import { selectSchools } from "store/schools/selectors";
 import { selectStatic } from "store/static/selectors";
-import { getYear } from 'utils/formatDate';
+import { getYear } from 'helpers/dateFormats';
 
 const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
