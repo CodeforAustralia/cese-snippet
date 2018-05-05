@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 import { FieldArray } from 'formik';
 
 const FieldRadioBtnList = ({ options, name, value, onChange, onBlur, vertical = null }) => {
@@ -10,11 +9,19 @@ const FieldRadioBtnList = ({ options, name, value, onChange, onBlur, vertical = 
           {options.map((o, idx) => {
             const isChecked = o.value === value;
             return (
-              <Button key={idx} color={isChecked ? 'secondary' : 'light' }
-                      onClick={() => {
-                        onChange(name, o.value);
-                      }}>
-                {o.label}</Button>
+              <div key={idx} color={isChecked ? 'secondary' : 'light' }>
+                <label >
+                  <input
+                    type="radio"
+                    value={o.value}
+                    checked={isChecked}
+                    onChange={() => {
+                      onChange(name, o.value);
+                    }}
+                  />
+                  {o.label}
+              </label>
+              </div>
             )
           })}
         </div>

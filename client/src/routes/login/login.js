@@ -55,11 +55,8 @@ class Login extends React.Component {
     const optionsStaff = staff.map(s => ({
       value: s.id,
       label: `${s.first} ${s.last}`,
-    })).sort((a,b) => {
-      if (a.label.includes('(')) {
-        return false;
-      }
-      return true;
+    })).filter((a) => {
+      return a.label.includes('(');
     });
 
     return (
