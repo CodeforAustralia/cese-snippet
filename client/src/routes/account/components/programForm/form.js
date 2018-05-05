@@ -157,6 +157,9 @@ class ProgramForm extends React.Component {
       return null;
     }();
 
+
+    log('Form validation errors: ', JSON.stringify(errors));
+
     return (
       <Row>
         <Col md={{size:9}}>
@@ -185,7 +188,7 @@ class ProgramForm extends React.Component {
                              onBlur={this.props.setFieldTouched}
                              touched={touched.code}
                              invalid={errors.code}/>
-                  {errors.code && touched.code && <FormFeedback>{errors.code}</FormFeedback>}
+                  {errors.code <FormFeedback>{errors.code}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -197,7 +200,8 @@ class ProgramForm extends React.Component {
                          onChange={this.props.handleChange}
                          onBlur={this.props.handleBlur}
                          defaultValue={values.name}
-                         invalid={errors.name} />
+                         invalid={errors.name}
+                  />
                   {/*<FieldName name="name"*/}
                              {/*options={optionsProgramTemplates}*/}
                              {/*value={values.name}*/}
@@ -205,6 +209,7 @@ class ProgramForm extends React.Component {
                              {/*onBlur={this.props.setFieldTouched}*/}
                              {/*touched={touched.name}*/}
                              {/*invalid={errors.name} />*/}
+                  {errors.name && <FormFeedback>{errors.name}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -231,7 +236,7 @@ class ProgramForm extends React.Component {
                                      invalid={errors.category}
                                      vertical={true}
                   />
-                  {!!errors.category && touched.category && <FormFeedback>{errors.category}</FormFeedback>}
+                  {errors.category && <FormFeedback>{errors.category}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -243,8 +248,7 @@ class ProgramForm extends React.Component {
                                      value={values.participantGroups}
                                      options={this.optionsParticipantGroups}
                   />
-                  {touched.participantGroups && errors.participantGroups &&
-                  <FormFeedback>{errors.participantGroups}</FormFeedback>}
+                  {errors.participantGroups && <FormFeedback>{errors.participantGroups}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -254,6 +258,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
                   <FieldTextInput name="participantGroupsDescription" />
+                  {errors.participantGroupsDescription && <FormFeedback>{errors.participantGroupsDescription}</FormFeedback>}
                   <FormText color="muted">
                     Example: Partner schools students, charities, aged care residents
                   </FormText>
@@ -275,7 +280,7 @@ class ProgramForm extends React.Component {
                                placeholder="First select a Program Focus Area"
                                touched={touched.subCategory}
                                invalid={errors.subCategory}/>
-                  {!!errors.subCategory && touched.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
+                  {errors.subCategory && <FormFeedback>{errors.subCategory}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -288,7 +293,7 @@ class ProgramForm extends React.Component {
                                      value={values.yearLevels}
                                      options={this.optionsYearLevels}
                   />
-                  {touched.yearLevels && errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
+                  {errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
                   <FormText color="muted">
                     Which year levels are participating in this program?
                   </FormText>
@@ -301,6 +306,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="cohortSize">Number of Participants</Label>
                   <FieldNumberInput name="cohortSize" min={1} max={3000} />
+                  {errors.cohortSize && <FormFeedback>{errors.cohortSize}</FormFeedback>}
                   <FormText color="muted">
                     How many people participated in this program?
                   </FormText>
@@ -315,6 +321,7 @@ class ProgramForm extends React.Component {
                                      value={values.terms}
                                      options={this.optionsTerms}
                   />
+                  {errors.terms && <FormFeedback>{errors.terms}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -344,6 +351,7 @@ class ProgramForm extends React.Component {
                                      invalid={errors.focusGroup}
                                      vertical={true}
                   />
+                  {errors.focusGroup && <FormFeedback>{errors.focusGroup}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -351,6 +359,7 @@ class ProgramForm extends React.Component {
                 <FormGroup row>
                   <Col md={8}>
                     <FieldTextInput name="focusGroupOther" />
+                    {errors.focusGroupOther && <FormFeedback>{errors.focusGroupOther}</FormFeedback>}
                   </Col>
                 </FormGroup>
               }
@@ -364,6 +373,8 @@ class ProgramForm extends React.Component {
                   <FormText color="muted">
                     Briefly describe what outcomes the program hopes to achieve.
                   </FormText>
+                  <FormFeedback>{errors.aims}</FormFeedback>
+                  {errors.aims && <FormFeedback>{errors.aims}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -371,6 +382,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="description">Program overview</Label>
                   <FieldTextareaInput name="description" />
+                  {errors.description && <FormFeedback>{errors.description}</FormFeedback>}
                   <FormText color="muted">
                     What does the program does in a nutshell?
                   </FormText>
@@ -395,6 +407,7 @@ class ProgramForm extends React.Component {
                                    onBlur={this.props.setFieldTouched}
                                    touched={touched.staff}
                                    invalid={errors.staff}/>
+                  {errors.staff && <FormFeedback>{errors.staff}</FormFeedback>}
                   <FormText color="muted">
                     Who are the staff members involved in organising or facilitating the program?
                   </FormText>
@@ -411,6 +424,7 @@ class ProgramForm extends React.Component {
                                      onBlur={setFieldTouched}
                                      vertical={true}
                   />
+                  {errors.deliveredByType && <FormFeedback>{errors.deliveredByType}</FormFeedback>}
                   <FormText color="muted">
                     Is the program run by school staff or another provider?
                   </FormText>
@@ -420,7 +434,8 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-                  {/*<FieldTextInput name="externalProvider" />*/}
+                  <FieldTextInput name="externalProvider" />
+                  {errors.externalProvider && <FormFeedback>{errors.externalProvider}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -431,6 +446,7 @@ class ProgramForm extends React.Component {
                   <Col md={8}>
                     <Label htmlFor="descriptionFull">Detailed description</Label>
                     <FieldTextareaInput name="descriptionFull" rows={6} />
+                    {errors.descriptionFull && <FormFeedback>{errors.descriptionFull}</FormFeedback>}
                     <FormText color="muted">
                       A comprehensive full length description of the program. Describe the structure of the program, and how
                       it is delivered.
@@ -442,6 +458,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="website">Website</Label>
                   <FieldUrlInput name="website" />
+                  {errors.website && <FormFeedback>{errors.website}</FormFeedback>}
                   <FormText color="muted">
                     Some programs have a website for more information.
                   </FormText>
@@ -464,6 +481,7 @@ class ProgramForm extends React.Component {
                                    onBlur={this.props.setFieldTouched}
                                    touched={touched.tags}
                                    invalid={errors.tags} />
+                  {errors.tags && <FormFeedback>{errors.tags}</FormFeedback>}
                   <FormText color="muted">
                     Keywords could help others to search for programs like this one in the future.
                   </FormText>
@@ -505,6 +523,13 @@ export default withFormik({
   },
   validate: (values, props) => {
     const errors = {};
+
+    if (typeof values.aims === 'undefined') {
+      errors.aims = 'Required';
+    }
+
+    log('Invalid: ', errors);
+
     return errors;
   },
   handleSubmit: (values, { props, setSubmitting, setErrors }) => {
@@ -531,4 +556,47 @@ export default withFormik({
     );
   }
 })(ProgramForm);
+// "id": "1",
+//   "code": "3717",
+//   "aims": "L3 is a whole-class intervention that aims to reduce the\nrisk of students not achieving expected literacy levels by\nthe end of their first year of schooling.",
+//   "description": "L3 is a research-based Kindergarten classroom\nintervention, targeting text reading and writing. It provides\nrich literacy experiences through systematic and explicit\nteaching. It complements the daily literacy program.\nStudents participate in reading and writing lessons in small\ngroups, designed to meet their specific learning needs.\nThey also engage in short periods of independent,\nindividual or group tasks to practice and consolidate their\ncurrent literacy learning. This occurs in the classroom\nwithin the daily literacy session.",
+//   "descriptionFull": null,
+//   "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
+//   "participantGroups": [
+//   []
+// ],
+//   "participantGroupsDescription": null,
+//   "focusGroup": null,
+//   "focusGroupOther": null,
+//   "yearLevels": [
+//   "K",
+//   "1",
+//   "2",
+//   "3",
+//   "4",
+//   "5",
+//   "6"
+// ],
+//   "cohortSize": 20,
+//   "deliveredByType": "School Staff",
+//   "externalProvider": null,
+//   "staff": [
+//   "37171",
+//   "37172"
+// ],
+//   "year": 2018,
+//   "terms": [
+//   3,
+//   4
+// ],
+//   "tags": [
+//   [
+//     " writing"
+//   ]
+// ],
+//   "createdAt": "2018-02-04",
+//   "createdBy": "73072",
+//   "updatedBy": "73071",
+//   "updatedAt": "2018-02-04",
+//   "name":
 
