@@ -5,14 +5,18 @@ export const selectIsFetching = (state) => {
 };
 
 export const selectStaffMember = (state, id) => {
+  console.log(get(state, `staff.byId[${id}]`, null))
   return get(state, `staff.byId[${id}]`, null);
 };
 
-/**
- * @param state {Object}
- * @param {Array} Staff
- */
-export const selectStaff = (state) => {
-  const staffSet = get(state, 'staff.byId', null);
-  return Object.values(staffSet);
+export const selectStaff = (state, ids = null) => {
+  if (!ids) {
+    const staffSet = get(state, 'staff.byId', null);
+    return Object.values(staffSet);
+  }
+  return ids.map(id => {
+    return selectStaffMember(state, id);
+  }).filter(staff => {
+    return staff !== null;
+  });
 };

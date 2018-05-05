@@ -171,13 +171,14 @@ export const updateProgram = (program) => {
  * @param props
  * @returns {function(*, *, *)}
  */
-export const fetchFromApiOrCache = (path, props) => {
+export const fetchFromApiOrCache = (path, props = {}) => {
   // Steps:
   // 0. Check if item is cached, if it is serve it instead and end.
   // 1. GET
   // 2. update byId
   // 3. *create* new filter values for this search key filter
   //    - do this last in case so filter listeners will update
+  //    - ONLY DO THIS IF FILTER PROPS ARE PROVIDED - i might fetch program on program detail page not in a filter for example
 
   log(`Fetching: ${path}`);
 
@@ -185,11 +186,12 @@ export const fetchFromApiOrCache = (path, props) => {
 
     // 0.
     const { filterKey } = props;
-    const state = getState();
-    if (filterKey in state.programs.filters) {
-      return state.programs.filters[filterKey];
+    if (filterKey) {
+      const state = getState();
+      if (filterKey in state.programs.filters) {
+        return state.programs.filters[filterKey];
+      }
     }
-
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
@@ -206,7 +208,9 @@ export const fetchFromApiOrCache = (path, props) => {
       })
       .then((resp) => {
         // 3.
-        dispatch(createFilter(resp.data, props));
+        if (props.filterKey) {
+          dispatch(createFilter(resp.data, props));
+        }
         return resp;
       })
       .catch((error) => {

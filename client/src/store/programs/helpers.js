@@ -3,7 +3,7 @@ import isThisMinute from 'date-fns/is_this_minute';
 import {
   getYear,
   getTerm,
-} from 'utils/formatDate';
+} from 'helpers/dateFormats';
 import { commarise } from 'helpers/textFormats';
 
 
