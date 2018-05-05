@@ -29,7 +29,7 @@ const makeJson = (data) => {
 
     return {
       "id": String(d.id),
-      "code": String(d.schoolcode),
+      "code": String(d.code),
       "category": d.programArea,
       "subCategory": d.programCategory,
       "aims": d.aims,
