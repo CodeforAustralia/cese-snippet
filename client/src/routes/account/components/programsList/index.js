@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import {
   Button,
-  Badge,
   Card,
   CardBody,
   CardTitle,
@@ -21,7 +20,6 @@ import {
   getProgramUrl,
 } from "helpers/url";
 import {
-  getIsCurrent,
   getIsNew,
   getHumanisedMetaDescription,
 } from 'store/programs/helpers';
@@ -59,7 +57,6 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
 
   return sortByNewest(programs).map((program, idx) => {
     const isNew = getIsNew(program);
-    const isCurrent = getIsCurrent(program);
     const metaDescription = getHumanisedMetaDescription(program);
 
     return (
@@ -68,12 +65,12 @@ const ProgramsList = ({ programs, openAddProgram, activeYear }) => {
         isNew ? `element-animated ${style.newTransition}` : null
       )}>
         <CardBody>
-          {isCurrent ?
-            <div className="mb-3">
-              <Badge color="info" pill>Active</Badge>
-            </div> :
-            null
-          }
+          {/*{isCurrent ?*/}
+            {/*<div className="mb-3">*/}
+              {/*<Badge color="info" pill>Active</Badge>*/}
+            {/*</div> :*/}
+            {/*null*/}
+          {/*}*/}
 
           <CardSubtitle className={cx(style.cardSubtitle, 'mb-3')}>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</CardSubtitle>
 
