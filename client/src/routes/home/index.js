@@ -35,7 +35,7 @@ const HomePage = () => (
           <Col sm={{size: 7}}>
             <div className={style.headline}>
               <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
-              <h2>Snippet</h2>
+              <h2>Programs happening in schools now</h2>
               <p className="h4">Helping you share and discover programs in action for NSW Public Schools.<sup>*</sup>.</p>
 
               <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p>

@@ -520,7 +520,7 @@ class ProgramForm extends React.Component {
 
             <Col md={8}>
               <Link to="account">Cancel</Link>
-              <Button type="submit" color="primary" size="lg" className="float-right"
+              <Button type="submit" color="primary" className="float-right"
                       disabled={isSubmitting}>
                 {isEdit ?
                   isSubmitting ? 'Updating...' : 'Update' :
@@ -550,9 +550,9 @@ export default withFormik({
   validate: (values, props) => {
     const errors = {};
 
-    // if (isRequired(values.name)) {
+    if (isRequired(values.name)) {
       errors.name = 'Required';
-    // }
+    }
     if (isRequired(values.code)) {
       errors.code = 'Required';
     }
