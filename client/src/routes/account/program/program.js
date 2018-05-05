@@ -1,19 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
 import {
   Button,
   Badge,
 } from 'reactstrap';
+import Bows from 'bows';
 
-import Loading from 'components/loading';
+import Breadcrumb from 'components/breadcrumb';
+import { CircleLoading } from 'components/loading';
 import {
   getIsCurrent,
 } from 'store/programs/helpers';
 import { commarise } from 'helpers/textFormats';
-import { getCreateProgramModalUrl } from "helpers/url";
+import {
+  getCreateProgramModalUrl,
+  getSchoolProgramsUrl,
+} from "helpers/url";
+import {
+  getHumanRelativeDate,
+  getShortDate,
+} from 'helpers/dateFormats';
 
 import style from './style.scss';
+
+const log = Bows('Program View');
 
 
 class Program extends React.Component {
@@ -21,29 +31,51 @@ class Program extends React.Component {
   componentDidMount() {
     const { program } = this.props;
     if (!program) {
+      log('Fetching program');
       this.props.fetchProgram();
     }
   }
 
-  render() {
-    const { isFetching, program, history } = this.props;
+  componentWillUpdate(nextProps) {
+    const { program } = this.props;
+    const staffIds = this.props.getAllStaffIds(program);
 
-    if (isFetching !== false) {
-      return <Loading />
+    if (nextProps.program) {
+      const nextStaffIds = this.props.getAllStaffIds(nextProps.program);
+      if (JSON.stringify(staffIds) !== JSON.stringify(nextStaffIds)) {
+        log('Fetching staff');
+        this.props.fetchStaff(nextStaffIds);
+      }
+    }
+  }
+
+  render() {
+    const {
+      isFetchingProgram,
+      isFetchingStaff,
+      program,
+      programStaff,
+      staffCreatedBy,
+      staffUpdatedBy,
+    } = this.props;
+
+    if (isFetchingProgram !== false && isFetchingStaff !== false) {
+      return <CircleLoading />
     }
 
     const isCurrent = getIsCurrent(program);
 
     const editUrl = getCreateProgramModalUrl(program);
 
+
+    console.log(staffCreatedBy);
+
     return (
       <div>
-        <p>
-          {history.length > 0 ?
-            <Button color="link" className="pl-0" onClick={() => history.goBack()}>{`< Back`}</Button> :
-            <Button color="link" className="pl-0" tag={Link} to="/account">{`< Programs`}</Button>
-          }
-        </p>
+        <Breadcrumb items={[
+          { label: 'Programs', to: getSchoolProgramsUrl(program.code, program.year) },
+          { label: program.name }
+        ]} />
 
         {isCurrent ?
           <div className="mb-3">
@@ -52,19 +84,17 @@ class Program extends React.Component {
           null
         }
 
-        <p>Last updated on {program.updatedAt} by {program.updatedBy}</p>
-        <p>Created on {program.createdAt} by {program.createdBy}</p>
-
+        <p className="text-muted">Last updated {getHumanRelativeDate(program.updatedAt)} ago by {staffUpdatedBy.first} {staffUpdatedBy.last} | Added {getShortDate(program.createdAt)} by {staffCreatedBy.first} {staffCreatedBy.last}.</p>
 
         <h1>{program.name}</h1>
 
         <p>{program.description}</p>
 
         {/*<p className={style.itemprop}>*/}
-          {/*<span className={style.itempropKey}>Long description</span>*/}
-          {/*<span className={style.itempropValue}>*/}
-              {/*{program.descriptionFull ? program.descriptionFull : '-'}*/}
-            {/*</span>*/}
+        {/*<span className={style.itempropKey}>Long description</span>*/}
+        {/*<span className={style.itempropValue}>*/}
+        {/*{program.descriptionFull ? program.descriptionFull : '-'}*/}
+        {/*</span>*/}
         {/*</p>*/}
 
 
@@ -217,4 +247,4 @@ class Program extends React.Component {
 
 }
 
-export default withRouter(Program);
+export default Program;

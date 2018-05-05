@@ -40,7 +40,7 @@ export const fetchStaff = (ids = []) => {
  * @param props
  * @returns {function(*, *, *)}
  */
-export const fetchFromApi = (path, props) => {
+export const fetchFromApi = (path) => {
   // Steps:
   // 1. GET
   // 2. update byId
