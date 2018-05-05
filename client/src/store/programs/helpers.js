@@ -1,14 +1,10 @@
 import isThisMinute from 'date-fns/is_this_minute';
 
-import {
-  getYear,
-  getTerm,
-} from 'helpers/dateFormats';
+import { getYear } from 'helpers/dateFormats';
 import { commarise } from 'helpers/textFormats';
 
 
 const currentYear = getYear();
-const currentTerm = getTerm();
 
 export const getDefaultYear = () => currentYear;
 
@@ -27,11 +23,6 @@ export const parseFilterKeys = (filterKeys) => {
       year: props[1],
     }
   });
-};
-
-
-export const getIsCurrent = (program) => {
-  return program.terms && program.terms.length ? program.terms.includes(currentTerm) : program.terms;
 };
 
 export const getIsNew = (program) => {

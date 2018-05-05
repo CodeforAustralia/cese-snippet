@@ -6,10 +6,6 @@ export const getYear = (date = new Date()) => {
   return datefnsGetYear(date);
 };
 
-export const getTerm = (date = new Date()) => {
-  return 2;   // todo
-};
-
 export const getHumanRelativeDate = (date = new Date()) => {
   return distanceInWordsToNow(date);
 };

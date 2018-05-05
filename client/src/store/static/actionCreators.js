@@ -2,13 +2,13 @@ import { ACTION_TYPES } from "./reducer";
 
 const BASE_URL = process.env.REACT_APP_STATIC_BASE_URL;
 
-export const fetchProgramFields = () => {
+export const fetchCmsData = () => {
   return (dispatch) => {
-    return fetch(`${BASE_URL}/program-fields.json`)
+    return fetch(`${BASE_URL}/cms-data.json`)
       .then((resp) => resp.json())
       .then((data) => {
         return dispatch({
-          type: ACTION_TYPES.fetchedProgramFields,
+          type: ACTION_TYPES.fetchedCms,
           payload: data,
         })
       })

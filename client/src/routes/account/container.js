@@ -11,7 +11,7 @@ import {
 } from "store/session/selectors";
 import {
   fetchStaffList,
-  fetchProgramFields,
+  fetchCmsData,
 } from 'store/static/actionCreators';
 
 
@@ -28,7 +28,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: (codes) => dispatch(fetchSchools(codes)),
-    fetchProgramFields: () => dispatch(fetchProgramFields()),
+    fetchCmsData: () => dispatch(fetchCmsData()),
     fetchStaffList: () => dispatch(fetchStaffList()),
   }
 };

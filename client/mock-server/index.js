@@ -6,7 +6,7 @@ const jsonServer = require('json-server');
 
 const staffListData = require('./staff-list.json');
 const schoolsListData = require('./schools-list.json');
-const programFieldsData = require('./program-field-data.json');
+const cmsData = require('./cms-data.json');
 
 const app = express();
 
@@ -27,9 +27,9 @@ app.use((req, res, next) => {
 });
 app.use('/api', apiRouter);
 
-app.get('/static/program-fields.json', (req, res) => {
+app.get('/static/cms-data.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(programFieldsData);
+  res.send(cmsData);
   return res;
 });
 app.get('/static/staff-list.json', (req, res) => {

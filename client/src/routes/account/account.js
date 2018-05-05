@@ -38,7 +38,7 @@ class Account extends React.Component {
       this.props.fetchSchools(this.props.userSchoolCodes);
     }
     log('Fetching static.');
-    this.props.fetchProgramFields();
+    this.props.fetchCmsData();
     this.props.fetchStaffList();
   }
 

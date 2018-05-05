@@ -13,7 +13,6 @@ import Bows from 'bows';
 import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import {
-  getIsCurrent,
   getHumanisedMetaDescription,
 } from 'store/programs/helpers';
 import { commarise } from 'helpers/textFormats';
@@ -55,7 +54,6 @@ class Program extends React.Component {
     }
 
     if (!this.props.program && nextProps.program) {
-      debugger
       this.props.fetchSchool(nextProps.program.code);
     }
   }
@@ -80,7 +78,7 @@ class Program extends React.Component {
       return <CircleLoading />
     }
 
-    const isCurrent = getIsCurrent(program);
+    // const isCurrent = getIsCurrent(program);
 
     const editUrl = getCreateProgramModalUrl(program);
 
@@ -96,12 +94,12 @@ class Program extends React.Component {
         <Row className={style.fieldSection}>
           <Col sm={{size:9}} md={{size:8}}>
 
-            {isCurrent ?
-              <div className="mb-3">
-                <Badge color="info" pill>Active</Badge>
-              </div> :
-              null
-            }
+            {/*{isCurrent ?*/}
+              {/*<div className="mb-3">*/}
+                {/*<Badge color="info" pill>Active</Badge>*/}
+              {/*</div> :*/}
+              {/*null*/}
+            {/*}*/}
 
             <p className={`mb-4 ${style.dateMeta}`}>Last updated {getHumanRelativeDate(program.updatedAt)} ago
               {staffUpdatedBy ? ` by ${staffUpdatedBy.first} ${staffUpdatedBy.last}` : null}
