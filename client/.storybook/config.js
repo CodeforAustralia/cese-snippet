@@ -1,9 +1,10 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 
+// import "style/vendor/bootstrap.global.scss";
 import "bootstrap/scss/bootstrap.scss";
-// import 'style/index.scss';
-
+import "repaintless/repaintless-css/repaintless.css"
+import 'style/index.scss';
 
 const StorybookDecorator = (story) => (
   <div style={{margin: '40px'}}>

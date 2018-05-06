@@ -106,6 +106,7 @@ storiesOf('Field radio list', module)
                                 options={options}
                                 onChange={setFieldValue}
                                 onBlur={setFieldTouched}
+                                error={errors.prop1}
                 />
 
                 <code>
@@ -118,6 +119,7 @@ storiesOf('Field radio list', module)
         }} />
     )
   })
+
 
   .add('should invalidate on submit without value checked', () => {
     return (
@@ -139,6 +141,7 @@ storiesOf('Field radio list', module)
                                 options={options}
                                 onChange={setFieldValue}
                                 onBlur={setFieldTouched}
+                                error={errors.prop1}
                 />
 
                 <code>
