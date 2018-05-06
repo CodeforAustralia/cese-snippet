@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
-  Badge,
   Row,
   Col,
   Card,
@@ -10,6 +9,7 @@ import {
 } from 'reactstrap';
 import Bows from 'bows';
 
+import FetchError from 'components/fetchError';
 import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import {
@@ -34,6 +34,10 @@ const log = Bows('Program View');
 class Program extends React.Component {
 
   componentDidMount() {
+    this.fetchInitialData();
+  }
+
+  fetchInitialData() {
     const { program } = this.props;
     if (!program) {
       log('Fetching program');
@@ -68,6 +72,9 @@ class Program extends React.Component {
       staffCreatedBy,
       staffUpdatedBy,
       school,
+      // errorMessageSchools,
+      errorMessagePrograms,
+      // errorMessageStaff,
     } = this.props;
 
     if (isFetchingProgram !== false && isFetchingStaff !== false) {
@@ -84,6 +91,18 @@ class Program extends React.Component {
 
     const metaDescription = getHumanisedMetaDescription(program);
 
+
+    if (errorMessagePrograms) {
+      return (
+        <Row>
+          <Col>
+            <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchInitialData} />
+          </Col>
+        </Row>
+      )
+    }
+    // todo - // errorMessageSchools // errorMessageStaff,
+
     return (
       <div>
         <Breadcrumb items={[
@@ -92,7 +111,7 @@ class Program extends React.Component {
         ]} />
 
         <Row className={style.fieldSection}>
-          <Col sm={{size:9}} md={{size:8}}>
+          <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
 
             {/*{isCurrent ?*/}
               {/*<div className="mb-3">*/}
@@ -130,9 +149,9 @@ class Program extends React.Component {
 
           </Col>
 
-          <Col sm={{size:3}} md={{size:4}} className={style.metaPanel}>
-            <Card>
-              <CardBody>
+          <Col xs={{size:12}} sm={{size:3}} md={{size:4}} className={style.metaPanel}>
+            <Card className={style.metaPanelCard}>
+              <CardBody className={style.metaPanelCardBody}>
                 <div className={style.itemprop}>
                   <p className={style.itempropKey}>Staff involved</p>
                   <p className={style.itempropValue}>{commarise(programStaff.map((s, idx, arr) => `${s.first} ${s.last}`))}</p>
@@ -164,7 +183,6 @@ class Program extends React.Component {
 
           </Col>
         </Row>
-
 
 
         <Row className={style.fieldSection}>

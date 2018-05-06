@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import {
   selectProgram,
   selectIsFetching as selectIsFetchingPrograms,
+  selectErrorMessage as selectErrorMessagePrograms,
 } from 'store/programs/selectors';
 import { fetchProgram } from 'store/programs/actionCreators';
 import { fetchStaff } from 'store/staff/actionCreators';
@@ -10,10 +11,12 @@ import {
   selectStaff,
   selectStaffMember,
   selectIsFetching as selectIsFetchingStaff,
+  selectErrorMessage as selectErrorMessageStaff,
 } from "store/staff/selectors";
 import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchool,
+  selectErrorMessage as selectErrorMessageSchools,
 } from "store/schools/selectors";
 
 
@@ -53,6 +56,9 @@ const mapStateToProps = (state, ownProps) => {
         program.updatedBy,
       ]
     },
+    errorMessageSchools: selectErrorMessageSchools(state),
+    errorMessagePrograms: selectErrorMessagePrograms(state),
+    errorMessageStaff: selectErrorMessageStaff(state),
   }
 };
 
