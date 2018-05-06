@@ -347,7 +347,9 @@ class ProgramForm extends React.Component {
             <fieldset className={style.fieldset}>
               <legend>Why did the program happen?</legend>
 
-              <FormGroup row>
+              <FormGroup row
+                         className={values.focusGroup === 'Other' && 'mb-1'}
+              >
                 <Col md={8}>
                   <Label>Does the program cater to a particular focus group?</Label>
                   <FieldRadioList name="focusGroup"
@@ -365,6 +367,8 @@ class ProgramForm extends React.Component {
                   <Col md={8}>
                     <FieldTextInput name="focusGroupOther"
                                     error={errors.focusGroupOther}
+                                    placeholder={`Please describe "Other"`}
+                                    autoFocus={true}
                     />
                   </Col>
                 </FormGroup>
@@ -377,6 +381,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="aims">Aims</Label>
                   <FieldTextareaInput name="aims"
                                       error={errors.aims}
+                                      rows={6}
                   />
                   <FormText color="muted">
                     Briefly describe what outcomes the program hopes to achieve.
@@ -389,6 +394,7 @@ class ProgramForm extends React.Component {
                   <Label htmlFor="description">Program overview</Label>
                   <FieldTextareaInput name="description"
                                       error={errors.description}
+                                      rows={6}
                   />
                   <FormText color="muted">
                     What does the program does in a nutshell?
