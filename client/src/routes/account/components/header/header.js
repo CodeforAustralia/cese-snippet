@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -38,7 +36,6 @@ class Header extends React.Component {
   }
 
   render() {
-
     const {
       isAuthenticated,
       handleSignOut,
@@ -47,43 +44,22 @@ class Header extends React.Component {
 
     return (
       <Navbar color="concrete" light expand="md" className={style.navbar}>
-
         <NavbarBrand to="/account" tag={RRNavLink}>Snippet</NavbarBrand>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            {!isAuthenticated &&
+              <NavLink to="/login" tag={RRNavLink}>Login</NavLink>
+            }
+          </NavItem>
 
-        <NavbarToggler onClick={this.toggle} />
-
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-
-            {/*{schools && schools.length ?*/}
-            {/*<NavItem className={style.navbarAddProgramBtn}>*/}
-            {/*<form className="form-inline">*/}
-            {/*<Button outline color="secondary" size="xs" className="mb-0 mr-2">*/}
-            {/*<NavLink to={getCreateProgramModalUrl()}*/}
-            {/*activeclassname="active"*/}
-            {/*tag={RRLink}*/}
-            {/*disabled={location.pathname === getCreateProgramUrl().pathname}*/}
-            {/*>Add a New Program</NavLink>*/}
-            {/*</Button>*/}
-            {/*</form>*/}
-            {/*</NavItem> :*/}
-            {/*null*/}
-            {/*}*/}
-
-            <NavItem>
-              {!isAuthenticated &&
-              <NavLink to="/login" activeclassname="active" tag={RRNavLink}>Login</NavLink>
-              }
-            </NavItem>
-
-            {isAuthenticated &&
+          {isAuthenticated &&
             <UncontrolledDropdown nav inNavbar>
 
               <DropdownToggle nav caret>
                 {session.first}
               </DropdownToggle>
 
-              <DropdownMenu right>
+              <DropdownMenu right className={style.dropdownMenu}>
 
                 <DropdownItem tag={RRNavLink} to={this.registerSchoolUrl}>
                   Add another school
@@ -97,9 +73,8 @@ class Header extends React.Component {
 
               </DropdownMenu>
             </UncontrolledDropdown>
-            }
-          </Nav>
-        </Collapse>
+          }
+        </Nav>
       </Navbar>
     )
   }

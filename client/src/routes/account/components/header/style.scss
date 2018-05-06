@@ -16,3 +16,9 @@
     }
   }
 }
+
+.dropdownMenu { // don't do normal rwd behaviour
+  right: 0 !important;
+  left: auto !important;
+  position: absolute !important;
+}
