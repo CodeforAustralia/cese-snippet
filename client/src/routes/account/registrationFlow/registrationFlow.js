@@ -78,10 +78,6 @@ class RegistrationFlow extends React.Component {
       return <CircleLoading />
     }
 
-    if (errorMessageSchools) {
-      return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
-    }
-
     const Template = schools.length ? ExistingSchools : WithoutSchools;
 
     return (
@@ -93,6 +89,11 @@ class RegistrationFlow extends React.Component {
 
       <Row>
         <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
+
+          {errorMessageSchools &&
+            <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
+          }
+
           <Template schools={schools}>
             <Form onSubmitSuccess={onSubmitSuccess}
                   autoFocus={!!schools.length === false}

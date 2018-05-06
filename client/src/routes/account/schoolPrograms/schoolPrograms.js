@@ -81,14 +81,6 @@ class SchoolPrograms extends React.Component {
       return <p>No school</p>;
     }
 
-    if (errorMessageSchools) {
-      return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
-    }
-
-    if (errorMessagePrograms) {
-      return <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
-    }
-
     const otherSchoolCodes = without(session.schools, school.code);
 
     return (
@@ -113,6 +105,14 @@ class SchoolPrograms extends React.Component {
             }
           </div>
         </div>
+
+        {errorMessageSchools &&
+          <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
+        }
+
+        {errorMessagePrograms &&
+          <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
+        }
 
         <Nav pills>
           <NavItem>

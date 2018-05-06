@@ -32,19 +32,15 @@ class SchoolCreateProgram extends React.Component {
     } = this.props;
 
     if (!userSchoolCodes.length) {
-      return <Redirect to="/account/register" />;
+      return <Redirect to="/account/register"/>;
     }
 
     if (isFetchingSchools !== false) {
-      return <Loading />
+      return <Loading/>
     }
 
     if (!schools || !schools.length) {
       return <p>No schools</p>
-    }
-
-    if (errorMessageSchools) {
-      return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
     }
 
     return (
@@ -55,6 +51,10 @@ class SchoolCreateProgram extends React.Component {
         ]} />
 
         <h1 className="mb-4">Add a program</h1>
+
+        {errorMessageSchools &&
+          <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
+        }
 
         <p className="mb-4">[brief description about What this is and What is this for (why)].</p> {/* todo */}
 

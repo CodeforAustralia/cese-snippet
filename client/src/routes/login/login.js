@@ -65,10 +65,6 @@ class Login extends React.Component {
       return a.label.includes('(');
     });
 
-    if (errorMessageStaff) {
-      return <FetchError message={errorMessageStaff} name="Staff" onRetry={this.fetchData} />
-    }
-
     return (
       <Layout>
         <Container>
@@ -76,6 +72,10 @@ class Login extends React.Component {
             <Col sm={{size: 8, offset: 2}}>
               <div className={style.loginContainer}>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+                {errorMessageStaff &&
+                  <FetchError message={errorMessageStaff} name="Staff" onRetry={this.fetchData} />
+                }
 
                 <div className={`alert alert-info mb-4 ${style.alert}`} role="alert">
                   There is no need to supply your own login credentials as this is a demo site.

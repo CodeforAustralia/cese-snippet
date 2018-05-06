@@ -63,7 +63,6 @@ class Account extends React.Component {
       location,
       schools,
       isFetchingSchools,
-      errorMessageSchools,
     } = this.props;
 
     const isModal = !!(
@@ -73,11 +72,7 @@ class Account extends React.Component {
     ); // not initial render;
 
     if (!isModal && isFetchingSchools !== false) {
-      if (errorMessageSchools) {
-        return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
-      } else {
-        return <BoxLoading />
-      }
+      return <BoxLoading />
     }
 
     const RedirectFork = () => {
