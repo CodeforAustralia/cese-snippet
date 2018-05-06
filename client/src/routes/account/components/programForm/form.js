@@ -451,7 +451,7 @@ class ProgramForm extends React.Component {
                 </Col>
               </FormGroup>
 
-              {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})}>Would you like to add more Program information?</Button></p>}
+              {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})} className="pl-0">Would you like to add more Program information?</Button></p>}
 
               {values.descriptionFull || showDescriptionFull === true ?
                 <FormGroup row>
@@ -484,7 +484,7 @@ class ProgramForm extends React.Component {
 
 
             <fieldset className={style.fieldset}>
-              <legend>Meta data</legend>
+              <legend>Other</legend>
 
               <FormGroup row>
                 <Col md={8}>
@@ -507,7 +507,7 @@ class ProgramForm extends React.Component {
 
 
 
-            <Col md={8}>
+            <Col>
               <Link to="account">Cancel</Link>
               <Button type="submit" color="primary" className="float-right"
                       disabled={isSubmitting}>
