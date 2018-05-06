@@ -16,7 +16,7 @@ const ErrorSummary = ({ errors }) => {
         {Object.keys(errors).map((key, idx) => {
           const value = errors[key];
           return (
-            <li key={idx}><span className={style.propKey}>{capitalizeFirstLetter(key)}:</span><HashLink to="/account/create-program#key">{value}</HashLink></li>
+            <li key={idx}><HashLink to="/account/create-program#key"><span className={style.propKey}>{capitalizeFirstLetter(key)}:</span></HashLink>{value}</li>
           )
         })}
       </ul>

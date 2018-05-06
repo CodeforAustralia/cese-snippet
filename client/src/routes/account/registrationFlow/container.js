@@ -7,7 +7,8 @@ import {
 } from "store/session/selectors";
 import {
   selectSchools,
-  selectIsFetching,
+  selectIsFetching as selectIsFetchingSchools,
+  selectErrorMessage as selectErrorMessageSchools,
 } from 'store/schools/selectors';
 
 
@@ -17,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     session: selectSession(state),
     userSchoolCodes,
-    isFetching: selectIsFetching(state),
+    isFetchingSchools: selectIsFetchingSchools(state),
+    errorMessageSchools: selectErrorMessageSchools(state),
     schools: selectSchools(state, userSchoolCodes),
     onSubmitSuccess: (resp) => {
       console.log(resp);

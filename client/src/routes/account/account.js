@@ -13,6 +13,7 @@ import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 
+import FetchError from 'components/fetchError';
 import TopBar from 'components/detTopBanner';
 import Header from './components/header';
 import Footer from './components/stickyFooter';
@@ -32,6 +33,10 @@ class Account extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     const { userSchoolCodes } = this.props;
     if (userSchoolCodes.length) { // get it fresh every time account is opened
       log('Fetching schools: ', this.props.userSchoolCodes);

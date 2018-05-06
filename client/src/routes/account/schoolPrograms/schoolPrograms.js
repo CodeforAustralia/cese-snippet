@@ -14,6 +14,7 @@ import {
 import without from 'lodash/without';
 import Bows from 'bows';
 
+import FetchError from 'components/fetchError';
 import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import ProgramsList from './../components/programsList';
@@ -68,6 +69,8 @@ class SchoolPrograms extends React.Component {
       isFetchingPrograms,
       filterProps,
       session,
+      errorMessagePrograms,
+      errorMessageSchools,
     } = this.props;
 
     if (isFetchingSchools !== false) {
@@ -102,6 +105,14 @@ class SchoolPrograms extends React.Component {
             }
           </div>
         </div>
+
+        {errorMessageSchools &&
+          <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
+        }
+
+        {errorMessagePrograms &&
+          <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
+        }
 
         <Nav pills>
           <NavItem>

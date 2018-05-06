@@ -9,6 +9,10 @@ export const selectIsFetching = (state) => {
   return get(state, 'programs.isFetching', null);
 };
 
+export const selectErrorMessage = (state) => {
+  return get(state, 'programs.errorMessage', null);
+};
+
 export const selectProgram = (state, id) => {
   return get(state, `programs.byId[${id}]`, null);
 };

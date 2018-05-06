@@ -16,6 +16,7 @@ import {
 } from 'formik';
 import FieldSelect from 'components/fieldSelect';
 
+import FetchError from 'components/fetchError';
 import Layout from './../home/layout';
 import { CircleLoading } from 'components/loading';
 import style from './style.scss';
@@ -30,6 +31,10 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     const { staff } = this.props;
     if (!staff || !staff.length) {
       this.props.fetchStaff();
@@ -48,7 +53,8 @@ class Login extends React.Component {
   render() {
     const {
       staff,
-      isFetching,
+      isFetchingStaff,
+      errorMessageStaff,
       session,
     } = this.props;
 
@@ -67,6 +73,10 @@ class Login extends React.Component {
               <div className={style.loginContainer}>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
 
+                {errorMessageStaff &&
+                  <FetchError message={errorMessageStaff} name="Staff" onRetry={this.fetchData} />
+                }
+
                 <div className={`alert alert-info mb-4 ${style.alert}`} role="alert">
                   There is no need to supply your own login credentials as this is a demo site.
                 </div>
@@ -74,7 +84,7 @@ class Login extends React.Component {
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
 
-                {isFetching !== false ?
+                {isFetchingStaff !== false ?
                   <CircleLoading /> :
                   staff && staff.length ?
                     <Formik

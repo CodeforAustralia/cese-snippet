@@ -4,6 +4,10 @@ export const selectIsFetching = (state) => {
   return get(state, 'staff.isFetching', null);
 };
 
+export const selectErrorMessage = (state) => {
+  return get(state, 'staff.errorMessage', null);
+};
+
 export const selectStaffMember = (state, id) => {
   console.log(get(state, `staff.byId[${id}]`, null))
   return get(state, `staff.byId[${id}]`, null);
