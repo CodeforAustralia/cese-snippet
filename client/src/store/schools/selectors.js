@@ -5,6 +5,9 @@ export const selectIsFetching = (state) => {
   return get(state, 'schools.isFetching', null);
 };
 
+export const selectErrorMessage = (state) => {
+  return get(state, 'schools.errorMessage', null);
+};
 
 /**
  * @param state {Object}

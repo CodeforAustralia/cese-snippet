@@ -14,6 +14,7 @@ import {
 import without from 'lodash/without';
 import Bows from 'bows';
 
+import FetchError from 'components/fetchError';
 import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import ProgramsList from './../components/programsList';
@@ -68,6 +69,8 @@ class SchoolPrograms extends React.Component {
       isFetchingPrograms,
       filterProps,
       session,
+      errorMessagePrograms,
+      errorMessageSchools,
     } = this.props;
 
     if (isFetchingSchools !== false) {
@@ -76,6 +79,14 @@ class SchoolPrograms extends React.Component {
 
     if (!school) {
       return <p>No school</p>;
+    }
+
+    if (errorMessageSchools) {
+      return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
+    }
+
+    if (errorMessagePrograms) {
+      return <ErrorMessage message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
     }
 
     const otherSchoolCodes = without(session.schools, school.code);

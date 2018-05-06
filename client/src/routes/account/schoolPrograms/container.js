@@ -3,11 +3,13 @@ import { fetchSchools } from "store/schools/actionCreators";
 import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchools,
+  selectErrorMessage as selectErrorMessageSchools,
 } from "store/schools/selectors";
 import { selectSession } from "store/session/selectors";
 import {
   selectProgramsByFilterKey,
   selectIsFetching as selectIsFetchingPrograms,
+  selectErrorMessage as selectErrorMessagePrograms,
 } from "store/programs/selectors";
 import {
   fetchProgramsByFilter,
@@ -22,6 +24,8 @@ const mapStateToProps = (state, ownProps) => {
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),
     isFetchingPrograms: selectIsFetchingPrograms(state),
+    errorMessageSchools: selectErrorMessageSchools(state),
+    errorMessagePrograms: selectErrorMessagePrograms(state),
     school: selectSchool(state, code),
     filteredPrograms: selectProgramsByFilterKey(state, filterProps),
   }
