@@ -25,6 +25,12 @@
   text-transform: uppercase;
 }
 
+.schoolNameBadge {
+  background: rgba($primary, .1);
+  padding: 4px 8px;
+  border-radius: .5rem;
+}
+
 .tabPageContainer {
   padding: 2em 0;
 }
