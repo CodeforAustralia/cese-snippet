@@ -164,7 +164,7 @@ class ProgramForm extends React.Component {
 
     return (
       <div>
-        <Row>
+        <Row className={style.stepProgressRow}>
           <Col style={{marginTop: '1.4rem', marginBottom: '3rem'}}>
             <StepProgress options={[
               { to: '/account/create-program#step-1', label: 'What and when?' },
@@ -464,7 +464,7 @@ class ProgramForm extends React.Component {
                   </Col>
                 </FormGroup>
 
-                {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})} className="pl-0">Would you like to add more Program information?</Button></p>}
+                {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})} className={`${style.formTextBtn} pl-0`}>Would you like to add more Program information?</Button></p>}
 
                 {values.descriptionFull || showDescriptionFull === true ?
                   <FormGroup row>
@@ -537,7 +537,7 @@ class ProgramForm extends React.Component {
 
             </Form>
           </Col>
-          <Col md={{size:3}}>
+          <Col md={{size:3}} className={style.sidebar}>
             <code>
               {JSON.stringify(values)}
             </code>
