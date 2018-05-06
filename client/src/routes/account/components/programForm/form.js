@@ -13,7 +13,6 @@ import {
 } from 'reactstrap';
 import {
   withFormik,
-  Field,
 } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
@@ -39,7 +38,7 @@ import FieldRadioList from 'components/fieldRadioList';
 import FieldCheckboxList from 'components/fieldCheckboxList';
 
 import FieldCode from './../fieldCode';
-import FieldName from './../fieldName';
+// import FieldName from './../fieldName';
 import { isRequired } from 'helpers/validators';
 
 import style from './style.scss';
@@ -297,6 +296,7 @@ class ProgramForm extends React.Component {
                                      value={values.yearLevels}
                                      options={this.optionsYearLevels}
                                      error={errors.yearLevels}
+                                     inline={true}
                   />
                   <FormText color="muted">
                     Which year levels are participating in this program?
@@ -329,6 +329,7 @@ class ProgramForm extends React.Component {
                                      value={values.terms}
                                      options={this.optionsTerms}
                                      error={errors.terms}
+                                     inline={true}
                   />
                   {errors.terms && <FormFeedback>{errors.terms}</FormFeedback>}
                 </Col>
@@ -437,6 +438,7 @@ class ProgramForm extends React.Component {
                                      onChange={setFieldValue}
                                      onBlur={setFieldTouched}
                                      error={errors.deliveredByType}
+                                  inline={true}
                   />
                   <FormText color="muted">
                     Is the program run by school staff or another provider?
