@@ -1,0 +1,10 @@
+@import '~style/helpers';
+
+.errorSummary {
+  border-color: $form-feedback-invalid-color;
+}
+
+.propKey {
+  min-width: 100px;
+  display: inline-block;
+}

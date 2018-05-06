@@ -18,6 +18,7 @@ import Bows from 'bows';
 import { Link } from 'react-router-dom';
 import get from 'lodash/get';
 
+import ErrorSummary from 'components/errorSummary';
 import StepProgress from 'components/stepProgress';
 import {
   getSchoolYearLevelsOptions,
@@ -517,7 +518,11 @@ class ProgramForm extends React.Component {
 
               </fieldset>
 
-
+              {errors && errors.length &&
+                <Col>
+                  <ErrorSummary errors={errors}/>
+                </Col>
+              }
 
               <Col>
                 <Link to="account">Cancel</Link>
