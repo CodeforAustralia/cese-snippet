@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Input
+  Input,
+  FormFeedback,
 } from 'reactstrap';
 import {
   Field,
@@ -8,18 +9,27 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldUrlInput = ({ name, disabled = false, hidden = false }) => {
+const FieldUrlInput = ({
+                         name,
+                         disabled = false,
+                         hidden = false,
+                         error = null,
+}) => {
   return (
-    <Field name={name}
-           render={({ field }) => (
-             <Input type="url"
-                    id={name}
-                    disabled={disabled}
-                    hidden={hidden}
-                    {...field}
-             />
-           )}
-    />
+    <div>
+      <Field name={name}
+             render={({ field }) => (
+               <Input type="url"
+                      id={name}
+                      disabled={disabled}
+                      hidden={hidden}
+                      className={error && 'is-invalid'}
+                      {...field}
+               />
+             )}
+      />
+      {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
+    </div>
   )
 };
 

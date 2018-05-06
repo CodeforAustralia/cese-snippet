@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Input
+  Input,
+  FormFeedback,
 } from 'reactstrap';
 import {
   Field,
@@ -8,19 +9,27 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextInput = ({ name, className = null, disabled = false, hidden = false }) => {
+const FieldTextInput = ({
+                          name,
+                          disabled = false,
+                          hidden = false,
+                          error = null,
+}) => {
   return (
-    <Field name={name}
-           render={({ field }) => (
-             <Input type="text"
-                    id={name}
-                    className={className}
-                    disabled={disabled}
-                    hidden={hidden}
-                    {...field}
-             />
-           )}
-    />
+    <div>
+      <Field name={name}
+             render={({ field }) => (
+               <Input type="text"
+                      id={name}
+                      className={error && 'is-invalid'}
+                      disabled={disabled}
+                      hidden={hidden}
+                      {...field}
+               />
+             )}
+      />
+      {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
+    </div>
   )
 };
 
