@@ -14,6 +14,8 @@ const FieldTextInput = ({
                           disabled = false,
                           hidden = false,
                           error = null,
+                          placeholder = null,
+                          autoFocus = false,
 }) => {
   return (
     <div>
@@ -24,6 +26,8 @@ const FieldTextInput = ({
                       className={error && 'is-invalid'}
                       disabled={disabled}
                       hidden={hidden}
+                      placeholder={placeholder}
+                      autoFocus={autoFocus}
                       {...field}
                />
              )}

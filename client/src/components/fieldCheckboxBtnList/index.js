@@ -13,7 +13,12 @@ import style from './style.scss';
 
 // value = {"stamp":["Helpful","Thank you"]}
 
-const FieldCheckboxBtnList = ({ name, value, options }) => {
+const FieldCheckboxBtnList = ({
+                                name,
+                                value,
+                                options,
+                                error = null,
+}) => {
   return (
     <div>
       <ul className={style.stampBtnList}>

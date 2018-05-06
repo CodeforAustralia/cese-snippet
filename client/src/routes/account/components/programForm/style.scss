@@ -4,11 +4,22 @@
 }
 
 .fieldset {
-  border: 1px solid grey;
   padding: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
+
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  padding: 1.25rem;
+
+  padding-top: 4rem;
+  position: relative;
 
   legend {
     display: inline-block;
+    margin: 0;
+
+    position: absolute;
+    z-index: 100;
+    top: 1rem;
   }
 }

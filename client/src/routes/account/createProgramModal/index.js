@@ -41,6 +41,8 @@ const CreateProgramModal = ({ history, location }) => {
             </Button>
           </div>
           <div className="modal-body">
+            <p className="mb-4">[brief description about What this is and What is this for (why)].</p> {/* todo */}
+
             <Form onSubmitSuccess={() => back()} />
           </div>
         </div>

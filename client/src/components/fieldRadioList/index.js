@@ -12,7 +12,13 @@ import {
 import style from './style.scss';
 
 
-const FieldRadioBtnList = ({ options, name, value, error = null, inline = false }) => {
+const FieldRadioBtnList = ({
+                             options,
+                             name,
+                             value,
+                             error = null,
+                             inline = false,
+}) => {
   return (
     <div>
       <FieldArray

@@ -44,7 +44,9 @@ class SchoolCreateProgram extends React.Component {
           { label: 'Add Program' }
         ]} />
 
-        <h1>Add a program</h1>
+        <h1 className="mb-4">Add a program</h1>
+
+        <p className="mb-4">[brief description about What this is and What is this for (why)].</p> {/* todo */}
 
         <Form onSubmitSuccess={(code, year) => history.push(getSchoolProgramsUrl(code, year))} />
       </div>
