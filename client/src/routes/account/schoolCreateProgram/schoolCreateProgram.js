@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 
+import FetchError from 'components/fetchError';
 import Breadcrumb from 'components/breadcrumb';
 import Loading from 'components/loading';
 import { CreateForm as Form } from './../components/programForm';
@@ -10,6 +11,10 @@ import { getSchoolProgramsUrl } from 'helpers/url';
 class SchoolCreateProgram extends React.Component {
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     const { schools, userSchoolCodes } = this.props;
 
     if (userSchoolCodes.length && (!schools || !schools.length)) {
@@ -21,20 +26,25 @@ class SchoolCreateProgram extends React.Component {
     const {
       history,
       schools,
-      isFetching,
+      isFetchingSchools,
       userSchoolCodes,
+      errorMessageSchools,
     } = this.props;
 
     if (!userSchoolCodes.length) {
       return <Redirect to="/account/register" />;
     }
 
-    if (isFetching !== false) {
+    if (isFetchingSchools !== false) {
       return <Loading />
     }
 
     if (!schools || !schools.length) {
       return <p>No schools</p>
+    }
+
+    if (errorMessageSchools) {
+      return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
     }
 
     return (

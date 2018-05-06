@@ -8,6 +8,7 @@ import {
   Button,
 } from 'reactstrap';
 
+import FetchError from 'components/fetchError';
 import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import Form from './../components/registerSchoolForm';
@@ -53,6 +54,10 @@ const ExistingSchools = ({ children, schools }) => {
 class RegistrationFlow extends React.Component {
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     const { userSchoolCodes, schools } = this.props;
 
     if (userSchoolCodes.length && !schools.length) {  // only if I have schools, fetch them
@@ -63,13 +68,18 @@ class RegistrationFlow extends React.Component {
   render() {
     const {
       schools,
-      isFetching,
+      isFetchingSchools,
+      errorMessageSchools,
       onSubmitSuccess,
       userSchoolCodes,
     } = this.props;
 
-    if (userSchoolCodes.length && isFetching !== false) {
+    if (userSchoolCodes.length && isFetchingSchools !== false) {
       return <CircleLoading />
+    }
+
+    if (errorMessageSchools) {
+      return <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
     }
 
     const Template = schools.length ? ExistingSchools : WithoutSchools;

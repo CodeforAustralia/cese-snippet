@@ -4,6 +4,7 @@ import { fetchSchools } from 'store/schools/actionCreators';
 import {
   selectSchools,
   selectIsFetching as selectIsFetchingSchools,
+  selectErrorMessage as selectErrorMessageSchools,
 } from 'store/schools/selectors';
 import {
   selectSession,
@@ -21,6 +22,7 @@ const mapStateToProps = (state) => {
     session: selectSession(state),
     userSchoolCodes,
     isFetchingSchools: selectIsFetchingSchools(state),
+    errorMessageSchools: selectErrorMessageSchools(state),
     schools: selectSchools(state, userSchoolCodes),
   }
 };

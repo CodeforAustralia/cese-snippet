@@ -16,6 +16,7 @@ import {
 } from 'formik';
 import FieldSelect from 'components/fieldSelect';
 
+import FetchError from 'components/fetchError';
 import Layout from './../home/layout';
 import { CircleLoading } from 'components/loading';
 import style from './style.scss';
@@ -65,7 +66,7 @@ class Login extends React.Component {
     });
 
     if (errorMessageStaff) {
-      return <ErrorMessage message={errorMessageStaff} name="Staff" onRetry={this.fetchData} />
+      return <FetchError message={errorMessageStaff} name="Staff" onRetry={this.fetchData} />
     }
 
     return (

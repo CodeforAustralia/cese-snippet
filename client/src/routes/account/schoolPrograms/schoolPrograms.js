@@ -86,7 +86,7 @@ class SchoolPrograms extends React.Component {
     }
 
     if (errorMessagePrograms) {
-      return <ErrorMessage message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
+      return <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
     }
 
     const otherSchoolCodes = without(session.schools, school.code);
