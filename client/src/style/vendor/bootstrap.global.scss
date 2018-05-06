@@ -41,6 +41,9 @@
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/print";
 
+.container {
+  min-width: 300px;
+}
 
 .text-brand-primary {
   color: $brand-primary;
