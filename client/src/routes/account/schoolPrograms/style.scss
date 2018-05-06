@@ -6,10 +6,26 @@
   margin-bottom: 1em;
 
   min-height: 85px;
+
+  @include xs() {
+    display: block;
+    margin-bottom: 0;
+  }
+  @include sm() {
+    display: block;
+    margin-bottom: 0;
+  }
 }
 
 .titleBlockLhs {
   flex: 1;
+
+  @include xs() {
+    display: block;
+  }
+  @include sm() {
+    display: block;
+  }
 }
 
 .titleBlockRhs {
@@ -17,12 +33,25 @@
   .btn {
     margin-bottom: 0;
   }
+
+  @include xs() {
+    display: block;
+  }
+  @include sm() {
+    display: block;
+  }
 }
 
 .supTitle {
   display: block;
   font-size: 14px;
   text-transform: uppercase;
+}
+
+.schoolNameBadge {
+  background: rgba($primary, .1);
+  padding: 4px 8px;
+  border-radius: .5rem;
 }
 
 .tabPageContainer {

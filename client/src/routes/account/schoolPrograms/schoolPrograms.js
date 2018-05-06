@@ -94,7 +94,8 @@ class SchoolPrograms extends React.Component {
         <div className={style.titleBlock}>
           <div className={style.titleBlockLhs}>
             <h1>
-              <span className={style.supTitle}>{school.name} {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}</span>
+              <span className={style.supTitle}>
+                <span className={style.schoolNameBadge}>{school.name}</span> {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}</span>
               Programs
             </h1>
           </div>
