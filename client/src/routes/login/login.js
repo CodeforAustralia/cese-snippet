@@ -30,6 +30,10 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     const { staff } = this.props;
     if (!staff || !staff.length) {
       this.props.fetchStaff();
@@ -48,7 +52,8 @@ class Login extends React.Component {
   render() {
     const {
       staff,
-      isFetching,
+      isFetchingStaff,
+      errorMessageStaff,
       session,
     } = this.props;
 
@@ -58,6 +63,10 @@ class Login extends React.Component {
     })).filter((a) => {
       return a.label.includes('(');
     });
+
+    if (errorMessageStaff) {
+      return <ErrorMessage message={errorMessageStaff} name="Staff" onRetry={this.fetchData} />
+    }
 
     return (
       <Layout>
@@ -74,7 +83,7 @@ class Login extends React.Component {
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>
 
 
-                {isFetching !== false ?
+                {isFetchingStaff !== false ?
                   <CircleLoading /> :
                   staff && staff.length ?
                     <Formik
