@@ -35,7 +35,7 @@ import FieldNumberInput from 'components/fieldNumberInput';
 import FieldUrlInput from 'components/fieldUrlInput';
 import FieldTextInput from 'components/fieldTextInput';
 import FieldTextareaInput from 'components/fieldTextAreaInput';
-import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldRadioList from 'components/fieldRadioList';
 import FieldCheckboxList from 'components/fieldCheckboxList';
 
 import FieldCode from './../fieldCode';
@@ -198,7 +198,6 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="name">Program name</Label>
-
                   <Input type="text" id="name" name="name"
                          onChange={this.props.handleChange}
                          onBlur={this.props.handleBlur}
@@ -232,15 +231,13 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label htmlFor="category">Program Focus Area</Label>
-                  <FieldRadioBtnList name="category"
-                                     value={values.category}
-                                     options={this.optionsLevel1Categories}
-                                     onChange={setFieldValue}
-                                     onBlur={setFieldTouched}
-                                     invalid={errors.category}
-                                     vertical={true}
+                  <FieldRadioList name="category"
+                                   value={values.category}
+                                   options={this.optionsLevel1Categories}
+                                   onChange={setFieldValue}
+                                   onBlur={setFieldTouched}
+                                   error={errors.category}
                   />
-                  {errors.category && <FormFeedback>{errors.category}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -251,8 +248,8 @@ class ProgramForm extends React.Component {
                   <FieldCheckboxList name="participantGroups"
                                      value={values.participantGroups}
                                      options={this.optionsParticipantGroups}
+                                     error={errors.participantGroups}
                   />
-                  {errors.participantGroups && <FormFeedback>{errors.participantGroups}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -262,7 +259,7 @@ class ProgramForm extends React.Component {
                 <Col md={8}>
                   <Label htmlFor="participantGroupsDescription">Who in the community?</Label>
                   <FieldTextInput name="participantGroupsDescription"
-                                  className={errors.participantGroupsDescription && 'is-invalid'}
+                                  className={errors.participantGroupsDescription}
                   />
                   {errors.participantGroupsDescription && <FormFeedback>{errors.participantGroupsDescription}</FormFeedback>}
                   <FormText color="muted">
@@ -299,8 +296,8 @@ class ProgramForm extends React.Component {
                   <FieldCheckboxList name="yearLevels"
                                      value={values.yearLevels}
                                      options={this.optionsYearLevels}
+                                     error={errors.yearLevels}
                   />
-                  {errors.yearLevels && <FormFeedback>{errors.yearLevels}</FormFeedback>}
                   <FormText color="muted">
                     Which year levels are participating in this program?
                   </FormText>
@@ -331,6 +328,7 @@ class ProgramForm extends React.Component {
                   <FieldCheckboxList name="terms"
                                      value={values.terms}
                                      options={this.optionsTerms}
+                                     error={errors.terms}
                   />
                   {errors.terms && <FormFeedback>{errors.terms}</FormFeedback>}
                 </Col>
@@ -354,15 +352,13 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Does the program cater to a particular focus group?</Label>
-                  <FieldRadioBtnList name="focusGroup"
+                  <FieldRadioList name="focusGroup"
                                      value={values.focusGroup}
                                      options={this.optionsFocusGroup}
                                      onChange={setFieldValue}
                                      onBlur={setFieldTouched}
-                                     invalid={errors.focusGroup}
-                                     vertical={true}
+                                     error={errors.focusGroup}
                   />
-                  {errors.focusGroup && <FormFeedback>{errors.focusGroup}</FormFeedback>}
                 </Col>
               </FormGroup>
 
@@ -435,14 +431,13 @@ class ProgramForm extends React.Component {
               <FormGroup row>
                 <Col md={8}>
                   <Label>Provider</Label>
-                  <FieldRadioBtnList options={this.optionsDeliveredByType}
+                  <FieldRadioList options={this.optionsDeliveredByType}
                                      name="deliveredByType"
                                      value={values.deliveredByType}
                                      onChange={setFieldValue}
                                      onBlur={setFieldTouched}
-                                     vertical={true}
+                                     error={errors.deliveredByType}
                   />
-                  {errors.deliveredByType && <FormFeedback>{errors.deliveredByType}</FormFeedback>}
                   <FormText color="muted">
                     Is the program run by school staff or another provider?
                   </FormText>
