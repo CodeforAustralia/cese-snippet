@@ -2,5 +2,9 @@
 
 .layoutContainer {
   margin-top: 2.4rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+
+  @include xs() {
+    margin-top: 1rem;
+  }
 }

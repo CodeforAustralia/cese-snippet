@@ -111,7 +111,7 @@ class Program extends React.Component {
         ]} />
 
         <Row className={style.fieldSection}>
-          <Col sm={{size:9}} md={{size:8}}>
+          <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
 
             {/*{isCurrent ?*/}
               {/*<div className="mb-3">*/}
@@ -149,9 +149,9 @@ class Program extends React.Component {
 
           </Col>
 
-          <Col sm={{size:3}} md={{size:4}} className={style.metaPanel}>
-            <Card>
-              <CardBody>
+          <Col xs={{size:12}} sm={{size:3}} md={{size:4}} className={style.metaPanel}>
+            <Card className={style.metaPanelCard}>
+              <CardBody className={style.metaPanelCardBody}>
                 <div className={style.itemprop}>
                   <p className={style.itempropKey}>Staff involved</p>
                   <p className={style.itempropValue}>{commarise(programStaff.map((s, idx, arr) => `${s.first} ${s.last}`))}</p>
