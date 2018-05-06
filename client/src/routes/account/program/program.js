@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Button,
-  Badge,
   Row,
   Col,
   Card,
@@ -10,6 +9,7 @@ import {
 } from 'reactstrap';
 import Bows from 'bows';
 
+import FetchError from 'components/fetchError';
 import Breadcrumb from 'components/breadcrumb';
 import { CircleLoading } from 'components/loading';
 import {
@@ -34,6 +34,10 @@ const log = Bows('Program View');
 class Program extends React.Component {
 
   componentDidMount() {
+    this.fetchInitialData();
+  }
+
+  fetchInitialData() {
     const { program } = this.props;
     if (!program) {
       log('Fetching program');
@@ -68,6 +72,9 @@ class Program extends React.Component {
       staffCreatedBy,
       staffUpdatedBy,
       school,
+      // errorMessageSchools,
+      errorMessagePrograms,
+      // errorMessageStaff,
     } = this.props;
 
     if (isFetchingProgram !== false && isFetchingStaff !== false) {
@@ -83,6 +90,18 @@ class Program extends React.Component {
     const editUrl = getCreateProgramModalUrl(program);
 
     const metaDescription = getHumanisedMetaDescription(program);
+
+
+    if (errorMessagePrograms) {
+      return (
+        <Row>
+          <Col>
+            <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchInitialData} />
+          </Col>
+        </Row>
+      )
+    }
+    // todo - // errorMessageSchools // errorMessageStaff,
 
     return (
       <div>
@@ -164,7 +183,6 @@ class Program extends React.Component {
 
           </Col>
         </Row>
-
 
 
         <Row className={style.fieldSection}>
