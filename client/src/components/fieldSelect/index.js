@@ -3,7 +3,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Bows from 'bows';
 import PropTypes from 'prop-types';
-
+import { FormFeedback } from 'reactstrap';
 
 const log = Bows('Field - select');
 
@@ -39,21 +39,26 @@ class FieldSelect extends React.Component {
       // invalid = {}, touched = {},
       name, disabled = false, clearable = true, placeholder = null,
       autoFocus = false,
+      error = null,
     } = this.props;
     return (
-      <Select
-        ref={(el) => this.el = el}
-        id={name}
-        name={name}
-        clearable={clearable}
-        disabled={disabled}
-        options={options}
-        onChange={this.handleChange}
-        onBlur={this.handleBlur}
-        placeholder={placeholder}
-        value={value}
-        autoFocus={autoFocus}
-      />
+      <div>
+        <Select
+          ref={(el) => this.el = el}
+          id={name}
+          name={name}
+          clearable={clearable}
+          disabled={disabled}
+          options={options}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          placeholder={placeholder}
+          value={value}
+          autoFocus={autoFocus}
+          className={error && 'is-invalid'}
+        />
+        {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
+      </div>
     );
   }
 }

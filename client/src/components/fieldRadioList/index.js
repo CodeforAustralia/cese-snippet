@@ -9,7 +9,10 @@ import {
   FieldArray,
 } from 'formik';
 
-const FieldRadioBtnList = ({ options, name, value, error = null }) => {
+import style from './style.scss';
+
+
+const FieldRadioBtnList = ({ options, name, value, error = null, inline = false }) => {
   return (
     <div>
       <FieldArray
@@ -19,7 +22,7 @@ const FieldRadioBtnList = ({ options, name, value, error = null }) => {
             const oName = `${name}.${o.value}`;
             const isChecked = value === o.value;
             return (
-              <div key={idx} className="custom-control custom-radio">
+              <div className={`custom-control custom-radio ${inline && style.isInline}`} key={idx}>
                 <Input type="radio"
                        id={oName}
                        name={name}

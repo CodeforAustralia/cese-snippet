@@ -1,8 +1,18 @@
 import React from 'react';
-import { Button } from 'reactstrap';
+import {
+  Button,
+  FormFeedback,
+} from 'reactstrap';
 import { FieldArray } from 'formik';
 
-const FieldRadioBtnList = ({ options, name, value, onChange, onBlur, vertical = null }) => {
+const FieldRadioBtnList = ({
+                             options,
+                             name,
+                             value,
+                             onChange,
+                             vertical = null,
+                             error = null,
+}) => {
   return (
     <div>
       <FieldArray name={name} render={() => (
@@ -11,6 +21,7 @@ const FieldRadioBtnList = ({ options, name, value, onChange, onBlur, vertical = 
             const isChecked = o.value === value;
             return (
               <Button key={idx} color={isChecked ? 'secondary' : 'light' }
+                      className={error && 'is-invalid'}
                       onClick={() => {
                         onChange(name, o.value);
                       }}>
@@ -19,6 +30,7 @@ const FieldRadioBtnList = ({ options, name, value, onChange, onBlur, vertical = 
           })}
         </div>
       )} />
+      {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
     </div>
   )
 };

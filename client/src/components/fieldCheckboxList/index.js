@@ -7,7 +7,10 @@ import {
   FormFeedback,
 } from 'reactstrap';
 
-const FieldCheckboxList = ({ options, name, value, error = null }) => {
+import style from './style.scss';
+
+
+const FieldCheckboxList = ({ options, name, value, error = null, inline = false }) => {
   return (
     <div>
       <FieldArray
@@ -17,7 +20,7 @@ const FieldCheckboxList = ({ options, name, value, error = null }) => {
             const oName = `${name}.${o.value}`;
             const isChecked = typeof value !== 'undefined' ? value.includes(o.value) : false;
             return (
-              <div className="custom-control custom-checkbox" key={idx}>
+              <div className={`custom-control custom-checkbox ${inline && style.isInline}`} key={idx}>
                 <Input type="checkbox"
                        className={`custom-control-input ${error && 'is-invalid'}`}
                        id={oName}

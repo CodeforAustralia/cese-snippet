@@ -2,6 +2,9 @@ import React from 'react';
 import Select from 'react-select';
 import Bows from 'bows';
 import PropTypes from 'prop-types';
+import {
+  FormFeedback
+} from 'reactstrap';
 
 const log = Bows('Field - select tags');
 
@@ -43,7 +46,11 @@ class FieldSelectTags extends React.Component {
   }
 
   render () {
-    const { options, name } = this.props;
+    const {
+      options,
+      name,
+      error,
+    } = this.props;
     const { multiValue } = this.state;
 
     const optsKeys = options.map(o => o.value);
@@ -55,15 +62,19 @@ class FieldSelectTags extends React.Component {
     });
 
     return (
-      <Select.Creatable
-        id={name}
-        name={name}
-        multi={true}
-        options={options}
-        onChange={this.handleChange}
-        onBlur={this.handleBlur}
-        value={multiValue}
-      />
+      <div>
+        <Select.Creatable
+          id={name}
+          name={name}
+          multi={true}
+          options={options}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          value={multiValue}
+          className={error && 'is-invalid'}
+        />
+        {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
+      </div>
     );
   }
 }
