@@ -6,16 +6,39 @@
   margin-bottom: 1em;
 
   min-height: 85px;
+
+  @include xs() {
+    display: block;
+    margin-bottom: 0;
+  }
+  @include sm() {
+    display: block;
+    margin-bottom: 0;
+  }
 }
 
 .titleBlockLhs {
   flex: 1;
+
+  @include xs() {
+    display: block;
+  }
+  @include sm() {
+    display: block;
+  }
 }
 
 .titleBlockRhs {
   padding-top: 1em;
   .btn {
     margin-bottom: 0;
+  }
+
+  @include xs() {
+    display: block;
+  }
+  @include sm() {
+    display: block;
   }
 }
 
