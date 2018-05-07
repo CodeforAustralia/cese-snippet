@@ -7,7 +7,7 @@ module.exports = function (app) {
   const mongoClient = app.get('mongoClient');
   const options = {
     paginate,
-    id: "id",
+    id: "code",
   };
 
   // Initialize our service with any options it requires
