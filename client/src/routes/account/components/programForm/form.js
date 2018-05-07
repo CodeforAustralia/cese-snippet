@@ -40,6 +40,7 @@ import FieldRadioList from 'components/fieldRadioList';
 import FieldCheckboxList from 'components/fieldCheckboxList';
 
 import FieldCode from './../fieldCode';
+import SelectAllYears from './../selectAllYears';
 // import FieldName from './../fieldName';
 import { isRequired } from 'helpers/validators';
 
@@ -309,6 +310,8 @@ class ProgramForm extends React.Component {
                                        error={errors.yearLevels}
                                        inline={true}
                     />
+                    <SelectAllYears allYears={this.props.setFieldValue} yearLevs={this.optionsYearLevels}/>
+
                     <FormText color="muted">
                       Which year levels are participating in this program?
                     </FormText>
