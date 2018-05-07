@@ -175,7 +175,7 @@ class ProgramForm extends React.Component {
         </Row>
 
         <Row>
-          <Col md={{size:9}}>
+          <Col sm={{size:12}} lg={{size:9}}>
 
             <Form noValidate={true} onSubmit={handleSubmit} className={style.programForm}>
               {isEdit &&
@@ -537,11 +537,11 @@ class ProgramForm extends React.Component {
 
             </Form>
           </Col>
-          <Col md={{size:3}} className={style.sidebar}>
-            <code>
-              {JSON.stringify(values)}
-            </code>
-          </Col>
+          {/*<Col md={{size:3}} className={style.sidebar}>*/}
+            {/*<code>*/}
+              {/*{JSON.stringify(values)}*/}
+            {/*</code>*/}
+          {/*</Col>*/}
         </Row>
       </div>
     )

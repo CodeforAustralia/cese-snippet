@@ -38,8 +38,10 @@ const HomePage = () => (
               <h2>Programs happening in schools now</h2>
               <p className="h4">Helping you share and discover programs in action for NSW Public Schools.<sup>*</sup>.</p>
 
-              {/*<p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p>*/}
-              <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login" disabled>Coming Soon</Button></p>
+              {process.env.NODE_ENV === 'development' ?
+                <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p> :
+                <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login" disabled>Coming Soon</Button></p>
+              }
             </div>
           </Col>
 
@@ -105,8 +107,10 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
-              {/*<Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>*/}
-              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+              {process.env.NODE_ENV === 'development' ?
+                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
+                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+              }
             </Form>
           </Col>
         </Row>
@@ -209,8 +213,10 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
-              {/*<Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>*/}
-              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+              {process.env.NODE_ENV === 'development' ?
+                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
+                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+              }
             </Form>
           </Col>
         </Row>
