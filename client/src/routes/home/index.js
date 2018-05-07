@@ -39,13 +39,13 @@ const HomePage = () => (
     <div className={style.topLayoutBand}>
       <Container>
         <Row className={style.layoutHeadline}>
-          <Col xs={{size: 12}} lg={{size: 7}}>
+          <Col xs={{size: 12}} lg={{size: 7}} className={style.layoutHeadlineText}>
             <div className={style.headline}>
               <span className={style.comingSoonBadgeContainer}><Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge></span>
-              <h2>Programs happening in schools now</h2>
-              <p className="h4">Helping you share and discover programs in action in NSW Public Schools.<sup>*</sup>.</p>
+              <h2>Programs happening in your school</h2>
+              <p className="h4">Helping you share and discover programs in action in your NSW Public Schools<sup>*</sup>.</p>
 
-              <p>
+              <p style={{marginTop:'4em'}}>
                 {process.env.NODE_ENV === 'development' ?
                   <Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button> :
                   <Button size="lg" color="success" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
@@ -82,7 +82,7 @@ const HomePage = () => (
         <Row className={cx(style.howtoBannerTop, 'mb-4')}>
           <Col sm={{size: 8, offset: 2}} className="text-center">
             <h3>Why Snippet?</h3>
-            <p>You do a lot as a school staff, and often your amazing initiatives and insights from the frontline may go under the radar. Snippet hopes to give you a space to showcase, teach and learn from others beyond the school gate in the context of NSW Public schools.</p>
+            <p>Don't let your amazing initiatives and insights from the frontline go under the radar. Showcase, teach and learn from others beyond the school gate.</p>
           </Col>
         </Row>
 

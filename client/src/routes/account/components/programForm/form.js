@@ -167,12 +167,13 @@ class ProgramForm extends React.Component {
         <Row className={style.stepProgressRow}>
           <Col style={{marginTop: '1.4rem', marginBottom: '3rem'}}>
             <StepProgress options={[
-              { to: '/account/create-program#step-1', label: 'What and when?' },
-              { to: '/account/create-program#step-2', label: 'Why?' },
-              { to: '/account/create-program#step-3', label: 'Who and how?' },
+              { to: '/account/create-program#step-1', label: 'Basic Information?' },
+              { to: '/account/create-program#step-2', label: 'Purpose' },
+              { to: '/account/create-program#step-3', label: 'Delivery Details' },
             ]} />
           </Col>
         </Row>
+
 
         <Row>
           <Col sm={{size:12}} lg={{size:9}}>

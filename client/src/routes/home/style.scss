@@ -21,6 +21,10 @@
   }
 }
 
+.layoutHeadlineText {
+  padding-right: 100px !important;
+}
+
 .productImageContainer {
   margin-top: -2em;
   float: right;
@@ -61,15 +65,15 @@
 
 .headline {
   h2 {
-    margin-top: 0;
-    margin-bottom: 0.25em;
+    margin-top: .25em;
+    margin-bottom: 0.5em;
 
     @include xs() {
       text-align: center;
     }
 
     @include md() {
-      font-size: 3.6em;
+      font-size: 3.2em;
       line-height: 1.05em;
     }
   }
