@@ -1,6 +1,6 @@
-// Initializes the `session` service on path `/session`
+// Initializes the `staff` service on path `/staff`
 const createService = require('feathers-mongodb');
-const hooks = require('./session.hooks');
+const hooks = require('./staff.hooks');
 
 module.exports = function (app) {
   const paginate = app.get('paginate');
@@ -8,13 +8,13 @@ module.exports = function (app) {
   const options = { paginate };
 
   // Initialize our service with any options it requires
-  app.use('/api/session', createService(options));
+  app.use('/api/staff', createService(options));
 
   // Get our initialized service so that we can register hooks and filters
-  const service = app.service('/api/session');
+  const service = app.service('/api/staff');
 
   mongoClient.then(db => {
-    service.Model = db.collection('session');
+    service.Model = db.collection('staff');
   });
 
   service.hooks(hooks);

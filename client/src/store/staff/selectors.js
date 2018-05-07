@@ -9,7 +9,6 @@ export const selectErrorMessage = (state) => {
 };
 
 export const selectStaffMember = (state, id) => {
-  console.log(get(state, `staff.byId[${id}]`, null))
   return get(state, `staff.byId[${id}]`, null);
 };
 
