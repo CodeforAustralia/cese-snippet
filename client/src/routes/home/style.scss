@@ -20,6 +20,16 @@
   }
 }
 
+.productImageContainer {
+  margin-top: -2em;
+  float: right;
+
+  @include max-lg() {
+    display: none;
+    float: none;
+  }
+}
+
 .layoutFeatures {
   padding-top: 1em;
   padding-bottom: 3em;
@@ -136,6 +146,7 @@
 .howtoCard {
   img {
     margin-bottom: 1em;
+    border: 2px solid $gray-900;
   }
 }
 

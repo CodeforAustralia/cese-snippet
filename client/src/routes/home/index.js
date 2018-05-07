@@ -22,6 +22,13 @@ import WifiIcon from './wifi.svg';
 import CloudIcon from './cloud.svg';
 import ScrollToTopOnMount from 'components/scrollToTopOnMount';
 
+// import ProductImage from './product-image-program-list.png';
+// import ProductImage2 from './product-image-phone-2-view.png';
+import ProductImage3 from './product-image-tablet-landscape-cropped2.png';
+import ProductImageHowTo1 from './product-image-1-login.png';
+import ProductImageHowTo2 from './product-image-2-view.png';
+import ProductImageHowTo3 from './product-image-3-add.png';
+
 
 const HomePage = () => (
 
@@ -32,7 +39,7 @@ const HomePage = () => (
     <div className={style.topLayoutBand}>
       <Container>
         <Row className={style.layoutHeadline}>
-          <Col xs={{size: 12}} md={{size: 7}}>
+          <Col xs={{size: 12}} lg={{size: 7}}>
             <div className={style.headline}>
               <span className={style.comingSoonBadgeContainer}><Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge></span>
               <h2>Programs happening in schools now</h2>
@@ -45,8 +52,10 @@ const HomePage = () => (
             </div>
           </Col>
 
-          <Col xs={{size: 12}} md={{size: 5}}>
-            <img src="https://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" className="img-fluid" />
+          <Col xs={{size: 12}} lg={{size: 5}}>
+            <div className={style.productImageContainer}>
+              <img src={ProductImage3} width="" height="" alt="" className="img-fluid" />
+            </div>
           </Col>
         </Row>
 
@@ -83,18 +92,18 @@ const HomePage = () => (
 
         <Row className={style.howtoBannerLower}>
           <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>1. Log in with your Department of Education login.</p>
+            <img src={ProductImageHowTo1} width="350" height="" alt="" className="img-fluid" />
           </Col>
 
           <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>2. View and keep up to date with programs by your school.</p>
+            <img src={ProductImageHowTo2} width="350" height="" alt="" className="img-fluid" />
           </Col>
 
           <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>3. Add a new program or update one that exists.</p>
+            <img src={ProductImageHowTo3} width="350" height="" alt="" className="img-fluid" />
           </Col>
         </Row>
       </Container>
