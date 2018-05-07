@@ -43,12 +43,14 @@ const HomePage = () => (
             <div className={style.headline}>
               <span className={style.comingSoonBadgeContainer}><Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge></span>
               <h2>Programs happening in schools now</h2>
-              <p className="h4">Helping you share and discover programs in action for NSW Public Schools.<sup>*</sup>.</p>
+              <p className="h4">Helping you share and discover programs in action in NSW Public Schools.<sup>*</sup>.</p>
 
-              {process.env.NODE_ENV === 'development' ?
-                <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p> :
-                <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login" disabled>Coming Soon</Button></p>
-              }
+              <p>
+                {process.env.NODE_ENV === 'development' ?
+                  <Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button> :
+                  <Button size="lg" color="success" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
+                }
+              </p>
             </div>
           </Col>
 
@@ -86,7 +88,7 @@ const HomePage = () => (
 
         <Row className={cx(style.howtoBannerTop, 'mb-2')}>
           <Col>
-            <h3 className="text-center">It's as easy as..</h3>
+            <h3 className="text-center">How does it work?</h3>
           </Col>
         </Row>
 
@@ -118,7 +120,7 @@ const HomePage = () => (
               <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
               {process.env.NODE_ENV === 'development' ?
                 <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
-                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+                <Button size="lg" color="success" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
               }
             </Form>
           </Col>
@@ -224,7 +226,7 @@ const HomePage = () => (
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
               {process.env.NODE_ENV === 'development' ?
                 <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
-                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+                <Button size="lg" color="success" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
               }
             </Form>
           </Col>
