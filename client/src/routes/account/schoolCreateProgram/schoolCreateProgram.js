@@ -56,7 +56,8 @@ class SchoolCreateProgram extends React.Component {
           <FetchError message={errorMessageSchools} name="Schools" onRetry={this.fetchData} />
         }
 
-        <p className="mb-4">[brief description about What this is and What is this for (why)].</p> {/* todo */}
+        <p>Tell us about a school program in a nutshell, or be as detailed as you want.</p>
+        <p className="mb-4">Contributing to the list of program in your school is the first step in helping create awareness about your programs and initiatives for the school community.</p>
 
         <Form onSubmitSuccess={(code, year) => history.push(getSchoolProgramsUrl(code, year))} />
       </div>
