@@ -32,9 +32,9 @@ const HomePage = () => (
     <div className={style.topLayoutBand}>
       <Container>
         <Row className={style.layoutHeadline}>
-          <Col sm={{size: 7}}>
+          <Col xs={{size: 12}} sm={{size: 7}}>
             <div className={style.headline}>
-              <Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge>
+              <span className={style.comingSoonBadgeContainer}><Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge></span>
               <h2>Programs happening in schools now</h2>
               <p className="h4">Helping you share and discover programs in action for NSW Public Schools.<sup>*</sup>.</p>
 
@@ -42,14 +42,14 @@ const HomePage = () => (
             </div>
           </Col>
 
-          <Col sm={{size: 5}}>
-            <img src="https://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" />
+          <Col xs={{size: 12}} sm={{size: 5}}>
+            <img src="https://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" className="img-fluid" />
           </Col>
         </Row>
 
         <Row>
           <Col>
-            <p className="text-muted"><small>You must have a Department of Education (DET) email to log in.</small></p>
+            <p className={`text-muted ${style.loginCaveat}`}><small>You must have a Department of Education (DET) email to log in.</small></p>
           </Col>
         </Row>
       </Container>
@@ -79,18 +79,18 @@ const HomePage = () => (
         </Row>
 
         <Row className={style.howtoBannerLower}>
-          <Col sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
+          <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
+            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>1. Log in with your Department of Education login.</p>
           </Col>
 
-          <Col sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
+          <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
+            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>2. View and keep up to date with programs by your school.</p>
           </Col>
 
-          <Col sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" />
+          <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
+            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>3. Add a new program or update one that exists.</p>
           </Col>
         </Row>
@@ -116,7 +116,7 @@ const HomePage = () => (
       <Container>
 
         <Row>
-          <Col sm={{size:10, offset:1}}>
+          <Col xs={{size: 12}} sm={{size:10, offset:1}}>
 
             <div className={style.valuepropBanner}>
               <div className={style.valuepropIcon}>

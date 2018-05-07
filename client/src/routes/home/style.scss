@@ -13,6 +13,11 @@
 .layoutHeadline {
   padding-top: 7em;
   padding-bottom: 2em;
+
+  @include xs() {
+    padding-top: 3em;
+    padding-bottom: 1em;
+  }
 }
 
 .layoutFeatures {
@@ -22,6 +27,14 @@
 
 .featureBlock {
   position: relative;
+}
+
+.comingSoonBadgeContainer {
+  display: block;
+  @include xs() {
+    text-align: center;
+    font-size:10px;
+  }
 }
 
 .comingSoonBadge {
@@ -35,18 +48,33 @@
   letter-spacing: .25px;
 }
 
-
 .headline {
   h2 {
-    font-size: 3.6em;
-    line-height: 1.1875em;
     margin-top: 0;
     margin-bottom: 0.25em;
+
+    @include xs() {
+      text-align: center;
+    }
+
+    @include md() {
+      font-size: 3.6em;
+      line-height: 1.1875em;
+    }
   }
 
   p {
     line-height: 1.6;
+
+    @include xs() {
+      text-align: center;
+      font-size: 1em;
+    }
   }
+}
+
+.loginCaveat {
+  line-height: 1.2;
 }
 
 .conditionMark {
@@ -55,8 +83,18 @@
 
 .headlineCta {
   margin-top: 3em;
+
   .btn {
     color: white !important;
+  }
+
+  @include xs() {
+    margin-top: 1em;
+    margin-bottom: 2em;
+
+    .btn {
+      font-size: 1em !important;
+    }
   }
 }
 
@@ -84,7 +122,11 @@
 }
 
 .howtoBannerTop {
-
+  @include xs() {
+    h3 {
+      font-size: 1.4em;
+    }
+  }
 }
 
 .howtoBannerLower {
@@ -100,6 +142,11 @@
 .ctaLayoutBand {
   padding-top: 2em;
   padding-bottom: 2em;
+
+  @include xs() {
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+  }
 }
 
 .ctaBanner {
@@ -108,6 +155,16 @@
     justify-content: center;
   }
   font-size: 1.25rem;
+
+  @include xs() {
+    font-size: 1.1rem;
+    text-align: center;
+
+    label {
+      margin-bottom: .8rem;
+    }
+  }
+
   button {
     margin-bottom: 0;
   }
@@ -117,19 +174,44 @@
   display: flex;
   margin-bottom: 1em;
   width: 100%;
+
+  @include xs() {
+    margin-bottom: 0em;
+  }
 }
 
 .valuepropIcon,
 .valuepropProp {
   padding: 1em;
+
+  @include xs() {
+    padding: .25em;
+  }
 }
 
 .valuepropIcon {
   margin-top: 1em;
+
+  @include xs() {
+    margin-top: 0em;
+    padding-left: 0;
+
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 }
 
 .valuepropProp {
   flex: 1;
+
+  @include xs() {
+    padding-right: 0;
+    h3 {
+      font-size: 1.2em;
+    }
+  }
 }
 
 .snippetBetaBand.snippetBetaBand {
