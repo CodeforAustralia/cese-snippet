@@ -3,11 +3,10 @@ import {
     Input,
     Label,
 } from 'reactstrap';
-import style from './style.scss';
+import style from './style.scss'
 
 
-
-const SelectAllYears = (props, error = null, inline = false) => {
+const SelectAllYears = (props, error=null, inline=false) => {
 
     return (
         <div>

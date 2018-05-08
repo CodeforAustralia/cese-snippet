@@ -310,7 +310,10 @@ class ProgramForm extends React.Component {
                                        error={errors.yearLevels}
                                        inline={true}
                     />
-                    <SelectAllYears allYears={this.props.setFieldValue} yearLevs={this.optionsYearLevels}/>
+                    <SelectAllYears allYears={this.props.setFieldValue}
+                      yearLevs={this.optionsYearLevels}
+                      inline={true}
+                    />
 
                     <FormText color="muted">
                       Which year levels are participating in this program?
