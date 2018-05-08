@@ -35,7 +35,7 @@ class ChangeSchoolBtn extends React.Component{
         <DropdownToggle caret size="sm" color="link">
           Change
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu right>
           {schools.map((school, idx) => (
             <DropdownItem key={idx} tag={RRNavLink} to={getSchoolProgramsUrl(school.code, '2018')} className={style.dropdownItem}>{school.name}</DropdownItem>
           ))}

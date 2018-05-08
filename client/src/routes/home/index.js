@@ -22,6 +22,13 @@ import WifiIcon from './wifi.svg';
 import CloudIcon from './cloud.svg';
 import ScrollToTopOnMount from 'components/scrollToTopOnMount';
 
+// import ProductImage from './product-image-program-list.png';
+// import ProductImage2 from './product-image-phone-2-view.png';
+import ProductImage3 from './product-image-tablet-landscape-cropped2.png';
+import ProductImageHowTo1 from './product-image-1-login.png';
+import ProductImageHowTo2 from './product-image-2-view.png';
+import ProductImageHowTo3 from './product-image-3-add.png';
+
 
 const HomePage = () => (
 
@@ -32,19 +39,26 @@ const HomePage = () => (
     <div className={style.topLayoutBand}>
       <Container>
         <Row className={style.layoutHeadline}>
-          <Col xs={{size: 12}} md={{size: 7}}>
+          <Col xs={{size: 12}} lg={{size: 7}} className={style.layoutHeadlineText}>
             <div className={style.headline}>
               <span className={style.comingSoonBadgeContainer}><Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge></span>
-              <h2>Programs happening in schools now</h2>
-              <p className="h4">Helping you share and discover programs in action for NSW Public Schools.<sup>*</sup>.</p>
+              {/*<h2>Programs happening in school</h2>*/}
+              <h2>Snippet</h2>
+              <p className="h4">Helping you share and discover programs in action in your NSW Public Schools<sup>*</sup>.</p>
 
-              {/*<p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button></p>*/}
-              <p className={style.headlineCta}><Button size="lg" color="pink" tag={RRLink} to="/login" disabled>Coming Soon</Button></p>
+              <p style={{marginTop:'4em'}}>
+                {process.env.NODE_ENV === 'development' ?
+                  <Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button> :
+                  <Button size="lg" color="pink" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
+                }
+              </p>
             </div>
           </Col>
 
-          <Col xs={{size: 12}} md={{size: 5}}>
-            <img src="https://via.placeholder.com/443x406?text=compelling-product-image" width="443" height="406" alt="" className="img-fluid" />
+          <Col xs={{size: 12}} lg={{size: 5}}>
+            <div className={style.productImageContainer}>
+              <img src={ProductImage3} width="" height="" alt="" className="img-fluid" />
+            </div>
           </Col>
         </Row>
 
@@ -69,30 +83,30 @@ const HomePage = () => (
         <Row className={cx(style.howtoBannerTop, 'mb-4')}>
           <Col sm={{size: 8, offset: 2}} className="text-center">
             <h3>Why Snippet?</h3>
-            <p>You do a lot as a school staff, and often your amazing initiatives and insights from the frontline may go under the radar. Snippet hopes to give you a space to showcase, teach and learn from others beyond the school gate in the context of NSW Public schools.</p>
+            <p>Don't let your amazing initiatives and insights from the frontline go under the radar. Showcase, teach and learn from others beyond the school gate.</p>
           </Col>
         </Row>
 
         <Row className={cx(style.howtoBannerTop, 'mb-2')}>
           <Col>
-            <h3 className="text-center">It's as easy as..</h3>
+            <h3 className="text-center">How does it work?</h3>
           </Col>
         </Row>
 
         <Row className={style.howtoBannerLower}>
           <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>1. Log in with your Department of Education login.</p>
+            <img src={ProductImageHowTo1} width="350" height="" alt="" className="img-fluid" />
           </Col>
 
           <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>2. View and keep up to date with programs by your school.</p>
+            <img src={ProductImageHowTo2} width="350" height="" alt="" className="img-fluid" />
           </Col>
 
           <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-            <img src="https://via.placeholder.com/350x250?text=screenshot" width="350" height="250" alt="" className="img-fluid" />
             <p>3. Add a new program or update one that exists.</p>
+            <img src={ProductImageHowTo3} width="350" height="" alt="" className="img-fluid" />
           </Col>
         </Row>
       </Container>
@@ -105,8 +119,10 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
-              {/*<Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>*/}
-              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+              {process.env.NODE_ENV === 'development' ?
+                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
+                <Button size="lg" color="pink" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
+              }
             </Form>
           </Col>
         </Row>
@@ -209,8 +225,10 @@ const HomePage = () => (
           <Col>
             <Form inline>
               <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
-              {/*<Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button>*/}
-              <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2" disabled>Coming Soon</Button>
+              {process.env.NODE_ENV === 'development' ?
+                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
+                <Button size="lg" color="pink" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
+              }
             </Form>
           </Col>
         </Row>

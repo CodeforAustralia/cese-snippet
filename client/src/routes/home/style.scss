@@ -1,5 +1,6 @@
 @import '~style/helpers.scss';
 
+
 .topLayoutBand,
 .ctaLayoutBand {
   background-color: $blue-concrete; //#d40c58;
@@ -17,6 +18,20 @@
   @include xs() {
     padding-top: 3em;
     padding-bottom: 1em;
+  }
+}
+
+.layoutHeadlineText {
+  padding-right: 100px !important;
+}
+
+.productImageContainer {
+  margin-top: -2em;
+  float: right;
+
+  @include max-lg() {
+    display: none;
+    float: none;
   }
 }
 
@@ -50,16 +65,16 @@
 
 .headline {
   h2 {
-    margin-top: 0;
-    margin-bottom: 0.25em;
+    margin-top: .25em;
+    margin-bottom: 0.5em;
 
     @include xs() {
       text-align: center;
     }
 
     @include md() {
-      font-size: 3.6em;
-      line-height: 1.1875em;
+      font-size: 3.2em;
+      line-height: 1.05em;
     }
   }
 
@@ -136,6 +151,9 @@
 .howtoCard {
   img {
     margin-bottom: 1em;
+    border: 2px solid $gray-900;
+    //box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
 }
 
@@ -228,3 +246,11 @@
   padding-bottom: 2em;
 }
 
+
+
+.tempCtaButton {
+  border-width: 3px !important;
+  //font-weight: bold !important;
+  color: #D40C59 !important;
+  background: white !important;
+}
