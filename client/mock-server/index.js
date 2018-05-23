@@ -43,6 +43,6 @@ app.get('/static/schools-list.json', (req, res) => {
   return res;
 });
 
-app.listen(5001, () => {
-  console.log('API running at http://localhost:5001/api');
+app.listen(8080, () => {
+  console.log('API running at http://localhost:8080/api');
 });

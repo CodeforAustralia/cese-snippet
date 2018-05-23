@@ -154,13 +154,13 @@
   },
   "proxy": {
     "^/api": {
-      "target": "http://localhost:5001"
+      "target": "http://localhost:8080"
     },
     "^/snippet-3efc5/us-central1/app/api": {
       "target": "http://localhost:5000"
     },
     "^/static": {
-      "target": "http://localhost:5001"
+      "target": "http://localhost:8080"
     },
     "^/snippet-3efc5/us-central1/app/static": {
       "target": "http://localhost:5000"
