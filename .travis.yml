@@ -25,5 +25,5 @@ deploy:
     secure: "$FIREBASE_TOKEN"
   on:
     tags: true
-after_deploy:
-  - cd $TRAVIS_BUILD_DIR/client && yarn add slack-notify shelljs && node ./bin/notify-slack.js
+#after_deploy:
+#  - cd $TRAVIS_BUILD_DIR/client && yarn add slack-notify shelljs && node ./bin/notify-slack.js
