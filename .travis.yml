@@ -11,13 +11,13 @@ cache:
     - $HOME/.yarn-cache
     - $TRAVIS_BUILD_DIR/client/node_modules
     - $TRAVIS_BUILD_DIR/functions/node_modules
-before_script:
-  - cd $TRAVIS_BUILD_DIR/client && yarn test:ci
+#before_script:
+#  - cd $TRAVIS_BUILD_DIR/client && yarn test:ci
 script:
   - cd $TRAVIS_BUILD_DIR/client && NODE_ENV=production yarn build
-after_success:
-  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $TRAVIS_BUILD_DIR/client/coverage/lcov.info
-  - cd $TRAVIS_BUILD_DIR
+#after_success:
+#  - CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN npx codeclimate-test-reporter < $TRAVIS_BUILD_DIR/client/coverage/lcov.info
+#  - cd $TRAVIS_BUILD_DIR
 deploy:
   skip_cleanup: true
   provider: firebase
