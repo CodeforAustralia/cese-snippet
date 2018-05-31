@@ -1,0 +1,21 @@
+.noticeRibbon {
+  background-color: #f2f2f2;
+  position: relative;
+  overflow: hidden;
+}
+
+.noticeRibbonTab {
+  display: block;
+  box-sizing: border-box;
+  padding: 13px 50px 12px 0;
+  overflow: hidden;
+  border-bottom: 1px solid transparent;
+  transition: border .6s;
+  max-width: 1024px;
+}
+
+.noticeRibbonTitle {
+  float: left;
+  font-size: .875rem;
+  margin: 0;
+}

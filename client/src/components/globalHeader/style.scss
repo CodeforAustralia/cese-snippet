@@ -1,0 +1,32 @@
+.globalHeader {
+  background: #e0e0e0;
+  padding: 10px 0 12px 0;
+  overflow: visible;
+  //border-bottom: 1px solid #565a5c;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.globalHeaderTitle {
+  font-weight: 400;
+  text-decoration: none;
+  font-size: .75rem;
+  line-height: 1;
+  float: left;
+  color: #333;
+  padding-top: 5px;
+
+  a {
+    font-weight: 400;
+    text-decoration: none;
+    font-size: .75rem;
+    line-height: 1;
+    float: left;
+    color: #333;
+    letter-spacing: .03em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+

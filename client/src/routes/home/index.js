@@ -1,17 +1,16 @@
 import React from 'react';
-import { Link as RRLink } from 'react-router-dom';
 import {
   Container,
   Row,
   Col,
-  Button,
-  Form,
-  Label,
   Badge,
 } from "reactstrap";
 import cx from 'classnames';
 
 import Layout from './layout';
+import RegisterForm from './components/registerForm';
+import CallToActionBanner from './components/callToActionBanner';
+
 import DetLogo from './doe-black-logo.png';
 import style from './style.scss';
 import HandsIcon from './hands.svg';
@@ -22,9 +21,6 @@ import WifiIcon from './wifi.svg';
 import CloudIcon from './cloud.svg';
 import ScrollToTopOnMount from 'components/scrollToTopOnMount';
 
-// import ProductImage from './product-image-program-list.png';
-// import ProductImage2 from './product-image-phone-2-view.png';
-import ProductImage3 from './product-image-tablet-landscape-cropped2.png';
 import ProductImageHowTo1 from './product-image-1-login.png';
 import ProductImageHowTo2 from './product-image-2-view.png';
 import ProductImageHowTo3 from './product-image-3-add.png';
@@ -42,29 +38,13 @@ const HomePage = () => (
           <Col xs={{size: 12}} lg={{size: 7}} className={style.layoutHeadlineText}>
             <div className={style.headline}>
               <span className={style.comingSoonBadgeContainer}><Badge color="warning" className="h4 ml-1" pill>COMING SOON</Badge></span>
-              {/*<h2>Programs happening in school</h2>*/}
               <h2>Snippet</h2>
-              <p className="h4">Helping you share and discover programs in action in your NSW Public Schools<sup>*</sup>.</p>
-
-              <p style={{marginTop:'4em'}}>
-                {process.env.NODE_ENV === 'development' ?
-                  <Button size="lg" color="pink" tag={RRLink} to="/login">Get Started</Button> :
-                  <Button size="lg" color="pink" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
-                }
-              </p>
+              <p className="h4">Be one of the key schools in trialling and helping forge a better way in discovering and sharing <em>snippets</em> of knowledge for local public school initiatives in NSW.</p>
             </div>
           </Col>
 
           <Col xs={{size: 12}} lg={{size: 5}}>
-            <div className={style.productImageContainer}>
-              <img src={ProductImage3} width="" height="" alt="" className="img-fluid" />
-            </div>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <p className={`text-muted ${style.loginCaveat}`}><small>You must have a Department of Education (DET) email to log in.</small></p>
+            <RegisterForm />
           </Col>
         </Row>
       </Container>
@@ -73,7 +53,7 @@ const HomePage = () => (
 
     <div className={style.alertBanner}>
       <Container>
-        <p>Staff from over 1000 schools have already signed up.</p>
+        <p>Currently seeking pilot interest.</p>
       </Container>
     </div>
 
@@ -117,13 +97,7 @@ const HomePage = () => (
       <Container>
         <Row className={style.ctaBanner}>
           <Col>
-            <Form inline>
-              <Label className="mr-2">I'm interested and I'd like to see a demo of how might work!</Label>
-              {process.env.NODE_ENV === 'development' ?
-                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
-                <Button size="lg" color="pink" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
-              }
-            </Form>
+            <CallToActionBanner />
           </Col>
         </Row>
       </Container>
@@ -223,28 +197,11 @@ const HomePage = () => (
       <Container>
         <Row className={style.ctaBanner}>
           <Col>
-            <Form inline>
-              <Label className="mr-2">I'm interested and I'd like to see a demo of how this might work!</Label>
-              {process.env.NODE_ENV === 'development' ?
-                <Button size="lg" color="pink" tag={RRLink} to="/login" className="ml-2">Get Started</Button> :
-                <Button size="lg" color="pink" outline disabled tag={RRLink} to="/login" className={style.tempCtaButton}>Coming Soon</Button>
-              }
-            </Form>
+            <CallToActionBanner />
           </Col>
         </Row>
       </Container>
     </div>
-
-    <div className={style.snippetBetaBand}>
-      <Container>
-        <Row>
-          <Col>
-            <p>Amazing things are coming! <RRLink to="/whats-next" className="text-brand-primary">Find out about Snippet Beta</RRLink>.</p>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-
 
     <div className={style.footerBand}>
         <Container>
