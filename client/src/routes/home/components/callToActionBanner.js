@@ -8,7 +8,7 @@ import {
 
 const Banner = () => (
   <Form inline>
-    <Label className="mr-2">Join Snippet!</Label>&nbsp;
+    <Label className="mr-2">Join Snippet! </Label>&nbsp;
     <Button size="lg" color="pink" outline disabled tag={RRLink} to="/">Register for updates</Button>
   </Form>
 );

@@ -8,22 +8,52 @@
 }
 
 .topLayoutBand {
+  padding-top: 3em;
   padding-bottom: 1em;
-}
 
-.layoutHeadline {
-  padding-top: 5em;
-  padding-bottom: 2em;
-
-  @include xs() {
-    padding-top: 3em;
-    padding-bottom: 1em;
+  @include sm() {
+    padding-bottom: 2em;
   }
 }
 
-.layoutHeadlineText {
-  padding-right: 100px !important;
+.topLayoutBandLhs {
+  @include sm() {
+    padding-top: 4em;
+    padding-right: 100px !important;
+  }
+
+  p {
+    font-size: 1.4em;
+    line-height: 2;
+  }
 }
+
+.topBandLogo {
+  margin-bottom: .6rem;
+}
+
+.topBandTitle {
+  margin-bottom: 0.6rem;
+}
+
+.topLayoutBandRhs {  }
+
+
+
+
+.whyJoinColumns {
+  column-count: 4;
+  orphans: 1;
+  widows: 1;
+}
+
+.whyJoinCard {
+  display: inline-block;
+}
+
+
+
+
 
 .productImageContainer {
   margin-top: -2em;
@@ -44,74 +74,7 @@
   position: relative;
 }
 
-.comingSoonBadgeContainer {
-  display: block;
-  @include xs() {
-    text-align: center;
-    font-size:10px;
-  }
-}
 
-.comingSoonBadge {
-  font-size: 10px;
-  text-transform: uppercase;
-  position: absolute;
-  top: 0;
-  right: 1px;
-  color: rgba(white, .8);
-  //font-weight: 200;
-  letter-spacing: .25px;
-}
-
-.headline {
-  h2 {
-    margin-top: .25em;
-    margin-bottom: 0.5em;
-
-    @include xs() {
-      text-align: center;
-    }
-
-    @include md() {
-      font-size: 3.2em;
-      line-height: 1.05em;
-    }
-  }
-
-  p {
-    line-height: 1.6;
-
-    @include xs() {
-      text-align: center;
-      font-size: 1em;
-    }
-  }
-}
-
-.loginCaveat {
-  line-height: 1.2;
-}
-
-.conditionMark {
-  margin-left: 3px;
-}
-
-.headlineCta {
-  margin-top: 3em;
-
-  .btn {
-    color: white !important;
-  }
-
-  @include xs() {
-    margin-top: 1em;
-    margin-bottom: 2em;
-
-    .btn {
-      font-size: 1em !important;
-    }
-  }
-}
 
 .alertBanner {
   background: $gray-300; //#e0e0e0;;
@@ -129,12 +92,15 @@
   padding-bottom: 2em;
 }
 
-.howtoBand,
+.howToBand,
 .featureBanner,
-.snippetBetaBand {
+.snippetBetaBand,
+.whyJoinBand {
   padding-top: 2em;
   padding-bottom: 2em;
 }
+
+
 
 .howtoBannerTop {
   @include xs() {

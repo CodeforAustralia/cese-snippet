@@ -3,7 +3,7 @@ import {
   Container,
   Row,
   Col,
-  // Badge,
+  Badge,
 } from 'reactstrap';
 
 import style from './style.scss';
@@ -16,7 +16,7 @@ const NoticeRibbon = () => (
           <div className={style.noticeRibbonTab}>
             <p className={style.noticeRibbonTitle}>
               Welcome to<span className="uk-hidden-small">&nbsp;snippet.nsw.gov.au</span>&nbsp;
-              {/*<Badge color="warning" pill>PRE ALPHA</Badge>*/}
+              <Badge className={style.badge} color="warning">COMING SOON</Badge>
             </p>
           </div>
         </Col>
