@@ -11,7 +11,6 @@ import Layout from './layout';
 import RegisterForm from './components/registerForm';
 import CallToActionBanner from './components/callToActionBanner';
 
-import DetLogo from './doe-black-logo.png';
 import style from './style.scss';
 import HandsIcon from './hands.svg';
 import IdeaIcon from './idea.svg';
@@ -53,20 +52,78 @@ const HomePage = () => (
 
     <div className={style.alertBanner}>
       <Container>
-        <p>Currently seeking pilot interest.</p>
+        <p>Currently seeking pilot schools</p>
       </Container>
     </div>
 
 
     <div className={style.howtoBand}>
+
       <Container>
-        <Row className={cx(style.howtoBannerTop, 'mb-4')}>
-          <Col sm={{size: 8, offset: 2}} className="text-center">
-            <h3>Why Snippet?</h3>
-            <p>Don't let your amazing initiatives and insights from the frontline go under the radar. Showcase, teach and learn from others beyond the school gate.</p>
+        <Row>
+          <Col>
+            <h3 className="text-center">Why join Snippet?</h3>
+            <div>
+
+              <div className={style.valuepropBanner}>
+                <div className={style.valuepropIcon}>
+                  <img src={IdeaIcon} width={70} height={70} alt="Icon of a light bulb idea" />
+                </div>
+                <div className={style.valuepropProp}>
+                  <h3>Discover and learn from locally relevant initiatives</h3>
+                  <p>Find out what’s working and what doesn’t from other NSW public schools, and adapt to your own context. No one wants to reinvent the wheel!</p>
+                </div>
+              </div>
+
+
+              <div className={style.valuepropBanner}>
+                <div className={style.valuepropIcon}>
+                  <img src={IdeaIcon} width={70} height={70} alt="Icon of a light bulb idea" />
+                </div>
+                <div className={style.valuepropProp}>
+                  <h3>Keep up-to-date</h3>
+                  <p>Stay on top the latest and trending initiatives in NSW Public schools and in your own school.</p>
+                </div>
+              </div>
+
+
+              <div className={style.valuepropBanner}>
+                <div className={style.valuepropIcon}>
+                  <img src={IdeaIcon} width={70} height={70} alt="Icon of a light bulb idea" />
+                </div>
+                <div className={style.valuepropProp}>
+                  <h3>Share and collaborate with like-minded colleagues</h3>
+                  <p>You don’t have to do this alone! Share and appreciate each other’s expertise and experiences in designing, implementing and improving school initiatives.</p>
+                </div>
+              </div>
+
+
+              <div className={style.valuepropBanner}>
+                <div className={style.valuepropIcon}>
+                  <img src={IdeaIcon} width={70} height={70} alt="Icon of a light bulb idea" />
+                </div>
+                <div className={style.valuepropProp}>
+                  <h3>Update the Community</h3>
+                  <p>Help parents easily find what programs your school offer in School Finder.</p>
+                </div>
+              </div>
+
+            </div>
           </Col>
         </Row>
+      </Container>
 
+      <div className={style.ctaLayoutBand}>
+        <Container>
+          <Row className={style.ctaBanner}>
+            <Col>
+              <CallToActionBanner />
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      <Container>
         <Row className={cx(style.howtoBannerTop, 'mb-2')}>
           <Col>
             <h3 className="text-center">How does it work?</h3>
@@ -203,13 +260,7 @@ const HomePage = () => (
       </Container>
     </div>
 
-    <div className={style.footerBand}>
-        <Container>
-          <Col size={{sm: 2}}>
-            <img src={DetLogo} width={130} height={47} alt="NSW Department of Education logo" />
-          </Col>
-        </Container>
-      </div>
+
 
   </Layout>
 );

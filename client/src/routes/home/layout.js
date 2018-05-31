@@ -3,6 +3,7 @@ import cx from 'classnames';
 
 import NoticeRibbon from 'components/noticeRibbon';
 import GlobalHeader from 'components/globalHeader';
+import GlobalFooter from 'components/globalFooter';
 import style from './layout.scss';
 
 const Layout = ({containerClassName, children, homeHeader = false }) => (
@@ -14,6 +15,8 @@ const Layout = ({containerClassName, children, homeHeader = false }) => (
     <GlobalHeader />
 
     {children}
+
+    <GlobalFooter />
 
   </div>
 );
