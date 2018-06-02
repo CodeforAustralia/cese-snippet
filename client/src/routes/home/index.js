@@ -124,17 +124,17 @@ const HomePage = () => (
           <Row>
             <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
               <p>1. Log in with your Department of Education login.</p>
-              <img src={ProductImageHowTo1} width="350" height="" alt="" className="img-fluid" />
+              <img src={ProductImageHowTo1} width="280" height="" alt="" className="img-fluid" />
             </Col>
 
             <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
               <p>2. View and keep up to date with programs by your school.</p>
-              <img src={ProductImageHowTo2} width="350" height="" alt="" className="img-fluid" />
+              <img src={ProductImageHowTo2} width="280" height="" alt="" className="img-fluid" />
             </Col>
 
             <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
               <p>3. Add a new program or update one that exists.</p>
-              <img src={ProductImageHowTo3} width="350" height="" alt="" className="img-fluid" />
+              <img src={ProductImageHowTo3} width="280" height="" alt="" className="img-fluid" />
             </Col>
           </Row>
 

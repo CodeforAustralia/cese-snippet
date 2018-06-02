@@ -20,7 +20,7 @@ const GlobalFooter = () => {
           </Col>
           <Col size={{sm: 6, md: 4}}>
             <ul className="list-unstyled">
-              <li><a href="mailto:elise@beestripes.io">Contact</a></li>
+              <li><a href="mailto:nsweducation.snippet@gmail.com">Contact</a></li>
             </ul>
           </Col>
           <Col size={{sm: 6, md: 4}}>

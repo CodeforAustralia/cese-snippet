@@ -9,7 +9,6 @@ import {
   Input,
   Button,
 } from 'reactstrap';
-import { Link as RRLink } from 'react-router-dom';
 
 
 class RegisterForm extends React.Component {
@@ -19,20 +18,27 @@ class RegisterForm extends React.Component {
         <CardBody>
           <CardTitle>Join the Snippet community</CardTitle>
           <CardText>Register your interest in Snippet's Alpha program and we'll keep you updated.</CardText>
-          <FormGroup>
-            <Label for="exampleEmail">Your name</Label>
-            <Input type="email" name="email" id="exampleEmail" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">Your email</Label>
-            <Input type="email" name="email" id="exampleEmail" />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleEmail">Your school</Label>
-            <Input type="email" name="email" id="exampleEmail" />
-          </FormGroup>
 
-          <Button color="pink" outline tag={RRLink} to="/login" className="mt-2">Register for updates</Button>
+          <form action="https://firebaseapp.us18.list-manage.com/subscribe/post" method="POST">
+            <input type="hidden" name="u" value="ad768dec01d640073ba9f8580" />
+            <input type="hidden" name="id" value="37030466bc" />
+
+            <FormGroup>
+              <Label for="name">Your name</Label>
+              <Input type="text" name="MERGE1" id="name" />
+            </FormGroup>
+            <FormGroup>
+              <Label for="email">Your email</Label>
+              <Input type="email" name="MERGE0" id="email" />
+            </FormGroup>
+            <FormGroup>
+              <Label for="school">Your school</Label>
+              <Input type="text" name="MERGE2" id="school" />
+            </FormGroup>
+
+            <Button type="submit" color="pink" outline className="mt-2">Register for updates</Button>
+          </form>
+
         </CardBody>
       </Card>
     )
@@ -40,3 +46,5 @@ class RegisterForm extends React.Component {
 }
 
 export default RegisterForm;
+
+
