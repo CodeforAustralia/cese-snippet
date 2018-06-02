@@ -36,14 +36,17 @@ class RegisterForm extends React.Component {
               <Input type="text" name="MERGE2" id="school" />
             </FormGroup>
 
-            <FormGroup check>
-              <Label check for="group_1">
-                <Input type="checkbox" id="group_1" name="group[1125][1]" />{' '}
-                Check if are interested to be a pilot school
-              </Label>
+            <FormGroup>
+              <Label>Check if you are interested to be a pilot school</Label>
+              <FormGroup check>
+                <Label check for="group_1">
+                  <Input type="checkbox" id="group_1" name="group[1125][1]" />{' '}
+                  Yes, register interest
+                </Label>
+              </FormGroup>
             </FormGroup>
 
-            <Button type="submit" color="pink" outline className="mt-4">Register for updates</Button>
+            <Button type="submit" color="pink" outline className="mt-2">Register for updates</Button>
           </form>
 
         </CardBody>
