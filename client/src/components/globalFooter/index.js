@@ -21,6 +21,7 @@ const GlobalFooter = () => {
           <Col size={{sm: 6, md: 4}}>
             <ul className="list-unstyled">
               <li><a href="mailto:nsweducation.snippet@gmail.com">Contact</a></li>
+              <li><a target="_blank" rel="noopener noreferrer" href="https://snippet1.typeform.com/to/zRI3Tz">Give Feedback</a></li>
             </ul>
           </Col>
           <Col size={{sm: 6, md: 4}}>

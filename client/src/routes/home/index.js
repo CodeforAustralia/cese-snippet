@@ -16,7 +16,7 @@ import CallToActionBanner from './components/callToActionBanner';
 import style from './style.scss';
 import ScrollToTopOnMount from 'components/scrollToTopOnMount';
 
-import ProductImageHowTo1 from './product-image-1-login.png';
+// import ProductImageHowTo1 from './product-image-1-login.png';
 import ProductImageHowTo2 from './product-image-2-view.png';
 import ProductImageHowTo3 from './product-image-3-add.png';
 import DetLogo from 'components/globalFooter/doe-black-logo.png';
@@ -38,7 +38,7 @@ const HomePage = () => (
                 <img src={DetLogo} width={130} height={47} alt="NSW Department of Education logo" />
               </div>
               <h1 className={style.topBandTitle}>Snippet</h1>
-              <p>Be one of the key schools in trialling and helping forge a better way in discovering and sharing <em>Snippets</em> of knowledge for local public school initiatives in NSW.</p>
+              <p>Be one of the key schools in trialling and helping forge a better way in discovering and sharing <em>Snippets</em> of knowledge for public school initiatives in NSW.</p>
             </div>
           </Col>
 
@@ -128,7 +128,7 @@ const HomePage = () => (
             {/*</Col>*/}
 
             <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-              <p>1. View and keep up to date with programs by your school.</p>
+              <p>1. View and keep up to date with programs for your school.</p>
               <img src={ProductImageHowTo2} width="280" height="" alt="" className="img-fluid" />
             </Col>
 
@@ -138,11 +138,10 @@ const HomePage = () => (
             </Col>
 
             <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-              <p>3. Search for programs from other schools with specific filters.</p>
+              <p>3. See what programs other schools are implementing with with smart search.</p>
               <div className={style.howToComingSoonImage}>
                 <span>Coming soon</span>
               </div>
-
             </Col>
           </Row>
 
@@ -162,8 +161,6 @@ const HomePage = () => (
         </Row>
       </Container>
     </div>
-
-
 
   </Layout>
 );

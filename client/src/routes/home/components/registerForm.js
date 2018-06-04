@@ -29,11 +29,23 @@ class RegisterForm extends React.Component {
             </FormGroup>
             <FormGroup>
               <Label for="email">Your email</Label>
-              <Input type="email" name="MERGE0" id="email" />
+              <Input type="email" name="MERGE0" id="email" required />
             </FormGroup>
             <FormGroup>
               <Label for="school">Your school</Label>
               <Input type="text" name="MERGE2" id="school" />
+            </FormGroup>
+
+            <FormGroup>
+              <Label for="role">Your role</Label>
+              <Input type="select" name="select" id="MMERGE3">
+                <option>Select</option>
+                <option>Principal</option>
+                <option>Deputy/Assistant Principal</option>
+                <option>Head Teacher</option>
+                <option>Teacher</option>
+                <option>Other</option>
+              </Input>
             </FormGroup>
 
             <FormGroup>

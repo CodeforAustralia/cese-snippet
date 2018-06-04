@@ -1,0 +1,34 @@
+.link {
+  color: #fff;
+  background-color: #a86cc1;
+  box-shadow: 0 1px 3px 0 rgba(235,90,70,.16);
+  padding: 5px 11px;
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+  position: fixed;
+  border-radius: 4px;
+  //padding: 3px 8px 3px 3px;
+  bottom: 24px;
+  right: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 4;
+  font-size: 12px;
+}
+
+.text {
+  color: #fff;
+  cursor: pointer;
+  z-index: 4;
+  font-size: 12px;
+
+  &:hover,
+  &:focus {
+    color: #fff
+  }
+}
+
+
+
+
