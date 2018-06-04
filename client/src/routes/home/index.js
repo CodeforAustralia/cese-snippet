@@ -12,13 +12,11 @@ import {
 import Layout from './layout';
 import RegisterForm from './components/registerForm';
 import CallToActionBanner from './components/callToActionBanner';
+import HowToFeature from './components/howToFeature';
 
 import style from './style.scss';
 import ScrollToTopOnMount from 'components/scrollToTopOnMount';
 
-// import ProductImageHowTo1 from './product-image-1-login.png';
-import ProductImageHowTo2 from './product-image-2-view.png';
-import ProductImageHowTo3 from './product-image-3-add.png';
 import DetLogo from 'components/globalFooter/doe-black-logo.png';
 
 const HomePage = () => (
@@ -123,32 +121,7 @@ const HomePage = () => (
       <Container>
         <Row>
           <Col>
-            <h3 className="text-center mb-4">How it works?</h3>
-
-          <Row>
-            {/*<Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>*/}
-              {/*<p>1. Log in with your Department of Education login.</p>*/}
-              {/*<img src={ProductImageHowTo1} width="280" height="" alt="" className="img-fluid" />*/}
-            {/*</Col>*/}
-
-            <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-              <p>1. View and keep up to date with programs for your school.</p>
-              <img src={ProductImageHowTo2} width="280" height="" alt="" className="img-fluid" />
-            </Col>
-
-            <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-              <p>2. Add a new program or update one that exists.</p>
-              <img src={ProductImageHowTo3} width="280" height="" alt="" className="img-fluid" />
-            </Col>
-
-            <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-              <p>3. See what programs other schools are implementing with with smart search.</p>
-              <div className={style.howToComingSoonImage}>
-                <span>Coming soon</span>
-              </div>
-            </Col>
-          </Row>
-
+            <HowToFeature />
           </Col>
         </Row>
       </Container>
