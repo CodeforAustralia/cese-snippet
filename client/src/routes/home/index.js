@@ -71,6 +71,7 @@ const HomePage = () => (
             <div className={style.whyJoinColumns}>
               <Card className={style.whyJoinCard}>
                 <CardBody>
+                  <div className={style.whyJoinFakeIcon}><span /></div>
                   <CardTitle>Discover and learn from locally relevant initiatives</CardTitle>
                   <CardText>Find out what’s working and what doesn’t from other NSW public schools, and adapt to your own context. No one wants to reinvent the wheel!</CardText>
                 </CardBody>
@@ -78,6 +79,7 @@ const HomePage = () => (
 
               <Card className={style.whyJoinCard}>
                 <CardBody>
+                  <div className={style.whyJoinFakeIcon}><span /></div>
                   <CardTitle>Keep up-to-date</CardTitle>
                   <CardText>Stay on top the latest and trending initiatives in NSW Public schools and in your own school.</CardText>
                 </CardBody>
@@ -85,6 +87,7 @@ const HomePage = () => (
 
               <Card className={style.whyJoinCard}>
                 <CardBody>
+                  <div className={style.whyJoinFakeIcon}><span /></div>
                   <CardTitle>Share and collaborate with like-minded colleagues</CardTitle>
                   <CardText>You don’t have to do this alone! Share and appreciate each other’s expertise and experiences in designing, implementing and improving school initiatives.</CardText>
                 </CardBody>
@@ -92,6 +95,7 @@ const HomePage = () => (
 
               <Card className={style.whyJoinCard}>
                 <CardBody>
+                  <div className={style.whyJoinFakeIcon}><span /></div>
                   <CardTitle>Update the Community</CardTitle>
                   <CardText>Help parents easily find what programs your school offer in School Finder.</CardText>
                 </CardBody>
