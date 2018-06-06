@@ -15,7 +15,7 @@ const NoticeRibbon = () => (
         <Col>
           <div className={style.noticeRibbonTab}>
             <p className={style.noticeRibbonTitle}>
-              Welcome to<span className="uk-hidden-small">&nbsp;snippet.nsw.gov.au</span>&nbsp;
+              Welcome to<span className="uk-hidden-small">&nbsp;snippet.education.nsw.gov.au</span>&nbsp;
               <Badge className={style.badge} color="warning">COMING SOON</Badge>
             </p>
           </div>

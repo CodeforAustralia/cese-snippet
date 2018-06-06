@@ -1,0 +1,53 @@
+@import '~style/helpers.scss';
+
+$footer-height: 155px;
+
+.layout {
+  position: relative;
+  height: 100%;
+}
+
+.wrapper {
+  border: 1px solid blue;
+  min-height: 100%;
+
+  // make footer sticky
+  // Equal to height of footer
+  // But also accounting for potential margin-bottom of last child
+  margin-bottom: -$footer-height;
+  padding-bottom: $footer-height;
+}
+
+.footer {
+  height: $footer-height;
+  border: 1px solid green;
+}
+
+//.homeNavbar {
+//  position: absolute;
+//}
+//
+//.navbar {
+//  @include max-md() {
+//    background-color: $brand-concrete !important;
+//    border-bottom: 1px solid rgba(black, .75);
+//    margin-bottom: 1.4em;
+//  }
+//}
+//
+//.navbarBrand {
+//  position: relative;
+//  display: inline-block;
+//  color: $body-color !important;
+//}
+//
+//.alphaBadge {
+//  margin-left: 10px;
+//  font-size: 8px;
+//  opacity: .8;
+//  color: rgba(black, .5);
+//  position: absolute;
+//  top: 9px;
+//  left: 100%;
+//  border: 1px solid rgba(black, .5);
+//}

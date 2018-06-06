@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 import Bows from 'bows';
 import { Container } from 'reactstrap';
 
+import Layout from 'layouts/app';
 import Program from './program';
 import SchoolPrograms from './schoolPrograms';
 import SchoolCreateProgram from './schoolCreateProgram';
@@ -86,9 +87,7 @@ class Account extends React.Component {
     };
 
     return (
-      <div>
-        <GlobalHeader />
-        <Header />
+      <Layout>
         <Container className={style.layoutContainer}>
           <Switch location={isModal ? this.previousLocation : location}>
             {/*<Route path="/account/index" exact component={Index} />*/}
@@ -99,9 +98,8 @@ class Account extends React.Component {
             <RedirectFork />
           </Switch>
         </Container>
-        <Footer />
         {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
-      </div>
+      </Layout>
     );
   }
 

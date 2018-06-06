@@ -4,6 +4,7 @@ import {
   Row,
   Col,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import style from './style.scss';
 
@@ -14,7 +15,7 @@ const GlobalHeader = () => {
         <Row>
           <Col>
             <div className={style.globalHeaderTitle}>
-              <a href="https://education.nsw.gov.au" title="NSW Department of Education">NSW Department of Education</a>
+              <Link to="/" title="Snippet | NSW Department of Education">Snippet</Link>
             </div>
           </Col>
         </Row>

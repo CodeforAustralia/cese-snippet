@@ -17,7 +17,7 @@ import {
 import FieldSelect from 'components/fieldSelect';
 
 import FetchError from 'components/fetchError';
-import Layout from './../home/layout';
+import Layout from 'layouts/home';
 import { CircleLoading } from 'components/loading';
 import style from './style.scss';
 
@@ -78,7 +78,7 @@ class Login extends React.Component {
                 }
 
                 <div className={`alert alert-info mb-4 ${style.alert}`} role="alert">
-                  There is no need to supply your own login credentials as this is a demo site.
+                  You don't need to supply your own login credentials as this is a demo site.
                 </div>
 
                 <p>If you're not sure what Snippet is, please read about it <Link to="/">here</Link>.</p>

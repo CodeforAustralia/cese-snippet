@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import cx from 'classnames';
 
-import Layout from './../home/layout';
+import Layout from 'layouts/home';
 import Form from 'components/feedbackForm';
 import style from './style.scss';
 

@@ -6,20 +6,24 @@ import GlobalHeader from 'components/globalHeader';
 import GlobalFooter from 'components/globalFooter';
 import GiveFeedback from 'components/giveFeedback';
 
-import style from './layout.scss';
+import style from './home.scss';
 
 
-const Layout = ({containerClassName, children, homeHeader = false }) => (
+const Layout = ({ containerClassName, children }) => (
 
   <div className={cx(containerClassName, style.layout)}>
 
-    <NoticeRibbon />
+    <div className={style.wrapper}>
 
-    <GlobalHeader />
+      <NoticeRibbon />
 
-    {children}
+      <GlobalHeader />
 
-    <GlobalFooter />
+      {children}
+
+    </div>
+
+    <GlobalFooter className={style.footer} />
 
     <GiveFeedback />
 
