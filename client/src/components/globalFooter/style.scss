@@ -1,7 +1,9 @@
+@import '~style/helpers.scss';
+
 .footer {
-  background: #e0e0e0;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  background: $det-brand-header-grey;
+  //padding-top: 2em;
+  //padding-bottom: 2em;
 
   padding: 24px 0 40px;
 

@@ -1,14 +1,12 @@
 @import '~style/helpers.scss';
 
-
-.topLayoutBand,
-.ctaLayoutBand {
-  background-color: $blue-concrete; //#d40c58;
-  //color: white;
+.topLayoutBand {
+  background-color: $det-brand-white;
+  //color: $det-brand-white;
 }
 
 .topLayoutBand {
-  padding-top: 3em;
+  padding-top: 2em;
   padding-bottom: 1em;
 
   @include sm() {
@@ -41,11 +39,30 @@
 
 
 
-.whyJoinColumns {
-  column-count: 4;
-  orphans: 1;
-  widows: 1;
+.alertBanner {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  //background: $det-brand-alert-grey; //#e0e0e0;;
+  //background: lighten($info, 10%);
+  //background: $warning; // $det-brand-red; // $gray-300; //#e0e0e0;;
+  //color: $det-brand-white;
+  padding: 12px;
+  text-align: center;
+  p {
+    font-weight: 200;
+    padding: 0;
+    margin: 0;
+  }
 }
+
+
+
+//.whyJoinColumns {
+//  column-count: 4;
+//  orphans: 1;
+//  widows: 1;
+//}
 
 .whyJoinCard {
   display: inline-block;
@@ -62,6 +79,12 @@
     background: #f5f5f5;
     border: 1px solid #ebecf0;
   }
+}
+
+
+
+.ctaLayoutBand {
+  background-color: $det-grey;
 }
 
 
@@ -88,17 +111,6 @@
 }
 
 
-
-.alertBanner {
-  background: $gray-300; //#e0e0e0;;
-  padding: 12px;
-  text-align: center;
-  p {
-    font-weight: 200;
-    padding: 0;
-    margin: 0;
-  }
-}
 
 .lowerLayoutBand {
   padding-top: 2em;

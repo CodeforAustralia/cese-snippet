@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+
 /*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -46,7 +48,19 @@
 }
 
 .text-brand-primary {
-  color: $brand-primary;
+  color: $det-brand-red;
+}
+
+.text-brand-secondary {
+  color: $det-brand-blue;
+}
+
+.text-brand-black {
+  color: $det-brand-white;
+}
+
+.text-brand-white {
+  color: $det-brand-black;
 }
 
 .btn-light {

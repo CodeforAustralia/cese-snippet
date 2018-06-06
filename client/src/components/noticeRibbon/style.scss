@@ -1,5 +1,7 @@
+@import '~style/helpers.scss';
+
 .noticeRibbon {
-  background-color: #f2f2f2;
+  background-color: $det-brand-alert-grey;
   position: relative;
   overflow: hidden;
 }
@@ -22,4 +24,5 @@
 
 .badge {
   font-size: .5625rem;
+  font-weight: 500;
 }

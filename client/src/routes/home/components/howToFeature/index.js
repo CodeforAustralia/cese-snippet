@@ -64,7 +64,7 @@ class HowToFeature extends React.Component {
               </Row>
 
             ) : (
-              <Row>
+              <Row className="no-gutters">
                 <Col sm="12" md="4">
 
                   <TabContent activeTab={this.state.activeTab} className={style.tabContent}>

@@ -10,11 +10,13 @@ import {
   Button,
 } from 'reactstrap';
 
+import style from './style.scss';
+
 
 class RegisterForm extends React.Component {
   render() {
     return (
-      <Card>
+      <Card className={style.panel}>
         <CardBody>
           <CardTitle>Join the Snippet community</CardTitle>
           <CardText>Register your interest in Snippet's Alpha program and we'll keep you updated.</CardText>

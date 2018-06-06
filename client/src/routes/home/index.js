@@ -7,6 +7,7 @@ import {
   CardTitle,
   CardText,
   CardBody,
+  CardDeck,
 } from "reactstrap";
 
 import Layout from './layout';
@@ -66,7 +67,7 @@ const HomePage = () => (
             <h3 className="text-center mb-4">Why join Snippet?</h3>
 
 
-            <div className={style.whyJoinColumns}>
+            <CardDeck>
               <Card className={style.whyJoinCard}>
                 <CardBody>
                   <div className={style.whyJoinFakeIcon}><span /></div>
@@ -98,7 +99,7 @@ const HomePage = () => (
                   <CardText>Help parents easily find what programs your school offer in School Finder.</CardText>
                 </CardBody>
               </Card>
-            </div>
+            </CardDeck>
 
 
           </Col>

@@ -20,12 +20,12 @@
 
 
 .link {
-  color: $brand-primary;
+  color: $det-brand-red;
 
   &:hover,
   &:active,
   &:focus {
-    color: darken($brand-primary, .25);
+    color: darken($det-brand-red, .25);
   }
 }
 

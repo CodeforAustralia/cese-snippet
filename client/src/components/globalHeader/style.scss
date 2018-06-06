@@ -1,5 +1,7 @@
+@import '~style/helpers.scss';
+
 .globalHeader {
-  background: #e0e0e0;
+  background: $det-brand-header-grey;
   padding: 10px 0 12px 0;
   overflow: visible;
   //border-bottom: 1px solid #565a5c;
@@ -7,18 +9,18 @@
 }
 
 .globalHeaderTitle {
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: none;
   font-size: .75rem;
   line-height: 1;
   float: left;
   color: #333;
-  padding-top: 5px;
+  padding: 7px 0 5px;
 
   a {
     font-weight: 400;
     text-decoration: none;
-    font-size: .75rem;
+    font-size: .9rem;
     line-height: 1;
     float: left;
     color: #333;

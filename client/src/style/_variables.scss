@@ -19,8 +19,32 @@
 
 
 $brand-concrete: #f2f2f2;
-$brand-primary: #D40C59;
-$brand-secondary: #2283A7;
 $brand-highlight: #D5EF0E;
-
 $blue-concrete: #ebecf0;
+
+
+$det-black: rgb(25, 26, 51);
+$det-royal-blue: rgb(36, 76, 133);
+$det-bright-blue: rgb(24, 79, 208);
+$det-sky-blue: rgb(138, 197, 231);
+$det-green-blue: rgb(87, 189, 203);
+$det-white: rgb(255, 255, 255);
+$det-maroon: rgb(156, 24, 51);
+$det-deep-red: rgb(211, 25, 65);
+$det-red: rgb(238, 60, 72);
+$det-coral: rgb(244, 98, 85);
+$det-light-pink: rgb(238, 193, 196);
+$det-grey: rgb(242, 242, 242);
+$det-dark-grey: #666666;
+
+
+$det-brand-black: $det-black;
+$det-brand-red: $det-deep-red;
+$det-brand-blue: $det-royal-blue;
+$det-brand-white: $det-white;
+$det-brand-dark-grey: $det-dark-grey;
+
+$det-brand-highlight: #dbe77b;
+
+$det-brand-header-grey: #e0e0e0;
+$det-brand-alert-grey: $det-grey;
