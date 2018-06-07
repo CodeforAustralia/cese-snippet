@@ -1,27 +1,8 @@
-import React from 'react';
-import {
-  Container,
-  Row,
-  Col,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-import style from './style.scss';
+import withAuth from 'components/auth/withAuth';
 
-const GlobalHeader = () => {
-  return (
-    <aside className={style.globalHeader}>
-      <Container>
-        <Row>
-          <Col>
-            <div className={style.globalHeaderTitle}>
-              <Link to="/" title="Snippet | NSW Department of Education">Snippet</Link>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </aside>
-  )
-};
+import Container from './container';
+import Header from './globalHeaderAuth';
 
-export default GlobalHeader;
+export default withRouter(withAuth(Container(Header)));
