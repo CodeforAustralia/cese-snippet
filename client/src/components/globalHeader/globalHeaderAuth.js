@@ -41,44 +41,43 @@ class GlobalHeaderAuth extends React.Component {
       isAuthenticated,
       handleSignOut,
       session,
-      hasAuth = false,
     } = this.props;
 
     return (
       <Navbar color="concrete" expand="md" className={style.globalHeader}>
         <Container>
-        <NavbarBrand to="/account" tag={RRNavLink} className={style.globalHeaderTitle}>Snippet</NavbarBrand>
+          <NavbarBrand to="/account" tag={RRNavLink} className={style.globalHeaderTitle}>Snippet</NavbarBrand>
 
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            {!isAuthenticated &&
-              <NavLink to="/login" tag={RRNavLink} className={style.globalHeaderMenuLink}>Login</NavLink>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              {!isAuthenticated &&
+                <NavLink to="/login" tag={RRNavLink} className={style.globalHeaderMenuLink}>Login</NavLink>
+              }
+            </NavItem>
+
+            {isAuthenticated &&
+              <UncontrolledDropdown nav inNavbar>
+
+                <DropdownToggle nav caret className={style.globalHeaderMenuLink}>
+                  {session.first}
+                </DropdownToggle>
+
+                <DropdownMenu right className={style.dropdownMenu}>
+
+                  <DropdownItem tag={RRNavLink} to={this.registerSchoolUrl}>
+                    Add another school
+                  </DropdownItem>
+
+                  <DropdownItem divider />
+
+                  <DropdownItem onClick={handleSignOut}>
+                    Sign out
+                  </DropdownItem>
+
+                </DropdownMenu>
+              </UncontrolledDropdown>
             }
-          </NavItem>
-
-          {isAuthenticated &&
-            <UncontrolledDropdown nav inNavbar>
-
-              <DropdownToggle nav caret className={style.globalHeaderMenuLink}>
-                {session.first}
-              </DropdownToggle>
-
-              <DropdownMenu right className={style.dropdownMenu}>
-
-                <DropdownItem tag={RRNavLink} to={this.registerSchoolUrl}>
-                  Add another school
-                </DropdownItem>
-
-                <DropdownItem divider />
-
-                <DropdownItem onClick={handleSignOut}>
-                  Sign out
-                </DropdownItem>
-
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          }
-        </Nav>
+          </Nav>
         </Container>
       </Navbar>
     );
