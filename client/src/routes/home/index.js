@@ -10,7 +10,7 @@ import {
   CardDeck,
 } from "reactstrap";
 
-import Layout from './layout';
+import Layout from 'layouts/home';
 import RegisterForm from './components/registerForm';
 import CallToActionBanner from './components/callToActionBanner';
 import HowToFeature from './components/howToFeature';
@@ -22,7 +22,7 @@ import DetLogo from 'components/globalFooter/doe-black-logo.png';
 
 const HomePage = () => (
 
-  <Layout homeHeader={true}>
+  <Layout>
 
     <ScrollToTopOnMount />
 
@@ -107,6 +107,7 @@ const HomePage = () => (
       </Container>
     </div>
 
+
     <div className={style.ctaLayoutBand}>
       <Container>
         <Row className={style.ctaBanner}>
@@ -127,7 +128,6 @@ const HomePage = () => (
         </Row>
       </Container>
     </div>
-
 
 
     <div className={style.ctaLayoutBand}>

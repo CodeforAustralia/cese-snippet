@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import { withRouter } from 'react-router';
 
-import Layout from './../home/layout';
+import Layout from 'layouts/home';
 import Form from 'components/feedbackForm';
 
 

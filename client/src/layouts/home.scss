@@ -1,0 +1,24 @@
+@import '~style/helpers.scss';
+
+$footer-height: 155px;
+
+.layout {
+  position: relative;
+  height: 100%;
+}
+
+.wrapper {
+  //border: 1px solid blue;
+  min-height: 100%;
+
+  // make footer sticky
+  // Equal to height of footer
+  // But also accounting for potential margin-bottom of last child
+  margin-bottom: -$footer-height;
+  padding-bottom: $footer-height;
+}
+
+.footer {
+  height: $footer-height;
+  //border: 1px solid green;
+}

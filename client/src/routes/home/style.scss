@@ -16,7 +16,7 @@
 
 .topLayoutBandLhs {
   @include sm() {
-    padding-top: 3em;
+    padding-top: 7em;
     padding-right: 100px !important;
   }
 
@@ -40,10 +40,10 @@
 
 
 .alertBanner {
-  color: #004085;
-  background-color: #cce5ff;
-  border-color: #b8daff;
-  //background: $det-brand-alert-grey; //#e0e0e0;;
+  //color: #004085;
+  //background-color: #cce5ff;
+  //border-color: #b8daff;
+  background: $det-brand-alert-grey; //#e0e0e0;;
   //background: lighten($info, 10%);
   //background: $warning; // $det-brand-red; // $gray-300; //#e0e0e0;;
   //color: $det-brand-white;
