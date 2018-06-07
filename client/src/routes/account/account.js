@@ -14,8 +14,7 @@ import SchoolCreateProgram from './schoolCreateProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 
-import GlobalHeader from 'components/globalHeader';
-import Header from './components/header';
+// todo
 import Footer from './components/stickyFooter';
 import { BoxLoading } from 'components/loading';
 

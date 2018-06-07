@@ -1,0 +1,48 @@
+@import '~style/helpers.scss';
+
+.globalHeader {
+  background: $det-brand-header-grey !important;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  //overflow: visible;
+  //border-bottom: 1px solid #565a5c;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.globalHeaderTitle {
+  a {
+    font-weight: 400;
+    text-decoration: none;
+    font-size: .9rem;
+    line-height: 1;
+    float: left;
+    color: #333;
+    letter-spacing: .03em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.globalHeaderTitle,
+.globalHeaderMenuLink {
+  //font-weight: 500;
+  font-weight: 400;
+  text-decoration: none;
+  //font-size: .9rem;
+  font-size: 1em;
+  line-height: 1;
+  color: #333 !important;
+}
+
+.globalHeaderMenuLink {
+  font-size: .9em;
+}
+
+.dropdownMenu { // don't do normal rwd behaviour
+  right: 0 !important;
+  left: auto !important;
+  position: absolute !important;
+  font-size: .9em;
+}
