@@ -3,8 +3,8 @@ import cx from 'classnames';
 
 import NoticeRibbon from 'components/noticeRibbon';
 import { GlobalHeaderAuth } from 'components/globalHeader';
-// import GiveFeedback from 'components/giveFeedback';
-import Footer from 'components/addFeedbackFooter';
+import GiveFeedback from 'components/giveFeedback';
+// import Footer from 'components/addFeedbackFooter';
 
 import style from './home.scss';
 
@@ -19,9 +19,9 @@ const Layout = ({ containerClassName, children }) => (
 
     {children}
 
-    <Footer />
+    {/*<Footer />*/}
 
-    {/*<GiveFeedback />*/}
+    <GiveFeedback link="https://snippet1.typeform.com/to/ezQ2ub" />
 
   </div>
 );

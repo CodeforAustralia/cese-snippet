@@ -25,7 +25,7 @@ const Layout = ({ containerClassName, children }) => (
 
     <GlobalFooter className={style.footer} />
 
-    <GiveFeedback />
+    <GiveFeedback link="https://snippet1.typeform.com/to/zRI3Tz" />
 
   </div>
 );
