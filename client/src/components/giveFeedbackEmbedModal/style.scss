@@ -1,0 +1,20 @@
+.button {
+  box-shadow: 0 1px 3px 0 rgba(235,90,70,.16);
+  padding: 5px 11px;
+
+  color: #fff;
+  background-color: #a86cc1;
+  border-color: #a86cc1;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:hover {
+    color: #fff;
+    background-color: #9851b6;
+    border-color: #924ab0;
+  }
+  &:active {
+    color: #fff;
+    background-color: #924ab0;
+    border-color: #8a46a7;
+  }
+}

@@ -27,3 +27,11 @@ $footer-height: 155px;
   padding-top: 1.4em;
   padding-bottom: 2em;
 }
+
+.positionFeedback {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  cursor: pointer;
+  z-index: 4;
+}

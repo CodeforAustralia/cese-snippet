@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import NoticeRibbon from 'components/noticeRibbon';
 import { GlobalHeaderAuth } from 'components/globalHeader';
-import GiveFeedback from 'components/giveFeedback';
+import GiveFeedback from 'components/giveFeedbackEmbed';
 // import Footer from 'components/addFeedbackFooter';
 
 import style from './home.scss';
