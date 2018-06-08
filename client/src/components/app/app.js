@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 import AuthProvider from 'components/auth/authProvider';
 import PrivateRoute from 'components/auth/privateRoute';
@@ -7,8 +12,7 @@ import Home from 'routes/home';
 import Login from 'routes/login';
 import LoggedOut from 'routes/loggedOut';
 import Account from 'routes/account';
-import Feedback from 'routes/feedback';
-import WhatsNext from 'routes/whatsNext';
+// import WhatsNext from 'routes/whatsNext';
 
 const NoMatch = ({ location }) => (
   <div>
@@ -26,10 +30,12 @@ const App = ({ session }) => (
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/logged-out" component={LoggedOut} />
-          <Route path="/feedback" component={Feedback} />
-          <Route path="/whats-next" component={WhatsNext} />
+          {/*<Route path="/whats-next" component={WhatsNext} />*/}
           <PrivateRoute path="/account" component={Account} />
-          <Route component={NoMatch} />
+          {process.env.NODE_ENV === 'production' ?
+            <Redirect to="/home" /> :
+            <Route component={NoMatch} />
+          }
         </Switch>
       </Router>
     </AuthProvider>

@@ -3,13 +3,13 @@ import cx from 'classnames';
 
 import NoticeRibbon from 'components/noticeRibbon';
 import { GlobalHeaderAuth } from 'components/globalHeader';
-// import GiveFeedback from 'components/giveFeedback';
-import Footer from 'components/addFeedbackFooter';
+import GiveFeedback from 'components/giveFeedbackEmbed';
+// import Footer from 'components/addFeedbackFooter';
 
 import style from './home.scss';
 
 
-const Layout = ({ containerClassName, children }) => (
+const Layout = ({ containerClassName, children, pad = false }) => (
 
   <div className={cx(containerClassName, style.layout)}>
 
@@ -17,11 +17,13 @@ const Layout = ({ containerClassName, children }) => (
 
     <GlobalHeaderAuth />
 
-    {children}
+    <div className={pad ? style.padChildren : ''}>
+      {children}
+    </div>
 
-    <Footer />
+    {/*<Footer />*/}
 
-    {/*<GiveFeedback />*/}
+    <GiveFeedback link={process.env.REACT_APP_TYPEFORM_APP} />
 
   </div>
 );

@@ -22,3 +22,16 @@ $footer-height: 155px;
   height: $footer-height;
   //border: 1px solid green;
 }
+
+.padChildren {
+  padding-top: 1.4em;
+  padding-bottom: 2em;
+}
+
+.positionFeedback {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  cursor: pointer;
+  z-index: 4;
+}

@@ -4,54 +4,34 @@ import {
   Col,
   Container,
 } from 'reactstrap';
-import {
-  Link,
-} from 'react-router-dom';
-import cx from 'classnames';
+import { Link } from 'react-router-dom';
 
 import Layout from 'layouts/home';
-import Form from 'components/feedbackForm';
+import GiveFeedbackEmbed from 'components/giveFeedbackEmbed';
 import style from './style.scss';
 
 
-const LoggedOutPage = () => {
-  return (
-    <Layout>
-      <Container>
-        <Row>
-          <Col sm={{size: 8, offset: 2}} md={{size: 6, offset: 3}}>
-            <div className={style.loggedOutContainer}>
+const LoggedOutPage = () => (
+  <Layout pad={true}>
+    <Container>
+      <Row>
+        <Col sm={{size: 12}} md={{size:8, offset:2}}>
+          <p className={style.breadcrumb}>You are logged out of Snippet.</p>
 
-              <p className={style.breadcrumb}>You are logged out of Snippet.</p>
+          <h1 className="h2 mb-4">Thank you for being part of&nbsp;Snippet</h1>
 
-              <h1 className="h2 mb-4">Thank you for being part of&nbsp;Snippet</h1>
+          <p>Please come back anytime and tell all of your colleagues!</p>
 
-              <p>Please come back anytime and tell all of your colleagues!</p>
+          <GiveFeedbackEmbed link={process.env.REACT_APP_TYPEFORM_APP} />
 
-              <p>If you have the time, we'd love to know how your overall experience of Snippet was today.</p>
-              <div className={style.formPanel}>
-                <Form />
-              </div>
-
-              <div className="mb-4">
-                <Link to="/">{`Back to home`}</Link>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-
-      <div className={cx(style.snippetBetaBand, 'mt-4 mb-5')}>
-        <Container>
-          <Row>
-            <Col>
-              <p>Amazing things are coming! <Link to="/whats-next" className="text-brand-primary">Find out about Snippet Beta</Link>.</p>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    </Layout>
-  )
-};
+          <div className="mt-4 mb-4">
+            <Link to="/">Back to home</Link>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  </Layout>
+);
 
 export default LoggedOutPage;
+
