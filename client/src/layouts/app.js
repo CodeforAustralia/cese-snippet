@@ -9,7 +9,7 @@ import GiveFeedback from 'components/giveFeedback';
 import style from './home.scss';
 
 
-const Layout = ({ containerClassName, children }) => (
+const Layout = ({ containerClassName, children, pad = false }) => (
 
   <div className={cx(containerClassName, style.layout)}>
 
@@ -17,11 +17,13 @@ const Layout = ({ containerClassName, children }) => (
 
     <GlobalHeaderAuth />
 
-    {children}
+    <div className={pad ? style.padChildren : ''}>
+      {children}
+    </div>
 
     {/*<Footer />*/}
 
-    <GiveFeedback link="https://snippet1.typeform.com/to/ezQ2ub" />
+    <GiveFeedback link={process.env.REACT_APP_TYPEFORM_APP} />
 
   </div>
 );
