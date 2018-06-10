@@ -96,7 +96,7 @@ const HomePage = () => (
                 <CardBody>
                   <div className={style.whyJoinFakeIcon}><span /></div>
                   <CardTitle>Update the Community</CardTitle>
-                  <CardText>Help parents easily find what programs your school offer in School Finder.</CardText>
+                  <CardText>Help parents easily find what programs and initiatives your school offer in School Finder.</CardText>
                 </CardBody>
               </Card>
             </CardDeck>

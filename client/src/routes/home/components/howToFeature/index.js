@@ -46,7 +46,7 @@ class HowToFeature extends React.Component {
 
               <Row>
                 <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-                  <p>1. View and keep up to date with programs for your school.</p>
+                  <p>1. View and keep up to date with programs and initiatives for your school.</p>
                   <img src={ProductImageHowTo2} width="280" height="" alt="" className="img-fluid" />
                 </Col>
 
@@ -56,7 +56,7 @@ class HowToFeature extends React.Component {
                 </Col>
 
                 <Col xs={{size: 12}} sm={{size: 4}} className={style.howtoCard}>
-                  <p>3. See what programs other schools are implementing with with smart search.</p>
+                  <p>3. See what programs and initiatives other schools are implementing with with smart search.</p>
                   <div className={style.howToComingSoonImage}>
                     <span>Coming soon</span>
                   </div>
@@ -102,7 +102,7 @@ class HowToFeature extends React.Component {
                         className={cx(style.tabNavLink, this.state.activeTab === '1' ? style.activeTabLink : '')}
                         onClick={() => { this.toggle('1'); }}
                       >
-                        1. View and keep up to date with programs for your school.
+                        1. View and keep up to date with programs and initiatives for your school.
                       </NavLink>
                     </NavItem>
                     <NavItem className={style.tabNavItem}>
@@ -118,7 +118,7 @@ class HowToFeature extends React.Component {
                         className={cx(style.tabNavLink, this.state.activeTab === '3' ? style.activeTabLink : '')}
                         onClick={() => { this.toggle('3'); }}
                       >
-                        3. See what programs other schools are implementing with with smart search.
+                        3. See what programs and initiatives other schools are implementing with with smart search.
                       </NavLink>
                     </NavItem>
                   </Nav>

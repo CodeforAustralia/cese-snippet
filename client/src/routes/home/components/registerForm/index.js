@@ -19,7 +19,7 @@ class RegisterForm extends React.Component {
       <Card className={style.panel}>
         <CardBody>
           <CardTitle>Join the Snippet community</CardTitle>
-          <CardText>Register your interest in Snippet's Alpha program and we'll keep you updated.</CardText>
+          <CardText>Register your interest in Snippet's Pilot and we'll keep you updated.</CardText>
 
           <form action="https://firebaseapp.us18.list-manage.com/subscribe/post" method="POST">
             <input type="hidden" name="u" value="ad768dec01d640073ba9f8580" />
