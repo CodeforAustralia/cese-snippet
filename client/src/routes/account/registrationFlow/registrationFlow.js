@@ -33,7 +33,7 @@ const ExistingSchools = ({ children, schools }) => {
     <div>
       <h1 className="h3 mb-4">Please select your school</h1>
 
-      <p>Schools you are registered for:</p>
+      <p>Your schools:</p>
 
       <div className={style.currentSchoolsList}>
         {schools.map((school, idx) => (

@@ -2,10 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 
 import { GlobalHeaderAuth } from 'components/globalHeader';
-import GiveFeedback from 'components/giveFeedbackEmbed';
-// import Footer from 'components/addFeedbackFooter';
-
 import style from './home.scss';
+import GiveFeedbackEmbedModal from "components/giveFeedbackEmbedModal";
 
 
 const Layout = ({ containerClassName, children, pad = false }) => (
@@ -18,9 +16,7 @@ const Layout = ({ containerClassName, children, pad = false }) => (
       {children}
     </div>
 
-    {/*<Footer />*/}
-
-    <GiveFeedback link={process.env.REACT_APP_TYPEFORM_APP} />
+    <GiveFeedbackEmbedModal link={process.env.REACT_APP_TYPEFORM_APP} />
 
   </div>
 );
