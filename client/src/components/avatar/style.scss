@@ -1,0 +1,26 @@
+@import '~style/helpers';
+
+.container {
+  border-radius: 100%;
+  background: $primary;
+  color: white;
+  height: 32px;
+  width: 32px;
+  line-height: 13px;
+  font-size: 13px;
+  letter-spacing: -0.05px;
+  font-weight: 400;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+
+  span {
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 32px;
+    text-align: center;
+  }
+}
