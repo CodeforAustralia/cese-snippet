@@ -16,7 +16,9 @@ const Layout = ({ containerClassName, children, pad = false }) => (
       {children}
     </div>
 
-    <GiveFeedbackEmbedModal link={process.env.REACT_APP_TYPEFORM_APP} />
+    <div className={style.positionFeedback}>
+      <GiveFeedbackEmbedModal link={process.env.REACT_APP_TYPEFORM_APP} />
+    </div>
 
   </div>
 );

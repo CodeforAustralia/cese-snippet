@@ -17,7 +17,7 @@ const FetchError = ({ message, name = '', onRetry = null }) => {
 
         <Button color="link" className="alert-link pl-0" onClick={onRetry}>Retry</Button>.
       </Alert>
-      <p><small>Or contact us at snippet@cese.det.nsw.edu.au for support.</small></p>
+      <p><small>Or contact us at {process.env.REACT_APP_SNIPPET_EMAIL} for support.</small></p>
     </div>
   )
 };
