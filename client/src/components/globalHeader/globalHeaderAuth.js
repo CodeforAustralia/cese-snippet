@@ -60,7 +60,7 @@ class GlobalHeaderAuth extends React.Component {
             {isAuthenticated &&
               <UncontrolledDropdown nav inNavbar>
 
-                <DropdownToggle nav  className={`${style.menuLink} ${style.menuLinkAvatar}`}>
+                <DropdownToggle nav className={`${style.menuLink} ${style.menuLinkAvatar}`}>
                   <Avatar first={session.first} last={session.last} className={style.avatar} />
                   <span className={style.caret} />
                 </DropdownToggle>

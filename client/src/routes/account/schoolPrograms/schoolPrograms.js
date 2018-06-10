@@ -93,15 +93,26 @@ class SchoolPrograms extends React.Component {
 
         <div className={style.titleBlock}>
           <div className={style.titleBlockLhs}>
-            <h1>
-              <span className={style.supTitle}>
-                <span className={style.schoolNameBadge}>{school.name}</span> {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}</span>
-              Programs
-            </h1>
+
+            <div className={style.schoolTitle}>
+              <div className={style.schoolTitleAvatar}>
+                <div className={style.placeholderAvatar} />
+              </div>
+              <div className={style.schoolTitleText}>
+                <h1>
+                  <span className={style.supTitle}>
+                    <span className={style.schoolNameBadge}>{school.name}</span> {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}</span>
+                  Programs and Initiatives
+                </h1>
+              </div>
+            </div>
+
           </div>
+
+
           <div className={style.titleBlockRhs}>
             {isFetchingPrograms === false && filteredPrograms.length ?
-              <Button color="primary" outline to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add a New Program for {filterProps.year}</Button> :
+              <Button color="primary" outline to={getCreateProgramModalUrl(filterProps)} className="mb-4" tag={RRLink}>Add new for {filterProps.year}</Button> :
               null
             }
           </div>
@@ -115,7 +126,7 @@ class SchoolPrograms extends React.Component {
           <FetchError message={errorMessagePrograms} name="Programs" onRetry={this.fetchData} />
         }
 
-        <Nav pills>
+        <Nav tabs>
           <NavItem>
             <NavLink color="light" to={getSchoolProgramsUrl(school.code, "2018")} activeclassname="active" tag={RRNavLink}>2018</NavLink>
           </NavItem>

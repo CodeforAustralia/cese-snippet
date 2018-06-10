@@ -1,45 +1,64 @@
 @import '~style/helpers';
 
 .titleBlock {
-  display: flex;
-  align-items: center;
   margin-bottom: 1em;
 
-  min-height: 85px;
-
   @include xs() {
-    display: block;
     margin-bottom: 0;
   }
-  @include sm() {
-    display: block;
-    margin-bottom: 0;
+  @include md() {
+    display: flex;
+    align-items: flex-end;
   }
 }
 
-.titleBlockLhs {
-  flex: 1;
 
-  @include xs() {
-    display: block;
-  }
-  @include sm() {
-    display: block;
+.titleBlockLhs {
+  @include md() {
+    flex: 1;
+
+    h1 {
+      margin-bottom: 0;
+    }
   }
 }
 
 .titleBlockRhs {
-  padding-top: 1em;
-  .btn {
-    margin-bottom: 0;
+  @include xs() {
+    padding-top: 1em;
   }
 
-  @include xs() {
-    display: block;
+  @include md() {
+    .btn {
+      margin-bottom: 0;
+    }
   }
-  @include sm() {
-    display: block;
+}
+
+.schoolTitle {
+  display: flex;
+
+  @include md() {
+    h1 {
+      line-height: 1.15;
+    }
   }
+}
+
+.schoolTitleAvatar {
+  padding-right: 1em;
+}
+
+.schoolTitleText {
+  flex: 1;
+}
+
+.placeholderAvatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #ebecf0;
 }
 
 .supTitle {
