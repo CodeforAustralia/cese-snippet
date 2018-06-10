@@ -37,7 +37,7 @@ export const getProgramUrl = (programId) => ({
 
 export const getRegisterSchoolUrl = (showBreadcrumb = false) => {
   return {
-    pathname: `/account/register-school`,
+    pathname: `/account/add-school`,
     state: {
       showBreadcrumb,
     }

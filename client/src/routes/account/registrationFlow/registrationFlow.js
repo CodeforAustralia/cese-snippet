@@ -31,7 +31,7 @@ const WithoutSchools = ({ children }) => {
 const ExistingSchools = ({ children, schools }) => {
   return (
     <div>
-      <h1 className="h3 mb-4">Please select your school</h1>
+      <h1 className="h3 mb-4">Select tour school</h1>
 
       <p>Your schools:</p>
 
@@ -43,7 +43,7 @@ const ExistingSchools = ({ children, schools }) => {
         ))}
       </div>
 
-      <p>Can't see your school in the list? Find it here:</p>
+      <p>Or search for your school:</p>
 
       {children}
     </div>
@@ -84,7 +84,7 @@ class RegistrationFlow extends React.Component {
       <div>
         <Breadcrumb items={[
           { label: 'Programs', to: schools.length ? '/account/schools' : null },
-          { label: 'Register school' }
+          { label: 'Add school' }
         ]} />
 
       <Row>

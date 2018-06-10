@@ -79,7 +79,7 @@ class Account extends React.Component {
       } else {
         log('Fork to register school');
         // return null;
-        return <Redirect to="/account/register-school" />
+        return <Redirect to="/account/add-school" />
       }
     };
 
@@ -91,7 +91,7 @@ class Account extends React.Component {
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/programs/:programId" component={Program} />
             <Route path="/account/create-program" component={SchoolCreateProgram} />
-            <Route path="/account/register-school" component={RegistrationFlow} />
+            <Route path="/account/add-school" component={RegistrationFlow} />
             <RedirectFork />
           </Switch>
         </Container>
