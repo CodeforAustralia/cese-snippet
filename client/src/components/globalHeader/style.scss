@@ -1,6 +1,6 @@
 @import '~style/helpers.scss';
 
-.globalHeader {
+.header {
   background: $det-brand-header-grey !important;
   padding-top: 10px;
   padding-bottom: 12px;
@@ -9,7 +9,7 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-.globalHeaderTitle {
+.title {
   a {
     font-weight: 400;
     text-decoration: none;
@@ -25,19 +25,41 @@
   }
 }
 
-.globalHeaderTitle,
-.globalHeaderMenuLink {
-  //font-weight: 500;
+.title {
   font-weight: 400;
   text-decoration: none;
-  //font-size: .9rem;
   font-size: 1em;
   line-height: 1;
   color: #333 !important;
 }
 
-.globalHeaderMenuLink {
-  font-size: .9em;
+.menuLink {
+  color: #333 !important;
+}
+
+.menuLinkAvatar {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar,
+.caret {
+  display: inline-flex;
+}
+
+.caret {
+  color: $body-color;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
 }
 
 .dropdownMenu { // don't do normal rwd behaviour
@@ -45,4 +67,39 @@
   left: auto !important;
   position: absolute !important;
   font-size: .9em;
+  box-shadow: rgba(67, 90, 111, 0.3) 0px 8px 10px -4px;
+}
+
+.menuItemUsername {
+  display: block;
+  font-weight: 500;
+  //color: rgb(67, 90, 111);
+  letter-spacing: -0.05px;
+  //line-height: 22px;
+  //font-size: 16px;
+  color: $gray-600;
+  font-size: 1rem;
+  line-height: 1.45rem;
+}
+
+.menuItemUsernameLabel {
+  display: block;
+  //color: rgba(67, 90, 111, 0.698);
+  letter-spacing: 0px;
+  //line-height: 16px;
+  //font-size: 12px;
+  color: $gray-600;
+  font-weight: 300;
+  font-size: .8rem;
+  line-height: 1rem;
+}
+
+//.menuItemLink:not(disa) {
+//  cursor: pointer;
+//
+//
+//}
+
+.menuItemLink[disabled] {
+  color: $text-muted;
 }

@@ -12,7 +12,9 @@ import {
   Container,
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
+
 import { getRegisterSchoolUrl } from 'helpers/url';
+import Avatar from 'components/avatar';
 
 import style from './style.scss';
 
@@ -44,33 +46,55 @@ class GlobalHeaderAuth extends React.Component {
     } = this.props;
 
     return (
-      <Navbar color="concrete" expand="md" className={style.globalHeader}>
+      <Navbar color="concrete" expand="md" className={style.header}>
         <Container>
-          <NavbarBrand to="/account" tag={RRNavLink} className={style.globalHeaderTitle}>Snippet</NavbarBrand>
+          <NavbarBrand to="/account" tag={RRNavLink} className={style.title}>Snippet</NavbarBrand>
 
           <Nav className="ml-auto" navbar>
             <NavItem>
               {!isAuthenticated &&
-                <NavLink to="/login" tag={RRNavLink} className={style.globalHeaderMenuLink}>Login</NavLink>
+                <NavLink to="/login" tag={RRNavLink} className={style.menuLink}>Login</NavLink>
               }
             </NavItem>
 
             {isAuthenticated &&
               <UncontrolledDropdown nav inNavbar>
 
-                <DropdownToggle nav caret className={style.globalHeaderMenuLink}>
-                  {session.first}
+                <DropdownToggle nav  className={`${style.menuLink} ${style.menuLinkAvatar}`}>
+                  <Avatar first={session.first} last={session.last} className={style.avatar} />
+                  <span className={style.caret} />
                 </DropdownToggle>
 
                 <DropdownMenu right className={style.dropdownMenu}>
 
-                  <DropdownItem tag={RRNavLink} to={this.registerSchoolUrl}>
+                  <DropdownItem header>
+                    <span className={style.menuItemUsername}>{session.first} {session.last}</span>
+                    <span className={style.menuItemUsernameLabel}>Your Account</span>
+                  </DropdownItem>
+
+                  <DropdownItem divider />
+
+                  <DropdownItem className={style.menuItemLink} disabled>
+                    Edit Profile
+                  </DropdownItem>
+
+                  <DropdownItem className={style.menuItemLink} disabled>
+                    Change Password
+                  </DropdownItem>
+
+                  <DropdownItem className={style.menuItemLink} tag={RRNavLink} to={this.registerSchoolUrl}>
                     Add another school
                   </DropdownItem>
 
                   <DropdownItem divider />
 
-                  <DropdownItem onClick={handleSignOut}>
+                  <DropdownItem className={style.menuItemLink} tag="a" href="https://www.yammer.com/det.nsw.edu.au/#/threads/inGroup?type=in_group&feedId=13755246&view=all" target="_blank" rel="noopener noreferrer" alt="Happy Data Group on NSW DET Yammer">
+                    Community
+                  </DropdownItem>
+
+                  <DropdownItem divider />
+
+                  <DropdownItem className={style.menuItemLink} onClick={handleSignOut}>
                     Sign out
                   </DropdownItem>
 
