@@ -12,7 +12,7 @@ import {
 import style from './style.scss';
 
 
-const FieldRadioBtnList = ({
+const FieldRadioList = ({
                              options,
                              name,
                              value,
@@ -51,9 +51,9 @@ const FieldRadioBtnList = ({
   );
 };
 
-FieldRadioBtnList.propTypes = {
+FieldRadioList.propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.array,
 };
 
-export default FieldRadioBtnList;
+export default FieldRadioList;

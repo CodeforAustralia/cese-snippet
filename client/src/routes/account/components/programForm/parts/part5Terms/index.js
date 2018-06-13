@@ -12,3 +12,25 @@ const Part5Terms = ({ index, totalIndex, }) => {
 };
 
 export default Part5Terms;
+
+
+
+{/*<FormGroup row>*/}
+{/*<Col md={8}>*/}
+{/*<Label htmlFor="terms">Terms delivered</Label>*/}
+{/*<FieldCheckboxList name="terms"*/}
+{/*value={values.terms}*/}
+{/*options={this.optionsTerms}*/}
+{/*error={errors.terms}*/}
+{/*inline={true}*/}
+{/*/>*/}
+{/*</Col>*/}
+{/*</FormGroup>*/}
+
+
+
+
+{/*<FormGroup hidden>*/}
+{/*<Label htmlFor="year">Year delivered</Label>*/}
+{/*<FieldTextInput name="year" />*/}
+{/*</FormGroup>*/}
