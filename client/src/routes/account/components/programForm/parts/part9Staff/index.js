@@ -23,7 +23,7 @@ const Part9Staff = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="staff">Staff involved</Label>
+            <Label htmlFor="staff">Staff Involved</Label>
             <FieldSelectTags name="staff"
                              options={optionsStaff}
                              value={values.staff}

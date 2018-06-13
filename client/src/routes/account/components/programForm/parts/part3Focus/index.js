@@ -33,7 +33,7 @@ const Part3Focus = ({
 
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="category">Program Focus Area</Label>
+            <Label htmlFor="category">Main Focus</Label>
             <FieldRadioList name="category"
               value={values.category}
               options={optionsLevel1Categories}

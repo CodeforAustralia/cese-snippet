@@ -21,7 +21,7 @@ const Part2Name = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-          <Label htmlFor="name">Program name</Label>
+          <Label htmlFor="name">Program Name</Label>
           <Input type="text" id="name" name="name"
           onChange={setFieldValue}
           onBlur={setFieldTouched}

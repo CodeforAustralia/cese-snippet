@@ -3,6 +3,7 @@ import {
   FormGroup,
   Label,
   Col,
+  FormText,
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
 import FieldRadioList from 'components/fieldRadioList';
@@ -24,7 +25,7 @@ const Part6FocusGroup = ({
                    className={values.focusGroup === 'Other' ? 'mb-1' : ''}
         >
           <Col md={8}>
-            <Label>Does the program cater to a particular focus group?</Label>
+            <Label>Participant Focus Group</Label>
             <FieldRadioList name="focusGroup"
                             value={values.focusGroup}
                             options={optionsFocusGroup}
@@ -32,6 +33,7 @@ const Part6FocusGroup = ({
                             onBlur={setFieldTouched}
                             error={errors.focusGroup}
             />
+            <FormText color="muted">Is the program catering to a specific group?</FormText>
           </Col>
         </FormGroup>
 

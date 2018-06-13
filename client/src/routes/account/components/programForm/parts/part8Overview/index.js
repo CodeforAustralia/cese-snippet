@@ -19,13 +19,13 @@ const Part8Overview = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="description">Program overview</Label>
+            <Label htmlFor="description">Program Overview</Label>
             <FieldTextareaInput name="description"
                                 error={errors.description}
                                 rows={6}
             />
             <FormText color="muted">
-              What does the program does in a nutshell?
+              Describe the program in a nutshell?
             </FormText>
           </Col>
         </FormGroup>

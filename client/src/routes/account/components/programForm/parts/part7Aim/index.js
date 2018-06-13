@@ -25,7 +25,7 @@ const Part7Aim = ({
                                 rows={6}
             />
             <FormText color="muted">
-              Briefly describe what outcomes the program hopes to achieve.
+              What does the program hopes to achieve?
             </FormText>
           </Col>
         </FormGroup>

@@ -20,7 +20,7 @@ const Part5Terms = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="terms">Terms delivered</Label>
+            <Label htmlFor="terms">Terms Delivered</Label>
             <FieldCheckboxList name="terms"
                                value={values.terms}
                                options={optionsTerms}
