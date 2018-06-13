@@ -207,6 +207,9 @@ class ProgramForm extends React.Component {
               <Part3Focus index="3" totalIndex="10"
                           values={values}
                           errors={errors}
+                          setFieldValue={setFieldValue}
+                          setFieldTouched={setFieldTouched}
+                          optionsLevel1Categories={this.optionsLevel1Categories}
               />
               <Part4Audience index="4" totalIndex="10"
                              values={values}
@@ -257,30 +260,7 @@ class ProgramForm extends React.Component {
 
               <fieldset className={style.fieldset} id="step-1">
 
-                {/*{!touched.category && selectedProgramTemplateOption ?*/}
-                  {/*!prefilledProgramTemplateId ?*/}
-                    {/*<Col md={{size:8}}>*/}
-                      {/*<Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?*/}
-                        {/*<br/>*/}
-                        {/*<Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>*/}
-                    {/*</Col> :*/}
-                    {/*null :*/}
-                  {/*null*/}
-                {/*}*/}
 
-
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="category">Program Focus Area</Label>
-                    <FieldRadioList name="category"
-                                    value={values.category}
-                                    options={this.optionsLevel1Categories}
-                                    onChange={setFieldValue}
-                                    onBlur={setFieldTouched}
-                                    error={errors.category}
-                    />
-                  </Col>
-                </FormGroup>
 
 
                 <FormGroup row>

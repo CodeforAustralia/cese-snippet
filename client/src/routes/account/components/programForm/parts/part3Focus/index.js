@@ -1,7 +1,21 @@
-import React from 'react'
+import React from 'react';
+import {
+  FormGroup,
+  Label,
+  Col,
+} from 'reactstrap';
+import FieldRadioList from 'components/fieldRadioList';
 import IndexedPartLayout from './../../indexedPartLayout';
 
-const Part3Focus = ({ index, totalIndex, }) => {
+const Part3Focus = ({
+                      index,
+                      totalIndex,
+                      values,
+                      errors,
+                      setFieldValue,
+                      setFieldTouched,
+                      optionsLevel1Categories,
+                    }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
@@ -17,21 +31,22 @@ const Part3Focus = ({ index, totalIndex, }) => {
         {/*}*/}
 
 
-        {/*<FormGroup row>*/}
-        {/*<Col md={8}>*/}
-        {/*<Label htmlFor="category">Program Focus Area</Label>*/}
-        {/*<FieldRadioList name="category"*/}
-        {/*value={values.category}*/}
-        {/*options={this.optionsLevel1Categories}*/}
-        {/*onChange={setFieldValue}*/}
-        {/*onBlur={setFieldTouched}*/}
-        {/*error={errors.category}*/}
-        {/*/>*/}
-        {/*</Col>*/}
-        {/*</FormGroup>*/}
+        <FormGroup row>
+          <Col md={8}>
+            <Label htmlFor="category">Program Focus Area</Label>
+            <FieldRadioList name="category"
+              value={values.category}
+              options={optionsLevel1Categories}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+              error={errors.category}
+              />
+        </Col>
+        </FormGroup>
       </div>
     </IndexedPartLayout>
   )
 };
 
 export default Part3Focus;
+
