@@ -23,6 +23,19 @@ storiesOf('Program Form Part 6 - Focus Group', module)
       <Part6FocusGroup index="6" totalIndex="10"
                        values={formMock.values}
                        errors={formMock.errors}
+                       optionsFocusGroup={[
+                         { "label": "None", "value": "None" },
+                         { "label": "Indigenous", "value": "Indigenous" },
+                         { "label": "Linguistically Diverse", "value": "Linguistically Diverse" },
+                         { "label": "Refugee", "value": "Refugee" },
+                         { "label": "Gifted", "value": "Gifted" },
+                         { "label": "Trauma", "value": "Trauma" },
+                         { "label": "Learning Difficulties", "value": "Learning Difficulties" },
+                         { "label": "Emotional Difficulties", "value": "Emotional Difficulties" },
+                         { "label": "Other", "value": "Other" }
+                       ]}
+                       setFieldValue={formMock.setFieldValue}
+                       setFieldTouched={formMock.setFieldTouched}
       />
     )
   })

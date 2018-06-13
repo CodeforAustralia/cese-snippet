@@ -1,11 +1,34 @@
-import React from 'react'
+import React from 'react';
+import {
+  FormGroup,
+  Label,
+  Col,
+  FormText,
+} from 'reactstrap';
+import FieldTextareaInput from 'components/fieldTextAreaInput';
 import IndexedPartLayout from './../../indexedPartLayout';
 
-const Part7Aim = ({ index, totalIndex, }) => {
+const Part7Aim = ({
+                    index,
+                    totalIndex,
+                    values,
+                    errors,
+                  }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
-        [field]
+        <FormGroup row>
+          <Col md={8}>
+            <Label htmlFor="aims">Aim</Label>
+            <FieldTextareaInput name="aims"
+                                error={errors.aims}
+                                rows={6}
+            />
+            <FormText color="muted">
+              Briefly describe what outcomes the program hopes to achieve.
+            </FormText>
+          </Col>
+        </FormGroup>
       </div>
     </IndexedPartLayout>
   )

@@ -237,15 +237,20 @@ class ProgramForm extends React.Component {
               <Part9Staff index="9" totalIndex="10"
                           values={values}
                           errors={errors}
+                          touched={touched}
+                          setFieldValue={setFieldValue}
+                          setFieldTouched={setFieldTouched}
+                          optionsStaff={this.optionsStaff}
               />
               <Part10DeliveredBy index="10" totalIndex="10"
                                  values={values}
                                  errors={errors}
+                                 optionsDeliveredByType={this.optionsDeliveredByType}
               />
-              <Part11Additional index="optional"
-                                values={values}
-                                errors={errors}
-              />
+              {/*<Part11Additional index="optional"*/}
+                                {/*values={values}*/}
+                                {/*errors={errors}*/}
+              {/*/>*/}
 
 
 
@@ -324,59 +329,6 @@ class ProgramForm extends React.Component {
 
 
 
-                <PartAudienceScope values={values}
-                                   optionsAudienceScope={this.optionsAudienceScope}
-                />
-
-
-
-
-
-
-
-
-                <FormGroup hidden>
-                  <Label htmlFor="year">Year delivered</Label>
-                  <FieldTextInput name="year" />
-                </FormGroup>
-
-
-              </fieldset>
-
-
-              <fieldset className={style.fieldset} id="step-2">
-                <legend>Why did the program happen?</legend>
-
-
-
-
-
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="aims">Aims</Label>
-                    <FieldTextareaInput name="aims"
-                                        error={errors.aims}
-                                        rows={6}
-                    />
-                    <FormText color="muted">
-                      Briefly describe what outcomes the program hopes to achieve.
-                    </FormText>
-                  </Col>
-                </FormGroup>
-
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="description">Program overview</Label>
-                    <FieldTextareaInput name="description"
-                                        error={errors.description}
-                                        rows={6}
-                    />
-                    <FormText color="muted">
-                      What does the program does in a nutshell?
-                    </FormText>
-                  </Col>
-                </FormGroup>
-
 
 
               </fieldset>
@@ -385,46 +337,9 @@ class ProgramForm extends React.Component {
               <fieldset className={style.fieldset} id="step-3">
                 <legend>Who and how?</legend>
 
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="staff">Staff involved</Label>
-                    <FieldSelectTags name="staff"
-                                     options={this.optionsStaff}
-                                     value={values.staff}
-                                     onChange={this.props.setFieldValue}
-                                     onBlur={this.props.setFieldTouched}
-                                     touched={touched.staff}
-                                     error={errors.staff}
-                    />
-                    <FormText color="muted">
-                      Who are the staff members involved in organising or facilitating the program?
-                    </FormText>
-                  </Col>
-                </FormGroup>
 
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label>Provider</Label>
-                    <FieldRadioList options={this.optionsDeliveredByType}
-                                    name="deliveredByType"
-                                    value={values.deliveredByType}
-                                    onChange={setFieldValue}
-                                    onBlur={setFieldTouched}
-                                    error={errors.deliveredByType}
-                                    inline={true}
-                    />
-                    <FormText color="muted">
-                      Is the program run by school staff or another provider?
-                    </FormText>
-                  </Col>
-                </FormGroup>
 
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-                    <FieldTextInput name="externalProvider" />
-                  </Col>
-                </FormGroup>
+
 
                 {!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})} className={`${style.formTextBtn} pl-0`}>Would you like to add more Program information?</Button></p>}
 

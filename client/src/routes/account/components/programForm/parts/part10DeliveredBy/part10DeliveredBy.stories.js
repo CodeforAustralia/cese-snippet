@@ -23,6 +23,12 @@ storiesOf('Program Form Part 10 - Delivered By', module)
       <Part10DeliveredBy index="10" totalIndex="10"
                          values={formMock.values}
                          errors={formMock.errors}
+                         optionsDeliveredByType={[
+                           { "label": "School Staff", "value": "School Staff" },
+                           { "label": "External Provider", "value": "External Provider" }
+                         ]}
+                         setFieldValue={formMock.setFieldValue}
+                         setFieldTouched={formMock.setFieldTouched}
       />
     )
   })

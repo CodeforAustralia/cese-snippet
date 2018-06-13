@@ -3,6 +3,7 @@ import {
   FormGroup,
   Label,
   Col,
+  FormFeedback,
 } from 'reactstrap';
 import FieldCode from './../../../../components/fieldCode';
 import IndexedPartLayout from './../../indexedPartLayout';
