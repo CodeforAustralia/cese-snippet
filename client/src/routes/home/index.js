@@ -37,7 +37,7 @@ const HomePage = () => (
                 <img src={DetLogo} width={130} height={47} alt="NSW Department of Education logo" />
               </div>
               <h1 className={style.topBandTitle}>Snippet</h1>
-              <p>Be one of the key schools in trialling and helping forge a better way in discovering and sharing <em>Snippets</em> of knowledge for public school initiatives in NSW.</p>
+              <p>Be one of the key schools in trialling and helping forge a better way in discovering and sharing <em>Snippets</em> of knowledge for public school programs and initiatives in NSW.</p>
             </div>
           </Col>
 

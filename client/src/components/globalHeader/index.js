@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import withAuth from 'components/auth/withAuth';
 
 import AuthContainer from './authContainer';
-import Header from './globalHeaderAuth';
+import Header from './globalHeader';
 import HeaderAuth from './globalHeaderAuth';
 
 const GlobalHeader = Header;
