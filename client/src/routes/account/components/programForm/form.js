@@ -194,6 +194,11 @@ class ProgramForm extends React.Component {
               <Part1School index="1" totalIndex="10"
                            values={values}
                            errors={errors}
+                           touched={touched}
+                           optionsSchoolCodes={this.optionsSchoolCodes}
+                           isDisabled={isEdit}
+                           setFieldValue={setFieldValue}
+                           setFieldTouched={setFieldTouched}
               />
               <Part2Name index="2" totalIndex="10"
                          values={values}
@@ -246,57 +251,17 @@ class ProgramForm extends React.Component {
 
 
               <fieldset className={style.fieldset} id="step-1">
-                <legend>What is the program and when did it happen?</legend>
 
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="code">School</Label>
-                    <FieldCode name="code"
-                               id="code"
-                               disabled={isEdit}
-                               options={this.optionsSchoolCodes}
-                               value={values.code}
-                               onChange={this.props.setFieldValue}
-                               onBlur={this.props.setFieldTouched}
-                               touched={touched.code}
-                               error={errors.code}
-                               className={errors.code && 'is-invalid'}
-                    />
-                    {/*{errors.code <FormFeedback>{errors.code}</FormFeedback>}*/}
-                  </Col>
-                </FormGroup>
-
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="name">Program name</Label>
-                    <Input type="text" id="name" name="name"
-                           onChange={this.props.handleChange}
-                           onBlur={this.props.handleBlur}
-                           defaultValue={values.name}
-                           invalid={errors.name}
-                           error={errors.name}
-                    />
-                    {/*<FieldName name="name"*/}
-                    {/*options={optionsProgramTemplates}*/}
-                    {/*value={values.name}*/}
-                    {/*onChange={this.props.setFieldValue}*/}
-                    {/*onBlur={this.props.setFieldTouched}*/}
-                    {/*touched={touched.name}*/}
-                    {/*invalid={errors.name} />*/}
-                    {errors.name && <FormFeedback>{errors.name}</FormFeedback>}
-                  </Col>
-                </FormGroup>
-
-                {!touched.category && selectedProgramTemplateOption ?
-                  !prefilledProgramTemplateId ?
-                    <Col md={{size:8}}>
-                      <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
-                        <br/>
-                        <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
-                    </Col> :
-                    null :
-                  null
-                }
+                {/*{!touched.category && selectedProgramTemplateOption ?*/}
+                  {/*!prefilledProgramTemplateId ?*/}
+                    {/*<Col md={{size:8}}>*/}
+                      {/*<Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?*/}
+                        {/*<br/>*/}
+                        {/*<Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>*/}
+                    {/*</Col> :*/}
+                    {/*null :*/}
+                  {/*null*/}
+                {/*}*/}
 
 
                 <FormGroup row>

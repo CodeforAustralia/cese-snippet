@@ -15,7 +15,7 @@ const formMock = {
 storiesOf('Program Form Part 2 - Name', module)
 
   .addDecorator(story => (
-    <Formik>{story()}</Formik>
+    <Formik onSubmit={() => action('submitted')}>{story()}</Formik>
   ))
 
   .add('should render correctly', () => {
