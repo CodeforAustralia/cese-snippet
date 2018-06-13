@@ -191,22 +191,56 @@ class ProgramForm extends React.Component {
                 <FieldTextInput name="createdBy" disabled={true} hidden />
               }
 
-              <Part1School index="1" totalIndex="10" />
-              <Part2Name index="2" totalIndex="10" />
-              <Part3Focus index="3" totalIndex="10" />
+              <Part1School index="1" totalIndex="10"
+                           values={values}
+                           errors={errors}
+              />
+              <Part2Name index="2" totalIndex="10"
+                         values={values}
+                         errors={errors}
+              />
+              <Part3Focus index="3" totalIndex="10"
+                          values={values}
+                          errors={errors}
+              />
               <Part4Audience index="4" totalIndex="10"
                              values={values}
                              errors={errors}
                              optionsAudienceScope={this.optionsAudienceScope}
                              optionsYearLevels={this.optionsYearLevels}
               />
-              <Part5Terms index="5" totalIndex="10" />
-              <Part6FocusGroup index="6" totalIndex="10" />
-              <Part7Aim index="7" totalIndex="10" />
-              <Part8Overview index="8" totalIndex="10" />
-              <Part9Staff index="9" totalIndex="10" />
-              <Part10DeliveredBy index="10" totalIndex="10" />
-              <Part11Additional index="optional" />
+              <Part5Terms index="5" totalIndex="10"
+                          values={values}
+                          errors={errors}
+                          optionsTerms={this.optionsTerms}
+              />
+              <Part6FocusGroup index="6" totalIndex="10"
+                               values={values}
+                               errors={errors}
+                               optionsFocusGroup={this.optionsFocusGroup}
+                               setFieldValue={setFieldValue}
+                               setFieldTouched={setFieldTouched}
+              />
+              <Part7Aim index="7" totalIndex="10"
+                        values={values}
+                        errors={errors}
+              />
+              <Part8Overview index="8" totalIndex="10"
+                             values={values}
+                             errors={errors}
+              />
+              <Part9Staff index="9" totalIndex="10"
+                          values={values}
+                          errors={errors}
+              />
+              <Part10DeliveredBy index="10" totalIndex="10"
+                                 values={values}
+                                 errors={errors}
+              />
+              <Part11Additional index="optional"
+                                values={values}
+                                errors={errors}
+              />
 
 
 
@@ -331,17 +365,7 @@ class ProgramForm extends React.Component {
 
 
 
-                <FormGroup row>
-                  <Col md={8}>
-                    <Label htmlFor="terms">Terms delivered</Label>
-                    <FieldCheckboxList name="terms"
-                                       value={values.terms}
-                                       options={this.optionsTerms}
-                                       error={errors.terms}
-                                       inline={true}
-                    />
-                  </Col>
-                </FormGroup>
+
 
 
 
@@ -358,32 +382,7 @@ class ProgramForm extends React.Component {
               <fieldset className={style.fieldset} id="step-2">
                 <legend>Why did the program happen?</legend>
 
-                <FormGroup row
-                           className={values.focusGroup === 'Other' ? 'mb-1' : ''}
-                >
-                  <Col md={8}>
-                    <Label>Does the program cater to a particular focus group?</Label>
-                    <FieldRadioList name="focusGroup"
-                                    value={values.focusGroup}
-                                    options={this.optionsFocusGroup}
-                                    onChange={setFieldValue}
-                                    onBlur={setFieldTouched}
-                                    error={errors.focusGroup}
-                    />
-                  </Col>
-                </FormGroup>
 
-                {values.focusGroup === 'Other' &&
-                <FormGroup row>
-                  <Col md={8}>
-                    <FieldTextInput name="focusGroupOther"
-                                    error={errors.focusGroupOther}
-                                    placeholder={`Please describe "Other"`}
-                                    autoFocus={true}
-                    />
-                  </Col>
-                </FormGroup>
-                }
 
 
 
