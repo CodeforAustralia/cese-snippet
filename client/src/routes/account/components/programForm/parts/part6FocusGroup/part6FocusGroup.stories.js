@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Loading from './index';
+import Part6FocusGroup from './index';
 
 
-storiesOf('Give Feedback - Modal Button', module)
+storiesOf('Program Form Part 6 - Focus Group', module)
 
   .add('should render correctly', () => {
     return (
-      <Loading />
+      <Part6FocusGroup index="6" totalIndex="10" />
     )
   })
 
