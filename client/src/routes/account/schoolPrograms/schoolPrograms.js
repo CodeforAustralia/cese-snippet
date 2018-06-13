@@ -99,11 +99,12 @@ class SchoolPrograms extends React.Component {
                 <div className={style.placeholderAvatar} />
               </div>
               <div className={style.schoolTitleText}>
-                <h1>
-                  <span className={style.supTitle}>
-                    <span className={style.schoolNameBadge}>{school.name}</span> {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}</span>
-                  Programs and Initiatives
-                </h1>
+                <span className={style.schoolTitleTextLine1}>
+                  <span className={style.schoolNameBadge}>{school.name}</span> {otherSchoolCodes.length ? <ChangeSchoolBtn schoolCodes={otherSchoolCodes} /> : null}
+                </span>
+                <span className={style.schoolTitleTextLine2}>
+                  <h1 className={style.supTitle}>Programs and Initiatives</h1>
+                </span>
               </div>
             </div>
 

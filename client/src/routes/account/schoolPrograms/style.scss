@@ -37,12 +37,6 @@
 
 .schoolTitle {
   display: flex;
-
-  @include md() {
-    h1 {
-      line-height: 1.15;
-    }
-  }
 }
 
 .schoolTitleAvatar {
@@ -51,6 +45,19 @@
 
 .schoolTitleText {
   flex: 1;
+}
+
+.schoolTitleTextLine1,
+.schoolTitleTextLine2 {
+  display: block;
+}
+
+.schoolTitleTextLine1 {
+  padding-top: 3px;
+}
+
+.schoolTitleTextLine2 {
+
 }
 
 .placeholderAvatar {
@@ -63,14 +70,21 @@
 
 .supTitle {
   display: block;
-  font-size: 14px;
-  text-transform: uppercase;
+
 }
 
 .schoolNameBadge {
   background: rgba($primary, .1);
   padding: 4px 8px;
   border-radius: .5rem;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.supTitle {
+  @include md() {
+    margin-top: 3px;
+  }
 }
 
 .tabPageContainer {
