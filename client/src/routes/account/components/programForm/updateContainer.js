@@ -75,15 +75,15 @@ const mapStateToProps = (state, ownProps) => {
     isEdit: true,
     initialFormState: newInitialFormState,
 
-    programTemplates: selectProgramTemplates(state),
-    isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),
-    selectProgramTemplate: (id) => selectProgramTemplate(state, id),
+    // programTemplates: selectProgramTemplates(state),
+    // isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),
+    // selectProgramTemplate: (id) => selectProgramTemplate(state, id),
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProgramTemplates: () => dispatch(fetchProgramTemplates()),
+    // fetchProgramTemplates: () => dispatch(fetchProgramTemplates()),
     onSubmit: (values) => dispatch(updateProgram(values)),
   }
 };

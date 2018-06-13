@@ -4,9 +4,9 @@ import { storiesOf } from '@storybook/react';
 import Loading from './index';
 
 
-storiesOf('Loading', module)
+storiesOf('Give Feedback - Modal Button', module)
 
-  .add('should load continuously', () => {
+  .add('should render correctly', () => {
     return (
       <Loading />
     )

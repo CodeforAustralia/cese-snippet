@@ -51,3 +51,11 @@ export const getSchoolYearLevelsOptions = (school) => {
   return school.yearLevels.map((y) => ({ value: y, label: y }));
 };
 
+export const getAudienceScope = () => {
+  return [
+    { value: 'Whole School', label: 'Whole School' },
+    { value: 'Whole Year Level', label: 'Whole Year Level' },
+    { value: 'Mandatory Selected Groups', label: 'Mandatory Selected Groups' },
+    { value: 'Voluntary Participation', label: 'Voluntary Participation' },
+  ]
+};
