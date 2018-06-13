@@ -12,6 +12,7 @@
   //border: 1px solid blue;
   padding-right: 1em;
   padding-bottom: .4em;
+  min-width: 68px;
 
   @include md() {
     padding-bottom: 0;
@@ -29,8 +30,6 @@
 
 .index {
   font-weight: 300;
-  min-width: 68px;
-  display: block;
   font-size: $font-size-sm;
   color: lighten($body-color, 40);
 }
