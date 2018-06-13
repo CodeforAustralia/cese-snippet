@@ -33,6 +33,8 @@ class RegistrationForm extends React.Component {
       schoolsListOptions,
     } = this.props;
 
+    const isDisabled = isSubmitting || !values.code;
+
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
         <FormGroup row className="mb-4">
@@ -49,7 +51,7 @@ class RegistrationForm extends React.Component {
             />
           </Col>
         </FormGroup>
-        <Button type="submit" color="primary" disabled={isSubmitting || !values.code}>
+        <Button type="submit" color={isDisabled ? 'light' : 'primary'} disabled={isDisabled}>
           {isSubmitting ? 'Adding...' : `Add`}
         </Button>
       </Form>

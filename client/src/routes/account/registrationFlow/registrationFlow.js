@@ -33,7 +33,7 @@ const ExistingSchools = ({ children, schools }) => {
     <div>
       <h1 className="h3 mb-4">Select tour school</h1>
 
-      <p>Your schools:</p>
+      <p>Please select your school:</p>
 
       <div className={style.currentSchoolsList}>
         {schools.map((school, idx) => (
@@ -43,8 +43,7 @@ const ExistingSchools = ({ children, schools }) => {
         ))}
       </div>
 
-      <p>Or search for your school:</p>
-
+      <p>Can't see your school in the list? Find it here:</p>
       {children}
     </div>
   )
@@ -84,7 +83,7 @@ class RegistrationFlow extends React.Component {
       <div>
         <Breadcrumb items={[
           { label: 'Programs', to: schools.length ? '/account/schools' : null },
-          { label: 'Add school' }
+          { label: 'Change school' }
         ]} />
 
       <Row>

@@ -78,12 +78,8 @@ class GlobalHeaderAuth extends React.Component {
                     Edit Profile
                   </DropdownItem>
 
-                  <DropdownItem className={style.menuItemLink} disabled>
-                    Change Password
-                  </DropdownItem>
-
                   <DropdownItem className={style.menuItemLink} tag={RRNavLink} to={this.registerSchoolUrl}>
-                    Add school
+                    Change school
                   </DropdownItem>
 
                   <DropdownItem divider />
