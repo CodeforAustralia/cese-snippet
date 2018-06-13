@@ -246,17 +246,18 @@ class ProgramForm extends React.Component {
                 <Row>
                   <Col md={8}>
                     {errors && errors.length &&
-                    <ErrorSummary errors={errors}/>
+                      <ErrorSummary errors={errors}/>
                     }
-
-                    <Link to="account">Cancel</Link>
-                    <Button type="submit" color="primary" className="float-right"
-                            disabled={isSubmitting}>
-                      {isEdit ?
-                        isSubmitting ? 'Updating...' : 'Update' :
-                        isSubmitting ? 'Adding...' : 'Add'
-                      }
-                    </Button>
+                    <div className="float-right">
+                      <Button color="link" tag={Link} to="account" className="mr-5">Cancel</Button>
+                      <Button type="submit" color="primary"
+                              disabled={isSubmitting}>
+                        {isEdit ?
+                          isSubmitting ? 'Updating...' : 'Update' :
+                          isSubmitting ? 'Adding...' : 'Add'
+                        }
+                      </Button>
+                    </div>
                   </Col>
                 </Row>
               </FauxIndexedPartLayout>
