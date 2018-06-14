@@ -61,5 +61,5 @@ export const getAudienceScope = () => {
 };
 
 export const getIsDeliveredByExternal = (deliveredByType) => {
-  return deliveredByType === 'External Party';
+  return Array.isArray(deliveredByType) && deliveredByType.includes('External Party');
 };

@@ -6,7 +6,7 @@ import {
   FormText,
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
-import FieldRadioList from 'components/fieldRadioList';
+import FieldCheckboxList from 'components/fieldCheckboxList';
 import IndexedPartLayout from './../../indexedPartLayout';
 import {
   getIsDeliveredByExternal
@@ -27,7 +27,7 @@ const Part10DeliveredBy = ({
         <FormGroup row>
           <Col md={8}>
             <Label>Program is delivered by</Label>
-            <FieldRadioList name="deliveredByType"
+            <FieldCheckboxList name="deliveredByType"
                             value={values.deliveredByType}
                             error={errors.deliveredByType}
                             options={optionsDeliveredByType}

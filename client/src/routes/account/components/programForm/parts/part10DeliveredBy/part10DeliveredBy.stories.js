@@ -35,11 +35,25 @@ storiesOf('Program Form Part 10 - Delivered By', module)
     )
   })
 
+  .add('should render allow both to be checked', () => {
+    return (
+      <Part10DeliveredBy index="10" totalIndex="10"
+                         values={{
+                           deliveredByType: ['External Party', 'School Staff'],
+                         }}
+                         errors={formMock.errors}
+                         optionsDeliveredByType={optionsMock}
+                         setFieldValue={formMock.setFieldValue}
+                         setFieldTouched={formMock.setFieldTouched}
+      />
+    )
+  })
+
   .add('should render "externalParty" if "External Party" is selected', () => {
     return (
       <Part10DeliveredBy index="10" totalIndex="10"
                          values={{
-                           deliveredByType: 'External Party',
+                           deliveredByType: ['External Party'],
                          }}
                          errors={formMock.errors}
                          optionsDeliveredByType={optionsMock}
