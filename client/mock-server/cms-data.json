@@ -6,7 +6,7 @@
   ],
   "deliveredByTypeOptions": [
     { "label": "School Staff", "value": "School Staff" },
-    { "label": "External Provider", "value": "External Provider" }
+    { "label": "External Party", "value": "External Party" }
   ],
   "yearLevelsOptions": [
     { "label": "Kindergarten", "value": "Kindergarten" },

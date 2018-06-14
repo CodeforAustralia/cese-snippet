@@ -8,28 +8,31 @@ import {
 import FieldTextInput from 'components/fieldTextInput';
 import FieldRadioList from 'components/fieldRadioList';
 import IndexedPartLayout from './../../indexedPartLayout';
+import {
+  getIsDeliveredByExternal
+} from 'store/programs/formHelpers';
 
 const Part10DeliveredBy = ({
-                             index,
-                             totalIndex,
-                             values,
-                             errors,
-                             optionsDeliveredByType,
-                             setFieldValue,
-                             setFieldTouched,
-                           }) => {
+  index,
+  totalIndex,
+  values,
+  errors,
+  setFieldValue,
+  setFieldTouched,
+  optionsDeliveredByType,
+}) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label>Provider</Label>
-            <FieldRadioList options={optionsDeliveredByType}
-                            name="deliveredByType"
+            <Label>Program is delivered by</Label>
+            <FieldRadioList name="deliveredByType"
                             value={values.deliveredByType}
+                            error={errors.deliveredByType}
+                            options={optionsDeliveredByType}
                             onChange={setFieldValue}
                             onBlur={setFieldTouched}
-                            error={errors.deliveredByType}
                             inline={true}
             />
             <FormText color="muted">
@@ -38,12 +41,14 @@ const Part10DeliveredBy = ({
           </Col>
         </FormGroup>
 
+        {getIsDeliveredByExternal(values.deliveredByType) &&
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="externalProvider">Who is the External Provider?</Label>
-            <FieldTextInput name="externalProvider" />
+            <Label htmlFor="externalParty">Who is the External Party?</Label>
+            <FieldTextInput name="externalParty" />
           </Col>
         </FormGroup>
+        }
       </div>
     </IndexedPartLayout>
   )

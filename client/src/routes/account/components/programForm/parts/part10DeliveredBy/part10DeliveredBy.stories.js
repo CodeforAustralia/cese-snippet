@@ -12,6 +12,11 @@ const formMock = {
   setFieldTouched: (v) => action(`setFieldTouched: ${v}`),
 };
 
+const optionsMock = [
+  { "label": "School Staff", "value": "School Staff" },
+  { "label": "External Party", "value": "External Party" },
+];
+
 storiesOf('Program Form Part 10 - Delivered By', module)
 
   .addDecorator(story => (
@@ -23,10 +28,21 @@ storiesOf('Program Form Part 10 - Delivered By', module)
       <Part10DeliveredBy index="10" totalIndex="10"
                          values={formMock.values}
                          errors={formMock.errors}
-                         optionsDeliveredByType={[
-                           { "label": "School Staff", "value": "School Staff" },
-                           { "label": "External Provider", "value": "External Provider" }
-                         ]}
+                         optionsDeliveredByType={optionsMock}
+                         setFieldValue={formMock.setFieldValue}
+                         setFieldTouched={formMock.setFieldTouched}
+      />
+    )
+  })
+
+  .add('should render "externalParty" if "External Party" is selected', () => {
+    return (
+      <Part10DeliveredBy index="10" totalIndex="10"
+                         values={{
+                           deliveredByType: 'External Party',
+                         }}
+                         errors={formMock.errors}
+                         optionsDeliveredByType={optionsMock}
                          setFieldValue={formMock.setFieldValue}
                          setFieldTouched={formMock.setFieldTouched}
       />

@@ -59,3 +59,7 @@ export const getAudienceScope = () => {
     { value: 'Voluntary Participation', label: 'Voluntary Participation' },
   ]
 };
+
+export const getIsDeliveredByExternal = (deliveredByType) => {
+  return deliveredByType === 'External Party';
+};
