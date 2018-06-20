@@ -1,4 +1,9 @@
 _trash/
+build/
+coverage/
+_trash/
+storybook-static/
+
 
 # Created by https://www.gitignore.io/api/node,macos,webstorm+all
 

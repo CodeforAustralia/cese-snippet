@@ -1,5 +1,10 @@
 # Snippet 
 
+[![Build Status](https://travis-ci.org/CodeforAustralia/cese-snippet.svg?branch=master&)](https://travis-ci.org/CodeforAustralia/cese-snippet)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2092e91a51aa5a067495/test_coverage)](https://codeclimate.com/github/CodeforAustralia/cese-snippet/test_coverage)
+
+
 Snippet is an app built in Fellowship with NSW Education Centre for Education Statistics and Evaluation in 2017-18. 
 
 Snippet allows educators to view or publish insights about program applications in NSW schools.
@@ -9,45 +14,37 @@ This repository contains a web application client that is exported to an interna
 
 ## Requirements
 
-* [Node](https://nodejs.org/en/) 6.11.5
+* [Node](https://nodejs.org/en/) 8.1.2
 * [npm](http://npmjs.com/) `5.6.0`
 * [yarn](https://yarnpkg.com) `1.5.1`
-* [firebase-tools](https://www.npmjs.com/package/firebase-tools) `^3.16.0`
-* [MongoDB](https://www.mongodb.com/) `^3.0.0`
 
 We recommend using [nvm](https://github.com/creationix/nvm) to manage Node versions.
 
 
-## Client 
+## Tech  
 
-[![Build Status](https://travis-ci.org/CodeforAustralia/cese-snippet.svg?branch=master&)](https://travis-ci.org/CodeforAustralia/cese-snippet)
+This app is built from create-react-app
+- [create-react-app](https://github.com/facebook/create-react-app)
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2092e91a51aa5a067495/test_coverage)](https://codeclimate.com/github/CodeforAustralia/cese-snippet/test_coverage)
+Data management 
+- [Redux](https://redux.js.org)
 
-View [Readme](https://github.com/CodeforAustralia/cese-snippet/blob/master/client/README.md). 
+UI
+- [Reactstrap](https://reactstrap.github.io)
 
-
-## Functions 
-
-Serverless Functions that support the demo environment. 
-
-In the real environment. only the client app is deployed to Department of Education cloud services. Here the client app also uses APIs provided by the Department. 
-
-As Functions is a project aid only, documentation is not provided. 
+Mock API
+- [json-server](https://www.npmjs.com/package/json-server)
 
 
-## But I just want to play with the app! 
+## Set up
 
-Ok ok ok! 
 
-The client application can be run along with a mock api that does not require a database. 
+1. Use the correct Node version
 
-1. Navigate to `./client`
+``` bash
+nvm use
+````
 
-```bash 
-cd client 
-```
- 
 2. The first time, install dependencies:
 
 ```bash 
@@ -67,31 +64,50 @@ yarn dev
 ``` 
 
 
-## Developing 
-
-You can develop using the mock API described above or by using the Serverless environment connected to a MongoDB instance. 
-
-Install a MongoDB database called "Snippet" and then run a third terminal window for the database: 
+## CLI Commands
 
 ```bash
-mongod
+# install dependencies
+yarn
 
+# serve with hot reload at localhost:8080
+yarn start
+
+# build for production with minification
+yarn build
+
+# test the production build locally
+yarn serve 
+
+# run test watcher
+yarn test
+
+# run test on individual file
+yarn test store/rootReducer
+
+# run the mock server
+yarn api
+
+# start storybook (develop UI components)
+yarn storybook 
 ```
 
-You can run Function containers individually or use Firebase to run all of the containers at the once:
 
-```bash
-firebase serve --only functions,hosting
+## Debugging
+
+Debug with React with [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) for Chrome.
+
+
+Debug the state layer with [Redux devtools extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd).
+
+
+Enable logging from the console with [Bows](https://www.npmjs.com/package/bows).
+
+By typing this in to the Browser Console:
+
+```js
+localStorage.debug = true
 ```
-
-To work on the client app, you will need to launch a development session. Alternatively built files are served in combination with `firebase serve` from `./client/build` 
-
-```bash
-cd client
-yarn dev
-```
-
-Todo: this documentation section could be improved. 
 
 
 ## Deploy
