@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { updateProgram } from 'store/programs/actionCreators';
 import { selectSession } from "store/session/selectors";
 import { selectSchool } from "store/schools/selectors";
-import { selectStatic } from "store/static/selectors";
+import { selectCms } from "store/cms/selectors";
 import {
   selectIsFetching as selectIsFetchingProgramTemplates,
   selectProgramTemplate,
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
   const { code, year } = location.state.initialFormState;
 
-  const staticData = selectStatic(state);
+  const cmsProps = selectCms(state);
   const session = selectSession(state);
   const school = selectSchool(state, code);
   const initialFormState = location.state && location.state.initialFormState || {};
@@ -70,7 +70,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     school,
     year,
-    staticData,
+    cmsProps,
 
     isEdit: true,
     initialFormState: newInitialFormState,

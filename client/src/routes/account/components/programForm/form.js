@@ -10,27 +10,13 @@ import {
 } from 'formik';
 import Bows from 'bows';
 import { Link } from 'react-router-dom';
-import get from 'lodash/get';
 
 import ErrorSummary from 'components/errorSummary';
-import {
-  getSchoolYearLevelsOptions,
-  getLevel1Categories,
-  // getLevel2Categories,
-  getStaffOptions,
-  getTermsOptions,
-  getSchoolsOptions,
-  // getProgramTemplateOptions,
-  getAudienceScope,
-} from 'store/programs/formHelpers';
 // import { CircleLoading } from 'components/loading';
+import * as cmsHelper from 'store/cms/helpers';
 
 import { FauxIndexedPartLayout } from './indexedPartLayout';
-
 import FieldTextInput from 'components/fieldTextInput';
-
-
-
 import { isRequired } from 'helpers/validators';
 
 import Part1School from './parts/part1School';
@@ -56,16 +42,9 @@ class ProgramForm extends React.Component {
     super(props);
     // this.handlePrefill = this.handlePrefill.bind(this);
 
-    this.optionsSchoolCodes = getSchoolsOptions(props.schools);
-    this.optionsYearLevels = getSchoolYearLevelsOptions(props.school);
-    this.optionsParticipantGroups = get(props, 'staticData.participantGroupsOptions');
-    this.optionsFocusGroup = get(props, 'staticData.focusGroupOptions');
-    this.optionsDeliveredByType = get(props, 'staticData.deliveredByTypeOptions');
-    this.optionsTags = get(props, 'staticData.tagsOptions');
-    this.optionsTerms = getTermsOptions(props.year);
-    this.optionsLevel1Categories = getLevel1Categories(get(props, 'staticData.categoriesOptions'));
-    this.optionsStaff = getStaffOptions(get(props, 'staticData.staffList'));
-    this.optionsAudienceScope = getAudienceScope();
+    this.optionsSchoolCodes = cmsHelper.getSchoolsOptions(props.schools);
+    this.optionsYearLevels = cmsHelper.getSchoolYearLevelsOptions(props.school);
+    this.optionsStaff = cmsHelper.getStaffOptions(props.cmsProps.staffList);
 
     // this.state = {
     //   showDescriptionFull: false,
@@ -137,6 +116,7 @@ class ProgramForm extends React.Component {
       isEdit,
       // isFetchingProgramTemplates,
       // programTemplates,
+      cmsProps,
     } = this.props;
 
     log('values:', values);
@@ -149,7 +129,6 @@ class ProgramForm extends React.Component {
     //   return <CircleLoading />
     // }
 
-    // const optionsLevel2Categories = getLevel2Categories(this.optionsLevel1Categories, values.category);
     // const optionsProgramTemplates = getProgramTemplateOptions(programTemplates);
 
     // const selectedProgramTemplateOption = function() {
@@ -193,25 +172,26 @@ class ProgramForm extends React.Component {
               <Part3Focus index="3" totalIndex="10"
                           values={values}
                           errors={errors}
+                          touched={touched}
                           setFieldValue={setFieldValue}
                           setFieldTouched={setFieldTouched}
-                          optionsLevel1Categories={this.optionsLevel1Categories}
+                          optionsCategories={cmsHelper.getCategoriesOptions(cmsProps)}
               />
               <Part4Audience index="4" totalIndex="10"
                              values={values}
                              errors={errors}
-                             optionsAudienceScope={this.optionsAudienceScope}
-                             optionsYearLevels={this.optionsYearLevels}
+                             optionsAudienceScope={cmsHelper.getAudienceScope(cmsProps)}
+                             optionsYearLevels={cmsHelper.getYearLevelsOptions(cmsProps)}
               />
               <Part5Terms index="5" totalIndex="10"
                           values={values}
                           errors={errors}
-                          optionsTerms={this.optionsTerms}
+                          optionsTerms={cmsHelper.getTermsOptions(cmsProps)}
               />
               <Part6FocusGroup index="6" totalIndex="10"
                                values={values}
                                errors={errors}
-                               optionsFocusGroup={this.optionsFocusGroup}
+                               optionsFocusGroup={cmsHelper.getFocusGroupOptions(cmsProps)}
                                setFieldValue={setFieldValue}
                                setFieldTouched={setFieldTouched}
               />
@@ -234,7 +214,7 @@ class ProgramForm extends React.Component {
               <Part10DeliveredBy index="10" totalIndex="10"
                                  values={values}
                                  errors={errors}
-                                 optionsDeliveredByType={this.optionsDeliveredByType}
+                                 optionsDeliveredByType={cmsHelper.getDeliveredByTypeOptions(cmsHelper)}
               />
               {/*<Part11Additional index="optional"*/}
                                 {/*values={values}*/}
@@ -353,22 +333,7 @@ export default withFormik({
   {/*</FormGroup>*/}
   {/*}*/}
 
-  {/*<FormGroup row>*/}
-    {/*<Col md={8}>*/}
-      {/*<Label htmlFor="subCategory">Program Category</Label>*/}
-      {/*<FieldSelect name="subCategory"*/}
-                   {/*clearable={false}*/}
-                   {/*options={optionsLevel2Categories}*/}
-                   {/*disabled={typeof values.category === 'undefined'}*/}
-                   {/*value={values.subCategory}*/}
-                   {/*onChange={this.props.setFieldValue}*/}
-                   {/*onBlur={this.props.setFieldTouched}*/}
-                   {/*placeholder="First select a Program Focus Area"*/}
-                   {/*touched={touched.subCategory}*/}
-                   {/*error={errors.subCategory}*/}
-      {/*/>*/}
-    {/*</Col>*/}
-  {/*</FormGroup>*/}
+
 
 
 

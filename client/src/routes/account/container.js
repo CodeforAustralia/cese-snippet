@@ -12,7 +12,7 @@ import {
 import {
   fetchStaffList,
   fetchCmsData,
-} from 'store/static/actionCreators';
+} from 'store/cms/actionCreators';
 
 
 const mapStateToProps = (state) => {

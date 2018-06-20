@@ -4,7 +4,9 @@ import {
   Label,
   Col,
 } from 'reactstrap';
+import get from 'lodash/get';
 import FieldRadioList from 'components/fieldRadioList';
+import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';
 
 const Part3Focus = ({
@@ -12,36 +14,42 @@ const Part3Focus = ({
                       totalIndex,
                       values,
                       errors,
+                      touched,
                       setFieldValue,
                       setFieldTouched,
-                      optionsLevel1Categories,
+                      optionsCategories,
                     }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
-        {/*{!touched.category && selectedProgramTemplateOption ?*/}
-        {/*!prefilledProgramTemplateId ?*/}
-        {/*<Col md={{size:8}}>*/}
-        {/*<Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?*/}
-        {/*<br/>*/}
-        {/*<Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>*/}
-        {/*</Col> :*/}
-        {/*null :*/}
-        {/*null*/}
-        {/*}*/}
-
-
         <FormGroup row>
           <Col md={8}>
             <Label htmlFor="category">Main Focus</Label>
             <FieldRadioList name="category"
               value={values.category}
-              options={optionsLevel1Categories}
+              options={optionsCategories}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
               error={errors.category}
               />
         </Col>
+        </FormGroup>
+
+        <FormGroup row>
+          <Col md={8}>
+            <Label htmlFor="subCategory">Domain Area</Label>
+            <FieldSelect name="subCategory"
+              clearable={false}
+              options={get(optionsCategories, '[values.category].categories', null)}
+              disabled={typeof values.category === 'undefined'}
+              value={values.subCategory}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+              placeholder="First select a Main Focus"
+              touched={touched.subCategory}
+              error={errors.subCategory}
+            />
+          </Col>
         </FormGroup>
       </div>
     </IndexedPartLayout>
@@ -49,4 +57,3 @@ const Part3Focus = ({
 };
 
 export default Part3Focus;
-

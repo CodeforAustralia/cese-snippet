@@ -8,9 +8,7 @@ import {
 import FieldTextInput from 'components/fieldTextInput';
 import FieldCheckboxList from 'components/fieldCheckboxList';
 import IndexedPartLayout from './../../indexedPartLayout';
-import {
-  getIsDeliveredByExternal
-} from 'store/programs/formHelpers';
+import { getIsDeliveredByExternal } from 'store/cms/helpers';
 
 const Part10DeliveredBy = ({
   index,
@@ -42,12 +40,12 @@ const Part10DeliveredBy = ({
         </FormGroup>
 
         {getIsDeliveredByExternal(values.deliveredByType) &&
-        <FormGroup row>
-          <Col md={8}>
-            <Label htmlFor="externalParty">Who is the External Party?</Label>
-            <FieldTextInput name="externalParty" />
-          </Col>
-        </FormGroup>
+          <FormGroup row>
+            <Col md={8}>
+              <Label htmlFor="externalParty">Who is the External Party?</Label>
+              <FieldTextInput name="externalParty" />
+            </Col>
+          </FormGroup>
         }
       </div>
     </IndexedPartLayout>

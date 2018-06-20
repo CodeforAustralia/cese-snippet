@@ -108,5 +108,11 @@
       "startDate": "15-10-2018",
       "endDate": "21-12-2018"
     }
+  ],
+  "audienceScope": [
+    { "value": "Whole School", "label": "Whole School" },
+    { "value": "Whole Year Level", "label": "Whole Year Level" },
+    { "value": "Mandatory Selected Groups", "label": "Mandatory Selected Groups" },
+    { "value": "Voluntary Participation", "label": "Voluntary Participation" }
   ]
 }

@@ -5,9 +5,9 @@ import {
   selectSession,
   selectUserSchoolCodes,
 } from "store/session/selectors";
-import { selectSchoolsList } from 'store/static/selectors';
-import { fetchSchoolsList } from 'store/static/actionCreators';
-import { makeSchoolsListOptions } from 'store/static/helpers';
+import { selectSchoolsList } from 'store/cms/selectors';
+import { fetchSchoolsList } from 'store/cms/actionCreators';
+import { getSchoolsOptions } from 'store/cms/helpers';
 import { saveSession } from 'store/session/actionCreators';
 import { getSchoolProgramsUrl } from 'helpers/url';
 
@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     session: selectSession(state),
-    schoolsListOptions: makeSchoolsListOptions(schoolsListFiltered),
+    schoolsListOptions: getSchoolsOptions(schoolsListFiltered),
     onSubmitSuccess: (code) => {
       ownProps.history.push(getSchoolProgramsUrl(code, '2018'));
     },

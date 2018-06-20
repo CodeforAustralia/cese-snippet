@@ -25,7 +25,7 @@ storiesOf('Program Form Part 3 - Focus', module)
                   errors={formMock.errors}
                   setFieldValue={formMock.setFieldValue}
                   setFieldTouched={formMock.setFieldTouched}
-                  optionsLevel1Categories={[
+                  optionsCategories={[
                     {
                       "value": "Curriculum Engagement",
                       "label": "Curriculum Engagement",

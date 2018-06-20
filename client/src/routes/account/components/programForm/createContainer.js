@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 import { createProgram } from 'store/programs/actionCreators';
-import { fetchProgramTemplates } from 'store/programTemplates/actionCreators';
-import {
-  selectIsFetching as selectIsFetchingProgramTemplates,
-  selectProgramTemplate,
-  selectProgramTemplates
-} from 'store/programTemplates/selectors';
+// import { fetchProgramTemplates } from 'store/programTemplates/actionCreators';
+// import {
+//   selectIsFetching as selectIsFetchingProgramTemplates,
+//   selectProgramTemplate,
+//   selectProgramTemplates
+// } from 'store/programTemplates/selectors';
 import { selectSession } from "store/session/selectors";
 import { selectSchools } from "store/schools/selectors";
-import { selectStatic } from "store/static/selectors";
+import { selectCms } from "store/cms/selectors";
 import { getYear } from 'helpers/dateFormats';
 
 const mapStateToProps = (state, ownProps) => {
   const { location } = ownProps;
-  const staticData = selectStatic(state);
+  const cmsProps = selectCms(state);
   const session = selectSession(state);
   const schools = selectSchools(state, session.schools);
   const initialFormState = location.state && location.state.initialFormState || {};
@@ -81,7 +81,8 @@ const mapStateToProps = (state, ownProps) => {
     school,
     schools,
     year,
-    staticData,
+
+    cmsProps,
 
     isEdit: false,
 
