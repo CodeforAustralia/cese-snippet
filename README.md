@@ -14,9 +14,9 @@ This repository contains a web application client that is exported to an interna
 
 ## Requirements
 
-* [Node](https://nodejs.org/en/) 8.1.2
-* [npm](http://npmjs.com/) `5.6.0`
-* [yarn](https://yarnpkg.com) `1.5.1`
+* [Node](https://nodejs.org/en/) `8.1.2`
+* [npm](http://npmjs.com/) `6.1.0`
+* [yarn](https://yarnpkg.com) `1.7.0`
 
 We recommend using [nvm](https://github.com/creationix/nvm) to manage Node versions.
 
