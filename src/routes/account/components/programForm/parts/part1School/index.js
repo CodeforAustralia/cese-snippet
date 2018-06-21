@@ -45,15 +45,3 @@ const Part1School = ({
 };
 
 export default Part1School;
-
-
-{/*touched.category && selectedProgramTemplateOption ?
-                  !prefilledProgramTemplateId ?
-                    <Col md={{size:8}}>
-                      <Alert color="info">Would you like to prefill this form with known information for "{selectedProgramTemplateOption.label}"?
-                        <br/>
-                        <Button color="link" className="alert-link" onClick={() => this.handlePrefill(selectedProgramTemplateOption.value)}>Yes please, prefill.</Button></Alert>
-                    </Col> :
-                    null :
-                  null
-                }*/}

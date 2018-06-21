@@ -175,7 +175,7 @@ class ProgramForm extends React.Component {
                           touched={touched}
                           setFieldValue={setFieldValue}
                           setFieldTouched={setFieldTouched}
-                          optionsCategories={cmsHelper.getCategoriesOptions(cmsProps)}
+                          optionsFocuses={cmsHelper.getFocusesOptions(cmsProps)}
               />
               <Part4Audience index="4" totalIndex="10"
                              values={values}

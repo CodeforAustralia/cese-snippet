@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export const selectCms = (state = {}) => {
   return state.cms;
 };

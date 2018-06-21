@@ -17,37 +17,37 @@ const Part3Focus = ({
                       touched,
                       setFieldValue,
                       setFieldTouched,
-                      optionsCategories,
+                      optionsFocuses,
                     }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="category">Main Focus</Label>
-            <FieldRadioList name="category"
-              value={values.category}
-              options={optionsCategories}
+            <Label htmlFor="focus">Main Focus</Label>
+            <FieldRadioList name="focus"
+              value={values.focus}
+              options={optionsFocuses}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
-              error={errors.category}
+              error={errors.focus}
               />
         </Col>
         </FormGroup>
 
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="subCategory">Domain Area</Label>
-            <FieldSelect name="subCategory"
+            <Label htmlFor="domain">Domain Area</Label>
+            <FieldSelect name="domain"
               clearable={false}
-              options={get(optionsCategories, '[values.category].categories', null)}
-              disabled={typeof values.category === 'undefined'}
-              value={values.subCategory}
+              options={get(optionsFocuses, '[values.domain].domain', null)}
+              disabled={typeof values.domain === 'undefined'}
+              value={values.domain}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
               placeholder="First select a Main Focus"
-              touched={touched.subCategory}
-              error={errors.subCategory}
+              touched={touched.domain}
+              error={errors.domain}
             />
           </Col>
         </FormGroup>
