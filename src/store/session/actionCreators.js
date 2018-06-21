@@ -4,8 +4,6 @@ import { ACTION_TYPES } from './reducer';
 
 const log = bows('Session');
 
-const win = typeof window !== 'undefined' ? window : global;
-
 
 export const setSession = (session = null) => {
   return (dispatch) => {
@@ -16,7 +14,6 @@ export const setSession = (session = null) => {
           session,
         }
       });
-      win.localStorage.setItem('snippet_session', JSON.stringify(session));
       return session;
     });
   }

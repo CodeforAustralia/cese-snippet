@@ -4,8 +4,6 @@ import { selectSession } from 'store/session/selectors';
 import { clearSession } from 'store/session/actionCreators';
 
 
-const win = typeof window !== 'undefined' ? window : global;
-
 const mapStateToProps = (state, ownProps) => {
   const { isAuthenticated } = ownProps;
   return {
@@ -21,7 +19,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   } = ownProps;
   return {
     handleSignOut: () => signout(() => {
-      win.localStorage.removeItem('snippet_session');
       history.push("/logged-out");
       return dispatch(clearSession());
     }),

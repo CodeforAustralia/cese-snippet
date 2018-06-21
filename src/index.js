@@ -11,10 +11,12 @@ import 'style/index.scss';
 
 const win = typeof window !== 'undefined' ? window : global;
 
-const session = win.localStorage.getItem('snippet_session');
+if (!win.SNIPPET_BOOTSTRAP_STATE) {
+  throw new Error('No session available.');
+  // todo - redirect
+}
 
-const store = configureStore({session: session ? JSON.parse(session) : null});
-
+const store = configureStore(...win.SNIPPET_BOOTSTRAP_STATE);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -27,6 +29,6 @@ ReactDOM.render(
 // registerServiceWorker();
 
 // Dev-server HMR
-if (module.hot) {
+if (process.env.NODE_ENV !== 'production' && module.hot) {
   module.hot.accept();
 }
