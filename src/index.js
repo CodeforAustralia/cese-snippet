@@ -13,8 +13,12 @@ const win = typeof window !== 'undefined' ? window : global;
 
 const session = win.localStorage.getItem('snippet_session');
 
-const store = configureStore({session: session ? JSON.parse(session) : null});
-
+const store = configureStore(
+  ...win.SNIPPET_BOOTSTRAP_STATE,
+  ...{
+    session: session ? JSON.parse(session) : null,
+  }
+);
 
 ReactDOM.render(
   <Provider store={store}>

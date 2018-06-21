@@ -1,27 +1,19 @@
 import initialState from 'store/initialState';
 
 export const ACTION_TYPES = {
-  fetchedCms: 'STATIC/CMS',
-  fetchedStaffList: 'STATIC/STAFF_LIST',
-  fetchedSchoolsList: 'STATIC/SCHOOLS_LIST',
+  fetchRequest: 'CMS/FETCH_REQUEST',
 };
 
-const staticReducer = (state = initialState.static, action) => {
+const cmsReducer = (state = initialState.cms, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case ACTION_TYPES.fetchedCms:
-    case ACTION_TYPES.fetchedStaffList:
-    case ACTION_TYPES.fetchedSchoolsList:
-      const newState = {...state};
-      for (let key in payload) {
-        newState[key] = payload[key];
-      }
-      return newState;
+    case ACTION_TYPES.fetchRequest:
+      return {...state, ...payload};
 
     default:
       return state;
   }
 };
 
-export default staticReducer;
+export default cmsReducer;

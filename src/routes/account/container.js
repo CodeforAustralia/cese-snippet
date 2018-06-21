@@ -9,10 +9,7 @@ import {
   selectSession,
   selectUserSchoolCodes,
 } from "store/session/selectors";
-import {
-  fetchStaffList,
-  fetchCmsData,
-} from 'store/cms/actionCreators';
+import { fetchCmsData } from 'store/cms/actionCreators';
 
 
 const mapStateToProps = (state) => {
@@ -29,7 +26,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: (codes) => dispatch(fetchSchools(codes)),
     fetchCmsData: () => dispatch(fetchCmsData()),
-    fetchStaffList: () => dispatch(fetchStaffList()),
   }
 };
 

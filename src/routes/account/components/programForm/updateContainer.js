@@ -3,12 +3,12 @@ import { updateProgram } from 'store/programs/actionCreators';
 import { selectSession } from "store/session/selectors";
 import { selectSchool } from "store/schools/selectors";
 import { selectCms } from "store/cms/selectors";
-import {
-  selectIsFetching as selectIsFetchingProgramTemplates,
-  selectProgramTemplate,
-  selectProgramTemplates
-} from 'store/programTemplates/selectors';
-import { fetchProgramTemplates } from 'store/programTemplates/actionCreators';
+// import {
+//   selectIsFetching as selectIsFetchingProgramTemplates,
+//   selectProgramTemplate,
+//   selectProgramTemplates
+// } from 'store/programTemplates/selectors';
+// import { fetchProgramTemplates } from 'store/programTemplates/actionCreators';
 
 
 const mapStateToProps = (state, ownProps) => {

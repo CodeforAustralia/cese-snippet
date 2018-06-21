@@ -15,12 +15,6 @@ const log = Bows('Form');
 
 class RegistrationForm extends React.Component {
 
-  componentDidMount() {
-    if (!this.props.schoolsListOptions.length) {
-      this.props.fetchSchoolsList();
-    }
-  }
-
   render() {
     const {
       errors,

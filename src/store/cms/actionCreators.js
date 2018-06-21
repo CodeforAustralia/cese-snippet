@@ -8,44 +8,12 @@ export const fetchCmsData = () => {
       .then((resp) => resp.json())
       .then((data) => {
         return dispatch({
-          type: ACTION_TYPES.fetchedCms,
+          type: ACTION_TYPES.fetchRequest,
           payload: data,
         })
       })
       // .catch((err) => {
       //   throw new Error(`Unable to fetch program fields data: ${err}`);
-      // });
-  }
-};
-
-export const fetchStaffList = () => {
-  return (dispatch) => {
-    return fetch(`${BASE_URL}/staff-list.json`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        return dispatch({
-          type: ACTION_TYPES.fetchedStaffList,
-          payload: data,
-        })
-      })
-      // .catch((err) => {
-      //   throw new Error(`Unable to fetch staff list: ${err}`);
-      // });
-  }
-};
-
-export const fetchSchoolsList = () => {
-  return (dispatch) => {
-    return fetch(`${BASE_URL}/schools-list.json`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        return dispatch({
-          type: ACTION_TYPES.fetchedSchoolsList,
-          payload: data,
-        })
-      })
-      // .catch((err) => {
-      //   throw new Error(`Unable to fetch schools list: ${err}`);
       // });
   }
 };

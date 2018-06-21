@@ -6,7 +6,6 @@ import {
   selectUserSchoolCodes,
 } from "store/session/selectors";
 import { selectSchoolsList } from 'store/cms/selectors';
-import { fetchSchoolsList } from 'store/cms/actionCreators';
 import { getSchoolsOptions } from 'store/cms/helpers';
 import { saveSession } from 'store/session/actionCreators';
 import { getSchoolProgramsUrl } from 'helpers/url';
@@ -29,7 +28,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSchoolsList: () => dispatch(fetchSchoolsList()),
     onSubmit: (session) => dispatch(saveSession(session)),
   }
 };

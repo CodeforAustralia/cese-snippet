@@ -41,7 +41,6 @@ class Account extends React.Component {
     }
     log('Fetching cms.');
     this.props.fetchCmsData();
-    this.props.fetchStaffList();
   }
 
   componentWillUpdate(nextProps) {
