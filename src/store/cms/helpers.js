@@ -21,8 +21,8 @@ export const getTagsOptions = (cms) => {
   return get(cms, 'tagsOptions', []);
 };
 
-export const getFocusesOptions = (cms) => {
-  return get(cms, 'focusesOptions', []);
+export const getCategoriesOptions = (cms) => {
+  return get(cms, 'categoriesOptions', []);
 };
 
 export const getAudienceScope = (cms) => {
