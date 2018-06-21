@@ -21,7 +21,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   } = ownProps;
   return {
     handleSignOut: () => signout(() => {
-      win.localStorage.removeItem('snippet_session');
       history.push("/logged-out");
       return dispatch(clearSession());
     }),
