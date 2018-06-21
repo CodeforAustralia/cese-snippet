@@ -5,6 +5,7 @@ const logger = require('morgan');
 const jsonServer = require('json-server');
 
 const cmsData = require('./cms-data.json');
+const fakeSession = require('./mocked-session.json');
 
 const app = express();
 
@@ -27,9 +28,32 @@ app.use('/api', apiRouter);
 
 app.get('/static/cms-data.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
+  res.setStatus(200);
   res.send(cmsData);
   return res;
 });
+
+app.get('/security/auth', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.setStatus(200);
+  res.send(fakeSession);
+  return res;
+});
+
+app.get('/security/logout', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.setStatus(200);
+  res.send({
+    "href": "https://staff.det.nsw.edu.au",
+  });
+  return res;
+});
+
+// todo - image service
+
+// todo - email service
+
+// todo - export to pdf service
 
 app.listen(5001, () => {
   console.log('API running at http://localhost:5001/api');

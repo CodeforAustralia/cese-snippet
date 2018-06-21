@@ -30,8 +30,7 @@
       "deliveredByType": "School Staff",
       "externalProvider": null,
       "staff": [
-        "37171",
-        "37172"
+        "grace.chang",
       ],
       "year": 2018,
       "terms": [
@@ -43,8 +42,8 @@
         "vocabulary"
       ],
       "createdAt": "2018-02-04",
-      "createdBy": "87125368",
-      "updatedBy": "87125368",
+      "createdBy": "grace.chang",
+      "updatedBy": "grace.chang",
       "updatedAt": "2018-02-04",
       "name": "Language, Learning and Literacy (L3)"
     },
@@ -76,8 +75,8 @@
       "deliveredByType": "External Provider",
       "externalProvider": "PCYC",
       "staff": [
-        "41181",
-        "41182"
+        "eunice.zang",
+        "grace.chang"
       ],
       "year": 2018,
       "terms": [
@@ -89,15 +88,15 @@
         "active kids"
       ],
       "createdAt": "2018-02-05",
-      "createdBy": "37682268",
-      "updatedBy": "87125368",
+      "createdBy": "eunice.zang",
+      "updatedBy": "grace.chang",
       "updatedAt": "2018-02-05",
       "name": "Cricket"
     }
   ],
   "staff": [
     {
-      "id": "87125368",
+      "id": "grace.chang",
       "email": "grace.chang@test.det.nsw.edu.au",
       "firstName": "Grace",
       "lastName": "Chang",
@@ -108,7 +107,7 @@
       "programsFacilitated": []
     },
     {
-      "id": "37682268",
+      "id": "eunice.zang",
       "email": "eunice.zang@test.det.nsw.edu.au",
       "firstName": "Eunice",
       "lastName": "Zang",
