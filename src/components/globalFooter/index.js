@@ -24,7 +24,6 @@ const GlobalFooter = ({ className = null }) => {
             <ul className="list-unstyled">
               <li><a href="mailto:nsweducation.snippet@gmail.com">Contact</a></li>
               <li><a target="_blank" rel="noopener noreferrer" href="https://snippet1.typeform.com/to/zRI3Tz">Give Feedback</a></li>
-              {window && window.localStorage && window.localStorage.debug && <li><Link to="/login">Login</Link></li>}
               <li><a href="https://www.yammer.com/det.nsw.edu.au/#/threads/inGroup?type=in_group&feedId=13755246&view=all" target="_blank" rel="noopener noreferrer" alt="Happy Data Group on NSW DET Yammer">Yammer</a></li>
             </ul>
           </Col>
