@@ -5,7 +5,6 @@ import {
   Row,
   Col,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 import DetLogo from './doe-black-logo.png';
 

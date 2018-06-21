@@ -4,8 +4,6 @@ import { selectSession } from 'store/session/selectors';
 import { clearSession } from 'store/session/actionCreators';
 
 
-const win = typeof window !== 'undefined' ? window : global;
-
 const mapStateToProps = (state, ownProps) => {
   const { isAuthenticated } = ownProps;
   return {

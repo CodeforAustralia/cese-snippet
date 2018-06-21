@@ -5,7 +5,6 @@ const logger = require('morgan');
 const jsonServer = require('json-server');
 
 const cmsData = require('./cms-data.json');
-const fakeSession = require('./mocked-session.json');
 
 const app = express();
 
@@ -30,13 +29,6 @@ app.get('/static/cms-data.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.setStatus(200);
   res.send(cmsData);
-  return res;
-});
-
-app.get('/security/auth', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.setStatus(200);
-  res.send(fakeSession);
   return res;
 });
 
