@@ -22,11 +22,9 @@ export const setSession = (session = null) => {
   }
 };
 
-
 export const clearSession = () => {
   return setSession();
 };
-
 
 export const saveSession = (session) => {
   // Steps:

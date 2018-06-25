@@ -5,20 +5,17 @@ import { Provider } from 'react-redux';
 import "style/vendor/bootstrap.global.scss";
 import "repaintless/repaintless-css/repaintless.css"
 
-import App from 'components/app';
+import App from 'routes/app';
 import configureStore from 'store/configureStore';
 import 'style/index.scss';
 
 const win = typeof window !== 'undefined' ? window : global;
 
-const session = win.localStorage.getItem('snippet_session');
+if (!win.SNIPPET_BOOTSTRAP_STATE) {
+  throw new Error('Requires bootstrap page state.');
+}
 
-const store = configureStore(
-  ...win.SNIPPET_BOOTSTRAP_STATE,
-  ...{
-    session: session ? JSON.parse(session) : null,
-  }
-);
+const store = configureStore(...win.SNIPPET_BOOTSTRAP_STATE);
 
 ReactDOM.render(
   <Provider store={store}>
