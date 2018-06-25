@@ -23,7 +23,7 @@ export const fetchSessionUser = () => {
       });
     }
 
-    log(`Fetched Session User: ${win.SNIPPET_SESSION_USER}`);
+    log(`Fetched Session User: ${JSON.stringify(win.SNIPPET_SESSION_USER)}`);
     return dispatch({
       type: ACTION_TYPES.fetchSuccess,
       payload: {

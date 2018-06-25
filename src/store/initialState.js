@@ -9,7 +9,7 @@ export default {
     },
     createProgramFormScope: {},
   },
-  session: null,
+  session: {},
   staff: {},
   schools: {},
   programs: {},

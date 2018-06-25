@@ -1,7 +1,5 @@
 import get from 'lodash/get';
 
-
-
 export const selectIsFetching = (state) => {
   return get(state, 'staff.isFetching', null);
 };
@@ -11,7 +9,7 @@ export const selectErrorMessage = (state) => {
 };
 
 export const selectStaffMember = (state, id) => {
-  return get(state, `staff.byId[${id}]`, null);
+  return get(state, `staff.byId.${id}`, null);
 };
 
 export const selectStaff = (state, ids = null) => {

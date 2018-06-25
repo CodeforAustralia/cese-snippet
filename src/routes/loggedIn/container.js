@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
   const session = selectSession(state);
   let sessionUser = null;
   if (session) {
-    const staffId = get(session, 'staffId', null);
+    const staffId = get(session, 'id', null);
     sessionUser = selectStaffMember(state, staffId);
   }
   return {

@@ -25,7 +25,7 @@ const LoggedIn = ({ sessionUser }) => {
                 <p>Logging in...</p>
               }
 
-              <p className="mt-5"><Button to="/account" tag={RRLink} color="primary">Continue to Account →</Button></p>
+              <p className="mt-5"><Button to="/account" tag={RRLink} color="primary" disabled={!sessionUser}>Continue to Account →</Button></p>
             </div>
           </Col>
         </Row>
