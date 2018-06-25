@@ -4,6 +4,37 @@ import { objectify } from 'store/objectify';
 import { ACTION_TYPES } from './reducer';
 
 const log = bows('Staff');
+const win = typeof window !== 'undefined' ? window : global;
+
+
+export const fetchSessionUser = () => {
+  return (dispatch) => {
+    dispatch({
+      type: ACTION_TYPES.fetchRequest,
+    });
+
+    if (!win.SNIPPET_SESSION_USER) {
+      log('Error fetching Session User');
+      return dispatch({
+        type: ACTION_TYPES.fetchError,
+        payload: {
+          message: 'No Session User provided.',
+        }
+      });
+    }
+
+    log(`Fetched Session User: ${win.SNIPPET_SESSION_USER}`);
+    return dispatch({
+      type: ACTION_TYPES.fetchSuccess,
+      payload: {
+        staff: objectify([win.SNIPPET_SESSION_USER]),
+      }
+    });
+  };
+};
+
+
+
 
 
 /**
@@ -75,3 +106,5 @@ export const fetchFromApi = (path) => {
       })
   }
 };
+
+

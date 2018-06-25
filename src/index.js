@@ -9,13 +9,7 @@ import App from 'routes/app';
 import configureStore from 'store/configureStore';
 import 'style/index.scss';
 
-const win = typeof window !== 'undefined' ? window : global;
-
-if (!win.SNIPPET_BOOTSTRAP_STATE) {
-  throw new Error('Requires bootstrap page state.');
-}
-
-const store = configureStore(...win.SNIPPET_BOOTSTRAP_STATE);
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>

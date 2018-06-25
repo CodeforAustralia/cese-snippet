@@ -1,9 +1,9 @@
 import get from 'lodash/get';
 
 export const selectSession = (state) => {
-  return get(state, 'session', {});
+  return get(state, 'session.model', null);
 };
 
-export const selectUserSchoolCodes = (state) => {
-  return selectSession(state).schools;
+export const selectIsFetching = (state) => {
+  return get(state, 'session.isFetching', null);
 };

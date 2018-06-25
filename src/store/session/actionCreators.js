@@ -3,11 +3,37 @@ import bows from 'bows';
 import { ACTION_TYPES } from './reducer';
 
 const log = bows('Session');
-
 const win = typeof window !== 'undefined' ? window : global;
 
 
-export const setSession = (session = null) => {
+export const fetchSession = () => {
+  return (dispatch) => {
+    dispatch({
+      type: ACTION_TYPES.fetchRequest,
+    });
+
+    if (!win.SNIPPET_SESSION) {
+      log('Error fetching Session User');
+      return dispatch({
+        type: ACTION_TYPES.fetchError,
+        payload: {
+          message: 'No Session provided.',
+        }
+      });
+    }
+
+    log(`Fetched session user: ${win.SNIPPET_SESSION}`);
+    return dispatch({
+      type: ACTION_TYPES.fetchSuccess,
+      payload: {
+        session: win.SNIPPET_SESSION,
+      }
+    });
+  };
+};
+
+
+export const createSession = (session = null) => {
   return (dispatch) => {
     return new Promise(resolve => setTimeout(resolve, 200)).then(() => {
       dispatch({
@@ -16,14 +42,13 @@ export const setSession = (session = null) => {
           session,
         }
       });
-      win.localStorage.setItem('snippet_session', JSON.stringify(session));
       return session;
     });
   }
 };
 
 export const clearSession = () => {
-  return setSession();
+  return createSession();
 };
 
 export const saveSession = (session) => {
