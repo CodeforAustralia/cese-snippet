@@ -3,7 +3,6 @@ import without from 'lodash/without';
 
 import {
   selectSession,
-  selectUserSchoolCodes,
 } from "store/session/selectors";
 import { selectSchoolsList } from 'store/cms/selectors';
 import { getSchoolsOptions } from 'store/cms/helpers';
@@ -12,10 +11,8 @@ import { getSchoolProgramsUrl } from 'helpers/url';
 
 
 const mapStateToProps = (state, ownProps) => {
-  const userSchoolCodes = selectUserSchoolCodes(state) || [];
   const schoolsList = selectSchoolsList(state);
-
-  const schoolsListFiltered = without(schoolsList, ...userSchoolCodes);
+  const schoolsListFiltered = without(schoolsList, ...ownProps.userSchoolCodes);
 
   return {
     session: selectSession(state),

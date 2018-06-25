@@ -6,7 +6,10 @@ class AuthProvider extends React.Component {
 
   // get the service/data
   getChildContext() {
-    const { session } = this.props;
+    const {
+      session,
+      sessionUser,
+    } = this.props;
 
     const state = {
       isAuthenticated: !isEmpty(session),
@@ -14,6 +17,7 @@ class AuthProvider extends React.Component {
 
     return {
       session,
+      sessionUser,
       isAuthenticated: state.isAuthenticated,
       authenticate(cb) {
         state.isAuthenticated = true;
@@ -34,6 +38,7 @@ class AuthProvider extends React.Component {
 // tell React _what_ it provides
 AuthProvider.childContextTypes = {
   session: PropTypes.object,
+  sessionUser: PropTypes.object,
   isAuthenticated: PropTypes.bool,
   authenticate: PropTypes.func,
   signout: PropTypes.func,
@@ -41,6 +46,7 @@ AuthProvider.childContextTypes = {
 
 AuthProvider.propTypes = {
   session: PropTypes.object,
+  sessionUser: PropTypes.object,
 };
 
 export default AuthProvider;

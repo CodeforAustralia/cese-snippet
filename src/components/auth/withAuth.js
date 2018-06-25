@@ -11,6 +11,7 @@ const withAuth = Composed => {
     const newProps = {
       ...props,
       session: context.session,
+      sessionUser: context.sessionUser,
       isAuthenticated: context.isAuthenticated,
       authenticate: context.authenticate,
       signout: context.signout,
@@ -21,6 +22,7 @@ const withAuth = Composed => {
 
   Component.contextTypes = {
     session: PropTypes.object.isRequired,
+    sessionUser: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     authenticate: PropTypes.func.isRequired,
     signout: PropTypes.func.isRequired,
