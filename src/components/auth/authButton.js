@@ -8,9 +8,8 @@ const AuthButton = ({ history, isAuthenticated, signout }) => {
       Welcome!{" "}
       <button
         onClick={() => {
-          signout(() => process.env.NODE_ENV === 'production' ?
-            window.location = "http://nsweducation.cool" :
-            history.push("/logged-out")
+          signout(() =>
+            history.push("/")
           )
         }}
       >

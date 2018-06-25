@@ -96,6 +96,7 @@ class RegistrationFlow extends React.Component {
           <Template schools={schools}>
             <Form onSubmitSuccess={onSubmitSuccess}
                   autoFocus={!!schools.length === false}
+                  userSchoolCodes={userSchoolCodes}
             />
           </Template>
         </Col>

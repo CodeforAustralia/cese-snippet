@@ -28,21 +28,21 @@ app.use('/api', apiRouter);
 
 app.get('/static/cms-data.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.setStatus(200);
+  res.status(200);
   res.send(cmsData);
   return res;
 });
 
 app.get('/security/auth', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.setStatus(200);
+  res.status(200);
   res.send(fakeSession);
   return res;
 });
 
 app.get('/security/logout', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.setStatus(200);
+  res.status(200);
   res.send({
     "href": "https://staff.det.nsw.edu.au",
   });

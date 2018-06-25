@@ -1,16 +1,22 @@
 import { connect } from 'react-redux';
+import get from 'lodash/get';
 
-import { selectSession } from 'store/session/selectors';
 import { clearSession } from 'store/session/actionCreators';
-
-
-const win = typeof window !== 'undefined' ? window : global;
+import { selectSession } from 'store/session/selectors';
+import { selectStaffMember } from "store/staff/selectors";
 
 const mapStateToProps = (state, ownProps) => {
   const { isAuthenticated } = ownProps;
+  const session = selectSession(state);
+  let sessionUser = null;
+  if (session) {
+    const staffId = get(session, 'id', null);
+    sessionUser = selectStaffMember(state, staffId);
+  }
   return {
     isAuthenticated,
-    session: selectSession(state),
+    session,
+    sessionUser,
   }
 };
 
@@ -21,8 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   } = ownProps;
   return {
     handleSignOut: () => signout(() => {
-      win.localStorage.removeItem('snippet_session');
-      history.push("/logged-out");
+      history.push("/");
       return dispatch(clearSession());
     }),
   }

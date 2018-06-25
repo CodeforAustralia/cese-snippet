@@ -10,7 +10,6 @@ import style from './home.scss';
 
 
 const Layout = ({ containerClassName, children, pad = false }) => {
-  console.log(process.env)
   return (
     <div className={cx(containerClassName, style.layout)}>
 
