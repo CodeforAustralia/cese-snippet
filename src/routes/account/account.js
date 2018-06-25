@@ -10,7 +10,7 @@ import { Container } from 'reactstrap';
 import Layout from 'layouts/app';
 import Program from './program';
 import SchoolPrograms from './schoolPrograms';
-import SchoolCreateProgram from './schoolCreateProgram';
+import CreateProgram from './createProgram';
 import CreateProgramModal from './createProgramModal';
 import RegistrationFlow from './registrationFlow';
 
@@ -57,8 +57,9 @@ class Account extends React.Component {
   render() {
     const {
       location,
-      schools,
-      isFetchingSchools,
+      sessionUser,
+      userSchools,
+      isFetchingUserSchools,
     } = this.props;
 
     const isModal = !!(
@@ -67,14 +68,14 @@ class Account extends React.Component {
       this.previousLocation !== location
     ); // not initial render;
 
-    if (!isModal && isFetchingSchools !== false) {
+    if (!isModal && isFetchingUserSchools !== false) {
       return <BoxLoading />
     }
 
     const RedirectFork = () => {
-      if (schools.length) {
+      if (userSchools.length) {
         log('Fork to render school');
-        return <Redirect to={`/account/schools/${schools[0].code}/programs/${2018}`} />
+        return <Redirect to={`/account/schools/${userSchools[0].code}/programs/${2018}`} />
       } else {
         log('Fork to register school');
         // return null;
@@ -89,12 +90,12 @@ class Account extends React.Component {
             {/*<Route path="/account/index" exact component={Index} />*/}
             <Route path="/account/schools/:code/programs/:year" component={SchoolPrograms} />
             <Route path="/account/programs/:programId" component={Program} />
-            <Route path="/account/create-program" component={SchoolCreateProgram} />
+            <Route path="/account/create-program" component={CreateProgram} />
             <Route path="/account/add-school" component={RegistrationFlow} />
             <RedirectFork />
           </Switch>
         </Container>
-        {isModal ? <Route path="/account/create-program" component={CreateProgramModal} /> : null}
+        {isModal ? <Route path="/account/create-program" render={(props) => <CreateProgramModal {...props} sessionUser={sessionUser} />} /> : null}
       </Layout>
     );
   }

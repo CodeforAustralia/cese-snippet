@@ -33,6 +33,6 @@ const Layout = ({ containerClassName, children, pad = false }) => {
 
     </div>
   );
-}
+};
 
 export default Layout;

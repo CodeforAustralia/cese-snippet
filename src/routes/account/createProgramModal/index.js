@@ -2,9 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { BodyClass } from 'components/elementClass';
 import DocumentOnKeyUp from 'components/documentOnKeyUp';
-import {
-  Button,
-} from 'reactstrap';
+import { Button } from 'reactstrap';
 
 import {
   CreateForm,
@@ -13,7 +11,7 @@ import {
 import style from './style.scss';
 
 
-const CreateProgramModal = ({ history, location }) => {
+const CreateProgramModal = ({ history, location, sessionUser }) => {
 
   const isEdit = location.state && location.state.isEdit || false;
 
@@ -44,7 +42,8 @@ const CreateProgramModal = ({ history, location }) => {
             <p>Tell us about a school program in a nutshell, or be as detailed as you want.</p>
             <p className="mb-4">Contributing to the list of program in your school is the first step in helping create awareness about your programs and initiatives for the school community.</p>
 
-            <Form onSubmitSuccess={() => back()} />
+            <Form sessionUser={sessionUser}
+              onSubmitSuccess={() => back()} />
           </div>
         </div>
       </div>
