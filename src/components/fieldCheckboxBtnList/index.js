@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import {
   FieldArray,
 } from 'formik';
+import cx from 'classnames';
 import {
   Button,
   FormFeedback,
 } from 'reactstrap';
+
+import style from './style.scss';
+
 
 // value = {"stamp":["Helpful","Thank you"]}
 
@@ -15,12 +19,18 @@ const FieldCheckboxBtnList = ({
                                 value,
                                 options,
                                 error = null,
-                                inline = false
+                                inline = false,
+                                spaced = false,
 }) => {
   return (
     <div>
       <FieldArray name={name} render={(arrayHelpers) => (
-        <div className={inline ? 'btn-group' : 'btn-group-vertical'} role="group">
+        <div className={cx(
+          inline ? 'btn-group' : 'btn-group-vertical',
+          inline ?
+            (spaced ? style.inlineSpaced : null) :
+            (spaced ? style.verticalSpaced : null)
+        )} role="group">
           {options.map((o, idx) => {
             const isChecked = typeof value !== 'undefined' ? value.includes(o.value) : false;
             return (

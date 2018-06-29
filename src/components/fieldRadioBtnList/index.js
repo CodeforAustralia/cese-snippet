@@ -3,7 +3,11 @@ import {
   Button,
   FormFeedback,
 } from 'reactstrap';
+import cx from 'classnames';
 import { FieldArray } from 'formik';
+
+import style from './style.scss';
+
 
 const FieldRadioBtnList = ({
                              options,
@@ -11,12 +15,18 @@ const FieldRadioBtnList = ({
                              value,
                              onChange,
                              error = null,
-                             inline = false
+                             inline = false,
+                             spaced = false
 }) => {
   return (
     <div>
       <FieldArray name={name} render={() => (
-        <div className={inline ? 'btn-group' : 'btn-group-vertical'} role="group">
+        <div className={cx(
+          inline ? 'btn-group' : 'btn-group-vertical',
+          inline ?
+            (spaced ? style.inlineSpaced : null) :
+            (spaced ? style.verticalSpaced : null)
+        )} role="group">
           {options.map((o, idx) => {
             const isChecked = o.value === value;
             return (

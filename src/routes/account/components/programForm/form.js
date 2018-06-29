@@ -82,10 +82,13 @@ class ProgramForm extends React.Component {
                              errors={errors}
                              optionsAudienceScope={cmsHelper.getAudienceScope(cmsProps)}
                              optionsYearLevels={cmsHelper.getYearLevelsOptions(cmsProps)}
+                             optionsCohortSize={cmsHelper.getCohortSizeOptions(cmsProps)}
+                             setFieldValue={setFieldValue}
               />
               <Part5Terms index="5" totalIndex="10"
                           values={values}
                           errors={errors}
+                          optionsTerms={cmsHelper.getTermsOptions(cmsProps)}
               />
               <Part6FocusGroup index="6" totalIndex="10"
                                values={values}

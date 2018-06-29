@@ -6,8 +6,8 @@ import {
   FormText,
 } from 'reactstrap';
 import FieldRadioList from 'components/fieldRadioList';
-import FieldCheckboxList from 'components/fieldCheckboxList';
-import FieldNumberInput from 'components/fieldNumberInput';
+import FieldCheckboxBtnList from 'components/fieldCheckboxBtnList';
+import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import IndexedPartLayout from './../../indexedPartLayout';
 
 const Part4Audience = ({
@@ -17,6 +17,8 @@ const Part4Audience = ({
                          errors,
                          optionsAudienceScope,
                          optionsYearLevels,
+                         optionsCohortSize,
+                         setFieldValue,
 }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
@@ -35,7 +37,7 @@ const Part4Audience = ({
         <FormGroup row>
           <Col md={8}>
             <Label>Year Levels</Label>
-            <FieldCheckboxList name="yearLevels"
+            <FieldCheckboxBtnList name="yearLevels"
                                value={values.yearLevels}
                                options={optionsYearLevels}
                                error={errors.yearLevels}
@@ -50,11 +52,13 @@ const Part4Audience = ({
         <FormGroup row>
           <Col md={8}>
             <Label htmlFor="cohortSize">Number of Participants</Label>
-            <FieldNumberInput name="cohortSize"
-                              min={1}
-                              max={3000}
-                              className={errors.cohortSize && 'is-invalid'}
-                              error={errors.cohortSize}
+            <FieldRadioBtnList name="cohortSize"
+                               options={optionsCohortSize}
+                               error={errors.cohortSize}
+                               value={values.cohortSize}
+                               onChange={setFieldValue}
+                               inline={true}
+                               spaced={true}
             />
             <FormText color="muted">
               How many people participated in this program?

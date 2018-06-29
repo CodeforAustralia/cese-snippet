@@ -114,5 +114,18 @@
     { "value": "Whole Year Level", "label": "Whole Year Level" },
     { "value": "Mandatory Selected Groups", "label": "Mandatory Selected Groups" },
     { "value": "Voluntary Participation", "label": "Voluntary Participation" }
+  ],
+  "termsOptions": [
+    { "value": "T1", "label": "T1" },
+    { "value": "T2", "label": "T2" },
+    { "value": "T3", "label": "T3" },
+    { "value": "T4", "label": "T4" }
+  ],
+  "cohortSizeOptions": [
+    { "value": "< 30", "label": "< 30" },
+    { "value": "30 - 100", "label": "30 - 100" },
+    { "value": "101 - 200", "label": "101 - 200" },
+    { "value": "201 - 500", "label": "201 - 500" },
+    { "value": "> 500", "label": "> 500" }
   ]
 }

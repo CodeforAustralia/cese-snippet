@@ -29,15 +29,13 @@ export const getAudienceScope = (cms) => {
   return get(cms, 'audienceScope', []);
 };
 
-export const getTermsOptions = () => {
-  return [
-    { value: 'T1', label: 'T1' },
-    { value: 'T2', label: 'T2' },
-    { value: 'T3', label: 'T3' },
-    { value: 'T4', label: 'T4' },
-  ];
+export const getTermsOptions = (cms) => {
+  return get(cms, 'termsOptions', []);
 };
 
+export const getCohortSizeOptions = (cms) => {
+  return get(cms, 'cohortSizeOptions', []);
+};
 
 
 

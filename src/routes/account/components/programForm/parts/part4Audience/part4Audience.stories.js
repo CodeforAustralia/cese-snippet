@@ -40,6 +40,14 @@ storiesOf('Program Form Part 4 - Audience', module)
                        { value: '5', label: '5' },
                        { value: '6', label: '6' },
                      ]}
+                     optionsCohortSize={[
+                       { "value": "< 30", "label": "< 30" },
+                       { "value": "30 - 100", "label": "30 - 100" },
+                       { "value": "101 - 200", "label": "101 - 200" },
+                       { "value": "201 - 500", "label": "201 - 500" },
+                       { "value": "> 500", "label": "> 500" }
+                     ]}
+                     setFieldValue={formMock.setFieldValue}
       />
     )
   })

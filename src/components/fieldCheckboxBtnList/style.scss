@@ -1,0 +1,18 @@
+.inlineSpaced {
+  button {
+    border-radius: 0.25rem !important;
+    &:not(:last-child) {
+      margin-right: 1em;
+    }
+  }
+}
+
+.verticalSpaced {
+  button {
+    border-radius: 0.25rem !important;
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+}
+

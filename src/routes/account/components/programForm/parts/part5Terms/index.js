@@ -8,16 +8,15 @@ import FieldTextInput from 'components/fieldTextInput';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import IndexedPartLayout from './../../indexedPartLayout';
 import { getYear } from 'helpers/dateFormats';
-import { getTermsOptions } from 'store/cms/helpers';
 
 const Part5Terms = ({
                       index,
                       totalIndex,
                       values,
                       errors,
+                      optionsTerms,
                       year = getYear(),
                     }) => {
-  const optionsTerms = getTermsOptions();
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
