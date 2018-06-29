@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';
 
 const Part6FocusGroup = ({
@@ -27,16 +28,14 @@ const Part6FocusGroup = ({
           <Col md={8}>
             <Label className="mb-1">Participant Focus Group</Label>
             <FormText color="muted" className="mt-0 mb-3">Is the program catering to a specific group?</FormText>
-
-            <FieldRadioBtnList name="focusGroup"
-                               value={values.focusGroup}
-                               options={optionsFocusGroup}
-                               onChange={setFieldValue}
-                               onBlur={setFieldTouched}
-                               error={errors.focusGroup}
-                               spaced={true}
-                               inline={true}
-                               columns={true}
+            <FieldSelect name="focusGroup"
+                         value={values.focusGroup}
+                         options={optionsFocusGroup}
+                         onChange={setFieldValue}
+                         onBlur={setFieldTouched}
+                         error={errors.focusGroup}
+                         placeholder="Select …"
+                         searchable={false}
             />
           </Col>
         </FormGroup>
