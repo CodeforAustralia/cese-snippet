@@ -21,17 +21,21 @@ const FieldNumberInput = ({
   return (
     <div>
       <Field name={name}
-             render={({ field }) => (
-               <Input type="number"
-                      id={name}
-                      disabled={disabled}
-                      hidden={hidden}
-                      min={min}
-                      max={max}
-                      className={`${className} ${error && 'is-invalid'}`}
-                      {...field}
-               />
-             )}
+             render={({ field }) => {
+               const { value, ...restField } = field;
+               return (
+                 <Input type="number"
+                        id={name}
+                        disabled={disabled}
+                        hidden={hidden}
+                        min={min}
+                        max={max}
+                        className={`${className} ${error && 'is-invalid'}`}
+                        value={typeof value === 'undefined' ? '' : value}
+                        {...restField}
+                 />
+               )
+             }}
       />
       {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
     </div>

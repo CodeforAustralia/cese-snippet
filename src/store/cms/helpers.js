@@ -41,6 +41,7 @@ export const getTermsOptions = (year) => {
 
 
 
+
 export const getTermDates = (cms) => {
   return get(cms, 'termDates', []);
 };
@@ -48,11 +49,7 @@ export const getTermDates = (cms) => {
 
 // todo - deprecate below here ------------
 
-export const getStaffOptions = (staticStaffList) => {
-  return staticStaffList.map((staff) => (
-    { value: staff.id, label: staff.email }
-  ));
-};
+
 
 export const getProgramTemplateOptions = (programTemplates) => {
   return programTemplates.map(p => ({ value: p.id, label: p.name }));

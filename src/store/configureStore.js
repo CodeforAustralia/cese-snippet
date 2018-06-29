@@ -1,6 +1,6 @@
 /* global process */
 import { createStore, applyMiddleware, compose } from 'redux';
-import merge from 'merge';
+import merge from 'lodash/merge';
 import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 

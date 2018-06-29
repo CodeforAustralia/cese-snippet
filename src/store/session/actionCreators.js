@@ -22,15 +22,13 @@ export const fetchSession = () => {
       });
     }
 
-    log(`Fetched session user: ${JSON.stringify(win.SNIPPET_SESSION)}`);
-    return setTimeout(() => {
-      dispatch({
-        type: ACTION_TYPES.fetchSuccess,
-        payload: {
-          session: win.SNIPPET_SESSION,
-        }
-      });
-    }, process.env.REACT_APP_DEBUG_API_DELAY)
+    log(`Fetched session: ${JSON.stringify(win.SNIPPET_SESSION)}`);
+    return dispatch({
+      type: ACTION_TYPES.fetchSuccess,
+      payload: {
+        session: win.SNIPPET_SESSION,
+      }
+    });
   };
 };
 

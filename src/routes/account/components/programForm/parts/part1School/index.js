@@ -24,19 +24,18 @@ const Part1School = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-          <Label htmlFor="code">School</Label>
-          <FieldCode name="code"
-            id="code"
-            disabled={isDisabled}
-            options={optionsSchoolCodes}
-            value={values.code}
-            onChange={setFieldValue}
-            onBlur={setFieldTouched}
-            touched={touched.code}
-            error={errors.code}
-            className={errors.code && 'is-invalid'}
-          />
-          {/*{errors.code <FormFeedback>{errors.code}</FormFeedback>}*/}
+            <Label htmlFor="code">School</Label>
+            <FieldCode name="code"
+              id="code"
+              disabled={isDisabled}
+              options={optionsSchoolCodes}
+              value={values.code}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+              touched={touched.code}
+              error={errors.code}
+              className={errors.code && 'is-invalid'}
+            />
           </Col>
         </FormGroup>
       </div>

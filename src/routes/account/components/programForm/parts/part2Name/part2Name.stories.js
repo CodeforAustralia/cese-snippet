@@ -20,10 +20,7 @@ storiesOf('Program Form Part 2 - Name', module)
 
   .add('should render correctly', () => {
     return (
-      <Part1School index="2" totalIndex="10"
-                   values={formMock.values}
-                   errors={formMock.errors}
-      />
+      <Part1School index="2" totalIndex="10" />
     )
   })
 
