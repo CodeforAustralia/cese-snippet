@@ -1,110 +1,134 @@
-import React from 'react'
-import IndexedPartLayout from './../../indexedPartLayout';
+import React from 'react';
+import {
+  FormGroup,
+  Label,
+  Col,
+  FormText,
+} from 'reactstrap';
 
-const Part11Additional = ({ index, totalIndex, }) => {
+import IndexedPartLayout from './../../indexedPartLayout';
+import AdditionalFormGroup from './../../additionalFormGroup';
+import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldSelect from 'components/fieldSelect';
+import FieldTextareaInput from 'components/fieldTextAreaInput';
+import FieldUrlInput from 'components/fieldUrlInput';
+import FieldTextInput from 'components/fieldTextInput';
+import FieldEmailInput from 'components/fieldEmailInput';
+
+
+const Part11Additional = ({
+                            index,
+                            totalIndex,
+                            values,
+                            errors,
+                            touched,
+                            setFieldValue,
+                            setFieldTouched,
+                            optionsSefDomain,
+                            optionsSefElements,
+                          }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
+      <label>Additional Information</label>
       <div>
-        [field]
+        <AdditionalFormGroup title="School Excellence Framework (SEF)">
+          <div>
+            <FormGroup row>
+              <Col md={8}>
+                <Label for="sefDomain">Domain</Label>
+                <FieldRadioBtnList name="sefDomain"
+                                   value={values.sefDomain}
+                                   error={errors.sefDomain}
+                                   touched={touched.sefDomain}
+                                   options={optionsSefDomain}
+                                   onChange={setFieldValue}
+                                   inline={true}
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col>
+                <Label htmlFor="sefElements">Elements</Label>
+                <FieldSelect name="sefElements"
+                             value={values.sefElements}
+                             options={optionsSefElements}
+                             searchable={false}
+                             onChange={setFieldValue}
+                             onBlur={setFieldTouched}
+                             placeholder="Select …"
+                             touched={touched.sefElements}
+                             className={errors.sefElements && 'is-invalid'}
+                />
+              </Col>
+            </FormGroup>
+          </div>
+        </AdditionalFormGroup>
+        <AdditionalFormGroup title="Cost">
+          <div>
+            <FormGroup row>
+              <Col md={8}>
+                <Label htmlFor="costDescription" className="mb-1">Program Overview</Label>
+                <FormText color="muted" className="mt-0 mb-2">
+                  Include details about all related costs such as training, tools, equipments, fees, etc
+                </FormText>
+                <FieldTextareaInput name="costDescription"
+                                    error={errors.costDescription}
+                                    rows={4}
+                />
+              </Col>
+            </FormGroup>
+          </div>
+        </AdditionalFormGroup>
+        <AdditionalFormGroup title="Website and Contact Details">
+          <div>
+            <FormGroup row>
+              <Col md={8}>
+                <Label htmlFor="contactWebsite" className="mb-1">Website</Label>
+                <FieldUrlInput name="contactWebsite" />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col md={8}>
+                <Label htmlFor="contactPerson" className="mb-1">Contact Person</Label>
+                <FieldTextInput name="contactPerson" />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col md={8}>
+                <Label htmlFor="contactNumber" className="mb-1">Contact Number</Label>
+                <FieldTextInput name="contactNumber" />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Col md={8}>
+                <Label htmlFor="contactEmail" className="mb-1">Contact Email</Label>
+                <FieldEmailInput name="contactEmail" />
+              </Col>
+            </FormGroup>
+          </div>
+        </AdditionalFormGroup>
+        <AdditionalFormGroup title="Additional Program Details">
+          <div>
+            <FormGroup row>
+              <Col>
+                <Label htmlFor="additionalDetails" className="mb-1">Additional Program Details</Label>
+                <FormText color="muted" className="mt-0 mb-2">
+                  Include any addutional information about the program
+                </FormText>
+                <FieldTextareaInput name="additionalDetails"
+                                    error={errors.additionalDetails}
+                                    rows={4}
+                />
+              </Col>
+            </FormGroup>
+          </div>
+        </AdditionalFormGroup>
+        <AdditionalFormGroup title="📎 Attach resources or materials" disabled>
+          <div>[field]</div>
+        </AdditionalFormGroup>
       </div>
     </IndexedPartLayout>
   )
 };
 
 export default Part11Additional;
-
-
-
-
-
-{/*<fieldset>*/}
-{/*<FormGroup>*/}
-{/*<Col md={8}>*/}
-{/*<Label htmlFor="participantGroups">Who is the program for?</Label>*/}
-{/*<FieldCheckboxList name="participantGroups"*/}
-{/*value={values.participantGroups}*/}
-{/*options={this.optionsParticipantGroups}*/}
-{/*error={errors.participantGroups}*/}
-{/*/>*/}
-{/*</Col>*/}
-{/*</FormGroup>*/}
-
-{/*{values.participantGroups &&*/}
-{/*values.participantGroups.find(group => group === 'Community') &&*/}
-{/*<FormGroup row>*/}
-{/*<Col md={8}>*/}
-{/*<Label htmlFor="participantGroupsDescription">Who in the community?</Label>*/}
-{/*<FieldTextInput name="participantGroupsDescription"*/}
-{/*error={errors.participantGroupsDescription}*/}
-{/*/>*/}
-{/*<FormText color="muted">*/}
-{/*Example: Partner schools students, charities, aged care residents*/}
-{/*</FormText>*/}
-{/*</Col>*/}
-{/*</FormGroup>*/}
-{/*}*/}
-
-
-
-
-
-
-
-{/*</fieldset>*/}
-
-
-{/*<fieldset className={style.fieldset} id="step-3">*/}
-
-{/*{!values.descriptionFull && showDescriptionFull === false && <p><Button color="link" onClick={() => this.setState({showDescriptionFull: true})} className={`${style.formTextBtn} pl-0`}>Would you like to add more Program information?</Button></p>}*/}
-
-{/*{values.descriptionFull || showDescriptionFull === true ?*/}
-{/*<FormGroup row>*/}
-{/*<Col md={8}>*/}
-{/*<Label htmlFor="descriptionFull">Detailed description</Label>*/}
-{/*<FieldTextareaInput name="descriptionFull"*/}
-{/*rows={6}*/}
-{/*error={errors.descriptionFull}*/}
-{/*/>*/}
-{/*<FormText color="muted">*/}
-{/*A comprehensive full length description of the program. Describe the structure of the program, and how*/}
-{/*it is delivered.*/}
-{/*</FormText>*/}
-{/*</Col>*/}
-{/*</FormGroup> : null}*/}
-
-{/*<FormGroup row>*/}
-{/*<Col md={8}>*/}
-{/*<Label htmlFor="website">Website</Label>*/}
-{/*<FieldUrlInput name="website"*/}
-{/*error={errors.website}*/}
-{/*/>*/}
-{/*<FormText color="muted">*/}
-{/*Some programs have a website for more information.*/}
-{/*</FormText>*/}
-{/*</Col>*/}
-{/*</FormGroup>*/}
-
-{/*</fieldset>*/}
-
-
-{/*<fieldset className={style.fieldset} id="step-4">*/}
-{/*<legend>Other</legend>*/}
-
-{/*<FormGroup row>*/}
-{/*<Col md={8}>*/}
-{/*<Label htmlFor="tags">Keywords</Label>*/}
-{/*<FieldSelectTags name="tags"*/}
-{/*options={this.optionsTags}*/}
-{/*value={values.tags}*/}
-{/*onChange={this.props.setFieldValue}*/}
-{/*onBlur={this.props.setFieldTouched}*/}
-{/*touched={touched.tags}*/}
-{/*error={errors.tags}*/}
-{/*/>*/}
-{/*<FormText color="muted">*/}
-{/*Keywords could help others to search for programs like this one in the future.*/}
-{/*</FormText>*/}
-{/*</Col>*/}
-{/*</FormGroup>*/}
-
-{/*</fieldset>*/}
