@@ -40,7 +40,7 @@ const Part3Focus = ({
             <Label htmlFor="subCategory">Domain Area</Label>
             <FieldSelect name="subCategory"
               clearable={false}
-              options={get(optionsCategories, '[values.category].categories', null)}
+              options={get(optionsCategories, '[values.category].categories', [])}
               disabled={typeof values.domain === 'undefined'}
               value={values.subCategory}
               onChange={setFieldValue}
