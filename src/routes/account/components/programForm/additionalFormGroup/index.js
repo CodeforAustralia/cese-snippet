@@ -21,6 +21,9 @@ class AdditionalFormGroup extends Component {
   }
 
   toggle() {
+    if (this.props.disabled) {
+      return false;
+    }
     this.setState({ collapse: !this.state.collapse });
   }
 
@@ -46,11 +49,11 @@ class AdditionalFormGroup extends Component {
     const activated = status === 'Opening' || status === 'Opened';
     return (
       <div>
-        <Button color="light" block onClick={this.toggle} className={cx(
+        <Button color="light" disabled={this.props.disabled} block onClick={this.toggle} className={cx(
           "mb-3",
           style.button,
           activated ? style.isActive : null,
-        )}>{!activated && <span>+ </span>}{this.props.title} {activated && <span className="float-right">×</span>}</Button>
+        )}>{!activated && <span>+ </span>}{this.props.title} {activated && <span className="float-right">▴</span>}</Button>
         <Collapse isOpen={this.state.collapse}
                   onEntering={this.onEntering}
                   onEntered={this.onEntered}

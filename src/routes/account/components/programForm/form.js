@@ -124,7 +124,9 @@ class ProgramForm extends React.Component {
               <Part11Additional index="optional"
                                 values={values}
                                 errors={errors}
+                                touched={touched}
                                 setFieldValue={setFieldValue}
+                                setFieldTouched={setFieldTouched}
                                 optionsSefDomain={cmsHelper.getSefDomainOptions(cmsProps)}
                                 optionsSefElements={cmsHelper.getSefElementsOptions(cmsProps)}
               />
