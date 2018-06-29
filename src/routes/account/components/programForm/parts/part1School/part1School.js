@@ -8,7 +8,6 @@ import {
 import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';
 import { getSchoolsOptions } from 'store/cms/helpers';
-import FieldTextInput from "components/fieldTextInput/index";
 
 
 class Part1School extends React.Component {

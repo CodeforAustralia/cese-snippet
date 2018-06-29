@@ -37,6 +37,14 @@ export const getCohortSizeOptions = (cms) => {
   return get(cms, 'cohortSizeOptions', []);
 };
 
+export const getSefDomainOptions = (cms) => {
+  return get(cms, 'sefDomainOptions', []);
+};
+
+export const getSefElementsOptions = (cms) => {
+  return get(cms, 'sefElementsOptions', []);
+};
+
 
 
 

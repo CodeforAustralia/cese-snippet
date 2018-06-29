@@ -5,7 +5,6 @@ import {
   Col,
   FormText,
 } from 'reactstrap';
-import FieldRadioList from 'components/fieldRadioList';
 import FieldCheckboxBtnList from 'components/fieldCheckboxBtnList';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import IndexedPartLayout from './../../indexedPartLayout';

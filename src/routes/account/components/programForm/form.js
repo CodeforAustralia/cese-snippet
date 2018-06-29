@@ -28,7 +28,7 @@ import Part7Aim from './parts/part7Aim';
 import Part8Overview from './parts/part8Overview';
 // import Part9Staff from './parts/part9Staff';
 import Part10DeliveredBy from './parts/part10DeliveredBy';
-// import Part11Additional from './parts/part11Additional';
+import Part11Additional from './parts/part11Additional';
 import style from './style.scss';
 
 const log = Bows('Form');
@@ -121,10 +121,13 @@ class ProgramForm extends React.Component {
                                  errors={errors}
                                  optionsDeliveredByType={cmsHelper.getDeliveredByTypeOptions(cmsProps)}
               />
-              {/*<Part11Additional index="optional"*/}
-                                {/*values={values}*/}
-                                {/*errors={errors}*/}
-              {/*/>*/}
+              <Part11Additional index="optional"
+                                values={values}
+                                errors={errors}
+                                setFieldValue={setFieldValue}
+                                optionsSefDomain={cmsHelper.getSefDomainOptions(cmsProps)}
+                                optionsSefElements={cmsHelper.getSefElementsOptions(cmsProps)}
+              />
 
 
               <FauxIndexedPartLayout>
