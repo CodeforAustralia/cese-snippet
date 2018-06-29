@@ -31,7 +31,7 @@ const WithoutSchools = ({ children }) => {
 const ExistingSchools = ({ children, schools }) => {
   return (
     <div>
-      <h1 className="h3 mb-4">Select tour school</h1>
+      <h1 className="h3 mb-4">Select your school</h1>
 
       <p>Please select your school:</p>
 
