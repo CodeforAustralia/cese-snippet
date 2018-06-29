@@ -43,6 +43,7 @@ class GlobalHeaderAuth extends React.Component {
       isAuthenticated,
       handleSignOut,
       session,
+      sessionUser,
     } = this.props;
 
     return (
@@ -61,14 +62,14 @@ class GlobalHeaderAuth extends React.Component {
               <UncontrolledDropdown nav inNavbar>
 
                 <DropdownToggle nav className={`${style.menuLink} ${style.menuLinkAvatar}`}>
-                  <Avatar first={session.first} last={session.last} className={style.avatar} />
+                  <Avatar first={sessionUser.firstName} last={sessionUser.lastName} className={style.avatar} />
                   <span className={style.caret} />
                 </DropdownToggle>
 
                 <DropdownMenu right className={style.dropdownMenu}>
 
                   <DropdownItem header>
-                    <span className={style.menuItemUsername}>{session.first} {session.last}</span>
+                    <span className={style.menuItemUsername}>{sessionUser.firstName} {sessionUser.lastName}</span>
                     <span className={style.menuItemUsernameLabel}>Your Account</span>
                   </DropdownItem>
 

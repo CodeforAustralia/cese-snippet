@@ -35,7 +35,6 @@ const Part10DeliveredBy = ({
                             onChange={setFieldValue}
                             onBlur={setFieldTouched}
                             inline={true}
-                            spaced={true}
             />
           </Col>
         </FormGroup>

@@ -135,7 +135,7 @@ class ProgramForm extends React.Component {
                     }
                     <div className="float-right">
                       <Button color="link" tag={Link} to="account" className="mr-5">Cancel</Button>
-                      <Button type="submit" color="primary"
+                      <Button type="submit" color="primary" size="lg"
                               disabled={isSubmitting}>
                         {isEdit ?
                           isSubmitting ? 'Updating...' : 'Update' :

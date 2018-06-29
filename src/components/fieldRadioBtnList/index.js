@@ -32,7 +32,7 @@ const FieldRadioBtnList = ({
           {options.map((o, idx) => {
             const isChecked = o.value === value;
             return (
-              <Button key={idx} color={isChecked ? 'secondary' : 'light' }
+              <Button key={idx} color={isChecked ? 'pink' : 'light' }
                       className={error && 'is-invalid'}
                       onClick={() => {
                         onChange(name, o.value);

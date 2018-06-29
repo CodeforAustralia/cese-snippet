@@ -36,7 +36,7 @@ const FieldCheckboxBtnList = ({
             return (
               <Button key={idx}
                       type="button"
-                      color={isChecked ? 'dark' : 'light'}
+                      color={isChecked ? 'pink' : 'light'}
                       className={error && 'is-invalid'}
                       onClick={() => {
                         if (isChecked) {
