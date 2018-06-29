@@ -69,10 +69,7 @@ class ProgramForm extends React.Component {
                            {/*setFieldValue={setFieldValue}*/}
                            {/*setFieldTouched={setFieldTouched}*/}
               {/*/>*/}
-              <Part2Name index="2" totalIndex="10"
-                         values={values}
-                         errors={errors}
-              />
+              <Part2Name index="2" totalIndex="10" />
               <Part3Focus index="3" totalIndex="10"
                           values={values}
                           errors={errors}

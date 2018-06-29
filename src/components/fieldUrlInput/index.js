@@ -14,19 +14,27 @@ const FieldUrlInput = ({
                          disabled = false,
                          hidden = false,
                          error = null,
+                         placeholder = null,
+                         autoFocus = false,
 }) => {
   return (
     <div>
       <Field name={name}
-             render={({ field }) => (
-               <Input type="url"
-                      id={name}
-                      disabled={disabled}
-                      hidden={hidden}
-                      className={error && 'is-invalid'}
-                      {...field}
-               />
-             )}
+             render={({ field }) => {
+               const { value, ...restField } = field;
+               return (
+                 <Input type="url"
+                        id={name}
+                        disabled={disabled}
+                        hidden={hidden}
+                        className={error && 'is-invalid'}
+                        placeholder={placeholder}
+                        autoFocus={autoFocus}
+                        value={typeof value === 'undefined' ? '' : value}
+                        {...restField}
+                 />
+               )
+             }}
       />
       {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
     </div>

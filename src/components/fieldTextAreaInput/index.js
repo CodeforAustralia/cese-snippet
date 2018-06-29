@@ -19,16 +19,20 @@ const FieldTextareaInput = ({
   return (
     <div>
       <Field name={name}
-             render={({ field }) => (
-               <Input type="textarea"
-                      id={name}
-                      disabled={disabled}
-                      hidden={hidden}
-                      rows={rows}
-                      className={error && 'is-invalid'}
-                      {...field}
-               />
-             )}
+             render={({ field }) => {
+               const {value, ...restField} = field;
+               return (
+                 <Input type="textarea"
+                        id={name}
+                        disabled={disabled}
+                        hidden={hidden}
+                        rows={rows}
+                        className={error && 'is-invalid'}
+                        value={typeof value === 'undefined' ? '' : value}
+                        {...restField}
+                 />
+               )
+             }}
       />
       {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
     </div>
