@@ -46,7 +46,7 @@ const Part3Focus = ({
               value={values.subCategory}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
-              placeholder="First select a Main Focus"
+              placeholder={typeof values.domain === 'undefined' ? 'Select a Main Focus first' : 'Select …'}
               touched={touched.subCategory}
               error={errors.subCategory}
             />
