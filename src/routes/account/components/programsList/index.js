@@ -37,9 +37,9 @@ const EmptyItem = ({ activeYear }) => {
     <Card className={style.emptyProgram}>
       <CardBody>
         <CardTitle className={style.emptyProgamTitle}>There are no Programs for "{activeYear}"</CardTitle>
-        <CardSubtitle className={style.emptyProgamSubTitle}>If you know details of any Program <br/>it's easy to create one!</CardSubtitle>
+        <CardSubtitle className={style.emptyProgamSubTitle}>If you know details of any program <br/>it's easy to create one!</CardSubtitle>
         <CardText className={cx('font-weight-light text-muted mb-4', style.emptyProgramHelpText)}>
-          Worried that you might be missing information about the Program? Don't worry, any staff member from your school will be able to edit after the Program is added.
+          Worried that you might be missing information about the program? Don't worry, any staff member from your school will be able to edit after the Program is added.
         </CardText>
         <Button color="primary" to={getCreateProgramModalUrl({year: activeYear})} tag={RRLink}>Add a New Program</Button>
       </CardBody>

@@ -29,12 +29,12 @@ export const getAudienceScope = (cms) => {
   return get(cms, 'audienceScope', []);
 };
 
-export const getTermsOptions = (year) => {
+export const getTermsOptions = () => {
   return [
-    { value: `T1 - ${year}`, label: `T1 - ${year}` },
-    { value: `T2 - ${year}`, label: `T2 - ${year}` },
-    { value: `T3 - ${year}`, label: `T3 - ${year}` },
-    { value: `T4 - ${year}`, label: `T4 - ${year}` },
+    { value: 'T1', label: 'T1' },
+    { value: 'T2', label: 'T2' },
+    { value: 'T3', label: 'T3' },
+    { value: 'T4', label: 'T4' },
   ];
 };
 

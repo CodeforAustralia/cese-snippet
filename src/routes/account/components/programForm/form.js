@@ -86,7 +86,6 @@ class ProgramForm extends React.Component {
               <Part5Terms index="5" totalIndex="10"
                           values={values}
                           errors={errors}
-                          optionsTerms={cmsHelper.getTermsOptions(cmsProps)}
               />
               <Part6FocusGroup index="6" totalIndex="10"
                                values={values}

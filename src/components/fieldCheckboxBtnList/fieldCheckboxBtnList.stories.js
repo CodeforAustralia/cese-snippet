@@ -19,7 +19,30 @@ const options = [
 
 storiesOf('Field checkbox button list', module)
 
-  .add('should render correctly', () => {
+  .add('should render correctly - inline', () => {
+    return (
+      <Formik
+        onSubmit={() => action('Submitted')}
+        render={({ values }) => {
+          return (
+            <div>
+              <Form>
+                <FieldStampBtnList name="stamp"
+                                   value={values.stamp}
+                                   options={options}
+                                   inline={true}
+                />
+              </Form>
+              <code>
+                {JSON.stringify(values)}
+              </code>
+            </div>
+          )
+        }} />
+    )
+  })
+
+  .add('should render correctly - vertical', () => {
     return (
       <Formik
         onSubmit={() => action('Submitted')}

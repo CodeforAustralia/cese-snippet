@@ -8,8 +8,6 @@ import Part5Terms from './index';
 const formMock = {
   values: {},
   errors: {},
-  setFieldValue: (v) => action(`setFieldValue: ${v}`),
-  setFieldTouched: (v) => action(`setFieldTouched: ${v}`),
 };
 
 storiesOf('Program Form Part 5 - Terms', module)
@@ -24,7 +22,7 @@ storiesOf('Program Form Part 5 - Terms', module)
                   values={formMock.values}
                   errors={formMock.errors}
                   optionsTerms={[
-                    { value: '1', label: 'T1 - 2018' },
+                    { value: '1', label: 'T1 - ' },
                     { value: '2', label: 'T2 - 2018' },
                     { value: '3', label: 'T3 - 2018' },
                     { value: '4', label: 'T4 - 2018' },

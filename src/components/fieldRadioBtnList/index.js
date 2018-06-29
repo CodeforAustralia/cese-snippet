@@ -10,13 +10,13 @@ const FieldRadioBtnList = ({
                              name,
                              value,
                              onChange,
-                             vertical = null,
                              error = null,
+                             inline = false
 }) => {
   return (
     <div>
       <FieldArray name={name} render={() => (
-        <div className={vertical ? 'btn-group-vertical' : 'btn-group'} role="group">
+        <div className={inline ? 'btn-group' : 'btn-group-vertical'} role="group">
           {options.map((o, idx) => {
             const isChecked = o.value === value;
             return (

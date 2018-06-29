@@ -8,9 +8,6 @@ import {
   FormFeedback,
 } from 'reactstrap';
 
-import style from './style.scss';
-
-
 // value = {"stamp":["Helpful","Thank you"]}
 
 const FieldCheckboxBtnList = ({
@@ -18,38 +15,35 @@ const FieldCheckboxBtnList = ({
                                 value,
                                 options,
                                 error = null,
+                                inline = false
 }) => {
   return (
     <div>
-      <ul className={style.stampBtnList}>
-        <FieldArray
-          name={name}
-          render={arrayHelpers => (
-            options.map((o, idx) => {
-              const isChecked = typeof value !== 'undefined' ? value.includes(o.value) : false;
-              return (
-                <li key={idx}>
-                  <Button type="button"
-                          color={isChecked ? 'dark' : 'light'}
-                          className={`${style.button} ${error && 'is-invalid'}`}
-                          onClick={() => {
-                            if (isChecked) {
-                              const idx = value.indexOf(o.value);
-                              arrayHelpers.remove(idx);
-                            } else {
-                              arrayHelpers.push(o.value);
-                            }
-                          }}
-                  >{o.value}</Button>
-                </li>
-              )
-            }
-          ))}
-        />
-      </ul>
+      <FieldArray name={name} render={(arrayHelpers) => (
+        <div className={inline ? 'btn-group' : 'btn-group-vertical'} role="group">
+          {options.map((o, idx) => {
+            const isChecked = typeof value !== 'undefined' ? value.includes(o.value) : false;
+            return (
+              <Button key={idx}
+                      type="button"
+                      color={isChecked ? 'dark' : 'light'}
+                      className={error && 'is-invalid'}
+                      onClick={() => {
+                        if (isChecked) {
+                          const idx = value.indexOf(o.value);
+                          arrayHelpers.remove(idx);
+                        } else {
+                          arrayHelpers.push(o.value);
+                        }
+                      }}
+              >{o.value}</Button>
+            )
+          })}
+        </div>
+      )} />
       {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
     </div>
-  )
+  );
 };
 
 FieldCheckboxBtnList.propTypes = {

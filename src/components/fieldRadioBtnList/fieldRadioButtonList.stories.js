@@ -18,6 +18,53 @@ const options = [
 
 storiesOf('Field radio button list', module)
 
+  .add('should render correctly - inline', () => {
+    return (
+      <Formik
+        onSubmit={() => action('Submitted')}
+        render={({values, setFieldValue, setFieldTouched}) => {
+          return (
+            <Form>
+              <FieldRadioButtonList name="prop1"
+                                    value={values.prop1}
+                                    options={options}
+                                    onChange={setFieldValue}
+                                    onBlur={setFieldTouched}
+                                    inline={true}
+              />
+
+              <code>
+                Form state: {JSON.stringify(values)}
+              </code>
+            </Form>
+          )
+        }} />
+    )
+  })
+
+  .add('should render correctly - vertical', () => {
+    return (
+      <Formik
+        onSubmit={() => action('Submitted')}
+        render={({values, setFieldValue, setFieldTouched}) => {
+          return (
+            <Form>
+              <FieldRadioButtonList name="prop1"
+                                    value={values.prop1}
+                                    options={options}
+                                    onChange={setFieldValue}
+                                    onBlur={setFieldTouched}
+              />
+
+              <code>
+                Form state: {JSON.stringify(values)}
+              </code>
+            </Form>
+          )
+        }} />
+    )
+  })
+
   .add('should select a single value', () => {
     return (
       <Formik

@@ -5,23 +5,26 @@ import {
   Col,
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
-import FieldCheckboxList from 'components/fieldCheckboxList';
+import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import IndexedPartLayout from './../../indexedPartLayout';
+import { getYear } from 'helpers/dateFormats';
+import { getTermsOptions } from 'store/cms/helpers';
 
 const Part5Terms = ({
                       index,
                       totalIndex,
                       values,
                       errors,
-                      optionsTerms,
+                      year = getYear(),
                     }) => {
+  const optionsTerms = getTermsOptions();
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="terms">Terms Delivered</Label>
-            <FieldCheckboxList name="terms"
+            <Label htmlFor="terms">Terms Delivered in {year}</Label>
+            <FieldRadioBtnList name="terms"
                                value={values.terms}
                                options={optionsTerms}
                                error={errors.terms}
@@ -32,7 +35,7 @@ const Part5Terms = ({
 
         <FormGroup hidden>
           <Label htmlFor="year">Year delivered</Label>
-          <FieldTextInput name="year" />
+          <FieldTextInput name="year" value={year} disabled={true} hidden />
         </FormGroup>
       </div>
     </IndexedPartLayout>
