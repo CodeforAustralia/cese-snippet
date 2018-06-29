@@ -6,7 +6,7 @@ import {
   FormText,
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
-import FieldCheckboxList from 'components/fieldCheckboxList';
+import FieldCheckboxBtnList from 'components/fieldCheckboxBtnList';
 import IndexedPartLayout from './../../indexedPartLayout';
 import { getIsDeliveredByExternal } from 'store/cms/helpers';
 
@@ -28,13 +28,14 @@ const Part10DeliveredBy = ({
             <FormText color="muted" className="mt-0 mb-3">
               Is the program run by school staff or another provider?
             </FormText>
-            <FieldCheckboxList name="deliveredByType"
+            <FieldCheckboxBtnList name="deliveredByType"
                             value={values.deliveredByType}
                             error={errors.deliveredByType}
                             options={optionsDeliveredByType}
                             onChange={setFieldValue}
                             onBlur={setFieldTouched}
                             inline={true}
+                            spaced={true}
             />
           </Col>
         </FormGroup>

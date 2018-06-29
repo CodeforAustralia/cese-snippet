@@ -9,6 +9,7 @@
 
 .verticalSpaced {
   button {
+    min-width: 120px;
     border-radius: 0.25rem !important;
     &:not(:last-child) {
       margin-bottom: 1em;

@@ -16,7 +16,8 @@ const FieldRadioBtnList = ({
                              onChange,
                              error = null,
                              inline = false,
-                             spaced = false
+                             spaced = false,
+                             columns = false,
 }) => {
   return (
     <div>
@@ -25,7 +26,8 @@ const FieldRadioBtnList = ({
           inline ? 'btn-group' : 'btn-group-vertical',
           inline ?
             (spaced ? style.inlineSpaced : null) :
-            (spaced ? style.verticalSpaced : null)
+            (spaced ? style.verticalSpaced : null),
+          columns ? style.columns : null,
         )} role="group">
           {options.map((o, idx) => {
             const isChecked = o.value === value;
