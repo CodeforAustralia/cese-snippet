@@ -50,11 +50,6 @@ export const getTermDates = (cms) => {
 // todo - deprecate below here ------------
 
 
-export const getStaffOptions = (cms) => {
-  return staticStaffList.map((staff) => (
-    { value: staff.id, label: staff.email }
-  ));
-};
 
 export const getProgramTemplateOptions = (programTemplates) => {
   return programTemplates.map(p => ({ value: p.id, label: p.name }));

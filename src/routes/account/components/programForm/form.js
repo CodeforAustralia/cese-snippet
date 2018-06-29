@@ -18,7 +18,7 @@ import { FauxIndexedPartLayout } from './indexedPartLayout';
 import { isRequired } from 'helpers/validators';
 
 import Part0Meta from './parts/part0Meta';
-// import Part1School from './parts/part1School';
+import Part1School from './parts/part1School';
 import Part2Name from './parts/part2Name';
 import Part3Focus from './parts/part3Focus';
 import Part4Audience from './parts/part4Audience';
@@ -64,7 +64,6 @@ class ProgramForm extends React.Component {
                            {/*values={values}*/}
                            {/*errors={errors}*/}
                            {/*touched={touched}*/}
-                           {/*optionsSchoolCodes={this.optionsSchoolCodes}*/}
                            {/*isDisabled={isEdit}*/}
                            {/*setFieldValue={setFieldValue}*/}
                            {/*setFieldTouched={setFieldTouched}*/}
