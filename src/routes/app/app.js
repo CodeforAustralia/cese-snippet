@@ -15,9 +15,11 @@ import Account from 'routes/account';
 
 class App extends React.Component {
   componentDidMount() {
-    this.fetchInitialData();
+    if (!this.session || !this.sessionUser) {
+      this.fetchSessionData();
+    }
   }
-  fetchInitialData() {
+  fetchSessionData() {
     this.props.fetchSession();
     this.props.fetchSessionUser();
   }

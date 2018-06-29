@@ -21,8 +21,8 @@ const withAuth = Composed => {
   };
 
   Component.contextTypes = {
-    session: PropTypes.object.isRequired,
-    sessionUser: PropTypes.object.isRequired,
+    session: PropTypes.object,
+    sessionUser: PropTypes.object,
     isAuthenticated: PropTypes.bool.isRequired,
     authenticate: PropTypes.func.isRequired,
     signout: PropTypes.func.isRequired,
