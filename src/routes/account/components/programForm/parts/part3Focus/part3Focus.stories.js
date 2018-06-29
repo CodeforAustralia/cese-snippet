@@ -6,8 +6,12 @@ import { Formik } from 'formik';
 import Part3Focus from './index';
 
 const formMock = {
-  values: {},
+  values: {
+    category: null,
+    subCategory: null,
+  },
   errors: {},
+  touched: {},
   setFieldValue: (v) => action(`setFieldValue: ${v}`),
   setFieldTouched: (v) => action(`setFieldTouched: ${v}`),
 };
@@ -23,6 +27,7 @@ storiesOf('Program Form Part 3 - Focus', module)
       <Part3Focus index="3" totalIndex="10"
                   values={formMock.values}
                   errors={formMock.errors}
+                  touched={formMock.touched}
                   setFieldValue={formMock.setFieldValue}
                   setFieldTouched={formMock.setFieldTouched}
                   optionsCategories={[

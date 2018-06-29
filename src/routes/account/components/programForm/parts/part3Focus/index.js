@@ -5,7 +5,7 @@ import {
   Col,
 } from 'reactstrap';
 import get from 'lodash/get';
-import FieldRadioList from 'components/fieldRadioList';
+import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';
 
@@ -25,13 +25,14 @@ const Part3Focus = ({
         <FormGroup row>
           <Col md={8}>
             <Label htmlFor="category">Main Focus</Label>
-            <FieldRadioList name="category"
+            <FieldRadioBtnList name="category"
               value={values.category}
               options={optionsCategories}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
               error={errors.category}
-              />
+              spaced={true}
+            />
         </Col>
         </FormGroup>
 

@@ -22,10 +22,10 @@ storiesOf('Program Form Part 5 - Terms', module)
                   values={formMock.values}
                   errors={formMock.errors}
                   optionsTerms={[
-                    { value: '1', label: 'T1 - ' },
-                    { value: '2', label: 'T2 - 2018' },
-                    { value: '3', label: 'T3 - 2018' },
-                    { value: '4', label: 'T4 - 2018' },
+                    { value: 'T1', label: 'T1' },
+                    { value: 'T2', label: 'T2' },
+                    { value: 'T3', label: 'T3' },
+                    { value: 'T4', label: 'T4' },
                   ]}
       />
     )
