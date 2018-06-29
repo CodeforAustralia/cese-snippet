@@ -24,7 +24,10 @@ const Part10DeliveredBy = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label>Program is delivered by</Label>
+            <Label  className="mb-1">Program is delivered by</Label>
+            <FormText color="muted" className="mt-0 mb-3">
+              Is the program run by school staff or another provider?
+            </FormText>
             <FieldCheckboxList name="deliveredByType"
                             value={values.deliveredByType}
                             error={errors.deliveredByType}
@@ -33,9 +36,6 @@ const Part10DeliveredBy = ({
                             onBlur={setFieldTouched}
                             inline={true}
             />
-            <FormText color="muted">
-              Is the program run by school staff or another provider?
-            </FormText>
           </Col>
         </FormGroup>
 

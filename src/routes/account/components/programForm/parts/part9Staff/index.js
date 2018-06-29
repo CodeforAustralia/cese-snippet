@@ -23,7 +23,10 @@ const Part9Staff = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="staff">Staff Involved</Label>
+            <Label htmlFor="staff" className="mb-1">Staff Involved</Label>
+            <FormText color="muted" className="mt-0 mb-3">
+              Who are the staff members involved in organising or facilitating the program?
+            </FormText>
             <FieldSelectTags name="staff"
                              options={optionsStaff}
                              value={values.staff}
@@ -32,9 +35,6 @@ const Part9Staff = ({
                              touched={touched.staff}
                              error={errors.staff}
             />
-            <FormText color="muted">
-              Who are the staff members involved in organising or facilitating the program?
-            </FormText>
           </Col>
         </FormGroup>
       </div>

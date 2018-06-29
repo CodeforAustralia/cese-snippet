@@ -19,14 +19,14 @@ const Part7Aim = ({
       <div>
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="aims">Aim</Label>
+            <Label htmlFor="aims" className="mb-1">Aim</Label>
+            <FormText color="muted" className="mt-0 mb-3">
+              What does the program hopes to achieve?
+            </FormText>
             <FieldTextareaInput name="aims"
                                 error={errors.aims}
                                 rows={6}
             />
-            <FormText color="muted">
-              What does the program hopes to achieve?
-            </FormText>
           </Col>
         </FormGroup>
       </div>

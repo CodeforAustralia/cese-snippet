@@ -26,32 +26,36 @@ const Part4Audience = ({
         <FormGroup row>
           <Col md={8}>
             <Label for="audienceScope">Audience Scope</Label>
-            <FieldRadioList name="audienceScope"
-                            value={values.audienceScope}
-                            error={errors.audienceScope}
-                            options={optionsAudienceScope}
+            <FieldRadioBtnList name="audienceScope"
+                               value={values.audienceScope}
+                               error={errors.audienceScope}
+                               options={optionsAudienceScope}
+                               spaced={true}
             />
           </Col>
         </FormGroup>
 
         <FormGroup row>
           <Col md={8}>
-            <Label>Year Levels</Label>
+            <Label className="mb-1">Year Levels</Label>
+            <FormText color="muted" className="mt-0 mb-3">
+              Which year levels are participating in this program?
+            </FormText>
             <FieldCheckboxBtnList name="yearLevels"
                                value={values.yearLevels}
                                options={optionsYearLevels}
                                error={errors.yearLevels}
                                inline={true}
             />
-            <FormText color="muted">
-              Which year levels are participating in this program?
-            </FormText>
           </Col>
         </FormGroup>
 
         <FormGroup row>
           <Col md={8}>
-            <Label htmlFor="cohortSize">Number of Participants</Label>
+            <Label htmlFor="cohortSize" className="mb-1">Number of Participants</Label>
+            <FormText color="muted" className="mt-0 mb-3">
+              How many people participated in this program?
+            </FormText>
             <FieldRadioBtnList name="cohortSize"
                                options={optionsCohortSize}
                                error={errors.cohortSize}
@@ -60,9 +64,6 @@ const Part4Audience = ({
                                inline={true}
                                spaced={true}
             />
-            <FormText color="muted">
-              How many people participated in this program?
-            </FormText>
           </Col>
         </FormGroup>
       </div>

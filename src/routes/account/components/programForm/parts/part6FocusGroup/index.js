@@ -25,7 +25,9 @@ const Part6FocusGroup = ({
                    className={values.focusGroup === 'Other' ? 'mb-1' : ''}
         >
           <Col md={8}>
-            <Label>Participant Focus Group</Label>
+            <Label className="mb-1">Participant Focus Group</Label>
+            <FormText color="muted" className="mt-0 mb-3">Is the program catering to a specific group?</FormText>
+
             <FieldRadioList name="focusGroup"
                             value={values.focusGroup}
                             options={optionsFocusGroup}
@@ -33,7 +35,6 @@ const Part6FocusGroup = ({
                             onBlur={setFieldTouched}
                             error={errors.focusGroup}
             />
-            <FormText color="muted">Is the program catering to a specific group?</FormText>
           </Col>
         </FormGroup>
 
