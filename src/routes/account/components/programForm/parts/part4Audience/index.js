@@ -30,7 +30,7 @@ const Part4Audience = ({
                                value={values.audienceScope}
                                error={errors.audienceScope}
                                options={optionsAudienceScope}
-                               spaced={true}
+                               onChange={setFieldValue}
             />
           </Col>
         </FormGroup>
@@ -39,7 +39,7 @@ const Part4Audience = ({
           <FormGroup row>
             <Col md={8}>
               <Label className="mb-1">Year Levels</Label>
-              <FormText color="muted" className="mt-0 mb-3">
+              <FormText color="muted" className="mt-0 mb-2">
                 Which year levels are participating in this program?
               </FormText>
               <FieldCheckboxBtnList name="yearLevels"
@@ -56,7 +56,7 @@ const Part4Audience = ({
           <FormGroup row>
             <Col md={8}>
               <Label htmlFor="cohortSize" className="mb-1">Number of Participants</Label>
-              <FormText color="muted" className="mt-0 mb-3">
+              <FormText color="muted" className="mt-0 mb-2">
                 How many people participated in this program?
               </FormText>
               <FieldRadioBtnList name="cohortSize"

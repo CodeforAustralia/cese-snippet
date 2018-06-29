@@ -37,7 +37,7 @@ class FieldSelect extends React.Component {
   render() {
     const { options, value,
       // invalid = {}, touched = {},
-      name, disabled = false, clearable = true, placeholder = null, searchable = null,
+      name, disabled = false, clearable = true, placeholder = null, searchable = null, arrowRenderer,
       autoFocus = false,
       error = null,
     } = this.props;
@@ -57,6 +57,7 @@ class FieldSelect extends React.Component {
           value={value}
           autoFocus={autoFocus}
           className={error && 'is-invalid'}
+          arrowRenderer={arrowRenderer}
         />
         {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
       </div>

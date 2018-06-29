@@ -9,6 +9,15 @@ import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';
 
+
+const getSubCategories = (options, category) => {
+  if (!category) {
+    return [];
+  }
+  const selectedCategory = options.find(o => o.value === category);
+  return selectedCategory.categories || [];
+};
+
 const Part3Focus = ({
                       index,
                       totalIndex,
@@ -19,6 +28,9 @@ const Part3Focus = ({
                       setFieldTouched,
                       optionsCategories,
                     }) => {
+
+  // todo - clear subCategory if category changes
+
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <div>
@@ -31,7 +43,6 @@ const Part3Focus = ({
               onChange={setFieldValue}
               onBlur={setFieldTouched}
               error={errors.category}
-              spaced={true}
             />
         </Col>
         </FormGroup>
@@ -41,12 +52,12 @@ const Part3Focus = ({
             <Label htmlFor="subCategory">Domain Area</Label>
             <FieldSelect name="subCategory"
               clearable={false}
-              options={get(optionsCategories, '[values.category].categories', [])}
-              disabled={typeof values.domain === 'undefined'}
+              options={getSubCategories(optionsCategories, values.category)}
+              disabled={typeof values.category === 'undefined'}
               value={values.subCategory}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
-              placeholder={typeof values.domain === 'undefined' ? 'Select a Main Focus first' : 'Select …'}
+              placeholder={typeof values.category === 'undefined' ? 'Select a Main Focus first' : 'Select …'}
               touched={touched.subCategory}
               error={errors.subCategory}
             />

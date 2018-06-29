@@ -20,7 +20,7 @@ const Part7Aim = ({
         <FormGroup row>
           <Col md={8}>
             <Label htmlFor="aims" className="mb-1">Aim</Label>
-            <FormText color="muted" className="mt-0 mb-3">
+            <FormText color="muted" className="mt-0 mb-2">
               What does the program hopes to achieve?
             </FormText>
             <FieldTextareaInput name="aims"

@@ -47,6 +47,7 @@ class ProgramForm extends React.Component {
 
       isEdit,
       cmsProps,
+      sessionUser,
     } = this.props;
 
     log('values:', values);
@@ -60,14 +61,15 @@ class ProgramForm extends React.Component {
 
               <Part0Meta isEdit={isEdit} />
 
-              {/*<Part1School index="1" totalIndex="10"*/}
-                           {/*values={values}*/}
-                           {/*errors={errors}*/}
-                           {/*touched={touched}*/}
-                           {/*isDisabled={isEdit}*/}
-                           {/*setFieldValue={setFieldValue}*/}
-                           {/*setFieldTouched={setFieldTouched}*/}
-              {/*/>*/}
+              <Part1School index="1" totalIndex="10"
+                           values={values}
+                           errors={errors}
+                           touched={touched}
+                           isDisabled={isEdit}
+                           setFieldValue={setFieldValue}
+                           setFieldTouched={setFieldTouched}
+                           sessionUser={sessionUser}
+              />
               <Part2Name index="2" totalIndex="10" />
               <Part3Focus index="3" totalIndex="10"
                           values={values}
@@ -89,6 +91,7 @@ class ProgramForm extends React.Component {
                           values={values}
                           errors={errors}
                           optionsTerms={cmsHelper.getTermsOptions(cmsProps)}
+                          setFieldValue={setFieldValue}
               />
               <Part6FocusGroup index="6" totalIndex="10"
                                values={values}
@@ -116,7 +119,7 @@ class ProgramForm extends React.Component {
               <Part10DeliveredBy index="10" totalIndex="10"
                                  values={values}
                                  errors={errors}
-                                 optionsDeliveredByType={cmsHelper.getDeliveredByTypeOptions(cmsHelper)}
+                                 optionsDeliveredByType={cmsHelper.getDeliveredByTypeOptions(cmsProps)}
               />
               {/*<Part11Additional index="optional"*/}
                                 {/*values={values}*/}

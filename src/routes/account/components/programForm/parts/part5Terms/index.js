@@ -15,6 +15,7 @@ const Part5Terms = ({
                       values,
                       errors,
                       optionsTerms,
+                      setFieldValue,
                       year = getYear(),
                     }) => {
   return (
@@ -28,6 +29,7 @@ const Part5Terms = ({
                                options={optionsTerms}
                                error={errors.terms}
                                inline={true}
+                               onChange={setFieldValue}
             />
           </Col>
         </FormGroup>

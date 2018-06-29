@@ -20,7 +20,7 @@ const Part8Overview = ({
         <FormGroup row>
           <Col md={8}>
             <Label htmlFor="description" className="mb-1">Program Overview</Label>
-            <FormText color="muted" className="mt-0 mb-3">
+            <FormText color="muted" className="mt-0 mb-2">
               Describe the program in a nutshell?
             </FormText>
             <FieldTextareaInput name="description"

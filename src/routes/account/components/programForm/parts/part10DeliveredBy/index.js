@@ -25,7 +25,7 @@ const Part10DeliveredBy = ({
         <FormGroup row>
           <Col md={8}>
             <Label  className="mb-1">Program is delivered by</Label>
-            <FormText color="muted" className="mt-0 mb-3">
+            <FormText color="muted" className="mt-0 mb-2">
               Is the program run by school staff or another provider?
             </FormText>
             <FieldCheckboxBtnList name="deliveredByType"
