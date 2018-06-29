@@ -34,11 +34,10 @@ const FieldCode = ({ options, disabled, name, value, onChange, onBlur, touched, 
                    onChange={onChange}
                    onBlur={onBlur}
                    touched={touched}
-                   invalid={errors} />
+                   invalid={error} />
       {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
     </div>
   );
 };
-
 
 export default FieldCode;

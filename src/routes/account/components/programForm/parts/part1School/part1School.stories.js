@@ -29,11 +29,6 @@ storiesOf('Program Form Part 1 - School', module)
                    values={formMock.values}
                    errors={formMock.errors}
                    touched={formMock.touched}
-                   optionsSchoolCodes={[
-                     { value: '1212', label: 'First School' },
-                     { value: '1214', label: 'Second School' },
-                     { value: '1216', label: 'Third School' },
-                   ]}
                    setFieldValue={formMock.setFieldValue}
                    setFieldTouched={formMock.setFieldTouched}
       />
