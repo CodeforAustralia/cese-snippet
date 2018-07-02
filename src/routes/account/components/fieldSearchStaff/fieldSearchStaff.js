@@ -11,29 +11,38 @@ const log = Bows('Field - search staff');
 class FieldSearchStaff extends React.Component {
   constructor(props) {
     super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.state = {
       search: '',
     };
   }
-  handleChange(option) {
-    debugger
+
+  handleInputChange(query) {
     if (this.props.disabled) {
       return;
     }
-    debugger
+
+    log(`Fetching query: ${JSON.stringify(query)}`);
+
+    if (query) {
+      this.props.fetchStaffBySearch('email', query);
+      this.setState({search: query});
+    }
+
+  }
+
+  handleChange(option) {
+    if (this.props.disabled) {
+      return;
+    }
 
     const value = option ? option.value : null;
 
     log(`Selected. Update value: ${JSON.stringify(value)}`);
 
-    if (value) {
-      this.props.fetchStaffBySearch('email', value);
-      this.setState({search: value});
-    }
-
-    // manually update values.category
+    // manually update values[prop]
     this.props.onChange(this.props.name, value);
   }
 
@@ -42,7 +51,7 @@ class FieldSearchStaff extends React.Component {
       return;
     }
     log(`Update touched: true`);
-    // manually update touched.category
+    // manually update touched[prop]
     this.props.onBlur(this.props.name, true);
   }
 
@@ -55,6 +64,7 @@ class FieldSearchStaff extends React.Component {
       disabled = false,
       autoFocus = false,
 
+      isFetchingStaff,
       getStaffBySearch,
       getOptionsStaff,
     } = this.props;
@@ -69,6 +79,7 @@ class FieldSearchStaff extends React.Component {
                 options={optionsStaff}
                 value={value}
                 touched={touched}
+                onInputChange={this.handleInputChange}
                 onChange={this.handleChange}
                 onBlur={this.handleBlur}
                 searchable={true}
@@ -76,6 +87,7 @@ class FieldSearchStaff extends React.Component {
                 autoFocus={autoFocus}
                 className={error && 'is-invalid'}
                 placeholder="Search …"
+               isLoading={isFetchingStaff}
         />
         {error && <FormFeedback style={{display:'block'}}>{error}</FormFeedback>}
       </div>

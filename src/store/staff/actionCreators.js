@@ -41,6 +41,9 @@ export const fetchSessionUser = () => {
  * @example fetchStaffBySearch('email', 's')
  */
 export const fetchStaffBySearch = (prop, query) => {
+  // todo
+  // return fetchFromApi(`/staff?email&search=${query},
+
   return fetchFromApi(`/staff?${prop}=${query}`);
 };
 
