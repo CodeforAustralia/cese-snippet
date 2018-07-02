@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { filterStaffBySearch } from './helpers';
 
 export const selectIsFetching = (state) => {
   return get(state, 'staff.isFetching', null);
@@ -23,3 +24,9 @@ export const selectStaff = (state, ids = null) => {
     return staff !== null;
   });
 };
+
+export const selectStaffBySearch = (state, prop, query) => {
+  const staff = selectStaff(state);
+  return filterStaffBySearch(staff, prop, query);
+};
+

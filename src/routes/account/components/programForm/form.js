@@ -26,7 +26,7 @@ import Part5Terms from './parts/part5Terms';
 import Part6FocusGroup from './parts/part6FocusGroup';
 import Part7Aim from './parts/part7Aim';
 import Part8Overview from './parts/part8Overview';
-// import Part9Staff from './parts/part9Staff';
+import Part9Staff from './parts/part9Staff';
 import Part10DeliveredBy from './parts/part10DeliveredBy';
 import Part11Additional from './parts/part11Additional';
 import style from './style.scss';
@@ -108,14 +108,13 @@ class ProgramForm extends React.Component {
                              values={values}
                              errors={errors}
               />
-              {/*<Part9Staff index="9" totalIndex="10"*/}
-                          {/*values={values}*/}
-                          {/*errors={errors}*/}
-                          {/*touched={touched}*/}
-                          {/*setFieldValue={setFieldValue}*/}
-                          {/*setFieldTouched={setFieldTouched}*/}
-                          {/*optionsStaff={this.optionsStaff}*/}
-              {/*/>*/}
+              <Part9Staff index="9" totalIndex="10"
+                          values={values}
+                          errors={errors}
+                          touched={touched}
+                          setFieldValue={setFieldValue}
+                          setFieldTouched={setFieldTouched}
+              />
               <Part10DeliveredBy index="10" totalIndex="10"
                                  values={values}
                                  errors={errors}

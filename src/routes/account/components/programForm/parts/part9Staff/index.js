@@ -5,7 +5,7 @@ import {
   Col,
   FormText,
 } from 'reactstrap';
-import FieldSelectTags from 'components/fieldSelectTags';
+import FieldSearchStaff from './../../../fieldSearchStaff';
 import IndexedPartLayout from './../../indexedPartLayout';
 
 const Part9Staff = ({
@@ -16,7 +16,6 @@ const Part9Staff = ({
                       touched,
                       setFieldValue,
                       setFieldTouched,
-                      optionsStaff,
                     }) => {
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
@@ -27,8 +26,7 @@ const Part9Staff = ({
             <FormText color="muted" className="mt-0 mb-2">
               Who are the staff members involved in organising or facilitating the program?
             </FormText>
-            <FieldSelectTags name="staff"
-                             options={optionsStaff}
+            <FieldSearchStaff name="staff"
                              value={values.staff}
                              onChange={setFieldValue}
                              onBlur={setFieldTouched}

@@ -42,7 +42,7 @@ class GlobalHeaderAuth extends React.Component {
     const {
       isAuthenticated,
       handleSignOut,
-      session,
+      // session,
       sessionUser,
     } = this.props;
 

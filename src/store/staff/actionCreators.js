@@ -33,7 +33,16 @@ export const fetchSessionUser = () => {
   };
 };
 
-
+/**
+ * Fetch staff by search
+ * @param prop {String}
+ * @param query {String}
+ * @returns {function(*, *, *)}
+ * @example fetchStaffBySearch('email', 's')
+ */
+export const fetchStaffBySearch = (prop, query) => {
+  return fetchFromApi(`/staff?${prop}=${query}`);
+};
 
 
 
