@@ -1,0 +1,179 @@
+1. Web server - Marketing page
+    - host a static index.html, css, js
+
+2. Web server - Snippet web app
+    - server rendered login route
+      - contain:
+          <div id="root"></div>
+          <script>
+            window.SNIPPET_SESSION = {
+              "id": "1",
+              "staffId": "grace.chang",
+              "nonGovUser": false,
+              "preferences": "{}",
+              "creationDate": "2018-06-21",
+              "lastLogin": "2018-06-21",
+              "userMessage": null,
+              "enabled": true,
+              "accountNonExpired": true,
+              "credentialsNonExpired": true,
+              "accountNonLocked": true,
+            };
+            window.SNIPPET_SESSION_USER = {
+              "id": "1",
+              "teacherId": "grace.chang",
+              "email": "grace.chang@test.det.nsw.edu.au",
+              "firstName": "Grace",
+              "lastName": "Chang",
+              "schools": [
+                "4548"
+              ],
+            };
+          </script>
+
+    - server rendered index route
+      - contain:
+            <div id="root"></div>
+            <script>
+              window.SNIPPET_SESSION = {
+                "id": "1",
+                "staffId": "grace.chang",
+                "nonGovUser": false,
+                "preferences": "{}",
+                "creationDate": "2018-06-21",
+                "lastLogin": "2018-06-21",
+                "userMessage": null,
+                "enabled": true,
+                "accountNonExpired": true,
+                "credentialsNonExpired": true,
+                "accountNonLocked": true,
+              };
+              window.SNIPPET_SESSION_USER = {
+                "id": "1",
+                "teacherId": "grace.chang",
+                "email": "grace.chang@test.det.nsw.edu.au",
+                "firstName": "Grace",
+                "lastName": "Chang",
+                "schools": [
+                  "4548"
+                ],
+              };
+            </script>
+
+    - server rendered logged out route
+        - contain:
+                <div id="root"></div>
+
+3. Authentication
+    - log in using Cookies provided by web server
+    - cookie should contain
+
+4. API REST endpoint - Programs
+
+    /api/v1/programs
+    /api/v1/programs?id=1
+    /api/v1/programs?id=1&&id=2
+    /api/v1/programs?code=7634872634&year=2018
+
+    /api/v1/programs?limit=10
+
+    - ability to **search** and filter
+    - **flat** resource matching
+
+    {
+        "id": "1",
+        "schoolCode": "4548",
+        "category": "Curriculum Engagement",
+        "subCategory": "Literacy",
+        "aims": "L3 is a whole-class intervention that aims to reduce the\nrisk of students not achieving expected literacy levels by\nthe end of their first year of schooling.",
+        "description": "L3 is a research-based Kindergarten classroom\nintervention, targeting text reading and writing. It provides\nrich literacy experiences through systematic and explicit\nteaching. It complements the daily literacy program.\nStudents participate in reading and writing lessons in small\ngroups, designed to meet their specific learning needs.\nThey also engage in short periods of independent,\nindividual or group tasks to practice and consolidate their\ncurrent literacy learning. This occurs in the classroom\nwithin the daily literacy session.",
+        "descriptionFull": null,
+        "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
+        "participantGroups": [
+          "Students"
+        ],
+        "participantGroupsDescription": null,
+        "focusGroup": null,
+        "focusGroupOther": null,
+        "yearLevels": [
+          "K",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "cohortSize": 20,
+        "deliveredByType": "School Staff",
+        "externalProvider": null,
+        "staff": [
+          "1"
+        ],
+        "year": 2018,
+        "terms": [
+          1
+        ],
+        "tags": [
+          "reading",
+          "writing",
+          "vocabulary"
+        ],
+        "createdAt": "2018-02-04",
+        "createdBy": "1",
+        "updatedBy": "1",
+        "updatedAt": "2018-02-04",
+        "name": "Language, Learning and Literacy (L3)"
+      }
+
+5. API REST endpoint - Staff
+
+      /api/v1/staff
+      /api/v1/staff?id=1
+      /api/v1/staff?id=1&id=2
+      /api/v1/staff?email=euni&query=true   // or alike
+
+      {
+        "id": "1",
+        "teacherId": "grace.chang",
+        "email": "grace.chang@test.det.nsw.edu.au",
+        "firstName": "Grace",
+        "lastName": "Chang",
+        "schools": [
+          "4548"
+        ]
+      }
+
+6. API REST endpoint - Schools
+
+    /api/v1/schools?id=23786
+
+      {
+        "code": "4548",
+        "name": "Copacabana Public School",
+        "yearLevels": [
+          "K",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "avatar": "http://via.placeholder.com/70x70?text=Copacabana"
+      }
+
+7. API static endpoint - Cms data
+    serve this file https://github.com/CodeforAustralia/cese-snippet/blob/master/mock-server/cms-data.json
+
+8. Service - Attachments
+    - upload (create)
+    - cdn (read)
+
+9. Service - Send email
+
+10. Service - Export to pdf
+
+
+
+
