@@ -4,14 +4,14 @@
 2. Web server - Snippet web app
     - server rendered login route
       /login
-      - contain:
+      - which contains:
           <div id="root"></div>
 
     - server rendered index route
       /index
-      - contain:
+      - which contains:
           <div id="root"></div>
-          <script>
+          <script>  // provided as a dynamic page variable
             window.SNIPPET_SESSION = {
               "id": "1",
               "staffId": "grace.chang",
@@ -44,7 +44,6 @@
 
 3. Authentication
     - log in using Cookies provided by web server
-    - cookie should contain
 
 4. API REST endpoint - Programs
     /api/v1/programs
@@ -138,7 +137,7 @@
         "avatar": "http://via.placeholder.com/70x70?text=Copacabana"
       }
 
-7. API static endpoint - Cms data
+7. API static endpoint - CMS data
     serve this file https://github.com/CodeforAustralia/cese-snippet/blob/master/mock-server/cms-data.json
 
 8. Service - Attachments
@@ -156,6 +155,8 @@
       / services/v1/export/program?id=1
 
 
-
-
-
+Further questions
+---
+11. Looking for an update on email address(es)
+12. Looking for an update on domains
+13. Looking for an update on SAML login requested
