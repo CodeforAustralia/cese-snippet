@@ -3,48 +3,50 @@
 
 2. Web server - Snippet web app
     - server rendered login route
+      /login
       - contain:
           <div id="root"></div>
 
     - server rendered index route
+      /index
       - contain:
-            <div id="root"></div>
-            <script>
-              window.SNIPPET_SESSION = {
-                "id": "1",
-                "staffId": "grace.chang",
-                "nonGovUser": false,
-                "preferences": "{}",
-                "creationDate": "2018-06-21",
-                "lastLogin": "2018-06-21",
-                "userMessage": null,
-                "enabled": true,
-                "accountNonExpired": true,
-                "credentialsNonExpired": true,
-                "accountNonLocked": true,
-              };
-              window.SNIPPET_SESSION_USER = {
-                "id": "1",
-                "teacherId": "grace.chang",
-                "email": "grace.chang@test.det.nsw.edu.au",
-                "firstName": "Grace",
-                "lastName": "Chang",
-                "schools": [
-                  "4548"
-                ],
-              };
-            </script>
+          <div id="root"></div>
+          <script>
+            window.SNIPPET_SESSION = {
+              "id": "1",
+              "staffId": "grace.chang",
+              "nonGovUser": false,
+              "preferences": "{}",
+              "creationDate": "2018-06-21",
+              "lastLogin": "2018-06-21",
+              "userMessage": null,
+              "enabled": true,
+              "accountNonExpired": true,
+              "credentialsNonExpired": true,
+              "accountNonLocked": true,
+            };
+            window.SNIPPET_SESSION_USER = {
+              "id": "1",
+              "teacherId": "grace.chang",
+              "email": "grace.chang@test.det.nsw.edu.au",
+              "firstName": "Grace",
+              "lastName": "Chang",
+              "schools": [
+                "4548"
+              ],
+            };
+          </script>
 
     - server rendered logged out route
+        /logged-out
         - contain:
-                <div id="root"></div>
+              <div id="root"></div>
 
 3. Authentication
     - log in using Cookies provided by web server
     - cookie should contain
 
 4. API REST endpoint - Programs
-
     /api/v1/programs
     /api/v1/programs?id=1
     /api/v1/programs?id=1&&id=2
@@ -55,7 +57,7 @@
     - ability to **search** and filter
     - **flat** resource matching
 
-    {
+      {
         "id": "1",
         "schoolCode": "4548",
         "category": "Curriculum Engagement",
@@ -102,11 +104,10 @@
       }
 
 5. API REST endpoint - Staff
-
-      /api/v1/staff
-      /api/v1/staff?id=1
-      /api/v1/staff?id=1&id=2
-      /api/v1/staff?email=euni&query=true   // or alike
+    /api/v1/staff
+    /api/v1/staff?id=1
+    /api/v1/staff?id=1&id=2
+    /api/v1/staff?email=euni&query=true   // or alike
 
       {
         "id": "1",
@@ -120,7 +121,6 @@
       }
 
 6. API REST endpoint - Schools
-
     /api/v1/schools?id=23786
 
       {
@@ -143,11 +143,18 @@
 
 8. Service - Attachments
     - upload (create)
+      /services/v1/images/upload
+
     - cdn (read)
+      /{cdn path}/{image name}.{extension}
 
 9. Service - Send email
+      /services/v1/send-email
 
 10. Service - Export to pdf
+    - a web served page with key value program data exported to pdf
+      / services/v1/export/program?id=1
+
 
 
 
