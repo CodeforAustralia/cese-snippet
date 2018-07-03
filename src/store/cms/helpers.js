@@ -41,9 +41,11 @@ export const getSefDomainOptions = (cms) => {
   return get(cms, 'sefDomainOptions', []);
 };
 
-export const getSefElementsOptions = (cms) => {
-  return get(cms, 'sefElementsOptions', []);
+export const getSefDomainElementOptions = (domainOptions, domainValue) => {
+  const option = domainOptions.find(o => o.value === domainValue);
+  return typeof option !== 'undefined' ? option.elements : [];
 };
+
 
 
 

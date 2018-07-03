@@ -14,8 +14,10 @@ import FieldTextareaInput from 'components/fieldTextAreaInput';
 import FieldUrlInput from 'components/fieldUrlInput';
 import FieldTextInput from 'components/fieldTextInput';
 import FieldEmailInput from 'components/fieldEmailInput';
+import { getSefDomainElementOptions } from 'store/cms/helpers';
 
 
+// todo - unselect Element if domain changes
 const Part11Additional = ({
                             index,
                             totalIndex,
@@ -25,8 +27,10 @@ const Part11Additional = ({
                             setFieldValue,
                             setFieldTouched,
                             optionsSefDomain,
-                            optionsSefElements,
                           }) => {
+
+  const optionsSefElements = getSefDomainElementOptions(optionsSefDomain, values.sefDomain);
+
   return (
     <IndexedPartLayout index={index} totalIndex={totalIndex}>
       <label>Additional Information</label>
@@ -55,7 +59,8 @@ const Part11Additional = ({
                              searchable={false}
                              onChange={setFieldValue}
                              onBlur={setFieldTouched}
-                             placeholder="Select …"
+                             placeholder={values.sefDomain ? "Select …" : "First select Domain"}
+                             disabled={!values.sefDomain}
                              touched={touched.sefElements}
                              className={errors.sefElements && 'is-invalid'}
                 />

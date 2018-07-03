@@ -128,7 +128,6 @@ class ProgramForm extends React.Component {
                                 setFieldValue={setFieldValue}
                                 setFieldTouched={setFieldTouched}
                                 optionsSefDomain={cmsHelper.getSefDomainOptions(cmsProps)}
-                                optionsSefElements={cmsHelper.getSefElementsOptions(cmsProps)}
               />
 
 
