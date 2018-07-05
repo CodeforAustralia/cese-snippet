@@ -29,7 +29,7 @@
 
 4. API REST endpoint - Programs
 
-  todo - Jim to reform api endpoints to a query string based structure like:
+  todo - Jim to reform api endpoints to a query string based structure like provided:
     /api/v1/programs
     /api/v1/programs?id=1
     /api/v1/programs?id=1&id=2
@@ -45,6 +45,12 @@
     - a staff member's school/schools
     - whether the staff member is a teacher, principal, admin or so forth
 
+  todo - Jim to reform api endpoints to a query string based structure like provided:
+    /api/v1/staff
+    /api/v1/staff?id=1
+    /api/v1/staff?id=1&id=2
+    /api/v1/staff?email=euni&search=true&page=0&limit=10
+
   todo - Jim to rename the entity from Teachers to Staff
   todo - Jim to prefix the endpoint with /api/v1 like Programs
   todo - Jim to convert schoolCode to schoolCodes and to an array
@@ -52,6 +58,9 @@
 
 
 6. API REST endpoint - Schools
+
+  todo - Jim to reform api endpoints to a query string based structure like provided:
+    /api/v1/schools?id=23786
 
   todo - Jim to prefix the endpoint with /api/v1 like Programs
   todo - Jim to provide an additional method to deserialise School Logos (currently byte strings)
@@ -65,7 +74,7 @@
 
 8. Service - Attachments
 
-  todo - not discussed
+  todo - not discussed in detail, Jim noted that there is no capability to build this on a cdn, so there is a risk that a image heavy application will be especially slow
 
 
 9. Service - Send email
