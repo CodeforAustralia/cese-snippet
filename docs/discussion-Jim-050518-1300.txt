@@ -1,0 +1,118 @@
+1. Web server - Marketing page
+
+  todo - Jim to request a domain at snippet.education.nsw.edu.au
+  todo - Jim to create server space to serve this site
+
+
+2. Web server - Snippet web app
+
+  todo - Jim to serve a dynamic index route containing:
+    a. A single body element  <div id="root"></div>
+    b. A css include - file names are hashed and map to a provided asset-manifest.json
+    c. A js include - " "
+  todo - Elise to provide Jim a version of these assets built
+
+
+3. Authentication
+
+  Flow:
+
+  1. User logs in with Azure
+  2. Client will request /security/context to know user's data
+  3. Client can log out of the application's session with /security/login
+  4. All requests to API require either
+      - a request beforehand to /checkSession; or
+      - ability to pass error page as html in response
+
+  todo - Jim to provide logout route to log out of Azure session
+
+
+4. API REST endpoint - Programs
+
+  todo - Jim to reform api endpoints to a query string based structure like:
+    /api/v1/programs
+    /api/v1/programs?id=1
+    /api/v1/programs?id=1&id=2
+    /api/v1/programs?code=7634872634&year=2018
+    /api/v1/programs?limit=10
+
+  todo - Jim to flatten category and other properties derived from CMS data
+
+
+5. API REST endpoint - Staff
+
+  Our is not able to determine:
+    - a staff member's school/schools
+    - whether the staff member is a teacher, principal, admin or so forth
+
+  todo - Jim to rename the entity from Teachers to Staff
+  todo - Jim to prefix the endpoint with /api/v1 like Programs
+  todo - Jim to convert schoolCode to schoolCodes and to an array
+  todo - Jim to provide a POST method for updating Staff members
+
+
+6. API REST endpoint - Schools
+
+  todo - Jim to prefix the endpoint with /api/v1 like Programs
+  todo - Jim to provide an additional method to deserialise School Logos (currently byte strings)
+  todo - Jim to provide a POST method for updating School
+
+
+7. API static endpoint - CMS data
+
+  Agreed that this could be provided by /security/context instead
+
+
+8. Service - Attachments
+
+  todo - not discussed
+
+
+9. Service - Send email
+
+  todo - not discussed
+
+
+10. Service - Export to pdf
+
+  todo - not discussed, may park for now.
+
+
+11. Convert serialised school icons to images
+
+  covered in point 6.
+
+
+Further questions
+---
+12. Looking for an update on email address(es)
+
+  todo - no update
+
+
+14. Looking for an update on domains
+
+  todo - no update
+      we need:
+        - snippet.education.gov.au
+        - app.snippet.education.gov.au
+
+
+15. Looking for an update on SAML login requested
+
+  todo - no update
+
+
+16. Deployment
+
+  todo - Deployments by USB thumb stick drives discussed, we need a way to deploy once Jim is no longer with the Department
+
+
+17. CORS
+
+  todo - Jim to enable CORS for localhost
+
+
+18. Invitations
+
+  todo - Jim to build this feature and provide API driven mechanism to invite
