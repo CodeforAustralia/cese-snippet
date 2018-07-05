@@ -41,9 +41,11 @@
 
 5. API REST endpoint - Staff
 
-  Our is not able to determine:
+  Not able to determine:
     - a staff member's school/schools
     - whether the staff member is a teacher, principal, admin or so forth
+
+  todo - Elise to include a new Registration Flow that allows users to select their school
 
   todo - Jim to reform api endpoints to a query string based structure like provided:
     /api/v1/staff
@@ -65,6 +67,8 @@
   todo - Jim to prefix the endpoint with /api/v1 like Programs
   todo - Jim to provide an additional method to deserialise School Logos (currently byte strings)
   todo - Jim to provide a POST method for updating School
+
+  todo - Elise to remove staff from Program because System has no concept of Staff of DET
 
 
 7. API static endpoint - CMS data
