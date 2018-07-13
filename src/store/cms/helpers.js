@@ -1,49 +1,49 @@
 import get from 'lodash/get';
 import isWithinRange from 'date-fns/is_within_range';
 
-export const getPartipantGroupsOptions = (cms) => {
-  return get(cms, 'participantGroupsOptions', []);
+
+const makeOptions = json => {
+  if (!json) {
+    throw new Error();
+  }
+  return json.map(d => ({value: d.id, label: d.label}));
 };
 
 export const getDeliveredByTypeOptions = (cms) => {
-  return get(cms, 'deliveredByTypeOptions', []);
+  return makeOptions(get(cms, 'deliveredByType', []));
 };
 
 export const getYearLevelsOptions = (cms) => {
-  return get(cms, 'yearLevelsOptions', []);
+  return makeOptions(get(cms, 'yearLevels', []);
 };
 
 export const getFocusGroupOptions = (cms) => {
-  return get(cms, 'focusGroupOptions', []);
-};
-
-export const getTagsOptions = (cms) => {
-  return get(cms, 'tagsOptions', []);
+  return makeOptions(get(cms, 'focusGroup', []));
 };
 
 export const getCategoriesOptions = (cms) => {
-  return get(cms, 'categoriesOptions', []);
+  return makeOptions(get(cms, 'categories', []));
 };
 
 export const getAudienceScope = (cms) => {
-  return get(cms, 'audienceScope', []);
+  return makeOptions(get(cms, 'audienceScope', []));
 };
 
 export const getTermsOptions = (cms) => {
-  return get(cms, 'termsOptions', []);
+  return makeOptions(get(cms, 'terms', []));
 };
 
 export const getCohortSizeOptions = (cms) => {
-  return get(cms, 'cohortSizeOptions', []);
+  return makeOptions(get(cms, 'cohortSize', []));
 };
 
 export const getSefDomainOptions = (cms) => {
-  return get(cms, 'sefDomainOptions', []);
+  return makeOptions(get(cms, 'sefDomain', []));
 };
 
 export const getSefDomainElementOptions = (domainOptions, domainValue) => {
   const option = domainOptions.find(o => o.value === domainValue);
-  return typeof option !== 'undefined' ? option.elements : [];
+  return makeOptions(option.elements);
 };
 
 
