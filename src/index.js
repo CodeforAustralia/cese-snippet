@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import Cookies from 'js-cookie';
 // import registerServiceWorker from './registerServiceWorker';
 import "style/vendor/bootstrap.global.scss";
 import "repaintless/repaintless-css/repaintless.css"
@@ -11,43 +10,28 @@ import configureStore from 'store/configureStore';
 import 'style/index.scss';
 
 
-if (typeof Cookies.get('snippet_session') === 'undefined') {
-  Cookies.set('snippet_session', {
-    session: {
-      "isFetching": false,
-      "errorMessage": null,
-      "model": {
-        "id": "1",
-        "staffId": "grace.chang",
-        "nonGovUser": false,
-        "preferences": "{}",
-        "creationDate": "2018-06-21",
-        "lastLogin": "2018-06-21",
-        "userMessage": null,
-        "enabled": true,
-        "accountNonExpired": true,
-        "credentialsNonExpired": true,
-        "accountNonLocked": true
-      }
-    },
-    staff: {
-      "byId": {
-        "1": {
-          "id": "1",
-          "teacherId": "grace.chang",
-          "email": "grace.chang@test.det.nsw.edu.au",
-          "firstName": "Grace",
-          "lastName": "Chang",
-          "schools": ["4548"]
-        }
-      },
-      "isFetching": false,
-      "errorMessage": null
-    }
-  })
+const win = typeof window !== 'undefined' ? window : global;
+
+if (!win.session_context) {
+  throw new Error('session_context must be supplied to app to start');
 }
 
-const store = configureStore(JSON.parse(Cookies.get('snippet_session')));
+const bootState = {
+  session: {
+    "isFetching": false,
+    "errorMessage": null,
+    "model": JSON.parse(win.session_context.session),
+  },
+  "staff": {
+    "byId": {
+      "1": JSON.parse(win.session_context.user),
+    },
+    "isFetching": false,
+    "errorMessage": null
+  }
+};
+
+const store = configureStore(bootState);
 
 ReactDOM.render(
   <Provider store={store}>

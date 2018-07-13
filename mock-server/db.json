@@ -106,7 +106,7 @@
   "staff": [
     {
       "id": "1",
-      "teacherId": "grace.chang",
+      "deptId": "123",
       "email": "grace.chang@test.det.nsw.edu.au",
       "firstName": "Grace",
       "lastName": "Chang",
@@ -116,7 +116,7 @@
     },
     {
       "id": "2",
-      "teacherId": "eunice.zang",
+      "deptId": "456",
       "email": "eunice.zang@test.det.nsw.edu.au",
       "firstName": "Eunice",
       "lastName": "Zang",

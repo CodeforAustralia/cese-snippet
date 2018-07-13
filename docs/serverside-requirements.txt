@@ -2,53 +2,53 @@
     - host a static index.html, css, js
 
 2. Web server - Snippet web app
-    - server rendered login route
-      /login
-      - which contains:
-          <div id="root"></div>
+    - server rendered login route - Azure (Department managed login)
+      /index
 
-    - server rendered index route
+    - server rendered index route - Azure (Department managed logged in)
       /index
       - which contains:
           <div id="root"></div>
-          <script>  // provided as a dynamic page variables
-            window.SNIPPET_SESSION = {
-              "id": "1",
-              "staffId": "grace.chang",
-              "nonGovUser": false,
-              "preferences": "{}",
-              "creationDate": "2018-06-21",
-              "lastLogin": "2018-06-21",
-              "userMessage": null,
-              "enabled": true,
-              "accountNonExpired": true,
-              "credentialsNonExpired": true,
-              "accountNonLocked": true,
-            };
-            window.SNIPPET_SESSION_USER = {
-              "id": "1",
-              "teacherId": "grace.chang",
-              "email": "grace.chang@test.det.nsw.edu.au",
-              "firstName": "Grace",
-              "lastName": "Chang",
-              "schools": [
-                "4548"
-              ],
-            };
+          <script>
+            window.session_context =
+              JSON.stringify({
+               session: {
+                 "id": "1",
+                 "nonGovUser": false,
+                 "preferences": "{}",
+                 "creationDate": "2018-06-21",
+                 "lastLogin": "2018-06-21",
+                 "userMessage": null,
+                 "enabled": true,
+                 "accountNonExpired": true,
+                 "credentialsNonExpired": true,
+                 "accountNonLocked": true,
+               },
+               user: {
+                 "id": "1",
+                 "deptId": "123",
+                 "email": "grace.chang@test.det.nsw.edu.au",
+                 "firstName": "Grace",
+                 "lastName": "Chang",
+                 "schools": [
+                   "4548"
+                 ],
+               }
+             });
           </script>
 
     - server rendered logged out route
-        /logged-out
-        - contain:
-              <div id="root"></div>
+      /logged-out
+      - contain:
+          <div id="root"></div>
 
 3. Authentication
-    - log in using Cookies provided by web server
+    - a user will log in before opening the app
 
 4. API REST endpoint - Programs
     /api/v1/programs
     /api/v1/programs?id=1
-    /api/v1/programs?id=1&&id=2
+    /api/v1/programs?id=1&id=2
     /api/v1/programs?code=7634872634&year=2018
 
     /api/v1/programs?limit=10
@@ -106,7 +106,7 @@
     /api/v1/staff
     /api/v1/staff?id=1
     /api/v1/staff?id=1&id=2
-    /api/v1/staff?email=euni&query=true   // or alike
+    /api/v1/staff?email=euni&search=true   // or alike      // ** and only the first 10 **
 
       {
         "id": "1",
@@ -150,13 +150,10 @@
 9. Service - Send email
       /services/v1/send-email
 
-10. Service - Export to pdf
+    - Invitations
+    - Data triggers
+
+
+11. Service - Export to pdf
     - a web served page with key value program data exported to pdf
-      / services/v1/export/program?id=1
-
-
-Further questions
----
-11. Looking for an update on email address(es)
-12. Looking for an update on domains
-13. Looking for an update on SAML login requested
+      /services/v1/export/program?id=1
