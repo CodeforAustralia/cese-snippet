@@ -4,7 +4,6 @@ import {
   Label,
   Col,
 } from 'reactstrap';
-import get from 'lodash/get';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';

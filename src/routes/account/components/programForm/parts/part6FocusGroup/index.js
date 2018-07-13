@@ -6,7 +6,6 @@ import {
   FormText,
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
-import FieldRadioBtnList from 'components/fieldRadioBtnList';
 import FieldSelect from 'components/fieldSelect';
 import IndexedPartLayout from './../../indexedPartLayout';
 

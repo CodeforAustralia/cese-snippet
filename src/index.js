@@ -16,15 +16,17 @@ if (!win.session_context) {
   throw new Error('session_context must be supplied to app to start');
 }
 
+const { session, user } = JSON.parse(win.session_context);
+
 const bootState = {
   session: {
     "isFetching": false,
     "errorMessage": null,
-    "model": JSON.parse(win.session_context.session),
+    "model": session,
   },
   "staff": {
     "byId": {
-      "1": JSON.parse(win.session_context.user),
+      "1": user,
     },
     "isFetching": false,
     "errorMessage": null
