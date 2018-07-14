@@ -7,7 +7,6 @@ export const mapStateToProps = (state) => {
   const session = selectSession(state);
   const sessionUser = selectStaffMember(state, session.staffId);
   return {
-    session,
     sessionUser,
   }
 };

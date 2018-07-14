@@ -1,16 +1,12 @@
-import initialState from 'store/initialState';
-
 export const ACTION_TYPES = {
-  fetchRequest: 'CMS/FETCH_REQUEST',
+  createCms: 'CMS/SET',
 };
 
-const cmsReducer = (state = initialState.cms, action) => {
+const cmsReducer = (state = null, action) => {
   const { type, payload } = action;
-
   switch (type) {
-    case ACTION_TYPES.fetchRequest:
-      return {...state, ...payload};
-
+    case ACTION_TYPES.createCms:
+      return payload.cms;
     default:
       return state;
   }

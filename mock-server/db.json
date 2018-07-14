@@ -107,6 +107,7 @@
     {
       "id": "1",
       "deptId": "123",
+      "username": "grace.chang",
       "email": "grace.chang@test.det.nsw.edu.au",
       "firstName": "Grace",
       "lastName": "Chang",
@@ -117,6 +118,7 @@
     {
       "id": "2",
       "deptId": "456",
+      "username": "eunice.zang",
       "email": "eunice.zang@test.det.nsw.edu.au",
       "firstName": "Eunice",
       "lastName": "Zang",
