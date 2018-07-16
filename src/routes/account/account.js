@@ -39,8 +39,6 @@ class Account extends React.Component {
       log('Fetching schools: ', this.props.userSchoolCodes);
       this.props.fetchSchools(this.props.userSchoolCodes);
     }
-    log('Fetching cms.');
-    this.props.fetchCmsData();
   }
 
   componentWillUpdate(nextProps) {
