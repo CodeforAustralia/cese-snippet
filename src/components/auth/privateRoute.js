@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import withAuth from './withAuth';
 
-const PrivateRoute = ({ isAuthenticated, component: Component, sessionUser, ...rest }) => {
+const PrivateRoute = ({ isAuthenticated, component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
@@ -15,7 +15,7 @@ const PrivateRoute = ({ isAuthenticated, component: Component, sessionUser, ...r
         ) : (
           <Redirect
             to={{
-              pathname: `/schools/${sessionUser.schools[0]}/programs`,
+              pathname: `/schools`,
               state: { from: props.location }
             }}
           />

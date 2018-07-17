@@ -27,7 +27,7 @@ const FakeLogin = ({ sessionUser }) => {
                 <input type="email" id="inputEmail" defaultValue={sessionUser.username} className={style.formControl} placeholder="Enter your User ID" required />
                 <label htmlFor="inputPassword" className="sr-only">Password</label>
                 <input type="password" id="inputPassword" defaultValue="******" className={style.formControl} placeholder="Enter your password" required />
-                <Button tag={RRLink} to="/account" size="lg" color="primary" block>Log in</Button>
+                <Button tag={RRLink} to="/" size="lg" color="primary" block>Log in</Button>
               </div>
             </div>
           </Col>
