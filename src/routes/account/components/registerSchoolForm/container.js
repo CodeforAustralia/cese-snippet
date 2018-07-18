@@ -6,7 +6,6 @@ import {
 } from "store/session/selectors";
 import { selectSchoolsList } from 'store/cms/selectors';
 import { getSchoolsOptions } from 'store/cms/helpers';
-import { saveSession } from 'store/session/actionCreators';
 import { getSchoolProgramsUrl } from 'helpers/url';
 
 
@@ -25,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (session) => dispatch(saveSession(session)),
+    // onSubmit: (session) => dispatch(saveSession(session)),
   }
 };
 
