@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import style from './style.scss';
 
-const BreadcrumbArrow = ({ linkList }) => {
+const ArrowBreadcrumb = ({ linkList }) => {
   return (
     <div className={style.breadcrumbContainer}>
       <Breadcrumb className={style.breadcrumb}>
@@ -19,4 +19,4 @@ const BreadcrumbArrow = ({ linkList }) => {
   )
 };
 
-export default BreadcrumbArrow;
+export default ArrowBreadcrumb;

@@ -14,7 +14,6 @@ import WizardWelcome from 'routes/wizardWelcome';
 import WizardSchool from 'routes/wizardSchool';
 import WizardSchoolPrograms from 'routes/wizardSchoolPrograms';
 
-
 const App = ({ session, sessionUser }) => {
   return (
     <AuthProvider session={session} sessionUser={sessionUser}>

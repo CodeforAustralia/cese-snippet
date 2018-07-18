@@ -2,18 +2,18 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import BreadcrumbArrow from './index';
+import ArrowBreadcrumb from './index';
 
 
-storiesOf('Breadcrumb Arrow', module)
+storiesOf('Arrow Breadcrumb', module)
 
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
   ))
 
-  .add('should render', () => {
+  .add('should render with last link as active', () => {
     return (
-      <BreadcrumbArrow linkList={[
+      <ArrowBreadcrumb linkList={[
         { to: '/', label: '1' },
         { to: '/', label: '2', active: true, },
       ]} />
