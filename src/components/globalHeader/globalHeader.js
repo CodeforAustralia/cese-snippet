@@ -12,7 +12,7 @@ import style from './style.scss';
 const GlobalHeader = () => (
   <Navbar color="concrete" expand="md" className={style.header}>
     <Container>
-      <NavbarBrand to="/account" tag={RRNavLink} className={style.title}>Snippet</NavbarBrand>
+      <NavbarBrand to="/" tag={RRNavLink} className={style.title}>Snippet</NavbarBrand>
     </Container>
   </Navbar>
 );

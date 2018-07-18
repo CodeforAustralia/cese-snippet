@@ -49,12 +49,12 @@ class GlobalHeaderAuth extends React.Component {
     return (
       <Navbar color="concrete" expand="md" className={style.header}>
         <Container>
-          <NavbarBrand to="/account" tag={RRNavLink} className={style.title}>Snippet</NavbarBrand>
+          <NavbarBrand to="/" tag={RRNavLink} className={style.title}>Snippet</NavbarBrand>
 
           <Nav className="ml-auto" navbar>
             <NavItem>
               {!isAuthenticated &&
-                <NavLink to="/login" tag={RRNavLink} className={style.menuLink}>Login</NavLink>
+                <NavLink to="/" tag={RRNavLink} className={style.menuLink}>Login</NavLink>
               }
             </NavItem>
 

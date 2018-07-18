@@ -1,40 +1,50 @@
 import React from 'react';
-import cx from 'classnames';
 import { Link as RRLink } from 'react-router-dom';
 import {
-  Row,
-  Col,
-  Container,
   Button,
+  Link,
 } from 'reactstrap';
 
-import Layout from 'layouts/home';
+import Layout from 'layouts/login';
 import style from './style.scss';
 
-
-// todo - style like this https://sso.det.nsw.edu.au/sso/UI/Login?realm=detnsw&goto=https://student.det.nsw.edu.au/
 
 const FakeLogin = ({ sessionUser }) => {
   return (
     <Layout>
-      <Container>
-        <Row>
-          <Col sm={{size: 8, offset: 2}}>
-            <div className={cx(style.main, 'text-center')}>
-              <div className={style.formSignin}>
-                <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label htmlFor="inputEmail" className="sr-only">User ID</label>
-                <input type="email" id="inputEmail" defaultValue={sessionUser.username} className={style.formControl} placeholder="Enter your User ID" required />
-                <label htmlFor="inputPassword" className="sr-only">Password</label>
-                <input type="password" id="inputPassword" defaultValue="******" className={style.formControl} placeholder="Enter your password" required />
-                <Button tag={RRLink} to="/" size="lg" color="primary" block>Log in</Button>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <div className="text-center">
+        <h1 className={style.h1}>Log in with your DoE account</h1>
+        <div className={style.fieldset}>
+
+          <div className={style.field}>
+            <label className={style.fieldLabel}>User ID</label>
+            <input className={style.fieldInput} type="text" defaultValue={sessionUser.username} placeholder="Enter your user ID" required />
+            <span className={style.fieldHelpText}>Example: jane.citizen1</span>
+          </div>
+
+          <div className={style.field}>
+            <label className={style.fieldLabel}>Password</label>
+            <input className={style.fieldInput} type="password" defaultValue="******" placeholder="Enter your password" required />
+          </div>
+
+          <div>
+            <Button className={style.fieldSubmit} tag={RRLink} to="/welcome" color="primary">Log in</Button>
+            <p className={style.forgotPassword}><RRLink to="#" disabled>Forgot your password?</RRLink></p>
+          </div>
+
+          <hr className={style.hr} />
+
+          <p className={style.havingTrouble}>Have trouble logging in?</p>
+
+          <p className={style.forgotPassword}><RRLink to="#" disabled>Help for DoE/TAFE staff</RRLink></p>
+
+        </div>
+      </div>
     </Layout>
   )
 };
 
 export default FakeLogin;
+
+
+

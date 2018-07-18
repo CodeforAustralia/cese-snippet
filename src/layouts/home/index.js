@@ -6,7 +6,7 @@ import { GlobalHeader } from 'components/globalHeader';
 import GlobalFooter from 'components/globalFooter';
 import GiveFeedbackEmbedModal from 'components/giveFeedbackEmbedModal';
 
-import style from './home.scss';
+import style from './style.scss';
 
 
 const Layout = ({ containerClassName, children, pad = false }) => {

@@ -8,7 +8,7 @@ import {
 import { Link as RRLink } from 'react-router-dom';
 
 import { GlobalHeader } from 'components/globalHeader';
-import style from './wizard.scss';
+import style from './style.scss';
 
 
 const WizardLayout = ({
