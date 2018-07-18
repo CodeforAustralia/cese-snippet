@@ -1,0 +1,203 @@
+@import '~style/helpers';
+
+$background: $info; //$primary;
+$border: $info; //$primary;
+$hover-background: darken($background, 7.5%);
+$hover-border: darken($border, 10%);
+$active-background: darken($background, 10%);
+$active-border: darken($border, 12.5%);
+$current-active-color: #e9ecef;
+$disabled-background: #75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity);
+
+.breadcrumbContainer {
+  //padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.breadcrumb{
+  background: none;
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.breadcrumbItem {
+  + .breadcrumbItem::before {
+    content: none;
+  }
+
+  a {
+    //color: color-yiq($primary);
+    //@include gradient-bg($primary);
+    //border-color: $primary;
+    //@include box-shadow($btn-box-shadow);
+    //
+    //$hover-background: darken($primary, 7.5%);
+    //$hover-border: darken($primary, 10%);
+    //$active-background: darken($primary, 10%);
+    //$active-border: darken($primary, 12.5%);
+    //
+    //@include hover {
+    //  color: color-yiq($hover-background);
+    //  @include gradient-bg($hover-background);
+    //  border-color: $hover-border;
+    //}
+    //
+    //&:focus,
+    //&.focus {
+    //  // Avoid using mixin so we can pass custom focus shadow properly
+    //  @if $enable-shadows {
+    //    box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba($primary, .5);
+    //  } @else {
+    //    box-shadow: 0 0 0 $btn-focus-width rgba($primary, .5);
+    //  }
+    //}
+    //
+    //// Disabled comes first so active can properly restyle
+    //&.disabled,
+    //&:disabled {
+    //  color: color-yiq($primary);
+    //  background-color: $primary;
+    //  border-color: $primary;
+    //}
+
+    //&:not(:disabled):not(.disabled):active,
+    //&:not(:disabled):not(.disabled).active,
+    //.show > &.dropdown-toggle {
+    //  color: color-yiq($active-background);
+    //  background-color: $active-background;
+    //  @if $enable-gradients {
+    //    background-image: none; // Remove the gradient for the pressed/active state
+    //  }
+    //  border-color: $active-border;
+    //
+    //  &:focus {
+    //    // Avoid using mixin so we can pass custom focus shadow properly
+    //    @if $enable-shadows {
+    //      box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba($border, .5);
+    //    } @else {
+    //      box-shadow: 0 0 0 $btn-focus-width rgba($border, .5);
+    //    }
+    //  }
+    //}
+
+    color: #FFF;
+    display:block;
+    background: $background;
+    text-decoration: none;
+    position:relative;
+    height: 40px;
+    line-height:40px;
+    padding: 0 10px 0 5px;
+    text-align: center;
+    margin-right: 23px;
+  }
+  //&:nth-child(even){
+  //  a{
+  //    background-color: $blue-darken;
+  //
+  //    &:before{
+  //      border-color:$blue-darken;
+  //      border-left-color:transparent;
+  //    }
+  //    &:after{
+  //      border-left-color:$blue-darken;
+  //    }
+  //  }
+  //}
+  &:first-child{
+    a{
+      padding-left:18px;
+      padding-right: 14px;
+      border-radius: 4px 0 0 4px;
+      &:before{
+        border:none;
+      }
+    }
+  }
+  //&:last-child{
+  //  a{
+  //    padding-right:15px;
+  //    border-radius: 0 4px 4px 0;
+  //    &:after{
+  //      border:none;
+  //    }
+  //  }
+  //}
+
+  a{
+    &:before,
+    &:after{
+      content: "";
+      position:absolute;
+      top: 0;
+      border: 0 solid $background;
+      border-width: 20px 12px;
+      width: 0;
+      height: 0;
+    }
+    &:before{
+      left:-21px;
+      border-left-color: transparent;
+    }
+    &:after{
+      left:100%;
+      border-color: transparent;
+      border-left-color: $background;
+    }
+    &:hover{
+      background-color: $hover-background;
+
+      &:before{
+        border-color: $hover-background;
+        border-left-color: transparent;
+      }
+      &:after{
+        border-left-color: $hover-background;
+      }
+    }
+    &:active{
+      background-color: $active-background;
+
+      &:before{
+        border-color: $active-background;
+        border-left-color: transparent;
+      }
+      &:after{
+        border-left-color: $active-background;
+      }
+    }
+
+  }
+
+  &.active{
+    a {
+      cursor: default;
+      color: black;
+      background-color: $current-active-color;
+
+      &:before{
+        border-color: $current-active-color;
+        border-left-color: transparent;
+      }
+      &:after{
+        border-left-color: $current-active-color;
+      }
+    }
+  }
+
+  &.disabled {
+    a {
+      cursor: default;
+      background-color: $disabled-background;
+
+      &:before{
+        border-color: $disabled-background;
+        border-left-color: transparent;
+      }
+      &:after{
+        border-left-color: $disabled-background;
+      }
+    }
+  }
+}

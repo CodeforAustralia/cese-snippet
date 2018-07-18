@@ -4,44 +4,12 @@ import { objectify } from 'store/objectify';
 import { ACTION_TYPES } from './reducer';
 
 const log = bows('Staff');
-const win = typeof window !== 'undefined' ? window : global;
-
-
-export const fetchSessionUser = () => {
-  return (dispatch) => {
-    dispatch({
-      type: ACTION_TYPES.fetchRequest,
-    });
-
-    if (!win.SNIPPET_SESSION_USER) {
-      log('Error fetching Session User');
-      return dispatch({
-        type: ACTION_TYPES.fetchError,
-        payload: {
-          message: 'No Session User provided.',
-        }
-      });
-    }
-
-    log(`Fetched Session User: ${JSON.stringify(win.SNIPPET_SESSION_USER)}`);
-    return dispatch({
-      type: ACTION_TYPES.fetchSuccess,
-      payload: {
-        staff: objectify([win.SNIPPET_SESSION_USER]),
-      }
-    });
-  };
-};
-
-
-
-
 
 /**
- * @param staff {Array|Object}
+ * @param staff {Array|Object} single or multiple records
  * @returns {Object} FLUX Action creator
  */
-export const createOrUpdateStaff = (staff) => {
+const createOrUpdateStaff = (staff) => {
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
@@ -49,6 +17,15 @@ export const createOrUpdateStaff = (staff) => {
     }
   }
 };
+
+export const createStaff = (staff) => {
+  return createOrUpdateStaff(staff);
+};
+
+export const updateStaff = (staff) => {
+  return createOrUpdateStaff(staff);
+};
+
 
 export const fetchStaff = (ids = []) => {
   if (!Array.isArray(ids)) {

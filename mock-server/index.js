@@ -4,8 +4,6 @@ const apiRouter = require('./routes/api');
 const logger = require('morgan');
 const jsonServer = require('json-server');
 
-const cmsData = require('./cms-data.json');
-
 const app = express();
 
 app.use(logger('dev'));
@@ -25,21 +23,6 @@ app.use((req, res, next) => {
 });
 app.use('/api', apiRouter);
 
-app.get('/static/cms-data.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.status(200);
-  res.send(cmsData);
-  return res;
-});
-
-app.get('/security/logout', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.status(200);
-  res.send({
-    "href": "https://staff.det.nsw.edu.au",
-  });
-  return res;
-});
 
 // todo - image service
 

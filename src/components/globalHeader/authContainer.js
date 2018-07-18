@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 
-import { clearSession } from 'store/session/actionCreators';
 import { selectSession } from 'store/session/selectors';
 import { selectStaffMember } from "store/staff/selectors";
 
@@ -28,7 +27,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleSignOut: () => signout(() => {
       history.push("/");
-      return dispatch(clearSession());
     }),
   }
 };

@@ -9,7 +9,6 @@ import {
   selectSchools,
   selectIsFetching as selectIsFetchingSchools,
 } from 'store/schools/selectors';
-import { fetchCmsData } from 'store/cms/actionCreators';
 
 
 const mapStateToProps = (state) => {
@@ -31,7 +30,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSchools: (codes) => dispatch(fetchSchools(codes)),
-    fetchCmsData: () => dispatch(fetchCmsData()),
   }
 };
 
