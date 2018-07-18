@@ -10,8 +10,12 @@ const ArrowBreadcrumb = ({ linkList }) => {
     <div className={style.breadcrumbContainer}>
       <Breadcrumb className={style.breadcrumb}>
         {linkList.map((link, key) => (
-          <BreadcrumbItem key={key} className={cx(style.breadcrumbItem, link.active ? style.active : '')}>
-            <RRLink to={link.to}>{link.label}</RRLink>
+          <BreadcrumbItem key={key} className={cx(
+            style.breadcrumbItem,
+            link.active ? style.active : '',
+            link.disabled ? style.disabled : ''
+          )}>
+            <RRLink to={link.to} disabled={link.disabled}>{link.label}</RRLink>
           </BreadcrumbItem>
         ))}
       </Breadcrumb>

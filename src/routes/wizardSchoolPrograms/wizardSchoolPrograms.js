@@ -6,8 +6,8 @@ const WizardSchoolPrograms = () => {
   return (
     <Layout prevTo="/register/school" nextTo="/schools">
       <ArrowBreadcrumb linkList={[
-        { to: '/', label: '1' },
-        { to: '/', label: '2', active: true, },
+        { to: '/register/school', label: '1' },
+        { to: '/register/school-programs', label: '2', active: true },
       ]} />
       <h1>Select programs and initiatives that happen at your school</h1>
     </Layout>
