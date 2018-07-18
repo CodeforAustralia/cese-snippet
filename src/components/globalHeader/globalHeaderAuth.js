@@ -79,6 +79,10 @@ class GlobalHeaderAuth extends React.Component {
                     Edit Profile
                   </DropdownItem>
 
+                  <DropdownItem className={style.menuItemLink} disabled>
+                    Update Notification Preferences
+                  </DropdownItem>
+
                   <DropdownItem className={style.menuItemLink} tag={RRNavLink} to={this.registerSchoolUrl}>
                     Change school
                   </DropdownItem>
@@ -87,6 +91,10 @@ class GlobalHeaderAuth extends React.Component {
 
                   <DropdownItem className={style.menuItemLink} tag="a" href="https://www.yammer.com/det.nsw.edu.au/#/threads/inGroup?type=in_group&feedId=13755246&view=all" target="_blank" rel="noopener noreferrer" alt="Happy Data Group on NSW DET Yammer">
                     Community
+                  </DropdownItem>
+
+                  <DropdownItem className={style.menuItemLink} disabled>
+                    Invite Others
                   </DropdownItem>
 
                   <DropdownItem divider />
