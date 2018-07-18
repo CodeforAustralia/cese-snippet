@@ -7,7 +7,7 @@ $hover-border: darken($border, 10%);
 $active-background: darken($background, 10%);
 $active-border: darken($border, 12.5%);
 $current-active-color: #e9ecef;
-$disabled-background: #75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity);
+$disabled-background: #75c0ce; //#eaecef; //#75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity);
 
 .breadcrumbContainer {
   //padding: 0.75rem 1rem;
@@ -170,18 +170,18 @@ $disabled-background: #75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity
 
   }
 
-  &.active{
+  &.active {
     a {
       cursor: default;
-      color: black;
-      background-color: $current-active-color;
+      //color: black;
+      background-color: $active-background; //$current-active-color;
 
       &:before{
-        border-color: $current-active-color;
+        border-color: $active-background; //$current-active-color;
         border-left-color: transparent;
       }
       &:after{
-        border-left-color: $current-active-color;
+        border-left-color: $active-background; //$current-active-color;
       }
     }
   }
@@ -200,4 +200,5 @@ $disabled-background: #75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity
       }
     }
   }
+
 }
