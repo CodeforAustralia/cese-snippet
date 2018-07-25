@@ -1,5 +1,10 @@
-export const getSchoolProgramsUrl = (code, year) => {
-  return `/account/schools/${code}/programs/${year}`;
+
+export const getWelcomeUrl = () => {
+  return '/onboarding/welcome';
+};
+
+export const getSchoolProgramsUrl = (schoolCode, year) => {
+  return `/schools/${schoolCode}/programs/${year}`;
 };
 
 export const getCreateProgramModalUrl = (initialFormState = {}) => {
@@ -43,3 +48,4 @@ export const getRegisterSchoolUrl = (showBreadcrumb = false) => {
     }
   }
 };
+
