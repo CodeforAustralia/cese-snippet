@@ -2,7 +2,6 @@ import React from 'react';
 import { Link as RRLink } from 'react-router-dom';
 import {
   Button,
-  Link,
 } from 'reactstrap';
 
 import Layout from 'layouts/login';

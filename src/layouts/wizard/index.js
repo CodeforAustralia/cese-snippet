@@ -33,8 +33,8 @@ const WizardLayout = ({
                 {prevTo && <Button tag={RRLink}
                                    size="lg"
                                    to={prevTo}
-                                   color={isActivePrev ? 'primary' : 'secondary'}
-                                   disabled={!isActivePrev}>{`<`}</Button>}
+                                   color="light"
+                                   disabled={!isActivePrev}>{`< Back`}</Button>}
               </Col>
               <Col>
                 {nextTo && <Button tag={RRLink}
@@ -42,7 +42,7 @@ const WizardLayout = ({
                                    className="float-right"
                                    to={nextTo}
                                    color={isActiveNext ? 'primary' : 'secondary'}
-                                   disabled={!isActiveNext}>{`>`}</Button>}
+                                   disabled={!isActiveNext}>{`Next >`}</Button>}
               </Col>
             </Row>
           </footer>
