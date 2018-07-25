@@ -47,12 +47,13 @@ $card-padding: 1.25rem;
 }
 
 .snippetList {
-  max-height: 320px;
+  max-height: 340px;
   //border: 1px solid red;
   position: relative;
-
   overflow: hidden;
+}
 
+.showGradient {
   &:after {
     content: ' ';
     display: block;
@@ -66,11 +67,20 @@ $card-padding: 1.25rem;
   }
 }
 
-.snippetListMore {
-  text-align: center;
-  text-align: right;
-  font-size: 80%;
+.snippetListFooter {
   margin-top: .8rem;
+  @include clearfix;
+}
+
+.snippetListMeta {
+  float: left;
+  font-size: 80%;
+  color: $text-muted;
+}
+
+.snippetListMore {
+  float: right;
+  font-size: 80%;
 }
 
 .snippet {
@@ -79,7 +89,7 @@ $card-padding: 1.25rem;
   padding: 4px;
   border-radius: 4px;
   &:not(:last-child) {
-    margin-bottom: 1.25rem;
+    margin-bottom: .85rem;
   }
 }
 
@@ -97,7 +107,11 @@ $card-padding: 1.25rem;
 
 .snippetImageLeft,
 .snippetImageRight {
-
+  img {
+    background: $light;
+    border-radius: 2px;
+    border: 1px solid $gray-300;
+  }
 }
 
 .snippetDescription {

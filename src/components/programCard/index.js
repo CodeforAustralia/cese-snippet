@@ -6,68 +6,76 @@ import {
   Media,
   Button,
 } from 'reactstrap';
+import cx from 'classnames';
 import { Link as RRLink } from 'react-router-dom';
 
+import { getHumanisedMetaDescription } from 'store/programs/helpers';
 import style from './style.scss';
 
 const ProgramCard = ({ program, snippets = null }) => {
 
+  const hasEdited = !!program.updatedBy;
+  const metaText = getHumanisedMetaDescription(program);
+
+  const hasNotEnteredDetails = !program.description && !metaText;
+
   return (
     <Card>
       <CardTitle className={style.title}>{program.name}</CardTitle>
+
+      {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details entered for "{program.name}". Help record the initiative <RRLink to="/">add information</RRLink>.</CardText>}
+
       {program.description && <CardText className={style.description}>{program.description}</CardText>}
 
-      <p className={style.bannerMeta}>For Students focusing on Literacy in Years K, 1, 2, 3, 4, 5, 6.</p>
+      {metaText && <p className={style.bannerMeta}>{metaText}</p>}
 
       <div className={style.actions}>
         <p className={style.actionTextLhs}>
-          <RRLink to="/">Edit details</RRLink>
+          <RRLink to="/">{hasEdited ? 'Edit details >' : 'Add details >'}</RRLink>
         </p>
-        <p className={style.actionTextRhs}>
+        {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
           <RRLink to="/">View {`>`}</RRLink>
-        </p>
+        </p>}
       </div>
 
       <Card body className={style.snippetCard}>
         <CardTitle className={style.snippetCardTitle}>Snippets
-          <Button color="primary" outline size="xs" className={style.snippetAddButton}>Share another</Button>
+          {snippets && <Button color="primary" outline size="xs" className={style.snippetAddButton}>Share another</Button>}
         </CardTitle>
 
-        <div className={style.snippetList}>
+        {snippets ?
 
-          <Media className={style.snippet}>
-            <Media body className={style.snippetBody}>
-              <Media heading className={style.snippetDescription}>
-                Cras sit amet nibh gravida nullaras sit libero, in amet nibh libero, in gravida nulla. Cras sit amet nibh libero.
-              </Media>
-            </Media>
-            <Media right middle className={style.snippetImageRight}>
-              <img src="https://picsum.photos/120/120/?random" alt="Generic placeholder image" className="media-object" width={120} height={120} />
-            </Media>
-          </Media>
+          <div>
+            <div className={cx(
+              style.snippetList,
+              snippets.length && snippets.length > 2 ? style.showGradient : '',
+            )}>
 
-          <Media className={style.snippet}>
-            <Media body className={style.snippetBody}>
-              <Media heading className={style.snippetDescription}>
-                Donec lacinia congue felis in faucibus. Donec lacinia congue felis in faucibus ads.
-              </Media>
-            </Media>
-          </Media>
+              {snippets.map((snippet, key) => (
+                <Media className={style.snippet} key={key}>
+                  <Media body className={style.snippetBody}>
+                    <Media heading className={style.snippetDescription}>
+                      {snippet.description}
+                    </Media>
+                  </Media>
+                  {snippet.type === 'photo' &&
+                    <Media right middle className={style.snippetImageRight}>
+                      <img src={snippet.attachment.url} alt="Snippet thumbnail" className="media-object" width={120} height={120} />
+                    </Media>
+                  }
+                </Media>
+              ))}
 
-          <Media className={style.snippet}>
-            <Media body className={style.snippetBody}>
-              <Media heading className={style.snippetDescription}>
-                Donec lacinia congue felis in faucibus. Donec lacinia congue felis in faucibus. Donec laci.
-              </Media>
-            </Media>
-            <Media right middle className={style.snippetImageRight}>
-              <img src="https://picsum.photos/120/120/?random" alt="Generic placeholder image" className="media-object" width={120} height={120} />
-            </Media>
-          </Media>
+            </div>
 
-        </div>
+            <div className={style.snippetListFooter}>
+              <span className={style.snippetListMeta}>{snippets.length && snippets.length === 1 ? `${snippets.length} Snippet` : `${snippets.length} Snippets`} </span>
+              <RRLink to="/" className={style.snippetListMore}>More Snippets ></RRLink>
+            </div>
+          </div> :
 
-        <div className={style.snippetListMore}><RRLink to="/">More Snippets ></RRLink></div>
+          <p className="text-muted">No Snippets yet for "{program.name}". Get started recording moments <RRLink to="/">add the first Snippet</RRLink>.</p>
+        }
 
       </Card>
 
