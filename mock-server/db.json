@@ -8,7 +8,7 @@
       "category": "Curriculum Engagement",
       "subCategory": "Literacy",
       "aims": "L3 is a whole-class intervention that aims to reduce the\nrisk of students not achieving expected literacy levels by\nthe end of their first year of schooling.",
-      "description": "L3 is a research-based Kindergarten classroom\nintervention, targeting text reading and writing. It provides\nrich literacy experiences through systematic and explicit\nteaching. It complements the daily literacy program.\nStudents participate in reading and writing lessons in small\ngroups, designed to meet their specific learning needs.\nThey also engage in short periods of independent,\nindividual or group tasks to practice and consolidate their\ncurrent literacy learning. This occurs in the classroom\nwithin the daily literacy session.",
+      "description": "L3 is a research-based Kindergarten classroom\nintervention, targeting text reading and writing. It provides\nrich literacy experiences through systematic and explicit\nteaching.",
       "descriptionFull": null,
       "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
       "participantGroups": [
@@ -41,10 +41,10 @@
         "writing",
         "vocabulary"
       ],
-      "createdAt": "2018-02-04",
+      "createdDate": 1530238113250,
       "createdBy": "1",
       "updatedBy": "1",
-      "updatedAt": "2018-02-04",
+      "updatedDate": 1530238113250,
       "name": "Language, Learning and Literacy (L3)"
     },
     {
@@ -53,7 +53,7 @@
       "category": "Extra-curricular",
       "subCategory": "Sports and Physical Fitness",
       "aims": "Torpedo pecador diodenoo aute magna quietooor irure aliqua velit. Sit amet aliqua aliquip sit amet irure qui reprehenderit pupita consectetur ese. \n\nPedazo de commodo. Jarl sexuarl va usté muy cargadoo dolore esse consectetur quis.",
-      "description": "Lorem fistrum está la cosa muy malar la caidita me cago en tus muelas. Por la gloria de mi madre benemeritaar diodeno ahorarr pupita jarl fistro. A wan a peich diodeno caballo blanco caballo negroorl. A wan pupita por la gloria de mi madre condemor no puedor. Fistro está la cosa muy malar se calle ustée caballo blanco caballo negroorl diodenoo no puedor diodenoo benemeritaar me cago en tus muelas. Pupita te va a hasé pupitaa a peich ese hombree ese hombree.",
+      "description": "Lorem fistrum está la cosa muy malar la caidita me cago en tus muelas. Por la gloria de mi madre benemeritaar diodeno ahorarr pupita jarl fistro. A wan a peich diodeno caballo blanco caballo negroorl.",
       "descriptionFull": null,
       "website": null,
       "participantGroups": [
@@ -87,20 +87,20 @@
         "belonging",
         "active kids"
       ],
-      "createdAt": "2018-02-05",
+      "createdDate": "2018-02-05",
       "createdBy": "2",
       "updatedBy": "1",
-      "updatedAt": "2018-02-05",
+      "updatedDate": "2018-02-05",
       "name": "Cricket"
     },
     {
-      "code": "4548",
+      "id": "3",
+      "name": "Coding Club",
+      "schoolCode": "4548",
       "year": "2018",
       "createdBy": "1",
-      "name": "",
-      "createdAt": 1530238113250,
-      "updatedAt": 1530238113250,
-      "id": "jACgSdB"
+      "updatedDate": 1530238113250,
+      "createdDate": 1530238113250
     }
   ],
   "staff": [
@@ -198,5 +198,22 @@
       "avatar": "http://via.placeholder.com/70x70?text=Plumpton"
     }
   ],
-  "tags": []
+  "snippets": [
+    {
+      "id": "1",
+      "type": "photo",
+      "description": "Ubi est bi-color era?",
+      "programId": "1",
+      "attachment": {
+        "format": "jpeg",
+        "width": 600,
+        "height": 400,
+        "filename": "image01.jpg",
+        "url": "https://picsum.photos/600/400/?random",
+        "thumbnailUrl": "https://picsum.photos/64/64"
+      },
+      "createdBy": "1",
+      "createdDate": 1530238113250
+    }
+  ]
 }

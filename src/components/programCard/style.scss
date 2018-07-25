@@ -1,0 +1,121 @@
+@import '~style/helpers';
+
+$card-padding: 1.25rem;
+
+.title {
+  padding: $card-padding $card-padding 0;
+}
+
+.description {
+  padding: 0 $card-padding;
+}
+
+.bannerMeta {
+  padding: 1rem $card-padding;
+  background: $light;
+}
+
+.actions {
+  padding: 0 $card-padding;
+  @include clearfix;
+}
+
+.actionTextLhs {
+  float: left;
+}
+
+.actionTextRhs {
+  float: right;
+}
+
+.actionTextLhs,
+.actionTextRhs {
+  margin: 0;
+}
+
+
+.snippetCard {
+  margin: $card-padding $card-padding 1rem;
+}
+
+.snippetCardTitle {
+  margin-bottom: 1.5rem;
+}
+
+.snippetAddButton {
+  float: right;
+}
+
+.snippetList {
+  max-height: 340px;
+  //border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+}
+
+.showGradient {
+  &:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(180deg, transparent, rgba(white, .6), rgba(white, .9), white);
+    z-index: 1;
+    height: 40px;
+  }
+}
+
+.snippetListFooter {
+  margin-top: .8rem;
+  @include clearfix;
+}
+
+.snippetListMeta {
+  float: left;
+  font-size: 80%;
+  color: $text-muted;
+}
+
+.snippetListMore {
+  float: right;
+  font-size: 80%;
+}
+
+.snippet {
+  align-items: center !important;
+  border: 1px solid $gray-300;
+  padding: 4px;
+  border-radius: 4px;
+  &:not(:last-child) {
+    margin-bottom: .85rem;
+  }
+}
+
+.snippetBody {
+
+}
+
+.snippetImageLeft {
+  margin-right: 1rem;
+}
+
+.snippetImageRight {
+  margin-left: 1rem;
+}
+
+.snippetImageLeft,
+.snippetImageRight {
+  img {
+    background: $light;
+    border-radius: 2px;
+    border: 1px solid $gray-300;
+  }
+}
+
+.snippetDescription {
+  font-weight: $font-weight-normal;
+  font-size: 1.4em;
+}
+
