@@ -8,11 +8,11 @@ const currentYear = getYear();
 
 export const getDefaultYear = () => currentYear;
 
-export const getFilterKey = ({code, year = currentYear}) => {
+export const getFilterKey = ({ schoolCode, year = currentYear }) => {
   if (typeof code === 'undefined') {
     throw new Error('Must provide code to getFilterKey.');
   }
-  return String(`${code}_${year}`);
+  return String(`${schoolCode}_${year}`);
 };
 
 export const parseFilterKeys = (filterKeys) => {
@@ -29,6 +29,7 @@ export const getIsNew = (program) => {
   return isThisMinute(program.createdAt) || isThisMinute(program.updatedAt);
 };
 
+//'For Students focusing on Literacy in Years K, 1, 2, 3, 4, 5, 6.';
 export const getHumanisedMetaDescription = (program) => {
   const {
     yearLevels,
@@ -37,6 +38,10 @@ export const getHumanisedMetaDescription = (program) => {
     focusGroupOther = null,
     externalProvider = null,
   } = program;
+
+  if (!participantGroups || !yearLevels) {
+    return null;
+  }
 
   let str = 'For ';
 

@@ -26,9 +26,7 @@ const ProgramCard = ({ program, snippets = null }) => {
 
       {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details entered for "{program.name}". Help record the initiative <RRLink to="/">add information</RRLink>.</CardText>}
 
-      {program.description && <CardText className={style.description}>
-          <TruncatedText text={program.description} length={160} />
-        </CardText>}
+      {program.description && <CardText className={style.description}>{program.description}</CardText>}
 
       {metaText && <p className={style.bannerMeta}>{metaText}</p>}
 
@@ -58,7 +56,7 @@ const ProgramCard = ({ program, snippets = null }) => {
                 <Media className={style.snippet} key={key}>
                   <Media body className={style.snippetBody}>
                     <Media heading className={style.snippetDescription}>
-                      <TruncatedText text={snippet.description} length={160} />
+                      <TruncatedText text={snippet.description} length={100} />
                     </Media>
                   </Media>
                   {snippet.type === 'photo' &&
@@ -72,7 +70,7 @@ const ProgramCard = ({ program, snippets = null }) => {
             </div>
 
             <div className={style.snippetListFooter}>
-              <span className={style.snippetListMeta}>{snippets.length && snippets.length === 1 ? `${snippets.length} Snippet` : `${snippets.length} Snippets`} </span>
+              <span className={style.snippetListMeta}>{snippets.length && snippets.length > 1 && `${snippets.length} Snippets`}</span>
               <RRLink to="/" className={style.snippetListMore}>More Snippets ></RRLink>
             </div>
           </div> :
