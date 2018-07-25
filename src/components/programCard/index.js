@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 import cx from 'classnames';
 import { Link as RRLink } from 'react-router-dom';
+import TruncatedText from 'components/truncatedText';
 
 import { getHumanisedMetaDescription } from 'store/programs/helpers';
 import style from './style.scss';
@@ -25,7 +26,9 @@ const ProgramCard = ({ program, snippets = null }) => {
 
       {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details entered for "{program.name}". Help record the initiative <RRLink to="/">add information</RRLink>.</CardText>}
 
-      {program.description && <CardText className={style.description}>{program.description}</CardText>}
+      {program.description && <CardText className={style.description}>
+          <TruncatedText text={program.description} length={160} />
+        </CardText>}
 
       {metaText && <p className={style.bannerMeta}>{metaText}</p>}
 
@@ -55,7 +58,7 @@ const ProgramCard = ({ program, snippets = null }) => {
                 <Media className={style.snippet} key={key}>
                   <Media body className={style.snippetBody}>
                     <Media heading className={style.snippetDescription}>
-                      {snippet.description}
+                      <TruncatedText text={snippet.description} length={160} />
                     </Media>
                   </Media>
                   {snippet.type === 'photo' &&
