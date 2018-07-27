@@ -12,7 +12,7 @@ export const getRegisterSchoolUrl = () => {
 
 export const getRegisterSchoolProgramsUrl = () => {
   return {
-    pathname: '/register/school',
+    pathname: '/register/school-programs',
   }
 };
 
