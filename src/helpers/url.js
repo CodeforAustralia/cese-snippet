@@ -1,7 +1,25 @@
-
 export const getWelcomeUrl = () => {
-  return '/onboarding/welcome';
+  return {
+    pathname: '/onboarding/welcome',
+  };
 };
+
+export const getRegisterSchoolUrl = () => {
+  return {
+    pathname: '/register/school',
+  }
+};
+
+export const getRegisterSchoolProgramsUrl = () => {
+  return {
+    pathname: '/register/school-programs',
+  }
+};
+
+
+
+
+
 
 export const getSchoolProgramsUrl = (schoolCode, year) => {
   return `/schools/${schoolCode}/programs/${year}`;
@@ -39,13 +57,4 @@ export const getCreateProgramUrl = (initialFormState = {}) => {
 export const getProgramUrl = (programId) => ({
   pathname: `/account/programs/${programId}`,
 });
-
-export const getRegisterSchoolUrl = (showBreadcrumb = false) => {
-  return {
-    pathname: `/register/school`,
-    state: {
-      showBreadcrumb,
-    }
-  }
-};
 

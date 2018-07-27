@@ -12,8 +12,8 @@ import style from './style.scss';
 
 
 const WizardLayout = ({
-                        prevTo = null, isActivePrev = true,
-                        nextTo = null, isActiveNext = true,
+                        prevTo = null, activatePrev = true,
+                        nextTo = null, activateNext = true,
                         children,
 }) => {
   return (
@@ -33,16 +33,16 @@ const WizardLayout = ({
                 {prevTo && <Button tag={RRLink}
                                    size="lg"
                                    to={prevTo}
-                                   color={isActivePrev ? 'primary' : 'secondary'}
-                                   disabled={!isActivePrev}>{`<`}</Button>}
+                                   color="light"
+                                   disabled={!activatePrev}>{`< Back`}</Button>}
               </Col>
               <Col>
                 {nextTo && <Button tag={RRLink}
                                    size="lg"
                                    className="float-right"
                                    to={nextTo}
-                                   color={isActiveNext ? 'primary' : 'secondary'}
-                                   disabled={!isActiveNext}>{`>`}</Button>}
+                                   color={activateNext ? 'primary' : 'secondary'}
+                                   disabled={!activateNext}>{`Next >`}</Button>}
               </Col>
             </Row>
           </footer>

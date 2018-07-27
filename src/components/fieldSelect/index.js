@@ -22,7 +22,12 @@ class FieldSelect extends React.Component {
       return;
     }
     log(`Selected: ${JSON.stringify(option)}`);
-    // // manually update values.category
+
+    if (!option.value) {
+      throw new Error('no "value" available on supplied options.');
+    }
+
+    // // manually update values[property]
     this.props.onChange(this.props.name, option ? option.value : null);
   }
 

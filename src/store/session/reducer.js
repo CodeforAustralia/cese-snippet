@@ -1,11 +1,11 @@
 export const ACTION_TYPES = {
-  createSession: 'SESSION/SET',
+  setSession: 'SESSION/SET',
 };
 
 const sessionReducer = (state = null, action) => {
   const { type, payload } = action;
   switch (type) {
-    case ACTION_TYPES.createSession:
+    case ACTION_TYPES.setSession:
       return payload.session;
     default:
       return state;

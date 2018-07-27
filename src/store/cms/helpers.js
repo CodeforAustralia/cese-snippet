@@ -93,13 +93,7 @@ export const getSefDomainElementOptions = (domainOptions, domainValue) => {
 //   return programTemplates.map(p => ({ value: p.id, label: p.name }));
 // };
 //
-export const getSchoolsOptions = (schools) => {
-  if (!schools) {
-    return [];
-  }
-  return schools.map(s => ({ value: s.code, label: s.name }));
-};
-//
+
 // export const getSchoolYearLevelsOptions = (school) => {
 //   if (!school) {
 //     return [];

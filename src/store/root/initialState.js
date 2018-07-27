@@ -10,9 +10,8 @@ export default {
     createProgramFormScope: {},
   },
   session: {},
-  staff: {},
+  users: {},
   schools: {},
   programs: {},
-  programTemplates: {},
   cms: {},
 };
