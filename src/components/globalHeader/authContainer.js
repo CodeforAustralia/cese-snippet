@@ -1,17 +1,12 @@
 import { connect } from 'react-redux';
-import get from 'lodash/get';
 
 import { selectSession } from 'store/session/selectors';
-import { selectStaffMember } from "store/staff/selectors";
+import { selectSessionUser } from "store/sessionUser/selectors";
 
 const mapStateToProps = (state, ownProps) => {
   const { isAuthenticated } = ownProps;
   const session = selectSession(state);
-  let sessionUser = null;
-  if (session) {
-    const staffId = get(session, 'id', null);
-    sessionUser = selectStaffMember(state, staffId);
-  }
+  const sessionUser = selectSessionUser(state);
   return {
     isAuthenticated,
     session,

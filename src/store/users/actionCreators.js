@@ -5,9 +5,27 @@ import { ACTION_TYPES } from './reducer';
 
 const log = bows('Users');
 
+/**
+ * Set user
+ * One off, used to set a user from server rendered page variables.
+ * @param user
+ * @returns {{type: string, payload: *}}
+ */
+export const setUser = (user) => {
+  log(`Set success - ${JSON.stringify(user)}`);
+  return {
+    type: ACTION_TYPES.setUser,
+    payload: objectify(user),
+  }
+};
 
+/**
+ * Update user
+ * @param user
+ * @returns {function(*, *, *)}
+ */
 export const updateUser = (user) => {
-  log('Updating');
+  log(`Updating - ${JSON.stringify(user)}`);
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.updateRequest,
@@ -17,7 +35,7 @@ export const updateUser = (user) => {
         log(`Update success - ${JSON.stringify(user)}`);
         dispatch({
           type: ACTION_TYPES.updateSuccess,
-          payload: user,
+          payload: objectify(user),
         })
       },
       errors => {

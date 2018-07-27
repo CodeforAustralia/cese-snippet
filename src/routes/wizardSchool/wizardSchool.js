@@ -23,6 +23,7 @@ class WizardSchool extends React.Component {
     const {
       optionsSchools,
       onSubmit,
+      sessionUser,
     } = this.props;
     const { activateNext } = this.state;
     return (
@@ -39,6 +40,7 @@ class WizardSchool extends React.Component {
               <Form optionsSchools={optionsSchools}
                     onSubmit={onSubmit}
                     activateNext={this.activateNext}
+                    model={sessionUser}
               />
             </div>
           </Col>

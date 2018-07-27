@@ -13,8 +13,10 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (values) => dispatch(updateUser(values));
+    onSubmit: (user) => {
+      return dispatch(updateUser(user));
+    }
   }
 };
 
-export default connect(mapStateToProps);
+export default connect(mapStateToProps, mapDispatchToProps);

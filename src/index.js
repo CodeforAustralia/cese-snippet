@@ -6,8 +6,8 @@ import "repaintless/repaintless-css/repaintless.css"
 
 import App from 'routes/app';
 import configureStore from 'store/configureStore';
-import { createSession } from 'store/session/actionCreators';
-import { createStaff } from 'store/staff/actionCreators';
+import { setSession } from 'store/session/actionCreators';
+import { setUser } from 'store/users/actionCreators';
 import { createCms } from 'store/cms/actionCreators';
 import 'style/index.scss';
 
@@ -20,15 +20,16 @@ if (!win.session_context) {
 
 const context = JSON.parse(win.session_context);
 
-if (!context.session || !context.staff || !context.cms) {
-  throw new Error(`session_context must supply keys "session", "staff", "cms". It supplied ${Object.keys(context)}`);
+if (!context.session || !context.user || !context.cms) {
+  throw new Error(`session_context must supply keys "session", "user", "cms". It supplied ${Object.keys(context)}`);
 }
 
 const store = configureStore();
 
-store.dispatch(createSession(context.session));
-store.dispatch(createStaff(context.staff));
+store.dispatch(setSession(context.session));
+store.dispatch(setUser(context.user));
 store.dispatch(createCms(context.cms));
+
 
 ReactDOM.render(
   <Provider store={store}>

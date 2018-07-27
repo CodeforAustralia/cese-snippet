@@ -34,7 +34,7 @@ const getAcronymName = name => {
 export const parseSchools = (schools) => {
   return schools.map(school => {
     return {
-      "code": school.School_code,
+      "code": String(school.School_code),
       "name": school.School_name,
       "yearLevels": getSchoolSubType(school.School_subtype),
       "avatar": `http://via.placeholder.com/70x70?text=${getAcronymName(school.School_name)}`

@@ -36,7 +36,7 @@ const configureStore = (bootState = {}) => {
 
   // make reducers HMRable
   if (module && module.hot) {
-    module.hot.accept('./rootReducer', () => {
+    module.hot.accept('./root/reducer', () => {
       const nextRootReducer = rootReducer;
       store.replaceReducer(nextRootReducer);
     });
