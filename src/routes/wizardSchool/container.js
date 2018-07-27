@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
 
-import { selectSessionUser } from 'store/sessionUser/selectors';
+import {
+  selectSessionUser,
+  selectSessionUserSchool,
+} from 'store/sessionUser/selectors';
 import { updateUser } from 'store/users/actionCreators';
 import { syncGetSchoolsOptions } from "data/schools/getters";
 
 export const mapStateToProps = (state) => {
+  const sessionUser = selectSessionUser(state);
   return {
-    sessionUser: selectSessionUser(state),
     optionsSchools: syncGetSchoolsOptions(),
+    sessionUser,
+    sessionUserSchool: selectSessionUserSchool(state, sessionUser),
   }
 };
 

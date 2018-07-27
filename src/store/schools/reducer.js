@@ -4,6 +4,7 @@ export const ACTION_TYPES = {
   fetchRequest: 'SCHOOLS/FETCH_REQUEST',
   fetchSuccess: 'SCHOOLS/FETCH_SUCCESS',
   fetchError: 'SCHOOLS/FETCH_ERROR',
+  setSchool: 'SCHOOLS/SET_SCHOOL',
 };
 
 export const isFetching = (state = null, action) => {
@@ -36,6 +37,8 @@ export const byCode = (state = {}, action) => {
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
       return {...state, ...payload.schools};
+    case ACTION_TYPES.setSchool:
+      return {...state, ...payload};
     default:
       return state;
   }

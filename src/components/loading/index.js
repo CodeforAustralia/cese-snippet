@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import style from './style.scss';
 
 export const BoxLoading = () => (
@@ -9,10 +10,10 @@ export const BoxLoading = () => (
   </div>
 );
 
-export const CircleLoading = () => (
+export const CircleLoading = ({ darkTheme = false }) => (
   <div className={style.container}>
     <div className={style.el}>
-      <div className={style.circleSpinner}>
+      <div className={cx(style.circleSpinner, darkTheme && style.isDarktheme)}>
         <div className={style.circleSpinnerBounce1} />
         <div className={style.circleSpinnerBounce2} />
         <div className={style.circleSpinnerBounce3} />

@@ -4,7 +4,6 @@ import Bows from 'bows';
 import {
   Form,
   FormGroup,
-  Label,
   Col,
 } from 'reactstrap';
 import get from 'lodash/get';
@@ -29,13 +28,13 @@ class RegisterSchoolForm extends React.Component {
       setFieldTouched,
       errors,
       touched,
+      isSubmitting,
     } = this.props;
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
         <FormGroup className="no-gutters">
-          <Col md={{size:10}}>
-            <Label htmlFor="code">Choose school</Label>
+          <Col md={{size:6}}>
             <FieldSelect name="code"
                          value={values.code}
                          options={optionsSchools}
@@ -45,6 +44,7 @@ class RegisterSchoolForm extends React.Component {
                          onBlur={setFieldTouched}
                          autoFocus={true}
                          searchable={true}
+                         disabled={isSubmitting}
             />
           </Col>
         </FormGroup>

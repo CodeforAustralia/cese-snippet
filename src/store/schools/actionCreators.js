@@ -6,6 +6,17 @@ import { objectify } from 'store/objectify';
 const log = bows('Schools');
 
 
+export const setSchool = (school) => {
+  log(`Set success - ${JSON.stringify(user)}`);
+  return {
+    type: ACTION_TYPES.setSchool,
+    payload: objectify(school, 'code'),
+  }
+};
+
+
+
+
 /**
  * @param schools {Array|Object} school or schools
  * @returns {Object} FLUX Action creator

@@ -25,15 +25,18 @@ export const setUser = (user) => {
  * @returns {function(*, *, *)}
  */
 export const updateUser = (user) => {
-  log(`Updating - ${JSON.stringify(user)}`);
+  log(`Xhr start`);
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.updateRequest,
     });
-    return api(`/users/${user.id}`).then(
+    return api(`/users/${user.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+    }).then(
       resp => {
         const user = resp.data;
-        log(`Update success - ${JSON.stringify(user)}`);
+        log(`Xhr success`);
         dispatch({
           type: ACTION_TYPES.updateSuccess,
           payload: objectify(user),
@@ -41,7 +44,7 @@ export const updateUser = (user) => {
         return user;
       },
       errors => {
-        log(`Update error - ${JSON.stringify(errors)}`);
+        log(`Xhr error`);
         dispatch({
           type: ACTION_TYPES.updateError,
           payload: {

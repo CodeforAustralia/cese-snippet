@@ -112,7 +112,9 @@
       "lastName": "Chang",
       "schools": [
         "4548"
-      ]
+      ],
+      "createdAt": 1532725518386,
+      "updatedAt": 1532725518386
     },
     {
       "id": "2",

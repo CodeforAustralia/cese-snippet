@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Col,
   Row,
+  Button,
 } from 'reactstrap';
 
 import Layout from 'layouts/wizard';
@@ -9,12 +10,14 @@ import ArrowBreadcrumb from 'components/arrowBreadcrumb';
 import Form from './form';
 import { CircleLoading } from 'components/loading';
 
+import style from './style.scss'
+
 class WizardSchool extends React.Component {
   constructor(props) {
     super(props);
     this.setContainerState = this.setContainerState.bind(this);
     this.state = {
-      hasSubmitted: false,
+      hasSubmitted: !this.props.sessionUserSchool,
       isSubmitting: false,
       isError: false,
     }
@@ -27,6 +30,7 @@ class WizardSchool extends React.Component {
       optionsSchools,
       onSubmit,
       sessionUser,
+      sessionUserSchool,
     } = this.props;
     const {
       isSubmitting,
@@ -52,10 +56,24 @@ class WizardSchool extends React.Component {
             </div>
           </Col>
         </Row>
-
         <Row>
           <Col>
-            {isSubmitting && <CircleLoading />}
+            {isSubmitting && <CircleLoading darkTheme={true} />}
+
+
+            {console.log(sessionUser.schools)}
+            {console.log(sessionUserSchool.name)}
+
+
+
+
+            {hasSubmitted && sessionUserSchool && <div>
+              <div className={style.selectedSchool}>
+                <Button className={style.selectedSchoolItem} disabled block color="light">
+                  {sessionUserSchool.name}
+                </Button>
+              </div>
+            </div>}
           </Col>
         </Row>
       </Layout>

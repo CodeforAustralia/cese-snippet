@@ -8,6 +8,7 @@ import App from 'routes/app';
 import configureStore from 'store/configureStore';
 import { setSession } from 'store/session/actionCreators';
 import { setUser } from 'store/users/actionCreators';
+import { setSchool } from 'store/schools/actionCreators';
 import { createCms } from 'store/cms/actionCreators';
 import 'style/index.scss';
 
@@ -20,14 +21,15 @@ if (!win.session_context) {
 
 const context = JSON.parse(win.session_context);
 
-if (!context.session || !context.user || !context.cms) {
-  throw new Error(`session_context must supply keys "session", "user", "cms". It supplied ${Object.keys(context)}`);
+if (!context.session || !context.user || !context.cms || !context.sessionUserSchool) {
+  throw new Error(`session_context must supply keys "session", "sessionUser", "sessionUserSchool", "cms". It supplied ${Object.keys(context)}`);
 }
 
 const store = configureStore();
 
 store.dispatch(setSession(context.session));
-store.dispatch(setUser(context.user));
+store.dispatch(setUser(context.sessionUser));
+store.dispatch(setSchool(context.sessionUserSchool));
 store.dispatch(createCms(context.cms));
 
 
