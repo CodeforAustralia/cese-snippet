@@ -11,7 +11,7 @@ const WizardWelcome = ({ sessionUser }) => {
   return (
     <Layout nextTo={getRegisterSchoolUrl()}>
       <Row>
-        <Col md={{span: 8}}>
+        <Col md={{size: 8}}>
           <h1 className="h2 mb-5">Hi {sessionUser.firstName},</h1>
           <p>Welcome to Snippet! and thank you for being part of the Snippet community.</p>
           <p>Snippet allows you to: </p>

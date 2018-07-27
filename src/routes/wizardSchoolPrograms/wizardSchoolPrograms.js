@@ -18,6 +18,9 @@ const WizardSchoolPrograms = () => {
       <Row className="mt-5">
         <Col>
           <h1 className="h2">Which programs and initiatives are happening at your school?</h1>
+
+
+
         </Col>
       </Row>
     </Layout>

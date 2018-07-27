@@ -6,8 +6,9 @@ import {
 
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
+import Form from './form';
 
-const WizardSchool = () => {
+const WizardSchool = ({ optionsSchools }) => {
   return (
     <Layout nextTo="/register/school-programs">
       <ArrowBreadcrumb linkList={[
@@ -18,6 +19,9 @@ const WizardSchool = () => {
       <Row className="mt-5">
         <Col>
           <h1 className="h2">Select your school</h1>
+          <div className="mt-4">
+            <Form optionsSchools={optionsSchools} />
+          </div>
         </Col>
       </Row>
     </Layout>
