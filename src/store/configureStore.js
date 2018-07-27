@@ -4,8 +4,8 @@ import merge from 'lodash/merge';
 import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 
-import rootReducer from 'store/rootReducer';
-import initialState from 'store/initialState';
+import rootReducer from 'store/root/reducer';
+import initialState from 'store/root/initialState';
 import api from './apiInterface';
 
 const win = typeof window !== 'undefined' ? window : global;

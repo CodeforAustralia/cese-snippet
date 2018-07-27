@@ -59,6 +59,7 @@ export default withFormik({
     props.onSubmit(values).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
+        props.activateNext(true);
         setSubmitting(false);
       },
       errors => {

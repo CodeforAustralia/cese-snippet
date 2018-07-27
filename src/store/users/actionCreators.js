@@ -3,7 +3,43 @@ import bows from 'bows';
 import { objectify } from 'store/objectify';
 import { ACTION_TYPES } from './reducer';
 
-const log = bows('Staff');
+const log = bows('Users');
+
+
+export const updateUser = (user) => {
+  log('Updating');
+  return (dispatch, getState, api) => {
+    dispatch({
+      type: ACTION_TYPES.updateRequest,
+    });
+    return api(`/users/${user.id}`).then(
+      user => {
+        log(`Update success - ${JSON.stringify(user)}`);
+        dispatch({
+          type: ACTION_TYPES.updateSuccess,
+          payload: user,
+        })
+      },
+      errors => {
+        log(`Update error - ${JSON.stringify(errors)}`);
+        dispatch({
+          type: ACTION_TYPES.updateError,
+          payload: {
+            message: errors,
+          },
+        })
+      }
+    )
+  }
+};
+
+
+
+
+
+
+
+
 
 /**
  * @param staff {Array|Object} single or multiple records
@@ -35,9 +71,9 @@ export const fetchStaff = (ids = []) => {
     const reqList = ids.reduce((acc, val) => {
       return acc + `&id=${val}`;
     }, '');
-    return fetchFromApi(`/staff?${reqList}`);
+    return fetchFromApi(`/users?${reqList}`);
   }
-  return fetchFromApi('/staff');
+  return fetchFromApi('/users');
 };
 
 

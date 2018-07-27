@@ -8,24 +8,44 @@ import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
 import Form from './form';
 
-const WizardSchool = ({ optionsSchools }) => {
-  return (
-    <Layout nextTo="/register/school-programs">
-      <ArrowBreadcrumb linkList={[
-        { to: '/register/school', label: '1', active: true },
-        { to: '/register/school-programs', label: '2', disabled: true },
-      ]} />
+class WizardSchool extends React.Component {
+  constructor(props) {
+    super(props);
+    this.activateNext = this.activateNext.bind(this);
+    this.state = {
+      activateNext: false,
+    }
+  }
+  activateNext(v) {
+    this.setState({activateNext: v});
+  }
+  render() {
+    const {
+      optionsSchools,
+      onSubmit,
+    } = this.props;
+    const { activateNext } = this.state;
+    return (
+      <Layout nextTo="/register/school-programs" activateNext={activateNext}>
+        <ArrowBreadcrumb linkList={[
+          { to: '/register/school', label: '1', active: true },
+          { to: '/register/school-programs', label: '2', disabled: true },
+        ]} />
 
-      <Row className="mt-5">
-        <Col>
-          <h1 className="h2">Select your school</h1>
-          <div className="mt-4">
-            <Form optionsSchools={optionsSchools} />
-          </div>
-        </Col>
-      </Row>
-    </Layout>
-  )
-};
+        <Row className="mt-5">
+          <Col>
+            <h1 className="h2">Select your school</h1>
+            <div className="mt-4">
+              <Form optionsSchools={optionsSchools}
+                    onSubmit={onSubmit}
+                    activateNext={this.activateNext}
+              />
+            </div>
+          </Col>
+        </Row>
+      </Layout>
+    )
+  }
+}
 
 export default WizardSchool;
