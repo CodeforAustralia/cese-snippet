@@ -7,17 +7,20 @@ import {
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
 import Form from './form';
+import { CircleLoading } from 'components/loading';
 
 class WizardSchool extends React.Component {
   constructor(props) {
     super(props);
-    this.activateNext = this.activateNext.bind(this);
+    this.setContainerState = this.setContainerState.bind(this);
     this.state = {
-      nextActive: false,
+      hasSubmitted: false,
+      isSubmitting: false,
+      isError: false,
     }
   }
-  activateNext() {
-    this.setState({nextActive: true});
+  setContainerState(props) {
+    this.setState({...this.state, ...props});
   }
   render() {
     const {
@@ -25,10 +28,13 @@ class WizardSchool extends React.Component {
       onSubmit,
       sessionUser,
     } = this.props;
-    const { nextActive } = this.state;
+    const {
+      isSubmitting,
+      hasSubmitted,
+    } = this.state;
 
     return (
-      <Layout nextTo="/register/school-programs" activateNext={nextActive}>
+      <Layout nextTo="/register/school-programs" activateNext={!isSubmitting && hasSubmitted}>
         <ArrowBreadcrumb linkList={[
           { to: '/register/school', label: '1', active: true },
           { to: '/register/school-programs', label: '2', disabled: true },
@@ -40,10 +46,16 @@ class WizardSchool extends React.Component {
             <div className="mt-4">
               <Form optionsSchools={optionsSchools}
                     onSubmit={onSubmit}
-                    activateNext={this.activateNext}
+                    setContainerState={this.setContainerState}
                     model={sessionUser}
               />
             </div>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            {isSubmitting && <CircleLoading />}
           </Col>
         </Row>
       </Layout>

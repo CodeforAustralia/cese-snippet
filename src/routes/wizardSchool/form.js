@@ -76,11 +76,17 @@ export default withFormik({
     newSessionUser.schools = [values.code];
 
     log(`submitting - ${JSON.stringify(newSessionUser)}`);
+    props.setContainerState({
+      isSubmitting: true,
+    });
 
     return props.onSubmit(newSessionUser).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
-        props.activateNext();
+        props.setContainerState({
+          hasSubmitted: true,
+          isSubmitting: false,
+        });
         setSubmitting(false);
       },
       errors => {
