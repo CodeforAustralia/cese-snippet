@@ -13,9 +13,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (user) => {
-      return dispatch(updateUser(user));
-    }
+    onSubmit: (user) => dispatch(updateUser(user)),
   }
 };
 

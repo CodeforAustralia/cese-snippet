@@ -1,6 +1,5 @@
 {
   "session": {},
-  "programTemplates": [],
   "programs": [
     {
       "id": "1",
@@ -103,7 +102,7 @@
       "createdDate": 1530238113250
     }
   ],
-  "staff": [
+  "users": [
     {
       "id": "1",
       "deptId": "123",

@@ -13,11 +13,11 @@ class WizardSchool extends React.Component {
     super(props);
     this.activateNext = this.activateNext.bind(this);
     this.state = {
-      activateNext: false,
+      nextActive: false,
     }
   }
-  activateNext(v) {
-    this.setState({activateNext: v});
+  activateNext() {
+    this.setState({nextActive: true});
   }
   render() {
     const {
@@ -25,9 +25,10 @@ class WizardSchool extends React.Component {
       onSubmit,
       sessionUser,
     } = this.props;
-    const { activateNext } = this.state;
+    const { nextActive } = this.state;
+
     return (
-      <Layout nextTo="/register/school-programs" activateNext={activateNext}>
+      <Layout nextTo="/register/school-programs" activateNext={nextActive}>
         <ArrowBreadcrumb linkList={[
           { to: '/register/school', label: '1', active: true },
           { to: '/register/school-programs', label: '2', disabled: true },

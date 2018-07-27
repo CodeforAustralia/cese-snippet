@@ -75,13 +75,12 @@ export default withFormik({
     const newSessionUser = {...props.model};
     newSessionUser.schools = [values.code];
 
-    debugger
-
     log(`submitting - ${JSON.stringify(newSessionUser)}`);
-    props.onSubmit(newSessionUser).then(
+
+    return props.onSubmit(newSessionUser).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
-        props.activateNext(true);
+        props.activateNext();
         setSubmitting(false);
       },
       errors => {

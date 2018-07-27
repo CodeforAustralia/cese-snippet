@@ -31,12 +31,14 @@ export const updateUser = (user) => {
       type: ACTION_TYPES.updateRequest,
     });
     return api(`/users/${user.id}`).then(
-      user => {
+      resp => {
+        const user = resp.data;
         log(`Update success - ${JSON.stringify(user)}`);
         dispatch({
           type: ACTION_TYPES.updateSuccess,
           payload: objectify(user),
-        })
+        });
+        return user;
       },
       errors => {
         log(`Update error - ${JSON.stringify(errors)}`);
@@ -45,7 +47,8 @@ export const updateUser = (user) => {
           payload: {
             message: errors,
           },
-        })
+        });
+        return errors;
       }
     )
   }
