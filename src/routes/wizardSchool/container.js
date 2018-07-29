@@ -4,7 +4,7 @@ import {
   selectSessionUser,
   selectSessionUserSchool,
 } from 'store/sessionUser/selectors';
-import { updateUser } from 'store/users/actionCreators';
+import { updateUserProcess } from 'store/users/flows';
 import { syncGetSchoolsOptions } from "data/schools/getters";
 
 export const mapStateToProps = (state) => {
@@ -18,7 +18,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (user) => dispatch(updateUser(user)),
+    onSubmit: (user) => dispatch(updateUserProcess(user)),
   }
 };
 

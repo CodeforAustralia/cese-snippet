@@ -2,7 +2,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import merge from 'lodash/merge';
 import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 
 import rootReducer from 'store/root/reducer';
 import initialState from 'store/root/initialState';
@@ -16,9 +16,9 @@ const middlewares = [
 ];
 
 if (process.env.NODE_ENV === 'development' || process.env.REACT_APP_DEBUG === true) {
-  middlewares.push(createLogger({
-    collapsed: true,
-  }));
+  // middlewares.push(createLogger({
+  //   collapsed: true,
+  // }));
 }
 
 const composeEnhancers = typeof win.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function' ?

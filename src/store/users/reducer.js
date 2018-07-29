@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux';
-import bows from 'bows';
 
-const log = bows('Users reducer');
 
 export const ACTION_TYPES = {
   fetchRequest: 'USERS/FETCH_REQUEST',

@@ -9,8 +9,10 @@ import {
 import get from 'lodash/get';
 
 import FieldSelect from "components/fieldSelect";
+import { CircleLoading } from 'components/loading';
 
 const log = Bows('Form - Register School');
+
 
 class RegisterSchoolForm extends React.Component {
   componentDidUpdate(prevProps) {
@@ -21,6 +23,7 @@ class RegisterSchoolForm extends React.Component {
   render() {
     const {
       optionsSchools,
+      selectedSchool,
 
       handleSubmit,
       values,
@@ -45,9 +48,11 @@ class RegisterSchoolForm extends React.Component {
                          autoFocus={true}
                          searchable={true}
                          disabled={isSubmitting}
+                         clearable={false}
             />
           </Col>
         </FormGroup>
+        {isSubmitting && <CircleLoading darkTheme={true} />}
       </Form>
     )
   }
@@ -57,7 +62,7 @@ export default withFormik({
   displayName: 'registerSchool',
   mapPropsToValues: (props) => {
     return {
-      code: get(props, 'sessionUser.schools[0]', ''),
+      code: get(props, 'model.schools[0]', ''),
     };
   },
   validate: (values, props) => {

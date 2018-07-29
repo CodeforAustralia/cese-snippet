@@ -21,7 +21,7 @@ if (!win.session_context) {
 
 const context = JSON.parse(win.session_context);
 
-if (!context.session || !context.user || !context.cms || !context.sessionUserSchool) {
+if (!context.session || !context.sessionUser || !context.cms || !context.sessionUserSchool) {
   throw new Error(`session_context must supply keys "session", "sessionUser", "sessionUserSchool", "cms". It supplied ${Object.keys(context)}`);
 }
 

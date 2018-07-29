@@ -12,7 +12,7 @@ const log = bows('Users');
  * @returns {{type: string, payload: *}}
  */
 export const setUser = (user) => {
-  log(`Set success - ${JSON.stringify(user)}`);
+  log(`setUser success`);
   return {
     type: ACTION_TYPES.setUser,
     payload: objectify(user),
@@ -25,7 +25,7 @@ export const setUser = (user) => {
  * @returns {function(*, *, *)}
  */
 export const updateUser = (user) => {
-  log(`Xhr start`);
+  log(`updateUser start`);
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.updateRequest,
@@ -36,7 +36,7 @@ export const updateUser = (user) => {
     }).then(
       resp => {
         const user = resp.data;
-        log(`Xhr success`);
+        log(`updateUser success`);
         dispatch({
           type: ACTION_TYPES.updateSuccess,
           payload: objectify(user),
@@ -44,7 +44,7 @@ export const updateUser = (user) => {
         return user;
       },
       errors => {
-        log(`Xhr error`);
+        log(`updateUser error`);
         dispatch({
           type: ACTION_TYPES.updateError,
           payload: {
