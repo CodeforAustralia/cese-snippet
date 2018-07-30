@@ -43,7 +43,6 @@ class WizardSchool extends React.Component {
         <Row className="mt-5">
           <Col>
             <h1 className="h2">Select your school</h1>
-
             <div className="mt-4">
               <Form optionsSchools={optionsSchools}
                     onSubmit={onSubmit}

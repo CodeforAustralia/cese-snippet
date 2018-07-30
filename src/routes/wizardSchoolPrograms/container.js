@@ -26,7 +26,9 @@ export const mapStateToProps = (state) => {
     suggestedPrograms: syncGetSuggestedProgramTemplates(school.subtype).filter((program) => {
       return !schoolProgramNames.includes(program.name);
     }),
-    optionsProgramTemplates: syncGetProgramTemplateOptions(),
+    optionsProgramTemplates: syncGetProgramTemplateOptions().filter((program) => {
+      return !schoolProgramNames.includes(program.name);
+    }),
   }
 };
 

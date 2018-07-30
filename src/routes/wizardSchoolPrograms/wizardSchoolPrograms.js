@@ -14,7 +14,17 @@ class WizardSchoolPrograms extends React.Component {
 
   constructor(props) {
     super(props);
+    this.setContainerState = this.setContainerState.bind(this);
     this.handleOnButtonAdd = this.handleOnButtonAdd.bind(this);
+    this.state = {
+      isSubmitting: false,
+      isError: false,
+      hasSchool: this.props.sessionUserSchool && this.props.sessionUserSchool.name,
+    }
+  }
+
+  setContainerState(props) {
+    this.setState({...this.state, ...props});
   }
 
   componentDidMount() {
@@ -42,13 +52,23 @@ class WizardSchoolPrograms extends React.Component {
 
   render() {
     const {
+      school,
       schoolPrograms,
       isFetchingSchoolPrograms,
       suggestedPrograms,
+      onAddProgram,
+      optionsProgramTemplates,
     } = this.props;
 
+    const {
+      isSubmitting,
+    } = this.state;
+
     return (
-      <Layout prevTo="/register/school" nextTo="/schools">
+      <Layout prevTo="/register/school"
+              nextTo="/schools"
+              activateNext={!isSubmitting}
+              nextText="Complete sign up">
         <ArrowBreadcrumb linkList={[
           { to: '/register/school', label: '1' },
           { to: '/register/school-programs', label: '2', active: true },
@@ -62,7 +82,14 @@ class WizardSchoolPrograms extends React.Component {
               <Row>
                 <Col md={{size: 6}}>
                   <div className="mb-5">
-                    <QuickAddProgramForm />
+                    <QuickAddProgramForm optionsPrograms={optionsProgramTemplates}
+                                         onSubmit={onAddProgram}
+                                         model={{
+                                           schoolCode: school.code,
+                                           year: '2018',
+                                         }}
+                                         setContainerState={this.setContainerState}
+                    />
                   </div>
 
                   <div>
