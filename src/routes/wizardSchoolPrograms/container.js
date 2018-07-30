@@ -17,18 +17,22 @@ import {
 
 export const mapStateToProps = (state) => {
   const school = selectSessionUserSchool(state);
+  const schoolPrograms = selectProgramsByFilterKey(state, { schoolCode: school.code });
+  const schoolProgramNames = schoolPrograms.map(p => p.name);
   return {
     school,
     isFetchingSchoolPrograms: getIsFetchingSchoolPrograms(state),
-    schoolPrograms: selectProgramsByFilterKey(state, { schoolCode: school.code }),
-    suggestedPrograms: syncGetSuggestedProgramTemplates(school.subtype),
+    schoolPrograms,
+    suggestedPrograms: syncGetSuggestedProgramTemplates(school.subtype).filter((program) => {
+      return !schoolProgramNames.includes(program.name);
+    }),
     optionsProgramTemplates: syncGetProgramTemplateOptions(),
   }
 };
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    onAddProgram: (programTemplate) => dispatch(createProgram(programTemplate)),
+    onAddProgram: (program) => dispatch(createProgram(program)),
     fetchSchoolPrograms: (code) => dispatch(fetchProgramsByFilter({ schoolCode: code, year: '2018'})),
   }
 };

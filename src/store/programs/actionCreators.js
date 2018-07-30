@@ -85,12 +85,12 @@ export const createProgram = (program) => {
 
   // 1. todo
 
-  if (!program.code || !program.year) {
-    throw new Error('Must provide code and year')
+  if (!program.schoolCode || !program.year) {
+    throw new Error('Must provide schoolCode and year')
   }
 
   const filterKey = getFilterKey({
-    code: program.code,
+    schoolCode: program.schoolCode,
     year: program.year,
   });
 

@@ -12,6 +12,11 @@ import QuickAddProgramForm from './form';
 
 class WizardSchoolPrograms extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleOnButtonAdd = this.handleOnButtonAdd.bind(this);
+  }
+
   componentDidMount() {
     this.fetchData();
   }
@@ -24,6 +29,15 @@ class WizardSchoolPrograms extends React.Component {
 
   fetchData() {
     this.props.fetchSchoolPrograms(this.props.school.code);
+  }
+
+  handleOnButtonAdd(program) {
+    const data = {
+      ...program,
+      schoolCode: this.props.school.code,
+      year: '2018',
+    };
+    this.props.onAddProgram(data);
   }
 
   render() {
@@ -55,9 +69,9 @@ class WizardSchoolPrograms extends React.Component {
                     <Label className="h5">Or, select from these popular programs</Label>
                     <div>
                       <ul>
-                        {suggestedPrograms.map((p, idx) => {
+                        {suggestedPrograms.map((program, idx) => {
                           return (
-                            <li key={idx}><Button color="link">{p.name}</Button></li>
+                            <li key={idx}><Button color="link" onClick={() => this.handleOnButtonAdd(program)}>{program.name}</Button></li>
                           )
                         })}
                       </ul>
