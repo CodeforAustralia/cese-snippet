@@ -70,13 +70,13 @@ class WizardSchoolPrograms extends React.Component {
               activateNext={!isSubmitting}
               nextText="Complete sign up">
         <ArrowBreadcrumb linkList={[
-          { to: '/register/school', label: '1' },
-          { to: '/register/school-programs', label: '2', active: true },
+          { to: '/register/school', label: '1', visited: true, disabled: false, },
+          { to: '/register/school-programs', label: '2', visited: true, disabled: true, active: true, },
         ]} />
 
         <Row className="mt-5">
           <Col>
-            <h1 className="h2">Which programs and initiatives are happening at your school?</h1>
+            <h1 className="h2">Which programs and initiatives are happening at your {school.name}?</h1>
 
             <div className="mt-4">
               <Row>

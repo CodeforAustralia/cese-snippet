@@ -47,59 +47,64 @@
       "name": "Language, Learning and Literacy (L3)"
     },
     {
-      "id": "2",
-      "schoolCode": "4548",
-      "category": "Extra-curricular",
-      "subCategory": "Sports and Physical Fitness",
-      "aims": "Torpedo pecador diodenoo aute magna quietooor irure aliqua velit. Sit amet aliqua aliquip sit amet irure qui reprehenderit pupita consectetur ese. \n\nPedazo de commodo. Jarl sexuarl va usté muy cargadoo dolore esse consectetur quis.",
-      "description": "Lorem fistrum está la cosa muy malar la caidita me cago en tus muelas. Por la gloria de mi madre benemeritaar diodeno ahorarr pupita jarl fistro. A wan a peich diodeno caballo blanco caballo negroorl.",
-      "descriptionFull": null,
-      "website": null,
-      "participantGroups": [
-        "Students"
-      ],
-      "participantGroupsDescription": null,
-      "focusGroup": null,
-      "focusGroupOther": null,
-      "yearLevels": [
-        "K",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
-      "cohortSize": 30,
-      "deliveredByType": "External Provider",
-      "externalProvider": "PCYC",
-      "staff": [
-        "2",
-        "1"
-      ],
-      "year": 2018,
-      "terms": [
-        3
-      ],
-      "tags": [
-        "team building",
-        "belonging",
-        "active kids"
-      ],
-      "createdDate": "2018-02-05",
-      "createdBy": "2",
-      "updatedBy": "1",
-      "updatedDate": "2018-02-05",
-      "name": "Cricket"
-    },
-    {
-      "id": "3",
-      "name": "Coding Club",
+      "name": "Book Club",
+      "subtype": "primary",
       "schoolCode": "4548",
       "year": "2018",
-      "createdBy": "1",
-      "updatedDate": 1530238113250,
-      "createdDate": 1530238113250
+      "createdAt": 1532916266771,
+      "updatedAt": 1532916266771,
+      "id": "GUxU_3x"
+    },
+    {
+      "name": "Buddy Program",
+      "subtype": "primary",
+      "schoolCode": "4548",
+      "year": "2018",
+      "createdAt": 1532916272709,
+      "updatedAt": 1532916272709,
+      "id": "Dqs~kix"
+    },
+    {
+      "name": "Cultural Groups",
+      "subtype": "primary",
+      "schoolCode": "4548",
+      "year": "2018",
+      "createdAt": 1532916278502,
+      "updatedAt": 1532916278502,
+      "id": "nzVo9d6"
+    },
+    {
+      "schoolCode": "4548",
+      "year": "2018",
+      "name": "1-2-3 Magic and Emotion Coaching Program",
+      "createdAt": 1532920063945,
+      "updatedAt": 1532920063945,
+      "id": "pv4C7ls"
+    },
+    {
+      "schoolCode": "4548",
+      "year": "2018",
+      "name": "Acapella Group",
+      "createdAt": 1532920463594,
+      "updatedAt": 1532920463594,
+      "id": "GVrxS5~"
+    },
+    {
+      "name": "Chicken Club",
+      "subtype": "primary",
+      "schoolCode": "4548",
+      "year": "2018",
+      "createdAt": 1532920473256,
+      "updatedAt": 1532920473256,
+      "id": "RF8k6Lr"
+    },
+    {
+      "schoolCode": "4548",
+      "year": "2018",
+      "name": "Secret Agent Society",
+      "createdAt": 1532920495872,
+      "updatedAt": 1532920495872,
+      "id": "v102nMK"
     }
   ],
   "users": [
@@ -111,10 +116,10 @@
       "firstName": "Grace",
       "lastName": "Chang",
       "schools": [
-        "8514"
+        "4293"
       ],
-      "createdAt": 1532835054723,
-      "updatedAt": 1532835054723
+      "createdAt": 1532920520697,
+      "updatedAt": 1532920520697
     },
     {
       "id": "2",
@@ -132,6 +137,7 @@
     {
       "code": "4548",
       "name": "Copacabana Public School",
+      "subtype": "primary",
       "yearLevels": [
         "K",
         "1",
@@ -142,61 +148,6 @@
         "6"
       ],
       "avatar": "http://via.placeholder.com/70x70?text=Copacabana"
-    },
-    {
-      "code": "3997",
-      "name": "Hilltop Road Public School",
-      "yearLevels": [
-        "K",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
-      "avatar": "http://via.placeholder.com/70x70?text=Hilltop"
-    },
-    {
-      "code": "7416",
-      "name": "Eastwood Public School",
-      "yearLevels": [
-        "K",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
-      "avatar": "http://via.placeholder.com/70x70?text=Eastwood"
-    },
-    {
-      "code": "4293",
-      "name": "St Ives North Public School",
-      "yearLevels": [
-        "K",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6"
-      ],
-      "avatar": "http://via.placeholder.com/70x70?text=StIves"
-    },
-    {
-      "code": "8514",
-      "name": "Plumpton High School",
-      "yearLevels": [
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12"
-      ],
-      "avatar": "http://via.placeholder.com/70x70?text=Plumpton"
     }
   ],
   "snippets": [
