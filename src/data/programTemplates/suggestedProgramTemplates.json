@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Book Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Breakfast Program",
+    "subtype": "primary"
+  },
+  {
+    "name": "Buddy Program",
+    "subtype": "primary"
+  },
+  {
+    "name": "Chess Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Chicken Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Coding Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Cultural Groups",
+    "subtype": "primary"
+  },
+  {
+    "name": "Dance Ensemble",
+    "subtype": "primary"
+  },
+  {
+    "name": "Debating",
+    "subtype": "primary"
+  },
+  {
+    "name": "Drama",
+    "subtype": "primary"
+  },
+  {
+    "name": "Environment Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Garden Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Homework Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Language, Learning and Literacy (L3)",
+    "subtype": "primary"
+  },
+  {
+    "name": "Leap into Learning",
+    "subtype": "primary"
+  },
+  {
+    "name": "Positive Behaviour For Learning (PBL)",
+    "subtype": "primary"
+  },
+  {
+    "name": "Public Speaking",
+    "subtype": "primary"
+  },
+  {
+    "name": "Recorder Club",
+    "subtype": "primary"
+  },
+  {
+    "name": "Robotics",
+    "subtype": "primary"
+  },
+  {
+    "name": "Student Representative Council (SRC)",
+    "subtype": "primary"
+  },
+  {
+    "name": "Transition to Year 1",
+    "subtype": "primary"
+  },
+  {
+    "name": "Worm Farm",
+    "subtype": "primary"
+  },
+  {
+    "name": "Writing",
+    "subtype": "primary"
+  },
+  {
+    "name": "Spelling",
+    "subtype": "primary"
+  },
+  {
+    "name": "Focus on Reading (FOR)",
+    "subtype": "primary"
+  },
+  {
+    "name": "Targeting Early Numeracy (TEN)",
+    "subtype": "primary"
+  },
+  {
+    "name": "Taking off with Numeracy (TOWN)",
+    "subtype": "primary"
+  },
+  {
+    "name": "Art or Creators Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Book Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Chess Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Coding Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Dance Ensemble",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Debating",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Drama",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Environment Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Social Justice Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Homework Club",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Positive Behaviour For Learning (PBL)",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Public Speaking",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Robotics",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Student Representative Council (SRC)",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Transition to Year 7",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Transition to Work",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Peer Support",
+    "subtype": "secondary"
+  },
+  {
+    "name": "Mock Trial",
+    "subtype": "secondary"
+  }
+]

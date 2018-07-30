@@ -56,10 +56,10 @@ const byId = (state = {}, action) => {
 };
 
 
-const staffReducer = combineReducers({
+const usersReducer = combineReducers({
   byId,
   isFetching,
   errorMessage,
 });
 
-export default staffReducer;
+export default usersReducer;

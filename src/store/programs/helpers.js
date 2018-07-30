@@ -9,7 +9,7 @@ const currentYear = getYear();
 export const getDefaultYear = () => currentYear;
 
 export const getFilterKey = ({ schoolCode, year = currentYear }) => {
-  if (typeof code === 'undefined') {
+  if (typeof schoolCode === 'undefined') {
     throw new Error('Must provide code to getFilterKey.');
   }
   return String(`${schoolCode}_${year}`);

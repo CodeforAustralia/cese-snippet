@@ -14,7 +14,6 @@ class WizardSchool extends React.Component {
     super(props);
     this.setContainerState = this.setContainerState.bind(this);
     this.state = {
-      hasSubmitted: !this.props.sessionUserSchool,
       isSubmitting: false,
       isError: false,
       hasSchool: this.props.sessionUserSchool && this.props.sessionUserSchool.name,
@@ -28,15 +27,14 @@ class WizardSchool extends React.Component {
       optionsSchools,
       onSubmit,
       sessionUser,
-      sessionUserSchool,
     } = this.props;
     const {
       isSubmitting,
-      hasSubmitted,
+      hasSchool,
     } = this.state;
 
     return (
-      <Layout nextTo="/register/school-programs" activateNext={!isSubmitting && hasSubmitted}>
+      <Layout nextTo="/register/school-programs" activateNext={hasSchool && !isSubmitting}>
         <ArrowBreadcrumb linkList={[
           { to: '/register/school', label: '1', active: true },
           { to: '/register/school-programs', label: '2', disabled: true },
@@ -47,16 +45,12 @@ class WizardSchool extends React.Component {
             <h1 className="h2">Select your school</h1>
 
             <div className="mt-4">
-
               <Form optionsSchools={optionsSchools}
                     onSubmit={onSubmit}
                     setContainerState={this.setContainerState}
                     model={sessionUser}
-                    selectedSchool={sessionUserSchool}
               />
-
             </div>
-
           </Col>
         </Row>
       </Layout>

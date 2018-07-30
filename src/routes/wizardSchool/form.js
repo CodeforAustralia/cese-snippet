@@ -23,7 +23,6 @@ class RegisterSchoolForm extends React.Component {
   render() {
     const {
       optionsSchools,
-      selectedSchool,
 
       handleSubmit,
       values,
