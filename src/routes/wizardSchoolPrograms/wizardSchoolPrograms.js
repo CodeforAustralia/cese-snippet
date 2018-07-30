@@ -70,7 +70,7 @@ class WizardSchoolPrograms extends React.Component {
     } = this.state;
 
     return (
-      <Layout prevTo="/register/school"
+      <Layout prevTo="/onboarding/school"
               nextTo="/schools"
               activateNext={!isSubmitting}
               nextText="Complete sign up">

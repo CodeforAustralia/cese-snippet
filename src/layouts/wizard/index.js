@@ -19,19 +19,20 @@ const WizardLayout = ({
   return (
       <div className={style.layout}>
 
-        <div className={style.headerContainer}>
-          <GlobalHeader />
-        </div>
+        <GlobalHeader />
 
-        <Container className={style.mainContainer}>
-          <main className={style.main}>
+        <main className={style.main}>
+          <Container>
             {children}
-          </main>
-          <footer className={style.footer}>
+          </Container>
+        </main>
+
+        <footer className={style.footer}>
+          <Container>
             <Row>
               <Col>
                 {prevTo && <Button tag={RRLink}
-                                   size="lg"
+                                   size="sm"
                                    to={prevTo}
                                    color="light"
                                    disabled={!activatePrev}>{`< Back`}</Button>}
@@ -41,12 +42,13 @@ const WizardLayout = ({
                                    size="lg"
                                    className="float-right"
                                    to={nextTo}
-                                   color={activateNext ? 'primary' : 'secondary'}
+                                   color={activateNext ? 'pink' : 'secondary'}
                                    disabled={!activateNext}>{nextText}</Button>}
               </Col>
             </Row>
-          </footer>
-        </Container>
+          </Container>
+
+        </footer>
       </div>
   )
 };
