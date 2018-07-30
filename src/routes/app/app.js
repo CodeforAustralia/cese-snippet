@@ -22,8 +22,8 @@ const App = ({ session, sessionUser }) => {
         <Switch>
           <Route exact path="/" component={FakeLogin} />
           <PrivateRoute path="/onboarding/welcome" component={WizardWelcome} />
-          <PrivateRoute path="/register/school" component={WizardSchool} />
-          <PrivateRoute path="/register/school-programs" component={WizardSchoolPrograms} />
+          <PrivateRoute path="/onboarding/school" component={WizardSchool} />
+          <PrivateRoute path="/onboarding/school-programs" component={WizardSchoolPrograms} />
           <PrivateRoute path="/schools/:schoolCode/programs/:year" component={SchoolPrograms} />
           {/*<PrivateRoute path="/snippets/new" component={} />*/}
           {/*<PrivateRoute path="/programs/:programId" component={} />*/}

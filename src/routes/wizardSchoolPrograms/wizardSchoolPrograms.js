@@ -1,14 +1,19 @@
 import React from 'react';
+import cx from 'classnames';
 import {
   Col,
   Row,
   Label,
+  Card,
   Button,
 } from 'reactstrap';
 
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
 import QuickAddProgramForm from './form';
+
+import style from './style.scss';
+
 
 class WizardSchoolPrograms extends React.Component {
 
@@ -65,23 +70,24 @@ class WizardSchoolPrograms extends React.Component {
     } = this.state;
 
     return (
-      <Layout prevTo="/register/school"
+      <Layout prevTo="/onboarding/school"
               nextTo="/schools"
               activateNext={!isSubmitting}
               nextText="Complete sign up">
         <ArrowBreadcrumb linkList={[
-          { to: '/register/school', label: '1', visited: true, disabled: false, },
-          { to: '/register/school-programs', label: '2', visited: true, disabled: true, active: true, },
+          { to: '/onboarding/welcome', label: '1', visited: true, disabled: false, },
+          { to: '/onboarding/school', label: '2', visited: true, disabled: false, },
+          { to: '/onboarding/school-programs', label: '3', visited: true, disabled: true, active: true, },
         ]} />
 
         <Row className="mt-5">
           <Col>
-            <h1 className="h2">Which programs and initiatives are happening at your {school.name}?</h1>
+            <h1 className="h2">Which programs and initiatives are happening at {school.name}?</h1>
 
             <div className="mt-4">
               <Row>
-                <Col md={{size: 6}}>
-                  <div className="mb-5">
+                <Col md={{size: 4}}>
+                  <div className="mb-4">
                     <QuickAddProgramForm optionsPrograms={optionsProgramTemplates}
                                          onSubmit={onAddProgram}
                                          model={{
@@ -93,36 +99,48 @@ class WizardSchoolPrograms extends React.Component {
                   </div>
 
                   <div>
-                    <Label className="h5">Or, select from these popular programs</Label>
+                    <Label>Or, select from these popular programs</Label>
                     <div>
-                      <ul>
-                        {suggestedPrograms.map((program, idx) => {
-                          return (
-                            <li key={idx}><Button color="link" onClick={() => this.handleOnButtonAdd(program)}>{program.name}</Button></li>
-                          )
-                        })}
+                      <ul className={cx(
+                        style.buttonListToAdd,
+                        'list-unstyled'
+                      )}>
+                        {suggestedPrograms.map((program, idx) => (
+                          <li className={style.buttonListItem} key={idx}>
+                            <Button className={style.buttonListItemButton}
+                                    color="primary"
+                                    outline={true}
+                                    size="sm"
+                                    onClick={() =>  this.handleOnButtonAdd(program)}
+                            >{program.name}</Button>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
                 </Col>
 
-                <Col md={{size: 6}}>
-                  <h2 className="h5">Current programs and initiatives {schoolPrograms && schoolPrograms.length ? <span> ({!isFetchingSchoolPrograms && schoolPrograms.length})</span> : null}</h2>
-                  <p>This is the list of programs or initiatives that have been added to your school this year.</p>
+                <Col md={{size: 8}}>
+                  <Card body>
+                    <h2 className="h5">Current programs and initiatives {schoolPrograms && schoolPrograms.length ? <span> ({!isFetchingSchoolPrograms && schoolPrograms.length})</span> : null}</h2>
+                    <p>This is the list of programs or initiatives that have been added to your school this year.</p>
 
-                  {schoolPrograms ?
-                    <div>
-                      <ul>
-                        {schoolPrograms.map((p, idx) => {
-                          return (
-                            <li key={idx}>{p.name}</li>
-                          )
-                        })}
-                      </ul>
-                    </div> :
-                    <p className="text-light">There are no programs recorded yet.</p>
-                  }
-                  {isFetchingSchoolPrograms && <p>Loading...</p>}
+                    {schoolPrograms ?
+                      <div>
+                        <ul className={cx(style.buttonList3Col, 'list-unstyled')}>
+                          {schoolPrograms.map((program, idx) => (
+                            <li className={style.buttonListItem} key={idx}>
+                              <p className={style.buttonListItemStatic}>
+                                {program.name}
+                              </p>
+                            </li>
+                          ))}
+                        </ul>
+                      </div> :
+                      <p className="text-light">There are no programs recorded yet.</p>
+                    }
+                    {isFetchingSchoolPrograms && <p>Loading...</p>}
+                  </Card>
                 </Col>
               </Row>
             </div>

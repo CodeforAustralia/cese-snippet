@@ -6,13 +6,13 @@ export const getWelcomeUrl = () => {
 
 export const getRegisterSchoolUrl = () => {
   return {
-    pathname: '/register/school',
+    pathname: '/onboarding/school',
   }
 };
 
 export const getRegisterSchoolProgramsUrl = () => {
   return {
-    pathname: '/register/school-programs',
+    pathname: '/onboarding/school-programs',
   }
 };
 
