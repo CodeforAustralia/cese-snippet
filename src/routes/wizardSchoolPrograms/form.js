@@ -29,7 +29,7 @@ const QuickAddProgramForm = ({
   return (
     <div>
       <FormGroup>
-        <Label className="h5">Enter program name</Label>
+        <Label>Enter program name</Label>
         <Form inline noValidate={true} onSubmit={handleSubmit}>
           <FormGroup row style={{width:'100%'}}>
             <Col sm={{size:10}}>
@@ -46,8 +46,7 @@ const QuickAddProgramForm = ({
               />
             </Col>
             <Col sm={{size:2}}>
-              <Button type="submit" disabled={isSubmitting}>Add</Button>
-
+              <Button type="submit" color="primary" disabled={isSubmitting}>Add</Button>
             </Col>
           </FormGroup>
         </Form>

@@ -36,8 +36,9 @@ class WizardSchool extends React.Component {
     return (
       <Layout nextTo="/register/school-programs" activateNext={hasSchool && !isSubmitting}>
         <ArrowBreadcrumb linkList={[
-          { to: '/register/school', label: '1', visited: true,  disabled: true, active: true, },
-          { to: '/register/school-programs', label: '2', visited: false,  disabled: true, },
+          { to: '/onboarding/welcome', label: '1', visited: true, disabled: false, },
+          { to: '/register/school', label: '2', visited: true,  disabled: true, active: true, },
+          { to: '/register/school-programs', label: '3', visited: false,  disabled: true, },
         ]} />
 
         <Row className="mt-5">
