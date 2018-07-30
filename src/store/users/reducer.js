@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+
 export const ACTION_TYPES = {
   fetchRequest: 'USERS/FETCH_REQUEST',
   fetchSuccess: 'USERS/FETCH_SUCCESS',
@@ -55,10 +56,10 @@ const byId = (state = {}, action) => {
 };
 
 
-const staffReducer = combineReducers({
+const usersReducer = combineReducers({
   byId,
   isFetching,
   errorMessage,
 });
 
-export default staffReducer;
+export default usersReducer;

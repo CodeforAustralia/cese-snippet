@@ -6,6 +6,17 @@ import { objectify } from 'store/objectify';
 const log = bows('Schools');
 
 
+export const setSchool = (school) => {
+  log(`setSchool success`);
+  return {
+    type: ACTION_TYPES.setSchool,
+    payload: objectify(school, 'code'),
+  }
+};
+
+
+
+
 /**
  * @param schools {Array|Object} school or schools
  * @returns {Object} FLUX Action creator
@@ -65,7 +76,7 @@ export const fetchFromApi = (path, props) => {
         log(`Fetched`);
         // 2.
         dispatch(createOrUpdateSchools(resp.data));
-        return resp;
+        return resp.data;
       })
       .catch((error) => {
         // todo - status messages

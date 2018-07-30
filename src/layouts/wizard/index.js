@@ -13,7 +13,7 @@ import style from './style.scss';
 
 const WizardLayout = ({
                         prevTo = null, activatePrev = true,
-                        nextTo = null, activateNext = true,
+                        nextTo = null, activateNext = true, nextText = `Next >`,
                         children,
 }) => {
   return (
@@ -42,27 +42,11 @@ const WizardLayout = ({
                                    className="float-right"
                                    to={nextTo}
                                    color={activateNext ? 'primary' : 'secondary'}
-                                   disabled={!activateNext}>{`Next >`}</Button>}
+                                   disabled={!activateNext}>{nextText}</Button>}
               </Col>
             </Row>
           </footer>
         </Container>
-
-
-
-
-
-{/*
-
-        <Container>
-          <Row className={style.main}>
-            <Col>
-              {children}
-            </Col>
-          </Row>
-
-        </Container>
-*/}
       </div>
   )
 };

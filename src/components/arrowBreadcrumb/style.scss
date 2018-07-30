@@ -1,13 +1,19 @@
 @import '~style/helpers';
 
-$background: $info; //$primary;
+$background: #e9ecef;//$info; //$primary;
 $border: $info; //$primary;
 $hover-background: darken($background, 7.5%);
 $hover-border: darken($border, 10%);
 $active-background: darken($background, 10%);
 $active-border: darken($border, 12.5%);
-$current-active-color: #e9ecef;
-$disabled-background: #75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity);
+$current-active-color: #75c0ce;// #e9ecef;
+$disabled-background: #e9ecef; //#75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity);
+
+
+
+$visited-background: #a7d6e0; //rgba(#75c0ce, .65);
+$active-background: #75c0ce;
+
 
 .breadcrumbContainer {
   //padding: 0.75rem 1rem;
@@ -170,34 +176,50 @@ $disabled-background: #75c0ce; //#67a7fd; //rgba($primary, $btn-disabled-opacity
 
   }
 
-  &.active{
+  &.active,
+  &.visited {
     a {
       cursor: default;
       color: black;
-      background-color: $current-active-color;
+      background-color: $visited-background;
 
       &:before{
-        border-color: $current-active-color;
+        border-color: $visited-background;
         border-left-color: transparent;
       }
       &:after{
-        border-left-color: $current-active-color;
+        border-left-color: $visited-background;
       }
     }
   }
 
-  &.disabled {
+  &.active {
     a {
-      cursor: default;
-      background-color: $disabled-background;
-
+      font-weight: 600;
+      background-color: $active-background;
       &:before{
-        border-color: $disabled-background;
+        border-color: $active-background;
         border-left-color: transparent;
       }
       &:after{
-        border-left-color: $disabled-background;
+        border-left-color: $active-background;
       }
     }
   }
+
+
+  //&.disabled {
+  //  a {
+  //    cursor: default;
+  //    background-color: $disabled-background;
+	//
+  //    &:before{
+  //      border-color: $disabled-background;
+  //      border-left-color: transparent;
+  //    }
+  //    &:after{
+  //      border-left-color: $disabled-background;
+  //    }
+  //  }
+  //}
 }

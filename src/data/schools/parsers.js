@@ -27,6 +27,15 @@ const getAcronymName = name => {
   return firstLetters.join('');
 };
 
+const getSubtype = levelOfSchooling => {
+  if (levelOfSchooling === "Primary School") {
+    return 'primary';
+  } else if (levelOfSchooling === "Secondary School") {
+    return 'secondary';
+  }
+  return null;
+};
+
 /**
  * Parse the Master Schools List to create data that Snippet expects
  * @param schools
@@ -36,8 +45,9 @@ export const parseSchools = (schools) => {
     return {
       "code": String(school.School_code),
       "name": school.School_name,
+      "subtype": getSubtype(school.Level_of_schooling),
       "yearLevels": getSchoolSubType(school.School_subtype),
-      "avatar": `http://via.placeholder.com/70x70?text=${getAcronymName(school.School_name)}`
+      "avatar": `http://via.placeholder.com/70x70?text=${getAcronymName(school.School_name)}`,
     }
   })
 };

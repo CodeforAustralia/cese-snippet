@@ -12,8 +12,9 @@ const ArrowBreadcrumb = ({ linkList }) => {
         {linkList.map((link, key) => (
           <BreadcrumbItem key={key} className={cx(
             style.breadcrumbItem,
+            link.visited ? style.visited : '',
             link.active ? style.active : '',
-            link.disabled ? style.disabled : ''
+            link.disabled ? style.disabled : '',
           )}>
             <RRLink to={link.to} disabled={link.disabled}>{link.label}</RRLink>
           </BreadcrumbItem>

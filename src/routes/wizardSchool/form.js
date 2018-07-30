@@ -4,14 +4,15 @@ import Bows from 'bows';
 import {
   Form,
   FormGroup,
-  Label,
   Col,
 } from 'reactstrap';
 import get from 'lodash/get';
 
 import FieldSelect from "components/fieldSelect";
+import { CircleLoading } from 'components/loading';
 
 const log = Bows('Form - Register School');
+
 
 class RegisterSchoolForm extends React.Component {
   componentDidUpdate(prevProps) {
@@ -29,13 +30,13 @@ class RegisterSchoolForm extends React.Component {
       setFieldTouched,
       errors,
       touched,
+      isSubmitting,
     } = this.props;
 
     return (
       <Form noValidate={true} onSubmit={handleSubmit}>
         <FormGroup className="no-gutters">
-          <Col md={{size:10}}>
-            <Label htmlFor="code">Choose school</Label>
+          <Col md={{size:6}}>
             <FieldSelect name="code"
                          value={values.code}
                          options={optionsSchools}
@@ -45,9 +46,12 @@ class RegisterSchoolForm extends React.Component {
                          onBlur={setFieldTouched}
                          autoFocus={true}
                          searchable={true}
+                         disabled={isSubmitting}
+                         clearable={false}
             />
           </Col>
         </FormGroup>
+        {isSubmitting && <CircleLoading darkTheme={true} />}
       </Form>
     )
   }
@@ -57,7 +61,7 @@ export default withFormik({
   displayName: 'registerSchool',
   mapPropsToValues: (props) => {
     return {
-      code: get(props, 'sessionUser.schools[0]', ''),
+      code: get(props, 'model.schools[0]', ''),
     };
   },
   validate: (values, props) => {

@@ -4,12 +4,12 @@ import { getYear } from 'helpers/dateFormats';
 import { commarise } from 'helpers/textFormats';
 
 
-const currentYear = getYear();
+const currentYear = String(getYear());
 
 export const getDefaultYear = () => currentYear;
 
 export const getFilterKey = ({ schoolCode, year = currentYear }) => {
-  if (typeof code === 'undefined') {
+  if (typeof schoolCode === 'undefined') {
     throw new Error('Must provide code to getFilterKey.');
   }
   return String(`${schoolCode}_${year}`);
