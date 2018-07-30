@@ -76,8 +76,8 @@ class WizardSchoolPrograms extends React.Component {
               nextText="Complete sign up">
         <ArrowBreadcrumb linkList={[
           { to: '/onboarding/welcome', label: '1', visited: true, disabled: false, },
-          { to: '/register/school', label: '2', visited: true, disabled: false, },
-          { to: '/register/school-programs', label: '3', visited: true, disabled: true, active: true, },
+          { to: '/onboarding/school', label: '2', visited: true, disabled: false, },
+          { to: '/onboarding/school-programs', label: '3', visited: true, disabled: true, active: true, },
         ]} />
 
         <Row className="mt-5">

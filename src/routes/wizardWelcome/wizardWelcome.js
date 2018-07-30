@@ -13,8 +13,8 @@ const WizardWelcome = ({ sessionUser }) => {
     <Layout nextTo={getRegisterSchoolUrl()}>
       <ArrowBreadcrumb linkList={[
         { to: '/onboarding/welcome', label: '1', visited: true, disabled: true, active: true, },
-        { to: '/register/school', label: '2', visited: false, disabled: true, },
-        { to: '/register/school-programs', label: '3', visited: false, disabled: true },
+        { to: '/onboarding/school', label: '2', visited: false, disabled: true, },
+        { to: '/onboarding/school-programs', label: '3', visited: false, disabled: true },
       ]} />
       <Row>
         <Col md={{size: 8}}>
