@@ -6,43 +6,37 @@ import { objectify } from 'store/objectify';
 import { getFilterKey } from "./helpers";
 
 
-const log = bows('Programs');
+const log = bows('Snippets');
 
-export const fetchSuccess = (programs) => {
+export const fetchSuccess = (snippets) => {
+  log('fetch success');
+
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
-      programs: objectify(programs),
+      snippets: objectify(snippets),
     }
   }
 };
 
-
 /**
- * @param data {Array}
- * @param filterKey {String}
+ * @param data {Array} Snippets to add to the filter
+ * @param filterKey {String} key in the format "[school code]_2018_[program id]"
  */
-const createFilter = (data, {filterKey}) => {
-  // if (typeof data === 'undefined' || !Array.isArray(data)) {
-  //   throw new Error('Data provided to setFilter must be an Array.');
-  // }
+const createFilter = (data, filterKey = null) => {
+  if (!filterKey) {
+    throw new Error('Must provide filterKey');
+  }
   return {
     type: ACTION_TYPES.createFilters,
     payload: {
       filterKey,
-      filterValue: data.map(d => d.id),
+      filterValue: data.map(d => d.id), // snippet ids
     }
   }
 };
 
-/**
- * @param data {Array}
- * @param filterKey {String}
- */
-export const updateFilter = (data, {filterKey}) => {
-  // if (typeof data === 'undefined' || !Array.isArray(data)) {
-  //   throw new Error('Data provided to setFilter must be an Array.');
-  // }
+export const updateFilter = (data, filterKey) => {
   return {
     type: ACTION_TYPES.updateFilters,
     payload: {
@@ -53,29 +47,13 @@ export const updateFilter = (data, {filterKey}) => {
 };
 
 
-export const fetchProgram = (programId) => {
-  return fetchFromApiOrCache(`/programs/${programId}`);
-};
-
-
 /**
- * @param filterProps {Object} can be any filter, not just 'code' and 'year'
- */
-export const fetchProgramsByFilter = (filterProps) => {
-  if (typeof filterProps === 'undefined') {
-    throw new Error('Must supply filterProps to fetchProgramsByFilter.');
-  }
-  const search = queryString.stringify(filterProps);
-  return fetchFromApiOrCache(`/programs?${search}`, { filterKey: getFilterKey(filterProps) });
-};
-
-
-/**
- * Create Program Thunk Sequence
- * @param program
+ * Create Snippet Thunk Sequence
+ * @param Snippet {Object}
+ * @param filterProps {Object} - {schoolCode, year, programId}
  * @returns {Function} Thunk
  */
-export const createProgram = (program) => {
+export const createSnippet = (snippet, {schoolCode = null, year = null}) => {
   // Steps:
   // 1. sanitize input
   // 2. POST
@@ -83,24 +61,23 @@ export const createProgram = (program) => {
   // 4. *update* a filter to append item
   //    - do this last in case so filter listeners will get updates
 
-  // 1. todo
-
-  if (!program.schoolCode || !program.year) {
-    throw new Error('Must provide schoolCode and year')
+  if (!snippet.programId || !schoolCode || !year) {
+    throw new Error('Must provide "programId", "schoolCode" and "year".');
   }
 
   const filterKey = getFilterKey({
-    schoolCode: program.schoolCode,
-    year: program.year,
+    schoolCode,
+    year,
+    programId: snippet.programId,
   });
 
-  log(`Posting (creating): ${JSON.stringify(program)}`);
+  log(`Posting (creating): ${JSON.stringify(snippet)}`);
 
   return (dispatch, getState, api) => {
     // 2.
-    return api('/programs', {
+    return api('/snippets', {
       method: 'POST',
-      body: JSON.stringify(program),
+      body: JSON.stringify(snippet),
     })
       .then((resp) => {
         if (!resp.data) {
@@ -118,7 +95,7 @@ export const createProgram = (program) => {
         if (!Array.isArray(d)) {
           d = [d]
         }
-        dispatch(updateFilter(d, {filterKey}));
+        dispatch(updateFilter(d, filterKey));
         return resp;
       })
       .catch((error) => {
@@ -131,51 +108,32 @@ export const createProgram = (program) => {
 
 
 /**
- * Update Program Thunk Sequence
- * @param program
- * @returns {Function} Thunk
+ * filterProps {Object} - {schoolCode, year, programId}
  */
-export const updateProgram = (program) => {
-  // Steps:
-  // 1. sanitize input
-  // 2. PUT
-  // 3. update byId
-
-  // 1. todo
-
-  log(`Putting (updating): ${JSON.stringify(program)}`);
-
-  return (dispatch, getState, api) => {
-    // 2.
-    return api(`/programs/${program.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(program),
-    })
-      .then((resp) => {
-        if (!resp.data) {
-          throw new Error('Data not provided in response');
-        }
-        log(`Putted`);
-        // 3.
-        dispatch(fetchSuccess(resp.data));
-        return resp;
-      })
-      .catch((error) => {
-        log(`Error: ${error}`);
-        // todo - status messages
-        return error;
-      });
+export const fetchSnippetsByFilter = (filterProps) => {
+  if (typeof filterProps === 'undefined') {
+    throw new Error('Must provide filterProps.');
   }
+  const filterKey = getFilterKey(filterProps);
+  const search = queryString.stringify(filterProps);
+  return fetchFromApiOrCache(`/snippets?${search}`, filterKey);
 };
+
+export const fetchSnippetsByProgram = (filterProps) => {
+  const filterKey = getFilterKey(filterProps);
+  const search = queryString.stringify({programId: filterProps.programId, year: filterProps.year});
+  return fetchFromApiOrCache(`/snippets?${search}`, filterKey);
+};
+
 
 
 /**
  * Fetch Programs Thunk Sequence
  * @param path
- * @param props
+ * @param filterKey {String}
  * @returns {function(*, *, *)}
  */
-export const fetchFromApiOrCache = (path, props = {}) => {
+export const fetchFromApiOrCache = (path, filterKey = null) => {
   // Steps:
   // 0. Check if item is cached, if it is serve it instead and end.
   // 1. GET
@@ -189,13 +147,13 @@ export const fetchFromApiOrCache = (path, props = {}) => {
   return (dispatch, getState, api) => {
 
     // 0.
-    const { filterKey } = props;
     if (filterKey) {
       const state = getState();
-      if (filterKey in state.programs.filters) {
-        return state.programs.filters[filterKey];
+      if (filterKey in state.snippets.filters) {
+        return state.snippets.filters[filterKey];
       }
     }
+
     dispatch({
       type: ACTION_TYPES.fetchRequest,
     });
@@ -212,8 +170,8 @@ export const fetchFromApiOrCache = (path, props = {}) => {
       })
       .then((resp) => {
         // 3.
-        if (props.filterKey) {
-          dispatch(createFilter(resp.data, props));
+        if (filterKey) {
+          dispatch(createFilter(resp.data, filterKey));
         }
         return resp;
       })

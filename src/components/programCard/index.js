@@ -8,85 +8,105 @@ import {
 } from 'reactstrap';
 import cx from 'classnames';
 import { Link as RRLink } from 'react-router-dom';
-import TruncatedText from 'components/truncatedText';
+import Bows from 'bows';
 
+import TruncatedText from 'components/truncatedText';
 import { getHumanisedMetaDescription } from 'store/programs/helpers';
 import style from './style.scss';
 
-const ProgramCard = ({ program, snippets = null }) => {
 
-  const hasEdited = !!program.updatedBy;
-  const metaText = getHumanisedMetaDescription(program);
+const log = Bows('Program card');
 
-  const hasNotEnteredDetails = !program.description && !metaText;
+class ProgramCard extends React.Component {
 
-  const hasSnippets = snippets && snippets.length;
+  componentDidMount() {
+    this.fetchData();
+  }
 
-  return (
-    <Card>
-      <CardTitle className={style.title}>{program.name}</CardTitle>
+  fetchData() {
+    const { snippets, fetchSnippets } = this.props;
+    if (!snippets || !snippets.length) {
+      log('fetching snippets');
+      fetchSnippets();
+    }
+  }
 
-      {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details entered for "{program.name}". Help record the initiative <RRLink to="/">add information</RRLink>.</CardText>}
+  render() {
+    const { program, snippets, filterProps } = this.props;
 
-      {program.description && <CardText className={style.description}>{program.description}</CardText>}
+    const hasEdited = !!program.updatedBy;
+    const metaText = getHumanisedMetaDescription(program);
 
-      {metaText && <p className={style.bannerMeta}>{metaText}</p>}
+    const hasNotEnteredDetails = !program.description && !metaText;
 
-      <div className={style.actions}>
-        <p className={style.actionTextLhs}>
-          <RRLink to="/">{hasEdited ? 'Edit details >' : 'Add details +'}</RRLink>
-        </p>
-        {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
-          <RRLink to="/">View {`>`}</RRLink>
-        </p>}
-      </div>
+    const hasSnippets = snippets && snippets.length;
 
-      <Card body className={style.snippetCard}>
-        <CardTitle className={style.snippetCardTitle}>Snippets
+    return (
+      <Card>
+        <CardTitle className={style.title}>{program.name}</CardTitle>
+
+        {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details entered for "{program.name}". Help record the initiative <RRLink to="/">add information</RRLink>.</CardText>}
+
+        {program.description && <CardText className={style.description}>{program.description}</CardText>}
+
+        {metaText && <p className={style.bannerMeta}>{metaText}</p>}
+
+        <div className={style.actions}>
+          <p className={style.actionTextLhs}>
+            <RRLink to="/">{hasEdited ? 'Edit details >' : 'Add details +'}</RRLink>
+          </p>
+          {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
+            <RRLink to="/">View {`>`}</RRLink>
+          </p>}
+        </div>
+
+        <Card body className={style.snippetCard}>
+          <CardTitle className={style.snippetCardTitle}>Snippets
+            {hasSnippets ?
+              <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post another</Button> :
+              <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post</Button>
+            }
+          </CardTitle>
+
           {hasSnippets ?
-            <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post another</Button> :
-            <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post</Button>
-          }
-        </CardTitle>
 
-        {hasSnippets ?
+            <div>
+              <div className={cx(
+                style.snippetList,
+                snippets.length && snippets.length > 2 ? style.showGradient : '',
+              )}>
 
-          <div>
-            <div className={cx(
-              style.snippetList,
-              snippets.length && snippets.length > 2 ? style.showGradient : '',
-            )}>
-
-              {snippets.map((snippet, key) => (
-                <Media className={style.snippet} key={key}>
-                  <Media body className={style.snippetBody}>
-                    <Media heading className={style.snippetDescription}>
-                      <TruncatedText text={snippet.description} length={100} />
+                {snippets.map((snippet, key) => (
+                  <Media className={style.snippet} key={key}>
+                    <Media body className={style.snippetBody}>
+                      <Media heading className={style.snippetDescription}>
+                        <TruncatedText text={snippet.description} length={100} />
+                      </Media>
                     </Media>
-                  </Media>
-                  {snippet.type === 'photo' &&
+                    {snippet.type === 'photo' &&
                     <Media right middle className={style.snippetImageRight}>
                       <img src={snippet.attachment.url} alt="Snippet thumbnail" className="media-object" width={120} height={120} />
                     </Media>
-                  }
-                </Media>
-              ))}
+                    }
+                  </Media>
+                ))}
 
-            </div>
+              </div>
 
-            <div className={style.snippetListFooter}>
-              <span className={style.snippetListMeta}>{snippets.length && snippets.length > 1 && `${snippets.length} Snippets`}</span>
-              <RRLink to="/" className={style.snippetListMore}>More Snippets ></RRLink>
-            </div>
-          </div> :
+              <div className={style.snippetListFooter}>
+                <span className={style.snippetListMeta}>{snippets.length && snippets.length > 1 && `${snippets.length} Snippets`}</span>
+                <RRLink to="/" className={style.snippetListMore}>More Snippets ></RRLink>
+              </div>
+            </div> :
 
-          <p className="text-muted">No Snippets yet for "{program.name}". Start recording moments <RRLink to="/">add the first Snippet</RRLink>.</p>
-        }
+            <p className="text-muted">No Snippets yet for "{program.name}". Start recording moments <RRLink to="/">add the first Snippet</RRLink>.</p>
+          }
+
+        </Card>
 
       </Card>
-
-    </Card>
-  )
-};
+    )
+  }
+}
 
 export default ProgramCard;

@@ -124,8 +124,9 @@ class SchoolPrograms extends React.Component {
                 </div> :
 
                 <ProgramsList programs={this.sortByLatestDate(programs)}
-                              snippets={[]}
-                              year={filterProps.year}/>
+                              year={filterProps.year}
+                              schoolCode={filterProps.schoolCode}
+                />
               }
             </Col>
           </Row>

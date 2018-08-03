@@ -15,4 +15,5 @@ export default {
   programs: {},
   programTemplates: {},
   cms: {},
+  snippets: {},
 };

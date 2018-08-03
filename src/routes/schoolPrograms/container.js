@@ -13,7 +13,6 @@ import {
   selectErrorMessage as selectErrorMessagePrograms,
 } from "store/programs/selectors";
 
-
 export const mapStateToProps = (state, ownProps) => {
   const { schoolCode, year } = ownProps.match.params;
   const filterProps = { schoolCode, year };
@@ -21,13 +20,9 @@ export const mapStateToProps = (state, ownProps) => {
   const school = selectSchool(state, schoolCode);
   const filteredPrograms = selectProgramsByFilterKey(state, filterProps);
 
-
-  // const filteredProgramsSnippets = selectSnippets(state, {});
-
   return {
     school,
     programs: filteredPrograms,
-    // snippets: filteredProgramsSnippets,
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),
     isFetchingPrograms: selectIsFetchingPrograms(state),
