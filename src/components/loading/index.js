@@ -34,6 +34,18 @@ export const PageLoading = () => (
   </div>
 );
 
+export const ComponentLoading = () => (
+  <div className={cx(style.componentLoadingContainer)}>
+    <div className={style.componentLoadingEl}>
+      <div className={cx(style.componentCircleSpinner)}>
+        <div className={style.circleSpinnerBounce1} />
+        <div className={style.circleSpinnerBounce2} />
+        <div className={style.circleSpinnerBounce3} />
+      </div>
+    </div>
+  </div>
+);
+
 export default BoxLoading;
 
 

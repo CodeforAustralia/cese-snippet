@@ -1,0 +1,97 @@
+@import '~style/helpers';
+
+.titleBlock {
+  margin-bottom: 1em;
+
+  @include xs() {
+    margin-bottom: 0;
+  }
+  @include md() {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+
+.titleBlockLhs {
+  @include md() {
+    flex: 1;
+
+    h1 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.titleBlockRhs {
+  @include xs() {
+    padding-top: 1em;
+  }
+
+  @include md() {
+    .btn {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.schoolTitle {
+  display: flex;
+}
+
+.schoolTitleAvatar {
+  padding-right: 1em;
+}
+
+.schoolTitleText {
+  flex: 1;
+}
+
+.schoolTitleTextLine1,
+.schoolTitleTextLine2 {
+  display: block;
+}
+
+.schoolTitleTextLine1 {
+  padding-top: 3px;
+}
+
+.schoolTitleTextLine2 {
+
+}
+
+.schoolAvatar {
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #ebecf0;
+}
+
+.supTitle {
+  display: block;
+
+}
+
+.schoolNameBadge {
+  background: rgba($primary, .1);
+  padding: 4px 8px;
+  border-radius: .5rem;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.supTitle {
+  @include md() {
+    margin-top: 3px;
+  }
+}
+
+.tabPageContainer {
+  padding: 2em 0;
+}
+
+.tabAddProgramBtn {
+  @include clearfix;
+  button {
+    float: right
+  }
+}

@@ -35,3 +35,13 @@ $footer-height: 155px;
   cursor: pointer;
   z-index: 4;
 }
+
+
+.appLayoutContainer {
+  margin-top: 2.4rem;
+  margin-bottom: 4rem;
+
+  @include xs() {
+    margin-top: 1rem;
+  }
+}

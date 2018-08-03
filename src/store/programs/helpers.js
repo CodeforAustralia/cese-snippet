@@ -3,10 +3,22 @@ import isThisMinute from 'date-fns/is_this_minute';
 import { getYear } from 'helpers/dateFormats';
 import { commarise } from 'helpers/textFormats';
 
-
 const currentYear = String(getYear());
 
+
+export const hasPrograms = (programs, isFetching = false) => {
+  return isFetching !== false && Array.isArray(programs);
+};
+
+
+
+
 export const getDefaultYear = () => currentYear;
+
+
+
+
+
 
 export const getFilterKey = ({ schoolCode, year = currentYear }) => {
   if (typeof schoolCode === 'undefined') {

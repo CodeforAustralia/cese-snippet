@@ -23,7 +23,7 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     school,
-    filteredPrograms,
+    programs: filteredPrograms,
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),
     isFetchingPrograms: selectIsFetchingPrograms(state),
