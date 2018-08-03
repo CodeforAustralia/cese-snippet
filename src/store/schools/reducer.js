@@ -36,6 +36,7 @@ export const byCode = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
+      debugger
       return {...state, ...payload.schools};
     case ACTION_TYPES.setSchool:
       return {...state, ...payload};

@@ -22,6 +22,18 @@ export const CircleLoading = ({ darkTheme = false }) => (
   </div>
 );
 
+export const PageLoading = () => (
+  <div className={cx(style.pageLoadingContainer)}>
+    <div className={style.pageLoadingEl}>
+      <div className={cx(style.pageCircleSpinner)}>
+        <div className={style.circleSpinnerBounce1} />
+        <div className={style.circleSpinnerBounce2} />
+        <div className={style.circleSpinnerBounce3} />
+      </div>
+    </div>
+  </div>
+);
+
 export default BoxLoading;
 
 

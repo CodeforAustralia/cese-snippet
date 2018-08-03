@@ -75,6 +75,9 @@ export const fetchFromApi = (path, props) => {
         }
         log(`Fetched`);
         // 2.
+
+        debugger
+
         dispatch(createOrUpdateSchools(resp.data));
         return resp.data;
       })

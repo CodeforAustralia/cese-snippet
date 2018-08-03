@@ -10,10 +10,19 @@ import {
 
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
+import {
+  getOnboardingWelcomeUrl,
+  getOnboardingSchoolUrl,
+  getOnboardingSchoolProgramsUrl
+} from "helpers/url";
 import QuickAddProgramForm from './form';
 
 import style from './style.scss';
 
+
+const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
+const OnboardingSchoolUrl = getOnboardingSchoolUrl();
+const OnboardingSchoolProgramsUrl = getOnboardingSchoolProgramsUrl();
 
 class WizardSchoolPrograms extends React.Component {
 
@@ -70,14 +79,14 @@ class WizardSchoolPrograms extends React.Component {
     } = this.state;
 
     return (
-      <Layout prevTo="/onboarding/school"
+      <Layout prevTo={OnboardingSchoolUrl}
               nextTo="/schools"
               activateNext={!isSubmitting}
               nextText="Complete sign up">
         <ArrowBreadcrumb linkList={[
-          { to: '/onboarding/welcome', label: '1', visited: true, disabled: false, },
-          { to: '/onboarding/school', label: '2', visited: true, disabled: false, },
-          { to: '/onboarding/school-programs', label: '3', visited: true, disabled: true, active: true, },
+          { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: false, },
+          { to: OnboardingSchoolUrl, label: '2', visited: true, disabled: false, },
+          { to: OnboardingSchoolProgramsUrl, label: '3', visited: true, disabled: true, active: true, },
         ]} />
 
         <Row className="mt-5">

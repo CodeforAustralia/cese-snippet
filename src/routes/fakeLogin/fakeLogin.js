@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 
 import Layout from 'layouts/login';
-import { getWelcomeUrl } from 'helpers/url';
+import { getOnboardingWelcomeUrl } from 'helpers/url';
 import style from './style.scss';
 
 
@@ -28,7 +28,7 @@ const FakeLogin = ({ sessionUser }) => {
           </div>
 
           <div>
-            <Button className={style.fieldSubmit} tag={RRLink} to={getWelcomeUrl()} color="primary">Log in</Button>
+            <Button className={style.fieldSubmit} tag={RRLink} to={getOnboardingWelcomeUrl()} color="primary">Log in</Button>
             <p className={style.forgotPassword}><RRLink to="#" disabled>Forgot your password?</RRLink></p>
           </div>
 
