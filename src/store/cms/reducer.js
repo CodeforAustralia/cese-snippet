@@ -1,12 +1,12 @@
 export const ACTION_TYPES = {
-  createCms: 'CMS/SET',
+  fetchSuccess: 'CMS/FETCH_SUCCESS',
 };
 
 const cmsReducer = (state = null, action) => {
   const { type, payload } = action;
   switch (type) {
-    case ACTION_TYPES.createCms:
-      return payload.cms;
+    case ACTION_TYPES.fetchSuccess:
+      return {...state, ...payload.cms};
     default:
       return state;
   }

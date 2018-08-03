@@ -12,6 +12,7 @@ import {
   getOnboardingSchoolProgramsUrl
 } from "helpers/url";
 
+
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
 const OnboardingSchoolUrl = getOnboardingSchoolUrl();
 const OnboardingSchoolProgramsUrl = getOnboardingSchoolProgramsUrl();

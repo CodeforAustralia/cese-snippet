@@ -13,5 +13,6 @@ export default {
   users: {},
   schools: {},
   programs: {},
+  programTemplates: {},
   cms: {},
 };

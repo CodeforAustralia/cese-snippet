@@ -8,7 +8,6 @@ export const ACTION_TYPES = {
   updateRequest: 'USERS/UPDATE_REQUEST',
   updateSuccess: 'USERS/UPDATE_SUCCESS',
   updateError: 'USERS/UPDATE_ERROR',
-  setUser: 'USERS/SET_USER'
 };
 
 export const isFetching = (state = null, action) => {
@@ -47,9 +46,8 @@ const byId = (state = {}, action) => {
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
       return {...state, ...payload.users};
-    case ACTION_TYPES.setUser:
     case ACTION_TYPES.updateSuccess:
-      return {...state, ...payload};
+      return {...state, ...payload.user};
     default:
       return state;
   }

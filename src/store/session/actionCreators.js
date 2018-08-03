@@ -1,8 +1,12 @@
+import bows from 'bows';
 import { ACTION_TYPES } from './reducer';
 
-export const setSession = (session) => {
+const log = bows('Session');
+
+export const fetchSuccess = (session) => {
+  log('fetch success');
   return {
-    type: ACTION_TYPES.setSession,
+    type: ACTION_TYPES.fetchSuccess,
     payload: {
       session,
     }

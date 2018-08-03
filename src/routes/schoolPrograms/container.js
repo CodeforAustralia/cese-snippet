@@ -37,8 +37,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchSchool: () => dispatch(fetchSchool(schoolCode)),
     fetchProgramsByFilter: (filterProps) => dispatch(fetchProgramsByFilter({
-      schoolCode: filterProps.schoolCode || schoolCode,
-      year: filterProps.year || year,
+      schoolCode: filterProps && filterProps.schoolCode || schoolCode,
+      year: filterProps && filterProps.year || year,
     })),
   }
 };

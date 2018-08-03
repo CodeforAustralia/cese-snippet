@@ -39,8 +39,6 @@ class SchoolPrograms extends React.Component {
       isFetchingSchools,
     } = this.props;
 
-    return <PageLoading />
-
     if (isFetchingSchools !== false) {
       return <PageLoading />
     }

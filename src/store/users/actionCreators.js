@@ -11,11 +11,13 @@ const log = bows('Users');
  * @param user
  * @returns {{type: string, payload: *}}
  */
-export const setUser = (user) => {
-  log(`setUser success`);
+export const fetchSuccess = (user) => {
+  log(`fetch success`);
   return {
-    type: ACTION_TYPES.setUser,
-    payload: objectify(user),
+    type: ACTION_TYPES.fetchSuccess,
+    payload: {
+      users: objectify(user),
+    },
   }
 };
 
@@ -25,7 +27,7 @@ export const setUser = (user) => {
  * @returns {function(*, *, *)}
  */
 export const updateUser = (user) => {
-  log(`updateUser start`);
+  log(`update start`);
   return (dispatch, getState, api) => {
     dispatch({
       type: ACTION_TYPES.updateRequest,
@@ -36,15 +38,17 @@ export const updateUser = (user) => {
     }).then(
       resp => {
         const user = resp.data;
-        log(`updateUser success`);
+        log(`update success`);
         dispatch({
           type: ACTION_TYPES.updateSuccess,
-          payload: objectify(user),
+          payload: {
+            user: objectify(user),
+          },
         });
         return user;
       },
       errors => {
-        log(`updateUser error`);
+        log(`update error`);
         dispatch({
           type: ACTION_TYPES.updateError,
           payload: {
@@ -127,7 +131,7 @@ export const fetchFromApi = (path) => {
         }
         log(`Fetched`);
         // 2.
-        dispatch(createOrUpdateStaff(resp.data));
+        dispatch(fetchSuccess(resp.data));
         return resp;
       })
       .catch((error) => {
