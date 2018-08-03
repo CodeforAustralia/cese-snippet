@@ -1,29 +1,23 @@
-export const getWelcomeUrl = () => {
-  return {
-    pathname: '/onboarding/welcome',
-  };
+export const getOnboardingWelcomeUrl = () => {
+  return '/onboarding/welcome';
 };
 
-export const getRegisterSchoolUrl = () => {
-  return {
-    pathname: '/onboarding/school',
-  }
+export const getOnboardingSchoolUrl = () => {
+  return '/onboarding/school';
 };
 
-export const getRegisterSchoolProgramsUrl = () => {
-  return {
-    pathname: '/onboarding/school-programs',
-  }
+export const getOnboardingSchoolProgramsUrl = () => {
+  return '/onboarding/school-programs';
 };
-
-
-
-
-
 
 export const getSchoolProgramsUrl = (schoolCode, year) => {
   return `/schools/${schoolCode}/programs/${year}`;
 };
+
+
+
+
+
 
 export const getCreateProgramModalUrl = (initialFormState = {}) => {
   let isEdit = false;

@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 
 import { selectSessionUserSchool } from 'store/sessionUser/selectors';
+import { selectProgramTemplates } from 'store/programTemplates/selectors';
 import {
-  syncGetProgramTemplateOptions,
-  syncGetSuggestedProgramTemplates,
-} from 'data/programTemplates/getters';
+  excludeProgramsProvided,
+  getOnlySuggestedPrimary,
+  getOnlySuggestedSecondary,
+  makeProgramTemplatesOptions,
+} from 'store/programTemplates/helpers';
 import {
   selectIsFetching as getIsFetchingSchoolPrograms,
   selectProgramsByFilterKey,
@@ -18,17 +21,22 @@ import {
 export const mapStateToProps = (state) => {
   const school = selectSessionUserSchool(state);
   const schoolPrograms = selectProgramsByFilterKey(state, { schoolCode: school.code });
-  const schoolProgramNames = schoolPrograms.map(p => p.name);
+
+  const programTemplates = selectProgramTemplates(state);
+  let suggestedProgramTemplates = null;
+
+  if (school.subtype === 'primary') {
+    suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedPrimary(programTemplates), schoolPrograms);
+  } else {
+    suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedSecondary(programTemplates), schoolPrograms);
+  }
+
   return {
     school,
     isFetchingSchoolPrograms: getIsFetchingSchoolPrograms(state),
     schoolPrograms,
-    suggestedPrograms: syncGetSuggestedProgramTemplates(school.subtype).filter((program) => {
-      return !schoolProgramNames.includes(program.name);
-    }),
-    optionsProgramTemplates: syncGetProgramTemplateOptions().filter((program) => {
-      return !schoolProgramNames.includes(program.name);
-    }),
+    suggestedPrograms: suggestedProgramTemplates,
+    optionsProgramTemplates: makeProgramTemplatesOptions(suggestedProgramTemplates),
   }
 };
 

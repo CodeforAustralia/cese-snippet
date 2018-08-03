@@ -9,7 +9,7 @@ import {
 import get from 'lodash/get';
 
 import FieldSelect from "components/fieldSelect";
-import { CircleLoading } from 'components/loading';
+import { PageLoading } from 'components/loading';
 
 const log = Bows('Form - Register School');
 
@@ -51,7 +51,7 @@ class RegisterSchoolForm extends React.Component {
             />
           </Col>
         </FormGroup>
-        {isSubmitting && <CircleLoading darkTheme={true} />}
+        {isSubmitting && <PageLoading />}
       </Form>
     )
   }

@@ -13,7 +13,7 @@ import {
 } from 'reactstrap';
 import { NavLink as RRNavLink } from 'react-router-dom';
 
-import { getRegisterSchoolUrl } from 'helpers/url';
+import { getOnboardingSchoolUrl } from 'helpers/url';
 import Avatar from 'components/avatar';
 
 import style from './style.scss';
@@ -25,7 +25,7 @@ class GlobalHeaderAuth extends React.Component {
     super(props);
     this.toggle = this.toggle.bind(this);
 
-    this.registerSchoolUrl = getRegisterSchoolUrl(true);
+    this.registerSchoolUrl = getOnboardingSchoolUrl(true);
 
     this.state = {
       isOpen: false

@@ -6,15 +6,24 @@ import {
 } from 'reactstrap';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
 
-import { getRegisterSchoolUrl } from "helpers/url";
+import {
+  getOnboardingWelcomeUrl,
+  getOnboardingSchoolUrl,
+  getOnboardingSchoolProgramsUrl
+} from "helpers/url";
+
+
+const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
+const OnboardingSchoolUrl = getOnboardingSchoolUrl();
+const OnboardingSchoolProgramsUrl = getOnboardingSchoolProgramsUrl();
 
 const WizardWelcome = ({ sessionUser }) => {
   return (
-    <Layout nextTo={getRegisterSchoolUrl()}>
+    <Layout nextTo={OnboardingSchoolUrl}>
       <ArrowBreadcrumb linkList={[
-        { to: '/onboarding/welcome', label: '1', visited: true, disabled: true, active: true, },
-        { to: '/onboarding/school', label: '2', visited: false, disabled: true, },
-        { to: '/onboarding/school-programs', label: '3', visited: false, disabled: true },
+        { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: true, active: true, },
+        { to: OnboardingSchoolUrl, label: '2', visited: false, disabled: true, },
+        { to: OnboardingSchoolProgramsUrl, label: '3', visited: false, disabled: true },
       ]} />
       <Row>
         <Col md={{size: 8}}>

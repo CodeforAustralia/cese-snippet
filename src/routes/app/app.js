@@ -8,7 +8,6 @@ import {
 
 import AuthProvider from 'components/auth/authProvider';
 import PrivateRoute from 'components/auth/privateRoute';
-import { hasSetSchool } from 'store/session/helpers';
 import FakeLogin from 'routes/fakeLogin';
 import WizardWelcome from 'routes/wizardWelcome';
 import WizardSchool from 'routes/wizardSchool';
@@ -29,9 +28,9 @@ const App = ({ session, sessionUser }) => {
           {/*<PrivateRoute path="/programs/:programId" component={} />*/}
           {/*<PrivateRoute path="/programs/:programId/edit" component={} />*/}
           {/*<PrivateRoute path="/programs/new" component={} />*/}
-          {hasSetSchool(session, sessionUser) ?
-            <Redirect to={`/schools/${sessionUser.schools[0]}/programs`} /> :
-            <Redirect to="/register/school" />
+          {sessionUser.schools && sessionUser.schools ?
+            <Redirect to={`/schools/${sessionUser.schools[0]}/programs/2018`} /> :
+            <Redirect to="/onboarding/welcome" />
           }
         </Switch>
       </Router>

@@ -6,10 +6,11 @@ import "repaintless/repaintless-css/repaintless.css"
 
 import App from 'routes/app';
 import configureStore from 'store/configureStore';
-import { setSession } from 'store/session/actionCreators';
-import { setUser } from 'store/users/actionCreators';
-import { setSchool } from 'store/schools/actionCreators';
-import { createCms } from 'store/cms/actionCreators';
+import { fetchSuccess as fetchSessionSuccess } from 'store/session/actionCreators';
+import { fetchSuccess as fetchUserSuccess } from 'store/users/actionCreators';
+import { fetchSuccess as fetchCmsSuccess } from 'store/cms/actionCreators';
+import { fetchSuccess as fetchSchoolsSuccess } from 'store/schools/actionCreators';
+import { fetchSuccess as fetchProgramTemplatesSuccess } from 'store/programTemplates/actionCreators';
 import 'style/index.scss';
 
 
@@ -21,17 +22,22 @@ if (!win.session_context) {
 
 const context = JSON.parse(win.session_context);
 
-if (!context.session || !context.sessionUser || !context.cms || !context.sessionUserSchool) {
-  throw new Error(`session_context must supply keys "session", "sessionUser", "sessionUserSchool", "cms". It supplied ${Object.keys(context)}`);
+if (
+  !context.session ||
+  !context.sessionUser ||
+  !context.cms ||
+  !context.schools ||
+  !context.programTemplates
+) {
+  throw new Error(`session_context must supply keys "session", "sessionUser", "cms", "schools", "programTemplates". It supplied ${Object.keys(context)}`);
 }
 
 const store = configureStore();
-
-store.dispatch(setSession(context.session));
-store.dispatch(setUser(context.sessionUser));
-store.dispatch(setSchool(context.sessionUserSchool));
-store.dispatch(createCms(context.cms));
-
+store.dispatch(fetchSessionSuccess(context.session));
+store.dispatch(fetchUserSuccess(context.sessionUser));
+store.dispatch(fetchCmsSuccess(context.cms));
+store.dispatch(fetchSchoolsSuccess(context.schools));
+store.dispatch(fetchProgramTemplatesSuccess(context.programTemplates));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -5,12 +5,14 @@ import {
   selectSessionUserSchool,
 } from 'store/sessionUser/selectors';
 import { updateUserProcess } from 'store/users/flows';
-import { syncGetSchoolsOptions } from "data/schools/getters";
+import { selectSchools } from 'store/schools/selectors';
+import { makeSchoolsOptions } from 'store/schools/helpers';
 
 export const mapStateToProps = (state) => {
   const sessionUser = selectSessionUser(state);
+  const schools = selectSchools(state);
   return {
-    optionsSchools: syncGetSchoolsOptions(),
+    optionsSchools: makeSchoolsOptions(schools),
     sessionUser,
     sessionUserSchool: selectSessionUserSchool(state, sessionUser),
   }

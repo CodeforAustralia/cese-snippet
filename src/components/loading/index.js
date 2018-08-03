@@ -22,6 +22,30 @@ export const CircleLoading = ({ darkTheme = false }) => (
   </div>
 );
 
+export const PageLoading = ({ blocking = true }) => (
+  <div className={cx(style.pageLoadingContainer, blocking ? style.isBlocking : '')}>
+    <div className={style.pageLoadingEl}>
+      <div className={style.pageCircleSpinner}>
+        <div className={style.circleSpinnerBounce1} />
+        <div className={style.circleSpinnerBounce2} />
+        <div className={style.circleSpinnerBounce3} />
+      </div>
+    </div>
+  </div>
+);
+
+export const ComponentLoading = () => (
+  <div className={style.componentLoadingContainer}>
+    <div className={style.componentLoadingEl}>
+      <div className={style.componentCircleSpinner}>
+        <div className={style.circleSpinnerBounce1} />
+        <div className={style.circleSpinnerBounce2} />
+        <div className={style.circleSpinnerBounce3} />
+      </div>
+    </div>
+  </div>
+);
+
 export default BoxLoading;
 
 
