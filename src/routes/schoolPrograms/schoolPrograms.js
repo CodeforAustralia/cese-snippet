@@ -82,8 +82,6 @@ class SchoolPrograms extends React.Component {
     return (
       <Layout>
 
-        {isFetchingPrograms !== false && <PageLoading />}
-
         <Breadcrumb items={[
           { label: 'Programs' },
           { label: school.name }

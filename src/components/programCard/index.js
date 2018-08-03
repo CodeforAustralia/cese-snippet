@@ -43,7 +43,10 @@ const ProgramCard = ({ program, snippets = null }) => {
 
       <Card body className={style.snippetCard}>
         <CardTitle className={style.snippetCardTitle}>Snippets
-          {hasSnippets ? <Button color="primary" outline size="xs" className={style.snippetAddButton}>Share another</Button> : null}
+          {hasSnippets ?
+            <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post another</Button> :
+            <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post</Button>
+          }
         </CardTitle>
 
         {hasSnippets ?

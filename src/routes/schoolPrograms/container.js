@@ -21,9 +21,13 @@ export const mapStateToProps = (state, ownProps) => {
   const school = selectSchool(state, schoolCode);
   const filteredPrograms = selectProgramsByFilterKey(state, filterProps);
 
+
+  // const filteredProgramsSnippets = selectSnippets(state, {});
+
   return {
     school,
     programs: filteredPrograms,
+    // snippets: filteredProgramsSnippets,
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),
     isFetchingPrograms: selectIsFetchingPrograms(state),
