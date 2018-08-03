@@ -20,6 +20,8 @@ const ProgramCard = ({ program, snippets = null }) => {
 
   const hasNotEnteredDetails = !program.description && !metaText;
 
+  const hasSnippets = snippets && snippets.length;
+
   return (
     <Card>
       <CardTitle className={style.title}>{program.name}</CardTitle>
@@ -32,7 +34,7 @@ const ProgramCard = ({ program, snippets = null }) => {
 
       <div className={style.actions}>
         <p className={style.actionTextLhs}>
-          <RRLink to="/">{hasEdited ? 'Edit details >' : 'Add details >'}</RRLink>
+          <RRLink to="/">{hasEdited ? 'Edit details >' : 'Add details +'}</RRLink>
         </p>
         {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
           <RRLink to="/">View {`>`}</RRLink>
@@ -41,10 +43,10 @@ const ProgramCard = ({ program, snippets = null }) => {
 
       <Card body className={style.snippetCard}>
         <CardTitle className={style.snippetCardTitle}>Snippets
-          {snippets && <Button color="primary" outline size="xs" className={style.snippetAddButton}>Share another</Button>}
+          {hasSnippets ? <Button color="primary" outline size="xs" className={style.snippetAddButton}>Share another</Button> : null}
         </CardTitle>
 
-        {snippets ?
+        {hasSnippets ?
 
           <div>
             <div className={cx(
@@ -75,7 +77,7 @@ const ProgramCard = ({ program, snippets = null }) => {
             </div>
           </div> :
 
-          <p className="text-muted">No Snippets yet for "{program.name}". Get started recording moments <RRLink to="/">add the first Snippet</RRLink>.</p>
+          <p className="text-muted">No Snippets yet for "{program.name}". Start recording moments <RRLink to="/">add the first Snippet</RRLink>.</p>
         }
 
       </Card>

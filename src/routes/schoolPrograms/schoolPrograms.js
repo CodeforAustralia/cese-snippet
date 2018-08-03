@@ -17,10 +17,7 @@ import Layout from 'layouts/app';
 import Breadcrumb from 'components/breadcrumb';
 import { getOnboardingSchoolUrl } from 'helpers/url';
 import { hasSchool } from 'store/schools/helpers';
-import {
-  PageLoading,
-  ComponentLoading,
-} from 'components/loading';
+import { PageLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
 } from 'helpers/url';
@@ -96,7 +93,7 @@ class SchoolPrograms extends React.Component {
           <div className={style.titleBlockLhs}>
             <div className={style.schoolTitle}>
               <div className={style.schoolTitleAvatar}>
-                <img className={style.schoolAvatar} src={school.avatar} width={70} height={70} />
+                <img className={style.schoolAvatar} src={school.avatar} width={70} height={70} alt={`${school.name} logo`} />
               </div>
               <div className={style.schoolTitleText}>
                 <span className={style.schoolTitleTextLine1}>
@@ -125,7 +122,7 @@ class SchoolPrograms extends React.Component {
               {isFetchingPrograms !== false ?
 
                 <div style={{marginTop: '80px'}}>
-                  {isFetchingSchools !== false && <ComponentLoading />}
+                  {isFetchingSchools !== false && <PageLoading blocking={false} />}
                 </div> :
 
                 <ProgramsList programs={this.sortByLatestDate(programs)}

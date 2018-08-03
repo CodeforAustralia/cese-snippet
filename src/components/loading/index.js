@@ -22,10 +22,10 @@ export const CircleLoading = ({ darkTheme = false }) => (
   </div>
 );
 
-export const PageLoading = () => (
-  <div className={cx(style.pageLoadingContainer)}>
+export const PageLoading = ({ blocking = true }) => (
+  <div className={cx(style.pageLoadingContainer, blocking ? style.isBlocking : '')}>
     <div className={style.pageLoadingEl}>
-      <div className={cx(style.pageCircleSpinner)}>
+      <div className={style.pageCircleSpinner}>
         <div className={style.circleSpinnerBounce1} />
         <div className={style.circleSpinnerBounce2} />
         <div className={style.circleSpinnerBounce3} />
@@ -35,9 +35,9 @@ export const PageLoading = () => (
 );
 
 export const ComponentLoading = () => (
-  <div className={cx(style.componentLoadingContainer)}>
+  <div className={style.componentLoadingContainer}>
     <div className={style.componentLoadingEl}>
-      <div className={cx(style.componentCircleSpinner)}>
+      <div className={style.componentCircleSpinner}>
         <div className={style.circleSpinnerBounce1} />
         <div className={style.circleSpinnerBounce2} />
         <div className={style.circleSpinnerBounce3} />
