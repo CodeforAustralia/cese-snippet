@@ -45,7 +45,7 @@ class ProgramCard extends React.Component {
       <Card>
         <CardTitle className={style.title}>{program.name}</CardTitle>
 
-        {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details entered for "{program.name}". Help record the initiative <RRLink to="/">add information</RRLink>.</CardText>}
+        {hasNotEnteredDetails && <CardText className={cx(style.description, 'text-muted')}>No details yet for "{program.name}". You can help to record some of the details about this initiative.</CardText>}
 
         {program.description && <CardText className={style.description}>{program.description}</CardText>}
 
@@ -53,7 +53,7 @@ class ProgramCard extends React.Component {
 
         <div className={style.actions}>
           <p className={style.actionTextLhs}>
-            <RRLink to="/">{hasEdited ? 'Edit details >' : 'Add details +'}</RRLink>
+            <RRLink to="/">{hasEdited ? 'Edit details >' : 'Record details +'}</RRLink>
           </p>
           {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
             <RRLink to="/">View {`>`}</RRLink>
@@ -99,7 +99,7 @@ class ProgramCard extends React.Component {
               </div>
             </div> :
 
-            <p className="text-muted">No Snippets yet for "{program.name}". Start recording moments <RRLink to="/">add the first Snippet</RRLink>.</p>
+            <p className="text-muted">Start recording moments <RRLink to="/">post the first Snippet</RRLink>.</p>
           }
 
         </Card>
