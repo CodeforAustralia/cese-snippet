@@ -1,9 +1,4 @@
-import React from 'react';
+import Program from './program';
+import Container from './container';
 
-const Program = () => {
-  return (
-    <p>Program</p>
-  )
-};
-
-export default Program;
+export default Container(Program);

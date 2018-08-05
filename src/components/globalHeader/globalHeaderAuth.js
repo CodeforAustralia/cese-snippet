@@ -80,7 +80,7 @@ class GlobalHeaderAuth extends React.Component {
                   </DropdownItem>
 
                   <DropdownItem className={style.menuItemLink} disabled>
-                    Update Notification Preferences
+                    Update Notifications
                   </DropdownItem>
 
                   <DropdownItem className={style.menuItemLink} tag={RRNavLink} to={this.registerSchoolUrl}>
