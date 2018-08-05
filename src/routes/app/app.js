@@ -14,6 +14,8 @@ import WizardSchool from 'routes/wizardSchool';
 import WizardSchoolPrograms from 'routes/wizardSchoolPrograms';
 import SchoolPrograms from "routes/schoolPrograms";
 import Program from 'routes/program';
+import SnippetNew from 'routes/snippet-new';
+import ProgramNew from 'routes/program-new';
 
 const App = ({ session, sessionUser }) => {
   return (
@@ -25,12 +27,12 @@ const App = ({ session, sessionUser }) => {
           <PrivateRoute path="/onboarding/school" component={WizardSchool} />
           <PrivateRoute path="/onboarding/school-programs" component={WizardSchoolPrograms} />
           <PrivateRoute path="/schools/:schoolCode/programs/:year" component={SchoolPrograms} />
-          {/*<PrivateRoute path="/snippets/new" component={} />*/}
-          <PrivateRoute path="/programs/:programId" component={Program} />
-          {/*<PrivateRoute path="/programs/:programId/snippets" component={Program} />*/}
+          <PrivateRoute path="/snippets/new" component={SnippetNew} />
+          <PrivateRoute path="/programs/new" component={ProgramNew} />
+          {/*<PrivateRoute path="/programs/:programId" component={Program} />*/}
           {/*<PrivateRoute path="/programs/:programId/edit" component={} />*/}
-          {/*<PrivateRoute path="/programs/new" component={} />*/}
-          {sessionUser.schools && sessionUser.schools ?
+          {/*<PrivateRoute path="/programs/:programId/snippets" component={Program} />*/}
+          {sessionUser.schools && sessionUser.schools.length ?
             <Redirect to={`/schools/${sessionUser.schools[0]}/programs/2018`} /> :
             <Redirect to="/onboarding/welcome" />
           }

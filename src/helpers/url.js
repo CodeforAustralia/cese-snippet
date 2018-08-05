@@ -14,6 +14,14 @@ export const getSchoolProgramsUrl = (schoolCode, year) => {
   return `/schools/${schoolCode}/programs/${year}`;
 };
 
+export const getProgramsNewUrl = () => {
+  return `/programs/new`;
+};
+
+export const getSnippetsNewUrl = () => {
+  return `/snippets/new`;
+};
+
 export const getProgramUrl = (programId) => {
   return `/programs/${programId}`;
 };
