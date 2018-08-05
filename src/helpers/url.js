@@ -22,6 +22,15 @@ export const getSnippetsNewUrl = () => {
   return `/snippets/new`;
 };
 
+export const getSnippetsNewModalPath = () => {
+  return {
+    pathname: '/snippets/new',
+    state: {
+      modal: true,
+    },
+  }
+};
+
 export const getProgramUrl = (programId) => {
   return `/programs/${programId}`;
 };
@@ -34,26 +43,6 @@ export const getProgramEditUrl = (programId) => {
   return `/programs/${programId}/edit`;
 };
 
-
-
-
-
-
-
-export const getCreateProgramModalUrl = (initialFormState = {}) => {
-  let isEdit = false;
-  if (initialFormState.id) {
-    isEdit = true;
-  }
-  return {
-    pathname: `/account/create-program`,
-    state: {
-      initialFormState,
-      modal: true,
-      isEdit,
-    },
-  }
-};
 
 export const getCreateProgramUrl = (initialFormState = {}) => {
   let isEdit = false;

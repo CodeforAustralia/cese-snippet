@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import "style/vendor/bootstrap.global.scss";
 import "repaintless/repaintless-css/repaintless.css"
 
-import App from 'routes/app';
+import Root from 'routes/root';
 import configureStore from 'store/configureStore';
 import { fetchSuccess as fetchSessionSuccess } from 'store/session/actionCreators';
 import { fetchSuccess as fetchUserSuccess } from 'store/users/actionCreators';
@@ -44,7 +44,7 @@ store.dispatch(fetchSnippetsSuccess(context.snippets));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Root />
   </Provider>,
   document.getElementById('root')
 );
