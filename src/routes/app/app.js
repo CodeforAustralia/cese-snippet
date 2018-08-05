@@ -13,6 +13,7 @@ import WizardWelcome from 'routes/wizardWelcome';
 import WizardSchool from 'routes/wizardSchool';
 import WizardSchoolPrograms from 'routes/wizardSchoolPrograms';
 import SchoolPrograms from "routes/schoolPrograms";
+import Program from 'routes/program';
 
 const App = ({ session, sessionUser }) => {
   return (
@@ -25,7 +26,8 @@ const App = ({ session, sessionUser }) => {
           <PrivateRoute path="/onboarding/school-programs" component={WizardSchoolPrograms} />
           <PrivateRoute path="/schools/:schoolCode/programs/:year" component={SchoolPrograms} />
           {/*<PrivateRoute path="/snippets/new" component={} />*/}
-          {/*<PrivateRoute path="/programs/:programId" component={} />*/}
+          <PrivateRoute path="/programs/:programId" component={Program} />
+          {/*<PrivateRoute path="/programs/:programId/snippets" component={Program} />*/}
           {/*<PrivateRoute path="/programs/:programId/edit" component={} />*/}
           {/*<PrivateRoute path="/programs/new" component={} />*/}
           {sessionUser.schools && sessionUser.schools ?

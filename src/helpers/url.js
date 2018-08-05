@@ -14,6 +14,19 @@ export const getSchoolProgramsUrl = (schoolCode, year) => {
   return `/schools/${schoolCode}/programs/${year}`;
 };
 
+export const getProgramUrl = (programId) => {
+  return `/programs/${programId}`;
+};
+
+export const getProgramSnippetsUrl = (programId) => {
+  return `/programs/${programId}/snippets`;
+};
+
+export const getProgramEditUrl = (programId) => {
+  return `/programs/${programId}/edit`;
+};
+
+
 
 
 
@@ -47,8 +60,4 @@ export const getCreateProgramUrl = (initialFormState = {}) => {
     }
   }
 };
-
-export const getProgramUrl = (programId) => ({
-  pathname: `/account/programs/${programId}`,
-});
 
