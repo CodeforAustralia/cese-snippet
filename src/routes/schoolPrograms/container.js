@@ -13,7 +13,6 @@ import {
   selectErrorMessage as selectErrorMessagePrograms,
 } from "store/programs/selectors";
 
-
 export const mapStateToProps = (state, ownProps) => {
   const { schoolCode, year } = ownProps.match.params;
   const filterProps = { schoolCode, year };

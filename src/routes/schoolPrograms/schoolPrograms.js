@@ -21,7 +21,7 @@ import { PageLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
 } from 'helpers/url';
-import ProgramsList from 'components/programsList';
+import ProgramsList from './programsList';
 
 import style from './style.scss';
 
@@ -82,8 +82,6 @@ class SchoolPrograms extends React.Component {
     return (
       <Layout>
 
-        {isFetchingPrograms !== false && <PageLoading />}
-
         <Breadcrumb items={[
           { label: 'Programs' },
           { label: school.name }
@@ -126,8 +124,9 @@ class SchoolPrograms extends React.Component {
                 </div> :
 
                 <ProgramsList programs={this.sortByLatestDate(programs)}
-                              snippets={[]}
-                              year={filterProps.year}/>
+                              year={filterProps.year}
+                              schoolCode={filterProps.schoolCode}
+                />
               }
             </Col>
           </Row>

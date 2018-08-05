@@ -10,15 +10,7 @@ export const hasPrograms = (programs, isFetching = false) => {
   return isFetching !== false && Array.isArray(programs);
 };
 
-
-
-
 export const getDefaultYear = () => currentYear;
-
-
-
-
-
 
 export const getFilterKey = ({ schoolCode, year = currentYear }) => {
   if (typeof schoolCode === 'undefined') {

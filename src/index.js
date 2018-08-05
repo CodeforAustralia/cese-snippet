@@ -11,6 +11,7 @@ import { fetchSuccess as fetchUserSuccess } from 'store/users/actionCreators';
 import { fetchSuccess as fetchCmsSuccess } from 'store/cms/actionCreators';
 import { fetchSuccess as fetchSchoolsSuccess } from 'store/schools/actionCreators';
 import { fetchSuccess as fetchProgramTemplatesSuccess } from 'store/programTemplates/actionCreators';
+import { fetchSuccess as fetchSnippetsSuccess } from 'store/snippets/actionCreators';
 import 'style/index.scss';
 
 
@@ -27,9 +28,10 @@ if (
   !context.sessionUser ||
   !context.cms ||
   !context.schools ||
-  !context.programTemplates
+  !context.programTemplates ||
+  !context.snippets
 ) {
-  throw new Error(`session_context must supply keys "session", "sessionUser", "cms", "schools", "programTemplates". It supplied ${Object.keys(context)}`);
+  throw new Error(`session_context must supply keys "session", "sessionUser", "cms", "schools", "programTemplates", "snippets". It supplied ${Object.keys(context)}`);
 }
 
 const store = configureStore();
@@ -38,6 +40,7 @@ store.dispatch(fetchUserSuccess(context.sessionUser));
 store.dispatch(fetchCmsSuccess(context.cms));
 store.dispatch(fetchSchoolsSuccess(context.schools));
 store.dispatch(fetchProgramTemplatesSuccess(context.programTemplates));
+store.dispatch(fetchSnippetsSuccess(context.snippets));
 
 ReactDOM.render(
   <Provider store={store}>

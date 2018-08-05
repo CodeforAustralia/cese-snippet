@@ -45,66 +45,6 @@
       "updatedBy": "1",
       "updatedDate": 1530238113250,
       "name": "Language, Learning and Literacy (L3)"
-    },
-    {
-      "name": "Book Club",
-      "subtype": "primary",
-      "schoolCode": "4548",
-      "year": "2018",
-      "createdAt": 1532916266771,
-      "updatedAt": 1532916266771,
-      "id": "GUxU_3x"
-    },
-    {
-      "name": "Buddy Program",
-      "subtype": "primary",
-      "schoolCode": "4548",
-      "year": "2018",
-      "createdAt": 1532916272709,
-      "updatedAt": 1532916272709,
-      "id": "Dqs~kix"
-    },
-    {
-      "name": "Cultural Groups",
-      "subtype": "primary",
-      "schoolCode": "4548",
-      "year": "2018",
-      "createdAt": 1532916278502,
-      "updatedAt": 1532916278502,
-      "id": "nzVo9d6"
-    },
-    {
-      "schoolCode": "4548",
-      "year": "2018",
-      "name": "1-2-3 Magic and Emotion Coaching Program",
-      "createdAt": 1532920063945,
-      "updatedAt": 1532920063945,
-      "id": "pv4C7ls"
-    },
-    {
-      "schoolCode": "4548",
-      "year": "2018",
-      "name": "Acapella Group",
-      "createdAt": 1532920463594,
-      "updatedAt": 1532920463594,
-      "id": "GVrxS5~"
-    },
-    {
-      "name": "Chicken Club",
-      "subtype": "primary",
-      "schoolCode": "4548",
-      "year": "2018",
-      "createdAt": 1532920473256,
-      "updatedAt": 1532920473256,
-      "id": "RF8k6Lr"
-    },
-    {
-      "schoolCode": "4548",
-      "year": "2018",
-      "name": "Secret Agent Society",
-      "createdAt": 1532920495872,
-      "updatedAt": 1532920495872,
-      "id": "v102nMK"
     }
   ],
   "users": [
@@ -116,10 +56,10 @@
       "firstName": "Grace",
       "lastName": "Chang",
       "schools": [
-        "4293"
+        "4548"
       ],
-      "createdAt": 1532920520697,
-      "updatedAt": 1532920520697
+      "createdAt": 1533271175493,
+      "updatedAt": 1533271175493
     },
     {
       "id": "2",
@@ -153,9 +93,11 @@
   "snippets": [
     {
       "id": "1",
+      "schoolCode": "4548",
+      "year": "2018",
+      "programId": "1",
       "type": "photo",
       "description": "Ubi est bi-color era?",
-      "programId": "1",
       "attachment": {
         "format": "jpeg",
         "width": 600,

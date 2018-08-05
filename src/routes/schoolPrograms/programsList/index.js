@@ -1,9 +1,9 @@
 import React from 'react';
-import ProgramCard from 'components/programCard';
+import ProgramCard from './../programCard';
 
 import style from './style.scss';
 
-const ProgramsList = ({ programs = [], snippets = [], year }) => {
+const ProgramsList = ({ programs = [], snippets = [], year, schoolCode }) => {
 
   if (!programs.length) {
     return (
@@ -24,7 +24,7 @@ const ProgramsList = ({ programs = [], snippets = [], year }) => {
         const programSnippets = snippets.filter(s => s.programId === p.id);
         return (
           <div key={idx} className={style.programItem}>
-            <ProgramCard program={p} snippets={programSnippets} />
+            <ProgramCard program={p} year={year} schoolCode={schoolCode} />
           </div>
         )
       })}

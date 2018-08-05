@@ -166,6 +166,14 @@
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;
     background-color: $gray-600;
   }
+
+  &.isSmall {
+    & > div {
+      width: 12px;
+      height: 12px;
+      background-color: $gray-400;
+    }
+  }
 }
 
 .componentCircleSpinner .circleSpinnerBounce1 {

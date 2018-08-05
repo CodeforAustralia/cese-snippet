@@ -5,10 +5,10 @@ import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
 import { getFilterKey } from "./helpers";
 
+
 const log = bows('Programs');
 
-
-export const createOrUpdatePrograms = (programs) => {
+export const fetchSuccess = (programs) => {
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
@@ -22,7 +22,7 @@ export const createOrUpdatePrograms = (programs) => {
  * @param data {Array}
  * @param filterKey {String}
  */
-export const createFilter = (data, {filterKey}) => {
+const createFilter = (data, {filterKey}) => {
   // if (typeof data === 'undefined' || !Array.isArray(data)) {
   //   throw new Error('Data provided to setFilter must be an Array.');
   // }
@@ -108,7 +108,7 @@ export const createProgram = (program) => {
         }
         log(`Posted: ${resp.data}`);
         // 3.
-        dispatch(createOrUpdatePrograms(resp.data));
+        dispatch(fetchSuccess(resp.data));
         return resp;
       })
       .then((resp) => {
@@ -157,7 +157,7 @@ export const updateProgram = (program) => {
         }
         log(`Putted`);
         // 3.
-        dispatch(createOrUpdatePrograms(resp.data));
+        dispatch(fetchSuccess(resp.data));
         return resp;
       })
       .catch((error) => {
@@ -207,7 +207,7 @@ export const fetchFromApiOrCache = (path, props = {}) => {
         }
         log(`Fetched`);
         // 2.
-        dispatch(createOrUpdatePrograms(resp.data));
+        dispatch(fetchSuccess(resp.data));
         return resp;
       })
       .then((resp) => {
