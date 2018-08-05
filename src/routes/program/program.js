@@ -11,6 +11,7 @@ import {
   NavLink,
 } from 'reactstrap';
 import { Link as RRLink } from 'react-router-dom';
+import cx from 'classnames';
 
 import Layout from 'layouts/app';
 import Breadcrumb from 'components/breadcrumb';
@@ -82,7 +83,7 @@ class Program extends React.Component {
 
 
         <Row className={style.fieldSection}>
-          <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
+          <Col>
 
             {/*<p className={`mb-4 ${style.dateMeta}`}>Last updated {getHumanRelativeDate(program.updatedAt)} ago*/}
               {/*{staffUpdatedBy ? ` by ${staffUpdatedBy.first} ${staffUpdatedBy.last}` : null}*/}
@@ -98,15 +99,20 @@ class Program extends React.Component {
               }
               <h1>{program.name}</h1>
             </div>
+          </Col>
+        </Row>
 
-            <Nav tabs>
-              <NavItem>
-                <NavLink href="#" active>Details</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="#">Snippets</NavLink>
-              </NavItem>
-            </Nav>
+        <Nav tabs>
+          <NavItem>
+            <NavLink href="#" active>Details</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="#">Snippets</NavLink>
+          </NavItem>
+        </Nav>
+
+        <Row>
+          <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
 
             <div className="p-4">
               <div className="mb-4">
@@ -149,7 +155,7 @@ class Program extends React.Component {
                 null
               }
 
-              <div className={style.fieldSection}>
+              <div className={cx(style.fieldSection, 'mt-4')}>
                 <Button to={editUrl} tag={RRLink} color="light">Edit</Button>
               </div>
 
@@ -158,36 +164,40 @@ class Program extends React.Component {
           </Col>
 
           <Col xs={{size:12}} sm={{size:3}} md={{size:4}} className={style.metaPanel}>
-            <Card className={style.metaPanelCard}>
-              <CardBody className={style.metaPanelCardBody}>
-                {/*<div className={style.itemprop}>*/}
-                  {/*<p className={style.itempropKey}>Staff involved</p>*/}
-                  {/*<p className={style.itempropValue}>{commarise(programStaff.map((s, idx, arr) => `${s.first} ${s.last}`))}</p>*/}
-                {/*</div>*/}
+            <div className="p-4">
 
-                <div className={style.itemprop}>
-                  <p className={style.itempropKey}>Run by</p>
-                  <p className={style.itempropValue}>{program.deliveredByType ? program.deliveredByType : '-'}</p>
-                </div>
+              <Card className={style.metaPanelCard}>
+                <CardBody className={style.metaPanelCardBody}>
+                  {/*<div className={style.itemprop}>*/}
+                    {/*<p className={style.itempropKey}>Staff involved</p>*/}
+                    {/*<p className={style.itempropValue}>{commarise(programStaff.map((s, idx, arr) => `${s.first} ${s.last}`))}</p>*/}
+                  {/*</div>*/}
 
-                <div className={style.itemprop}>
-                  <p className={style.itempropKey}>Number of participants</p>
-                  <p className={style.itempropValue}>{program.cohortSize ? program.cohortSize : '-'}</p>
-                </div>
+                  <div className={style.itemprop}>
+                    <p className={style.itempropKey}>Run by</p>
+                    <p className={style.itempropValue}>{program.deliveredByType ? program.deliveredByType : '-'}</p>
+                  </div>
 
-                <div className={style.itemprop}>
-                  <p className={style.itempropKey}>Available in</p>
-                  <p className={style.itempropValue}>{program.terms ? `Terms ${commarise(program.terms)}` : '-'}</p>
-                </div>
+                  <div className={style.itemprop}>
+                    <p className={style.itempropKey}>Number of participants</p>
+                    <p className={style.itempropValue}>{program.cohortSize ? program.cohortSize : '-'}</p>
+                  </div>
 
-                <div className={style.itemprop}>
-                  <p className={style.itempropKey}>Keywords</p>
-                  <p className={style.itempropValue}>
-                    {program.tags ? <PillsList list={program.tags} /> : '-'}
-                  </p>
-                </div>
-              </CardBody>
-            </Card>
+                  <div className={style.itemprop}>
+                    <p className={style.itempropKey}>Available in</p>
+                    <p className={style.itempropValue}>{program.terms ? `Terms ${commarise(program.terms)}` : '-'}</p>
+                  </div>
+
+                  <div className={style.itemprop}>
+                    <p className={style.itempropKey}>Keywords</p>
+                    <p className={style.itempropValue}>
+                      {program.tags ? <PillsList list={program.tags} /> : '-'}
+                    </p>
+                  </div>
+                </CardBody>
+              </Card>
+
+            </div>
 
           </Col>
 
