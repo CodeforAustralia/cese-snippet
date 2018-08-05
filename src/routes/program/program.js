@@ -4,6 +4,11 @@ import {
   Row,
   Col,
   Button,
+  Card,
+  CardBody,
+  Nav,
+  NavItem,
+  NavLink,
 } from 'reactstrap';
 import { Link as RRLink } from 'react-router-dom';
 
@@ -29,20 +34,22 @@ import style from './style.scss';
 
 const log = Bows('View: Program');
 
-class Program extends React.Program {
+class Program extends React.Component {
 
   componentDidMount() {
     this.fetchData();
   }
 
   fetchData() {
-    const { program } = this.props;
+    const { program, school } = this.props;
     if (!program) {
       log('Fetching program');
       this.props.fetchProgram();
     }
     if (program) {
-      this.props.fetchSchool(program.schoolCode);
+      if (!school) {
+        this.props.fetchSchool(program.schoolCode);
+      }
     }
   }
 
@@ -68,9 +75,11 @@ class Program extends React.Program {
     return (
       <Layout>
         <Breadcrumb items={[
-          { label: 'Programs', to: getSchoolProgramsUrl(program.schoolCode, program.year) },
+          { label: 'Programs' },
+          { label: school.name, to: getSchoolProgramsUrl(program.schoolCode, program.year) },
           { label: program.name }
         ]} />
+
 
         <Row className={style.fieldSection}>
           <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
@@ -82,23 +91,68 @@ class Program extends React.Program {
               {/*.*/}
             {/*</p>*/}
 
-            {program.category ?
-              <p>{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</p> :
-              null
-            }
-
-            <span className={style.schoolName}>{school.name}</span>
-            <h1 className="mb-4">{program.name}</h1>
-
-            <div className="mb-4">
-              <Button to={editUrl} tag={RRLink} color="light">Edit</Button>
+            <div className={style.programHeader}>
+              {program.category ?
+                <p className="mb-0 mt-3">{program.category}{program.subCategory ? ` > ${program.subCategory}` : null}</p> :
+                null
+              }
+              <h1>{program.name}</h1>
             </div>
 
-            <p>{program.descriptionFull || program.description}</p>
+            <Nav tabs>
+              <NavItem>
+                <NavLink href="#" active>Details</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="#">Snippets</NavLink>
+              </NavItem>
+            </Nav>
 
-            <div className={style.itemprop}>
-              <p className={style.itempropKey}>Program Audience</p>
-              <p className={style.itempropValue}>{metaDescription}</p>
+            <div className="p-4">
+              <div className="mb-4">
+                <Button to={editUrl} tag={RRLink} color="light">Edit</Button>
+              </div>
+
+              <p>{program.descriptionFull || program.description}</p>
+
+              <div className={style.itemprop}>
+                <p className={style.itempropKey}>Program Audience</p>
+                <p className={style.itempropValue}>{metaDescription}</p>
+              </div>
+
+              <div className={style.itemprop}>
+                <p className={style.itempropKey}>Aims</p>
+                <p className={style.itempropValue}>{program.aims ? program.aims : '-'}</p>
+              </div>
+
+              {program.externalProvider ?
+                <Row className={style.fieldSection}>
+                  <Col sm={{size:6}}>
+
+                    <p className={style.itemprop}>
+                      <span className={style.itempropKey}>Who is the External Provider?</span>
+                      <span className={style.itempropValue}>
+            {program.externalProvider ? program.externalProvider : '-'}
+          </span>
+                    </p>
+
+                    <div className={style.itemprop}>
+                      <p className={style.itempropKey}>Website</p>
+                      <p className={style.itempropValue}>{program.website ? program.website : '-'}</p>
+                    </div>
+                  </Col>
+
+                  <Col sm={{size:6}}>
+
+                  </Col>
+                </Row> :
+                null
+              }
+
+              <div className={style.fieldSection}>
+                <Button to={editUrl} tag={RRLink} color="light">Edit</Button>
+              </div>
+
             </div>
 
           </Col>
@@ -136,45 +190,8 @@ class Program extends React.Program {
             </Card>
 
           </Col>
+
         </Row>
-
-        <Row className={style.fieldSection}>
-          <Col>
-            <div className={style.itemprop}>
-              <p className={style.itempropKey}>Aims</p>
-              <p className={style.itempropValue}>{program.aims ? program.aims : '-'}</p>
-            </div>
-          </Col>
-        </Row>
-
-
-        {program.externalProvider ?
-          <Row className={style.fieldSection}>
-            <Col sm={{size:6}}>
-
-              <p className={style.itemprop}>
-                <span className={style.itempropKey}>Who is the External Provider?</span>
-                <span className={style.itempropValue}>
-            {program.externalProvider ? program.externalProvider : '-'}
-          </span>
-              </p>
-
-              <div className={style.itemprop}>
-                <p className={style.itempropKey}>Website</p>
-                <p className={style.itempropValue}>{program.website ? program.website : '-'}</p>
-              </div>
-            </Col>
-
-            <Col sm={{size:6}}>
-
-            </Col>
-          </Row> :
-          null
-        }
-
-        <div className={style.fieldSection}>
-          <Button to={editUrl} tag={RRLink} color="light">Edit</Button>
-        </div>
 
       </Layout>
     )

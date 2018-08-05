@@ -57,7 +57,7 @@ class App extends React.Component {
           <PrivateRoute path="/schools/:schoolCode/programs/:year" component={SchoolPrograms} />
           <PrivateRoute path="/snippets/new" component={SnippetNew} />
           <PrivateRoute path="/programs/new" component={ProgramNew} />
-          <PrivateRoute path="/programs/:programId" component={Program} />
+          <PrivateRoute exact path="/programs/:programId" component={Program} />
           {/*<PrivateRoute path="/programs/:programId/edit" component={} />*/}
           {/*<PrivateRoute path="/programs/:programId/snippets" component={Program} />*/}
           {sessionUser.schools && sessionUser.schools.length ?
