@@ -1,6 +1,10 @@
 import { connect } from 'react-redux';
 import { fetchSnippetsByProgram } from "store/snippets/actionCreators";
-import { selectSnippetsByFilter } from "store/snippets/selectors";
+import {
+  selectSnippetsByFilter,
+  selectIsFetchingByFilter,
+  selectIsUpdatingByFilter,
+} from "store/snippets/selectors";
 
 const mapStateToProps = (state, ownProps) => {
   const { program, year, schoolCode } = ownProps;
@@ -11,6 +15,8 @@ const mapStateToProps = (state, ownProps) => {
   };
   return {
     program,
+    snippetsIsFetching: selectIsFetchingByFilter(state, filterProps), // todo - fetch only first 2
+    snippetsIsUpdating: selectIsUpdatingByFilter(state, filterProps),
     snippets: selectSnippetsByFilter(state, filterProps),
     filterProps,
   }

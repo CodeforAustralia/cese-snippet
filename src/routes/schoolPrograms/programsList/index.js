@@ -1,11 +1,7 @@
 import React from 'react';
-import ProgramCard from 'components/programCard';
-import ProgramCardContainer from 'routes/schoolPrograms/programCardContainer';
+import ProgramCard from './../programCard';
 
 import style from './style.scss';
-
-
-const ConnectedProgramCard = ProgramCardContainer(ProgramCard);
 
 const ProgramsList = ({ programs = [], snippets = [], year, schoolCode }) => {
 
@@ -28,7 +24,7 @@ const ProgramsList = ({ programs = [], snippets = [], year, schoolCode }) => {
         const programSnippets = snippets.filter(s => s.programId === p.id);
         return (
           <div key={idx} className={style.programItem}>
-            <ConnectedProgramCard program={p} year={year} schoolCode={schoolCode} />
+            <ProgramCard program={p} year={year} schoolCode={schoolCode} />
           </div>
         )
       })}

@@ -10,7 +10,6 @@ const log = bows('Snippets');
 
 export const fetchSuccess = (snippets) => {
   log('fetch success');
-
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
@@ -28,7 +27,7 @@ const createFilter = (data, filterKey = null) => {
     throw new Error('Must provide filterKey');
   }
   return {
-    type: ACTION_TYPES.createFilters,
+    type: ACTION_TYPES.createFilter,
     payload: {
       filterKey,
       filterValue: data.map(d => d.id), // snippet ids
@@ -38,7 +37,7 @@ const createFilter = (data, filterKey = null) => {
 
 export const updateFilter = (data, filterKey) => {
   return {
-    type: ACTION_TYPES.updateFilters,
+    type: ACTION_TYPES.updateFilter,
     payload: {
       filterKey,
       filterValue: data.map(d => d.id),
@@ -74,6 +73,14 @@ export const createSnippet = (snippet, {schoolCode = null, year = null}) => {
   log(`Posting (creating): ${JSON.stringify(snippet)}`);
 
   return (dispatch, getState, api) => {
+
+    dispatch({
+      type: ACTION_TYPES.updateByFilterRequest,
+      payload: {
+        filterKey,
+      }
+    });
+
     // 2.
     return api('/snippets', {
       method: 'POST',
@@ -86,6 +93,7 @@ export const createSnippet = (snippet, {schoolCode = null, year = null}) => {
         log(`Posted: ${resp.data}`);
         // 3.
         dispatch(fetchSuccess(resp.data));
+
         return resp;
       })
       .then((resp) => {
@@ -96,10 +104,27 @@ export const createSnippet = (snippet, {schoolCode = null, year = null}) => {
           d = [d]
         }
         dispatch(updateFilter(d, filterKey));
+
+        dispatch({
+          type: ACTION_TYPES.updateByFilterSuccess,
+          payload: {
+            filterKey,
+          }
+        });
+
         return resp;
       })
       .catch((error) => {
         log(`Error: ${error}`);
+
+        dispatch({
+          type: ACTION_TYPES.updateByFilterError,
+          payload: {
+            filterKey,
+            message: error,
+          }
+        });
+
         // todo - status messages
         return error;
       });
@@ -110,15 +135,6 @@ export const createSnippet = (snippet, {schoolCode = null, year = null}) => {
 /**
  * filterProps {Object} - {schoolCode, year, programId}
  */
-export const fetchSnippetsByFilter = (filterProps) => {
-  if (typeof filterProps === 'undefined') {
-    throw new Error('Must provide filterProps.');
-  }
-  const filterKey = getFilterKey(filterProps);
-  const search = queryString.stringify(filterProps);
-  return fetchFromApiOrCache(`/snippets?${search}`, filterKey);
-};
-
 export const fetchSnippetsByProgram = (filterProps) => {
   const filterKey = getFilterKey(filterProps);
   const search = queryString.stringify({programId: filterProps.programId, year: filterProps.year});
@@ -144,19 +160,27 @@ export const fetchFromApiOrCache = (path, filterKey = null) => {
 
   log(`Fetching: ${path}`);
 
+  if (!filterKey) {
+    throw new Error('Must provide filterKey.');
+  }
+
   return (dispatch, getState, api) => {
 
     // 0.
-    if (filterKey) {
-      const state = getState();
-      if (filterKey in state.snippets.filters) {
-        return state.snippets.filters[filterKey];
-      }
-    }
+    // if (filterKey) {
+    //   const state = getState();
+    //   if (filterKey in state.snippets.filters) {
+    //     return state.snippets.filters[filterKey];
+    //   }
+    // }
 
     dispatch({
-      type: ACTION_TYPES.fetchRequest,
+      type: ACTION_TYPES.fetchByFilterRequest,
+      payload: {
+        filterKey,
+      }
     });
+
     // 1.
     return api(path)
       .then((resp) => {
@@ -170,20 +194,29 @@ export const fetchFromApiOrCache = (path, filterKey = null) => {
       })
       .then((resp) => {
         // 3.
-        if (filterKey) {
-          dispatch(createFilter(resp.data, filterKey));
-        }
+        dispatch(createFilter(resp.data, filterKey));
+
+        dispatch({
+          type: ACTION_TYPES.fetchByFilterSuccess,
+          payload: {
+            filterKey,
+          }
+        });
+
         return resp;
       })
       .catch((error) => {
         // todo - status messages
         log(`Error: ${error}`);
+
         dispatch({
-          type: ACTION_TYPES.fetchError,
+          type: ACTION_TYPES.fetchByFilterError,
           payload: {
-            message: error.message || 'Something went wrong.'
+            filterKey,
+            message: error,
           }
         });
+
         return error;
       })
   }

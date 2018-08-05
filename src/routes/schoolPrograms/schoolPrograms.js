@@ -21,7 +21,7 @@ import { PageLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
 } from 'helpers/url';
-import ProgramsList from 'components/programsList';
+import ProgramsList from './programsList';
 
 import style from './style.scss';
 

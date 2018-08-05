@@ -1,42 +1,21 @@
 import { combineReducers } from 'redux';
 
 export const ACTION_TYPES = {
-  fetchRequest: 'SNIPPETS/FETCH_REQUEST',
   fetchSuccess: 'SNIPPETS/FETCH_SUCCESS',
-  fetchError: 'SNIPPETS/FETCH_ERROR',
 
-  setFilters: 'SNIPPETS/SET_FILTERS',
+  createFilter: 'SNIPPETS/CREATE_FILTER',
+  updateFilter: 'SNIPPETS/UPDATE_FILTER',
 
-  createFilters: 'SNIPPETS/CREATE_FILTERS',
-  updateFilters: 'SNIPPETS/UPDATE_FILTERS',
+  updateByFilterRequest: 'SNIPPETS/UPDATE_BY_FILTER_REQUEST',
+  updateByFilterSuccess: 'SNIPPETS/UPDATE_BY_FILTER_SUCCESS',
+  updateByFilterError: 'SNIPPETS/UPDATE_BY_FILTER_ERROR',
+
+  fetchByFilterRequest: 'SNIPPETS/FETCH_BY_FILTER_REQUEST',
+  fetchByFilterSuccess: 'SNIPPETS/FETCH_BY_FILTER_SUCCESS',
+  fetchByFilterError: 'SNIPPETS/FETCH_BY_FILTER_ERROR',
 };
 
-export const isFetching = (state = null, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.fetchRequest:
-      return true;
-    case ACTION_TYPES.fetchSuccess:
-    case ACTION_TYPES.fetchError:
-      return false;
-    default:
-      return state;
-  }
-};
-
-export const errorMessage = (state = null, action) => {
-  const { payload } = action;
-  switch (action.type) {
-    case ACTION_TYPES.fetchError:
-      return payload.message;
-    case ACTION_TYPES.fetchSuccess:
-    case ACTION_TYPES.fetchRequest:
-      return null;
-    default:
-      return state;
-  }
-};
-
-export const byId = (state = {}, action) => {
+const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
@@ -46,17 +25,16 @@ export const byId = (state = {}, action) => {
   }
 };
 
-
 // [school code]_2018_[program id]
 
-export const filters = (state = {}, action) => {
+const filters = (state = {}, action) => {
   const { type, payload } = action;
 
   let filterKey, filterValue;
 
   switch (type) {
 
-    case ACTION_TYPES.updateFilters:
+    case ACTION_TYPES.updateFilter:
       filterKey = payload.filterKey;
       filterValue = payload.filterValue;
 
@@ -69,7 +47,7 @@ export const filters = (state = {}, action) => {
       }
       return newState;
 
-    case ACTION_TYPES.createFilters:
+    case ACTION_TYPES.createFilter:
       filterKey = payload.filterKey;
       filterValue = payload.filterValue;
 
@@ -84,11 +62,65 @@ export const filters = (state = {}, action) => {
   }
 };
 
+// export const isFetchingByFilter
+
+// fetchByFilterRequest
+// fetchByFilterSuccess
+// fetchByFilterError
+
+export const FILTER_STATUS_TYPES = {
+  IS_FETCHING: 'fetching',
+  IS_FETCHING_SUCCESS: 'fetching success',
+  IS_FETCHING_ERROR: 'fetching error',
+  IS_UPDATING: 'updating',
+  IS_UPDATING_SUCCESS: 'updating success',
+  IS_UPDATING_ERROR: 'updating error',
+};
+
+const filtersStatus = (state = {}, action) => {
+  const { type, payload } = action;
+  switch(type) {
+    case ACTION_TYPES.fetchByFilterRequest:
+      return {
+        ...state,
+        [payload.filterKey]: { status: FILTER_STATUS_TYPES.IS_FETCHING, }
+      };
+    case ACTION_TYPES.fetchByFilterSuccess:
+      return {
+        ...state,
+        [payload.filterKey]: { status: FILTER_STATUS_TYPES.IS_FETCHING_SUCCESS, }
+      };
+    case ACTION_TYPES.fetchByFilterError:
+      const {  } = payload;
+      return {
+        ...state,
+        [payload.filterKey]: { status: FILTER_STATUS_TYPES.IS_FETCHING_ERROR, message: payload.message, }
+      };
+    case ACTION_TYPES.updateByFilterRequest:
+      return {
+        ...state,
+        [payload.filterKey]: { status: FILTER_STATUS_TYPES.IS_UPDATING, }
+      };
+    case ACTION_TYPES.updateByFilterSuccess:
+      return {
+        ...state,
+        [payload.filterKey]: { status: FILTER_STATUS_TYPES.IS_UPDATING_SUCCESS, }
+      };
+    case ACTION_TYPES.updateByFilterError:
+      const {  } = payload;
+      return {
+        ...state,
+        [payload.filterKey]: { status: FILTER_STATUS_TYPES.IS_UPDATING_ERROR, message: payload.message, }
+      };
+    default:
+      return state;
+  }
+};
+
 const snippetsReducer = combineReducers({
   byId,
-  isFetching,
-  errorMessage,
   filters,
+  filtersStatus,
 });
 
 export default snippetsReducer;

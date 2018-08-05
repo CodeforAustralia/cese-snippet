@@ -34,10 +34,10 @@ export const PageLoading = ({ blocking = true }) => (
   </div>
 );
 
-export const ComponentLoading = () => (
+export const ComponentLoading = ({ small = false }) => (
   <div className={style.componentLoadingContainer}>
     <div className={style.componentLoadingEl}>
-      <div className={style.componentCircleSpinner}>
+      <div className={cx(style.componentCircleSpinner, small ? style.isSmall : '')}>
         <div className={style.circleSpinnerBounce1} />
         <div className={style.circleSpinnerBounce2} />
         <div className={style.circleSpinnerBounce3} />
