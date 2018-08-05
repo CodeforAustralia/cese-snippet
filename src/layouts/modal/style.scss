@@ -8,6 +8,7 @@
   right: 0;
   background: rgba(0, 0, 0, 0.15);
   overflow: scroll;
+  z-index: 50;
 }
 
 .modal {
@@ -26,6 +27,7 @@
   margin-right: auto;
 
   bottom: 0;
+  z-index: 51;
 
   @include xs() {
     left: 1em;

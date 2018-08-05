@@ -8,13 +8,13 @@ import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import style from './style.scss';
 
 
-const ModalLayout = ({ history, location, children }) => {
+const ModalLayout = ({ goBack, children }) => {
 
   const back = (e) => {
     if (e) {
       e.stopPropagation();
     }
-    history.goBack();
+    goBack();
   };
 
   return (
@@ -31,12 +31,7 @@ const ModalLayout = ({ history, location, children }) => {
             </Button>
           </div>
           <div className="modal-body">
-
-            {/*<Form sessionUser={sessionUser}*/}
-                  {/*onSubmitSuccess={() => back()} />*/}
-
             {children}
-
           </div>
         </div>
       </div>

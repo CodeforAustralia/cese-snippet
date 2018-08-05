@@ -1,23 +1,5 @@
-import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-import Layout from "layouts/modal";
-import Breadcrumb from "components/breadcrumb";
+import Modal from './snippetsNewModal';
 
-
-const SnippetsNewModal = ({ school, year }) => {
-  return (
-    <Layout>
-      <Breadcrumb items={[
-        { label: 'Programs' },
-        { label: school.name },
-        { label: 'New Snippet' },
-      ]} />
-
-      <div>
-        <h1>New Snippet</h1>
-      </div>
-    </Layout>
-  )
-};
-
-export default SnippetsNewModal;
+export default withRouter(Modal);

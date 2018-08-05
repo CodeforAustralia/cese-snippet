@@ -10,16 +10,16 @@ import { getSchoolProgramsUrl } from "helpers/url";
 const SnippetsNew = ({ school, year }) => {
   return (
     <Layout>
-      <Breadcrumb items={[
-        { label: 'Programs' },
-        { label: school.name },
-        { label: 'New Snippet' },
-      ]} />
+      {/*<Breadcrumb items={[*/}
+        {/*{ label: 'Programs' },*/}
+        {/*{ label: school.name },*/}
+        {/*{ label: 'New Snippet' },*/}
+      {/*]} />*/}
 
       <div>
         <h1>New Snippet</h1>
 
-        <Button color="link" tag={RRLink} to={getSchoolProgramsUrl(school.code, year)}>{`< `}Back to {school.name}</Button>
+        {/*<Button color="link" tag={RRLink} to={getSchoolProgramsUrl(school.code, year)}>{`< `}Back to {school.name}</Button>*/}
       </div>
     </Layout>
   )

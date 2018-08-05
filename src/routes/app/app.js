@@ -36,7 +36,6 @@ class App extends React.Component {
 
   render() {
     const {
-      session,
       sessionUser,
       location,
     } = this.props;
@@ -49,6 +48,7 @@ class App extends React.Component {
 
     return (
       <div>
+        {isModal ? <Route path="/snippets/new" render={(props) => <SnippetsNewModal {...props} />} /> : null}
         <Switch location={isModal ? this.previousLocation : location}>
           <Route exact path="/" component={FakeLogin} />
           <PrivateRoute path="/onboarding/welcome" component={WizardWelcome} />
@@ -65,7 +65,6 @@ class App extends React.Component {
             <Redirect to="/onboarding/welcome" />
           }
         </Switch>
-        {isModal ? <Route path="/snippets/new" render={(props) => <SnippetsNewModal {...props} />} /> : null}
       </div>
     )
   }

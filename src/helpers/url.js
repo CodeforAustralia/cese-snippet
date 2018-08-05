@@ -22,7 +22,7 @@ export const getSnippetsNewUrl = () => {
   return `/snippets/new`;
 };
 
-export const getSnippetsNewModalPath = () => {
+export const getSnippetsNewModalTo = () => {
   return {
     pathname: '/snippets/new',
     state: {

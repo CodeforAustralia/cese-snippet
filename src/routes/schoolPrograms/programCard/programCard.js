@@ -17,7 +17,7 @@ import {
   getProgramUrl,
   getProgramEditUrl,
   getProgramSnippetsUrl,
-  getSnippetsNewModalPath,
+  getSnippetsNewModalTo,
 } from 'helpers/url';
 import style from './style.scss';
 
@@ -91,8 +91,8 @@ class ProgramCard extends React.Component {
             {snippetsIsFetching !== false ?
               null :
               hasSnippets ?
-                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalPath()}>Post another</Button> :
-                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalPath()}>Post</Button>
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalTo()}>Post another</Button> :
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalTo()}>Post</Button>
             }
           </CardTitle>
 
