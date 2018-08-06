@@ -132,7 +132,7 @@ export const updateUser = (user) => {
       })
       .catch((error) => {
         dispatch(updateError(error));
-        return errors;
+        return error;
       });
   }
 };

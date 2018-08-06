@@ -12,4 +12,10 @@ export const mapStateToProps = (state) => {
   }
 };
 
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
+  }
+};
+
 export default connect(mapStateToProps);

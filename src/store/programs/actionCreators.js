@@ -8,6 +8,32 @@ import { getFilterKey } from "./helpers";
 
 const log = bows('Programs');
 
+export const fetchRequest = () => {
+  log('fetching');
+  return {
+    type: ACTION_TYPES.fetchRequest,
+  }
+};
+
+export const fetchSuccess = (programs) => {
+  log(`fetch success`);
+  return {
+    type: ACTION_TYPES.fetchSuccess,
+    payload: {
+      programs: objectify(programs),
+    },
+  }
+};
+
+export const fetchError = (error) => {
+  log('fetch error');
+  return {
+    type: ACTION_TYPES.fetchError,
+    payload: {
+      message: error.message || 'Something went wrong.'
+    }
+  }
+};
 
 export const fetchByFilterRequest = (filterKey) => {
   log('fetching by filter');
@@ -108,9 +134,29 @@ export const updateFilter = (ids, filterKey) => {
   }
 };
 
+export const fetchProgram = (programId) => {
+  if (typeof programId === 'undefined') {
+    throw new Error('Must provide "programId".');
+  }
+  return (dispatch, getState, api) => {
+    dispatch(fetchRequest());
+    return api(`/programs/${programId}`)
+      .then((resp) => {
+        const program = resp.data;
+        if (!program) {
+          throw new Error('Data not provided in response.');
+        }
+        dispatch(fetchSuccess(program));
+        return program;
+      })
+      .catch((error) => {
+        dispatch(fetchError(error));
+        return error;
+      });
+  }
+};
 
-
-export default fetchByFilter = (filterProps) => {
+export const fetchByFilter = (filterProps) => {
   if (!filterProps.schoolCode || !filterProps.year) {
     throw new Error('Must provide filter props to fetch by filter.');
   }
@@ -139,8 +185,7 @@ export default fetchByFilter = (filterProps) => {
         return error;
       });
   }
-}
-
+};
 
 export const createProgram = (program) => {
   if (!program.schoolCode || !program.year) {

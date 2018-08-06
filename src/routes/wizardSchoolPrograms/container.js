@@ -13,7 +13,7 @@ import {
   selectProgramsByFilterKey,
 } from "store/programs/selectors";
 import {
-  fetchProgramsByFilter,
+  fetchByFilter as fetchProgramsByFilter,
   createProgram,
 } from "store/programs/actionCreators";
 

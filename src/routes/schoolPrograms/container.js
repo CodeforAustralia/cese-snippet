@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 
 import { fetchSchool } from "store/schools/actionCreators";
-import { fetchProgramsByFilter } from "store/programs/actionCreators";
+import {
+  fetchByFilter as fetchProgramsByFilter,
+} from "store/programs/actionCreators";
 import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchools,

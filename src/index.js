@@ -12,14 +12,12 @@ import 'style/index.scss';
 
 const win = typeof window !== 'undefined' ? window : global;
 
-const context = JSON.parse(win.session);
-
-if (!context.session) {
+if (!win.session) {
   throw new Error(`window.session must be provided.`);
 }
 
 const store = configureStore();
-store.dispatch(fetchSessionFromPageState(context.session));
+store.dispatch(fetchSessionFromPageState(win.session));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -70,7 +70,6 @@ const filtersIsFetching = (state = {}, action) => {
         [payload.filterKey]: FILTER_STATUS_TYPES.IS_FETCHING_SUCCESS,
       };
     case ACTION_TYPES.fetchByFilterError:
-      const {  } = payload;
       return {
         ...state,
         [payload.filterKey]: FILTER_STATUS_TYPES.IS_FETCHING_ERROR,

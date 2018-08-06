@@ -5,6 +5,9 @@ export const ACTION_TYPES = {
   fetchByFilterSuccess: 'PROGRAMS/FETCH_BY_FILTER_SUCCESS',
   fetchByFilterError: 'PROGRAMS/FETCH_BY_FILTER_ERROR',
 
+  fetchRequest: 'PROGRAMS/FETCH_REQUEST',
+  fetchSuccess: 'PROGRAMS/FETCH_SUCCESS',
+  fetchError: 'PROGRAMS/FETCH_ERROR',
   createRequest: 'PROGRAMS/CREATE',
   createSuccess: 'PROGRAMS/CREATE_SUCCESS',
   createError: 'PROGRAMS/CREATE_ERROR',
@@ -19,6 +22,31 @@ export const FILTER_STATUS_TYPES = {
   IS_FETCHING: 'fetching',
   IS_FETCHING_SUCCESS: 'fetching success',
   IS_FETCHING_ERROR: 'fetching error',
+};
+
+export const isFetching = (state = null, action) => {
+  switch (action.type) {
+    case ACTION_TYPES.fetchRequest:
+      return true;
+    case ACTION_TYPES.fetchSuccess:
+    case ACTION_TYPES.fetchError:
+      return false;
+    default:
+      return state;
+  }
+};
+
+export const errorMessage = (state = null, action) => {
+  const { payload } = action;
+  switch (action.type) {
+    case ACTION_TYPES.fetchError:
+      return payload.message;
+    case ACTION_TYPES.fetchSuccess:
+    case ACTION_TYPES.fetchRequest:
+      return null;
+    default:
+      return state;
+  }
 };
 
 export const byId = (state = {}, action) => {
@@ -71,7 +99,6 @@ const filtersIsFetching = (state = {}, action) => {
         [payload.filterKey]: FILTER_STATUS_TYPES.IS_FETCHING_SUCCESS,
       };
     case ACTION_TYPES.fetchByFilterError:
-      const {  } = payload;
       return {
         ...state,
         [payload.filterKey]: FILTER_STATUS_TYPES.IS_FETCHING_ERROR,
@@ -102,6 +129,8 @@ const filtersIsError = (state = {}, action) => {
 
 const programsReducer = combineReducers({
   byId,
+  isFetching,
+  errorMessage,
   filters,
   filtersIsFetching,
   filtersIsError,

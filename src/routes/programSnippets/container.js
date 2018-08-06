@@ -14,7 +14,9 @@ import {
   selectSnippetsByFilter,
   selectIsFetchingByFilter,
 } from "store/snippets/selectors";
-import {fetchSnippetsByProgram} from "../../store/snippets/actionCreators";
+import {
+  fetchByFilter as fetchSnippetsByFilter,
+} from "store/snippets/actionCreators";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -55,7 +57,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchProgram: () => dispatch(fetchProgram(programId)),
     fetchSchool: (schoolCode) => dispatch(fetchSchool(schoolCode)),
-    fetchSnippets: (filterProps) => dispatch(fetchSnippetsByProgram(filterProps)),
+    fetchSnippets: (filterProps) => dispatch(fetchSnippetsByFilter(filterProps)),
   }
 };
 

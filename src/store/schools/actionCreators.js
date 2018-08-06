@@ -35,7 +35,7 @@ export const fetchError = (error) => {
 
 export const fetchSchool = (code) => {
   if (typeof code === 'undefined') {
-    throw new Error('Must provide code.');
+    throw new Error('Must provide "code".');
   }
   return (dispatch, getState, api) => {
     dispatch(fetchRequest());
