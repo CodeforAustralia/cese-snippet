@@ -138,9 +138,11 @@ export const createSnippet = (snippet) => {
       })
       .then((snippet) => {
         dispatch(updateFilter(snippet, filterKey));
+        return snippet;
       })
       .catch((error) => {
         dispatch(createError(error));
+        return error;
       });
   }
 };

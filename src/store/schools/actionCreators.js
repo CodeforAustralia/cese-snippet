@@ -3,8 +3,15 @@ import bows from 'bows';
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
 
+
 const log = bows('Schools');
 
+export const fetchRequest = () => {
+  log('fetching');
+  return {
+    type: ACTION_TYPES.fetchRequest,
+  }
+};
 
 export const fetchSuccess = (schools) => {
   log(`fetch success`);
@@ -16,67 +23,66 @@ export const fetchSuccess = (schools) => {
   }
 };
 
-
-
-
+export const fetchError = (error) => {
+  log('fetch error');
+  return {
+    type: ACTION_TYPES.fetchError,
+    payload: {
+      message: error.message || 'Something went wrong.'
+    }
+  }
+};
 
 export const fetchSchool = (code) => {
   if (typeof code === 'undefined') {
-    throw new Error('Must supply code to request a school.');
+    throw new Error('Must provide code.');
   }
-  return fetchFromApi(`/schools?code=${code}`);
-};
-
-export const fetchSchools = (codes) => {
-  if (typeof codes === 'undefined') { // todo
-    return () => {};
-  }
-  const reqList = codes.reduce((acc, val, idx) => {
-    return acc + `&code=${val}`;
-  }, '');
-  return fetchFromApi(`/schools?${reqList}`);
-};
-
-
-
-/**
- * Fetch Schools Thunk Sequence
- * @param path
- * @param props
- * @returns {function(*, *, *)}
- */
-export const fetchFromApi = (path, props) => {
-  // Steps:
-  // 1. GET
-  // 2. update byCode
-
-  log(`Fetching: ${path}`);
-
   return (dispatch, getState, api) => {
-    dispatch({
-      type: ACTION_TYPES.fetchRequest,
-    });
-    // 1.
-    return api(path)
+    dispatch(fetchRequest());
+    return api(`/schools/${code}`)
       .then((resp) => {
-        if (!resp.data) {
+        const school = resp.data;
+        if (!school) {
           throw new Error('Data not provided in response.');
         }
-        log(`Fetched`);
-        // 2.
-        dispatch(fetchSuccess(resp.data));
-        return resp.data;
+        dispatch(fetchSuccess(school));
+        return school;
       })
       .catch((error) => {
-        // todo - status messages
-        log(`Error: ${error}`);
-        dispatch({
-          type: ACTION_TYPES.fetchError,
-          payload: {
-            message: error.message || 'Something went wrong.'
-          }
-        });
+        dispatch(fetchError(error));
         return error;
       });
   }
 };
+
+export const fetchSchools = (codes) => {
+  if (typeof code === 'undefined') {
+    throw new Error('Must provide code.');
+  }
+  if (!Array.isArray(codes)) {
+    throw new Error('Must provide codes as Array.');
+  }
+
+  const search = codes.reduce((acc, val, idx) => {
+    return acc + `&code=${val}`;
+  }, '');
+
+  return (dispatch, getState, api) => {
+    dispatch(fetchRequest());
+    return api(`/schools?${search}`)
+      .then((resp) => {
+        const school = resp.data;
+        if (!school) {
+          throw new Error('Data not provided in response.');
+        }
+        dispatch(fetchSuccess(school));
+        return school;
+      })
+      .catch((error) => {
+        dispatch(fetchError(error));
+        return error;
+      });
+  }
+};
+
+

@@ -8,85 +8,143 @@ import { getFilterKey } from "./helpers";
 
 const log = bows('Programs');
 
-export const fetchSuccess = (programs) => {
-  return {
-    type: ACTION_TYPES.fetchSuccess,
-    payload: {
-      programs: objectify(programs),
-    }
-  }
-};
 
-
-/**
- * @param data {Array}
- * @param filterKey {String}
- */
-const createFilter = (data, {filterKey}) => {
-  // if (typeof data === 'undefined' || !Array.isArray(data)) {
-  //   throw new Error('Data provided to setFilter must be an Array.');
-  // }
+export const fetchByFilterRequest = (filterKey) => {
+  log('fetching by filter');
   return {
-    type: ACTION_TYPES.createFilters,
+    type: ACTION_TYPES.fetchByFilterRequest,
     payload: {
       filterKey,
-      filterValue: data.map(d => d.id),
     }
   }
 };
 
-/**
- * @param data {Array}
- * @param filterKey {String}
- */
-export const updateFilter = (data, {filterKey}) => {
-  // if (typeof data === 'undefined' || !Array.isArray(data)) {
-  //   throw new Error('Data provided to setFilter must be an Array.');
-  // }
+export const fetchByFilterSuccess = (programs, filterKey) => {
+  log('fetch by filter success');
   return {
-    type: ACTION_TYPES.updateFilters,
+    type: ACTION_TYPES.fetchByFilterSuccess,
+    payload: {
+      programs,
+      filterKey,
+    }
+  }
+};
+
+export const fetchByFilterError = (message, filterKey) => {
+  log('fetch by filter error');
+  return {
+    type: ACTION_TYPES.fetchByFilterError,
+    payload: {
+      message,
+      filterKey,
+    }
+  }
+};
+
+export const createRequest = () => {
+  log('creating');
+  return {
+    type: ACTION_TYPES.createRequest,
+  }
+};
+
+export const createSuccess = (program) => {
+  log('create success');
+  return {
+    type: ACTION_TYPES.createSuccess,
+    payload: {
+      programs: objectify(program),
+    }
+  }
+};
+
+export const createError = (error) => {
+  log('create error');
+  return {
+    type: ACTION_TYPES.createSuccess,
+    payload: {
+      message: error.message || 'Something went wrong.'
+    }
+  }
+};
+
+export const updateRequest = () => {
+  log('creating');
+  return {
+    type: ACTION_TYPES.createRequest,
+  }
+};
+
+export const updateSuccess = (program) => {
+  log('create success');
+  return {
+    type: ACTION_TYPES.createSuccess,
+    payload: {
+      programs: objectify(program),
+    }
+  }
+};
+
+export const updateError = (error) => {
+  log('create error');
+  return {
+    type: ACTION_TYPES.createSuccess,
+    payload: {
+      message: error.message || 'Something went wrong.'
+    }
+  }
+};
+
+export const updateFilter = (ids, filterKey) => {
+  if (!Array.isArray(ids)) {
+    ids = [ids]
+  }
+  return {
+    type: ACTION_TYPES.updateFilter,
     payload: {
       filterKey,
-      filterValue: data.map(d => d.id),
+      filterValue: ids,
     }
   }
 };
 
 
-export const fetchProgram = (programId) => {
-  return fetchFromApiOrCache(`/programs/${programId}`);
-};
 
-
-/**
- * @param filterProps {Object} can be any filter, not just 'code' and 'year'
- */
-export const fetchProgramsByFilter = (filterProps) => {
-  if (typeof filterProps === 'undefined') {
-    throw new Error('Must supply filterProps to fetchProgramsByFilter.');
+export default fetchByFilter = (filterProps) => {
+  if (!filterProps.schoolCode || !filterProps.year) {
+    throw new Error('Must provide filter props to fetch by filter.');
   }
+
   const search = queryString.stringify(filterProps);
-  return fetchFromApiOrCache(`/programs?${search}`, { filterKey: getFilterKey(filterProps) });
-};
+  const filterKey = getFilterKey(filterProps);
+
+  return (dispatch, getState, api) => {
+    dispatch(fetchByFilterRequest(filterKey));
+    return api(`/programs?${search}`)
+      .then((resp) => {
+        const programs = resp.data;
+        if (!programs) {
+          throw new Error('Data not provided in response.');
+        }
+        dispatch(fetchByFilterSuccess(programs, filterKey));
+        return programs;
+      })
+      .then((programs) => {
+        const programIds = programs.map(s => s.id);
+        dispatch(updateFilter(programIds, filterKey));
+        return programs;
+      })
+      .catch((error) => {
+        dispatch(fetchByFilterError(error));
+        return error;
+      });
+  }
+}
 
 
-/**
- * Create Program Thunk Sequence
- * @param program
- * @returns {Function} Thunk
- */
 export const createProgram = (program) => {
-  // Steps:
-  // 1. sanitize input
-  // 2. POST
-  // 3. update byId
-  // 4. *update* a filter to append item
-  //    - do this last in case so filter listeners will get updates
-
-  // 1. todo
-
   if (!program.schoolCode || !program.year) {
-    throw new Error('Must provide schoolCode and year')
+    throw new Error('Must provide "schoolCode" and "year" props to Program to create.');
   }
 
   const filterKey = getFilterKey({
@@ -94,139 +152,62 @@ export const createProgram = (program) => {
     year: program.year,
   });
 
-  log(`Posting (creating): ${JSON.stringify(program)}`);
-
   return (dispatch, getState, api) => {
-    // 2.
+    dispatch(createRequest());
     return api('/programs', {
       method: 'POST',
       body: JSON.stringify(program),
     })
       .then((resp) => {
-        if (!resp.data) {
+        const program = resp.data;
+        if (!program) {
           throw new Error('Data not provided in response');
         }
-        log(`Posted: ${resp.data}`);
-        // 3.
-        dispatch(fetchSuccess(resp.data));
-        return resp;
+        dispatch(createSuccess(program));
+        return program;
       })
-      .then((resp) => {
-        // 4.
-        let d = resp.data;
-
-        if (!Array.isArray(d)) {
-          d = [d]
-        }
-        dispatch(updateFilter(d, {filterKey}));
-        return resp;
+      .then((program) => {
+        dispatch(updateFilter(program, filterKey));
+        return program;
       })
       .catch((error) => {
-        log(`Error: ${error}`);
-        // todo - status messages
+        dispatch(createError(error));
         return error;
       });
   }
 };
 
-
-/**
- * Update Program Thunk Sequence
- * @param program
- * @returns {Function} Thunk
- */
 export const updateProgram = (program) => {
-  // Steps:
-  // 1. sanitize input
-  // 2. PUT
-  // 3. update byId
+  if (!program.schoolCode || !program.year) {
+    throw new Error('Must provide "schoolCode" and "year" props to Program to create.');
+  }
 
-  // 1. todo
-
-  log(`Putting (updating): ${JSON.stringify(program)}`);
+  const filterKey = getFilterKey({
+    schoolCode: program.schoolCode,
+    year: program.year,
+  });
 
   return (dispatch, getState, api) => {
-    // 2.
+    dispatch(updateRequest());
     return api(`/programs/${program.id}`, {
       method: 'PUT',
       body: JSON.stringify(program),
     })
       .then((resp) => {
-        if (!resp.data) {
+        const newProgram = resp.data;
+        if (!newProgram) {
           throw new Error('Data not provided in response');
         }
-        log(`Putted`);
-        // 3.
-        dispatch(fetchSuccess(resp.data));
-        return resp;
+        dispatch(updateSuccess(newProgram));
+        return program;
+      })
+      .then((newProgram) => {
+        dispatch(updateFilter(newProgram, filterKey));
+        return newProgram;
       })
       .catch((error) => {
-        log(`Error: ${error}`);
-        // todo - status messages
+        dispatch(updateError(error));
         return error;
       });
-  }
-};
-
-
-/**
- * Fetch Programs Thunk Sequence
- * @param path
- * @param props
- * @returns {function(*, *, *)}
- */
-export const fetchFromApiOrCache = (path, props = {}) => {
-  // Steps:
-  // 0. Check if item is cached, if it is serve it instead and end.
-  // 1. GET
-  // 2. update byId
-  // 3. *create* new filter values for this search key filter
-  //    - do this last in case so filter listeners will update
-  //    - ONLY DO THIS IF FILTER PROPS ARE PROVIDED - i might fetch program on program detail page not in a filter for example
-
-  log(`Fetching: ${path}`);
-
-  return (dispatch, getState, api) => {
-
-    // 0.
-    const { filterKey } = props;
-    if (filterKey) {
-      const state = getState();
-      if (filterKey in state.programs.filters) {
-        return state.programs.filters[filterKey];
-      }
-    }
-    dispatch({
-      type: ACTION_TYPES.fetchRequest,
-    });
-    // 1.
-    return api(path)
-      .then((resp) => {
-        if (!resp.data) {
-          throw new Error('Data not provided in response');
-        }
-        log(`Fetched`);
-        // 2.
-        dispatch(fetchSuccess(resp.data));
-        return resp;
-      })
-      .then((resp) => {
-        // 3.
-        if (props.filterKey) {
-          dispatch(createFilter(resp.data, props));
-        }
-        return resp;
-      })
-      .catch((error) => {
-        // todo - status messages
-        log(`Error: ${error}`);
-        dispatch({
-          type: ACTION_TYPES.fetchError,
-          payload: {
-            message: error.message || 'Something went wrong.'
-          }
-        });
-        return error;
-      })
   }
 };
