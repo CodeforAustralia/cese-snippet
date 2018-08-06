@@ -10,7 +10,10 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import { Link as RRLink } from 'react-router-dom';
+import {
+  Link as RRLink,
+  NavLink as RRNavLink,
+} from 'react-router-dom';
 import cx from 'classnames';
 
 import Layout from 'layouts/app';
@@ -22,6 +25,7 @@ import {
 import {
   getSchoolProgramsUrl,
   getProgramEditUrl,
+  getProgramSnippetsUrl,
 } from "helpers/url";
 // import {
 //   getHumanRelativeDate,
@@ -42,21 +46,29 @@ class Program extends React.Component {
   }
 
   fetchData() {
-    const { program, school } = this.props;
-    if (!program) {
+    const {
+      program,
+      isFetchingProgram,
+      school,
+      isFetchingSchool,
+    } = this.props;
+
+    if (!program && isFetchingProgram !== false) {
       log('Fetching program');
       this.props.fetchProgram();
     }
+
     if (program) {
-      if (!school) {
+      if (!school && isFetchingSchool !== false) {
+        log('Fetching school');
         this.props.fetchSchool(program.schoolCode);
       }
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //
+  // }
 
   render() {
     const {
@@ -71,6 +83,7 @@ class Program extends React.Component {
     }
 
     const editUrl = getProgramEditUrl(program.id);
+    const snippetsUrl = getProgramSnippetsUrl(program.id);
     const metaDescription = getHumanisedMetaDescription(program);
 
     return (
@@ -104,10 +117,10 @@ class Program extends React.Component {
 
         <Nav tabs>
           <NavItem>
-            <NavLink href="#" active>Details</NavLink>
+            <NavLink active>Details</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="#">Snippets</NavLink>
+            <NavLink tag={RRNavLink} to={snippetsUrl}>Snippets</NavLink>
           </NavItem>
         </Nav>
 

@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  NavLink as RRNavLink,
-  Link as RRLink,
-} from "react-router-dom";
+import { NavLink as RRNavLink } from "react-router-dom";
 import { Redirect } from 'react-router';
 import Bows from 'bows';
 import {
@@ -26,7 +23,7 @@ import ProgramsList from './programsList';
 import style from './style.scss';
 
 
-const log = Bows('View');
+const log = Bows('View: SchoolPrograms');
 
 class SchoolPrograms extends React.Component {
 

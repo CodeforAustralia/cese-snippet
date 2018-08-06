@@ -12,6 +12,7 @@ import WizardSchool from 'routes/wizardSchool';
 import WizardSchoolPrograms from 'routes/wizardSchoolPrograms';
 import SchoolPrograms from "routes/schoolPrograms";
 import Program from 'routes/program';
+import ProgramSnippets from 'routes/programSnippets';
 import SnippetNew from 'routes/snippetsNew';
 import SnippetsNewModal from 'routes/snippetsNewModal';
 import ProgramNew from 'routes/programsNew';
@@ -59,7 +60,7 @@ class App extends React.Component {
           <PrivateRoute path="/programs/new" component={ProgramNew} />
           <PrivateRoute exact path="/programs/:programId" component={Program} />
           {/*<PrivateRoute path="/programs/:programId/edit" component={} />*/}
-          {/*<PrivateRoute path="/programs/:programId/snippets" component={Program} />*/}
+          <PrivateRoute path="/programs/:programId/snippets" component={ProgramSnippets} />
           {sessionUser.schools && sessionUser.schools.length ?
             <Redirect to={`/schools/${sessionUser.schools[0]}/programs/2018`} /> :
             <Redirect to="/onboarding/welcome" />
