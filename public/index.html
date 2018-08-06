@@ -42,7 +42,7 @@
     </noscript>
     <div id="root"></div>
     <script>
-      window.session = JSON.stringify({
+      window.session = {
         "userId": "1",
         "nonGovUser": false,
         "preferences": "{}",
@@ -53,7 +53,20 @@
         "accountNonExpired": true,
         "credentialsNonExpired": true,
         "accountNonLocked": true,
-      });
+      };
+      window.sessionUser = {
+        "id": "1",
+        "deptId": "123",
+        "username": "grace.chang",
+        "email": "grace.chang@test.det.nsw.edu.au",
+        "firstName": "Grace",
+        "lastName": "Chang",
+        "schools": [
+          "4548"
+        ],
+        "createdAt": 1533271175493,
+        "updatedAt": 1533271175493,
+      }
     </script>
     <!--
       This HTML file is a template.

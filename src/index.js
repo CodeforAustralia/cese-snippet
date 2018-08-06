@@ -7,17 +7,19 @@ import "repaintless/repaintless-css/repaintless.css"
 import Root from 'routes/root';
 import configureStore from 'store/configureStore';
 import { fetchSessionFromPageState } from 'store/session/actionCreators';
+import { fetchSessionUserFromPageState } from 'store/users/actionCreators';
 import 'style/index.scss';
 
 
 const win = typeof window !== 'undefined' ? window : global;
 
-if (!win.session) {
-  throw new Error(`window.session must be provided.`);
+if (!win.session || !win.sessionUser) {
+  throw new Error(`window.session and window.sessionUser must be provided.`);
 }
 
 const store = configureStore();
 store.dispatch(fetchSessionFromPageState(win.session));
+store.dispatch(fetchSessionUserFromPageState(win.sessionUser));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -6,10 +6,6 @@ import AuthProvider from 'components/auth/authProvider';
 
 class Root extends React.Component {
 
-  componentDidMount() {
-    // this.props.fetchUser();
-  }
-
   render() {
     const {
       session,
@@ -24,6 +20,7 @@ class Root extends React.Component {
       </AuthProvider>
     )
   }
+
 }
 
 export default Root
