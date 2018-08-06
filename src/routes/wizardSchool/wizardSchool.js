@@ -12,6 +12,7 @@ import {
   getOnboardingSchoolUrl,
   getOnboardingSchoolProgramsUrl
 } from "helpers/url";
+import { ComponentLoading } from "components/loading";
 
 
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
@@ -25,9 +26,23 @@ class WizardSchool extends React.Component {
     this.state = {
       isSubmitting: false,
       isError: false,
-      hasSchool: this.props.sessionUserSchool && this.props.sessionUserSchool.name,
+      hasSchool: this.props.sessionUser.schools && this.props.sessionUser.schools.length,
     }
   }
+
+  componentDidMount() {
+    const { schools, isFetchingSchools, fetchSchools } = this.props;
+    if ((!schools || !schools.length) || isFetchingSchools !== false) {
+      fetchSchools();
+    }
+  }
+  //
+  // componentDidUpdate(prevProps) {
+  //   if (JSON.stringify(prevProps.filterProps) !== JSON.stringify(this.props.filterProps)) {
+  //     this.fetchData();
+  //   }
+  // }
+
   setContainerState(props) {
     this.setState({...this.state, ...props});
   }
@@ -36,6 +51,7 @@ class WizardSchool extends React.Component {
       optionsSchools,
       onSubmit,
       sessionUser,
+      isFetchingSchools,
     } = this.props;
     const {
       isSubmitting,
@@ -50,15 +66,20 @@ class WizardSchool extends React.Component {
           { to: OnboardingSchoolProgramsUrl, label: '3', visited: false,  disabled: true, },
         ]} />
 
+        <h1>User school {sessionUser.schools[0]}</h1>
+
         <Row className="mt-5">
           <Col>
             <h1 className="h2">Select your school</h1>
             <div className="mt-4">
-              <Form optionsSchools={optionsSchools}
-                    onSubmit={onSubmit}
-                    setContainerState={this.setContainerState}
-                    model={sessionUser}
-              />
+              {isFetchingSchools ?
+                <ComponentLoading small={true} /> :
+                <Form optionsSchools={optionsSchools}
+                      onSubmit={onSubmit}
+                      setContainerState={this.setContainerState}
+                      model={sessionUser}
+                />
+              }
             </div>
           </Col>
         </Row>

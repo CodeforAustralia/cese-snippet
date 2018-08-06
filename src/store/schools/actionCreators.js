@@ -3,7 +3,6 @@ import bows from 'bows';
 import { ACTION_TYPES } from './reducer';
 import { objectify } from 'store/objectify';
 
-
 const log = bows('Schools');
 
 export const fetchRequest = () => {
@@ -39,7 +38,7 @@ export const fetchSchool = (code) => {
   }
   return (dispatch, getState, api) => {
     dispatch(fetchRequest());
-    return api(`/schools/${code}`)
+    return api(`/schools?code=${code}`)
       .then((resp) => {
         const school = resp.data;
         if (!school) {

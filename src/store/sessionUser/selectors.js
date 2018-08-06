@@ -12,5 +12,8 @@ export const selectSessionUser = (state) => {
 export const selectSessionUserSchool = (state, sessionUser = null) => {
   const user = sessionUser || selectSessionUser(state);
   const schoolCode = get(user, 'schools[0]', null);
-  return selectSchool(state, schoolCode);
+  if (schoolCode) {
+    return selectSchool(state, schoolCode);
+  }
+  return null;
 };

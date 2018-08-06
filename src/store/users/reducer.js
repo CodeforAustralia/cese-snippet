@@ -53,9 +53,8 @@ const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
-      return {...state, ...payload.users};
     case ACTION_TYPES.updateSuccess:
-      return {...state, ...payload.user};
+      return {...state, ...payload.users};
     default:
       return state;
   }
