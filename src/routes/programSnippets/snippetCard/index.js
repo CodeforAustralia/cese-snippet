@@ -6,8 +6,8 @@ import {
   CardBody,
   CardImg,
   CardText,
-  Media,
-  Button,
+  // Media,
+  // Button,
 } from 'reactstrap';
 
 const SnippetCard = ({ snippet }) => {

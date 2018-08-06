@@ -6,15 +6,6 @@ import { ACTION_TYPES } from './reducer';
 
 const log = bows('Users');
 
-export const fetchSessionUserFromPageState = (user) => {
-  log('fetching');
-  return (dispatch) => {
-    dispatch(fetchRequest);
-    log('fetch success');
-    dispatch(fetchSuccess(user));
-  }
-};
-
 export const fetchRequest = () => {
   log('fetching');
   return {
@@ -69,6 +60,13 @@ export const updateError = (error) => {
   }
 };
 
+
+export const fetchSessionUserFromPageState = (user) => {
+  return (dispatch) => {
+    dispatch(fetchRequest);
+    dispatch(fetchSuccess(user));
+  }
+};
 
 export const fetchUser = (userId) => {
   if (typeof userId === 'undefined') {
@@ -145,5 +143,3 @@ export const updateUser = (user) => {
       });
   }
 };
-
-

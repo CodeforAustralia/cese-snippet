@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from 'routes/app';
 import AuthProvider from 'components/auth/authProvider';
+import { BoxLoading } from "components/loading";
 
 class Root extends React.Component {
 
@@ -10,12 +11,17 @@ class Root extends React.Component {
     const {
       session,
       sessionUser,
+      isFetchingUser,
     } = this.props;
 
     return (
       <AuthProvider session={session} sessionUser={sessionUser}>
         <Router>
-          <App />
+          {isFetchingUser !== false ?
+              <BoxLoading /> :
+              <App />
+          }
+
         </Router>
       </AuthProvider>
     )

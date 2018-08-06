@@ -7,7 +7,7 @@ body {
   height: 100%;
 }
 
-//:global(#root) > div
+:global(#root) > div,
 :global(#root) {
   height: 100%;
 }
