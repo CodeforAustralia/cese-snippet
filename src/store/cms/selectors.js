@@ -1,11 +1,23 @@
-export const selectCms = (state = {}) => {
-  return state.cms;
+import get from 'lodash/get';
+
+export const selectCms = (state) => {
+  return get(state, 'cms.model', null);
+};
+
+export const selectIsFetching = (state) => {
+  return get(state, 'cms.isFetching', null);
+};
+
+export const selectErrorMessage = (state) => {
+  return get(state, 'cms.errorMessage', null);
 };
 
 export const selectSchoolsList = (state) => {
-  return state.cms.schoolsList;
+  const cms = selectCms(state);
+  return get(cms, 'schoolsList', null);
 };
 
 export const selectStaffList = (state) => {
-  return state.cms.staffList;
+  const cms = selectCms(state);
+  return get(cms, 'staffList', null);
 };

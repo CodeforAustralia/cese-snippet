@@ -46,6 +46,26 @@ export const updateFilter = (data, filterKey) => {
 };
 
 
+export const fetchPageState = (snippets) => {
+  return (dispatch, getState, api) => {
+    return snippets.map(snippet => {
+      const {programId, schoolCode, year} = snippet;
+
+      dispatch({
+        type: ACTION_TYPES.fetchSuccess,
+      })
+
+      dispatch({
+        type: ACTION_TYPES.createFilters,
+      })
+
+    });
+  }
+};
+
+
+
+
 /**
  * Create Snippet Thunk Sequence
  * @param Snippet {Object}

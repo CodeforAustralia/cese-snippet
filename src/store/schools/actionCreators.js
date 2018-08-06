@@ -60,7 +60,7 @@ export const fetchFromApi = (path, props) => {
     return api(path)
       .then((resp) => {
         if (!resp.data) {
-          throw new Error('Data not provided in response');
+          throw new Error('Data not provided in response.');
         }
         log(`Fetched`);
         // 2.

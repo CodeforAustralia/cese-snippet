@@ -3,14 +3,16 @@ import bows from 'bows';
 import { objectify } from 'store/objectify';
 import { ACTION_TYPES } from './reducer';
 
+
 const log = bows('Users');
 
-/**
- * Set user
- * One off, used to set a user from server rendered page variables.
- * @param user
- * @returns {{type: string, payload: *}}
- */
+export const fetchRequest = () => {
+  log('fetching');
+  return {
+    type: ACTION_TYPES.fetchRequest,
+  }
+};
+
 export const fetchSuccess = (user) => {
   log(`fetch success`);
   return {
@@ -21,130 +23,117 @@ export const fetchSuccess = (user) => {
   }
 };
 
-/**
- * Update user
- * @param user
- * @returns {function(*, *, *)}
- */
-export const updateUser = (user) => {
-  log(`update start`);
-  return (dispatch, getState, api) => {
-    dispatch({
-      type: ACTION_TYPES.updateRequest,
-    });
-    return api(`/users/${user.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(user),
-    }).then(
-      resp => {
-        const user = resp.data;
-        log(`update success`);
-        dispatch({
-          type: ACTION_TYPES.updateSuccess,
-          payload: {
-            user: objectify(user),
-          },
-        });
-        return user;
-      },
-      errors => {
-        log(`update error`);
-        dispatch({
-          type: ACTION_TYPES.updateError,
-          payload: {
-            message: errors,
-          },
-        });
-        return errors;
-      }
-    )
-  }
-};
-
-
-
-
-
-
-
-
-
-/**
- * @param staff {Array|Object} single or multiple records
- * @returns {Object} FLUX Action creator
- */
-const createOrUpdateStaff = (staff) => {
+export const fetchError = (error) => {
+  log('fetch error');
   return {
-    type: ACTION_TYPES.fetchSuccess,
+    type: ACTION_TYPES.fetchError,
     payload: {
-      staff: objectify(staff),
+      message: error.message || 'Something went wrong.'
     }
   }
 };
 
-export const createStaff = (staff) => {
-  return createOrUpdateStaff(staff);
-};
-
-export const updateStaff = (staff) => {
-  return createOrUpdateStaff(staff);
-};
-
-
-export const fetchStaff = (ids = []) => {
-  if (!Array.isArray(ids)) {
-    throw new Error('Must supply array to fetchStaff.');
+export const updateRequest = () => {
+  log('updating');
+  return {
+    type: ACTION_TYPES.updateRequest,
   }
-  if (ids.length) {
-    const reqList = ids.reduce((acc, val) => {
-      return acc + `&id=${val}`;
-    }, '');
-    return fetchFromApi(`/users?${reqList}`);
+};
+
+export const updateSuccess = (user) => {
+  log(`update success`);
+  return {
+    type: ACTION_TYPES.updateSuccess,
+    payload: {
+      users: objectify(user),
+    },
   }
-  return fetchFromApi('/users');
+};
+
+export const updateError = (error) => {
+  log('update error');
+  return {
+    type: ACTION_TYPES.updateError,
+    payload: {
+      message: error.message || 'Something went wrong.'
+    }
+  }
 };
 
 
-
-/**
- * Fetch Staff Thunk Sequence
- * @param path
- * @param props
- * @returns {function(*, *, *)}
- */
-export const fetchFromApi = (path) => {
-  // Steps:
-  // 1. GET
-  // 2. update byId
-
-  log(`Fetching: ${path}`);
+export const fetchUser = (userId) => {
+  if (typeof userId === 'undefined') {
+    throw new Error('Must provide userId.');
+  }
 
   return (dispatch, getState, api) => {
-    dispatch({
-      type: ACTION_TYPES.fetchRequest,
-    });
-    // 1.
-    return api(path)
+    dispatch(fetchRequest);
+    return api(`/users/${userId}`)
       .then((resp) => {
-        if (!resp.data) {
-          throw new Error('Data not provided in response');
+        const user = resp.data;
+        if (!user) {
+          throw new Error('Data not provided in response.');
         }
-        log(`Fetched`);
-        // 2.
-        dispatch(fetchSuccess(resp.data));
-        return resp;
+        dispatch(fetchSuccess(user));
+        return user;
       })
       .catch((error) => {
-        // todo - status messages
-        log(`Error: ${error}`);
-        dispatch({
-          type: ACTION_TYPES.fetchError,
-          payload: {
-            message: error.message || 'Something went wrong.'
-          }
-        });
+        dispatch(fetchError(error));
         return error;
+      });
+  }
+};
+
+export const fetchUsers = (userIds) => {
+  if (!Array.isArray(userIds)) {
+    throw new Error('Must supply array to fetchStaff.');
+  }
+  if (!userIds.length) {
+    throw new Error('Must provide userIds.');
+  }
+
+  const search = userIds.reduce((acc, val) => {
+    return acc + `&id=${val}`;
+  }, '');
+
+  return (dispatch, getState, api) => {
+    dispatch(fetchRequest());
+    return api(`/users?${search}`)
+      .then((resp) => {
+        const user = resp.data;
+        if (!user) {
+          throw new Error('Data not provided in response.');
+        }
+        dispatch(fetchSuccess(user));
+        return user;
       })
+      .catch((error) => {
+        dispatch(fetchError(error));
+        return error;
+      });
+  }
+};
+
+export const updateUser = (user) => {
+  if (typeof user === 'undefined') {
+    throw new Error('Must provide user.');
+  }
+
+  return (dispatch, getState, api) => {
+    dispatch(updateRequest());
+    return api(`/users/${user.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(user),
+    })
+      .then((resp) => {
+        const newUser = resp.data;
+        dispatch(updateSuccess(newUser));
+        return newUser;
+      })
+      .catch((error) => {
+        dispatch(updateError(error));
+        return errors;
+      });
   }
 };
 

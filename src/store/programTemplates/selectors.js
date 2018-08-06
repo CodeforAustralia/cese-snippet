@@ -1,11 +1,20 @@
-export const selectProgramTemplate = (state = {}, id) => {
-  return state.programTemplates[id];
+import get from 'lodash/get';
+
+export const selectProgramTemplate = (state, id) => {
+  return get(state, `programTemplates[${id}]`, null);
 };
 
-export const selectProgramTemplates = (state = {}, ids = null) => {
+export const selectIsFetching = (state) => {
+  return get(state, 'programTemplates.isFetching', null);
+};
+
+export const selectErrorMessage = (state) => {
+  return get(state, 'programTemplates.errorMessage', null);
+};
+
+export const selectProgramTemplates = (state, ids = null) => {
   if (!ids) {
-    const programTemplatesSet = state.programTemplates.byId;
-    return Object.values(programTemplatesSet);
+    return Object.values(state.programTemplates.byId);
   }
   throw new Error('not implemented');
 };
