@@ -1,7 +1,3 @@
-export const hasSchool = (school) => {
-  return typeof school !== 'undefined' && school.name;
-};
-
 export const makeSchoolsOptions = (schools) => {
   if (typeof schools === 'undefined') {
     throw new Error('Must provide "schools".');

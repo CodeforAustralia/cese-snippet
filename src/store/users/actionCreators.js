@@ -13,8 +13,25 @@ export const fetchRequest = () => {
   }
 };
 
+export const fetchRequestFromPageState = () => {
+  log('fetching (from page state)');
+  return {
+    type: ACTION_TYPES.fetchRequest,
+  }
+};
+
 export const fetchSuccess = (user) => {
   log(`fetch success`);
+  return {
+    type: ACTION_TYPES.fetchSuccess,
+    payload: {
+      users: objectify(user),
+    },
+  }
+};
+
+export const fetchSuccessFromPageState = (user) => {
+  log(`fetch success (from page state)`);
   return {
     type: ACTION_TYPES.fetchSuccess,
     payload: {
@@ -63,8 +80,8 @@ export const updateError = (error) => {
 
 export const fetchSessionUserFromPageState = (user) => {
   return (dispatch) => {
-    dispatch(fetchRequest);
-    dispatch(fetchSuccess(user));
+    dispatch(fetchRequestFromPageState);
+    dispatch(fetchSuccessFromPageState(user));
   }
 };
 

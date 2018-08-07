@@ -55,7 +55,7 @@ export const fetchSchool = (code) => {
 };
 
 export const fetchSchools = (codes) => {
-  if (typeof code === 'undefined') {
+  if (typeof codes === 'undefined') {
     throw new Error('Must provide code.');
   }
   if (!Array.isArray(codes)) {

@@ -7,6 +7,7 @@ import {
   Card,
   Button,
 } from 'reactstrap';
+import Bows from 'bows';
 
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
@@ -20,6 +21,8 @@ import QuickAddProgramForm from './form';
 import style from './style.scss';
 import { ComponentLoading } from "components/loading";
 
+
+const log = Bows('View: WizSchoolPrograms');
 
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
 const OnboardingSchoolUrl = getOnboardingSchoolUrl();
@@ -63,14 +66,17 @@ class WizardSchoolPrograms extends React.Component {
     } = this.props;
 
     if (!school && isFetchingSchools !== true) {
+      log('fetch school');
       this.props.fetchSchool(sessionUser.schools[0]);
     }
 
     if (((!schoolPrograms || !schoolPrograms.length) && isFetchingSchoolPrograms !== true) && school ) {
+      log('fetch schoolPrograms');
       this.props.fetchSchoolPrograms(school.code);
     }
 
     if ((!optionsProgramTemplates || !optionsProgramTemplates.length) && isFetchingProgramTemplates !== true) {
+      log('fetch programTemplates');
       this.props.fetchProgramTemplates();
     }
   }
@@ -164,7 +170,7 @@ class WizardSchoolPrograms extends React.Component {
 
                     {isFetchingSchoolPrograms !== false ?
                       <ComponentLoading /> :
-                         schoolPrograms || schoolPrograms.length ?
+                         schoolPrograms && schoolPrograms.length ?
                           <div>
                             <ul className={cx(style.buttonList3Col, 'list-unstyled')}>
                               {schoolPrograms.map((program, idx) => (

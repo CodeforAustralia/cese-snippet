@@ -22,7 +22,7 @@ import {
 import style from './style.scss';
 
 
-const log = Bows('Program card');
+const log = Bows('C: Program card');
 
 
 // {snippetsIsFetching !== false ?

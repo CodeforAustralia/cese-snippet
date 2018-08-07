@@ -3,6 +3,7 @@ import {
   Col,
   Row,
 } from 'reactstrap';
+import Bows from 'bows';
 
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
@@ -14,6 +15,8 @@ import {
 } from "helpers/url";
 import { ComponentLoading } from "components/loading";
 
+
+const log = Bows('V: WizSchool');
 
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
 const OnboardingSchoolUrl = getOnboardingSchoolUrl();
@@ -33,6 +36,7 @@ class WizardSchool extends React.Component {
   componentDidMount() {
     const { schools, isFetchingSchools, fetchSchools } = this.props;
     if ((!schools || !schools.length) || isFetchingSchools !== true) {
+      log('fetching schools');
       fetchSchools();
     }
   }

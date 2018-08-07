@@ -12,7 +12,7 @@ import Bows from 'bows';
 
 import FieldSelect from "components/fieldSelect";
 
-const log = Bows('Form: RegisterSchoolProgram');
+const log = Bows('F: RegisterSchoolProgram');
 
 
 const QuickAddProgramForm = ({
