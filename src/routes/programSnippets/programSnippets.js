@@ -7,7 +7,9 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
-import { NavLink as RRNavLink } from 'react-router-dom';
+import {
+  Link as RRLink,
+} from 'react-router-dom';
 // import cx from 'classnames';
 
 import Layout from 'layouts/app';
@@ -24,9 +26,10 @@ import {
 import SnippetsList from './snippetsList';
 
 import style from './../program/style.scss';
+import {getProgramSnippetsUrl} from "../../helpers/url";
 
 
-const log = Bows('View: Snippets');
+const log = Bows('V: Snippets');
 
 class Program extends React.Component {
 
@@ -38,32 +41,37 @@ class Program extends React.Component {
     const {
       program,
       isFetchingProgram,
+    } = this.props;
+
+    if (!program && isFetchingProgram !== true) {
+      log('fetching program');
+      this.props.fetchProgram();
+    }
+  }
+
+  fetchOnceAfterProgram() {
+    const {
+      program,
       school,
       isFetchingSchool,
       snippets,
       isFetchingSnippets,
     } = this.props;
-
-    if (!program && isFetchingProgram !== false) {
-      log('Fetching program');
-      this.props.fetchProgram();
+    if (!school && isFetchingSchool !== true) {
+      log('fetching school');
+      this.props.fetchSchool(program.schoolCode);
     }
-
-    if (program) {
-      if (!school && isFetchingSchool !== false) {
-        log('Fetching school');
-        this.props.fetchSchool(program.schoolCode);
-      }
-      if ((!snippets || !snippets.length) && isFetchingSnippets !== false) {
-        log('Fetching snippets');
-        this.props.fetchSnippets(this.props.snippetFilterProps);
-      }
+    if ((!snippets || !snippets.length) && isFetchingSnippets !== true) {
+      log('fetching snippets');
+      this.props.fetchSnippets(this.props.snippetFilterProps);
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (JSON.stringify(prevProps.program) !== this.props.program) {
-      this.fetchData();
+  componentDidUpdate(prevProps) {
+    const loadedSchools = this.props.school && this.props.isFetchingSchool === false;
+    const loadedSnippets = this.props.snippets && this.props.isFetchingSnippets === false;
+    if (this.props.program && !loadedSchools && !loadedSnippets) {
+      this.fetchOnceAfterProgram();
     }
   }
 
@@ -115,10 +123,10 @@ class Program extends React.Component {
 
         <Nav tabs>
           <NavItem>
-            <NavLink tag={RRNavLink} to={programUrl}>Details</NavLink>
+            <NavLink tag={RRLink} to={programUrl}>Details</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink active>Snippets {isFetchingSnippets !== false && snippets && snippets.length ? `(${snippets.length})` : ''}</NavLink>
+            <NavLink tag={RRLink} to="#" disabled active>Snippets {isFetchingSnippets !== false && snippets && snippets.length ? `(${snippets.length})` : ''}</NavLink>
           </NavItem>
         </Nav>
 

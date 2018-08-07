@@ -23,9 +23,9 @@ const mapStateToProps = (state, ownProps) => {
   const { programId } = ownProps.match.params;
   const program = selectProgram(state, programId);
 
-  let school = {},
-    snippetFilterProps = {},
-    snippets = [],
+  let school,
+    snippetFilterProps,
+    snippets,
     isFetchingSnippets;
 
   if (program) {

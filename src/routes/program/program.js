@@ -37,7 +37,7 @@ import PillsList from 'components/pillsList';
 import style from './style.scss';
 
 
-const log = Bows('View: Program');
+const log = Bows('V: Program');
 
 class Program extends React.Component {
 
@@ -49,26 +49,31 @@ class Program extends React.Component {
     const {
       program,
       isFetchingProgram,
-      school,
-      isFetchingSchool,
     } = this.props;
 
-    if (!program && isFetchingProgram !== false) {
-      log('Fetching program');
+    if (!program && isFetchingProgram !== true) {
+      log('fetching program');
       this.props.fetchProgram();
-    }
-
-    if (program) {
-      if (!school && isFetchingSchool !== false) {
-        log('Fetching school');
-        this.props.fetchSchool(program.schoolCode);
-      }
     }
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //
-  // }
+  fetchOnceAfterProgram() {
+    const {
+      program,
+      school,
+      isFetchingSchool,
+    } = this.props;
+    if (!school && isFetchingSchool !== true) {
+      log('fetching school');
+      this.props.fetchSchool(program.schoolCode);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.program && !this.props.school) {
+      this.fetchOnceAfterProgram();
+    }
+  }
 
   render() {
     const {
@@ -115,12 +120,13 @@ class Program extends React.Component {
           </Col>
         </Row>
 
+
         <Nav tabs>
           <NavItem>
-            <NavLink active>Details</NavLink>
+            <NavLink active disabled to="#" tag={RRLink}>Details</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to={snippetsUrl}>Snippets</NavLink>
+            <NavLink tag={RRLink} to={snippetsUrl}>Snippets</NavLink>
           </NavItem>
         </Nav>
 

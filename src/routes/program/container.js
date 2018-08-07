@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
   const { programId } = ownProps.match.params;
   const program = selectProgram(state, programId);
 
-  let school = {};
+  let school;
 
   if (program) {
     school = selectSchool(state, program.schoolCode);
