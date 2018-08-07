@@ -12,7 +12,6 @@ import {
 } from 'reactstrap';
 import {
   Link as RRLink,
-  NavLink as RRNavLink,
 } from 'react-router-dom';
 import cx from 'classnames';
 
