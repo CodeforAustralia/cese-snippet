@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  NavLink as RRNavLink,
-  Link as RRLink,
-} from "react-router-dom";
-import { Redirect } from 'react-router';
+import { NavLink as RRNavLink } from "react-router-dom";
+// import { Redirect } from 'react-router';
 import Bows from 'bows';
 import {
   Nav,
@@ -16,7 +13,6 @@ import {
 import Layout from 'layouts/app';
 import Breadcrumb from 'components/breadcrumb';
 import { getOnboardingSchoolUrl } from 'helpers/url';
-import { hasSchool } from 'store/schools/helpers';
 import { PageLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
@@ -26,7 +22,7 @@ import ProgramsList from './programsList';
 import style from './style.scss';
 
 
-const log = Bows('View');
+const log = Bows('V: SchoolPrograms');
 
 class SchoolPrograms extends React.Component {
 
@@ -46,13 +42,12 @@ class SchoolPrograms extends React.Component {
       isFetchingSchools,
       fetchSchool,
       fetchProgramsByFilter,
-      filterProps,
     } = this.props;
-    if (!isFetchingSchools && !hasSchool(school)) {
+    if (!school && isFetchingSchools !== true) {
       log('fetching school');
-      return fetchSchool();
+      fetchSchool();
     }
-    log(`fetching programs with filters: ${filterProps}`);
+    log('fetching programs');
     fetchProgramsByFilter();
   }
 
@@ -75,9 +70,9 @@ class SchoolPrograms extends React.Component {
       return <PageLoading />
     }
 
-    if (!hasSchool(school)) {
-      return <Redirect to={getOnboardingSchoolUrl()} />;
-    }
+    // if (!hasSchool(school)) {
+    //   return <Redirect to={getOnboardingSchoolUrl()} />;
+    // }
 
     return (
       <Layout>
@@ -120,7 +115,7 @@ class SchoolPrograms extends React.Component {
               {isFetchingPrograms !== false ?
 
                 <div style={{marginTop: '80px'}}>
-                  {isFetchingSchools !== false && <PageLoading blocking={false} />}
+                  {!school && isFetchingSchools !== false && <PageLoading blocking={false} />}
                 </div> :
 
                 <ProgramsList programs={this.sortByLatestDate(programs)}

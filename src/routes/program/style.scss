@@ -1,0 +1,64 @@
+@import '~style/helpers';
+
+.programHeader {
+  //border: 1px solid red;
+}
+
+.category {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+
+
+
+
+
+.fieldSection {
+  margin-bottom: 2em;
+
+  @include xs() {
+    margin-bottom: 0;
+  }
+}
+
+.itemprop {
+
+}
+
+.itempropKey,
+.itempropValue {
+  display: block;
+}
+
+.itempropKey {
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.itempropValue {
+
+}
+
+
+.fieldTitle {
+  font-weight: bold;
+}
+
+.dateMeta {
+  font-size: .85rem;
+  margin-bottom: .25rem;
+  background: $light;
+  padding: .5rem .75rem;
+  border-radius: .25rem;
+  color: $gray-600;
+}
+
+@include xs() {
+  .metaPanelCard {
+    border: none !important;
+  }
+  .metaPanelCardBody {
+    padding: 0 !important;
+  }
+}
+

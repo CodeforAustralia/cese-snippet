@@ -14,25 +14,35 @@ export const getSchoolProgramsUrl = (schoolCode, year) => {
   return `/schools/${schoolCode}/programs/${year}`;
 };
 
+export const getProgramsNewUrl = () => {
+  return `/programs/new`;
+};
 
+export const getSnippetsNewUrl = () => {
+  return `/snippets/new`;
+};
 
-
-
-
-export const getCreateProgramModalUrl = (initialFormState = {}) => {
-  let isEdit = false;
-  if (initialFormState.id) {
-    isEdit = true;
-  }
+export const getSnippetsNewModalTo = () => {
   return {
-    pathname: `/account/create-program`,
+    pathname: '/snippets/new',
     state: {
-      initialFormState,
       modal: true,
-      isEdit,
     },
   }
 };
+
+export const getProgramUrl = (programId) => {
+  return `/programs/${programId}`;
+};
+
+export const getProgramSnippetsUrl = (programId) => {
+  return `/programs/${programId}/snippets`;
+};
+
+export const getProgramEditUrl = (programId) => {
+  return `/programs/${programId}/edit`;
+};
+
 
 export const getCreateProgramUrl = (initialFormState = {}) => {
   let isEdit = false;
@@ -47,8 +57,4 @@ export const getCreateProgramUrl = (initialFormState = {}) => {
     }
   }
 };
-
-export const getProgramUrl = (programId) => ({
-  pathname: `/account/programs/${programId}`,
-});
 

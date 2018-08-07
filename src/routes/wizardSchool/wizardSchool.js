@@ -3,6 +3,7 @@ import {
   Col,
   Row,
 } from 'reactstrap';
+import Bows from 'bows';
 
 import Layout from 'layouts/wizard';
 import ArrowBreadcrumb from 'components/arrowBreadcrumb';
@@ -12,7 +13,10 @@ import {
   getOnboardingSchoolUrl,
   getOnboardingSchoolProgramsUrl
 } from "helpers/url";
+import { ComponentLoading } from "components/loading";
 
+
+const log = Bows('V: WizSchool');
 
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
 const OnboardingSchoolUrl = getOnboardingSchoolUrl();
@@ -25,9 +29,18 @@ class WizardSchool extends React.Component {
     this.state = {
       isSubmitting: false,
       isError: false,
-      hasSchool: this.props.sessionUserSchool && this.props.sessionUserSchool.name,
+      hasSchool: this.props.sessionUser.schools && this.props.sessionUser.schools.length,
     }
   }
+
+  componentDidMount() {
+    const { schools, isFetchingSchools, fetchSchools } = this.props;
+    if ((!schools || !schools.length) || isFetchingSchools !== true) {
+      log('fetching schools');
+      fetchSchools();
+    }
+  }
+
   setContainerState(props) {
     this.setState({...this.state, ...props});
   }
@@ -36,6 +49,7 @@ class WizardSchool extends React.Component {
       optionsSchools,
       onSubmit,
       sessionUser,
+      isFetchingSchools,
     } = this.props;
     const {
       isSubmitting,
@@ -54,11 +68,14 @@ class WizardSchool extends React.Component {
           <Col>
             <h1 className="h2">Select your school</h1>
             <div className="mt-4">
-              <Form optionsSchools={optionsSchools}
-                    onSubmit={onSubmit}
-                    setContainerState={this.setContainerState}
-                    model={sessionUser}
-              />
+              {!isSubmitting && isFetchingSchools !== false ?
+                <ComponentLoading /> :
+                <Form optionsSchools={optionsSchools}
+                      onSubmit={onSubmit}
+                      setContainerState={this.setContainerState}
+                      model={sessionUser}
+                />
+              }
             </div>
           </Col>
         </Row>

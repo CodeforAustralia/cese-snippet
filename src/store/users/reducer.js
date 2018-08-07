@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 
-
 export const ACTION_TYPES = {
   fetchRequest: 'USERS/FETCH_REQUEST',
   fetchSuccess: 'USERS/FETCH_SUCCESS',
@@ -13,11 +12,20 @@ export const ACTION_TYPES = {
 export const isFetching = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPES.fetchRequest:
-    case ACTION_TYPES.updateRequest:
       return true;
     case ACTION_TYPES.fetchSuccess:
-    case ACTION_TYPES.updateSuccess:
     case ACTION_TYPES.fetchError:
+      return false;
+    default:
+      return state;
+  }
+};
+
+export const isUpdating = (state = null, action) => {
+  switch (action.type) {
+    case ACTION_TYPES.updateRequest:
+      return true;
+    case ACTION_TYPES.updateSuccess:
     case ACTION_TYPES.updateError:
       return false;
     default:
@@ -45,9 +53,8 @@ const byId = (state = {}, action) => {
   const { type, payload } = action;
   switch (type) {
     case ACTION_TYPES.fetchSuccess:
-      return {...state, ...payload.users};
     case ACTION_TYPES.updateSuccess:
-      return {...state, ...payload.user};
+      return {...state, ...payload.users};
     default:
       return state;
   }
@@ -57,6 +64,7 @@ const byId = (state = {}, action) => {
 const usersReducer = combineReducers({
   byId,
   isFetching,
+  isUpdating,
   errorMessage,
 });
 

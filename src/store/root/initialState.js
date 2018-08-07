@@ -7,7 +7,6 @@ export default {
       height: null,
       type: null,
     },
-    createProgramFormScope: {},
   },
   session: {},
   users: {},

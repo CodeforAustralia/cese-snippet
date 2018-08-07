@@ -16,25 +16,21 @@ const selectSnippets = (state, ids) => {
 
 export const selectSnippetsByFilter = (state, filterProps) => {
   const filterKey = getFilterKey(filterProps);
-  const filteredIds = get(state, `snippets.filters[${filterKey}]`, []);
-  return selectSnippets(state, filteredIds);
+  const snippetIds = get(state, `snippets.filters[${filterKey}]`, []);
+  return selectSnippets(state, snippetIds);
 };
 
 export const selectIsFetchingByFilter = (state, filterProps) => {
   const filterKey = getFilterKey(filterProps);
-  const filterStatus = get(state, `snippets.filtersStatus[${filterKey}]`, null);
+  const filterStatus = get(state, `snippets.filtersIsFetching[${filterKey}]`, null);
   if (filterStatus) {
-    return filterStatus.status === FILTER_STATUS_TYPES.IS_FETCHING;
+    return filterStatus === FILTER_STATUS_TYPES.IS_FETCHING;
   }
-  return false;
+  return null;
 };
 
-export const selectIsUpdatingByFilter = (state, filterProps) => {
+export const selectErrorMessageByFilter = (state, filterProps) => {
   const filterKey = getFilterKey(filterProps);
-  const filterStatus = get(state, `snippets.filtersStatus[${filterKey}]`, null);
-  if (filterStatus) {
-    return filterStatus.status === FILTER_STATUS_TYPES.IS_UPDATING;
-  }
-  return false;
+  return get(state, `snippets.filtersIsError[${filterKey}]`, null);
 };
 

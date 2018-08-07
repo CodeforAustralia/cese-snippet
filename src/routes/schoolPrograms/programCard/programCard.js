@@ -13,10 +13,16 @@ import Bows from 'bows';
 import TruncatedText from 'components/truncatedText';
 import { getHumanisedMetaDescription } from 'store/programs/helpers';
 import { ComponentLoading } from 'components/loading';
+import {
+  getProgramUrl,
+  getProgramEditUrl,
+  getProgramSnippetsUrl,
+  getSnippetsNewModalTo,
+} from 'helpers/url';
 import style from './style.scss';
 
 
-const log = Bows('Program card');
+const log = Bows('C: Program card');
 
 
 // {snippetsIsFetching !== false ?
@@ -27,6 +33,13 @@ const log = Bows('Program card');
 // }
 
 class ProgramCard extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.programUrl = getProgramUrl(props.program.id);
+    this.programEditUrl = getProgramEditUrl(props.program.id);
+    this.programSnippetsUrl = getProgramSnippetsUrl(props.program.id);
+  }
 
   componentDidMount() {
     this.fetchData();
@@ -66,10 +79,10 @@ class ProgramCard extends React.Component {
 
         <div className={style.actions}>
           <p className={style.actionTextLhs}>
-            <RRLink to="/">{hasEdited ? 'Edit details >' : 'Record details +'}</RRLink>
+            <RRLink to={this.programEditUrl}>{hasEdited ? 'Edit details >' : 'Record details +'}</RRLink>
           </p>
           {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
-            <RRLink to="/">View {`>`}</RRLink>
+            <RRLink to={this.programUrl}>View {`>`}</RRLink>
           </p>}
         </div>
 
@@ -78,8 +91,8 @@ class ProgramCard extends React.Component {
             {snippetsIsFetching !== false ?
               null :
               hasSnippets ?
-                <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post another</Button> :
-                <Button color="primary" outline size="xs" className={style.snippetAddButton}>Post</Button>
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalTo()}>Post another</Button> :
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalTo()}>Post</Button>
             }
           </CardTitle>
 
@@ -121,7 +134,7 @@ class ProgramCard extends React.Component {
 
                 <div className={style.snippetListFooter}>
                   <span className={style.snippetListMeta}>{snippets.length && snippets.length > 1 && `${snippets.length} Snippets`}</span>
-                  <RRLink to="/" className={style.snippetListMore}>More Snippets ></RRLink>
+                  <RRLink to={this.programSnippetsUrl} className={style.snippetListMore}>More Snippets ></RRLink>
                 </div>
               </div>
 
