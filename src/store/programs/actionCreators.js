@@ -213,7 +213,8 @@ export const createProgram = (program) => {
         return program;
       })
       .then((program) => {
-        dispatch(updateFilter(program, filterKey));
+        const programId = program.id;
+        dispatch(updateFilter(programId, filterKey));
         return program;
       })
       .catch((error) => {
@@ -248,7 +249,8 @@ export const updateProgram = (program) => {
         return program;
       })
       .then((newProgram) => {
-        dispatch(updateFilter(newProgram, filterKey));
+        const programId = program.id;
+        dispatch(updateFilter(programId, filterKey));
         return newProgram;
       })
       .catch((error) => {

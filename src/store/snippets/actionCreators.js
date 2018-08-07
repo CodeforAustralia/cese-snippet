@@ -137,7 +137,8 @@ export const createSnippet = (snippet) => {
         return snippet;
       })
       .then((snippet) => {
-        dispatch(updateFilter(snippet, filterKey));
+        const snippetId = snippet.id;
+        dispatch(updateFilter(snippetId, filterKey));
         return snippet;
       })
       .catch((error) => {

@@ -26,10 +26,8 @@ export const selectErrorMessage = (state) => {
 };
 
 export const selectProgramsByFilter = (state, filterProps) => {
-  debugger
   const filterKey = getFilterKey(filterProps);
   const filteredIds = get(state, `programs.filters[${filterKey}]`, []);
-  debugger
   return selectPrograms(state, filteredIds);
 };
 
