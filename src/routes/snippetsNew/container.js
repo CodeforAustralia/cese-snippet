@@ -8,8 +8,9 @@ import {
   selectIsFetching as selectIsFetchingPrograms,
 } from "store/programs/selectors";
 import { selectSessionUser } from "store/sessionUser/selectors";
+import { makeProgramOptions } from 'store/programs/helpers';
 
-export const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state) => {
 
   const year = '2018';
   const sessionUser = selectSessionUser(state);
@@ -20,10 +21,11 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     schoolCode,
-    // programId,
+    // programId, // if programId, don't supply programs
     year,
     programs: filteredPrograms,
     isFetchingPrograms: selectIsFetchingPrograms(state),
+    makeProgramOptions,
   }
 };
 
@@ -33,7 +35,6 @@ const mapDispatchToProps = (dispatch) => {
       schoolCode: filterProps.schoolCode,
       year: filterProps.year,
     })),
-    onSubmitSuccess: () => console.log('wooooooo hoo'),
   };
 };
 

@@ -1,42 +1,24 @@
 import React from 'react';
+import get from 'lodash/get';
 import { withFormik } from 'formik';
 import {
-  Form,
   FormGroup,
   Button,
   Label,
   Col,
+  CustomInput,
 } from 'reactstrap';
-import get from 'lodash/get';
 import Bows from 'bows';
 
 import FieldSelect from "components/fieldSelect";
+import FieldTextInput from "components/fieldTextInput";
+import FieldTextAreaInput from "components/fieldTextAreaInput";
 
 const log = Bows('F: QuickAddProgram');
 
 
-
-// const model = {
-//   "schoolCode": "4548",
-//   "year": "2018",
-//   "programId": "1",
-//   "type": "photo",
-//   "description": "Ubi est bi-color era?",
-//   "attachment": {
-//     "format": "jpeg",
-//     "width": 600,
-//     "height": 400,
-//     "filename": "image01.jpg",
-//     "url": "https://picsum.photos/600/400/?random",
-//     "thumbnailUrl": "https://picsum.photos/64/64"
-//   },
-//   "createdBy": "1",
-//   "createdDate": 1530238113250
-// }
-
-
 const QuickAddProgramForm = ({
-                               optionsPrograms,
+                               optionsPrograms = null,
 
                                handleSubmit,
                                values,
@@ -48,29 +30,76 @@ const QuickAddProgramForm = ({
                              }) => {
   return (
     <div>
+
       <FormGroup>
-        <Label>Enter program name</Label>
-        <Form inline noValidate={true} onSubmit={handleSubmit}>
-          <FormGroup row style={{width:'100%'}}>
-            <Col sm={{size:10}}>
-              <FieldSelect name="name"
-                           value={values.name}
-                           invalid={errors.name}
-                           touched={touched.name}
-                           options={optionsPrograms}
-                           onChange={setFieldValue}
-                           onBlur={setFieldTouched}
-                           searchable={true}
-                           disabled={isSubmitting}
-                           clearable={false}
-              />
-            </Col>
-            <Col sm={{size:2}}>
-              <Button type="submit" color="primary" disabled={isSubmitting}>Add</Button>
-            </Col>
-          </FormGroup>
-        </Form>
+        <Col md={8}>
+          <Label htmlFor="schoolCode">School</Label>
+          <FieldSelect name="schoolCode"
+                       options={[
+                         { value: values.schoolCode, label: values.schoolCode }
+                       ]}
+                       value={values.schoolCode}
+                       onChange={setFieldValue}
+                       onBlur={setFieldTouched}
+                       disabled
+          />
+        </Col>
       </FormGroup>
+
+      <FormGroup>
+        <Col md={4}>
+          <Label htmlFor="year">Year</Label>
+          <FieldTextInput name="year"
+                          value={values.year}
+                          disabled
+          />
+        </Col>
+      </FormGroup>
+
+      <FormGroup>
+        <Col md={8}>
+          <Label htmlFor="programId">Program</Label>
+          {typeof values.programId !== 'undefined' ?
+            <FieldSelect name="programId"
+                         options={[
+                           { value: values.programId, label: values.programId }
+                         ]}
+                         value={values.programId}
+                         onChange={setFieldValue}
+                         onBlur={setFieldTouched}
+                         disabled
+            /> :
+            <FieldSelect name="programId"
+                         options={optionsPrograms}
+                         value={values.programId}
+                         onChange={setFieldValue}
+                         onBlur={setFieldTouched}
+            />
+          }
+        </Col>
+      </FormGroup>
+
+      <FormGroup>
+        <Col md={8}>
+          <Label htmlFor="description">Description</Label>
+          <FieldTextAreaInput name="description"
+                              error={errors.description}
+                              rows={3}
+          />
+        </Col>
+      </FormGroup>
+
+      <FormGroup>
+        <Col md={8}>
+          <Label>Add photo</Label>
+          <CustomInput type="file" label="Choose photo" />
+        </Col>
+      </FormGroup>
+
+      <Col md={8}>
+        <Button type="submit" color="primary" disabled={isSubmitting}>Post</Button>
+      </Col>
+
     </div>
   )
 };
@@ -79,7 +108,19 @@ export default withFormik({
   displayName: 'addSnippet',
   mapPropsToValues: (props) => {
     return {
-      name: get(props, 'model.name', ''),
+      schoolCode: get(props, 'schoolCode', ''),
+      year: get(props, 'year', ''),
+      programId: get(props, 'programId', ''),
+      type: 'photo',
+      description: '',
+      attachment: {
+        format: 'jpeg',
+        width: 600,
+        height: 400,
+        filename: `${new Date().getTime()}.jpg`,
+        url: "https://picsum.photos/600/400/?random",
+        thumbnailUrl: "https://picsum.photos/64/64"
+      },
     };
   },
   validate: (values, props) => {

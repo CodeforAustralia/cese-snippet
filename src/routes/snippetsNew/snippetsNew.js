@@ -39,8 +39,9 @@ class SnippetsNew extends React.Component {
       schoolCode,
       year,
       programs,
-      onSubmitSuccess,
       isFetchingPrograms,
+      makeProgramOptions,
+      history,
     } = this.props;
 
     const programUrl = getSchoolProgramsUrl(schoolCode, year);
@@ -72,14 +73,12 @@ class SnippetsNew extends React.Component {
               </Nav>
             </div>
             <div className="card-body">
-              <p>Form here</p>
-
               {isFetchingPrograms !== false ?
                 <ComponentLoading /> :
-                <Form programs={programs}
+                <Form optionsPrograms={makeProgramOptions(programs)}
                       schoolCode={schoolCode}
                       year={year}
-                      onSubmitSuccess={onSubmitSuccess}
+                      onSubmitSuccess={() => history.push(getSchoolProgramsUrl(schoolCode, year))}
                 />
               }
             </div>

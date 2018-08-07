@@ -75,3 +75,10 @@ export const getHumanisedMetaDescription = (program) => {
 
   return str;
 };
+
+export const makeProgramOptions = (programs) => {
+  return programs.map(s => ({
+    value: s.id,
+    label: s.name,
+  }));
+};

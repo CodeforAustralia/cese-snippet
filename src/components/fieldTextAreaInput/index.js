@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 
-const FieldTextareaInput = ({
+const FieldTextAreaInput = ({
                               name,
                               rows = 3,
                               disabled = false,
@@ -39,10 +39,10 @@ const FieldTextareaInput = ({
   )
 };
 
-FieldTextareaInput.propTypes = {
+FieldTextAreaInput.propTypes = {
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   hidden: PropTypes.bool,
 };
 
-export default FieldTextareaInput;
+export default FieldTextAreaInput;
