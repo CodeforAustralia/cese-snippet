@@ -14,8 +14,8 @@ import FieldSelect from "components/fieldSelect";
 import FieldTextInput from "components/fieldTextInput";
 import FieldTextAreaInput from "components/fieldTextAreaInput";
 
-const log = Bows('F: QuickAddProgram');
 
+const log = Bows('F: QuickAddProgram');
 
 const QuickAddProgramForm = ({
                                optionsPrograms = null,
@@ -31,7 +31,7 @@ const QuickAddProgramForm = ({
   return (
     <div>
 
-      <FormGroup>
+      <FormGroup hidden={true}>
         <Col md={8}>
           <Label htmlFor="schoolCode">School</Label>
           <FieldSelect name="schoolCode"
@@ -46,7 +46,7 @@ const QuickAddProgramForm = ({
         </Col>
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup hidden={true}>
         <Col md={4}>
           <Label htmlFor="year">Year</Label>
           <FieldTextInput name="year"
@@ -56,7 +56,7 @@ const QuickAddProgramForm = ({
         </Col>
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup hidden={true}>
         <Col md={8}>
           <Label htmlFor="programId">Program</Label>
           {typeof values.programId !== 'undefined' ?
