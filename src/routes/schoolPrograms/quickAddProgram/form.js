@@ -95,7 +95,7 @@ export default withFormik({
       errors => {
         log(`error - ${JSON.stringify(errors)}`);
         setSubmitting(false);
-        return error;
+        return errors;
       }
     ).then(() => {
       props.resetForm();
