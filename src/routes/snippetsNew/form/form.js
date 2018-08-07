@@ -90,7 +90,7 @@ const QuickAddProgramForm = ({
       </FormGroup>
 
       <FormGroup>
-        <Col md={8}>
+        <Col md={5}>
           <Label>Add photo</Label>
           <CustomInput type="file" label="Choose photo" />
         </Col>
