@@ -10,11 +10,7 @@ import Layout from "layouts/app";
 const SnippetsNew = ({ school, year }) => {
   return (
     <Layout>
-      {/*<Breadcrumb items={[*/}
-        {/*{ label: 'Programs' },*/}
-        {/*{ label: school.name },*/}
-        {/*{ label: 'New Snippet' },*/}
-      {/*]} />*/}
+      {/*<Button color="link" tag={RRLink} to={programUrl} className="pl-0">{`< ${program.name}`}</Button>*/}
 
       <div>
         <h1>New Snippet</h1>

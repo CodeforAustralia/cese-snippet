@@ -12,7 +12,6 @@ import {
 
 import Layout from 'layouts/app';
 import Breadcrumb from 'components/breadcrumb';
-import { getOnboardingSchoolUrl } from 'helpers/url';
 import { PageLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
