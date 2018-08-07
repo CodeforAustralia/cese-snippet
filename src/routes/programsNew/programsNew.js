@@ -4,8 +4,8 @@ import Bows from 'bows';
 import Layout from "layouts/app";
 import Breadcrumb from "components/breadcrumb";
 import { getSchoolProgramsUrl } from "helpers/url";
-import { UpdateForm as Form } from './form';
-import {ComponentLoading} from "../../components/loading/index";
+import { CreateForm as Form } from './form';
+import { ComponentLoading } from "../../components/loading/index";
 
 
 const log = Bows('V: ProgramsNew');
@@ -53,7 +53,9 @@ class ProgramsNew extends React.Component {
 
           {isFetchingProgram !== false ?
             <ComponentLoading /> :
-            <Form onSubmitSuccess={() => history.push(getSchoolProgramsUrl(program.schoolCode, program.year))} />
+            <Form schoolCode={'7412'}
+                  year={'2018'}
+              onSubmitSuccess={() => history.push(getSchoolProgramsUrl(program.schoolCode, program.year))} />
           }
         </div>
       </Layout>

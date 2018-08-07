@@ -11,8 +11,8 @@ import {
 
 import Layout from 'layouts/app';
 import { PageLoading } from "components/loading";
-
 import { getProgramUrl } from "helpers/url";
+import { UpdateForm as Form } from "./../programsNew/form";
 
 
 const log = Bows('V: Program');
@@ -76,7 +76,7 @@ class Program extends React.Component {
 
             <h1>{program.name}</h1>
 
-
+            <Form onSubmitSuccess={() => console.log('Woo hoo')} />
           </Col>
         </Row>
       </Layout>
