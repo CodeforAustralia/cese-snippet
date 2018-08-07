@@ -36,7 +36,7 @@ export const fetchError = (error) => {
 export const fetchProgramTemplates = () => {
   return (dispatch, getState, api) => {
 
-    dispatch(fetchRequest);
+    dispatch(fetchRequest());
 
     return api('/programTemplates')
       .then((resp) => {

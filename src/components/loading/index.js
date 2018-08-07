@@ -34,7 +34,7 @@ export const PageLoading = ({ blocking = true }) => (
   </div>
 );
 
-export const ComponentLoading = ({ small = false }) => (
+export const ComponentLoading = ({ small = true }) => (
   <div className={style.componentLoadingContainer}>
     <div className={style.componentLoadingEl}>
       <div className={cx(style.componentCircleSpinner, small ? style.isSmall : '')}>

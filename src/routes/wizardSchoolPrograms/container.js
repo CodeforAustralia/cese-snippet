@@ -1,49 +1,80 @@
 import { connect } from 'react-redux';
 
-import { selectSessionUserSchool } from 'store/sessionUser/selectors';
-import { selectProgramTemplates } from 'store/programTemplates/selectors';
+import { selectSessionUser } from 'store/sessionUser/selectors';
+
 import {
-  excludeProgramsProvided,
-  getOnlySuggestedPrimary,
-  getOnlySuggestedSecondary,
-  makeProgramTemplatesOptions,
-} from 'store/programTemplates/helpers';
-import {
-  selectIsFetching as getIsFetchingSchoolPrograms,
-  selectProgramsByFilterKey,
+  selectIsFetchingByFilter as selectIsFetchingProgramsByFilter,
+  selectProgramsByFilter,
 } from "store/programs/selectors";
 import {
   fetchByFilter as fetchProgramsByFilter,
   createProgram,
 } from "store/programs/actionCreators";
 
+import { fetchSchool } from 'store/schools/actionCreators';
+import {
+  selectSchool,
+  selectIsFetching as selectIsFetchingSchools,
+} from 'store/schools/selectors';
+
+import { fetchProgramTemplates } from "store/programTemplates/actionCreators";
+import {
+  selectProgramTemplates,
+  selectIsFetching as selectIsFetchingProgramTemplates
+} from "store/programTemplates/selectors";
+import {
+  excludeProgramsProvided,
+  getOnlySuggestedPrimary,
+  getOnlySuggestedSecondary,
+  makeProgramTemplatesOptions,
+} from 'store/programTemplates/helpers';
+
 
 export const mapStateToProps = (state) => {
-  const school = selectSessionUserSchool(state);
-  const schoolPrograms = selectProgramsByFilterKey(state, { schoolCode: school.code });
+  const sessionUser = selectSessionUser(state);
+  const schoolCode = sessionUser.schools[0];
 
+  if (typeof schoolCode === 'undefined') {
+    throw new Error('"schoolCode" must be defined here');
+    // todo - redirect
+  }
+
+  const school = selectSchool(state, schoolCode);
   const programTemplates = selectProgramTemplates(state);
-  let suggestedProgramTemplates = null;
+  const schoolPrograms = selectProgramsByFilter(state, { schoolCode, year: '2018' });
 
-  if (school.subtype === 'primary') {
-    suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedPrimary(programTemplates), schoolPrograms);
-  } else {
-    suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedSecondary(programTemplates), schoolPrograms);
+  let suggestedProgramTemplates,
+    optionsProgramTemplates;
+
+  if (school) {
+    if (programTemplates && programTemplates.length) {
+      if (school.subtype === 'primary') {
+        suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedPrimary(programTemplates), schoolPrograms);
+      } else {
+        suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedSecondary(programTemplates), schoolPrograms);
+      }
+      optionsProgramTemplates = makeProgramTemplatesOptions(suggestedProgramTemplates);
+    }
   }
 
   return {
+    sessionUser,
     school,
-    isFetchingSchoolPrograms: getIsFetchingSchoolPrograms(state),
     schoolPrograms,
+    isFetchingSchool: selectIsFetchingSchools(state),
+    isFetchingSchoolPrograms: selectIsFetchingProgramsByFilter(state, { schoolCode, year: '2018' }),
     suggestedPrograms: suggestedProgramTemplates,
-    optionsProgramTemplates: makeProgramTemplatesOptions(suggestedProgramTemplates),
+    optionsProgramTemplates,
+    isFetchingProgramTemplates: selectIsFetchingProgramTemplates(state),
   }
 };
 
 export const mapDispatchToProps = (dispatch) => {
   return {
     onAddProgram: (program) => dispatch(createProgram(program)),
-    fetchSchoolPrograms: (code) => dispatch(fetchProgramsByFilter({ schoolCode: code, year: '2018'})),
+    fetchSchool: (schoolCode) => dispatch(fetchSchool(schoolCode)),
+    fetchSchoolPrograms: (schoolCode) => dispatch(fetchProgramsByFilter({ schoolCode, year: '2018'})),
+    fetchProgramTemplates: () => dispatch(fetchProgramTemplates()),
   }
 };
 

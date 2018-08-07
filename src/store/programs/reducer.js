@@ -8,10 +8,10 @@ export const ACTION_TYPES = {
   fetchRequest: 'PROGRAMS/FETCH_REQUEST',
   fetchSuccess: 'PROGRAMS/FETCH_SUCCESS',
   fetchError: 'PROGRAMS/FETCH_ERROR',
-  createRequest: 'PROGRAMS/CREATE',
+  createRequest: 'PROGRAMS/CREATE_REQUEST',
   createSuccess: 'PROGRAMS/CREATE_SUCCESS',
   createError: 'PROGRAMS/CREATE_ERROR',
-  updateRequest: 'PROGRAMS/UPDATE',
+  updateRequest: 'PROGRAMS/UPDATE_REQUEST',
   updateSuccess: 'PROGRAMS/UPDATE_SUCCESS',
   updateError: 'PROGRAMS/UPDATE_ERROR',
 
@@ -27,9 +27,12 @@ export const FILTER_STATUS_TYPES = {
 export const isFetching = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPES.fetchRequest:
+    case ACTION_TYPES.fetchByFilterRequest:
       return true;
     case ACTION_TYPES.fetchSuccess:
+    case ACTION_TYPES.fetchByFilterSuccess:
     case ACTION_TYPES.fetchError:
+    case ACTION_TYPES.fetchByFilterError:
       return false;
     default:
       return state;
@@ -40,9 +43,12 @@ export const errorMessage = (state = null, action) => {
   const { payload } = action;
   switch (action.type) {
     case ACTION_TYPES.fetchError:
+    case ACTION_TYPES.fetchByFilterError:
       return payload.message;
     case ACTION_TYPES.fetchSuccess:
+    case ACTION_TYPES.fetchByFilterSuccess:
     case ACTION_TYPES.fetchRequest:
+    case ACTION_TYPES.fetchByFilterRequest:
       return null;
     default:
       return state;
@@ -54,6 +60,8 @@ export const byId = (state = {}, action) => {
   switch (type) {
     case ACTION_TYPES.createSuccess:
     case ACTION_TYPES.updateSuccess:
+    case ACTION_TYPES.fetchSuccess:
+    case ACTION_TYPES.fetchByFilterSuccess:
       return {...state, ...payload.programs};
     default:
       return state;
@@ -66,7 +74,8 @@ export const filters = (state = {}, action) => {
 
   switch (type) {
 
-    case ACTION_TYPES.updateFilters:
+    case ACTION_TYPES.updateFilter:
+
       filterKey = payload.filterKey;
       filterValue = payload.filterValue;
 
@@ -75,8 +84,9 @@ export const filters = (state = {}, action) => {
       if (newState[filterKey]) {
         newState[filterKey] = [...newState[filterKey], filterValue];
       } else {
-        newState[filterKey] = [filterValue];
+        newState[filterKey] = filterValue;
       }
+
       return newState;
 
     default:

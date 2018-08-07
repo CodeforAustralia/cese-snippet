@@ -32,16 +32,10 @@ class WizardSchool extends React.Component {
 
   componentDidMount() {
     const { schools, isFetchingSchools, fetchSchools } = this.props;
-    if ((!schools || !schools.length) || isFetchingSchools !== false) {
+    if ((!schools || !schools.length) || isFetchingSchools !== true) {
       fetchSchools();
     }
   }
-  //
-  // componentDidUpdate(prevProps) {
-  //   if (JSON.stringify(prevProps.filterProps) !== JSON.stringify(this.props.filterProps)) {
-  //     this.fetchData();
-  //   }
-  // }
 
   setContainerState(props) {
     this.setState({...this.state, ...props});
@@ -66,14 +60,12 @@ class WizardSchool extends React.Component {
           { to: OnboardingSchoolProgramsUrl, label: '3', visited: false,  disabled: true, },
         ]} />
 
-        <h1>User school {sessionUser.schools[0]}</h1>
-
         <Row className="mt-5">
           <Col>
             <h1 className="h2">Select your school</h1>
             <div className="mt-4">
-              {isFetchingSchools ?
-                <ComponentLoading small={true} /> :
+              {!isSubmitting && isFetchingSchools !== false ?
+                <ComponentLoading /> :
                 <Form optionsSchools={optionsSchools}
                       onSubmit={onSubmit}
                       setContainerState={this.setContainerState}

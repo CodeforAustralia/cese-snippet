@@ -10,7 +10,7 @@ import {
   selectErrorMessage as selectErrorMessageSchools,
 } from "store/schools/selectors";
 import {
-  selectProgramsByFilterKey,
+  selectProgramsByFilter,
   selectIsFetching as selectIsFetchingPrograms,
   selectErrorMessage as selectErrorMessagePrograms,
 } from "store/programs/selectors";
@@ -20,7 +20,7 @@ export const mapStateToProps = (state, ownProps) => {
   const filterProps = { schoolCode, year };
 
   const school = selectSchool(state, schoolCode);
-  const filteredPrograms = selectProgramsByFilterKey(state, filterProps);
+  const filteredPrograms = selectProgramsByFilter(state, filterProps);
 
   return {
     school,

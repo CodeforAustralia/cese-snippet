@@ -47,7 +47,7 @@ const filters = (state = {}, action) => {
       if (newState[filterKey]) {
         newState[filterKey] = [...newState[filterKey], filterValue];
       } else {
-        newState[filterKey] = [filterValue];
+        newState[filterKey] = filterValue;
       }
       return newState;
 

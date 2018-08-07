@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 
 export const selectProgramTemplate = (state, id) => {
-  return get(state, `programTemplates[${id}]`, null);
+  return get(state, `programTemplates.byId[${id}]`, null);
 };
 
 export const selectIsFetching = (state) => {

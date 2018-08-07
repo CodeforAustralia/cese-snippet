@@ -23,7 +23,7 @@ export const fetchByFilterSuccess = (snippets, filterKey) => {
   return {
     type: ACTION_TYPES.fetchByFilterSuccess,
     payload: {
-      snippets,
+      snippets: objectify(snippets),
       filterKey,
     }
   }

@@ -26,7 +26,7 @@ export const selectIsFetchingByFilter = (state, filterProps) => {
   if (filterStatus) {
     return filterStatus === FILTER_STATUS_TYPES.IS_FETCHING;
   }
-  return false;
+  return null;
 };
 
 export const selectErrorMessageByFilter = (state, filterProps) => {

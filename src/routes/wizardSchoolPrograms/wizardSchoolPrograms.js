@@ -18,6 +18,7 @@ import {
 import QuickAddProgramForm from './form';
 
 import style from './style.scss';
+import { ComponentLoading } from "components/loading";
 
 
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
@@ -33,7 +34,6 @@ class WizardSchoolPrograms extends React.Component {
     this.state = {
       isSubmitting: false,
       isError: false,
-      hasSchool: this.props.sessionUserSchool && this.props.sessionUserSchool.name,
     }
   }
 
@@ -45,14 +45,34 @@ class WizardSchoolPrograms extends React.Component {
     this.fetchData();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (JSON.stringify(prevProps.filterProps) !== JSON.stringify(this.props.filterProps)) {
-  //     this.fetchData();
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps.school) !== JSON.stringify(this.props.school)) {
+      this.fetchData();
+    }
+  }
 
   fetchData() {
-    this.props.fetchSchoolPrograms(this.props.school.code);
+    const {
+      sessionUser,
+      school,
+      isFetchingSchools,
+      schoolPrograms,
+      isFetchingSchoolPrograms,
+      optionsProgramTemplates,
+      isFetchingProgramTemplates,
+    } = this.props;
+
+    if (!school && isFetchingSchools !== true) {
+      this.props.fetchSchool(sessionUser.schools[0]);
+    }
+
+    if (((!schoolPrograms || !schoolPrograms.length) && isFetchingSchoolPrograms !== true) && school ) {
+      this.props.fetchSchoolPrograms(school.code);
+    }
+
+    if ((!optionsProgramTemplates || !optionsProgramTemplates.length) && isFetchingProgramTemplates !== true) {
+      this.props.fetchProgramTemplates();
+    }
   }
 
   handleOnButtonAdd(program) {
@@ -67,10 +87,12 @@ class WizardSchoolPrograms extends React.Component {
   render() {
     const {
       school,
+      isFetchingSchool,
       schoolPrograms,
       isFetchingSchoolPrograms,
       suggestedPrograms,
       onAddProgram,
+      isFetchingProgramTemplates,
       optionsProgramTemplates,
     } = this.props;
 
@@ -91,20 +113,23 @@ class WizardSchoolPrograms extends React.Component {
 
         <Row className="mt-5">
           <Col>
-            <h1 className="h2">Which programs and initiatives are happening at {school.name}?</h1>
+            <h1 className="h2">Which programs and initiatives are happening{isFetchingSchool !== false ? '?' : `at ${school.name}?`}</h1>
 
             <div className="mt-4">
               <Row>
                 <Col md={{size: 4}}>
                   <div className="mb-4">
-                    <QuickAddProgramForm optionsPrograms={optionsProgramTemplates}
-                                         onSubmit={onAddProgram}
-                                         model={{
-                                           schoolCode: school.code,
-                                           year: '2018',
-                                         }}
-                                         setContainerState={this.setContainerState}
-                    />
+                    {isFetchingProgramTemplates !== false ?
+                      <ComponentLoading /> :
+                      <QuickAddProgramForm optionsPrograms={optionsProgramTemplates}
+                                           onSubmit={onAddProgram}
+                                           model={{
+                                             schoolCode: school.code,
+                                             year: '2018',
+                                           }}
+                                           setContainerState={this.setContainerState}
+                      />
+                    }
                   </div>
 
                   <div>
@@ -114,16 +139,19 @@ class WizardSchoolPrograms extends React.Component {
                         style.buttonListToAdd,
                         'list-unstyled'
                       )}>
-                        {suggestedPrograms.map((program, idx) => (
-                          <li className={style.buttonListItem} key={idx}>
-                            <Button className={style.buttonListItemButton}
-                                    color="primary"
-                                    outline={true}
-                                    size="sm"
-                                    onClick={() =>  this.handleOnButtonAdd(program)}
-                            >{program.name}</Button>
-                          </li>
-                        ))}
+                        {isFetchingProgramTemplates !== false ?
+                          <ComponentLoading /> :
+                          suggestedPrograms.map((program, idx) => (
+                            <li className={style.buttonListItem} key={idx}>
+                              <Button className={style.buttonListItemButton}
+                                      color="primary"
+                                      outline={true}
+                                      size="sm"
+                                      onClick={() =>  this.handleOnButtonAdd(program)}
+                              >{program.name}</Button>
+                            </li>
+                          ))
+                        }
                       </ul>
                     </div>
                   </div>
@@ -134,21 +162,22 @@ class WizardSchoolPrograms extends React.Component {
                     <h2 className="h5">Current programs and initiatives {schoolPrograms && schoolPrograms.length ? <span> ({!isFetchingSchoolPrograms && schoolPrograms.length})</span> : null}</h2>
                     <p>This is the list of programs or initiatives that have been added to your school this year.</p>
 
-                    {schoolPrograms ?
-                      <div>
-                        <ul className={cx(style.buttonList3Col, 'list-unstyled')}>
-                          {schoolPrograms.map((program, idx) => (
-                            <li className={style.buttonListItem} key={idx}>
-                              <p className={style.buttonListItemStatic}>
-                                {program.name}
-                              </p>
-                            </li>
-                          ))}
-                        </ul>
-                      </div> :
-                      <p className="text-light">There are no programs recorded yet.</p>
+                    {isFetchingSchoolPrograms !== false ?
+                      <ComponentLoading /> :
+                         schoolPrograms || schoolPrograms.length ?
+                          <div>
+                            <ul className={cx(style.buttonList3Col, 'list-unstyled')}>
+                              {schoolPrograms.map((program, idx) => (
+                                <li className={style.buttonListItem} key={idx}>
+                                  <p className={style.buttonListItemStatic}>
+                                    {program.name}
+                                  </p>
+                                </li>
+                              ))}
+                            </ul>
+                          </div> :
+                          <p className="text-muted">There are no programs recorded yet.</p>
                     }
-                    {isFetchingSchoolPrograms && <p>Loading...</p>}
                   </Card>
                 </Col>
               </Row>

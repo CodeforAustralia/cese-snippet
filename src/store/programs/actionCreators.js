@@ -50,7 +50,7 @@ export const fetchByFilterSuccess = (programs, filterKey) => {
   return {
     type: ACTION_TYPES.fetchByFilterSuccess,
     payload: {
-      programs,
+      programs: objectify(programs),
       filterKey,
     }
   }
@@ -122,6 +122,7 @@ export const updateError = (error) => {
 };
 
 export const updateFilter = (ids, filterKey) => {
+  log('update filter');
   if (!Array.isArray(ids)) {
     ids = [ids]
   }
