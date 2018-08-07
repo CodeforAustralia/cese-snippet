@@ -1,0 +1,20 @@
+[
+  {
+    "id": "2",
+    "schoolCode": "8514",
+    "year": "2018",
+    "programId": null,
+    "type": "photo",
+    "description": "Our students have been building leaderships skills as they undertake the SALSA leadership training, building their capacity to be Lifestyle Activists. #PDHPE #WAPHS #repthephoenix",
+    "attachment": {
+      "format": "jpeg",
+      "width": 1848,
+      "height": 934,
+      "filename": "2134612534.png",
+      "url": "/static/cdn/2134612534.png",
+      "thumbnailUrl": "https://picsum.photos/64/64"
+    },
+    "createdBy": "1",
+    "createdDate": 1530238113250
+  }
+]
