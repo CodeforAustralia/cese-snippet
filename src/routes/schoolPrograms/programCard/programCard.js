@@ -39,6 +39,7 @@ class ProgramCard extends React.Component {
     this.programUrl = getProgramUrl(props.program.id);
     this.programEditUrl = getProgramEditUrl(props.program.id);
     this.programSnippetsUrl = getProgramSnippetsUrl(props.program.id);
+    this.snippetModalUrl = getSnippetsNewModalTo(props.program, props.school);
   }
 
   componentDidMount() {
@@ -91,8 +92,8 @@ class ProgramCard extends React.Component {
             {snippetsIsFetching !== false ?
               null :
               hasSnippets ?
-                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalTo()}>Post another</Button> :
-                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={getSnippetsNewModalTo()}>Post</Button>
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={this.snippetModalUrl}>Post another</Button> :
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={this.snippetModalUrl}>Post</Button>
             }
           </CardTitle>
 

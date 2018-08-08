@@ -5,36 +5,42 @@ import {
 } from "store/programs/actionCreators";
 import {
   selectProgramsByFilter,
-  selectIsFetching as selectIsFetchingPrograms,
+  selectIsFetchingByFilter as selectIsFetchingProgramsByFilter,
 } from "store/programs/selectors";
 import { selectSessionUser } from "store/sessionUser/selectors";
-import { makeProgramOptions } from 'store/programs/helpers';
 import { createSnippet } from 'store/snippets/actionCreators';
+import {
+  selectSchool,
+  selectIsFetching as selectIsFetchingSchool,
+} from "store/schools/selectors";
+import { fetchSchool } from "store/schools/actionCreators";
+
 
 export const mapStateToProps = (state) => {
-
-  const year = '2018';
   const sessionUser = selectSessionUser(state);
-
   const schoolCode = sessionUser.schools[0];
+  const filterProps = { schoolCode: schoolCode, year: '2018' };
 
-  const filteredPrograms = selectProgramsByFilter(state, { schoolCode, year });
+  const school = selectSchool(state, schoolCode);
+  const filteredPrograms = selectProgramsByFilter(state, filterProps);
+  const isFetchingPrograms = selectIsFetchingProgramsByFilter(state, filterProps);
 
   return {
     schoolCode,
-    // programId, // if programId, don't supply programs
-    year,
+    year: filterProps.year, // todo
+    school,
+    isFetchingSchool: selectIsFetchingSchool(state),
     programs: filteredPrograms,
-    isFetchingPrograms: selectIsFetchingPrograms(state),
-    makeProgramOptions,
+    isFetchingPrograms,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProgramsByFilter: (filterProps) => dispatch(fetchProgramsByFilter({
-      schoolCode: filterProps.schoolCode,
-      year: filterProps.year,
+    fetchSchool: (code) => dispatch(fetchSchool(code)),
+    fetchProgramsByFilter: ({ schoolCode, year }) => dispatch(fetchProgramsByFilter({
+      schoolCode,
+      year,
     })),
     onSubmit: (snippet) => dispatch(createSnippet(snippet)),
   };
