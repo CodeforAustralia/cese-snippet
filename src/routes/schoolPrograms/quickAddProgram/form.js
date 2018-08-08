@@ -72,6 +72,7 @@ export default withFormik({
       props,
       setSubmitting,
       setErrors /* setValues, setStatus, and other goodies */,
+      resetForm,
     }
   ) => {
     const newProgram = {...props.model};
@@ -98,7 +99,7 @@ export default withFormik({
         return errors;
       }
     ).then(() => {
-      props.resetForm();
+      resetForm();
     });
   }
 })(QuickAddProgramForm);

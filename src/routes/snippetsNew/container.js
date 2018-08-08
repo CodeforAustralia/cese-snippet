@@ -1,0 +1,43 @@
+import { connect } from 'react-redux';
+
+import {
+  fetchByFilter as fetchProgramsByFilter,
+} from "store/programs/actionCreators";
+import {
+  selectProgramsByFilter,
+  selectIsFetching as selectIsFetchingPrograms,
+} from "store/programs/selectors";
+import { selectSessionUser } from "store/sessionUser/selectors";
+import { makeProgramOptions } from 'store/programs/helpers';
+import { createSnippet } from 'store/snippets/actionCreators';
+
+export const mapStateToProps = (state) => {
+
+  const year = '2018';
+  const sessionUser = selectSessionUser(state);
+
+  const schoolCode = sessionUser.schools[0];
+
+  const filteredPrograms = selectProgramsByFilter(state, { schoolCode, year });
+
+  return {
+    schoolCode,
+    // programId, // if programId, don't supply programs
+    year,
+    programs: filteredPrograms,
+    isFetchingPrograms: selectIsFetchingPrograms(state),
+    makeProgramOptions,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProgramsByFilter: (filterProps) => dispatch(fetchProgramsByFilter({
+      schoolCode: filterProps.schoolCode,
+      year: filterProps.year,
+    })),
+    onSubmit: (snippet) => dispatch(createSnippet(snippet)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps);

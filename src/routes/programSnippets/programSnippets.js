@@ -26,7 +26,6 @@ import {
 import SnippetsList from './snippetsList';
 
 import style from './../program/style.scss';
-import {getProgramSnippetsUrl} from "../../helpers/url";
 
 
 const log = Bows('V: Snippets');
