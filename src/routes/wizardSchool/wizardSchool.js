@@ -52,6 +52,9 @@ class WizardSchool extends React.Component {
     } = this.props;
     const { isSubmitting } = this.state;
 
+    const isLoaded = isFetchingSchools === false;
+    const isLoading = !(isLoaded);
+
     return (
       <Layout nextTo={OnboardingSchoolProgramsUrl}
               activateNext={sessionUser.schools.length && !isSubmitting}>
@@ -61,7 +64,7 @@ class WizardSchool extends React.Component {
           { to: OnboardingSchoolProgramsUrl, label: '3', visited: false,  disabled: true, },
         ]} />
 
-        {isFetchingSchools !== false ?
+        {isLoading ?
           <ComponentLoading innerPage={true} /> :
           <Row className="mt-5">
             <Col>

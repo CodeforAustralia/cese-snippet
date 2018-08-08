@@ -102,6 +102,9 @@ class WizardSchoolPrograms extends React.Component {
 
     const { isSubmitting } = this.state;
 
+    const isLoaded = isFetchingSchool === false && isFetchingProgramTemplates === false && isFetchingSchoolPrograms === false;
+    const isLoading = !(isLoaded);
+
     return (
       <Layout nextTo="/schools"
               nextText="Complete sign up"
@@ -114,7 +117,7 @@ class WizardSchoolPrograms extends React.Component {
 
         {isSubmitting ? <PageLoading blocking={true} /> : ''}
 
-        {isFetchingSchool !== false && isFetchingProgramTemplates !== false && isFetchingSchoolPrograms !== false ?
+        {isLoading ?
           <ComponentLoading innerPage={true} /> :
           <Row className="mt-5">
             <Col>
@@ -125,7 +128,7 @@ class WizardSchoolPrograms extends React.Component {
                   <Col md={{size: 4}}>
                     <div>
                       <div className="mb-4">
-                        <QuickAddProgramForm optionsPrograms={optionsProgramTemplates}
+                        <QuickAddProgramForm optionsPrograms={optionsProgramTemplates || []}
                                              model={{
                                                schoolCode: school.code,
                                                year: '2018',
@@ -143,7 +146,7 @@ class WizardSchoolPrograms extends React.Component {
                             style.buttonListToAdd,
                             'list-unstyled'
                           )}>
-                            {suggestedPrograms.map((program, idx) => (
+                            {suggestedPrograms && suggestedPrograms.map((program, idx) => (
                               <li className={style.buttonListItem} key={idx}>
                                 <Button className={style.buttonListItemButton}
                                         color="primary"
