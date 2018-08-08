@@ -10,6 +10,7 @@ import get from 'lodash/get';
 import Bows from 'bows';
 
 import FieldSelect from "components/fieldSelect";
+import FieldTextInput from "../../components/fieldTextInput/index";
 
 
 const log = Bows('F: RegisterSchoolProgram');
@@ -54,6 +55,8 @@ class QuickAddProgramForm extends React.Component {
                 />
               </Col>
             </FormGroup>
+
+            <FieldTextInput name="programTemplateId" value={values.programTemplateId} hidden={true} />
           </Form>
         </FormGroup>
       </div>
@@ -65,7 +68,15 @@ export default withFormik({
   displayName: 'registerSchoolProgram',
   mapPropsToValues: (props) => {
     return {
-      name: get(props, 'model.name', ''),
+      ...{
+        name: '',
+        schoolCode: '',
+        year: '',
+        createdAt: '',
+        updatedAt: '',
+        programTemplateId: '',
+      },
+      ...props.model,
     };
   },
   validate: (values, props) => {

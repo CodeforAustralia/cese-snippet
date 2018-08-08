@@ -76,10 +76,11 @@ class WizardSchoolPrograms extends React.Component {
     }
   }
 
-  handleOnButtonAdd(program) {
+  handleOnButtonAdd(programTemplate) {
     this.setState({ isSubmitting: true });
     const data = {
-      ...program,
+      name: programTemplate.name,
+      programTemplateId: programTemplate.id,
       schoolCode: this.props.school.code,
       year: '2018',
     };
@@ -146,14 +147,14 @@ class WizardSchoolPrograms extends React.Component {
                             style.buttonListToAdd,
                             'list-unstyled'
                           )}>
-                            {suggestedPrograms && suggestedPrograms.map((program, idx) => (
+                            {suggestedPrograms && suggestedPrograms.map((programTemplate, idx) => (
                               <li className={style.buttonListItem} key={idx}>
                                 <Button className={style.buttonListItemButton}
                                         color="primary"
                                         outline={true}
                                         size="sm"
-                                        onClick={() =>  this.handleOnButtonAdd(program)}
-                                >{program.name}</Button>
+                                        onClick={() =>  this.handleOnButtonAdd(programTemplate)}
+                                >{programTemplate.name}</Button>
                               </li>
                             ))}
                           </ul>
