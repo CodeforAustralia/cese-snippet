@@ -17,16 +17,16 @@ import FieldTextAreaInput from "components/fieldTextAreaInput";
 const log = Bows('F: ProgramEdit');
 
 const ProgramEditForm = ({
-                               optionsSchools,
+                           optionsSchools,
 
-                               handleSubmit,
-                               values,
-                               setFieldValue,
-                               setFieldTouched,
-                               errors,
-                               touched,
-                               isSubmitting,
-                             }) => {
+                           handleSubmit,
+                           values,
+                           setFieldValue,
+                           setFieldTouched,
+                           errors,
+                           touched,
+                           isSubmitting,
+                         }) => {
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
 
