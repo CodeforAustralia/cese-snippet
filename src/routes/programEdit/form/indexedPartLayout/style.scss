@@ -1,0 +1,35 @@
+@import "~style/helpers";
+
+.field {
+  //border: 1px solid red;
+
+  @include md() {
+    display: flex;
+  }
+}
+
+.indexCol {
+  //border: 1px solid blue;
+  padding-right: 1em;
+  padding-bottom: .4em;
+  min-width: 84px;
+
+  @include md() {
+    padding-bottom: 0;
+    text-align: right;
+  }
+}
+
+.fieldCol {
+  //border: 1px solid green;
+
+  @include md() {
+    flex: 1;
+  }
+}
+
+.index {
+  font-weight: 300;
+  font-size: $font-size-sm;
+  color: lighten($body-color, 40);
+}

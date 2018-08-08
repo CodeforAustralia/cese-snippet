@@ -9,9 +9,22 @@ import {
 } from 'reactstrap';
 import Bows from 'bows';
 
+import * as cmsHelper from 'store/cms/helpers';
+import IndexedPartLayout from './indexedPartLayout';
 import FieldSelect from "components/fieldSelect";
 import FieldTextInput from "components/fieldTextInput";
-import FieldTextAreaInput from "components/fieldTextAreaInput";
+import ErrorSummary from 'components/errorSummary';
+
+import Focus from './fieldParts/focus';
+import Audience from './fieldParts/audience';
+import Terms from './fieldParts/terms';
+import FocusGroup from './fieldParts/focusGroup';
+import Aim from './fieldParts/aim';
+import Overview from './fieldParts/overview';
+import DeliveredBy from './fieldParts/deliveredBy';
+import Additional from './fieldParts/additional';
+
+import style from './style.scss';
 
 
 const log = Bows('F: ProgramEdit');
@@ -29,45 +42,128 @@ const ProgramEditForm = ({
                            isSubmitting,
                          }) => {
   return (
-    <Form noValidate={true} onSubmit={handleSubmit}>
+    <Form noValidate={true} onSubmit={handleSubmit} className={style.programForm}>
 
-      <FormGroup>
-        <Col md={8}>
-          <Label htmlFor="schoolCode">School</Label>
-          <FieldSelect name="schoolCode"
-                       options={optionsSchools}
-                       value={values.schoolCode}
-                       onChange={setFieldValue}
-                       onBlur={setFieldTouched}
-                       error={errors.schoolCode}
-                       disabled
+      <FieldTextInput name="id" disabled={true} hidden />
+      <FieldTextInput name="updatedBy" disabled={true} hidden />
+
+      <IndexedPartLayout index="1" totalIndex="10">
+        <div>
+          <FormGroup row>
+            <Col md={8}>
+              <Label htmlFor="schoolCode">School</Label>
+              <FieldSelect name="schoolCode"
+                           options={optionsSchools}
+                           value={values.schoolCode}
+                           onChange={setFieldValue}
+                           onBlur={setFieldTouched}
+                           error={errors.schoolCode}
+                           disabled
+              />
+            </Col>
+          </FormGroup>
+        </div>
+      </IndexedPartLayout>
+
+      <IndexedPartLayout index="2" totalIndex="10">
+        <div>
+          <FormGroup row>
+            <Col md={8}>
+              <Label htmlFor="name">Program name</Label>
+              <FieldTextInput name="name" disabled />
+            </Col>
+          </FormGroup>
+        </div>
+      </IndexedPartLayout>
+
+      <IndexedPartLayout index="3" totalIndex="10">
+        <div>
+          <Focus values={values}
+                 errors={errors}
+                 touched={touched}
+                 setFieldValue={setFieldValue}
+                 setFieldTouched={setFieldTouched}
+                 optionsCategories={cmsHelper.getCategoriesOptions(cms)} />
+        </div>
+      </IndexedPartLayout>
+
+      <IndexedPartLayout index="4" totalIndex="10">
+        <div>
+          <Audience values={values}
+                    errors={errors}
+                    optionsAudienceScope={cmsHelper.getAudienceScope(cms)}
+                    optionsYearLevels={cmsHelper.getYearLevelsOptions(cms)}
+                    optionsCohortSize={cmsHelper.getCohortSizeOptions(cms)}
+                    setFieldValue={setFieldValue}
           />
-        </Col>
-      </FormGroup>
+        </div>
+      </IndexedPartLayout>
 
-      <FormGroup>
-        <Col md={4}>
-          <Label htmlFor="year">Year</Label>
-          <FieldTextInput name="year"
-                          value={values.year}
-                          error={errors.year}
-                          disabled
+      <IndexedPartLayout index="5" totalIndex="10">
+        <div>
+          <Terms values={values}
+                 errors={errors}
+                 optionsTerms={cmsHelper.getTermsOptions(cms)}
+                 setFieldValue={setFieldValue}
           />
-        </Col>
-      </FormGroup>
+        </div>
+      </IndexedPartLayout>
 
-      <FormGroup>
-        <Col md={8}>
-          <Label htmlFor="description">Description</Label>
-          <FieldTextAreaInput name="description"
-                              error={errors.description}
-                              rows={3}
+      <IndexedPartLayout index="6" totalIndex="10">
+        <div>
+          <FocusGroup values={values}
+                           errors={errors}
+                           optionsFocusGroup={cmsHelper.getFocusGroupOptions(cms)}
+                           setFieldValue={setFieldValue}
+                           setFieldTouched={setFieldTouched}
           />
-        </Col>
-      </FormGroup>
+        </div>
+      </IndexedPartLayout>
 
-      <Col md={8}>
-        <Button type="submit" color="primary" disabled={isSubmitting}>{isSubmitting ? 'Saving' : 'Save'}</Button>
+      <IndexedPartLayout index="7" totalIndex="10">
+        <div>
+          <Aim values={values}
+               errors={errors}
+          />
+        </div>
+      </IndexedPartLayout>
+
+      <IndexedPartLayout index="8" totalIndex="10">
+        <div>
+          <Overview values={values}
+                         errors={errors}
+          />
+        </div>
+      </IndexedPartLayout>
+
+      <IndexedPartLayout index="9" totalIndex="10">
+        <div>
+          <DeliveredBy values={values}
+                       errors={errors}
+                       optionsDeliveredByType={cmsHelper.getDeliveredByTypeOptions(cms)}
+          />
+        </div>
+      </IndexedPartLayout>
+
+      {/*<IndexedPartLayout index="optional">*/}
+        {/*<label>Additional Information</label>*/}
+        {/*<div>*/}
+          {/*<Additional values={values}*/}
+                      {/*errors={errors}*/}
+                      {/*touched={touched}*/}
+                      {/*setFieldValue={setFieldValue}*/}
+                      {/*setFieldTouched={setFieldTouched}*/}
+                      {/*optionsSefDomain={cmsHelper.getSefDomainOptions(cms)}*/}
+          {/*/>*/}
+        {/*</div>*/}
+      {/*</IndexedPartLayout>*/}
+
+      <Col md={8} className="mt-4">
+        {errors && errors.length &&
+          <ErrorSummary errors={errors} />
+        }
+
+        <Button type="submit" color="primary" size="lg" disabled={isSubmitting}>{isSubmitting ? 'Saving...' : 'Save'}</Button>
       </Col>
 
     </Form>
@@ -101,6 +197,7 @@ export default withFormik({
         tags: [],
       },
       ...props.model,
+      updatedBy: props.sessionUser.id,
     };
   },
   validate: (values, props) => {

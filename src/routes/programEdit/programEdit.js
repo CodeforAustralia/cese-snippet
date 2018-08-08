@@ -64,6 +64,7 @@ class Program extends React.Component {
       history,
       cms,
       isFetchingCms,
+      sessionUser,
     } = this.props;
 
     if (isFetchingProgram !== false || isFetchingSchool !== false || isFetchingCms !== false) {
@@ -83,6 +84,7 @@ class Program extends React.Component {
                     { value: school.code, label: school.name }
                   ]}
                   cms={cms}
+                  sessionUser={sessionUser}
                   model={program}
                   onSubmit={onSubmit}
                   onSubmitSuccess={() => history.push(programUrl)}

@@ -72,6 +72,7 @@ class SnippetsNew extends React.Component {
       history,
       onSubmit,
       year,
+      sessionUser,
     } = this.props;
 
     const programUrl = school ? getSchoolProgramsUrl(school.code, year) : '';
@@ -115,6 +116,7 @@ class SnippetsNew extends React.Component {
                   }}
                   onSubmit={onSubmit}
                   onSubmitSuccess={() => history.push(getSchoolProgramsUrl(school.code, year))}
+                      sessionUser={sessionUser}
                 />
               }
             </div>

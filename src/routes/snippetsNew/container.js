@@ -26,6 +26,7 @@ export const mapStateToProps = (state) => {
   const isFetchingPrograms = selectIsFetchingProgramsByFilter(state, filterProps);
 
   return {
+    sessionUser,
     schoolCode,
     year: filterProps.year, // todo
     school,

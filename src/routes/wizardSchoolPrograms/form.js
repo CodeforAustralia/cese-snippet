@@ -72,11 +72,10 @@ export default withFormik({
         name: '',
         schoolCode: '',
         year: '',
-        createdAt: '',
-        updatedAt: '',
         programTemplateId: '',
       },
       ...props.model,
+      createdBy: props.sessionUser.id,
     };
   },
   validate: (values, props) => {
