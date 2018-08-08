@@ -19,12 +19,14 @@ import {
   selectIsFetching as selectIsFetchingCms,
 } from 'store/cms/selectors';
 import { fetchCms } from 'store/cms/actionCreators';
+import { selectSessionUser } from "store/sessionUser/selectors";
 
 
 const mapStateToProps = (state, ownProps) => {
   const { programId } = ownProps.match.params;
   const program = selectProgram(state, programId);
   const cms = selectCms(state);
+  const sessionUser = selectSessionUser(state);
 
   let school;
 
@@ -33,6 +35,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    sessionUser,
     program,
     isFetchingProgram: selectIsFetchingProgram(state, programId),
     school,

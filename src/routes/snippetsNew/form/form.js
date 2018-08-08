@@ -125,6 +125,7 @@ export default withFormik({
         },
       },
       ...props.model,
+      createdBy: props.sessionUser.id,
     };
   },
   validate: (values, props) => {

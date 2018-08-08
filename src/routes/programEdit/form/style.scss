@@ -1,0 +1,58 @@
+@import '~style/helpers';
+
+.programForm {
+  margin-bottom: 2em;
+}
+
+.fieldset {
+  margin-bottom: 2em;
+
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  padding: 1.25rem;
+
+  padding-top: 4rem;
+  position: relative;
+
+  @include max-md() {
+    padding: .75rem;
+    padding-top: 4rem;
+  }
+
+  legend {
+    display: inline-block;
+    margin: 0;
+
+    position: absolute;
+    z-index: 100;
+    top: 1rem;
+
+    @include max-md() {
+      font-size: 1.2em;
+      line-height: 1.4;
+      top: .75rem;
+      padding-right: 1.3em;
+    }
+  }
+}
+
+.formTextBtn {
+  white-space: normal;
+  @include xs() {
+    text-align: left;
+  }
+}
+
+.stepProgressRow {
+  @include xs() {
+    display: none;
+  }
+}
+
+
+.sidebar {
+  @include xs() {
+    display: none;
+  }
+}
+

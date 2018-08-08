@@ -83,6 +83,7 @@ class WizardSchoolPrograms extends React.Component {
       programTemplateId: programTemplate.id,
       schoolCode: this.props.school.code,
       year: '2018',
+      createdBy: this.props.sessionUser.id,
     };
     return this.props.onAddProgram(data).then(() => {
       this.setState({ isSubmitting: false });
@@ -99,6 +100,7 @@ class WizardSchoolPrograms extends React.Component {
       onAddProgram,
       isFetchingProgramTemplates,
       optionsProgramTemplates,
+      sessionUser,
     } = this.props;
 
     const { isSubmitting } = this.state;
@@ -137,6 +139,7 @@ class WizardSchoolPrograms extends React.Component {
                                              onBeforeSubmit={() => this.setState({ isSubmitting: true })}
                                              onSubmit={onAddProgram}
                                              onSubmitSuccess={() => this.setState({ isSubmitting: false })}
+                                             sessionUser={sessionUser}
                         />
                       </div>
 
