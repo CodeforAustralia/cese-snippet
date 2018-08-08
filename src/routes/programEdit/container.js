@@ -8,8 +8,12 @@ import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchool,
 } from "store/schools/selectors";
-import { fetchProgram } from "store/programs/actionCreators";
+import {
+  fetchProgram,
+  updateProgram,
+} from "store/programs/actionCreators";
 import { fetchSchool } from "store/schools/actionCreators";
+import { getProgramUrl } from "helpers/url";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -27,6 +31,7 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingProgram: selectIsFetchingProgram(state, programId),
     school,
     isFetchingSchool: selectIsFetchingSchool(state),
+    programUrl: getProgramUrl(programId),
   }
 };
 
@@ -35,6 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchProgram: () => dispatch(fetchProgram(programId)),
     fetchSchool: (schoolCode) => dispatch(fetchSchool(schoolCode)),
+    onSubmit: (program) => dispatch(updateProgram(program)),
   }
 };
 

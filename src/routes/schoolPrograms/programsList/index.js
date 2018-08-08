@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-  Button,
-} from 'reactstrap';
-import { Link as RRLink } from 'react-router-dom';
-import {
-  getProgramsNewUrl,
-} from 'helpers/url';
 
 import ProgramCard from './../programCard';
 import QuickAddProgram from './../quickAddProgram';
@@ -15,8 +8,6 @@ import style from './style.scss';
 
 
 const ProgramsList = ({ programs, school, year }) => {
-
-  const addProgramUrl = getProgramsNewUrl();
 
   if (!programs.length) {
     return (
@@ -28,8 +19,6 @@ const ProgramsList = ({ programs, school, year }) => {
           </div>
           <QuickAddProgram schoolCode={school.code} year={year} title="" />
         </div>
-
-
       </div>
     );
   }

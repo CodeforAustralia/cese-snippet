@@ -12,7 +12,7 @@ import {
 
 import Layout from 'layouts/app';
 import Breadcrumb from 'components/breadcrumb';
-import { PageLoading, ComponentLoading, BoxLoading } from 'components/loading';
+import { ComponentLoading, BoxLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
 } from 'helpers/url';
