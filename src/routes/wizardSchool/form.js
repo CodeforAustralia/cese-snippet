@@ -80,7 +80,7 @@ export default withFormik({
 
     log(`submitting - ${JSON.stringify(newSessionUser)}`);
 
-    props.onBeforeSubmit();
+    props.onBeforeSubmit && props.onBeforeSubmit();
 
     return props.onSubmit(newSessionUser).then(
       resp => {
@@ -94,7 +94,7 @@ export default withFormik({
         return errors;
       }
     ).then((user) => {
-      props.onSubmitSuccess(user);
+      props.onSubmitSuccess && props.onSubmitSuccess(user);
     })
   }
 })(RegisterSchoolForm);

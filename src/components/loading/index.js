@@ -34,17 +34,26 @@ export const PageLoading = ({ blocking = true }) => (
   </div>
 );
 
-export const ComponentLoading = ({ small = true }) => (
-  <div className={style.componentLoadingContainer}>
-    <div className={style.componentLoadingEl}>
-      <div className={cx(style.componentCircleSpinner, small ? style.isSmall : '')}>
-        <div className={style.circleSpinnerBounce1} />
-        <div className={style.circleSpinnerBounce2} />
-        <div className={style.circleSpinnerBounce3} />
+export const ComponentLoading = ({ small = true, innerPage = false }) => {
+  if (innerPage) {
+    small = false;
+  }
+  return (
+    <div className={style.componentLoadingContainer}>
+      <div className={style.componentLoadingEl}>
+        <div className={cx(
+          style.componentCircleSpinner,
+          small ? style.isSmall : '',
+          innerPage ? style.innerPage : '',
+        )}>
+          <div className={style.circleSpinnerBounce1} />
+          <div className={style.circleSpinnerBounce2} />
+          <div className={style.circleSpinnerBounce3} />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default BoxLoading;
 

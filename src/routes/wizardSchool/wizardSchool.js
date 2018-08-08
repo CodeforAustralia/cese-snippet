@@ -14,7 +14,6 @@ import {
   getOnboardingSchoolProgramsUrl
 } from "helpers/url";
 import { ComponentLoading } from "components/loading";
-import {PageLoading} from "../../components/loading/index";
 
 
 const log = Bows('V: WizSchool');
@@ -63,7 +62,7 @@ class WizardSchool extends React.Component {
         ]} />
 
         {isFetchingSchools !== false ?
-          <PageLoading /> :
+          <ComponentLoading innerPage={true} /> :
           <Row className="mt-5">
             <Col>
               <h1 className="h2">Select your school</h1>

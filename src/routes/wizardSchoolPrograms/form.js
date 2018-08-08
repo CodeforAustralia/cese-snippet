@@ -11,12 +11,14 @@ import get from 'lodash/get';
 import Bows from 'bows';
 
 import FieldSelect from "components/fieldSelect";
+import {ComponentLoading} from "../../components/loading/index";
 
 const log = Bows('F: RegisterSchoolProgram');
 
 
 const QuickAddProgramForm = ({
                                optionsPrograms,
+                               isLoading,
 
                                handleSubmit,
                                values,
@@ -33,17 +35,19 @@ const QuickAddProgramForm = ({
         <Form inline noValidate={true} onSubmit={handleSubmit}>
           <FormGroup row style={{width:'100%'}}>
             <Col sm={{size:10}}>
-              <FieldSelect name="name"
-                           value={values.name}
-                           invalid={errors.name}
-                           touched={touched.name}
-                           options={optionsPrograms}
-                           onChange={setFieldValue}
-                           onBlur={setFieldTouched}
-                           searchable={true}
-                           disabled={isSubmitting}
-                           clearable={false}
-              />
+                <FieldSelect name="name"
+                             value={values.name}
+                             invalid={errors.name}
+                             touched={touched.name}
+                             options={optionsPrograms}
+                             onChange={setFieldValue}
+                             onBlur={setFieldTouched}
+                             searchable={true}
+                             disabled={isSubmitting}
+                             clearable={false}
+                             placeholder={isLoading ? 'loading...' : ''}
+                />
+
             </Col>
             <Col sm={{size:2}}>
               <Button type="submit" color="primary" disabled={isSubmitting}>Add</Button>
@@ -78,24 +82,21 @@ export default withFormik({
     newProgram.name = values.name;
 
     log(`submitting - ${JSON.stringify(newProgram)}`);
-    props.setContainerState({
-      isSubmitting: true,
-    });
 
     return props.onSubmit(newProgram).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
-        props.setContainerState({
-          hasSubmitted: true,
-          isSubmitting: false,
-        });
         setSubmitting(false);
+        return resp;
       },
       errors => {
         log(`error - ${JSON.stringify(errors)}`);
         setSubmitting(false);
+        return errors;
       }
-    )
+    ).then((p) => {
+      props.onSubmitSuccess && props.onSubmitSuccess(p);
+    });
   }
 })(QuickAddProgramForm);
 

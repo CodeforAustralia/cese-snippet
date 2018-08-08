@@ -167,6 +167,10 @@
     background-color: $gray-600;
   }
 
+  &.innerPage {
+    margin-top: 120px;
+  }
+
   &.isSmall {
     & > div {
       width: 12px;
