@@ -12,7 +12,7 @@ import {
 
 import Layout from 'layouts/app';
 import Breadcrumb from 'components/breadcrumb';
-import { PageLoading } from 'components/loading';
+import { PageLoading, ComponentLoading, BoxLoading } from 'components/loading';
 import {
   getSchoolProgramsUrl,
 } from 'helpers/url';
@@ -50,12 +50,6 @@ class SchoolPrograms extends React.Component {
     fetchProgramsByFilter();
   }
 
-  sortByLatestDate(programs = []) {
-    return programs.sort((a, b) => {
-      return new Date(a.createdAt) < new Date(b.createdAt);
-    });
-  }
-
   render() {
     const {
       school,
@@ -66,12 +60,8 @@ class SchoolPrograms extends React.Component {
     } = this.props;
 
     if (isFetchingSchools !== false) {
-      return <PageLoading />
+      return <BoxLoading  />
     }
-
-    // if (!hasSchool(school)) {
-    //   return <Redirect to={getOnboardingSchoolUrl()} />;
-    // }
 
     return (
       <Layout>
@@ -111,14 +101,13 @@ class SchoolPrograms extends React.Component {
         <div className={style.tabPageContainer}>
           <Row>
             <Col sm={{size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
-              {isFetchingPrograms !== false ?
+              {!(isFetchingPrograms === false) ?
 
-                <div style={{marginTop: '80px'}}>
-                  {!school && isFetchingSchools !== false && <PageLoading blocking={false} />}
-                </div> :
+                <ComponentLoading innerPage={true} /> :
 
-                <ProgramsList programs={this.sortByLatestDate(programs)}
+                <ProgramsList programs={programs}
                               school={school}
+                              year={filterProps.year}
                 />
               }
             </Col>

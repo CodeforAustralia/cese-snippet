@@ -21,12 +21,14 @@ class QuickAddProgram extends React.Component {
     }
   }
   render() {
-    const { schoolCode, year, optionsProgramTemplates, onAddProgram, isFetchingProgramTemplates } = this.props;
+    const { schoolCode, year, optionsProgramTemplates, onAddProgram, isFetchingProgramTemplates,
+      title = 'Add another',
+    } = this.props;
 
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Add another</CardTitle>
+          <CardTitle>{title}</CardTitle>
           {isFetchingProgramTemplates !== false ?
             <ComponentLoading /> :
             <Form optionsPrograms={optionsProgramTemplates}

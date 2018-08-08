@@ -82,3 +82,9 @@ export const makeProgramOptions = (programs) => {
     label: s.name,
   }));
 };
+
+export const sortByDateCreated = (programs) => {
+  return programs.sort((a, b) => {
+    return new Date(a.createdAt) < new Date(b.createdAt);
+  });
+};

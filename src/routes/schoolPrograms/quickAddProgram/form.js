@@ -29,7 +29,7 @@ const QuickAddProgramForm = ({
   return (
     <div>
       <FormGroup>
-        <Label>Enter program name</Label>
+        <Label>Search program name</Label>
         <Form inline noValidate={true} onSubmit={handleSubmit}>
           <FormGroup row style={{width:'100%'}}>
             <Col sm={{size:10}}>

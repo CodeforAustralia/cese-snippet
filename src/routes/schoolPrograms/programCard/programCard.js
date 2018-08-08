@@ -19,6 +19,8 @@ import {
   getProgramSnippetsUrl,
   getSnippetsNewModalTo,
 } from 'helpers/url';
+import { sortByDateCreated } from 'store/snippets/helpers';
+
 import style from './style.scss';
 
 
@@ -116,7 +118,7 @@ class ProgramCard extends React.Component {
                   snippets.length && snippets.length > 2 ? style.showGradient : '',
                 )}>
 
-                  {snippets.map((snippet, key) => (
+                  {sortByDateCreated(snippets).map((snippet, key) => (
                     <Media className={style.snippet} key={key}>
                       <Media body className={style.snippetBody}>
                         <Media heading className={style.snippetDescription}>
