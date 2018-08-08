@@ -32,6 +32,7 @@ class Program extends React.Component {
       log('fetching program');
       this.props.fetchProgram();
     }
+    this.props.fetchCms();
   }
 
   fetchOnceAfterProgram() {
@@ -61,9 +62,11 @@ class Program extends React.Component {
       onSubmit,
       programUrl,
       history,
+      cms,
+      isFetchingCms,
     } = this.props;
 
-    if (isFetchingProgram !== false || isFetchingSchool !== false) {
+    if (isFetchingProgram !== false || isFetchingSchool !== false || isFetchingCms !== false) {
       return <PageLoading />
     }
 
@@ -79,6 +82,7 @@ class Program extends React.Component {
             <Form optionsSchools={[
                     { value: school.code, label: school.name }
                   ]}
+                  cms={cms}
                   model={program}
                   onSubmit={onSubmit}
                   onSubmitSuccess={() => history.push(programUrl)}
