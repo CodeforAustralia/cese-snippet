@@ -78,6 +78,7 @@ class Program extends React.Component {
         <Row>
           <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
 
+            <p className="mb-0 mt-3">{school.name}</p>
             <h1>{program.name}</h1>
 
             <Form optionsSchools={[

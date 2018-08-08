@@ -47,36 +47,36 @@ const ProgramEditForm = ({
       <FieldTextInput name="id" disabled={true} hidden />
       <FieldTextInput name="updatedBy" disabled={true} hidden />
 
-      <IndexedPartLayout index="1" totalIndex="10">
-        <div>
-          <FormGroup row>
-            <Col md={8}>
-              <Label htmlFor="schoolCode">School</Label>
-              <FieldSelect name="schoolCode"
-                           options={optionsSchools}
-                           value={values.schoolCode}
-                           onChange={setFieldValue}
-                           onBlur={setFieldTouched}
-                           error={errors.schoolCode}
-                           disabled
-              />
-            </Col>
-          </FormGroup>
-        </div>
-      </IndexedPartLayout>
+      {/*<IndexedPartLayout index="1" totalIndex="10">*/}
+        {/*<div>*/}
+          {/*<FormGroup row>*/}
+            {/*<Col md={8}>*/}
+              {/*<Label htmlFor="schoolCode">School</Label>*/}
+              {/*<FieldSelect name="schoolCode"*/}
+                           {/*options={optionsSchools}*/}
+                           {/*value={values.schoolCode}*/}
+                           {/*onChange={setFieldValue}*/}
+                           {/*onBlur={setFieldTouched}*/}
+                           {/*error={errors.schoolCode}*/}
+                           {/*disabled*/}
+              {/*/>*/}
+            {/*</Col>*/}
+          {/*</FormGroup>*/}
+        {/*</div>*/}
+      {/*</IndexedPartLayout>*/}
 
-      <IndexedPartLayout index="2" totalIndex="10">
-        <div>
-          <FormGroup row>
-            <Col md={8}>
-              <Label htmlFor="name">Program name</Label>
-              <FieldTextInput name="name" disabled />
-            </Col>
-          </FormGroup>
-        </div>
-      </IndexedPartLayout>
+      {/*<IndexedPartLayout index="2" totalIndex="10">*/}
+        {/*<div>*/}
+          {/*<FormGroup row>*/}
+            {/*<Col md={8}>*/}
+              {/*<Label htmlFor="name">Program name</Label>*/}
+              {/*<FieldTextInput name="name" disabled />*/}
+            {/*</Col>*/}
+          {/*</FormGroup>*/}
+        {/*</div>*/}
+      {/*</IndexedPartLayout>*/}
 
-      <IndexedPartLayout index="3" totalIndex="10">
+      <IndexedPartLayout index="1" totalIndex="7">
         <div>
           <Focus values={values}
                  errors={errors}
@@ -87,7 +87,7 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      <IndexedPartLayout index="4" totalIndex="10">
+      <IndexedPartLayout index="2" totalIndex="7">
         <div>
           <Audience values={values}
                     errors={errors}
@@ -99,7 +99,7 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      <IndexedPartLayout index="5" totalIndex="10">
+      <IndexedPartLayout index="3" totalIndex="7">
         <div>
           <Terms values={values}
                  errors={errors}
@@ -109,7 +109,7 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      <IndexedPartLayout index="6" totalIndex="10">
+      <IndexedPartLayout index="4" totalIndex="7">
         <div>
           <FocusGroup values={values}
                            errors={errors}
@@ -120,7 +120,7 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      <IndexedPartLayout index="7" totalIndex="10">
+      <IndexedPartLayout index="5" totalIndex="7">
         <div>
           <Aim values={values}
                errors={errors}
@@ -128,7 +128,7 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      <IndexedPartLayout index="8" totalIndex="10">
+      <IndexedPartLayout index="6" totalIndex="7">
         <div>
           <Overview values={values}
                          errors={errors}
@@ -136,7 +136,7 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      <IndexedPartLayout index="9" totalIndex="10">
+      <IndexedPartLayout index="7" totalIndex="7">
         <div>
           <DeliveredBy values={values}
                        errors={errors}
@@ -145,18 +145,18 @@ const ProgramEditForm = ({
         </div>
       </IndexedPartLayout>
 
-      {/*<IndexedPartLayout index="optional">*/}
-        {/*<label>Additional Information</label>*/}
-        {/*<div>*/}
-          {/*<Additional values={values}*/}
-                      {/*errors={errors}*/}
-                      {/*touched={touched}*/}
-                      {/*setFieldValue={setFieldValue}*/}
-                      {/*setFieldTouched={setFieldTouched}*/}
-                      {/*optionsSefDomain={cmsHelper.getSefDomainOptions(cms)}*/}
-          {/*/>*/}
-        {/*</div>*/}
-      {/*</IndexedPartLayout>*/}
+      <IndexedPartLayout index="optional">
+        <label>Additional Information</label>
+        <div>
+          <Additional values={values}
+                      errors={errors}
+                      touched={touched}
+                      setFieldValue={setFieldValue}
+                      setFieldTouched={setFieldTouched}
+                      optionsSefDomain={cmsHelper.getSefDomainOptions(cms)}
+          />
+        </div>
+      </IndexedPartLayout>
 
       <Col md={8} className="mt-4">
         {errors && errors.length &&

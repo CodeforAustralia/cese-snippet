@@ -42,22 +42,22 @@ const Focus = ({
           </Col>
         </FormGroup>
 
-        <FormGroup row>
-          <Col md={8}>
-            <Label htmlFor="subCategory">Domain Area</Label>
-            <FieldSelect name="subCategory"
-                         clearable={false}
-                         options={getSubCategories(optionsCategories, values.category)}
-                         disabled={typeof values.category === 'undefined'}
-                         value={values.subCategory}
-                         onChange={setFieldValue}
-                         onBlur={setFieldTouched}
-                         placeholder={typeof values.category === 'undefined' ? 'Select a Main Focus first' : 'Select …'}
-                         touched={touched.subCategory}
-                         error={errors.subCategory}
-            />
-          </Col>
-        </FormGroup>
+        {/*<FormGroup row>*/}
+          {/*<Col md={8}>*/}
+            {/*<Label htmlFor="subCategory">Domain Area</Label>*/}
+            {/*<FieldSelect name="subCategory"*/}
+                         {/*clearable={false}*/}
+                         {/*options={getSubCategories(optionsCategories, values.category)}*/}
+                         {/*disabled={typeof values.category === 'undefined'}*/}
+                         {/*value={values.subCategory}*/}
+                         {/*onChange={setFieldValue}*/}
+                         {/*onBlur={setFieldTouched}*/}
+                         {/*placeholder={typeof values.category === 'undefined' ? 'Select a Main Focus first' : 'Select …'}*/}
+                         {/*touched={touched.subCategory}*/}
+                         {/*error={errors.subCategory}*/}
+            {/*/>*/}
+          {/*</Col>*/}
+        {/*</FormGroup>*/}
       </div>
   )
 };

@@ -26,7 +26,7 @@ const Part11Additional = ({
                             optionsSefDomain,
                           }) => {
 
-  const optionsSefElements = getSefDomainElementOptions(optionsSefDomain, values.sefDomain);
+  // const optionsSefElements = getSefDomainElementOptions(optionsSefDomain, values.sefDomain);
 
   return (
 
@@ -46,22 +46,22 @@ const Part11Additional = ({
                 />
               </Col>
             </FormGroup>
-            <FormGroup row>
-              <Col>
-                <Label htmlFor="sefElements">Elements</Label>
-                <FieldSelect name="sefElements"
-                             value={values.sefElements}
-                             options={optionsSefElements}
-                             searchable={false}
-                             onChange={setFieldValue}
-                             onBlur={setFieldTouched}
-                             placeholder={values.sefDomain ? "Select …" : "First select Domain"}
-                             disabled={!values.sefDomain}
-                             touched={touched.sefElements}
-                             className={errors.sefElements && 'is-invalid'}
-                />
-              </Col>
-            </FormGroup>
+            {/*<FormGroup row>*/}
+              {/*<Col>*/}
+                {/*<Label htmlFor="sefElements">Elements</Label>*/}
+                {/*<FieldSelect name="sefElements"*/}
+                             {/*value={values.sefElements}*/}
+                             {/*options={optionsSefElements}*/}
+                             {/*searchable={false}*/}
+                             {/*onChange={setFieldValue}*/}
+                             {/*onBlur={setFieldTouched}*/}
+                             {/*placeholder={values.sefDomain ? "Select …" : "First select Domain"}*/}
+                             {/*disabled={!values.sefDomain}*/}
+                             {/*touched={touched.sefElements}*/}
+                             {/*className={errors.sefElements && 'is-invalid'}*/}
+                {/*/>*/}
+              {/*</Col>*/}
+            {/*</FormGroup>*/}
           </div>
         </AdditionalFormGroup>
         <AdditionalFormGroup title="Cost">
@@ -124,9 +124,9 @@ const Part11Additional = ({
             </FormGroup>
           </div>
         </AdditionalFormGroup>
-        <AdditionalFormGroup title="📎 Attach resources or materials" disabled>
-          <div>[field]</div>
-        </AdditionalFormGroup>
+        {/*<AdditionalFormGroup title="📎 Attach resources or materials" disabled>*/}
+          {/*<div>[field]</div>*/}
+        {/*</AdditionalFormGroup>*/}
       </div>
   )
 };
