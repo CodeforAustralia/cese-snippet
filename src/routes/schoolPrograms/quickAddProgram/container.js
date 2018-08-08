@@ -6,6 +6,7 @@ import {
   selectIsFetching as selectIsFetchingProgramTemplates
 } from "store/programTemplates/selectors";
 import { makeProgramTemplatesOptions } from 'store/programTemplates/helpers';
+import { fetchProgramTemplates } from "store/programTemplates/actionCreators";
 
 
 export const mapStateToProps = (state) => {
@@ -26,6 +27,7 @@ export const mapStateToProps = (state) => {
 export const mapDispatchToProps = (dispatch) => {
   return {
     onAddProgram: (program) => dispatch(createProgram(program)),
+    fetchProgramTemplates: () => dispatch(fetchProgramTemplates()),
   }
 };
 

@@ -15,7 +15,7 @@ import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import style from './../snippetsNew/style.scss';
 
 
-const SnippetsNewModal = ({ history, schoolCode, year, programId }) => {
+const SnippetsNewModal = ({ history, schoolCode, year, programId, onSubmit }) => {
 
   const goBack = () => history.goBack();
 
@@ -47,6 +47,7 @@ const SnippetsNewModal = ({ history, schoolCode, year, programId }) => {
                   schoolCode={schoolCode}
                   year={year}
                   onSubmitSuccess={goBack}
+                  onSubmit={onSubmit}
             />
           </div>
         </div>

@@ -6,7 +6,6 @@ import {
   NavLink,
 } from 'reactstrap';
 import { Link as RRLink } from 'react-router-dom';
-import cx from 'classnames';
 
 import Layout from "layouts/app";
 import Breadcrumb from "components/breadcrumb";
@@ -45,6 +44,7 @@ class SnippetsNew extends React.Component {
       isFetchingPrograms,
       makeProgramOptions,
       history,
+      onSubmit,
     } = this.props;
 
     const programUrl = getSchoolProgramsUrl(schoolCode, year);
@@ -82,6 +82,7 @@ class SnippetsNew extends React.Component {
                       schoolCode={schoolCode}
                       year={year}
                       onSubmitSuccess={() => history.push(getSchoolProgramsUrl(schoolCode, year))}
+                      onSubmit={onSubmit}
                 />
               }
             </div>

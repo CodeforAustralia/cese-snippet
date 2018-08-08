@@ -7,6 +7,7 @@ import {
   Label,
   Col,
   CustomInput,
+  Form,
 } from 'reactstrap';
 import Bows from 'bows';
 
@@ -29,7 +30,7 @@ const QuickAddProgramForm = ({
                                isSubmitting,
                              }) => {
   return (
-    <div>
+    <Form noValidate={true} onSubmit={handleSubmit}>
 
       <FormGroup hidden={true}>
         <Col md={8}>
@@ -56,10 +57,10 @@ const QuickAddProgramForm = ({
         </Col>
       </FormGroup>
 
-      <FormGroup hidden={true}>
-        <Col md={8}>
+      <FormGroup hidden={values.programId}>
+        <Col md={6}>
           <Label htmlFor="programId">Program</Label>
-          {typeof values.programId !== 'undefined' ?
+          {values.programId ?
             <FieldSelect name="programId"
                          options={[
                            { value: values.programId, label: values.programId }
@@ -74,6 +75,7 @@ const QuickAddProgramForm = ({
                          value={values.programId}
                          onChange={setFieldValue}
                          onBlur={setFieldTouched}
+                         error={errors.programId}
             />
           }
         </Col>
@@ -91,8 +93,8 @@ const QuickAddProgramForm = ({
 
       <FormGroup>
         <Col md={5}>
-          <Label>Add photo</Label>
-          <CustomInput type="file" label="Choose photo" />
+          <Label htmlFor="photo">Add photo</Label>
+          <CustomInput type="file" label="Choose photo" id="photo" />
         </Col>
       </FormGroup>
 
@@ -100,7 +102,7 @@ const QuickAddProgramForm = ({
         <Button type="submit" color="primary" disabled={isSubmitting}>Post</Button>
       </Col>
 
-    </div>
+    </Form>
   )
 };
 
@@ -125,6 +127,14 @@ export default withFormik({
   },
   validate: (values, props) => {
     const errors = {};
+
+    if (!values.programId) {
+      errors.programId = 'Required';
+    }
+    if (!values.description) {
+      errors.description = 'Required';
+    }
+
     return errors;
   },
   handleSubmit: (
@@ -135,21 +145,19 @@ export default withFormik({
       setErrors /* setValues, setStatus, and other goodies */,
     }
   ) => {
-    const newProgram = {...props.model};
-    newProgram.name = values.name;
+    const newSnippet = values;
 
-    log(`submitting - ${JSON.stringify(newProgram)}`);
-    props.setContainerState({
-      isSubmitting: true,
-    });
-
-    return props.onSubmit(newProgram).then(
+    log(`submitting - ${JSON.stringify(newSnippet)}`);
+    // props.setContainerState({
+    //   isSubmitting: true,
+    // });
+    return props.onSubmit(newSnippet).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
-        props.setContainerState({
-          hasSubmitted: true,
-          isSubmitting: false,
-        });
+        // props.setContainerState({
+        //   hasSubmitted: true,
+        //   isSubmitting: false,
+        // });
         setSubmitting(false);
         return resp;
       },
@@ -159,7 +167,7 @@ export default withFormik({
         return errors;
       }
     ).then(() => {
-      props.resetForm();
+      props.onSubmitSuccess();
     });
   }
 })(QuickAddProgramForm);

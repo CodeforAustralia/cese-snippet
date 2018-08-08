@@ -9,6 +9,7 @@ import {
 } from "store/programs/selectors";
 import { selectSessionUser } from "store/sessionUser/selectors";
 import { makeProgramOptions } from 'store/programs/helpers';
+import { createSnippet } from 'store/snippets/actionCreators';
 
 export const mapStateToProps = (state) => {
 
@@ -35,6 +36,7 @@ const mapDispatchToProps = (dispatch) => {
       schoolCode: filterProps.schoolCode,
       year: filterProps.year,
     })),
+    onSubmit: (snippet) => dispatch(createSnippet(snippet)),
   };
 };
 
