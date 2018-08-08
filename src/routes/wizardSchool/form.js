@@ -83,12 +83,12 @@ export default withFormik({
 
     return props.onSubmit(newSessionUser).then(
       resp => {
-        log(`success - ${JSON.stringify(resp)}`);
+        log('success');
         setSubmitting(false);
         return resp;
       },
       errors => {
-        log(`error - ${JSON.stringify(errors)}`);
+        log('error');
         setSubmitting(false);
         return errors;
       }

@@ -6,7 +6,6 @@ import {
   Label,
   Col,
 } from 'reactstrap';
-import get from 'lodash/get';
 import Bows from 'bows';
 
 import FieldSelect from "components/fieldSelect";
@@ -24,7 +23,6 @@ class QuickAddProgramForm extends React.Component {
   render() {
     const {
       optionsPrograms,
-      isLoading,
 
       handleSubmit,
       values,
@@ -100,12 +98,12 @@ export default withFormik({
 
     return props.onSubmit(newProgram).then(
       resp => {
-        log(`success - ${JSON.stringify(resp)}`);
+        log('success');
         setSubmitting(false);
         return resp;
       },
       errors => {
-        log(`error - ${JSON.stringify(errors)}`);
+        log('error');
         setSubmitting(false);
         return errors;
       }

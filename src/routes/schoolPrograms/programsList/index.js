@@ -1,8 +1,8 @@
 import React from 'react';
+import orderBy from 'lodash/orderBy';
 
 import ProgramCard from './../programCard';
 import QuickAddProgram from './../quickAddProgram';
-import { sortByDateCreated } from 'store/programs/helpers';
 
 import style from './style.scss';
 
@@ -29,7 +29,7 @@ const ProgramsList = ({ programs, school, year }) => {
         <QuickAddProgram schoolCode={school.code} year={year} />
       </div>
 
-      {sortByDateCreated(programs).map((p, idx) => {
+      {programs.map((p, idx) => {
         return (
           <div key={idx} className={style.programItem}>
             <ProgramCard program={p} school={school} />

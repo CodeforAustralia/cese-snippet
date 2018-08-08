@@ -40,14 +40,19 @@ class SchoolPrograms extends React.Component {
       school,
       isFetchingSchools,
       fetchSchool,
+      programs,
+      isFetchingPrograms,
       fetchProgramsByFilter,
     } = this.props;
     if (!school && isFetchingSchools !== true) {
       log('fetching school');
       fetchSchool();
     }
-    log('fetching programs');
-    fetchProgramsByFilter();
+    // todo - check if there is a program filter created, such as a year without programs
+    if ((!programs || !programs.length) && isFetchingPrograms !== true) {
+      log('fetching programs');
+      fetchProgramsByFilter();
+    }
   }
 
   render() {
@@ -101,10 +106,8 @@ class SchoolPrograms extends React.Component {
         <div className={style.tabPageContainer}>
           <Row>
             <Col sm={{size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
-              {!(isFetchingPrograms === false) ?
-
+              {isFetchingPrograms !== false ?
                 <ComponentLoading innerPage={true} /> :
-
                 <ProgramsList programs={programs}
                               school={school}
                               year={filterProps.year}

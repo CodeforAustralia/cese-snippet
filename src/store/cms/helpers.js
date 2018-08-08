@@ -1,6 +1,4 @@
 import get from 'lodash/get';
-// import isWithinRange from 'date-fns/is_within_range';
-
 
 const makeOptions = json => {
   return json.map(d => ({value: d.id, label: d.label}));
@@ -55,12 +53,11 @@ export const getTermsOptions = (cms) => {
 };
 
 export const getCohortSizeOptions = (cms) => {
-  const d = get(cms, 'deliveredByType', null);
+  const d = get(cms, 'cohortSize', null);
   if (!d) {
-    throw new Error('No value for "deliveredByType"')
+    throw new Error('No value for "cohortSize"')
   }
   return makeOptions(d);
-  return makeOptions(get(cms, 'cohortSize', null));
 };
 
 export const getSefDomainOptions = (cms) => {
@@ -76,41 +73,6 @@ export const getSefDomainElementOptions = (domainOptions, domainValue) => {
   return makeOptions(option.elements);
 };
 
-
-
-
-
-// export const getTermDates = (cms) => {
-//   return get(cms, 'termDates', []);
-// };
-//
-//
-// // todo - deprecate below here ------------
-//
-//
-//
-// export const getProgramTemplateOptions = (programTemplates) => {
-//   return programTemplates.map(p => ({ value: p.id, label: p.name }));
-// };
-//
-
-// export const getSchoolYearLevelsOptions = (school) => {
-//   if (!school) {
-//     return [];
-//   }
-//   return school.yearLevels.map((y) => ({ value: y, label: y }));
-// };
-
 export const getIsDeliveredByExternal = (deliveredByType) => {
   return Array.isArray(deliveredByType) && deliveredByType.includes('External Party');
 };
-//
-// export const getCurrentTerm = (termDates, date = new Date()) => {
-//   const withinTerm = termDates.find(term => {
-//     return isWithinRange(date, term.start, term.end);
-//   });
-//   if (withinTerm) {
-//     return withinTerm.term;
-//   }
-//   return [1,2,3,4];
-// };

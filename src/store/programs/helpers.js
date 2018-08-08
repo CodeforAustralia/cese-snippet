@@ -84,7 +84,9 @@ export const makeProgramOptions = (programs) => {
 };
 
 export const sortByDateCreated = (programs) => {
-  return programs.sort((a, b) => {
-    return new Date(a.createdAt) < new Date(b.createdAt);
-  });
+  return programs
+    .map(a => a)  // DON'T allow Array.sort to mutate
+    .sort((a, b) => {
+      return new Date(a.createdAt) < new Date(b.createdAt);
+    });
 };

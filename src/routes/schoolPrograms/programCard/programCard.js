@@ -19,7 +19,6 @@ import {
   getProgramSnippetsUrl,
   getSnippetsNewModalTo,
 } from 'helpers/url';
-import { sortByDateCreated } from 'store/snippets/helpers';
 
 import style from './style.scss';
 
@@ -48,11 +47,25 @@ class ProgramCard extends React.Component {
     this.fetchData();
   }
 
+  // componentDidUpdate() {
+  //   const { isFetchingSnippetsByFilter } = this.props;
+  //   if (isFetchingSnippetsByFilter !== true) {
+  //     this.fetchData();
+  //   }
+  // }
+
   fetchData() {
-    const { snippets, fetchSnippets } = this.props;
-    if (!snippets || !snippets.length) {
+    const { snippets, fetchSnippets, isFetchingSnippetsByFilter, program, filterProps } = this.props;
+    if (!snippets || !snippets.length && isFetchingSnippetsByFilter !== true) {
       log('fetching snippets');
       fetchSnippets();
+    }
+
+    if (program.id >= '10') {
+      console.log('filterProps', JSON.stringify(filterProps));
+      console.log('snippets', JSON.stringify(snippets));
+      console.log('isFetchingSnippetsByFilter', JSON.stringify(isFetchingSnippetsByFilter));
+      debugger
     }
   }
 
@@ -60,7 +73,7 @@ class ProgramCard extends React.Component {
     const {
       program,
       snippets,
-      snippetsIsFetching,
+      isFetchingSnippetsByFilter,
     } = this.props;
 
     const hasEdited = !!program.updatedBy;
@@ -69,6 +82,7 @@ class ProgramCard extends React.Component {
     const hasNotEnteredDetails = !program.description && !metaText;
 
     const hasSnippets = snippets && snippets.length;
+
 
     return (
       <Card>
@@ -91,7 +105,7 @@ class ProgramCard extends React.Component {
 
         <Card body className={style.snippetCard}>
           <CardTitle className={style.snippetCardTitle}>Snippets
-            {snippetsIsFetching !== false ?
+            {isFetchingSnippetsByFilter !== false ?
               null :
               hasSnippets ?
                 <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={this.snippetModalUrl}>Post another</Button> :
@@ -100,7 +114,7 @@ class ProgramCard extends React.Component {
           </CardTitle>
 
 
-          {snippetsIsFetching !== false ?
+          {isFetchingSnippetsByFilter !== false ?
 
             // LOADING
 
@@ -118,7 +132,7 @@ class ProgramCard extends React.Component {
                   snippets.length && snippets.length > 2 ? style.showGradient : '',
                 )}>
 
-                  {sortByDateCreated(snippets).map((snippet, key) => (
+                  {snippets.map((snippet, key) => (
                     <Media className={style.snippet} key={key}>
                       <Media body className={style.snippetBody}>
                         <Media heading className={style.snippetDescription}>

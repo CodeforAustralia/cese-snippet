@@ -57,7 +57,7 @@ class WizardSchool extends React.Component {
 
     return (
       <Layout nextTo={OnboardingSchoolProgramsUrl}
-              activateNext={sessionUser.schools.length && !isSubmitting}>
+              activateNext={isLoaded && sessionUser.schools.length && !isSubmitting}>
         <ArrowBreadcrumb linkList={[
           { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: false, },
           { to: OnboardingSchoolUrl, label: '2', visited: true,  disabled: true, active: true, },
