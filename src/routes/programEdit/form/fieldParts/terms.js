@@ -5,7 +5,7 @@ import {
   Col,
 } from 'reactstrap';
 import FieldTextInput from 'components/fieldTextInput';
-import FieldRadioBtnList from 'components/fieldRadioBtnList';
+import FieldCheckboxBtnList from "components/fieldCheckboxBtnList";
 
 const Part5Terms = ({
                       values,
@@ -18,7 +18,7 @@ const Part5Terms = ({
       <FormGroup row>
         <Col md={8}>
           <Label htmlFor="terms">Terms Delivered in {values.year}</Label>
-          <FieldRadioBtnList name="terms"
+          <FieldCheckboxBtnList name="terms"
                              value={values.terms}
                              options={optionsTerms}
                              error={errors.terms}

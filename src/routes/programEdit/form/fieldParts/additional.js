@@ -8,12 +8,12 @@ import {
 
 import AdditionalFormGroup from './../additionalFormGroup';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
-import FieldSelect from 'components/fieldSelect';
+// import FieldSelect from 'components/fieldSelect';
 import FieldTextareaInput from 'components/fieldTextAreaInput';
 import FieldUrlInput from 'components/fieldUrlInput';
 import FieldTextInput from 'components/fieldTextInput';
 import FieldEmailInput from 'components/fieldEmailInput';
-import { getSefDomainElementOptions } from 'store/cms/helpers';
+// import { getSefDomainElementOptions } from 'store/cms/helpers';
 
 
 // todo - unselect Element if domain changes
@@ -68,7 +68,7 @@ const Part11Additional = ({
           <div>
             <FormGroup row>
               <Col md={8}>
-                <Label htmlFor="costDescription" className="mb-1">Program Overview</Label>
+                <Label htmlFor="costDescription" className="mb-1">Cost details</Label>
                 <FormText color="muted" className="mt-0 mb-2">
                   Include details about all related costs such as training, tools, equipments, fees, etc
                 </FormText>
@@ -114,7 +114,7 @@ const Part11Additional = ({
               <Col>
                 <Label htmlFor="additionalDetails" className="mb-1">Additional Program Details</Label>
                 <FormText color="muted" className="mt-0 mb-2">
-                  Include any addutional information about the program
+                  Include any additional information about the program
                 </FormText>
                 <FieldTextareaInput name="additionalDetails"
                                     error={errors.additionalDetails}

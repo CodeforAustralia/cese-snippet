@@ -107,15 +107,15 @@ class SnippetsNew extends React.Component {
               {isFetchingPrograms !== false && isFetchingSchool !== false ?
                 <ComponentLoading /> :
                 <Form optionsPrograms={makeProgramOptions(programs)}
-                  optionsSchools={[
-                    { value: school.code, label: school.name }
-                  ]}
-                  model={{
-                    schoolCode: school.code,
-                    year,
-                  }}
-                  onSubmit={onSubmit}
-                  onSubmitSuccess={() => history.push(getSchoolProgramsUrl(school.code, year))}
+                      optionsSchools={[
+                        { value: school.code, label: school.name }
+                      ]}
+                      model={{
+                        schoolCode: school.code,
+                        year,
+                      }}
+                      onSubmit={onSubmit}
+                      onSubmitSuccess={() => history.push(getSchoolProgramsUrl(school.code, year))}
                       sessionUser={sessionUser}
                 />
               }

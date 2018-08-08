@@ -15,7 +15,7 @@ import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import style from './../snippetsNew/style.scss';
 
 
-const SnippetsNewModal = ({ history, program, school, onSubmit }) => {
+const SnippetsNewModal = ({ history, program, school, onSubmit, sessionUser }) => {
 
   const goBack = () => history.goBack();
 
@@ -56,6 +56,7 @@ const SnippetsNewModal = ({ history, program, school, onSubmit }) => {
                   }}
                   onSubmit={onSubmit}
                   onSubmitSuccess={goBack}
+                  sessionUser={sessionUser}
             />
           </div>
         </div>

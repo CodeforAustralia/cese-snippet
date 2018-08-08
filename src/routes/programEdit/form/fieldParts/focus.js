@@ -5,16 +5,16 @@ import {
   Col,
 } from 'reactstrap';
 import FieldRadioBtnList from 'components/fieldRadioBtnList';
-import FieldSelect from 'components/fieldSelect';
+// import FieldSelect from 'components/fieldSelect';
 
 
-const getSubCategories = (options, category) => {
-  if (!category) {
-    return [];
-  }
-  const selectedCategory = options.find(o => o.value === category);
-  return selectedCategory.categories || [];
-};
+// const getSubCategories = (options, category) => {
+//   if (!category) {
+//     return [];
+//   }
+//   const selectedCategory = options.find(o => o.value === category);
+//   return selectedCategory.categories || [];
+// };
 
 const Focus = ({
                       values,

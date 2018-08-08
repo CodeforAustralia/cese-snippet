@@ -145,7 +145,7 @@ class ProgramCard extends React.Component {
 
               // NO SNIPPETS
 
-              <p className="text-muted">Start recording moments <RRLink to="/">post the first Snippet</RRLink>.</p>
+              <p className="text-muted">Start recording moments <RRLink to={this.snippetModalUrl}>post the first Snippet</RRLink>.</p>
           }
 
         </Card>

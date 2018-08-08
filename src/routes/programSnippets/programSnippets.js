@@ -26,6 +26,7 @@ import {
 import SnippetsList from './snippetsList';
 
 import style from './../program/style.scss';
+import {ComponentLoading} from "../../components/loading/index";
 
 
 const log = Bows('V: Snippets');
@@ -135,8 +136,11 @@ class Program extends React.Component {
             <div className="p-4">
 
               {isFetchingSnippets !== false ?
-                <PageLoading blocking={false} /> :
-                <SnippetsList snippets={snippets} program={program} />
+                <ComponentLoading innerPage={true} /> :
+                <SnippetsList snippets={snippets}
+                              program={program}
+                              school={school}
+                />
               }
 
             </div>

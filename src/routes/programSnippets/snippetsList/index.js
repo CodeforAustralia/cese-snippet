@@ -13,9 +13,9 @@ import SnippetCard from './../snippetCard';
 import style from './style.scss';
 
 
-const SnippetsList = ({ snippets = [], program = {} }) => {
+const SnippetsList = ({ snippets, program, school }) => {
 
-  const newSnippetUrl = getSnippetsNewModalTo();
+  const newSnippetUrl = getSnippetsNewModalTo(program, school);
 
   if (!snippets.length) {
     return (

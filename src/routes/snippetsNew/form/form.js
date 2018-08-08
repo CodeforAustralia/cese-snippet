@@ -17,7 +17,7 @@ import FieldTextAreaInput from "components/fieldTextAreaInput";
 
 const log = Bows('F: SnippetsNew');
 
-const QuickAddProgramForm = ({
+const AddSnippetForm = ({
                                optionsPrograms,
                                optionsSchools,
 
@@ -165,5 +165,5 @@ export default withFormik({
       props.onSubmitSuccess && props.onSubmitSuccess();
     });
   }
-})(QuickAddProgramForm);
+})(AddSnippetForm);
 
