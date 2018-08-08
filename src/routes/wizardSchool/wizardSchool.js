@@ -68,13 +68,9 @@ class WizardSchool extends React.Component {
               <h1 className="h2">Select your school</h1>
               <div className="mt-4">
                   <Form optionsSchools={optionsSchools}
-                        onBeforeSubmit={() => {
-                          this.setState({ isSubmitting: true });
-                        }}
+                        onBeforeSubmit={() => this.setState({ isSubmitting: true })}
                         onSubmit={onSubmit}
-                        onSubmitSuccess={() => {
-                          this.setState({ isSubmitting: false });
-                        }}
+                        onSubmitSuccess={() => this.setState({ isSubmitting: false })}
                         model={sessionUser}
                   />
               </div>

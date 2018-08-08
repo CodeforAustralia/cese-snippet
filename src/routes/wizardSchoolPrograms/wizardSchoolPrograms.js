@@ -35,7 +35,7 @@ class WizardSchoolPrograms extends React.Component {
     super(props);
     this.handleOnButtonAdd = this.handleOnButtonAdd.bind(this);
     this.state = {
-      hasSubmitted: false,
+      isSubmitting: false,
     }
   }
 
@@ -77,12 +77,15 @@ class WizardSchoolPrograms extends React.Component {
   }
 
   handleOnButtonAdd(program) {
+    this.setState({ isSubmitting: true });
     const data = {
       ...program,
       schoolCode: this.props.school.code,
       year: '2018',
     };
-    this.props.onAddProgram(data);
+    return this.props.onAddProgram(data).then(() => {
+      this.setState({ isSubmitting: false });
+    });
   }
 
   render() {
@@ -97,19 +100,21 @@ class WizardSchoolPrograms extends React.Component {
       optionsProgramTemplates,
     } = this.props;
 
-    const { hasSubmitted } = this.state;
+    const { isSubmitting } = this.state;
 
     return (
-      <Layout prevTo={OnboardingSchoolUrl}
-              nextTo="/schools"
-              nextText="Complete sign up">
+      <Layout nextTo="/schools"
+              nextText="Complete sign up"
+              activateNext={!isSubmitting}>
         <ArrowBreadcrumb linkList={[
           { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: false, },
           { to: OnboardingSchoolUrl, label: '2', visited: true, disabled: false, },
           { to: OnboardingSchoolProgramsUrl, label: '3', visited: true, disabled: true, active: true, },
         ]} />
 
-        {isFetchingProgramTemplates !== false && isFetchingSchoolPrograms !== false ?
+        {isSubmitting ? <PageLoading blocking={true} /> : ''}
+
+        {isFetchingSchool !== false && isFetchingProgramTemplates !== false && isFetchingSchoolPrograms !== false ?
           <ComponentLoading innerPage={true} /> :
           <Row className="mt-5">
             <Col>
@@ -125,9 +130,9 @@ class WizardSchoolPrograms extends React.Component {
                                                schoolCode: school.code,
                                                year: '2018',
                                              }}
+                                             onBeforeSubmit={() => this.setState({ isSubmitting: true })}
                                              onSubmit={onAddProgram}
-                                             onSubmitSuccess={() => this.setState({ hasSubmitted: true })}
-                                             isLoading={isFetchingProgramTemplates !== false}
+                                             onSubmitSuccess={() => this.setState({ isSubmitting: false })}
                         />
                       </div>
 
@@ -138,19 +143,16 @@ class WizardSchoolPrograms extends React.Component {
                             style.buttonListToAdd,
                             'list-unstyled'
                           )}>
-                            {isFetchingProgramTemplates !== false ?
-                              <ComponentLoading /> :
-                              suggestedPrograms.map((program, idx) => (
-                                <li className={style.buttonListItem} key={idx}>
-                                  <Button className={style.buttonListItemButton}
-                                          color="primary"
-                                          outline={true}
-                                          size="sm"
-                                          onClick={() =>  this.handleOnButtonAdd(program)}
-                                  >{program.name}</Button>
-                                </li>
-                              ))
-                            }
+                            {suggestedPrograms.map((program, idx) => (
+                              <li className={style.buttonListItem} key={idx}>
+                                <Button className={style.buttonListItemButton}
+                                        color="primary"
+                                        outline={true}
+                                        size="sm"
+                                        onClick={() =>  this.handleOnButtonAdd(program)}
+                                >{program.name}</Button>
+                              </li>
+                            ))}
                           </ul>
                         </div>
                       </div>
@@ -159,7 +161,7 @@ class WizardSchoolPrograms extends React.Component {
 
                   <Col md={{size: 8}}>
                     <Card body>
-                      <h2 className="h5">Current programs and initiatives {schoolPrograms && schoolPrograms.length ? <span> ({!isFetchingSchoolPrograms && schoolPrograms.length})</span> : null}</h2>
+                      <h2 className="h5">Current programs and initiatives {schoolPrograms && schoolPrograms.length > 1 ? <span>({schoolPrograms.length})</span> : null}</h2>
                       <p>This is the list of programs or initiatives that have been added to your school this year.</p>
                       {schoolPrograms && schoolPrograms.length ?
                         <div>
