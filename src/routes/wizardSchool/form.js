@@ -9,10 +9,9 @@ import {
 import get from 'lodash/get';
 
 import FieldSelect from "components/fieldSelect";
-import { PageLoading } from 'components/loading';
+
 
 const log = Bows('F: RegisterSchool');
-
 
 class RegisterSchoolForm extends React.Component {
   componentDidUpdate(prevProps) {

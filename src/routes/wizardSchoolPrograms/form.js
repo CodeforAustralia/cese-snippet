@@ -3,7 +3,6 @@ import { withFormik } from 'formik';
 import {
   Form,
   FormGroup,
-  Button,
   Label,
   Col,
 } from 'reactstrap';
@@ -12,50 +11,55 @@ import Bows from 'bows';
 
 import FieldSelect from "components/fieldSelect";
 
+
 const log = Bows('F: RegisterSchoolProgram');
 
+class QuickAddProgramForm extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.values.name && (prevProps.values.name !== this.props.values.name)) {
+      this.props.submitForm();
+    }
+  }
+  render() {
+    const {
+      optionsPrograms,
+      isLoading,
 
-const QuickAddProgramForm = ({
-                               optionsPrograms,
-                               isLoading,
+      handleSubmit,
+      values,
+      setFieldValue,
+      setFieldTouched,
+      errors,
+      touched,
+      isSubmitting,
+    } = this.props;
 
-                               handleSubmit,
-                               values,
-                               setFieldValue,
-                               setFieldTouched,
-                               errors,
-                               touched,
-                               isSubmitting,
-                             }) => {
-  return (
-    <div>
-      <FormGroup>
-        <Label>Enter program name</Label>
-        <Form inline noValidate={true} onSubmit={handleSubmit}>
-          <FormGroup row style={{width:'100%'}}>
-            <Col sm={{size:10}}>
-              <FieldSelect name="name"
-                           value={values.name}
-                           invalid={errors.name}
-                           touched={touched.name}
-                           options={optionsPrograms}
-                           onChange={setFieldValue}
-                           onBlur={setFieldTouched}
-                           searchable={true}
-                           disabled={isSubmitting}
-                           clearable={false}
-                           placeholder={isLoading ? 'loading...' : ''}
-              />
-            </Col>
-            <Col sm={{size:2}}>
-              <Button type="submit" color="primary" disabled={isSubmitting}>Add</Button>
-            </Col>
-          </FormGroup>
-        </Form>
-      </FormGroup>
-    </div>
-  )
-};
+    return (
+      <div>
+        <FormGroup>
+          <Label>Search program name</Label>
+          <Form noValidate={true} onSubmit={handleSubmit}>
+            <FormGroup row className="no-gutters">
+              <Col>
+                <FieldSelect name="name"
+                             value={values.name}
+                             invalid={errors.name}
+                             touched={touched.name}
+                             options={optionsPrograms}
+                             onChange={setFieldValue}
+                             onBlur={setFieldTouched}
+                             searchable={true}
+                             disabled={isSubmitting}
+                             clearable={false}
+                />
+              </Col>
+            </FormGroup>
+          </Form>
+        </FormGroup>
+      </div>
+    )
+  }
+}
 
 export default withFormik({
   displayName: 'registerSchoolProgram',
@@ -74,6 +78,7 @@ export default withFormik({
       props,
       setSubmitting,
       setErrors /* setValues, setStatus, and other goodies */,
+      resetForm,
     }
   ) => {
     const newProgram = {...props.model};
@@ -95,6 +100,7 @@ export default withFormik({
         return errors;
       }
     ).then((p) => {
+      resetForm();
       props.onSubmitSuccess && props.onSubmitSuccess(p);
     });
   }
