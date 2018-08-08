@@ -16,10 +16,11 @@ import FieldTextInput from "components/fieldTextInput";
 import FieldTextAreaInput from "components/fieldTextAreaInput";
 
 
-const log = Bows('F: QuickAddProgram');
+const log = Bows('F: SnippetsNew');
 
 const QuickAddProgramForm = ({
-                               optionsPrograms = null,
+                               optionsPrograms,
+                               optionsSchools,
 
                                handleSubmit,
                                values,
@@ -32,13 +33,12 @@ const QuickAddProgramForm = ({
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
 
-      <FormGroup hidden={true}>
+      {/*<FormGroup hidden={true}>*/}
+      <FormGroup>
         <Col md={8}>
           <Label htmlFor="schoolCode">School</Label>
           <FieldSelect name="schoolCode"
-                       options={[
-                         { value: values.schoolCode, label: values.schoolCode }
-                       ]}
+                       options={optionsSchools}
                        value={values.schoolCode}
                        onChange={setFieldValue}
                        onBlur={setFieldTouched}
@@ -47,7 +47,8 @@ const QuickAddProgramForm = ({
         </Col>
       </FormGroup>
 
-      <FormGroup hidden={true}>
+      {/*<FormGroup hidden={true}>*/}
+      <FormGroup>
         <Col md={4}>
           <Label htmlFor="year">Year</Label>
           <FieldTextInput name="year"
@@ -57,14 +58,13 @@ const QuickAddProgramForm = ({
         </Col>
       </FormGroup>
 
-      <FormGroup hidden={values.programId}>
+      {/*<FormGroup hidden={values.programId}>*/}
+      <FormGroup>
         <Col md={6}>
           <Label htmlFor="programId">Program</Label>
           {values.programId ?
             <FieldSelect name="programId"
-                         options={[
-                           { value: values.programId, label: values.programId }
-                         ]}
+                         options={optionsPrograms}
                          value={values.programId}
                          onChange={setFieldValue}
                          onBlur={setFieldTouched}
@@ -99,7 +99,7 @@ const QuickAddProgramForm = ({
       </FormGroup>
 
       <Col md={8}>
-        <Button type="submit" color="primary" disabled={isSubmitting}>Post</Button>
+        <Button type="submit" color="primary" disabled={isSubmitting}>{isSubmitting ? 'Posting' : 'Post'}</Button>
       </Col>
 
     </Form>
@@ -110,19 +110,22 @@ export default withFormik({
   displayName: 'addSnippet',
   mapPropsToValues: (props) => {
     return {
-      schoolCode: get(props, 'schoolCode', ''),
-      year: get(props, 'year', ''),
-      programId: get(props, 'programId', ''),
-      type: 'photo',
-      description: '',
-      attachment: {
-        format: 'jpeg',
-        width: 600,
-        height: 400,
-        filename: `${new Date().getTime()}.jpg`,
-        url: "https://picsum.photos/600/400/?random",
-        thumbnailUrl: "https://picsum.photos/64/64"
+      ...{
+        schoolCode: '',
+        year: '',
+        programId: '',
+        type: 'photo',
+        description: '',
+        attachment: {
+          format: 'jpeg',
+          width: 600,
+          height: 400,
+          filename: `${new Date().getTime()}.jpg`,
+          url: "https://picsum.photos/600/400/?random",
+          thumbnailUrl: "https://picsum.photos/64/64"
+        },
       },
+      ...props.model,
     };
   },
   validate: (values, props) => {

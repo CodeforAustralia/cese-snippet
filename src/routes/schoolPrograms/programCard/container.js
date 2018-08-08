@@ -6,14 +6,15 @@ import {
 } from "store/snippets/selectors";
 
 const mapStateToProps = (state, ownProps) => {
-  const { program, year, schoolCode } = ownProps;
+  const { program, school } = ownProps;
   const filterProps = {
-    schoolCode,
-    year,
+    schoolCode: school.code,
+    year: program.year,
     programId: program.id,
   };
   return {
     program,
+    school,
     snippetsIsFetching: selectIsFetchingByFilter(state, filterProps), // todo - fetch only first 2
     snippets: selectSnippetsByFilter(state, filterProps),
     filterProps,
@@ -21,11 +22,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const { program, year, schoolCode } = ownProps;
+  const { program, school } = ownProps;
   return {
     fetchSnippets: () => dispatch(fetchSnippetsByFilter({
-      schoolCode,
-      year,
+      schoolCode: school.code,
+      year: program.year,
       programId: program.id,
     }))
   }

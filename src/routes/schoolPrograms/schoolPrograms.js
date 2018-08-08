@@ -118,8 +118,7 @@ class SchoolPrograms extends React.Component {
                 </div> :
 
                 <ProgramsList programs={this.sortByLatestDate(programs)}
-                              year={filterProps.year}
-                              schoolCode={filterProps.schoolCode}
+                              school={school}
                 />
               }
             </Col>

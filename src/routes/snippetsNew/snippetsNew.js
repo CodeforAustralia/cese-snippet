@@ -6,15 +6,19 @@ import {
   NavLink,
 } from 'reactstrap';
 import { Link as RRLink } from 'react-router-dom';
+import Bows from 'bows';
 
 import Layout from "layouts/app";
 import Breadcrumb from "components/breadcrumb";
 import { getSchoolProgramsUrl } from "helpers/url";
 import { ComponentLoading } from "components/loading";
 import Form from './form';
+import { makeProgramOptions } from 'store/programs/helpers';
 
 import style from './style.scss';
 
+
+const log = Bows('V: SnippetsNew');
 
 class SnippetsNew extends React.Component {
 
@@ -25,29 +29,52 @@ class SnippetsNew extends React.Component {
   fetchData() {
     const {
       schoolCode,
-      year,
+      school,
+      isFetchingSchool,
+    } = this.props;
+
+    if (!school && isFetchingSchool !== true) {
+      log('fetching school');
+      this.props.fetchSchool(schoolCode);
+    }
+  }
+
+  fetchOnceAfterSchool() {
+    const {
+      school,
       programs,
       isFetchingPrograms,
-      fetchProgramsByFilter,
     } = this.props;
 
     if ((!programs || !programs.length) && isFetchingPrograms !== true) {
-      fetchProgramsByFilter({ schoolCode, year })
+      log('fetching programs');
+      this.props.fetchProgramsByFilter({schoolCode: school.code, year: '2018'});
+    }
+  }
+
+  componentDidUpdate() {
+    const {
+      school,
+      isFetchingSchool,
+    } = this.props;
+
+    if (school && isFetchingSchool === false) {
+      this.fetchOnceAfterSchool();
     }
   }
 
   render() {
     const {
-      schoolCode,
-      year,
+      school,
+      isFetchingSchool,
       programs,
       isFetchingPrograms,
-      makeProgramOptions,
       history,
       onSubmit,
+      year,
     } = this.props;
 
-    const programUrl = getSchoolProgramsUrl(schoolCode, year);
+    const programUrl = school ? getSchoolProgramsUrl(school.code, year) : '';
 
     return (
       <Layout>
@@ -76,13 +103,18 @@ class SnippetsNew extends React.Component {
               </Nav>
             </div>
             <div className="card-body">
-              {isFetchingPrograms !== false ?
+              {isFetchingPrograms !== false && isFetchingSchool !== false ?
                 <ComponentLoading /> :
                 <Form optionsPrograms={makeProgramOptions(programs)}
-                      schoolCode={schoolCode}
-                      year={year}
-                      onSubmitSuccess={() => history.push(getSchoolProgramsUrl(schoolCode, year))}
-                      onSubmit={onSubmit}
+                  optionsSchools={[
+                    { value: school.code, label: school.name }
+                  ]}
+                  model={{
+                    schoolCode: school.code,
+                    year,
+                  }}
+                  onSubmit={onSubmit}
+                  onSubmitSuccess={() => history.push(getSchoolProgramsUrl(school.code, year))}
                 />
               }
             </div>
@@ -95,3 +127,6 @@ class SnippetsNew extends React.Component {
 }
 
 export default SnippetsNew;
+
+
+

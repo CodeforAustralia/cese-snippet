@@ -68,8 +68,8 @@ class Program extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.program && !this.props.school) {
+  componentDidUpdate() {
+    if (this.props.program) {
       this.fetchOnceAfterProgram();
     }
   }

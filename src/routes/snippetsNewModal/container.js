@@ -2,8 +2,12 @@ import { connect } from 'react-redux';
 
 import { createSnippet } from 'store/snippets/actionCreators';
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state, ownProps) => {
+  const { location } = ownProps;
+  const { school, program } = location.state;
   return {
+    program,
+    school,
   }
 };
 

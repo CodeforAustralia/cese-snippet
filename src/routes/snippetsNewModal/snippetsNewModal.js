@@ -15,7 +15,7 @@ import DocumentOnKeyUp from 'components/documentOnKeyUp';
 import style from './../snippetsNew/style.scss';
 
 
-const SnippetsNewModal = ({ history, schoolCode, year, programId, onSubmit }) => {
+const SnippetsNewModal = ({ history, program, school, onSubmit }) => {
 
   const goBack = () => history.goBack();
 
@@ -43,11 +43,19 @@ const SnippetsNewModal = ({ history, schoolCode, year, programId, onSubmit }) =>
             </Nav>
           </div>
           <div className="card-body">
-            <Form programId={programId}
-                  schoolCode={schoolCode}
-                  year={year}
-                  onSubmitSuccess={goBack}
+            <Form optionsPrograms={[
+                    { value: program.id, label: program.name }
+                  ]}
+                  optionsSchools={[
+                    { value: school.code, label: school.name }
+                  ]}
+                  model={{
+                    programId: program.id,
+                    schoolCode: school.code,
+                    year: program.year,
+                  }}
                   onSubmit={onSubmit}
+                  onSubmitSuccess={goBack}
             />
           </div>
         </div>

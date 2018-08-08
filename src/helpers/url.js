@@ -22,11 +22,13 @@ export const getSnippetsNewUrl = () => {
   return `/snippets/new`;
 };
 
-export const getSnippetsNewModalTo = () => {
+export const getSnippetsNewModalTo = (program, school) => {
   return {
     pathname: '/snippets/new',
     state: {
       modal: true,
+      school,
+      program,
     },
   }
 };
