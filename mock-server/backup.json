@@ -1,6 +1,52 @@
 {
   "session": {},
-  "programs": [],
+  "programs": [
+    {
+      "id": "1",
+      "schoolCode": "4548",
+      "category": "Curriculum Engagement",
+      "subCategory": "Literacy",
+      "aims": "L3 is a whole-class intervention that aims to reduce the\nrisk of students not achieving expected literacy levels by\nthe end of their first year of schooling.",
+      "description": "L3 is a research-based Kindergarten classroom\nintervention, targeting text reading and writing. It provides\nrich literacy experiences through systematic and explicit\nteaching.",
+      "descriptionFull": null,
+      "website": "https://education.nsw.gov.au/teaching-and-learning/curriculum/literacy-and-numeracy/literacy/Language,-Learning-and-Literacy",
+      "participantGroups": [
+        "Students"
+      ],
+      "participantGroupsDescription": null,
+      "focusGroup": null,
+      "focusGroupOther": null,
+      "yearLevels": [
+        "K",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "cohortSize": 20,
+      "deliveredByType": "School Staff",
+      "externalProvider": null,
+      "staff": [
+        "1"
+      ],
+      "year": 2018,
+      "terms": [
+        1
+      ],
+      "tags": [
+        "reading",
+        "writing",
+        "vocabulary"
+      ],
+      "createdDate": 1530238113250,
+      "createdBy": "1",
+      "updatedBy": "1",
+      "updatedDate": 1530238113250,
+      "name": "Language, Learning and Literacy (L3)"
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -14,10 +60,40 @@
       ],
       "createdAt": 1533271175493,
       "updatedAt": 1533271175493
+    },
+    {
+      "id": "2",
+      "deptId": "456",
+      "username": "eunice.zang",
+      "email": "eunice.zang@test.det.nsw.edu.au",
+      "firstName": "Eunice",
+      "lastName": "Zang",
+      "schools": [
+        "4548"
+      ]
     }
   ],
   "schools": [{"code":"4548","name":"Copacabana Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=CPS"},{"code":"3997","name":"Hilltop Road Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=HRPS"},{"code":"7416","name":"Eastwood Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=EPS"},{"code":"4293","name":"St Ives North Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=SINPS"},{"code":"8514","name":"Plumpton High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=PHS"},{"code":"8243","name":"Riverside Girls High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=RGHS"},{"code":"8326","name":"Mosman High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=MHS"},{"code":"8822","name":"Macarthur Girls High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=MGHS"},{"code":"8225","name":"Marsden High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=MHS"},{"code":"8568","name":"Northern Beaches Secondary College Freshwater Senior Campus","subtype":"secondary","yearLevels":["11","12"],"avatar":"http://via.placeholder.com/70x70?text=NBSCFSC"},{"code":"1485","name":"Cammeray Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=CPS"},{"code":"2042","name":"Goonengerry Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=GPS"},{"code":"8554","name":"Hastings Secondary College, Westport Campus","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=HSCWC"},{"code":"1545","name":"Cessnock West Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=CWPS"},{"code":"1003","name":"Abermain Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=APS"},{"code":"8177","name":"Kurri Kurri High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=KKHS"},{"code":"8127","name":"Maitland Grossmann High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=MGHS"},{"code":"2005","name":"Glen Innes Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=GIPS"},{"code":"1030","name":"Alstonville Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=APS"},{"code":"1674","name":"Crabbes Creek Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=CCPS"},{"code":"3876","name":"Muswellbrook South Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=MSPS"},{"code":"8393","name":"Canley Vale High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=CVHS"},{"code":"8280","name":"Camden Haven High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=CHHS"},{"code":"8265","name":"Sefton High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=SHS"},{"code":"7418","name":"Gardeners Road Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=GRPS"},{"code":"7412","name":"Croydon Park Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=CPPS"},{"code":"1807","name":"Earlwood Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=EPS"},{"code":"8209","name":"Cabramatta High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=CHS"},{"code":"5220","name":"Lansvale Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=LPS"},{"code":"8187","name":"East Hills Girls Technology High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=EHGTHS"},{"code":"8176","name":"Liverpool Girls High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=LGHS"},{"code":"2187","name":"Hoxton Park Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=HPPS"},{"code":"1065","name":"Ashfield Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=APS"},{"code":"7431","name":"Newtown Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=NPS"},{"code":"7432","name":"Paddington Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=PPS"},{"code":"2394","name":"Lidcombe Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=LPS"},{"code":"8535","name":"Concord High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=CHS"},{"code":"8152","name":"Burwood Girls High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=BGHS"},{"code":"8437","name":"Kirrawee High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=KHS"},{"code":"4124","name":"Yowie Bay Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=YBPS"},{"code":"1816","name":"Eden Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=EPS"},{"code":"1168","name":"Bega Valley Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=BVPS"},{"code":"8444","name":"Canobolas Rural Technology High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=CRTHS"},{"code":"3045","name":"Scarborough Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=SPS"},{"code":"2818","name":"Otford Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=OPS"},{"code":"8536","name":"Narooma High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=NHS"},{"code":"8334","name":"Yass High School","subtype":"secondary","yearLevels":["7","8","9","10","11","12"],"avatar":"http://via.placeholder.com/70x70?text=YHS"},{"code":"7416","name":"Eastwood Public School","subtype":"primary","yearLevels":["K","1","2","3","4","5","6"],"avatar":"http://via.placeholder.com/70x70?text=EPS"}],
-  "snippets": [],
+  "snippets": [
+    {
+      "id": "1",
+      "schoolCode": "4548",
+      "year": "2018",
+      "programId": "1",
+      "type": "photo",
+      "description": "Ubi est bi-color era?",
+      "attachment": {
+        "format": "jpeg",
+        "width": 600,
+        "height": 400,
+        "filename": "image01.jpg",
+        "url": "https://picsum.photos/600/400/?random",
+        "thumbnailUrl": "https://picsum.photos/64/64"
+      },
+      "createdBy": "1",
+      "createdDate": 1530238113250
+    }
+  ],
   "cms": {
     "participantGroups": [
       { "label": "Students", "id": "1" },
