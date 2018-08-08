@@ -11,8 +11,7 @@ import {
 
 import Layout from 'layouts/app';
 import { PageLoading } from "components/loading";
-import { getProgramUrl } from "helpers/url";
-import { UpdateForm as Form } from "./../programsNew/form";
+import Form from "./form";
 
 
 const log = Bows('V: Program');
@@ -33,22 +32,23 @@ class Program extends React.Component {
       log('fetching program');
       this.props.fetchProgram();
     }
+    this.props.fetchCms();
   }
 
   fetchOnceAfterProgram() {
     const {
       program,
-      school,
       isFetchingSchool,
     } = this.props;
-    if (!school && isFetchingSchool !== true) {
+
+    if (isFetchingSchool !== true) {
       log('fetching school');
       this.props.fetchSchool(program.schoolCode);
     }
   }
 
   componentDidUpdate() {
-    if (this.props.program) {
+    if (this.props.program && !this.props.school) {
       this.fetchOnceAfterProgram();
     }
   }
@@ -59,13 +59,16 @@ class Program extends React.Component {
       isFetchingProgram,
       school,
       isFetchingSchool,
+      onSubmit,
+      programUrl,
+      history,
+      cms,
+      isFetchingCms,
     } = this.props;
 
-    if (isFetchingProgram !== false || isFetchingSchool !== false) {
+    if (isFetchingProgram !== false || isFetchingSchool !== false || isFetchingCms !== false) {
       return <PageLoading />
     }
-
-    const programUrl = getProgramUrl(program.id);
 
     return (
       <Layout>
@@ -76,7 +79,14 @@ class Program extends React.Component {
 
             <h1>{program.name}</h1>
 
-            <Form onSubmitSuccess={() => console.log('Woo hoo')} />
+            <Form optionsSchools={[
+                    { value: school.code, label: school.name }
+                  ]}
+                  cms={cms}
+                  model={program}
+                  onSubmit={onSubmit}
+                  onSubmitSuccess={() => history.push(programUrl)}
+            />
           </Col>
         </Row>
       </Layout>

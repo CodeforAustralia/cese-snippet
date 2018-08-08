@@ -5,7 +5,6 @@ import {
   Button,
   Label,
   Col,
-  CustomInput,
   Form,
 } from 'reactstrap';
 import Bows from 'bows';
@@ -15,24 +14,23 @@ import FieldTextInput from "components/fieldTextInput";
 import FieldTextAreaInput from "components/fieldTextAreaInput";
 
 
-const log = Bows('F: SnippetsNew');
+const log = Bows('F: ProgramEdit');
 
-const QuickAddProgramForm = ({
-                               optionsPrograms,
-                               optionsSchools,
+const ProgramEditForm = ({
+                           optionsSchools,
+                           cms,
 
-                               handleSubmit,
-                               values,
-                               setFieldValue,
-                               setFieldTouched,
-                               errors,
-                               touched,
-                               isSubmitting,
-                             }) => {
+                           handleSubmit,
+                           values,
+                           setFieldValue,
+                           setFieldTouched,
+                           errors,
+                           touched,
+                           isSubmitting,
+                         }) => {
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
 
-      {/*<FormGroup hidden={true}>*/}
       <FormGroup>
         <Col md={8}>
           <Label htmlFor="schoolCode">School</Label>
@@ -41,42 +39,20 @@ const QuickAddProgramForm = ({
                        value={values.schoolCode}
                        onChange={setFieldValue}
                        onBlur={setFieldTouched}
+                       error={errors.schoolCode}
                        disabled
           />
         </Col>
       </FormGroup>
 
-      {/*<FormGroup hidden={true}>*/}
       <FormGroup>
         <Col md={4}>
           <Label htmlFor="year">Year</Label>
           <FieldTextInput name="year"
                           value={values.year}
+                          error={errors.year}
                           disabled
           />
-        </Col>
-      </FormGroup>
-
-      {/*<FormGroup hidden={values.programId}>*/}
-      <FormGroup>
-        <Col md={6}>
-          <Label htmlFor="programId">Program</Label>
-          {values.programId ?
-            <FieldSelect name="programId"
-                         options={optionsPrograms}
-                         value={values.programId}
-                         onChange={setFieldValue}
-                         onBlur={setFieldTouched}
-                         disabled
-            /> :
-            <FieldSelect name="programId"
-                         options={optionsPrograms}
-                         value={values.programId}
-                         onChange={setFieldValue}
-                         onBlur={setFieldTouched}
-                         error={errors.programId}
-            />
-          }
         </Col>
       </FormGroup>
 
@@ -90,15 +66,8 @@ const QuickAddProgramForm = ({
         </Col>
       </FormGroup>
 
-      <FormGroup>
-        <Col md={5}>
-          <Label htmlFor="photo">Add photo</Label>
-          <CustomInput type="file" label="Choose photo" id="photo" />
-        </Col>
-      </FormGroup>
-
       <Col md={8}>
-        <Button type="submit" color="primary" disabled={isSubmitting}>{isSubmitting ? 'Posting' : 'Post'}</Button>
+        <Button type="submit" color="primary" disabled={isSubmitting}>{isSubmitting ? 'Saving' : 'Save'}</Button>
       </Col>
 
     </Form>
@@ -110,19 +79,26 @@ export default withFormik({
   mapPropsToValues: (props) => {
     return {
       ...{
-        schoolCode: '',
-        year: '',
-        programId: '',
-        type: 'photo',
-        description: '',
-        attachment: {
-          format: 'jpeg',
-          width: 600,
-          height: 400,
-          filename: `${new Date().getTime()}.jpg`,
-          url: "https://picsum.photos/600/400/?random",
-          thumbnailUrl: "https://picsum.photos/64/64"
-        },
+        name: "",
+        schoolCode: "",
+        programTemplateId: '',
+        category: "",
+        subCategory: "",
+        aims: "",
+        description: "",
+        website: "",
+        participantGroups: [],
+        participantGroupsDescription: "",
+        focusGroup: "",
+        focusGroupOther: "",
+        yearLevels: [],
+        cohortSize: "",
+        deliveredByType: "",
+        externalProvider: "",
+        staff: [],
+        year: "",
+        terms: [],
+        tags: [],
       },
       ...props.model,
     };
@@ -130,11 +106,15 @@ export default withFormik({
   validate: (values, props) => {
     const errors = {};
 
-    if (!values.programId) {
-      errors.programId = 'Required';
+    if (!values.schoolCode) {
+      errors.schoolCode = 'Required';
     }
-    if (!values.description) {
-      errors.description = 'Required';
+    if (!values.year) {
+      errors.year = 'Required';
+    }
+
+    if (Object.keys(errors).length) {
+      log(`invalid: ${JSON.stringify(errors)}`);
     }
 
     return errors;
@@ -148,7 +128,9 @@ export default withFormik({
     }
   ) => {
     log(`submitting - ${JSON.stringify(values)}`);
+
     props.onBeforeSubmit && props.onBeforeSubmit();
+
     return props.onSubmit(values).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
@@ -164,5 +146,5 @@ export default withFormik({
       props.onSubmitSuccess && props.onSubmitSuccess();
     });
   }
-})(QuickAddProgramForm);
+})(ProgramEditForm);
 

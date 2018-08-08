@@ -16,7 +16,7 @@ import ProgramEdit from 'routes/programEdit';
 import ProgramSnippets from 'routes/programSnippets';
 import SnippetNew from 'routes/snippetsNew';
 import SnippetsNewModal from 'routes/snippetsNewModal';
-import ProgramNew from 'routes/programsNew';
+// import ProgramNew from 'routes/programsNew';
 
 class App extends React.Component {
 
@@ -58,7 +58,7 @@ class App extends React.Component {
           <PrivateRoute path="/onboarding/school-programs" component={WizardSchoolPrograms} />
           <PrivateRoute path="/schools/:schoolCode/programs/:year" component={SchoolPrograms} />
           <PrivateRoute path="/snippets/new" component={SnippetNew} />
-          <PrivateRoute path="/programs/new" component={ProgramNew} />
+          {/*<PrivateRoute path="/programs/new" component={ProgramNew} />*/}
           <PrivateRoute exact path="/programs/:programId" component={Program} />
           <PrivateRoute path="/programs/:programId/edit" component={ProgramEdit} />
           <PrivateRoute path="/programs/:programId/snippets" component={ProgramSnippets} />

@@ -8,13 +8,23 @@ import {
   selectSchool,
   selectIsFetching as selectIsFetchingSchool,
 } from "store/schools/selectors";
-import { fetchProgram } from "store/programs/actionCreators";
+import {
+  fetchProgram,
+  updateProgram,
+} from "store/programs/actionCreators";
 import { fetchSchool } from "store/schools/actionCreators";
+import { getProgramUrl } from "helpers/url";
+import {
+  selectCms,
+  selectIsFetching as selectIsFetchingCms,
+} from 'store/cms/selectors';
+import { fetchCms } from 'store/cms/actionCreators';
 
 
 const mapStateToProps = (state, ownProps) => {
   const { programId } = ownProps.match.params;
   const program = selectProgram(state, programId);
+  const cms = selectCms(state);
 
   let school;
 
@@ -27,6 +37,9 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingProgram: selectIsFetchingProgram(state, programId),
     school,
     isFetchingSchool: selectIsFetchingSchool(state),
+    programUrl: getProgramUrl(programId),
+    cms,
+    isFetchingCms: selectIsFetchingCms(state),
   }
 };
 
@@ -35,6 +48,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchProgram: () => dispatch(fetchProgram(programId)),
     fetchSchool: (schoolCode) => dispatch(fetchSchool(schoolCode)),
+    onSubmit: (program) => dispatch(updateProgram(program)),
+    fetchCms: () => dispatch(fetchCms()),
   }
 };
 
