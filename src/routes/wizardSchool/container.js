@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { selectSessionUser } from 'store/sessionUser/selectors';
-import { updateUserProcess } from 'store/users/flows';
+import { updateUser } from 'store/users/actionCreators';
 import {
   selectSchools,
   selectIsFetching as selectIsFetchingSchools,
@@ -30,7 +30,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (user) => dispatch(updateUserProcess(user)),
+    onSubmit: (user) => dispatch(updateUser(user)),
     fetchSchools: () => dispatch(fetchSchools(PILOT_SCHOOLS_CODES)),
   }
 };

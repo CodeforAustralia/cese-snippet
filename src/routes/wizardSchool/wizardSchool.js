@@ -25,11 +25,8 @@ const OnboardingSchoolProgramsUrl = getOnboardingSchoolProgramsUrl();
 class WizardSchool extends React.Component {
   constructor(props) {
     super(props);
-    this.setContainerState = this.setContainerState.bind(this);
     this.state = {
-      isSubmitting: false,
-      isError: false,
-      hasSchool: this.props.sessionUser.schools && this.props.sessionUser.schools.length,
+      hasSubmitted: false,
     }
   }
 
@@ -41,9 +38,6 @@ class WizardSchool extends React.Component {
     }
   }
 
-  setContainerState(props) {
-    this.setState({...this.state, ...props});
-  }
   render() {
     const {
       optionsSchools,
@@ -51,13 +45,11 @@ class WizardSchool extends React.Component {
       sessionUser,
       isFetchingSchools,
     } = this.props;
-    const {
-      isSubmitting,
-      hasSchool,
-    } = this.state;
+    const { hasSubmitted } = this.state;
 
     return (
-      <Layout nextTo={OnboardingSchoolProgramsUrl} activateNext={hasSchool && !isSubmitting}>
+      <Layout nextTo={OnboardingSchoolProgramsUrl}
+              activateNext={!(!hasSubmitted && isFetchingSchools !== false) && sessionUser.schools.length}>
         <ArrowBreadcrumb linkList={[
           { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: false, },
           { to: OnboardingSchoolUrl, label: '2', visited: true,  disabled: true, active: true, },
@@ -68,11 +60,11 @@ class WizardSchool extends React.Component {
           <Col>
             <h1 className="h2">Select your school</h1>
             <div className="mt-4">
-              {!isSubmitting && isFetchingSchools !== false ?
+              {isFetchingSchools !== false ?
                 <ComponentLoading /> :
                 <Form optionsSchools={optionsSchools}
                       onSubmit={onSubmit}
-                      setContainerState={this.setContainerState}
+                      onSubmitSuccess={() => this.setState({hasSubmitted: true})}
                       model={sessionUser}
                 />
               }
