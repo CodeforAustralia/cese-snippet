@@ -20,11 +20,13 @@ $active-background: #75c0ce;
   margin-bottom: 1rem;
 }
 
-.breadcrumb{
-  background: none;
-  overflow: hidden;
-  padding: 0;
-  margin-bottom: 0;
+.breadcrumb {
+  ol {
+    background: none;
+    overflow: hidden;
+    padding: 0;
+    margin-bottom: 0;
+  }
 }
 
 .breadcrumbItem {
