@@ -6,12 +6,15 @@ import {
   NavLink,
 } from 'reactstrap';
 import { Link as RRLink } from 'react-router-dom';
+import cx from 'classnames';
 
 import Layout from "layouts/app";
 import Breadcrumb from "components/breadcrumb";
 import { getSchoolProgramsUrl } from "helpers/url";
 import { ComponentLoading } from "components/loading";
 import Form from './form';
+
+import style from './style.scss';
 
 
 class SnippetsNew extends React.Component {
@@ -62,7 +65,7 @@ class SnippetsNew extends React.Component {
             <div className="card-header">
               <Nav pills className="card-header-pills">
                 <NavItem>
-                  <NavLink tag={RRLink} to="#" active>Photo</NavLink>
+                  <NavLink tag={RRLink} to="#" className={style.altActiveStyle} active>Photo</NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink tag={RRLink} to="#" disabled>Worksheet <sup><Badge>Beta</Badge></sup></NavLink>

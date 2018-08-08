@@ -1,0 +1,11 @@
+@import '~style/helpers';
+
+.altActiveStyle {
+  background: white !important;
+  color: $secondary !important;
+  border: 1px solid $secondary !important;
+}
+
+.noScroll {
+  overflow: hidden;
+}
