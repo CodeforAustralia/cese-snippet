@@ -17,7 +17,7 @@ export const mapStateToProps = (state) => {
 
   let optionsSchools = [];
 
-  if (schools && schools.length) {
+  if (schools) {
     optionsSchools = makeSchoolsOptions(schools);
   }
 

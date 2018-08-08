@@ -34,7 +34,7 @@ const WizardLayout = ({
                 {prevTo && <Button tag={RRLink}
                                    size="sm"
                                    to={prevTo}
-                                   color="light"
+                                   color="link"
                                    disabled={!activatePrev}>{`< Back`}</Button>}
               </Col>
               <Col>

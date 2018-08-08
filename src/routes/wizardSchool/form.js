@@ -51,7 +51,6 @@ class RegisterSchoolForm extends React.Component {
             />
           </Col>
         </FormGroup>
-        {isSubmitting && <PageLoading />}
       </Form>
     )
   }
@@ -81,17 +80,21 @@ export default withFormik({
 
     log(`submitting - ${JSON.stringify(newSessionUser)}`);
 
+    props.onBeforeSubmit();
+
     return props.onSubmit(newSessionUser).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
         setSubmitting(false);
+        return resp;
       },
       errors => {
         log(`error - ${JSON.stringify(errors)}`);
         setSubmitting(false);
+        return errors;
       }
-    ).then(() => {
-      props.onSubmitSuccess();
+    ).then((user) => {
+      props.onSubmitSuccess(user);
     })
   }
 })(RegisterSchoolForm);

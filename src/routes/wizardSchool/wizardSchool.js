@@ -14,6 +14,7 @@ import {
   getOnboardingSchoolProgramsUrl
 } from "helpers/url";
 import { ComponentLoading } from "components/loading";
+import {PageLoading} from "../../components/loading/index";
 
 
 const log = Bows('V: WizSchool');
@@ -26,13 +27,18 @@ class WizardSchool extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasSubmitted: false,
+      isSubmitting: false,
     }
   }
 
   componentDidMount() {
-    const { schools, isFetchingSchools, fetchSchools } = this.props;
-    if ((!schools || !schools.length) || isFetchingSchools !== true) {
+    const {
+      optionsSchools,
+      isFetchingSchools,
+      fetchSchools
+    } = this.props;
+
+    if ((!optionsSchools || !optionsSchools.length) || isFetchingSchools === true) {
       log('fetching schools');
       fetchSchools();
     }
@@ -45,32 +51,37 @@ class WizardSchool extends React.Component {
       sessionUser,
       isFetchingSchools,
     } = this.props;
-    const { hasSubmitted } = this.state;
+    const { isSubmitting } = this.state;
 
     return (
       <Layout nextTo={OnboardingSchoolProgramsUrl}
-              activateNext={!(!hasSubmitted && isFetchingSchools !== false) && sessionUser.schools.length}>
+              activateNext={sessionUser.schools.length && !isSubmitting}>
         <ArrowBreadcrumb linkList={[
           { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: false, },
           { to: OnboardingSchoolUrl, label: '2', visited: true,  disabled: true, active: true, },
           { to: OnboardingSchoolProgramsUrl, label: '3', visited: false,  disabled: true, },
         ]} />
 
-        <Row className="mt-5">
-          <Col>
-            <h1 className="h2">Select your school</h1>
-            <div className="mt-4">
-              {isFetchingSchools !== false ?
-                <ComponentLoading /> :
-                <Form optionsSchools={optionsSchools}
-                      onSubmit={onSubmit}
-                      onSubmitSuccess={() => this.setState({hasSubmitted: true})}
-                      model={sessionUser}
-                />
-              }
-            </div>
-          </Col>
-        </Row>
+        {isFetchingSchools !== false ?
+          <PageLoading /> :
+          <Row className="mt-5">
+            <Col>
+              <h1 className="h2">Select your school</h1>
+              <div className="mt-4">
+                  <Form optionsSchools={optionsSchools}
+                        onBeforeSubmit={() => {
+                          this.setState({ isSubmitting: true });
+                        }}
+                        onSubmit={onSubmit}
+                        onSubmitSuccess={() => {
+                          this.setState({ isSubmitting: false });
+                        }}
+                        model={sessionUser}
+                  />
+              </div>
+            </Col>
+          </Row>
+        }
       </Layout>
     )
   }
