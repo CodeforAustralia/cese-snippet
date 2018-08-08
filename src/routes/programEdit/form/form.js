@@ -49,25 +49,29 @@ const ProgramEditForm = ({
 
       <IndexedPartLayout index="1" totalIndex="10">
         <div>
-          <FormGroup>
-            <Label htmlFor="schoolCode">School</Label>
-            <FieldSelect name="schoolCode"
-                         options={optionsSchools}
-                         value={values.schoolCode}
-                         onChange={setFieldValue}
-                         onBlur={setFieldTouched}
-                         error={errors.schoolCode}
-                         disabled
-            />
+          <FormGroup row>
+            <Col md={8}>
+              <Label htmlFor="schoolCode">School</Label>
+              <FieldSelect name="schoolCode"
+                           options={optionsSchools}
+                           value={values.schoolCode}
+                           onChange={setFieldValue}
+                           onBlur={setFieldTouched}
+                           error={errors.schoolCode}
+                           disabled
+              />
+            </Col>
           </FormGroup>
         </div>
       </IndexedPartLayout>
 
       <IndexedPartLayout index="2" totalIndex="10">
         <div>
-          <FormGroup>
-            <Label htmlFor="name">Program name</Label>
-            <FieldTextInput name="name" disabled />
+          <FormGroup row>
+            <Col md={8}>
+              <Label htmlFor="name">Program name</Label>
+              <FieldTextInput name="name" disabled />
+            </Col>
           </FormGroup>
         </div>
       </IndexedPartLayout>
