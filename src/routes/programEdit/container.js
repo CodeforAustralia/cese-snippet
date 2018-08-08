@@ -20,6 +20,7 @@ import {
 } from 'store/cms/selectors';
 import { fetchCms } from 'store/cms/actionCreators';
 import { selectSessionUser } from "store/sessionUser/selectors";
+import {getSchoolProgramsUrl} from "../../helpers/url";
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -40,6 +41,7 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingProgram: selectIsFetchingProgram(state, programId),
     school,
     isFetchingSchool: selectIsFetchingSchool(state),
+    schoolProgramUrl: getSchoolProgramsUrl(program.schoolCode, program.year),
     programUrl: getProgramUrl(programId),
     cms,
     isFetchingCms: selectIsFetchingCms(state),

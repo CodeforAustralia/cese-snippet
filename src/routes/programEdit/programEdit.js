@@ -3,12 +3,9 @@ import Bows from 'bows';
 import {
   Row,
   Col,
-  Button,
 } from 'reactstrap';
-import {
-  Link as RRLink,
-} from 'react-router-dom';
 
+import Breadcrumb from 'components/breadcrumb';
 import Layout from 'layouts/app';
 import { PageLoading } from "components/loading";
 import Form from "./form";
@@ -60,6 +57,7 @@ class Program extends React.Component {
       school,
       isFetchingSchool,
       onSubmit,
+      schoolProgramUrl,
       programUrl,
       history,
       cms,
@@ -73,13 +71,19 @@ class Program extends React.Component {
 
     return (
       <Layout>
-        <Button color="link" tag={RRLink} to={programUrl} className="pl-0">{`< ${program.name}`}</Button>
+        <Breadcrumb items={[
+          { label: 'Programs' },
+          { label: school.name, to: schoolProgramUrl },
+          { label: program.name, to: programUrl, },
+          { label: `Editing` }
+        ]} />
 
         <Row>
           <Col xs={{size:12}} sm={{size:9}} md={{size:8}}>
 
-            <p className="mb-0 mt-3">{school.name}</p>
             <h1>{program.name}</h1>
+
+            <p>Help record details about the program. Enter any information and click "Save".</p>
 
             <Form optionsSchools={[
                     { value: school.code, label: school.name }
