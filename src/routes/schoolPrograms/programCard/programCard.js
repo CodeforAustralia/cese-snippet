@@ -141,7 +141,7 @@ class ProgramCard extends React.Component {
                       </Media>
                       {snippet.type === 'photo' &&
                       <Media right middle className={style.snippetImageRight}>
-                        <img src={snippet.attachment.url} alt="Snippet thumbnail" className="media-object" width={120} height={120} />
+                        <img src={snippet.attachment.thumbnailUrl} alt="Snippet thumbnail" className="media-object" width={120} height={120} />
                       </Media>
                       }
                     </Media>

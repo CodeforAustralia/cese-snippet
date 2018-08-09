@@ -35,11 +35,11 @@ const SnippetsNewModal = ({ history, program, school, onSubmit, sessionUser }) =
                 <NavLink tag={RRLink} to="#" className={style.altActiveStyle} active>Photo</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRLink} to="#" disabled>Worksheet <sup><Badge>Beta</Badge></sup></NavLink>
+                <NavLink tag={RRLink} to="#" disabled>Files or resources <sup><Badge>Beta</Badge></sup></NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink tag={RRLink} to="#" disabled>Applaud <sup><Badge>Beta</Badge></sup></NavLink>
-              </NavItem>
+              {/*<NavItem>*/}
+                {/*<NavLink tag={RRLink} to="#" disabled>Applaud <sup><Badge>Beta</Badge></sup></NavLink>*/}
+              {/*</NavItem>*/}
             </Nav>
           </div>
           <div className="card-body">
