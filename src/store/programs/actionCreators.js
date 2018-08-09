@@ -87,7 +87,7 @@ export const createSuccess = (program) => {
 export const createError = (error) => {
   log('create error');
   return {
-    type: ACTION_TYPES.createSuccess,
+    type: ACTION_TYPES.createError,
     payload: {
       message: error.message || 'Something went wrong.'
     }
@@ -97,14 +97,14 @@ export const createError = (error) => {
 export const updateRequest = () => {
   log('creating');
   return {
-    type: ACTION_TYPES.createRequest,
+    type: ACTION_TYPES.updateRequest,
   }
 };
 
 export const updateSuccess = (program) => {
   log('create success');
   return {
-    type: ACTION_TYPES.createSuccess,
+    type: ACTION_TYPES.updateSuccess,
     payload: {
       programs: objectify(program),
     }
@@ -114,7 +114,7 @@ export const updateSuccess = (program) => {
 export const updateError = (error) => {
   log('create error');
   return {
-    type: ACTION_TYPES.createSuccess,
+    type: ACTION_TYPES.updateError,
     payload: {
       message: error.message || 'Something went wrong.'
     }

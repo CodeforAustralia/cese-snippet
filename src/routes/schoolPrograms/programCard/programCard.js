@@ -35,15 +35,8 @@ const log = Bows('C: Program card');
 
 class ProgramCard extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.programUrl = getProgramUrl(props.program.id);
-    this.programEditUrl = getProgramEditUrl(props.program.id);
-    this.programSnippetsUrl = getProgramSnippetsUrl(props.program.id);
-    this.snippetModalUrl = getSnippetsNewModalTo(props.program, props.school);
-  }
-
   componentDidMount() {
+    // console.log(this.props.program.id)
     this.fetchData();
   }
 
@@ -58,19 +51,22 @@ class ProgramCard extends React.Component {
     const { snippets, fetchSnippets, isFetchingSnippetsByFilter, program, filterProps } = this.props;
     if (!snippets || !snippets.length && isFetchingSnippetsByFilter !== true) {
       log('fetching snippets');
-      fetchSnippets();
+      // log(filterProps);
+      // log(program.id)
+      fetchSnippets(filterProps);
     }
 
-    if (program.id >= '10') {
-      console.log('filterProps', JSON.stringify(filterProps));
-      console.log('snippets', JSON.stringify(snippets));
-      console.log('isFetchingSnippetsByFilter', JSON.stringify(isFetchingSnippetsByFilter));
-      debugger
-    }
+    // if (program.id >= '10') {
+    //   console.log('filterProps', JSON.stringify(filterProps));
+    //   console.log('snippets', JSON.stringify(snippets));
+    //   console.log('isFetchingSnippetsByFilter', JSON.stringify(isFetchingSnippetsByFilter));
+    //   // debugger
+    // }
   }
 
   render() {
     const {
+      school,
       program,
       snippets,
       isFetchingSnippetsByFilter,
@@ -83,6 +79,10 @@ class ProgramCard extends React.Component {
 
     const hasSnippets = snippets && snippets.length;
 
+    const programUrl = getProgramUrl(program.id);
+    const programEditUrl = getProgramEditUrl(program.id);
+    const programSnippetsUrl = getProgramSnippetsUrl(program.id);
+    const snippetModalUrl = getSnippetsNewModalTo(program, school);
 
     return (
       <Card>
@@ -96,10 +96,10 @@ class ProgramCard extends React.Component {
 
         <div className={style.actions}>
           <p className={style.actionTextLhs}>
-            <RRLink to={this.programEditUrl}>{hasEdited ? 'Edit details >' : 'Record details +'}</RRLink>
+            <RRLink to={programEditUrl}>{hasEdited ? 'Edit details >' : 'Record details +'}</RRLink>
           </p>
           {!hasNotEnteredDetails && <p className={style.actionTextRhs}>
-            <RRLink to={this.programUrl}>View {`>`}</RRLink>
+            <RRLink to={programUrl}>View {`>`}</RRLink>
           </p>}
         </div>
 
@@ -108,8 +108,8 @@ class ProgramCard extends React.Component {
             {isFetchingSnippetsByFilter !== false ?
               null :
               hasSnippets ?
-                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={this.snippetModalUrl}>Post another</Button> :
-                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={this.snippetModalUrl}>Post</Button>
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={snippetModalUrl}>Post another</Button> :
+                <Button color="primary" outline size="xs" className={style.snippetAddButton} tag={RRLink} to={snippetModalUrl}>Post</Button>
             }
           </CardTitle>
 
@@ -151,7 +151,7 @@ class ProgramCard extends React.Component {
 
                 <div className={style.snippetListFooter}>
                   <span className={style.snippetListMeta}>{snippets.length && snippets.length > 1 && `${snippets.length} Snippets`}</span>
-                  <RRLink to={this.programSnippetsUrl} className={style.snippetListMore}>More Snippets ></RRLink>
+                  <RRLink to={programSnippetsUrl} className={style.snippetListMore}>More Snippets ></RRLink>
                 </div>
               </div>
 
@@ -159,7 +159,7 @@ class ProgramCard extends React.Component {
 
               // NO SNIPPETS
 
-              <p className="text-muted">Start recording moments <RRLink to={this.snippetModalUrl}>post the first Snippet</RRLink>.</p>
+              <p className="text-muted">Start recording moments <RRLink to={snippetModalUrl}>post the first Snippet</RRLink>.</p>
           }
 
         </Card>

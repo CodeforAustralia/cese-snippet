@@ -29,10 +29,12 @@ const mapStateToProps = (state, ownProps) => {
   const cms = selectCms(state);
   const sessionUser = selectSessionUser(state);
 
-  let school;
+  let school,
+    schoolProgramUrl;
 
   if (program) {
     school = selectSchool(state, program.schoolCode);
+    schoolProgramUrl = getSchoolProgramsUrl(program.schoolCode, program.year);
   }
 
   return {
@@ -41,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
     isFetchingProgram: selectIsFetchingProgram(state, programId),
     school,
     isFetchingSchool: selectIsFetchingSchool(state),
-    schoolProgramUrl: getSchoolProgramsUrl(program.schoolCode, program.year),
+    schoolProgramUrl,
     programUrl: getProgramUrl(programId),
     cms,
     isFetchingCms: selectIsFetchingCms(state),
