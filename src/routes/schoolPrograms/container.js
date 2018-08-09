@@ -11,9 +11,10 @@ import {
 } from "store/schools/selectors";
 import {
   selectProgramsByFilter,
-  selectIsFetching as selectIsFetchingPrograms,
+  selectIsFetchingByFilter as selectIsFetchingProgramsByFilter,
   selectErrorMessage as selectErrorMessagePrograms,
 } from "store/programs/selectors";
+// import { sortByDateCreated } from "store/programs/helpers";
 
 export const mapStateToProps = (state, ownProps) => {
   const { schoolCode, year } = ownProps.match.params;
@@ -24,10 +25,10 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     school,
-    programs: filteredPrograms,
+    programs: filteredPrograms, // sortByDateCreated(filteredPrograms),
     filterProps,
     isFetchingSchools: selectIsFetchingSchools(state),
-    isFetchingPrograms: selectIsFetchingPrograms(state),
+    isFetchingPrograms: selectIsFetchingProgramsByFilter(state, filterProps),
     errorSchools: selectErrorMessageSchools(state),
     errorPrograms: selectErrorMessagePrograms(state),
   }

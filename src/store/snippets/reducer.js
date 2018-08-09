@@ -24,6 +24,9 @@ const byId = (state = {}, action) => {
   switch (type) {
     case ACTION_TYPES.createSuccess:
       return {...state, ...payload.snippets};
+
+    case ACTION_TYPES.fetchByFilterSuccess:
+      return {...state, ...payload.snippets};
     default:
       return state;
   }
@@ -45,7 +48,7 @@ const filters = (state = {}, action) => {
       const newState = {...state};
 
       if (newState[filterKey]) {
-        newState[filterKey] = [...newState[filterKey], filterValue];
+        newState[filterKey] = [...newState[filterKey], ...filterValue];
       } else {
         newState[filterKey] = filterValue;
       }

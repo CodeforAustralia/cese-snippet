@@ -53,7 +53,7 @@ export const mapStateToProps = (state) => {
       } else {
         suggestedProgramTemplates = excludeProgramsProvided(getOnlySuggestedSecondary(programTemplates), schoolPrograms);
       }
-      optionsProgramTemplates = makeProgramTemplatesOptions(suggestedProgramTemplates);
+      optionsProgramTemplates = makeProgramTemplatesOptions(programTemplates);
     }
   }
 

@@ -7,7 +7,7 @@ import {
 } from "store/programTemplates/selectors";
 import { makeProgramTemplatesOptions } from 'store/programTemplates/helpers';
 import { fetchProgramTemplates } from "store/programTemplates/actionCreators";
-
+import { updateFilterOnCreateProgram } from 'store/snippets/actionCreators';
 
 export const mapStateToProps = (state) => {
   const programTemplates = selectProgramTemplates(state);
@@ -28,6 +28,13 @@ export const mapDispatchToProps = (dispatch) => {
   return {
     onAddProgram: (program) => dispatch(createProgram(program)),
     fetchProgramTemplates: () => dispatch(fetchProgramTemplates()),
+    // onSubmitSuccess: (program) => dispatch( // todo - make this a flow instead
+    //   updateFilterOnCreateProgram({
+    //     schoolCode: program.schoolCode,
+    //     year: program.year,
+    //     programId: program.id,
+    //   })
+    // ),
   }
 };
 

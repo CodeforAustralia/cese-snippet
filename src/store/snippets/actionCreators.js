@@ -80,6 +80,12 @@ export const updateFilter = (ids, filterKey) => {
   }
 };
 
+// todo - should be refactored to flow
+export const updateFilterOnCreateProgram = (filterProps) => {
+  const filterKey = getFilterKey(filterProps);
+  return updateFilter(filterProps.programId, filterKey);
+};
+
 export const fetchByFilter = (filterProps) => {
   if (!filterProps.schoolCode || !filterProps.year || !filterProps.programId) {
     throw new Error('Must provide filter props to fetch by filter.');

@@ -1,9 +1,9 @@
 import React from 'react';
 import { withFormik } from 'formik';
 import {
-  FormGroup,
+  // FormGroup,
   Button,
-  Label,
+  // Label,
   Col,
   Form,
 } from 'reactstrap';
@@ -11,7 +11,7 @@ import Bows from 'bows';
 
 import * as cmsHelper from 'store/cms/helpers';
 import IndexedPartLayout from './indexedPartLayout';
-import FieldSelect from "components/fieldSelect";
+// import FieldSelect from "components/fieldSelect";
 import FieldTextInput from "components/fieldTextInput";
 import ErrorSummary from 'components/errorSummary';
 
@@ -30,7 +30,7 @@ import style from './style.scss';
 const log = Bows('F: ProgramEdit');
 
 const ProgramEditForm = ({
-                           optionsSchools,
+                           // optionsSchools,
                            cms,
 
                            handleSubmit,

@@ -64,6 +64,11 @@ export default withFormik({
   },
   validate: (values, props) => {
     const errors = {};
+
+    if (!values.name) {
+      return errors.name = 'Required';
+    }
+
     return errors;
   },
   handleSubmit: (
@@ -79,17 +84,10 @@ export default withFormik({
     newProgram.name = values.name;
 
     log(`submitting - ${JSON.stringify(newProgram)}`);
-    // props.setContainerState({
-    //   isSubmitting: true,
-    // });
 
     return props.onSubmit(newProgram).then(
       resp => {
         log(`success - ${JSON.stringify(resp)}`);
-        // props.setContainerState({
-        //   hasSubmitted: true,
-        //   isSubmitting: false,
-        // });
         setSubmitting(false);
         return resp;
       },
@@ -98,7 +96,8 @@ export default withFormik({
         setSubmitting(false);
         return errors;
       }
-    ).then(() => {
+    ).then((p) => {
+      props.onSubmitSuccess && props.onSubmitSuccess(p);
       resetForm();
     });
   }

@@ -21,8 +21,10 @@ class QuickAddProgram extends React.Component {
     }
   }
   render() {
-    const { schoolCode, year, optionsProgramTemplates, onAddProgram, isFetchingProgramTemplates,
+    const { schoolCode, year, optionsProgramTemplates, onAddProgram,
+      isFetchingProgramTemplates,
       title = 'Add another',
+      onSubmitSuccess,
     } = this.props;
 
     return (
@@ -37,6 +39,7 @@ class QuickAddProgram extends React.Component {
                     schoolCode,
                     year,
                   }}
+                  onSubmitSuccess={onSubmitSuccess}
             />
           }
         </CardHeader>

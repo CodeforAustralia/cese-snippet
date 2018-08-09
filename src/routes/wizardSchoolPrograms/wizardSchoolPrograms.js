@@ -23,7 +23,7 @@ import { ComponentLoading } from "components/loading";
 import {PageLoading} from "../../components/loading/index";
 
 
-const log = Bows('View: WizSchoolPrograms');
+const log = Bows('View: WizPrograms');
 
 const OnboardingWelcomeUrl = getOnboardingWelcomeUrl();
 const OnboardingSchoolUrl = getOnboardingSchoolUrl();
@@ -111,7 +111,7 @@ class WizardSchoolPrograms extends React.Component {
     return (
       <Layout nextTo="/schools"
               nextText="Complete sign up"
-              activateNext={!isSubmitting}>
+              activateNext={isLoaded && !isSubmitting}>
         <ArrowBreadcrumb linkList={[
           { to: OnboardingWelcomeUrl, label: '1', visited: true, disabled: false, },
           { to: OnboardingSchoolUrl, label: '2', visited: true, disabled: false, },

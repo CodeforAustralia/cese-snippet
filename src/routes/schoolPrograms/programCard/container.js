@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { fetchByFilter as fetchSnippetsByFilter } from "store/snippets/actionCreators";
 import {
   selectSnippetsByFilter,
-  selectIsFetchingByFilter,
+  selectIsFetchingByFilter as selectIsFetchingSnippetsByFilter,
 } from "store/snippets/selectors";
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,23 +12,23 @@ const mapStateToProps = (state, ownProps) => {
     year: program.year,
     programId: program.id,
   };
+
+  const snippets = selectSnippetsByFilter(state, filterProps); // todo - fetch only first 2
+  const isFetchingSnippetsByFilter = selectIsFetchingSnippetsByFilter(state, filterProps);
+
   return {
     program,
     school,
-    snippetsIsFetching: selectIsFetchingByFilter(state, filterProps), // todo - fetch only first 2
-    snippets: selectSnippetsByFilter(state, filterProps),
     filterProps,
+    snippets, //: sortByDateCreated(snippets), todo
+    isFetchingSnippetsByFilter,
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   const { program, school } = ownProps;
   return {
-    fetchSnippets: () => dispatch(fetchSnippetsByFilter({
-      schoolCode: school.code,
-      year: program.year,
-      programId: program.id,
-    }))
+    fetchSnippets: (filterProps) => dispatch(fetchSnippetsByFilter(filterProps)),
   }
 };
 
