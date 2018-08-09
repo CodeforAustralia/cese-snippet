@@ -24,6 +24,9 @@ const byId = (state = {}, action) => {
   switch (type) {
     case ACTION_TYPES.createSuccess:
       return {...state, ...payload.snippets};
+
+    case ACTION_TYPES.fetchByFilterSuccess:
+      return {...state, ...payload.snippets};
     default:
       return state;
   }

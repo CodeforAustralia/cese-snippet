@@ -32,8 +32,7 @@ const AddSnippetForm = ({
   return (
     <Form noValidate={true} onSubmit={handleSubmit}>
 
-      {/*<FormGroup hidden={true}>*/}
-      <FormGroup>
+      <FormGroup hidden={true}>
         <Col md={8}>
           <Label htmlFor="schoolCode">School</Label>
           <FieldSelect name="schoolCode"
@@ -46,8 +45,7 @@ const AddSnippetForm = ({
         </Col>
       </FormGroup>
 
-      {/*<FormGroup hidden={true}>*/}
-      <FormGroup>
+      <FormGroup hidden={true}>
         <Col md={4}>
           <Label htmlFor="year">Year</Label>
           <FieldTextInput name="year"
@@ -57,8 +55,7 @@ const AddSnippetForm = ({
         </Col>
       </FormGroup>
 
-      {/*<FormGroup hidden={values.programId}>*/}
-      <FormGroup>
+      <FormGroup hidden={values.programId}>
         <Col md={6}>
           <Label htmlFor="programId">Program</Label>
           {values.programId ?
