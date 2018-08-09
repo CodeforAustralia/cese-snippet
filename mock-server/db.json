@@ -2,12 +2,44 @@
   "session": {},
   "programs": [
     {
-      "schoolCode": "8514",
-      "year": "2018",
       "name": "Students As Lifestyle Activists (SALSA)",
-      "createdAt": 1533776240985,
-      "updatedAt": 1533776240985,
-      "id": 1
+      "schoolCode": "8514",
+      "programTemplateId": "",
+      "category": "Student Wellbeing and Support",
+      "subCategory": "",
+      "aims": "The SALSA initiative in Australia is a partnership programme between schools in Western Sydney, the Mt. Druitt and Blacktown Medical The overall goal of the programme is the prevention of obesity and chronic disease\nrisk factors amongst adolescents by providing them with the skills and knowledge to\nlead a healthy lifestyle. The programme seeks to expand beyond Australia by forging\npartnerships with health and educational organizations, reaching out to adolescents and\ntheir families, and making the programme materials available to the target audiences.",
+      "description": "Practitioners’ Association, the University of Sydney and Western Sydney Local Health District. The model and delivery of the SALSA\nprogramme is based on evidence founded in social cognitive theory and empowerment\neducation.",
+      "website": "",
+      "participantGroups": [],
+      "participantGroupsDescription": "",
+      "focusGroup": "None",
+      "focusGroupOther": "",
+      "yearLevels": [
+        "9",
+        "7",
+        "8"
+      ],
+      "cohortSize": "",
+      "deliveredByType": [
+        "School Staff"
+      ],
+      "externalProvider": "",
+      "staff": [],
+      "year": "2018",
+      "terms": [
+        "T2",
+        "T4",
+        "T3",
+        "T1"
+      ],
+      "tags": [],
+      "createdAt": 1533783389123,
+      "updatedAt": 1533783389123,
+      "id": 1,
+      "updatedBy": "1",
+      "costDescription": "The estimated cost of the programme is 14 Australian dollars ($12) per student per year.15 The programme received funding in 2013 from the Australian Government Department of Health for three years.",
+      "sefDomain": "Learning",
+      "audienceScope": "Whole Year Level"
     },
     {
       "schoolCode": "8514",
@@ -27,10 +59,10 @@
       "firstName": "Grace",
       "lastName": "Chang",
       "schools": [
-        "8514"
+        "8437"
       ],
-      "createdAt": 1533776164086,
-      "updatedAt": 1533776164086
+      "createdAt": 1533782510994,
+      "updatedAt": 1533782510994
     }
   ],
   "schools": [
