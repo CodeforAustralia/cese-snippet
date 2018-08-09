@@ -43,7 +43,7 @@ class RegisterSchoolForm extends React.Component {
                          touched={touched.code}
                          onChange={setFieldValue}
                          onBlur={setFieldTouched}
-                         autoFocus={true}
+                         autoFocus={!values.code}
                          searchable={true}
                          disabled={isSubmitting}
                          clearable={false}

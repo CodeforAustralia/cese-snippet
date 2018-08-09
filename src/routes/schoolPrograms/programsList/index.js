@@ -1,6 +1,6 @@
 import React from 'react';
-import orderBy from 'lodash/orderBy';
-import Bows from 'bows';
+// import orderBy from 'lodash/orderBy';
+// import Bows from 'bows';
 
 import ProgramCard from './../programCard';
 import QuickAddProgram from './../quickAddProgram';
@@ -8,7 +8,7 @@ import QuickAddProgram from './../quickAddProgram';
 import style from './style.scss';
 
 
-const log = Bows('C: ProgramsList');
+// const log = Bows('C: ProgramsList');
 
 class ProgramsList extends React.Component {
 

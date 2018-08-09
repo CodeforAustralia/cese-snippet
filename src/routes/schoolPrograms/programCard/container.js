@@ -25,8 +25,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const { program, school } = ownProps;
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchSnippets: (filterProps) => dispatch(fetchSnippetsByFilter(filterProps)),
   }

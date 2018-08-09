@@ -48,7 +48,7 @@ class ProgramCard extends React.Component {
   // }
 
   fetchData() {
-    const { snippets, fetchSnippets, isFetchingSnippetsByFilter, program, filterProps } = this.props;
+    const { snippets, fetchSnippets, isFetchingSnippetsByFilter, filterProps } = this.props;
     if (!snippets || !snippets.length && isFetchingSnippetsByFilter !== true) {
       log('fetching snippets');
       // log(filterProps);
@@ -129,7 +129,7 @@ class ProgramCard extends React.Component {
               <div>
                 <div className={cx(
                   style.snippetList,
-                  snippets.length && snippets.length > 2 ? style.showGradient : '',
+                  snippets.length && snippets.length > 1 ? style.showGradient : '',
                 )}>
 
                   {snippets.map((snippet, key) => (

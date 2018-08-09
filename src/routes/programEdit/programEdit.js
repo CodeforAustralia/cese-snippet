@@ -9,6 +9,7 @@ import Breadcrumb from 'components/breadcrumb';
 import Layout from 'layouts/app';
 import { PageLoading } from "components/loading";
 import Form from "./form";
+import {ComponentLoading} from "components/loading";
 
 
 const log = Bows('V: Program');
@@ -65,7 +66,7 @@ class Program extends React.Component {
       sessionUser,
     } = this.props;
 
-    if (isFetchingProgram !== false || isFetchingSchool !== false || isFetchingCms !== false) {
+    if (isFetchingProgram !== false || isFetchingSchool !== false) {
       return <PageLoading />
     }
 
@@ -85,15 +86,18 @@ class Program extends React.Component {
 
             <p>Help record details about the program. Enter any information and click "Save".</p>
 
-            <Form optionsSchools={[
-                    { value: school.code, label: school.name }
-                  ]}
-                  cms={cms}
-                  sessionUser={sessionUser}
-                  model={program}
-                  onSubmit={onSubmit}
-                  onSubmitSuccess={() => history.push(programUrl)}
-            />
+            {isFetchingCms !== false ?
+              <ComponentLoading innerPage={true} /> :
+              <Form optionsSchools={[
+                { value: school.code, label: school.name }
+              ]}
+                    cms={cms}
+                    sessionUser={sessionUser}
+                    model={program}
+                    onSubmit={onSubmit}
+                    onSubmitSuccess={() => history.push(programUrl)}
+              />
+            }
           </Col>
         </Row>
       </Layout>
